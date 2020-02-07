@@ -722,7 +722,7 @@ public function brandyExhibitionism():void
 		processTime(22);
 		//decrease affection -10
 		brandyAffection(-10);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.exhibitionism(2);
 	}
 	else
@@ -759,7 +759,7 @@ public function brandyExhibitionism():void
 		output("\n\nAnd there you rest atop your naked lover, drunk and happy, ready to sleep off your stooper while Brandy rest with her afterglow on the soft grass of the stockyard before you both have to get back to work.");
 		output("\n\nHopefully no one else comes to interrupt the two of you...");
 		processTime(45);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.exhibitionism(2);
 		pc.milkInMouth();
 	}
@@ -810,7 +810,7 @@ public function taurTimeWithBrandy():void
 	output("\n\n<i>“M-moo?”</i>");
 
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	//[Miscreant Manor] You think you know a better spot where you could get this done. //Requires the PC to have been to miscreant manor. Requires cock.
 	if(flags["MISCREANT_MANORED"] != undefined) addButton(0,"M. Manor",takeBrandyToMiscreantManor,undefined,"Miscreant Manor","You think you know a better spot where you could get this done.");

@@ -1571,7 +1571,7 @@ public function crystalGooUnsexedLoss():void
 
 	//end, no extra time penalty, set lust to 100, no orgasm, maybe lib up to fuck with the player
 	processTime(10+rand(10));
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	clearMenu();
 	CombatManager.genericLoss();

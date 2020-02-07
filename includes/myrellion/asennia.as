@@ -135,7 +135,7 @@ public function firstTimeAtHoneyTits():void
 	else if(pc.libido() <= 66) output(" You lick your lips and slip your hands up Asennia’s boob, giving it an experimental squeeze. She sucks in a slight breath, and honey begins to bead up from the tip of her dark nipple.");
 	else output(" You eagerly dig your fingers into Asennia’s boobflesh, squeezing her until she moans mid-sentence and honey squirts out of her teat, splattering the ground beside you. Honey bubbles up from her breast, and Asennia flashes you a smile. <i>“Eager, aren’t you...”</i>");
 	processTime(6);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",asenniaPartTwoIntro);
 }
@@ -154,7 +154,7 @@ public function asenniaPartTwoIntro():void
 	output("\n\nThe human girl either has the same thing on her mind, or else is sporting a competitive streak a mile wide. When she sees Asennia’s attentions flittering over to you, she immediately redoubles her groping and sucking on the massive tit in front of her. With a loud, smacking sound the woman pulls back on the ant’s teat, pinching it between her teeth before letting it snap back in an explosion of nectar that she greedily licks up. Asennia barely stifles a squeal of pleasure when her nipple is treated like that, and the impact sends a particularly violent squirt of nectar to splatter against the back of your throat.");
 	output("\n\nMeanwhile, the human woman’s hands crawl all over the myr’s breast, squeezing and kneading the amber-tinted flesh with expert motions. This chick’s clearly got a lot of experience handling big tits, not unlike a trained masseuse. The insectile proprietor responds with a growing cascade of moans and groans, and you watch as her upper set of arms rest on the tops of her breasts, squeezing them between palms and cold stone.");
 	processTime(6);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",introToAsseniaPartThree);
 }
@@ -362,7 +362,7 @@ public function milkToGoCup():void
 	//[Next]
 	processTime(22);
 	pc.credits -= 50;
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	quickLoot(new MyrNectar());
 }
@@ -410,7 +410,7 @@ public function repeatDrinkStraightFromAsenniasTap():void
 
 		output("\n\nNow that’s a tempting proposition, getting to sit in Asennia’s lap and suckle from her while she strokes you off... maybe you ought to come back when the honeypot’s business has left her a little less buxom.");
 		pc.exhibitionism(1);
-		pc.lust(10);
+		pc.changeLust(10);
 		flags["ASENNIA_COCK_OFFERED"] = 1;
 	}
 	output("\n\nYou let your fantasies take over, imagining crawling all over Asennia’s cask-like breasts, all but bathing in her vast reserves of nectar. Your arms wrap around her, hugging Asennia’s boob as close as a lover while you drink and drink until your stomach feels as full as after a Thanksgiving feast. The more you suckle down, the more Asennia moans and shivers - every movement makes her bust jiggle hypnotically, like a quaking waterbed. You note with a smirk that eventually one of the hostess’s hands disappears behind her, groping at her bloated abdomen and the drooling sex within. A moment later and her moans reach a new crescendo, and the honey starts coming out of her just a little easier.");
@@ -420,8 +420,8 @@ public function repeatDrinkStraightFromAsenniasTap():void
 	output("\n\nYou give her a grin and tell her you’ll definitely be back.");
 	processTime(23);
 	pc.milkInMouth(getAsenniaPregContainer());
-	pc.lust(11);
-	pc.energy(200);
+	pc.changeLust(11);
+	pc.changeEnergy(200);
 	output(pc.modThickness(2));
 	output(pc.modTone(-1));
 	pc.credits -= 50;
@@ -497,7 +497,7 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 	pc.milkInMouth(getAsenniaPregContainer());
 	pc.orgasm();
 	pc.shower();
-	pc.energy(100);
+	pc.changeEnergy(100);
 	pc.exhibitionism(2);
 	output(pc.modThickness(2));
 	output(pc.modTone(-1));
@@ -566,8 +566,8 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	else output("You hold up a triumphant fist to the crowd, and are instantly hailed with applause and lusty cheers!");
 	output(" Asennia slumps back in her stool, panting heavily as you hop back onto the street and get ready to go.");
 
-	pc.energy(100);
-	pc.lust(15);
+	pc.changeEnergy(100);
+	pc.changeLust(15);
 	processTime(19);
 	pc.milkInMouth(getAsenniaPregContainer());
 	clearMenu();

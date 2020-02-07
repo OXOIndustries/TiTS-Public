@@ -239,7 +239,7 @@ public function fuckCameronsButt():void
 	else if(pc.cocks[x].cLength() < 6) output("little sissy ");
 	output("cocks, and does an admirable job of getting you nice and slathered with lube. Every inch of your [pc.cock " + x + "] is glistening in the light by the time he’s done, a nice even coating of lube making you feel cold, slippery, and oh so hot all at once. Satisfied with his work, Cam shifts on the bed so that his legs are bent and spread, his ass just slightly off the edge of the bed. He takes hold of his cock and pulls it back, letting it flop wetly onto his belly.");
 	output("\n\n<i>“I’m all yours, [pc.name],”</i> he moans, wiggling his girly hips at you.");
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(9);
 	//[Rim Him First] [Fuck Him]
 	clearMenu();
@@ -264,7 +264,7 @@ public function rimHimFirst():void
 	output("\n\nYou slip up from between Cam’s legs and take in the effect of your efforts: one cum-slathered faux-cow, weakly jacking himself off as spooge leaks from his cock onto his belly. He groans, a lust-addled look in his eyes.");
 	output("\n\n<i>“S-sorry,”</i> he murmurs. <i>“The Treatment made me a mite bit too sensitive down there. Now I can’t stop... trembling.”</i> He moans as another thick trickle of spunk drools down and stains his fingers.");
 	output("\n\nYou stroke the faux-cow’s thigh, soothing him... even as you squirt a little extra lube onto your hand and slather up your [pc.cock " + x + "] again, making sure it’s nice and ready for him. The best thing about a Treated lover? He’s ready to go again almost instantly.");
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(7);
 	// to Fuck Him
 	clearMenu();
@@ -414,7 +414,7 @@ public function pcLosesToVarmint(clearText:Boolean = false):void
 	output("Suddenly, the varmint lunges up and takes you right in the chest with its horned head, knocking you onto the ground. The creature barrels you over and gives you another brutal WHACK with its horns, and everything goes black....");
 	var damage:Number = (pc.HPRaw - 1);
 	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
-	pc.lust(-50);
+	pc.changeLust(-50);
 	clearMenu();
 	addButton(0,"Next",pcLosesToVarmint2);
 }

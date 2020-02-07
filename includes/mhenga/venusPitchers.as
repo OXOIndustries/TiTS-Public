@@ -50,7 +50,7 @@ public function encounterRegularTentaclePitcherYouGay():void {
 			output("\n\nYou sneeze again and weigh your options.");
 		}
 		//Plus lust!
-		pc.lust(rand(5) + 1);
+		pc.changeLust(rand(5) + 1);
 		clearMenu();
 		addButton(0,"Approach",venusRepeatFallIn);
 		addButton(1,"Don’t",venusRepeatRefuse);
@@ -97,7 +97,7 @@ public function repeatPistilScene():void {
 	output("\n\nSlick moisture trickles down your cheeks in longer rivulets, yet you find yourself amused by the situation. This horny little vine is so lusty, and it can’t even find a good place to sate itself! Deciding that you might as well move things along, you wiggle your [pc.tongue] out and deliver a lick of the passing folds, stopping them in their tracks. The taste is rather pleasant, like a mixture of nectar and honey collected together and fermented into a kind of mead. Ramming straight against your maw, the feminine petals fold back and spread to expose the entire eerily-glistening cavern within.");
 	output("\n\nYou tentatively lick around the edge of the tentacle, swallowing the flavorful fruits of the venus pitcher’s ardor, being sure to tongue her engorged bud for good measure. Like a good little cunt, the vine starts to leak faster and faster in response to your affections. Your throat bobs and drinks with aplomb, sluicing down more and more of the natural mead. The muscles in your throat and mouth seem to relax the more you drink, and soon, the tentacle is pushing inside your gaping mouth-hole, fucking itself on your flailing tongue. Normally keeping your jaw that open would hurt, but the relaxing drink has numbed the pain to next to nothing.");
 	output("\n\nSoon the pollen in the air and the delightful, druggy sap you’re swallowing combine to leave you happy and horny, gleefully tonguing the tentacle cunt while you await further pleasure. You look at the busty plant-woman and all but hump her with your eyes, begging her to fuck you with nothing but the power of your drugged gaze alone.");
-	pc.lust(33+rand(20));
+	pc.changeLust(33+rand(20));
 	//To tentacle jam
 	clearMenu();
 	addButton(0,"Next",tentacleJamTime,false);
@@ -116,7 +116,7 @@ public function repeatStamenScene():void {
 	output("\n\nThat tentacle bulges wider in your mouth and slides deeper, so big that it feels like it’s steamrolling your [pc.tongue] flat against the bottom of your mouth as it goes. Soon, it reaches the entrance of your throat. It pulsates happily from the snug grip that your stretched opening is providing it and gushes thicker, longer flows of its mystery fluid straight into your ready gullet. You gulp it down instinctively, throat working to keep up with the heady flow, and it begins to rock back and forth, grinding its most sensitive places against your tongue to ease the passage of its fluids.");
 	output("\n\nYou gurgle happily and keep swallowing. The drink is setting your body aflame with desire while simultaneously denying you the control to do anything about it. Honestly, the forced fellatio is kind of comforting. It’s a simple rhythm - pump, gulp, and swallow - repeated over and over and again while you become more and more aroused.");
 	//To tentacle jam
-	pc.lust(33+rand(20));
+	pc.changeLust(33+rand(20));
 	clearMenu();
 	addButton(0,"Next",tentacleJamTime,true);
 }
@@ -269,7 +269,7 @@ public function requestStamenFirstTime():void {
 	output("\n\nWhat little of the juice that you can taste is heavenly, and you soon find your body responding even more strongly than before. Your throat relaxes, dilating open, and your mouth is actually starting to get used to being stretched this wide. The fullness is pleasant in its own way.");
 	pc.loadInMouth(chars["VENUSPITCHER"]);
 	// merge to start of tentacle jam!
-	pc.lust(33+rand(20));
+	pc.changeLust(33+rand(20));
 	clearMenu();
 	addButton(0,"Next",tentacleJamTime,true);
 }
@@ -285,7 +285,7 @@ public function requestPistilFirstTime():void {
 	output("\n\nThe heavenly taste soon begins to affect you in strange ways, inflaming your passion to new heights while loosening the muscles in your tongue to allow it to go even deeper. All in all, it’s a remarkably pleasant experience.");
 	pc.loadInMouth(chars["VENUSPITCHER"]);
 	// merge to start of tentacle jam!
-	pc.lust(33+rand(20));
+	pc.changeLust(33+rand(20));
 	clearMenu();
 	addButton(0,"Next",tentacleJamTime,false);
 }
@@ -695,7 +695,7 @@ public function repeatVenusPitcherHypnoGo():void {
 	output("\n\n<i>“You’re so ready to be properly touched... to have your lust fed into a bonfire of need and then milked from you with slow, deliberate orgasms. Just lie back and obey my instructions. Obey them so wholly that they stop becoming powerful instructions and turn into compulsive thoughts of your own,”</i> the potent voice purrs as you’re stretched and suspended upside down, completely naked. Your arousal is totally exposed to her, though this is a blessing, since you’re awaiting the pleasure you’ve become conditioned to expect. The tongues you’ve been feeling have brought you to a precipice, and the feeling of pure, distilled excitement threatens to explode out of you already");
 	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output(", even though you’ve been here before");
 	output(".");
-	pc.lust(55);
+	pc.changeLust(55);
 	//To Appropriate Venus pitcher milking!
 	processTime(5+rand(5));
 	elderVenusFuckSelect();
@@ -777,7 +777,7 @@ public function watchElderVenusPitcher():void {
 	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legOrLegs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
 	
 	output("\n\n<i>“Now, you just lie back there, and I’m going to make you cum so very, very well,”</i> the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(5+rand(5));
 	//Choose appropriate genitalia to abuse!
 	//Next
@@ -1564,7 +1564,7 @@ public function venusBadEnd():void
 	output("\n\n<i>“There we go,”</i> the verdant princess strokes your [pc.hair], and sighs pleasantly. <i>“You shouldn’t need to worry. Just relax, and let me take care of you.”</i> She shifts her grip to press your face against a nipple, pushing the leaf aside with your questing lips. <i>“You deserve a reward.”</i>");
 	output("\n\nYou certainly do. Your [pc.lipsChaste] seal around the beryl nub, granting your tongue access a split second later. You slather it in spit, sparking hot bursts of its perfect flavor across your palate. There’s no other way to describe it. The actual sensation is buried so deeply under hypnotic suggestions that it’s impossible to tell your body’s reactions from those programmed into your mind. The two are inseparably entwined in a column of oral ecstasy that would curl your toes were they not so delightfully, helplessly immobile.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",venusPitcherBadEnd2);
 }
@@ -1616,7 +1616,7 @@ public function venusPitcherBadEnd2():void
 	else output("all the [pc.milk] in the universe");
 	output(". You want to beg, but on some level you know being her floppy fuckdoll is the most obedient, most desirable thing you can do. The knowledge that you’re submitting to her so totally nearly makes you cum... but not quite, not without her tentacles, fucking and sucking you, wringing you for your nutritious juices.");
 	processTime(25);
-	pc.lust(75);
+	pc.changeLust(75);
 	clearMenu();
 	addButton(0,"Next",venusPitcherBadEnd3);
 }
@@ -1643,7 +1643,7 @@ public function venusPitcherBadEnd3():void
 	output("\n\nLarge clumps of pollen fall from the ceiling, bathing everything in a pale pink glow. It thrums and pulses like a heartbeat, lulling you into complacency as you’re placed still closer to the plant-girl’s heavenly cunt. All you have to do is stick out your tongue and you can taste it. One muscle movement, and you’ll experience a flavor so incredible that you’ll never want for anything else again. You’ll be permanently addicted to venus pitchers, body, mind, and soul.");
 	output("\n\nThe only reason you haven’t yet is because she hasn’t given you permission.");
 	processTime(10);
-	pc.lust(24);
+	pc.changeLust(24);
 	clearMenu();
 	addButton(0,"Next",venusPitcherBadEnd4);
 }
@@ -1725,7 +1725,7 @@ public function venusPitcherBadEnd5():void
 	processTime(25);
 	pc.ballFullness = 100;
 	pc.milkFullness = 100;
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	clearMenu();
 	addButton(0,"Next",venusPitcherBadEnd6);

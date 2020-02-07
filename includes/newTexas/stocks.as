@@ -250,7 +250,7 @@ public function useMiscreantManor2():void
 			output("\n\nGAME OVER.");
 			output("\n\n\n\n\n\n\n\n\n\n\n\n(OR IS IT?)");
 			processTime(15);
-			pc.lust(10);
+			pc.changeLust(10);
 			pc.exhibitionism(1);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
@@ -309,7 +309,7 @@ public function useMiscreantManor2():void
 	}
 	var args:Array = [inCunt,x];
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",stocksOralIntros,args);
 }
@@ -452,7 +452,7 @@ public function stocksOralIntros(args:Array):void
 		output("\n\nDroplets of sweat fall from your redneck Adonis like rain, smearing your forehead as he humps you. His balls slap your chin, heavy and wobbling, so full of cum that they feel more like gelatin than human organs. Your vision swims for some reason, maybe the pleasure or this dude’s pheromones. Whatever the case, you let your eyes drift closed to focus on the sensations themselves. You don’t need to see to suck. You don’t need to look to fuck.");
 		output("\n\nAll you need to do is let them use you.");
 	}
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(10);
 	var args:Array = [inCunt,inMouth,x];
 	clearMenu();
@@ -690,7 +690,7 @@ public function stocksMouthgasms(args:Array):void
 	}
 	processTime(10);
 	pc.orgasm();
-	pc.lust(50);
+	pc.changeLust(50);
 	var args:Array = [inCunt,inMouth,x];
 	clearMenu();
 	addButton(0,"Next",stocksEpilogue,args);

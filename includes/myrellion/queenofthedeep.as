@@ -158,7 +158,7 @@ public function queenOfTheDeepPCLoss():void
 
 	output("\n\nYou feel the heat of venom on you almost instantly, rousing your senses.");
 	
-	pc.lust(100);
+	pc.changeLust(100);
 	
 	if (pc.hasCock())
 	{

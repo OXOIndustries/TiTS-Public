@@ -307,7 +307,7 @@ public function treatedBlowjoerbsAndMilking():void
 	output("\n\nThis time he doesn’t stop you. The button at the top practically bursts open of its own accord, releasing a tube of nub-covered horsecock. Its blunt head thickens before your eyes, stretching a solid five inches above the waistband, and its still-growing, increasingly tumescent mass is actually forcing the zipper down with the force of its engorgement.");
 	output("\n\nA slow-sucking tube presses against one of your [pc.breasts], barely felt or noticed. Your mind is too full of thoughts of dick to wholly process the sensations it triggers, but it does bring with it a kind of slow-burn, dizzying euphoria. Giggling, you nuzzle the musky rod and revel in the feelings his magic machine is pumping into you. The second cup touches down, making you moan on the spot. New instincts kick in, and you dive forward to put your open mouth to use.");
 	output("\n\nIt’s a tight fit, but you manage to slip him inside. He tastes like salt and sweat and heaven. Your cheeks hollow, your body doing its best to see just how much of his delicious length it can handle. It turns out to be a lot.");
-	pc.lust(14);
+	pc.changeLust(14);
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",treatedPCsSuckYancysDickForMilkPartII);
@@ -337,7 +337,7 @@ public function treatedPCsSuckYancysDickForMilkPartII():void
 	output("\n\nThe sound of a mechanical click draws you from your lactic reverie.");
 	//Next
 	processTime(11);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",treatedPCsSuckYancysDickForMilkPartIII);
 }
@@ -494,7 +494,7 @@ public function treatedPCsGetCuntFilledAndMilkedPtI():void
 	output("-massagers enough to make you pant and moan. The girl reflected on the machinery is grinning, but she’s not nodding at least. Closing your eyes, you let your head rest on Yancy’s shoulder and just enjoy the moment. <i>“If you really want to...”</i>");
 	output("\n\nThe stud grumbles, <i>“This is why our movie industry never makes anything better than porno.”</i> He flicks a switch on the wall, and the pumps lurch into motion, bobbing and shaking as they rhythmically suck at your teats.");
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	//Next
 	clearMenu();
 	addButton(0,"Next",treatedPCsGetCuntFilledAndMilkedPtII);

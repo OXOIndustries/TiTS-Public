@@ -36,13 +36,13 @@ public function edanRoomDesc():void
 	{
 		output("You see Edan sitting next to some animated raskvel, their eager chittering a juxtaposition to his calm silence as he eats. His eyes flicker to you for a moment, and he crooks a finger to beckon you over before returning to his meal. His casual hold over you turns you on a bit...");
 		addButton(0, "Edan", talkToEdan, undefined, "Edan", "Go say hi.");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	else if (flags["EDAN_FUCKED"] >= 3)
 	{
 		output("You see Edan sitting next to some animated raskvel, their eager chittering a juxtaposition to his calm silence as he eats. He gives you a nod and you immediately heat up a bit, the memory of being fucked like you’re some kind of masturbation toy fresh in your mind and all too appealing.");
 		addButton(0, "Edan", talkToEdan, undefined, "Edan", "Go say hi.");
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 }
 
@@ -277,7 +277,7 @@ public function edanStories():void
 			output("\n\nEdan exhales loudly as he finishes his story, his turgid cock throbbing in your poor throat as he explodes directly into your stomach, splattering your walls with a sticky coating of cum and marking you as his. You gurgle around the base of his dick as your overwhelmed throat bulges with each load travelling down his cumvein until it’s where it belongs - your overstuffed tummy. With him impaling you so deeply swallowing is unnecessary, but you do it anyway to make your well-trained throat muscles convulse and tighten around his cock as he finishes, the absurd bulge receding from your neck as he withdraws from your fuckhole, as loose as any plowed cunt.");
 			output("\n\n<i>“You’re good, Steele,”</i> he sighs in satisfaction, looking down at you. <i>“Now that I think about it, maybe being a pornstar </i>is<i> your calling.”</i>");
 			output("\n\nFinding his plate empty, he returns to the kitchen to harangue the chefs for more, leaving you with the happiness of his praise and a stomach full of his cum.");
-			pc.lust(30);
+			pc.changeLust(30);
 			pc.exhibitionism(2);
 			flags["EDAN_STORYINTROTOLD"] = 1;
 		}
@@ -375,7 +375,7 @@ public function edanSex():void
 		output("\n\n<i>“Hold up, Steele. As happy as I am you’ve accepted your role, there’s something else I want to do today. Let’s go to the tavern next door, I’ve got something special planned for you.”</i>");
 		output("\n\nSomething special? You like the sound of that. You walk behind Edan as he strides into the tavern, your eyes lingering between his legs as you chuck your gear back on. His cock is sheathed right now, but you’re looking forward to when it isn’t. You tuck that thought away as you walk into the tavern, your pussy already quivering a little at the thought of whatever Edan’s going to subject you to.");
 		
-		pc.lust(20);
+		pc.changeLust(20);
 		currentLocation = "302";
 		pc.exhibitionism(5);
 		addButton(0, "Next", edanSexFourth, undefined, "Next", "Time to find out what that something special is.");
@@ -388,7 +388,7 @@ public function edanSex():void
 		output("\n\nIt’s why you’ve been approaching him so often, it’s why you followed through when he half-seriously told you to suck his dick under a mess hall table. You’re giving him your everything, and you’re loving it. Part of you wonders if he was serious when he said he could fuck you all day, and whether you could even handle it. Maybe if you’re lucky, that’s what you’re about to find out. You catch up to him to walk side by side until you reach his ship, completely ignoring the surroundings as your imagination plays out your fantasies.");
 		output("\n\n<i>“Here we go. It’s not fancy, but it flies well and it was the roomiest one I could find.”</i>");
 		
-		pc.lust(20);
+		pc.changeLust(20);
 		currentLocation = "201";
 		addButton(0, "Next", edanSexFifth);
 	}
@@ -469,7 +469,7 @@ public function edanSexFirst():void
 	output(" but maybe being overly willing to suck the dick of a mercenary you just met might give him the wrong idea. You glance up to see Edan has found a new seat, and he gives you a smile and a wave before getting back to eating. You guess being as big as he is has its drawbacks when it comes to food. With a sigh and a mix of emotions burning in the pit of your spunk-filled tummy, you stand to leave as a resigned kitchen worker arrives with a mop.");
 	
 	
-	pc.lust(70);
+	pc.changeLust(70);
 	pc.exhibitionism(5);
 	pc.loadInMouth(chars["EDAN"]);
 	flags["EDAN_FUCKED"] = 1;
@@ -548,7 +548,7 @@ public function edanSexSecondEnd():void
 	else output(" draw your hand back from fingering your needy pussy to wipe some cum out of your eyes.");
 	output(" You briefly wonder what it would feel like to have his giant cock explode inside you instead of all over you, but decide not to dwell on it too long lest you start enthusiastically masturbating right there in the hall. You clean yourself off as best you can and get up to leave.");
 
-	pc.lust(100);
+	pc.changeLust(100);
 	pc.exhibitionism(10);
 	pc.loadInMouth(chars["EDAN"]);
 	flags["EDAN_FUCKED"] = 2;
@@ -1374,14 +1374,14 @@ public function edanDrinksIntro():void //broooooo
 		{
 			pc.addStatusValue("Quivering Quasar", 2, 5);
 			pc.physiqueMod += 5;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 	}
 	else
 	{
 		pc.createStatusEffect("Quivering Quasar",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf alcohol makes you feel stronger - so much so that your maximum physique is temporarily increased.",false,180);
 		pc.physiqueMod += 5;
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	pc.imbibeAlcohol(20);
 }
@@ -1428,7 +1428,7 @@ public function edanDrinksSexFirst():void
 	
 	pc.loadInMouth(chars["EDAN"]);
 	processTime(10);
-	pc.lust(30)
+	pc.changeLust(30)
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -1454,7 +1454,7 @@ public function edanDrinksSexSecond():void
 	output("\n\n<i>“Looks like you enjoyed the ride, Steele. I know I did! I’ll see you around, yeah?”</i>");
 	output("\n\nHe gives you a little wave as he exits the stall, closing the door behind him to at least allow you a semblance of privacy as you gather the pieces of your overstimulated mind together. You idly collect the cum across your face and slip it between your lips, cleaning yourself off a bit with your [pc.tongue] before swallowing, adding to the heat in your stuffed tummy. You get up after a bit of personal grooming and leave, accompanied only by the sensations of a slightly sore throat, a stomach fucked full of spunk and a dripping wet pussy.");
 	
-	pc.lust(40);
+	pc.changeLust(40);
 	processTime(20);
 	pc.loadInMouth(chars["EDAN"]);
 	addButton(0, "Next", mainGameMenu);

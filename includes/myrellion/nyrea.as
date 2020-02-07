@@ -1123,7 +1123,7 @@ public function pcLossToNyreaAdditionalOne():void
 		output("\n\nMore eggs follow the first, and somewhere between the sixth and seventh you pass out due to lack of air. When you awaken, your throat is incredibly sore and still slick with sexual fluid, your stomach swollen and lumpy with her eggs. Luckily they won’t hatch in there, but it’s a pretty clear message as to what she thinks of you. You groan and struggle back to your feet, intent on heading onwards.");
 		
 		pc.loadInMouth(enemy);
-		pc.lust(50);
+		pc.changeLust(50);
 		processTime(30);
 	}
 	
@@ -1258,7 +1258,7 @@ public function pcLossToNyreaBadEndPartOne():void
 	output("\n\n<i>“Come with me.”</i>");
 	output("\n\nIt’s not a request. Her eyes signal that there is no room for being coy. You’re torn between being embarrassed that the heir apparent of Steele Tech is going to spend the rest of "+pc.mf("his", "her")+" life as a Nyrean’s fuckhole and breeder, and being intensely proud of getting to spend the rest of your life bringing ecstatic pleasure as best you can to your owner and Alpha. Your dream of being a starfaring CEO comes to an end on the tip of a barbed cock, but you’re sure to enjoy whatever form your life takes on from here. You stand and take her proffered hand, her still-warm jizz sliding down your inner thigh. Allowing her to take you wherever she wants, you walk away, leaving your [pc.gear] discarded on the ground for – perhaps – some other adventurer with big dreams.");
 	
-	pc.lust(200);
+	pc.changeLust(200);
 	pc.removeAll();
 	
 	processTime(60);
@@ -1311,10 +1311,10 @@ public function pcLossToNyreaBadEndPartTwo():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	pc.lust(200);
+	pc.changeLust(200);
 	
 	badEnd("GAME OVER!");
 	
-	pc.lust(200);
+	pc.changeLust(200);
 }
 

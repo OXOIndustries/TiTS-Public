@@ -1422,7 +1422,7 @@ public function maleNaleenSucksPCOff():void
 	output("get up, clean the worst cum from your face, and [pc.hair], grab your [pc.gear] and, with a last look back at the peacefully sleeping naleen male, leave the area.");
 
 	//Probably add +20? 30? lust here since PC doesn’t actually cum.
-	pc.lust(20+rand(10));
+	pc.changeLust(20+rand(10));
 	pc.loadInMouth(enemy);
 	output("\n\n");
 	processTime(20+rand(3));

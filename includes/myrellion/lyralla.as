@@ -589,7 +589,7 @@ public function peekIntoTheClosetAndWatchAntSmex():void
 	output("\n\nLyralla is panting hotly, but her brow is knitted with worry. <i>“Are you... are you sure we won’t get caught?”</i> Despite her concerns, a second hand joins the first, evenly coursing across the uneven surface of her partner’s bulging erection. Trickles of pre-cum fall onto her fingers, smearing across the hardened surface of her hands until they shine.");
 	output("\n\n<i>“Relax. No one will be looking for us for another hour, and this closet is for my personal archives. Our assistants would never come in here without our permission. Besides, even if someone did see us slip in, it wouldn’t be inappropriate for me to be discussing the ancient treaty of Terrai over lunch in here.”</i> Juro pauses to moan and step a little closer to his ant-like lover, pressing the fullness of his erection against her belly. Any closer and his face would disappear into her breasts. <i>“Right there....”</i>");
 	output("\n\nA smile replaces the worry on Lyralla’s golden lips, and her arms fall down onto Juro’s shoulders, squeezing him affectionately. <i>“You know how I worry. I can’t imagine what that horrible red would do if she knew.”</i> Her constant stroking of Juro slows, and a shudder wracks her upper body. <i>“What I wouldn’t give for this whole mess to be behind us.”</i> Her artificial eye unfocuses as she imagines it. <i>“We wouldn’t have to hide anymore, and we could work in the diplomatic corps together, bringing peace and civilization wherever we go.”</i> Her last organic limb slides down to cup at Juro’s balls, gently kneading his sensitive orbs.");
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",juroXLyrallPartII);
@@ -607,7 +607,7 @@ public function juroXLyrallPartII():void
 	output("\n\nThe big-balled diplomat tilts his head to look at Lyralla sidelong, letting the amber ambrosia slow so that he can talk. <i>“Whatever happens, we have each other right now, and I wouldn’t give it up for the whole universe.”</i> He bucks his hips forward, thrusting through three hands made slick by fragrant pre-cum, and she lets him, guiding him to the slippery gash hanging between her thighs. She has her abdomen pointed down, curling forward so that the shorter male can push into the feminine entrance at the end of it. Paired gasps of pleasure fill the air, one muffled by a mouth-filling tit, as he slips inside her.");
 	output("\n\nYou can’t see the penetration too well, but it’s clear from the way his hips slowly grind forward that he didn’t ram it home all at once. He’s pushing forward a few inches at a time, then pausing and wiggling slightly to prepare her for the next rounded bulge on his length. The distinctive tail that all kui-tan bear twitches from side to side, flailing faster the further inside he gets.");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",juroXLyrallPartIII);
 }
@@ -627,7 +627,7 @@ public function juroXLyrallPartIII():void
 	output("\n\nThe kui-tan is on the proffered pussy in two shakes of an ant’s tail, wrapping his hands around the chitinous organ so that he can properly pound into it. You can see much better from this angle, watching its lips distend with ease around the triple-knot bang. She’s either done this a lot or myr pussies are built to stretch around big, fat spheres.");
 	output("\n\nThe gold ant has abandoned all traces of propriety. Her tongue is lolling out, lapping at some of the honey while her lower arms slide between the amber fluid and her own compressed breasts, toying with her sensitive, recently suckled nipples. Her upper arms eventually pull her face and tits up out of the puddle; the lower ones use the opportunity to squeeze and tug at her teats, expressing even more sweet nectar into the puddle beneath her. Her insectile tongue gathers the drops it can reach from her face, but there’s no helping the stickiness soaking the rest of her.");
 	output("\n\nJuro’s balls slap against her chitin’s underside with each thrust. The reserved kui-tan is fucking like a wildman, pounding her with regular, piston-like strokes. Sometimes he takes a hand off her abdomen to caress her near-hidden clit, causing her to coat his embedded shaft in even more lubricant. The mixed juices froth and bubble, dripping down the gleaming metal of Lyralla’s thighs on their way to the puddle below.");
-	pc.lust(4);
+	pc.changeLust(4);
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",juroXLyrallPartIV);
@@ -728,7 +728,7 @@ public function juroXLyrallPartIV():void
 	output("\n\nJuro responds by bottoming out. His whole body arches, every muscle working in one coordinated effort to bury his bulbous shaft in to the very base. His weighty balls tremble and quiver as they begin to unload. The fluid-caked ant-girl’s eyes widen, then roll back. Her tongue lolls out, sticky with unswallowed nectar, passively quivering and drooling in the face of her climax.");
 	output("\n\nSwelling larger by the second, Lyralla’s cock-stuffed abdomen gurgles audibly, packed with more cum than any unaugmented terran could handle. The skin beneath the chitinous plates becomes more visible by the second, stretched taut and shiny by the kui-tan’s copious load. Lyralla’s face drops into the honey, and she dimly moans. Sometimes she manages to drag her tongue around the pooled tit-sap to enjoy the flavor, but most of the time she’s just lying there, cumming from being so completely filled.");
 	output("\n\nJuro stands rigid for the better part of a minute. His balls are visibly deflating before your eyes, slowly shrinking down until they’re little bigger than eggs. Then, the spent ambassador slumps over his insectile lover and pants heavily. His drained nuts are still quivering, still forcing more virile fluid into the climax-addled ant, but the bulk of his load has been deposited.");
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",juroXLyrallPartV);
@@ -748,7 +748,7 @@ public function juroXLyrallPartV():void
 	output("\n\nYou decide to move away before you get caught. Maybe you can find a quiet place to masturbate... or someone to help you with how hot you’re feeling.");
 	flags["JURO_LYRALLA_CLOSET_SEEN"] = 1;
 	pc.createStatusEffect("JuroXLyrallaCooldown", 0,0,0,0, true, "", "", false, 1000);
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

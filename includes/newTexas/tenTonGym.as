@@ -233,7 +233,7 @@ public function runWithAnno():void
 		output("\n\nThe sudden shift in position allows her full, fluffy tits to spring free from her ill-fitting tank top. Anno lets out a bark of surprise and clutches at her exposed breasts. You grab two handfuls of Anno’s abundant rack and do your best to return it to the reluctant tank top.");
 		output(" You manage to squeeze the right breast back inside, but have some difficulty stowing the other away. Just as you think you’ve got it, her right breast springs free and tit-slaps you across the face.");
 		output("\n\nOnly with a monumental amount effort do you succeed in restoring her tits to their residency within Anno’s top. With the crisis handled, you look around to see whether anyone noticed your little problem. The least observant detective in the universe would be able to tell you just how noticeable your little accident was. Every bull in the room is sporting a throbbing erection and not a small number of the cows are leaking at the breast or groin. Not that you can blame them.");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	output("\n\nYou run a few more laps around the track before calling that a good work out. Sweat runs down your [pc.skin], leaving slick, salty trails. Your exercise buddy is similarly dripping with sweat, her [anno.chest] heaving with each breath as she cools down from the run.");
 	output("\n\n<i>“Woo, That was a great jog! We worked up quite a sweat, huh, boss? What say we go rinse off?”<i>");
@@ -546,8 +546,8 @@ public function annoWorkoutWatchItJiggle():void
 		output("\n\n<i>“I worked up quite an appetite with that workout. After I have a quick shower, I’ll have to take another trip to the buffet. Maybe you’ll join me next time?”</i> Her tail twitches suggestively."); 
 		output("\n\nSomething tells you that might not be a bad idea.");
 	}
-	if(flags["ANNO_HUSKARRED"] != undefined) pc.lust(25);
-	else pc.lust(15);
+	if(flags["ANNO_HUSKARRED"] != undefined) pc.changeLust(25);
+	else pc.changeLust(15);
 	processTime(30);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -834,7 +834,7 @@ public function spaTimesFunStuff():void
 	// +20 energy, +15-20 Lust {Time: 20 minutes}
 	processTime(20);
 	pc.energy(20);
-	pc.lust(15+rand(5));
+	pc.changeLust(15+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -897,7 +897,7 @@ public function takeAShowerSloot():void
 		{
 			output("\n\nDespite the show you’ve just put on, it seems like nobody wants to play right now. You consider handling yourself right then, but really, what’s the point? If a room full of naked New Texans doesn’t want to get dirty with you, then you might as well get cleaned up and find someone who does.");
 			//[Done] Go to Locker Room and Showers {Remove all [Sweaty]} {Time: 10 minutes} [+40 Lust] [+1% Exhibitionism]}
-			pc.lust(30+rand(10));
+			pc.changeLust(30+rand(10));
 			pc.exhibitionism(1);
 		}
 		else
@@ -1730,7 +1730,7 @@ public function simoneWorkoutResults(response:String = ""):void
 			pc.girlCumInMouth(chars["SIMONE"]);
 			pc.girlCumInMouth(chars["SIMONE"]);
 			pc.exhibitionism(2);
-			pc.lust(30+rand(10));
+			pc.changeLust(30+rand(10));
 			pc.applyPussyDrenched();
 			
 			if(!pc.hasGenitals() && flags["SIMONE_TEASED"] == undefined) flags["SIMONE_TEASED"] = true;
@@ -2005,7 +2005,7 @@ public function showerWithBetsyAndVictoriaTease():void
 	output("\n\n<i>“Ooh, I like,”</i> Betsy says. The two lovers wander off toward their new potential partner.");
 	
 	processTime(10);
-	pc.lust(30+rand(20));
+	pc.changeLust(30+rand(20));
 	pc.exhibitionism(1);
 	pc.shower();
 	
@@ -2587,7 +2587,7 @@ public function liftVoyeurism():void
 	{
 		pc.orgasm();
 	}
-	else pc.lust(25);
+	else pc.changeLust(25);
 
 	//processTime(40);
 	//+25 lust, another 25 to Treated PC

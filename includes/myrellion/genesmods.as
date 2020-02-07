@@ -925,7 +925,7 @@ public function genesModsBlowjob():void
 		pc.loadInMouth(chars["GENE"]);
 		// Cumflation
 		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
-		pc.lust(33);
+		pc.changeLust(33);
 	}
 	else
 	{
@@ -984,7 +984,7 @@ public function genesModsBlowjob():void
 
 		// cumflate
 		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
-		pc.lust(33);
+		pc.changeLust(33);
 		pc.orgasm();
 	}
 	processTime(29);
@@ -1175,7 +1175,7 @@ public function genesModsBellyrubRelease():void
 	
 	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [pc.raceShort], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
 	processTime(3);
-	pc.lust(10+rand(5));
+	pc.changeLust(10+rand(5));
 	geneSubmissionLevel(-3);
 	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
@@ -1199,7 +1199,7 @@ public function genesModsBellyrubDeny():void
 
 	geneSubmissionLevel(-3);
 	processTime(2);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1286,7 +1286,7 @@ public function genesModsBellyrubFirstRelease():void
 	output("\n\n<i>“You can’t tell anyone about... that, Steele,”</i> he replies thickly. <i>“My reputation... if you don’t, then, yes, I wouldn’t mind... that.”</i> He wipes himself down and clambers back into his clothing, looking rather shamefaced.");
 	processTime(4);
 	geneSubmissionLevel(-3);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

@@ -1004,7 +1004,7 @@ public function selleraShowsYouTheTasteOfWarUnderHerDesk():void
 	selleraHeader();
 	author("Night Trap");
 	processTime(3+rand(3));
-	pc.lust(10+pc.libido()/8);
+	pc.changeLust(10+pc.libido()/8);
 
 	output("As busy as Sellera is, there’s no way she has time to scratch all of her itches. Does she want you to help her with that?");
 	output("\n\nSellera fixes you with a stare so icy you feel like you’re in a cold shower. <i>“" + (flags["FEDERATION_QUEST"] > 2 ? "I was under the impression you wanted to do something for the Federation today, not yourself.”</i>" : "You haven’t earned a chance to fuck me yet, Steele. You’ll need to work harder if you want that.”</i>"));
@@ -1035,7 +1035,7 @@ public function selleraWarActuallyTastesALotLikePussy():void
 	selleraHeader();
 	author("Night Trap");
 	processTime(20+rand(16));
-	pc.lust(30+pc.libido()*3/8);
+	pc.changeLust(30+pc.libido()*3/8);
 
 	output("Though you certainly still feel breathless, you are no longer audibly gasping, and that’s all the show of readiness that Sellera needs to wrap both of her chitin-clad legs around your back and drag you into her sloppy slit again. Your [pc.lipsChaste] close just in time to prevent you from taking in another lungful of myr nectar, but your nose is almost painfully mashed into the veteran soldier’s bullet-like clitoris. You reflexively try to pull away for a moment, but your hypoxic muscles are no match for the ant woman’s steely legs. Your movements do manage to excite Sellera however, as you unintentionally pull back the hood of her clitoris, stimulating the hyper-sensitized pearl beneath. Each time you do, her hips buck into your face involuntarily, and she gasps loudly in pleasure, the sound muffled by her twitching thighs.");
 	output("\n\nIt finally dawns on you that you won’t be able to escape until you satisfy Sellera, something that promises to be no easy task. With retreat cut off, your only option is to press the attack, so you dive into Sellera’s pussy with all the energy you can muster.");
@@ -1115,7 +1115,7 @@ public function selleraRalliesHerTroopsToFuckYou():void
 	clearOutput();
 	selleraHeader();
 	author("Night Trap");
-	pc.lust(10+pc.libido()/8);
+	
 	processTime(15+rand(11));
 
 	var x:int = pc.biggestCockIndex();
@@ -1161,7 +1161,7 @@ public function selleraRalliesHerTroopsToFuckYou():void
 	output("\n\nBy the time all the soldiers are completely nude, their arousal is becoming more apparent. Those more comfortable with sex are already warming themselves or their close friends up, and you see many chitinous hands squeezing scarlet breasts or teasing crimson slits. Some of the women are clearly in relationships, as they kiss each other with undisguised passion, envenoming and caressing each other so that their thighs are slick in a matter of moments. It’s frankly a scene out of a porno, and you unthinkingly move a hand towards your throbbing hardness to sate your painful arousal.");
 	output("\n\nThe crowd of women notice this immediately, and they all turn their attention to you as you begin stroking your [pc.cock " + x + "]. They clap and cheer, egging you on, but it doesn’t matter. " + (pc.exhibitionism() < 50 ? "Even if you weren’t humiliated to be on display like this, your cock is almost totally numb." : "Even though this is exactly the sort of situation you have wet dreams about, your cock is almost totally numb.") + " You groan in frustration, redoubling your efforts, but you barely feel anything even when you use both hands. When you start thrusting your [pc.hips] up into your doubled grip out of sheer desperation, the room practically explodes with whistles, applause, and vulgar shouts directed at you. The soldiers apparently think you’re putting on a show for them!");
 	output("\n\nYou barely even notice all this until the room suddenly falls silence once more and you feel the cold touch of Sellera’s insectile hand on your wrist. <i>“That’s enough, drone! It was an excellent opening act, but you’ll need to save your strength for the main event. It’s time for General-Lieutenant Anka to break you in for the rest of these girls.”</i> The field marshal’s tone is convivial, but there’s a sadistic glint in her eyes even as she speaks more to the room than to you, giving you the feeling you’re about to get more than you bargained for.");
-	
+	pc.changeLust(10+pc.libido()/8);
 	addButton(0, "Next", selleraSharesACockWithHerColony, x);
 }
 
@@ -1171,7 +1171,7 @@ public function selleraSharesACockWithHerColony(x:int):void
 	clearOutput();
 	selleraHeader();
 	author("Night Trap");
-	pc.lust(30+pc.libido()*3/8);
+	
 	processTime(15+rand(11));
 
 	output("Your heart hammers in your chest from equal parts arousal and nervousness as the tall, matronly myr at the front of the line steps toward the bed. Her shoulder-length hair is streaked with grey, though the hair on her plump pubic mound is still solid black and only barely trimmed. Anka’s face is lined with years and stress, but she is in far better shape than her age might indicate. Under her weighty breasts is a tight, flat middle that naturally draws the eye down to the delta of her womanhood. Her bush mostly conceals her treasure, but it certainly doesn’t obscure her meaty thighs as she strides toward you.");
@@ -1223,6 +1223,7 @@ public function selleraSharesACockWithHerColony(x:int):void
 	output("\n\n<i>“Having fun, yes,”</i> Sellera interrupts her subordinate’s apology, looking more convivial than you’ve ever seen her. <i>“There’s no apology required, General-Lieutenant. I knew you had the situation under control. I arranged this whole affair for the express purpose of giving everyone here a chance to let off some steam. The bedchamber is exactly the place for vulgarity and lechery.”</i> The field marshal addresses the room as a whole, <i>“That goes for every woman here! This alien drone is here exclusively for your pleasure. Do </i>anything<i> you wish with [pc.himHer].”</i> Her explanation provokes more cheering and celebration than ever before, and Anka simply salutes Sellera with a smile and is wordlessly dismissed by her commander amidst the din of horny women.");
 	output("\n\nThe field marshal allows this to carry on for a moment more before gesturing once again for silence. <i>“Sergeant Nalu, it is your turn now.”</i>");
 
+	pc.changeLust(30+pc.libido()*3/8);
 	addButton(0, "Next", sellaraIsNaLukingTiredYet, x);
 }
 
@@ -1232,7 +1233,7 @@ public function sellaraIsNaLukingTiredYet(x:int):void
 	clearOutput();
 	selleraHeader();
 	author("Night Trap");
-	pc.lust(30+pc.libido()*3/8);
+	
 	processTime(210+rand(121));
 
 	output("No one steps forward at first, but before the field marshal has to repeat herself, a small figure, presumably Sergeant Nalu, finally emerges from behind a cluster of older women. Thanks to her previous position, you had actually failed to notice her, and even now she seems very reluctant to step into the spotlight. You think you can guess why as well: she’s around the same age as you, making her a great deal younger than the generals and grizzled veterans she was standing with. She’s also a good deal shorter and less endowed than most of the women near her, making her stand out from them even more.");
@@ -1306,7 +1307,7 @@ public function sellaraIsNaLukingTiredYet(x:int):void
 	output(" gather your gear before heading out again, receiving many strange looks from passersby thanks to being covered in your own sexual fluids and those of dozens of women.");
 
 	//Pass like 5 hours, lose a bunch of energy, empty balls, add pussy soaked status, if PC cum amount is high then add cum covered too, add a sizeable amount to red myr venom addiction score, PC orgasm +1
-
+	pc.lust(30+pc.libido()*3/8);
 	pc.exhibitionism(2);
 	pc.applyPussyDrenched();
 	if (cumQ > 3000) pc.applyCumSoaked();

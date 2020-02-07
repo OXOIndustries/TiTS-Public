@@ -1457,7 +1457,7 @@ public function erikaSexToys2():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(60+rand(15));
-	pc.lust(25);
+	pc.changeLust(25);
 	erika.orgasm();
 
 	clearMenu();
@@ -1577,7 +1577,7 @@ public function erikaSexGiveAnusoft2():void
 	flags["ERIKA_GIVEN_ANUSOFT"] = 1;
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.destroyItemByClass(Anusoft);
 	erika.ass.addFlag(GLOBAL.FLAG_PUMPED);
 	erika.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);

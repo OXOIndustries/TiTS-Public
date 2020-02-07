@@ -334,7 +334,7 @@ public function talkToNehzaraAboutHerMission():void
 	}
 	else output("<i>“Since I’d rather not ask it of my subordinates, and I surely can’t keep any trench wives here with me, I could use someone giving me a little encouragement and relief as I work... someone who can be felt and not seen... like under my desk, perhaps?”</i>");
 	processTime(7);
-	pc.lust(3);
+	pc.changeLust(3);
 	//[Under Desk] [Storage Closet] [Refuse]
 	//(Under Desk is used for cockless PCs and taurs only in this instance, though males/herms can access it later through the main interaction menu upon meeting Nehzara again. Taurs, due to their size, can’t fit in a tight closet and therefore only have access to Under Desk. I may write something for them later, or let Savin do it.)
 	clearMenu();
@@ -447,7 +447,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	//(++Lust, PC can now take the shuttle to Kressia)
 	pc.girlCumInMouth(ppNehzara);
 	pc.exhibitionism(1);
-	pc.lust(35);
+	pc.changeLust(35);
 	processTime(17);
 	flags["SEXED_NEHZARA"] = 1;
 	if(!pc.hasKeyItem("Kressia Pass")) pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
@@ -530,7 +530,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 		else output("I think I know a way to make it work, though.");
 		output("”</i>");
 	}
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(30);
 	imbibeVenomEffects();
 	clearMenu();
