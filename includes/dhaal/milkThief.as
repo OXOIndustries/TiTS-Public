@@ -656,7 +656,7 @@ public function cummyWithZaikaMilkyThief(x:int, bonusTime:Number, breastfeeding:
 	}
 	else 
 	{
-		output("\n\nStanding on your own after a mating ritual like that seems impossible, but emerging from the limp, cum-flecked orifice{ bigDick: with the sound of a snapping rubber band}, you sputter out a few more ropes onto her body and go soft over a minute of panting convalescence. Once the fatigue on your shoulders eases up a tad, you stumble away from your opponent and get yourself back in order, wiping your [pc.cocksLight] clean with her tail covering before throwing it on her. It lands in her mouth. Further exploration awaits...\n\n");
+		output("\n\nStanding on your own after a mating ritual like that seems impossible, but emerging from the limp, cum-flecked orifice" + (pc.cocks[x].cLength() >= 31 ? " with the sound of a snapping rubber band":"") + ", you sputter out a few more ropes onto her body and go soft over a minute of panting convalescence. Once the fatigue on your shoulders eases up a tad, you stumble away from your opponent and get yourself back in order, wiping your [pc.cocksLight] clean with her tail covering before throwing it on her. It lands in her mouth. Further exploration awaits...\n\n");
 		processTime(10+bonusTime);
 		//Not really in her cunt, but in case of future preggomancy!
 		enemy.loadInCunt(pc,0);
