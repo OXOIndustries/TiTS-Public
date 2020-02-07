@@ -2278,6 +2278,7 @@ public function gameStartOutro():void
 	shipLocation = "TAVROS HANGAR";
 	generateMap();
 
+	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (false)//if(demo) 
 		addButton(0,"Next",demoOver);
 	else 
