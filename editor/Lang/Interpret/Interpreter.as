@@ -341,8 +341,11 @@ package editor.Lang.Interpret {
             var returnRange: * /*TextRange or Array of TextRange*/ = node.range;
             var returnCode: String = '';
             if (typeof retrieve.value.value === 'function') {
-                // var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr.concat(resultsValueArr));
-                var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr);
+                var funcResult: *;
+                if (retrieve.value.info.includeResults)
+                    funcResult = retrieve.value.value.call(retrieve.value.self, argsValueArr, resultsValueArr);
+                else
+                    funcResult = retrieve.value.value.apply(retrieve.value.self, argsValueArr);
                 // Handle selecting from results here
                 if (funcResult == null) {
                     this.createError(node.range, identifer + ' is ' + funcResult);

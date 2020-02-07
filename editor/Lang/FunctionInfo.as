@@ -6,6 +6,7 @@ package editor.Lang {
         private var _argResultValidator: Function;
         private var _toCode: Function;
         private var _desc: String;
+        private var _includeResults: Boolean = false;
         
         /**
          * Sets function used to determine if the Args and Results passed to the matching function are correct
@@ -63,6 +64,23 @@ package editor.Lang {
          */
         public function getDesc(): String {
             return this._desc || '';
+        }
+
+        /**
+         * Sets flag to pass argument and result arrays when calling
+         * This will force the function definition to be:
+         * function (args: Array, results: Array)
+         */
+        public function setIncludeResults(): FunctionInfo {
+            this._includeResults = true;
+            return this;
+        }
+
+        /**
+         * Whether or not to pass argument and result arrays when calling
+         */
+        public function get includeResults(): Boolean {
+            return this._includeResults;
         }
     }
 }

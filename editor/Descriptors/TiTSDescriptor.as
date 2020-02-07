@@ -40,13 +40,18 @@ package editor.Descriptors {
             }
         }
 
-        /**
-         * Checks for exactly one argument
-         */
-        private function oneArg(args: Array, results: Array): String {
+        // Validators
+        private function oneResult(args: Array, results: Array): String {
+            if (results.length > 1) return "has too many results";
+            if (results.length === 0) return "needs one result";
+            if (args.length > 0) return "has too many arguments";
+            return null;
+        }
+
+        private function hasOneOptionalNumberArgManyResults(args: Array, results: Array): String {
             if (args.length > 1) return "has too many arguments";
-            if (args.length === 0) return "needs one argument";
-            if (results.length > 0) return "has too many results";
+            if (args.length == 1 && typeof args[0] !== 'number') return "needs one number argument";
+            if (results.length == 0) return "needs one result";
             return null;
         }
 
@@ -62,35 +67,39 @@ package editor.Descriptors {
 
         // Test things
         private function iToCode(identifier: String, args: Array, results: Array): String {
-            if (args.length > 0)
-                return '"' + htmlTagText('i', args[0].substring(1, args[0].length - 1)) + '"';
+            if (results.length > 0)
+                return '"' + htmlTagText('i', results[0].substring(1, results[0].length - 1)) + '"';
             else
                 return '"' + htmlTagText('i', "") + '"';
         }
         public const i__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneArg)
-            .setToCodeFunc(iToCode);
-        public function i(text: String): String {
-            return htmlTagText('i', text);
+            .setArgResultValidatorFunc(oneResult)
+            .setToCodeFunc(iToCode)
+            .setIncludeResults();
+        public function i(args: Array, results: Array): String {
+            return htmlTagText('i', results[0]);
         }
 
         private function bToCode(identifier: String, args: Array, results: Array): String {
-            if (args.length > 0)
-                return '"' + htmlTagText('b', args[0].substring(1, args[0].length - 1)) + '"';
+            if (results.length > 0)
+                return '"' + htmlTagText('b', results[0].substring(1, results[0].length - 1)) + '"';
             else
                 return '"' + htmlTagText('b', "") + '"';
         }
         public const b__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneArg)
-            .setToCodeFunc(bToCode);
-        public function b(text: String): String {
-            return htmlTagText('b', text);
+            .setArgResultValidatorFunc(oneResult)
+            .setToCodeFunc(bToCode)
+            .setIncludeResults();
+        public function b(args: Array, results: Array): String {
+            return htmlTagText('b', results[0]);
         }
 
         public const cap__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneArg);
-        public function cap(text: String): String {
-            return text.charAt(0).toLocaleUpperCase() + text.slice(1);
+            .setArgResultValidatorFunc(oneResult)
+            .setIncludeResults();
+        public function cap(args: Array, results: Array): String {
+            return results[0].charAt(0).toLocaleUpperCase() + results[0].slice(1);
+        }
         }
 
         // From TiTS
