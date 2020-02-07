@@ -99,7 +99,7 @@ public function secondZodeeEncouonterForGaloMax():void
 	
 	processTime(4);
 	//lust+5
-	pc.lust(5);
+	pc.changeLust(5);
 	flags["ZODEE_GALOQUEST"] = 2;
 	//[Help Her] [Buy It] [Nope]
 	clearMenu();
@@ -171,8 +171,9 @@ public function helpZodeeWithHerEggProblem():void
 	output("\n\n<i>“Maybe next time I’ll have you suck me off even when I’m </i>not<i> full of eggs. I bet that mouth of yours is just as good as your hands.”</i> Zo’dee produces the bottle of GaloMax and chucks it your way. <i>“See ya around, slut.”</i>");
 	output("\n\nYou catch the bottle and shake it. A single pill rattles around inside.");
 	output("\n\nThe teal rahn is already on her feet and lacing up her jumpsuit. She favors you with a mischievous smile, stretches out like a cat, and prances off into the wilds, brandishing her pistol.");
-	output("\n\nWeird.\n\n");
-	pc.lust(15);
+	output("\n\nWeird.");
+	pc.changeLust(15);
+	output("\n\n");
 	flags["ZODEE_S2_CHOICE"] = 1;
 	processTime(17);
 	quickLoot(new GaloMax());
@@ -2413,8 +2414,9 @@ public function expandoNuts():void
 		pc.ballSizeRaw = 1;
 	}
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
-	pc.lust(15);
-	while(pc.lust() < 33) { pc.lust(5); }
+	var lustAmt:Number = 15;
+	while(pc.lust() + lustAmt < 33) { lustAmt += 5; }
+	pc.changeLust(lustAmt);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
 }

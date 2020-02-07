@@ -93,7 +93,7 @@
 				
 				kGAMECLASS.processTime(3 + rand(3));
 				// {removes monoball, increases testicle circumference by 1”}
-				pc.lust(20);
+				pc.changeLust(20);
 				//pc.removeStatusEffect("Uniball");
 				/*
 				if(pc.balls < 2) pc.balls = 2;
@@ -121,7 +121,7 @@
 				
 				kGAMECLASS.processTime(3 + rand(3));
 				
-				pc.lust(20);
+				pc.changeLust(20);
 				//pc.removeStatusEffect("Uniball");
 				if(pc.balls < 2) pc.balls = 2;
 				if(pc.ballSizeRaw < 30)
@@ -187,9 +187,7 @@
 							if(pillColor == "black") pc.ballFullness += 300;
 						}
 					}
-					pc.lust(200);
-					kGAMECLASS.processTime(20);
-					
+									
 					if(pc.ballSize() < 36 * Math.PI) kGAMECLASS.output(" rather large.");
 					else if(pc.ballSize() <= pc.tallness * (40/60) * Math.PI) kGAMECLASS.output(" ridiculously oversized!");
 					else if(pc.ballSize() <= pc.tallness * Math.PI) kGAMECLASS.output(" as big as your are tall!");
@@ -198,6 +196,9 @@
 					kGAMECLASS.output("\n\nThe feeling of expansion and having your talented balls convert the extra testicular mass into [pc.cumNoun] volume has set your arousal on fire...");
 					if(kGAMECLASS.silly) kGAMECLASS.output(" Well, at least it wasn’t bone wiggles...");
 					else kGAMECLASS.output(" You’ve got to take care of this!");
+
+					pc.changeLust(200);
+					kGAMECLASS.processTime(20);
 					
 					clearMenu();
 					addButton(0, "Next", kGAMECLASS.useItemFunction);
@@ -240,7 +241,7 @@
 								//pc.removeStatusEffect("Uniball");
 								pc.ballSizeRaw += 3;
 								if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1;
-								pc.lust(20);
+								pc.changeLust(20);
 							}
 							// Large Nuts (13”-35” circumference)
 							else if(pc.ballSizeRaw < 40)
@@ -396,7 +397,7 @@
 					if(pc.ballDiameter() < pc.tallness/2) pc.ballSizeRaw = ((pc.tallness/2) * Math.PI);
 					pc.ballSizeRaw += 30;
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 10;
-					pc.lust(50);
+					pc.changeLust(50);
 					// [Next]
 					clearMenu();
 					addButton(0, "Next", sumaBadEnd, "growing");
@@ -414,7 +415,7 @@
 					if(pc.ballDiameter() < pc.tallness) pc.ballSizeRaw = (pc.tallness * Math.PI);
 					pc.ballSizeRaw += 12;
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 4;
-					pc.lust(50);
+					pc.changeLust(50);
 					// [Next]
 					clearMenu();
 					addButton(0, "Next", sumaBadEnd, "bad end");
@@ -436,7 +437,7 @@
 					pc.ballSizeRaw += ((360 * Math.PI) + rand(240));
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw *= 1.25;
 					pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
-					pc.lust(50);
+					pc.changeLust(50);
 					
 					// [GAME OVER]
 					kGAMECLASS.badEnd();

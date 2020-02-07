@@ -87,7 +87,7 @@
 			}
 			
 			useEffect(target);
-			if(addLust < 0) target.lust(addLust);
+			if(addLust < 0) target.changeLust(addLust);
 			
 			return false;
 		}

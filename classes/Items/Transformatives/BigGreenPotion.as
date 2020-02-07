@@ -200,7 +200,7 @@
 						{
 							if (pc.breastRows[b].breastRating() < boobSizeLimit) pc.breastRows[b].breastRatingRaw += boobSizeIncrease;
 						}
-						pc.lust(20 + rand(10));
+						pc.changeLust(20 + rand(10));
 						changes++;
 					}
 					else output("\n\n" + pc.breastRatingLockedMessage());
@@ -218,7 +218,7 @@
 						}
 						output(" Feeling a wet spot you reach down and rub your [pc.nipples], getting a handful of yogurt in the process. <b>Looks like your tits leak yogurt now!</b>");
 						pc.milkType = GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT;
-						pc.lust(20 + rand(10));
+						pc.changeLust(20 + rand(10));
 						changes++;
 					}
 					else output("\n\n" + pc.milkTypeLockedMessage());
@@ -367,7 +367,7 @@
 							output(" The [pc.cockNoun " + x + "] is dripping profusely as it transforms. Its [pc.cockHead " + x + "] warps in shape, then swells and becomes an angry purple color as the skin shifts around it until the newly-formed, violet head is half covered in foreskin.");
 							pc.shiftCock(x, GLOBAL.TYPE_HRAD);
 							output(" You fall to your [pc.knees] and thrust forward as [pc.eachCock] shoots a deluge of [pc.cum]. It isn’t a true orgasm but damn does it feel good. <b>You now have a bullet-shaped cock!</b>");
-							pc.lust(50);
+							pc.changeLust(50);
 							groinChanged = true;
 							changes++;
 						}
@@ -415,7 +415,7 @@
 						}
 						output(" You can’t help but rub yourself a bit - but as you do, you find your hands covered in a creamy white substance. <b>You now have syrupy hradian girl cum!</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HRAD_CUM;
-						pc.lust(Math.round(pc.lustMax()/2));
+						pc.changeLust(Math.round(pc.lustMax()/2));
 						groinChanged = true;
 						changes++;
 					}

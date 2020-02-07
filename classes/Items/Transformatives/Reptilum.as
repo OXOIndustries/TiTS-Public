@@ -487,7 +487,7 @@ package classes.Items.Transformatives
 					
 					target.createStatusEffect("Genital Slit");
 					target.makeBallsInternal();
-					target.lust(Math.min(0, target.lustMax()*4/10-target.lust()));
+					target.changeLust(Math.min(0, target.lustMax()*4/10-target.lust()));
 
 					kGAMECLASS.flags["REPTILUM_DUCKED"] = 1;
 					kGAMECLASS.flags["REPTILUM_MOVED_CLOTHES"] = 1;
@@ -528,7 +528,7 @@ package classes.Items.Transformatives
 					target.vaginas[cuntIdx].clits = oldClits;
 					if (target.elasticity < 2) target.elasticity = 2;
 					
-					target.lust(Math.max(0, target.lustMax()*9/10-target.lust()));
+					target.changeLust(Math.max(0, target.lustMax()*9/10-target.lust()));
 
 					kGAMECLASS.flags["REPTILUM_DUCKED"] = 1;
 					kGAMECLASS.flags["REPTILUM_MOVED_CLOTHES"] = 1;
@@ -542,7 +542,7 @@ package classes.Items.Transformatives
 				output("\n\nYour [pc.asshole] feels strange for a second, tingling with the promise of some secret, invisible transformation. Nothing feels different... but you’re strangely confident that <b>your [pc.asshole] could now take larger insertions than it could before</b>. Perhaps you should test this theory out, if for nothing else than to plumb the depths of Reptilum’s effects.");
 				//target.elasticity += Math.max(0, Math.min(2-target.elasticity, 0.5));
 				target.ass.bonusCapacity += 25;
-				target.lust(Math.max(0, target.lustMax()*4/10-target.lust()));
+				target.changeLust(Math.max(0, target.lustMax()*4/10-target.lust()));
 			});
 
 			// Breast size above B cup:

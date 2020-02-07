@@ -63,7 +63,7 @@
 					
 					// ++ lust!
 					target.balls = 4;
-					target.lust(30);
+					target.changeLust(30);
 				}
 				// If PC has uniball, balls become normal:
 				else if(target.hasStatusEffect("Uniball") && rand(2) == 0)
@@ -72,7 +72,7 @@
 					
 					// ++ lust!
 					target.removeStatusEffect("Uniball");
-					target.lust(15);
+					target.changeLust(15);
 				}
 				// If PC has balls and no fur, balls become fluffy:
 				else if(target.balls >= 2 && !isFuzzy && rand(2) == 0)
@@ -90,7 +90,7 @@
 					output("!</b>");
 					
 					// ++ lust!
-					target.lust(30);
+					target.changeLust(30);
 				}
 				// If PC has balls, balls have a chance of getting bigger:
 				else if(target.balls > 0 && target.ballSizeRaw < 20 && rand(2) == 0)
@@ -104,7 +104,7 @@
 						
 						target.ballSizeRaw = newBallSize;
 						// ++ lust!
-						target.lust(15);
+						target.changeLust(15);
 					}
 					else output("\n\n" + target.ballSizeLockedMessage());
 				}
@@ -118,7 +118,7 @@
 						
 						// ++ lust!
 						target.balls = 2;
-						target.lust(30);
+						target.changeLust(30);
 					}
 					else output("\n\n" + target.ballsLockedMessage());
 				}

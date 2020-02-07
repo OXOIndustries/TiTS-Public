@@ -450,7 +450,7 @@ public function amberComeWithShowerSex():void
 		output("\n\nHaving swallowed what feels like a gallon of her thick, virile seed you withdraw from her flaring, cum-splurting tip and roughly jack her off to get the rest out of her, earning little gasps of joy from your wet-furred lover. By the time you’ve finished she’s leaned against the shower wall, gasping for air after having cum so hard.");
 
 		processTime(30);
-		pc.lust(30);
+		pc.changeLust(30);
 		//suck her dick, she came, skip change
 		amberFuckAHole(3,true,false);
 	}
@@ -677,7 +677,7 @@ public function amberOnshipAppearance():void
 	output(" Above it lies her slightly puffy asshole, protruding enough to look inviting.");
 	
 	output("\n\nAll in all, Amber is both cute and incredibly lurid in the same compact package.");
-	pc.lust(5);
+	pc.changeLust(5);
 }
 //talk to amber
 public function amberOnshipTalk():void
@@ -1108,7 +1108,7 @@ public function amberOnshipTalkCure():void
 	output("\n\n<i>“Nnnnh... I wouldn’t be too bothered,”</i> she sighs, happily letting you stroke her ears. <i>“I might miss these ear rubs though...”</i>");
 	output("\n\nSo in the end, the resolution lies with you. You could cure her, leave her as she is - she doesn’t seem to mind too much either way now that she’s with you - or maybe even change her a little yourself. You don’t think she’d mind, and might even be keen to try out some of them.");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10);
 
 	addDisabledButton(4,"Cure","Cure","You just talked about this.");
@@ -1758,7 +1758,7 @@ public function amberOnshipEarRubs():void
 	output("\n\nYou take Amber to her mattress and pull her blankets over her, tucking her in as she lays her head on the pillow. She’s asleep the moment her eyes close, wrapped in her duvet. You tug one of the corners over an errant hoof sticking out and quietly walk away, leaving Amber to her tranquil slumber.");
 
 	processTime(10 + rand(10));
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",crew);
 }
@@ -1815,7 +1815,7 @@ public function amberOnshipBrushFur():void
 	}	
 	
 	processTime(45 + rand(15));
-	pc.lust(30);
+	pc.changeLust(30);
 	flags["AMBER_BRUSHED"] = GetGameTimestamp();
 	
 	clearMenu();
@@ -1926,7 +1926,7 @@ public function amberOnshipSexSuckCock():void
 	output("\n\n<i>“Oooohhh, I needed that so bad,”</i> Amber sighs deeply, nodding down at you appreciatively. <i>“Thanks, [pc.name].”</i>");
 		
 	processTime(10 + rand(10));
-	pc.lust(100);
+	pc.changeLust(100);
 	amberFuckAHole(3,true,true);
 	
 	clearMenu();
@@ -1949,7 +1949,7 @@ public function amberOnshipSexSuckCockKissHer():void
 	output("\n\n<i>“Probably,”</i> you nod, licking your lips and smiling at her. <i>“Or maybe we could go another round.”</i>");
 	output("\n\n<i>“Ooooh... don’t tempt a girl that goes into heat, [pc.name],”</i> Amber says, grinning deviously. <i>“Might find yourself between my legs again.”</i>");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1976,7 +1976,7 @@ public function amberOnshipSexSuckCockKeepSucking():void
 	output("\n\n<i>“Probably, or maybe...”</i> you trail off, gaze flicking downwards to between her legs.");
 	output("\n\nAmber smirks, crossing her arms and spreading her forelegs just a little bit to give you a better look at her impressive hardware. <i>“Hey, I’ll be here if you need me to give you some more attention, [pc.name]. You just let me know, okay?”</i>");
 	
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3146,9 +3146,9 @@ public function amberOnshipSexMounting(kok:int=0):void
 		amberFuckAHole(9, true, false);
 	}	
 	//gain lust from post fuck flirting and kissing
-	if (amberDumbfuckDoses() >= 3) pc.lust(25);
-	else if (amberDumbfuckDoses() >= 1)	pc.lust(20);
-	else pc.lust(15);
+	if (amberDumbfuckDoses() >= 3) pc.changeLust(25);
+	else if (amberDumbfuckDoses() >= 1)	pc.changeLust(20);
+	else pc.changeLust(15);
 
 	//cleanup time
 	if (celiseIsCrew()) processTime(5 + rand(5));
@@ -3590,7 +3590,7 @@ public function investigateMitziAndAmber():void
 	output("\n\nYou raise your eyebrows as Mitzi begins to drool from both pairs of lips, moaning in happiness as saliva spatters across her giant green teats. Her eyes dilate, and her skin flushes. She sloppily giggles, then suckles a finger, mouthing, <i>“Sthoo weeeeet!”</i> Twin rivers of girlcum slide down the insides of her glistening thighs, cueing her to grind them together. So you have two drugged-up sluts looking for nothing more than to have their sexual thirst satiated? Sounds like a fun diversion.");
 
 	processTime(15);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	if(pc.hasCock())
 	{
@@ -3738,7 +3738,7 @@ public function doubleFistThoseSluts():void
 	output("\n\nMitzi slumps to the ground with legs splayed the moment you slip free, her supporting beam and reason for consciousness now absent. Amber responds in kind by letting out a deep, bestial moan that sounds almost like a moo as she cums one last time, giving the wall a fresh coat of paint. You don’t think she’s done just yet, though... not by a long shot.");
 	output("\n\nYou’re walking to the shower when you hear two screams of bliss followed by loud, rhythmic thudding that fades into the noise of water coursing down your body. After all that, you’re still incredibly pent up... after this, maybe you should go back down there and see if you can catch some of Amber’s lust for yourself.");
 	processTime(20);
-	pc.lust(20);
+	pc.changeLust(20);
 	pc.applyPussyDrenched();
 	mitziAndAmberPostSoakFuckMenuAndStats();
 }
@@ -3988,7 +3988,7 @@ public function amberAndTheFistOfTheGooStar():void
 	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She’s definitely keeping the place cleaner than it would be otherwise, that’s for sure. Especially when it comes to certain very messy ‘taurs cooped up -- and <i>pent</i> up -- in your hold.");
 
 	IncrementFlag("AMBER_CELISE_THREESOMES");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	celise.orgasm();
 	celise.loadInMouth(ppAmber);
 	flags["AMBER_LASTCUM"] = GetGameTimestamp();
@@ -4051,7 +4051,7 @@ public function amberAndCelisePutOnAShow():void
 	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She’s definitely keeping the place cleaner than it would be otherwise, that’s for sure. Especially when it comes to certain very messy ‘taurs cooped up -- and <i>pent</i> up -- in your hold.");
 
 	IncrementFlag("AMBER_CELISE_THREESOMES");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	celise.orgasm();
 	celise.loadInMouth(ppAmber);
 	flags["AMBER_LASTCUM"] = GetGameTimestamp();
@@ -4123,7 +4123,7 @@ public function dismissAmber():void
 		output("\n\nHer warm tongue winds around your own while precum spatters across the floor, her hindquarters slowly writhing as she sucks on your [pc.tongue] until she’s had her fill of foreplay. Pulling back, she takes the chit and walks past you, turning back with a sultry grin. Fully exposed and dripping, her pussy winks at you as she waves.");
 		output("\n\n<i>“See you, [pc.name]. Don’t be long.”</i>");
 		output("\n\nThere’s probably more on her mind that she’ll be missing than the sex, but... well, actually, maybe not. The apartment’s pretty comfortable. You’ll have to go and help her break it in properly when you’ve got the chance.");
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	else
 	{
@@ -4135,7 +4135,7 @@ public function dismissAmber():void
 		output("\n\n<i>“Come fuck me soon,”</i> she begs, and then she’s gone.");
 		output("\n\nThere’s probably more on her mind that she’ll be missing than the sex, but... well, actually, maybe not. The apartment’s pretty comfortable. You’ll have to go and help her break it in properly when you’ve got the chance.}");
 		output("\n\n<b>Amber has left the crew. You can pick her back up at your apartment on Tavros.</b>");
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	processTime(10);
 	flags["AMBER_CREWMEMBER"] = 2;
@@ -4280,7 +4280,7 @@ public function amberOnShipSexDrainHer():void
 	processTime(20 + rand(10));
 	IncrementFlag("DRYAD_FUCKED"); //Let's agree that we have sexed Amber at this point.
 	IncrementFlag("DRYAD_BLEWHER"); //Also gave her oral relieve
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0, "Throat", amberOnShipSexDrainHerInThroat, undefined, "Drain Her", "Keep her in your throat. After all, she’s already enjoying it so much.");
 	addButton(1, "Ass", vaginaRouter, [amberOnShipSexDrainHerInAss, ppAmber.cockVolume(0), -1, 0], "Ass", "Let her empty her overburdened balls into your asshole.");

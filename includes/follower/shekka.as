@@ -708,7 +708,7 @@ public function shekkaTavrosHangoutTwo():void
 	output(". A few drinks come, and the both of you while away a few hours admiring men and women of various kinds as they dance and strut...");
 	output("\n\nEventually the teasing becomes too much, and after fingering Shekka through her suit until she cums for perhaps the third time, she practically races you back to your ship for a romp. The smell of sex, booze, and perfume clings to the both of you in a heady aroma, and her eyes are glazed over with need.");
 	processTime(120);
-	pc.lust(40);
+	pc.changeLust(40);
 	currentLocation = "SHIP INTERIOR";
 	shekkaCrewSexMenu();
 }
@@ -929,7 +929,7 @@ public function synthsheathShekka():void
 	output("\n\nWords fail Shekka as pre begins to bead at the head of her broad cumslit. Her mouth hangs open, tongue practically unfurling in time with a low, horny moan. The previously false-looking balls tense up and churn with freshly-forming seed. <i>“Well, there’s the musk...”</i> you add, as the sexual bouquet of horny raskvel mixes with Shekka’s brand new cock. Her hands explore the length of it, fingers hefting the weight of her balls as they continue to firm up.");
 	output("\n\n<i>“S-steele... oh stars. The prostate is forming somewhere in here, I can feel it. It’s like someone’s crammed a fucking cum-button somewhere in there.”</i> Shekka gasps, flopping onto her front and pinning the still pre-oozing prick between her body and the cool metal floor of the spaceship. <i>“H-help me out, [pc.name]! I’m going to fucking burst!”</i>");
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.destroyItemByClass(HorseCock);
 	shekka.createCock();
 	shekka.shiftCock(0,GLOBAL.TYPE_EQUINE);
@@ -966,7 +966,7 @@ public function throbbUpShekka():void
 	shekka.createCock();
 	shekka.cocks[0].cLengthRaw = 7;
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",approachCrewShekka,true);
 }
@@ -1158,7 +1158,7 @@ public function shekkaSleepWithMornings():void
 
 			output("\n\nThere’s a surprising amount of strength in her grip as her body works and grinds, mouth wide open. <i>“I need you, your saliva, your touch! I woke up and it’s all I could think about! I need you to treat me like a wanton whore!”</i> Realizing her body is jonesing for a hit of your aphrodisiac-laden spit, you haul her up to your mouth, capturing her lips in yours. Her exultant moans drift into horny, lust-drunk whimpers as the chemical load dumps itself into her brain.");
 			output("\n\nShe squirts onto your abdomen, sent immediately crashing into a surprise orgasm. For her own safety you end the kiss, nuzzling her as she quakes and twitches on you. <i>“Thanksh”</i> she mumbles drunkenly, even as her fingers plumb at her own now-puffy labia.");
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 		//2
 		else
@@ -1170,7 +1170,7 @@ public function shekkaSleepWithMornings():void
 			output("\n\nYou get perhaps halfway into a ‘Good Morning’ before she pounces, diving in for a hungry kiss. She has the dilated pupils of an addict, and the moment her tongue meets yours, it hits her like a shock of electricity. Shekka trembles atop you, whimpering into your mouth as she gets her fix, practically gushing from her now-flushed quim. Your hands instinctively grasp at her cushiony rear, giving her a slow squeeze until she stops moaning through your lips and comes up for air.");
 			output("\n\n<i>“Ffffuck... [pc.name], I held out for as long as I could, I seriously needed my fix....”</i>");
 			output("\n\nShe rolls off of you, idly stroking herself. <i>“Better than morning coffee...”</i>");
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 		shekkaSpitAddiction(4);
 	}
@@ -1387,7 +1387,7 @@ public function shekkaCrewSexApproach():void
 		}
 	}
 	processTime(4);
-	pc.lust(20);
+	pc.changeLust(20);
 	shekkaCrewSexMenu();
 }
 
@@ -2804,7 +2804,7 @@ public function shekkaOnaholeIntro():void
 	}
 	//[DoubleStuff] [Tail&Oral] [Watch] [Leave]
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"DoubleStuff",penisRouter,[shekkaDoubleStuffScene,99989,false,0],"DoubleStuff","Stick your dick into a toy with Shekka. She’ll love it!");
 	else addDisabledButton(0,"DoubleStuff","DoubleStuff","You need a dick to double-stuff a toy with her.");
@@ -3094,7 +3094,7 @@ public function watchShekkaUseHerToy():void
 	output("\n\nA spasm of pleasure tears through her body, stuffing her vibe painfully deep. One of her hands falls away as her eyes roll back, landing on a too-sensitive ear in the moment of climax. Her cock goes off like a shotgun, launching a torrent of creamy white rask-goo to splatter against the ceiling while streamers of clear, girlish delight run down her tail. Hips pumping in shuddering microthrusts, Shekka empties her artificial nuts into the air. Not all of it makes it to the ceiling. Plenty plasters her tits, her face, and even her hair. What follows comes out weaker, milked out in lazy blobs that roll down her urethra to glaze the underside of her bestial crush in equine goo.");
 	output("\n\nThe sight");
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	if(pc.libido() >= 40 || pc.isBimbo() || pc.isTreated() || pc.hasPerk("Corrupted") || pc.exhibitionism() >= 33) 
 	{
 		output(" pushes you past the point of no return. Your [pc.legOrLegs] wobble");
@@ -3185,7 +3185,7 @@ public function shekkaGymmusInterruptus(light:Boolean = false):void
 	//Merge
 	output("\n\nDo you accept Shekka’s offer or stick to a normal work-out?");
 	processTime(10);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Shekka",bonusShekkaWorkout,light,"Shekka","Let Shekka \"squat\" on you while you do your lifting!");
 	addButton(1,"No Shekka",noShekkaWorkout,light,"No Shekka","She might not handle this the best.");
@@ -4224,7 +4224,7 @@ public function shekkaBJsByWillIAm(fromDickGrow:Boolean = false):void
 	}
 	// Merge
 	processTime(2+rand(4));
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",blowingShekkaPt2);
 }
@@ -4350,7 +4350,7 @@ public function blowingShekkaPt2():void
 	{
 		for(var i:int = 0; i < 3; i++) { pc.orgasm(); }
 	}
-	else pc.lust(25);
+	else pc.changeLust(25);
 	// sceneTag: PC gets ‘Cum Soaked’ effect
 	pc.applyCumSoaked();
 	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(5);
@@ -4406,7 +4406,7 @@ public function shekkaHalloweenLateness():void
 	else output("drained happiness");
 	output(" when you let it drop, mouth hanging open and eyes heavy lidded.");
 	output("\n\n<i>“Still got your candy, at least,”</i> she murmurs, turning over to nuzzle your [pc.chest] as she fades off to sleep in your arms. You rub her downy pink hair, breathing in the scent of her till your heart stops racing, staying there till you join her in the nebulous expanse of dreams.");
-	pc.lust(10);
+	pc.changeLust(10);
 	shekkaSpitAddiction(8);
 	flags["SHEKKA_HALLOWEEN_LATENESS"] = 1;
 	clearMenu();
@@ -4619,7 +4619,7 @@ public function shekkaRideHerCrewSceneByWilliam(x:int):void
 		// merge
 	}
 	processTime(20);
-	pc.lust(150);
+	pc.changeLust(150);
 	//[Next]
 	// sceneTag: PC Lust Maximizes
 	// sceneTag: processTime

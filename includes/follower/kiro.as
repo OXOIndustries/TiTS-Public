@@ -575,7 +575,7 @@ public function askKiroAboutPosMods():void
 		output("\n\nMaybe it’s time to talk about something else...");
 	}
 	processTime(10);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",talkToKiro);
 }
@@ -702,7 +702,7 @@ public function kiroFavoriteBootyCall():void
 	output("\n\nYou say, <i>“Did you get a second round in the morning?”</i>");
 	output("\n\n<i>“Nah. She was gone when I got up. Left me a little note with a heart, a kiss, and a pair of panties. I guess she saw the wall and figured she’d leave a contribution to it.”</i> The grinning tanuki rubs her brow and admits, <i>“Didn’t her contact information either. " + (flags["KIRO_X_SAEN_HAPPENED"] == undefined ? "Who knows. Hopefully I bump into Saendra again someday.":"But you took care of that for me, you sneak. I’m glad you got a chance to reintroduce us.") + "”</i>");
 	processTime(11);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",talkToKiro);
 }
@@ -1179,7 +1179,7 @@ public function stayHugeKiro():void
 	flags["KIRO_BALLS"] = 3;
 	processTime(6);
 	processKiroBarEvents(61,false);
-	pc.lust(4);
+	pc.changeLust(4);
 	kiroCrewSexMenu();
 	addButton(14,"Back",approachCrewKiro,true);
 }

@@ -826,7 +826,7 @@ public function increaseTheArdiaDonut():void
 	output("\n\nWhen you do, though, Ardia squeals. her [ardia.cock] jumps with a rush of lust, hard enough to overpower the weight of her balls -- and sending the two fat orbs slapping down against her own anal mound in the process. Just that stimulation alone pushes her over the edge, making her keratin-edged cock erupt all over her tits. She thrashes, back arching as her anal orgasm milks her prostate all over her chest and face, treating your fingers to a front-row experience of her silken fuckhole clenching wildly around them. It feels like you’re surrounded by soft, wet sponge though -- she’s practically incapable of being <i>tight</i> now, of strangling a cock being her sphincter’s muscles. Now Ardia’s ass exists only to pleasure thrusting spears, to meekly accept every hard rod that presses against her. " + (pc.hasCock() ? "Your cock" : "The first cock she sees") + " is going to positively <i>melt</i> into her... and just having her ring teased is probably going to make her cum her brains out from now on.");
 	output("\n\nOh, this is going to be <b>fun</b>.");
 
-	pc.lust(35+pc.libido()/2);
+	pc.changeLust(35+pc.libido()/2);
 	ardia.ass.delFlag(GLOBAL.FLAG_PUMPED);
 	ardia.ass.addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 	pc.destroyItemByClass(Anusoft);
@@ -1178,7 +1178,7 @@ public function succSomeArdiaDong():void
 		output("\n\n<i>“Mmm, looking forward to it already,”</i> she whispers, and then she’s asleep. You suppose the exertion must’ve taken a lot out of her -- Ardia’s not really the type for strenuous physical activity, after all. Leaving her future betas hungry isn’t going to be a concern, though. You can already tell.");
 		output("\n\nYou carefully extricate yourself from the sprawl of your lover’s limbs and slip out of bed an hour later, a little more rested and a little less full.");
 
-		pc.lust(20+pc.libido()/10);
+		pc.changeLust(20+pc.libido()/10);
 	}
 	else if (ardiaDomLevel() < 7)
 	{
@@ -1207,7 +1207,7 @@ public function succSomeArdiaDong():void
 		output("\n\n<i>“Okay,”</i> Ardia replies, reaching out and dabbing the bedsheet at your lips to clean you off before she gives you a smile. <i>“Have a good sleep, cutie. Oh, and uh, watch the extra weight. Trust me, I know.”</i>");
 		output("\n\nYou somehow drag yourself back to your room with your tummy unbelievably swollen courtesy of Ardia’s sperm, still warm and reminding you of just how good she tasted. Even now her scent lingers on your breath, and you can’t help but notice just how horny that’s making you... maybe if you get some sleep it’ll go away on its own.");
 		//leave player with high lust
-		pc.lust(60+pc.libido()/4);
+		pc.changeLust(60+pc.libido()/4);
 	}
 	else if (ardiaDomLevel() < 10)
 	{
@@ -2607,7 +2607,7 @@ public function getBreakfastForArdiaInstead():void
 	output(" before you remember the sight you woke up to. Those fat, seed-filled balls... fuck, you’re going to have to masturbate to get this out of your head, or better yet, go see her as soon as you can.");
 	output("\n\nYou roll out of bed, hungry in more ways than one.");
 
-	pc.lust(20+pc.libido()/5);
+	pc.changeLust(20+pc.libido()/5);
 
 	addButton(0, "Next", mainGameMenu);
 }

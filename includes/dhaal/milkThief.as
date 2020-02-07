@@ -250,7 +250,7 @@ public function tribbyTailGalz():void
 	output("\n\n<i>“N-n-no! It’s too good!”</i> the once-proud zaika says, but as she speaks, you can feel her tail thrusting on its own, perfectly in sync with your hand’s guidance. <i>“Sex with a Peer can’t even be this good! You xeno sluts are g-g-onna break us!”</i> Faster and faster, that rogue organ races. It bumps across your [pc.clits] and flosses through your [pc.vagina]. There’s no missing when it swells with oncoming orgasm.");
 	output("\n\nDo you let her cum there" + (pc.hasCuntTail() ? ", in your tail":"") + ", or stuff it in her mouth?");
 	processTime(15);
-	pc.lust(45);
+	pc.changeLust(45);
 	//[Cum There] [Her Mouth][YourTail]
 	clearMenu();
 	addButton(0,"Cum There",cumAsZaikaIs,undefined,"Cum There","Let her cum with her tail between you. You’ll probably get messy.");
@@ -537,7 +537,7 @@ public function fuckHerTailBuddddeh(x:int):void
 	output("”</i>");
 	output("\n\nGlad to hear it.");
 	processTime(25);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",fuckZaikaTailOnWinPart2,x);
 }
@@ -577,7 +577,7 @@ public function fuckZaikaTailOnWinPart2(x:int):void
 	{
 		output(" However, a single thought rises in your mind: you <i>are</i> lactating. She wants milk. Would it be so bad to give her some now? A good slut deserves a tiny bonus, and she’s thrown herself all out of whack to make you happy. Such a gesture of mercy to send her on her way wouldn’t hurt.");
 		processTime(20);
-		pc.lust(20);
+		pc.changeLust(20);
 		clearMenu();
 		addButton(0,"Breastfeed",giveZaikaMilkThiefAZaikaSnacc,x,"Breastfeed","Let her have the big suck.");
 		addButton(1,"Cum",noBoobySucksuck,x,"Cum","There’s no time for breastfeeding when you need to cum this bad.");
@@ -1080,7 +1080,7 @@ public function loseToMilkThiefGetFuckoedAndMilkoed():void
 	// merge
 	//[Next]
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",milkThiefFuckAndMilk2,[milkSucked,milkPills,x,y]);
 }
@@ -1580,7 +1580,7 @@ public function faceFuckDatBitch(x:int):void
 	else output(" rubs");
 	output(" fill your system with a unique sexual mirth.");
 	processTime(10);
-	pc.lust(35);
+	pc.changeLust(35);
 	clearMenu();
 	addButton(0,"Next",faceFuckDatBitch2,x);
 }
@@ -1791,7 +1791,7 @@ public function faceFuckDatBitch2(x:int):void
 	output("\n\nJackhammering into the native’s maw without mercy or care, you " + pc.mf("bellow","cry") + " out a second wind, gathering the last reserves of your energy into your overworked hips, panting like a dehydrated animal, and absolutely bludgeoning this bitch with enough dick to last her a lifetime. <b>You’re ready to burst.</b> You’re shaking from the aggressive twitching, loudly groaning before clenching. Plowing the suck-slut’s oiled orifice, orgasm crackles across your abdominals." + (pc.balls > 0 ? " The gravid density of your [pc.sack] ruthlessly claps into her lower lip, disturbing the rising tide of its fluid contents.":""));
 	output("\n\nWhere do you cum; How do you make your mark?");
 	processTime(25);
-	pc.lust(150);
+	pc.changeLust(150);
 	clearMenu();
 	addButton(0,"In and Out",inAndOutThatMilkyThiefy,[x,leilaHere],"In and Out","Inside and outside!");
 	addButton(1,"Inside",cummiesInsideIsWhereCummiesBelongDonchaKnow,[x,leilaHere],"Inside","Give everything you’ve got to her - don’t waste a drop!");

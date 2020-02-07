@@ -1081,12 +1081,12 @@ public function attemptPinkUnlock(x:int):void
 		if(pc.taint() < 33) 
 		{
 			output(". You slide off before you get any more turned on. Time is of the essence.");
-			pc.lust(2);
+			pc.changeLust(2);
 		}
 		else if(pc.taint() < 66) 
 		{
 			output(". You spend a few seconds lamely grinding yourself on the dildo before you realize that it’s not going to anything else. Blushing, you decide to move on.");
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 		else
 		{
@@ -1320,7 +1320,7 @@ public function weenUpADingleDanglehole(x:int):void
 			output(", whether you wanted it or not.");
 			pc.cocks[x].cLengthRaw += gains;
 			pc.taint(2);
-			pc.lust(6);
+			pc.changeLust(6);
 			pc.libido(1);
 			processTime(10);
 			clearMenu();
@@ -1332,7 +1332,7 @@ public function weenUpADingleDanglehole(x:int):void
 		{
 			output("\n\nAs you drag your reluctant dick free from the picky prick-holster, you notice just how hard it got you, and you’re tempted to slam yourself back in. Alarms be damned, you could bang that wall-socket to at least one orgasm, maybe two or three if you were so determined. You’re about to do just that when you notice something odd about your [pc.cockNounSimple " + x + "] - the veins came out far darker than when you pushed yourself in. The aberrant hue is rapidly fading, but it’s clear that a recessed trap has had its way with your genitalia, <b>subtly tainted you</b> with mysterious, sluttifying compounds.");
 			pc.taint(5);
-			pc.lust(4);
+			pc.changeLust(4);
 			pc.libido(1);
 			processTime(10);
 			clearMenu();

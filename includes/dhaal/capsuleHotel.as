@@ -384,7 +384,7 @@ public function fullServiceCapsuleHotel3():void
 	output("\n\nAll night, huh? You can get behind that...");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[Tail Milking] [Tail Fuck]
 	addButton(0,"Tail Milking",penisRouter,[tailMilkingWithMyssah,500,false,0],"Tail Milking","Myssah’s going to wrap your cock inside her tail-pussy and milk you all night long...");
@@ -462,7 +462,7 @@ public function tailFuckWithMyssah2():void
 	processTime(8*60);
 	IncrementFlag("CAPSULE_FULLSERVE");
 	sleepHeal();
-	pc.lust(-10);
+	pc.changeLust(-10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

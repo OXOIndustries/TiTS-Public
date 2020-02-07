@@ -97,7 +97,7 @@ package classes.Items.Transformatives
 
 					output("\n\nYou lick your lips unconsciously and grin. You can hardly wait to see the expression of surprise and bliss on some gorgeous hung bombshell’s face when you put all of this potent cocktail to good use. You pick up the syringe off the floor and, shaking your head in subdued awe, dispose of it safely. Amazing to think there could be so much good packed into such a small package.");
 					
-					pc.lust(10);
+					pc.changeLust(10);
 					kGAMECLASS.flags["USED_SNAKEBYTE"] = 1;
 				}
 			}

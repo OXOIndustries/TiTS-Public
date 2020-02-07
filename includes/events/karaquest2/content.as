@@ -1831,7 +1831,7 @@ public function kq2EncounterShade():void
 		//Restore some PC Health, Energy. Increase +5 Lust.
 		pc.changeHP(pc.HPMax() * 0.15);
 		pc.changeEnergy(pc.energyMax() * 0.15);
-		pc.lust(5);
+		pc.changeLust(5);
 		
 		output("\n\nShade gives you a slight nod and takes her hand back, letting you pass her by. You rush to rejoin Kara at the helipad...");
 
@@ -2035,7 +2035,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	else output(" The heat in your body seems to coalesce in your bare groin, forming an intense ball of pointless pleasure.");
 	output(" You feel amazing, like any touch would send you over the edge. And the pirate knows it.");
 	
-	pc.lust(50);
+	pc.changeLust(50);
 
 	output("\n\n<i>“Touch yourself,”</i> she commands, smiling as you immediately obey, running a hand down your groin");
 	if (pc.hasCock()) output(" and caressing your [pc.cock]");

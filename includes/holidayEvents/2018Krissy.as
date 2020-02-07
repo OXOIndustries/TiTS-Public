@@ -121,7 +121,7 @@ public function sureLetsTakeARideDeerbutt2():void
 	output(". <i>“Besides, the best way to spread Christmas cheer is by vigorously fucking sexy deer. And I don’t see any other deer ‘round here. Do you?”</i>");
 	output("\n\nYou don’t. You’re left with a choice: play some of her reindeer games or kick her out of your lap to make the trip in peace. Which will it be?");
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	if(pc.cockThatFits(250) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Wrap&Fuck",cockSelect,[krissyWrapUpByThird,250,true,0],"Wrap & Fuck","Wrap her up like a present and give her a gift of your own.");
 	else addDisabledButton(0,"Wrap&Fuck","Wrap&Fuck","Requires a cock that fits <b>or</b> a hardlight strapon.");

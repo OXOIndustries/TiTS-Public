@@ -605,7 +605,7 @@ public function badEndToDatPo2():void
 	output("\n\nGroggy from sedation and potent orgasm, you blink your bleary eyes and try to think about something other than groping Illustria’s gorgeous titties. <i>“Uh, I guess... I could... wait... betters?”</i> You stare longingly at those swaying cyber-udders. What in the universe could be better than those? <i>“Maybe... I guess... like, for your tits, sure.”</i>");
 	output("\n\nYou miss Doctor Po’s cheshire grin, too busy with sweet pleasure of beholding two breasts that grow more attractive with each passing second. You could almost cum from watching them wobble...");
 	processTime(20);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.intelligence(-5);
 	pc.willpower(-5);
 	clearMenu();
@@ -717,7 +717,7 @@ public function badEndToDatPo3():void
 		pc.loadInCunt(kiro, 0);
 		pc.loadInMouth(enemy);
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.intelligence(-5);
 	pc.willpower(-5);
 	
@@ -794,7 +794,7 @@ public function badEndToDatPo4():void
 	{
 		pc.orgasm();
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.intelligence(0, true);
 	pc.willpower(0, true);
 	
@@ -814,7 +814,7 @@ public function badEndToDatPo5():void
 	output("\n\nAll that worry vanishes when your new Owner, Mistress Zo’dee, tells you to calm down and relax.");
 	output("\n\nOh course she’s right. You stand there, a contented smile slowly spreading on you and your sister-slave’s mouths at the command. Everything is going to be fine, and you have nothing to worry about. After all, Kiro’s right there, a few feet away, and you’re sure your new Mistress is going to give you plenty of chances to polish her pole.");
 	output("\n\nIllustria certainly loved it.");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",badEndToDatPo6);
 }
@@ -835,7 +835,7 @@ public function badEndToDatPo6():void
 	output("\n\nJust today, she told you she wanted you to spend the day sucking Kiro’s cock, ‘to really stretch out that slut jaw of yours,’ and it’s working fabulously.");
 	output("\n\nYou blink away the mask of cum covering your [pc.eyes] and twist the corners of your mouth into a smile. Kiro looks so happy when your nose brushes against her musky sheath. If you weren’t absolutely stuffed with dick and cum, you might even confess your love for the dolled-up kui-tan.");
 	output("\n\nYou can always communicate your love via sex anyhow. It’s almost as natural as breathing. Besides, <b>you and Kiro are crewmates now. Mission accomplished!</b>");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	//BAD END :3
 	badEnd();
 }
@@ -1749,7 +1749,7 @@ public function kq12HourTF():void
 		output("\n\nAny reply is cut off by the call’s sudden end. The longer you wait, the more this madwoman is free to modify your friend’s body and mind. You’ve got to hurry!");
 	}
 	processTime(3);
-	pc.lust(2);
+	pc.changeLust(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1774,7 +1774,7 @@ public function kq18HourTF():void
 	kiro.refractoryRate++;
 	kiro.createPerk("MinCumQ",2000);
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1817,7 +1817,7 @@ public function kq24HourTF():void
 	}
 	kiro.createPerk("Ever-Milk",5000);
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1905,7 +1905,7 @@ public function kq36HourTF():void
 	kiro.vaginas[0].bonusCapacity += 100;
 	kiro.ass.bonusCapacity += 100;
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1933,7 +1933,7 @@ public function kq42HourTF():void
 	kiro.lipMod++;
 	kiro.breastRows[0].breastRatingRaw += 16;
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -519,7 +519,7 @@ public function annoMorningShower():void
 
 	output("\n\nDid - did she blow you a kiss on her way out? The tease....")
 
-	pc.lust(10);
+	pc.changeLust(10);
 
 	processTime(15);
 
@@ -1789,7 +1789,7 @@ public function annoFollowerEatDatDogslootOut():void
 
 	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
-	pc.lust(15);
+	pc.changeLust(15);
 	annoSexed(1);
 
 	clearMenu();
@@ -2061,7 +2061,7 @@ public function annoFollowerShowerSex():void
 	output("\n\nFinally, though, you step out of the shower and towel down. When you’re done, Anno wraps hers around her hair and ears, leaving herself bare and on full display for you. <i>“Thanks, boss. I needed that,”</i> she says with a wink, leaning in to give you a peck on the cheek.");
 
 	processTime(30+rand(20));
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.shower();
 
 	annoSexed(1);
@@ -2248,7 +2248,7 @@ public function annoFollowerGoozookaTesting():void
 
 	processTime(2);
 
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2375,7 +2375,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 			pc.aimMod--;
 			pc.intelligenceMod--;
 			pc.willpowerMod--;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		//else output("\n\nYou’ve gotten everything from Crabbst you’re going to get.");
 	}
@@ -2386,7 +2386,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 		pc.aimMod--;
 		pc.intelligenceMod--;
 		pc.willpowerMod--;
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 
 	currentLocation = "BURT'S MAIN HALL";
@@ -2845,7 +2845,7 @@ public function annoStraponMods():void
 	output("\n\nHow could you say no?");
 	flags["ANNO_STRAPON_MODS_ENABLED"] = 1;
 	processTime(7);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Next",annoFollowerMenu);
 }
@@ -3001,7 +3001,7 @@ public function annosTriberatorGatorMatorHater():void
 	else output("couch");
 	output(".");
 	// Add some big lusts to PC from watching Anno get tribrator fucked.
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(44+rand(3));
 	clearMenu();
 	
@@ -3407,7 +3407,7 @@ public function annoUvetoHuskarFoursomeMountUp():void
 	
 	output("\n\nYou’re fairly sure you hear Anno giggle, but its mostly drowned out into a wet, slurping noise. Galina shivers with delight, making her voluptuous form jiggle in all the right places. After a moment, though, she gives an exasperated sigh and murmurs, <i>“Not that I’m complaining, but I’ve got a date with [pc.name]’s [pc.vagOrAss], sweetie. Move!”</i>");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(10);
 	clearMenu();
 	addButton(0, "Next", annoUvetoHuskarFoursomeMountUpII);
@@ -4050,7 +4050,7 @@ public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 		output("\n\nAnno gives her a grin. <i>“My profile said-”</i>");
 		output("\n\n<i>“I know!”</i> the other woman chuckles, leaning back against the bar. <i>“Didn’t say I had a problem. Quite the opposite, actually.”</i>");
 		processTime(4);
-		pc.lust(10);
+		pc.changeLust(10);
 		//[Excuse Yourself] [Play Along]
 		clearMenu();
 		addButton(0,"Nah",annoCanDoShitSolo,undefined,"ExcuseYourself","Anno’s gonna have to play this one solo.");
@@ -4092,7 +4092,7 @@ public function playAlongWithAnnoThreesome():void
 	output("\n\nFinishing off a final drink, you slip an arm around each of their waists and suggest you make your way back to your ship for a little more intimate entertainment. The stiff nipples and rock-hard dragon-cock that soon present themselves through sheer fabric is all the answer you need, and you’re quickly making your way back to the dock as quick as your inebriated [pc.feet] can take you.");
 	pc.imbibeAlcohol(30);
 	processTime(5);
-	pc.lust(40+rand(10));
+	pc.changeLust(40+rand(10));
 	clearMenu();
 	addButton(0,"Next",dragonGurlAnnoThreesome);
 }
@@ -4283,7 +4283,7 @@ public function annoPupperPlay():void
 		processTime(600 + rand(30));
 	}
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",annoWalkiesPartDuesEx);
 }
@@ -5073,7 +5073,7 @@ public function annoxErraWatch():void
 	IncrementFlag("ANNO_X_ERRA_WATCHED");
 
 	anno.orgasm();
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(60);
 
 	clearMenu();
@@ -5097,7 +5097,7 @@ public function annoxErraLeave():void
 	//[Next] //Adds some lust and returns the PC to their ship menu. (Maybe close off the sleep option for an hour?) 
 
 	anno.orgasm();
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(5);
 	pc.createStatusEffect("Disable Ship Bed", 0, 0, 0, 0, true, "", "", false, 60);
 	setAnnoAway(60);
@@ -5132,7 +5132,7 @@ public function annoHuskarTreatIntro():void
 	output("\n\nShe gives you a kiss on the forehead and hops up, booping your [pc.face] with her tail as she goes.");
 	output("\n\n<i>“See ya boss!”</i> she calls over her shoulder, leaving you alone in her room. <i>“Don’t do anything I wouldn’t do.”</i>");
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[Steal Panties] [Replace Treats] [Leave]
 	if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) addDisabledButton(0,"Steal Panties","Steal Panties","You already did that, you panty thief!");
@@ -5200,7 +5200,7 @@ public function annoSomethingsChanging():void
 	
 	//Attach Anno’s sex menu here.
 	processTime(30);
-	pc.lust(33);
+	pc.changeLust(33);
 	annoFollowerSexMenu(false);
 }
 
@@ -5336,7 +5336,7 @@ public function goodbyeBestAnno():void
 	output("\n\nAnno sashays forward, her slimmer hips swaying until she’s pressing her bare chest against you. <i>“Ohh boss, I feel so cold without all that extra weight on. You’ll warm me up, won’t you?”</i>");
 	//Insert Anno sex scenes, minus Back button.
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	annoFollowerSexMenu();
 }
 public function annoBedtimeBoobDream():void
@@ -5391,7 +5391,7 @@ public function annoBedtimeBoobDream():void
 	output("\n\nA pleasurable sigh from the lover you’re spooning snaps your sleep addled mind to attention, bringing you to two quick realizations: that Anno’s fluffy tail was causing the offending sensation, gently tapping your [pc.leg] over and over, and that your hand isn’t holding your own breast.  <i>“Good morning, boss,”</i> she whispers, as she slides her furred digits over your own. <i>“I can think of all kinds of places to use this hand, but how about after a few more hours of sleep?”</i> She says, yawning.");
 	output("\n\nYou wouldn’t mind a bit more sleep yourself, and figure you and Anno can have some fun when you both get up. Relinquishing you lover’s breast, you wrap your arm around her stomach and pull her tight against you. You settle your head back into your pillow, thinking of all the things you and Anno can get up to tomorrow. Your mind swims with the possibilities as sleep once again overtakes you.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 }
 //submenu handling for Eat Out sex choice
 public function annoFollowerEatOutOption(facesitOk:Boolean=true):void

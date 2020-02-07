@@ -545,7 +545,7 @@ public function ask2ChangePenny():void
 		output("\n\nOf course, it’s just a flimsy excuse for her to slowly, ever so slowly, bend at the hips to reach her suitcase. Her legs are together and straight as could be, and she lifts her tail, draping it over her back –");
 
 		processTime(10);
-		pc.lust(5);
+		pc.changeLust(5);
 		//change clothes here:
 		if(penny.armor is UGCCasualOutfit) penny.armor = new UGCUniform();
 		else penny.armor = new UGCCasualOutfit();
@@ -582,7 +582,7 @@ public function ask2ChangePenny():void
 		output("\n\nPlayfully, she puts her foot onto the suitcase, then kicks it behind her. <i>“It’s a combination lock,”</i> she tells you as she pivots, her eyes looking over her shoulder as she does. <i>“Wouldn’t want you to see my password. A girl’s gotta keep a secret.”</i>");
 		output("\n\nOf course, it’s just a flimsy excuse for her to slowly, ever so slowly, bend at the hips to reach her suitcase. Her legs are together and straight as could be, and she lifts her tail, draping it over her back – ");
 		processTime(10);
-		pc.lust(5);
+		pc.changeLust(5);
 		//change clothes here:
 		if(penny.armor is UGCCasualOutfit) penny.armor = new UGCUniform();
 		else penny.armor = new UGCCasualOutfit();
@@ -637,7 +637,7 @@ public function continuePennyChangingNotOfficer(newScreen:Boolean = false):void
 	output("\n\nIt’s good to be captain, sometimes.");
 	clearMenu();
 	processTime(25);
-	pc.lust(40);
+	pc.changeLust(40);
 	pennyCrewMenu();
 }
 
@@ -667,7 +667,7 @@ public function continueChangingPenny(newScreen:Boolean = false):void
 	output("\n\n<i>“Was there... anything</i> else <i>I can do for you, captain?”</i> Penny asks you, her tongue licking at her lips.");
 	output("\n\nIt’s good to be captain, sometimes.");
 	processTime(25);
-	pc.lust(40);
+	pc.changeLust(40);
 	pennyCrewMenu();
 }
 
@@ -782,7 +782,7 @@ public function otherCrewPennyTalk():void
 		output("\n\nJust as suddenly as she starts, she stops, and pulls back, resuming her earlier sitting position. <i>“Something to think about, my " + (penny.armor is UGCCasualOutfit ? "mate":"captain") + ",”</i> she says slyly.");
 		output("\n\nIt’s safe to say that she’s okay with your relationship as the captain of your crew.");
 		processTime(10);
-		pc.lust(20);
+		pc.changeLust(20);
 		clearMenu();
 		addButton(0,"Next",pennyCrewTalk);
 		//[=Next=]
@@ -801,7 +801,7 @@ public function otherCrewPennyTalk():void
 		output("\n\n<i>“Sooo I was thinking,”</i> Penny draws with a lazy, pre-slopping cock-stroke, <i>“would it be okay if I fucked around with the rest of the crew? Not on camera or anything - unless you wanted me to, but it feels like this place is basically one big fuck-party, and I ought to be invited!”</i> She looks up at you for approval, seemingly panting from the sheer erotic weight of her request. <i>“Please, mate? I’ll still be your favorite cock-drunk camwhore - just one that keeps the rest of your pets satisfied and in line: your top beta bitch.”</i>");
 		output("\n\nThat’s a big ask - do you let Penny fuck around, or keep her on a tight leash?");
 		processTime(10);
-		pc.lust(10);
+		pc.changeLust(10);
 		clearMenu();
 		addButton(0,"Share",shareWithPennySluts);
 		addButton(1,"Don’t Share",dontSharePennyLove);
@@ -880,7 +880,7 @@ public function pennySquirtingTalk():void
 		output("\n\nPenny answers with a moan, one hand dipping to explore her tender delta. <i>“Ah! F-f-fuck yes. Gotta get one of those drones,”</i> she explains while casually toying with her lips, <i>“the ones kui-tan like so much. Something to clean up all the mess so I can focus on squirting whenever you want me to." + (pc.hasCock() ? " On your dick.":"") + " On your face. Anywhere on the ship. Maybe even in your bed. Just so it smells like cunt for any beta bitch you bring home.”</i> She pulls herself up onto wobbly knees and gazes at you with undisguised adoration. <i>“...Wanna see what it feels like when your mate squirts directly onto you?”</i>");
 	}
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",approachCrewPenny,true);
 }
@@ -1014,7 +1014,7 @@ public function pennyMorningWakeups():void
 		output("\n\nYour fingers make another lap down her leg, gently raking through her fur there and its varying degrees of fineness: from thick as could be at her thigh, to thin and sensitive at her knee, then back again. You can feel just how tight her body is" + (pc.hasCock() ? "– and would be -":"") + " with your motions, and, knowing her, she probably wouldn’t mind waking up to a very special ‘good morning.’");
 		output("\n\nYou could have her right here and now. Question is... do you?");
 		processTime(4);
-		pc.lust(2);
+		pc.changeLust(2);
 		clearMenu();
 		if(pc.cockThatFits(penny.vaginalCapacity(0)) >= 0 || pc.hasVagina()) addButton(0,"Fuck Her",fuckSleepyPenny,undefined,"Fuck Her","Start the day off with a little early-morning lust relief.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a vagina or a penis that fits inside her vagina for this.");
@@ -1050,7 +1050,7 @@ public function pennyMorningWakeups():void
 
 		//[=Wake Up=][=Dream On=]
 		// end scene (scene: Prelude); increase Lust by 20
-		pc.lust(20);
+		pc.changeLust(20);
 		clearMenu();
 		addButton(0,"Wake Up",wakeUpSleepyPen,undefined,"Wake Up","Can’t waste time dreaming!");
 		addButton(1,"Dream On",dreamOnYouSexyPennyFucker,undefined,"Dream On","See where this sexy dream goes...");
@@ -1162,7 +1162,7 @@ public function wakeUpSleepyPen():void
 
 	//[=Next=]
 	// end scene (scene: Let Her Sleep); return the PC to the ship’s main menu; increase Lust by 20; advance clock by eight hours
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1424,7 +1424,7 @@ public function turnPennyIntoACamwhore(discrete:Boolean = false):void
 	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
 	flags["PENNY_IS_A_CUMSLUT"] = 1;
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",crew);
@@ -1511,7 +1511,7 @@ public function watchPennyHaveFun():void
 	output("\n\nShe collapses to the bed in a heap when she’s done, flopping onto her back with a groan. You take your leave of the scene before her presence of mind returns, leaving Penny glancing confusedly at the door when she thinks she sees motion.");
 	processTime(15);
 	penny.orgasm();
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1548,7 +1548,7 @@ public function interruptPennyfaps():void
 		output("\n\n<i>“Fuck! Mitzi left her panties in here as a, a prank or something,”</i> Penny pants, looking at them in her hand. They’re soaked through with semen, saliva, and sweat. <i>“I’ve been beating off for like two fucking hours! They just smell so- </i>sooo<i> fucking good, [pc.name],”</i> she moans, hand sinking her back to her groin. <i>“Oh, fuck... do you wanna give me some help here?”</i>");
 	}
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	if(pc.hasHardLightEquipped() || (pc.hasCock() && pc.cockThatFits(penny.vaginalCapacity(0)) >= 0)) addButton(0,"Reacharound",cockSelect,[reachAroundThePennyslut,penny.vaginalCapacity(0), true,0],"Reacharound","Fuck the foxgirl’s pussy and give her a nice reacharound while you do.");
 	else if(pc.hasCock()) addDisabledButton(0,"Fuck Penny","Fuck Penny","You’re too big for her pussy.");
@@ -1638,7 +1638,7 @@ public function facefuckMitziJerkingPenpen():void
 	processTime(10);
 	pc.loadInMouth(penny);
 	penny.orgasm();
-	pc.lust(7);
+	pc.changeLust(7);
 	if(pc.isBimbo()) pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2161,10 +2161,10 @@ public function pennySyriOnaholeVid():void
 	showBust(pennyBustDisplay(true), syriBustDisplay());
 	showName("PENNY\n& SYRI VID");
 	processTime(18);
-	pc.lust(75);
+	
 
 	output(pennySyriPornText());
-
+	pc.changeLust(75);
 	addButton(0, "Next", mainGameMenu);
 }
 

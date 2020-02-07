@@ -413,7 +413,7 @@
 					if(target.isChestGarbed()) kGAMECLASS.output(" You claw at your [pc.upperGarments], pulling it off to make room for your incoming expansion!");
 					target.breastRows[0].breastRatingRaw += 1 + rand(3);
 					kGAMECLASS.output(" You only just suppress a moan as the tightness turns into pleasure. The [pc.skin] of your once-small chest burgeons, filling out with balloon-like speed. You cup your new tits, shuddering at the suddenly sensitive flesh around your [pc.nipples]. Oh, that’s nice.... You now have [pc.breastCupSize]s!");
-					target.lust(19+rand(5));
+					target.changeLust(19+rand(5));
 				}
 				//Growing tits not first time
 				else if(select == 11)
@@ -425,7 +425,7 @@
 						kGAMECLASS.output("\n\nYou feel a sudden tightness in your chest, just behind your tits. You grit your teeth through a flash moment of pain before it turns to pleasure. With a sigh of relief, you cup your boobs as the Tittyblossom lives up to its name, steadily expanding your bust");
 						if(target.isChestGarbed()) kGAMECLASS.output(" until it strains against your [pc.upperGarment], demanding release from the now-too-tight confines");
 						kGAMECLASS.output(". You now have a nice, firm pair of [pc.breastCupSize]s!");
-						target.lust(9+rand(5));
+						target.changeLust(9+rand(5));
 					}
 					//Expanding a Current Rack (Over D cups)
 					else
@@ -436,7 +436,7 @@
 						kGAMECLASS.output("\n\nFinally, the growth in your - now very sizable - tits subsides, leaving them bouncing with your every breath, nice and huge.");
 						if(target.upperUndergarment.shortName == "") kGAMECLASS.output(" You’re probably going to want to invest in a bra, now... <i>or not</i> you think, giving yourself another squeeze.");
 						kGAMECLASS.output(" You now have a hefty pair of [pc.breastCupSize]s!");
-						target.lust(9+rand(5));
+						target.changeLust(9+rand(5));
 					}
 					//Breasturbation
 					// Proc if PC has high lust & grows D+ cups. Append to end of TF segment so it looks longer and more interesting.
@@ -549,7 +549,7 @@
 						kGAMECLASS.output("\n\nIntrigued, you can’t help but explore this new asset. Reaching down, you spread your quivering quim - soaking your fingers in juices - and as you slip a digit in you almost instantaneously clench up in orgasm, racking your body with a sensation so great you barely avoid crumpling to the floor. It seems your new vagina is especially sensitive... and probably will be for a while until you get used to having it. As your hands slip out of your new, beautiful pussy, you think... perhaps you should enjoy the added sensitivity while it lasts.");
 						target.orgasm();
 						author("Gruey");
-						target.lust(30+rand(20));
+						target.changeLust(30+rand(20));
 						// +LOTS of Lust
 					}
 					//Prevent "nothing happens" message.

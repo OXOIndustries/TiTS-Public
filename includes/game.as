@@ -1664,7 +1664,7 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minPass);
-	pc.lust(postRestLustBonus);
+	pc.changeLust(postRestLustBonus);
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
@@ -1697,7 +1697,7 @@ public function restHeal():void
 	if(bonusMult != 0)
 	{
 		if(pc.HPRaw < pc.HPMax()) {
-			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.changeHP(Math.round(pc.HPMax() * bonusMult));
 			else pc.changeHP(Math.round(pc.HPMax() * .33 * bonusMult));
 		}
 		if(pc.energyRaw < pc.energyMax()) {

@@ -969,7 +969,7 @@ package classes.GameData
 						//Combat blurb:
 						if (target is PlayerCharacter) output("\n\n<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>");
 						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around " + target.getCombatPronoun("himher") + ", projecting a series of ever lewder smutty visuals directly at " + target.getCombatPronoun("himher") + "!</b>");
-						target.lust(4);
+						target.changeLust(4);
 					}
 				}
 			}
@@ -1865,8 +1865,8 @@ package classes.GameData
 			output(" so alluring?");
 
 			var fantasizeDam:Number = 20+rand(20);
-			output(" (<b>L: +<span class='lust'>" + Math.floor(fantasizeDam) + "</span></b>)");
-			pc.lust(fantasizeDam);
+			//output(" (<b>L: +<span class='lust'>" + Math.floor(fantasizeDam) + "</span></b>)");
+			pc.changeLust(fantasizeDam);
 						
 			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept({ isFantasize: true }))
 			{
@@ -2309,7 +2309,7 @@ package classes.GameData
 					{
 						if(!target.hasStatusEffect("KQDollStunText")) output("The stunned sexdoll stumbles around, leaking trickles of purplish cum until she recovers her wits a moment later.");
 						else output("The stunned sexdoll shakes herself back to alertness and stops leaking cum all over the floor.");
-						target.lust(-10);
+						target.changeLust(-10);
 					}
 					else if (!target.isPlural)
 					{
@@ -2335,7 +2335,7 @@ package classes.GameData
 							if (target is KQSexdollGeneric)
 							{
 								output("The stunned sexdoll stumbles, leaking a steady trickle of purplish cum.");
-								target.lust(-10);
+								target.changeLust(-10);
 								if(!target.hasStatusEffect("KQDollStunText")) target.createStatusEffect("KQDollStunText");
 							}
 							else if (!target.isPlural) output("<b>Your teasing has " + (_hostiles.length == 1 ? ("the poor " + target.mfn("boy", "girl", "thing")) : target.getCombatName()) + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>");
@@ -2546,6 +2546,7 @@ package classes.GameData
 			// Panic Ejaculation blurb
 			if(panicJack)
 			{
+				var bonusLustJack:Number = 0;
 				if(removeGrapple)
 				{
 					if(target is PlayerCharacter)
@@ -2559,9 +2560,9 @@ package classes.GameData
 				{
 					if(target is PlayerCharacter) output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.");
 					else output(" Not even the extra lewd lube squirted can help the matter...");
-					target.lust(-10);
+					bonusLustJack = -10;
 				}
-				target.lust(-10);
+				target.changeLust(-10+bonusLustJack);
 			}
 			// Remove grapple
 			if(removeGrapple)

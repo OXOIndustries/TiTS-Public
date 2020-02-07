@@ -403,7 +403,7 @@ public function iceQueenLetsGoFlirt():void
 	output("\n\nZaalt gives you a wink and steps aboard, leaving you with an even hotter fire in your loins as you follow him.");
 	
 	processTime(2);
-	pc.lust(20);
+	pc.changeLust(20);
 
 	clearMenu();
 	addButton(0, "Next", iceQueenLetsActuallyGo);

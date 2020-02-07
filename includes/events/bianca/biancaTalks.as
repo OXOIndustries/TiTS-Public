@@ -988,7 +988,7 @@ public function chattingAboutMiscWithAFoxyDoc(inRandomEncounter:Boolean = false)
 			output("\n\nThere’s the click of a holo-selfie being snapped.");
 			output("\n\nBefore you even finish blinking and coping, she withdraws and hides her hands behind her back. <i>“Hee hee, that’s for future reference...”</i>");
 			output("\n\nA-All she had to do was ask... wait, what are you thinking? That <i>is</i> how she asks for something!");
-			pc.lust(5+pc.libido()/10);
+			pc.changeLust(5+pc.libido()/10);
 			break;
 		// rand 5 (rut or heat, leads to sex options at >=51 familiarity. NO BACK OUT)
 		case 4:

@@ -74,7 +74,7 @@ public function approachFuckLillies():void
 	if(pc.lust() < 33)
 	{
 		output("\n\n<b>You weren’t very aroused when you arrived, but the sight and smell has you ready to go.");
-		pc.lust(33);
+		pc.changeLust(33);
 	}
 	processTime(1);
 	clearMenu();

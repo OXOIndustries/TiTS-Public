@@ -329,7 +329,7 @@ public function breedwellPremiumPresentationText(dohrahn:Boolean=false):void
 	output("\n\nStill standing, Nihn shoves her skirt down and, facing the camera, cranes her gently quivering butt backwards; with a happy beam, Tess grips the rahn’s thighs and dives in face first.");	
 	output("\n\n<i>“Ooh my,”</i> Nihn coos, dark red eyes crossing slightly. <i>“Aren’t you eager! That’s... uh... some piercing you’ve got...”</i>");	
 	output("\n\n<i>“Upgrade today,”</i> says the second rahn, stepping in front of the conjoined pair with a sultry smile. <i>“We have an ever growing number of Premium Breeders across many frontier and outer worlds waiting to satiate your urges today. Support the Great Effort! Have way more sex than any of your colleagues! Visit the BIC site and click on the banner to learn more.”</i>");	
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(15);
 }
 
@@ -835,7 +835,7 @@ public function breedwellPremiumSanction(quotaPun:Boolean=false):void
 	output("\n\n<i>“Oop! But I’m a big softie really. So I’m gonna let you choose which groups you’ll be assigned to. Which first, eager breeder?”</i>");
 	output("\n\nWhen you direct the visor downwards, you see three virtually generated box options near your fingertips.");
 
-	pc.lust(60);
+	pc.changeLust(60);
 	//double libido here	
 	clearMenu();
 	addButton(0, "Visitors", breedwellPremiumSanctionVisitors,undefined);
@@ -877,7 +877,7 @@ public function breedwellPremiumSanctionVisitors():void
 	if(pc.hasCock()) output(" Your [pc.cock] is rock-hard, straining against the shifting material.");
 	output(" [pc.eachVagina] floods with [pc.femcum], soaking your uniform.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRandom);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	
@@ -906,13 +906,13 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	if (pc.vaginaTotal() > 1) output(" pussies");
 	else output(" pussy");
 	output(" shivering and guttering [pc.femcum] as the suit fingers you sumptuously.");
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRandom);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	for(var y:int = 0; y < rn; y++)
 	{
 		ppRandom = breedwellPremiumGetRandomCock(-1);
-		pc.lust(30);
+		pc.changeLust(30);
 		pc.loadInMouth(ppRandom);
 		if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	}
@@ -1073,7 +1073,7 @@ public function breedwellPremiumSanctionGuestsNext2(firstTime:Boolean=false):voi
 		ppRahn = getBreedwellRahnPregContainer(rand(8));
 		if (rand(3) == 0)
 		{
-			pc.lust(30);
+			pc.changeLust(30);
 			pc.loadInMouth(ppRahn);
 			if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 		}
@@ -1133,7 +1133,7 @@ public function breedwellPremiumSanctionStaff():void
 	output("\n\n<i>“Oh wow!”</i> You gasp as a hand lands sharply on your [pc.ass]. <i>“What an ass they got in for us today! Mmm...”</i> They’ve drawn away, and a moment later you feel why - of its own volition, your suit is peeling away, exposing the [pc.skinFurScales] on your backside to the cool air, and the lustful gaze of the unseen rahn. <i>“...oh, I’m going to go <i>nuts</i> on you, you naughty [pc.boy]!”</i>");
 
 	clearMenu();	
-	pc.lust(60);
+	pc.changeLust(60);
 	flags["BREEDWELL_PREM_PUN_STAFF"] += 60;
 	processTime(60);
 	clearMenu();	
@@ -1232,7 +1232,7 @@ public function breedwellPremiumSanctionStaffNext2(firstTime:Boolean=false):void
 		rn2 = rand(4);
 		if (rn2 == 0)
 		{
-			pc.lust(30);
+			pc.changeLust(30);
 			pc.loadInMouth(ppRahn);
 			if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 		}
@@ -1275,7 +1275,7 @@ public function breedwellPremiumSanctionStaffNext3(firstTime:Boolean=false):void
 	output(". Good work!”</i>");
 	output("\n\nThe zel’rahn scientist moans sweetly, boobs heaving as she unloads another torrent of sexual fluids down your gullet.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRahn);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	

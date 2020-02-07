@@ -1005,7 +1005,7 @@ public function extrameetSexyyDaddyySex():void
 	output("\n\nYou can’t help but struggle, the monster clearly too much for you. In your mind you can’t help but feel like you bit off more than you can chew, but that seems far too ironic a thought. You breathe through your nose while the massive dong in your mouth throbs, each pulse pressing it harder against your teeth, and with each press Orren moans louder. Your hands keep working the shaft, stroking up and down the whole of his length more on their own than anything. You’re operating on autopilot now, barely aware of your actions. A few moments later something changes. Something is coming. Your eyes open wide in fear. He’s cumming.");
 	output("\n\nYou feel it with your hands first, a surge of something right under the surface. A massive load firing out of the chamber. When it hits the top you feel it. You gag and choke as an impossible about of cum blasts into your mouth, the cockhead far too large to spit out. Hot spunk fills your throat, exploding out of Orren with such force you feel it come out of your nose. You squeeze his cock hard, more on reflex than anything, the fight part of a fight or flight response. That only makes Orren moan louder, the pain making his orgasm all the better. Pulling with both your hands, you yank the monster out of your mouth with all your strength, teeth marks scratching into Orren as you pull. The Thraggen groans so lewdly you think he might cum again after that.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.exhibitionism(2);
 	processTime(10 + rand(15));
 	pc.loadInMouth(chars["SEXYYDADDYY"]);
@@ -2206,7 +2206,7 @@ public function extrameetShekkaDate():void
 	output("\n\nShekka pulls you against her chest as you continue unzipping all the way down to her crotch. You don’t get to leave the transient prison of reptilian cleavage for a few moments, enough time for a few kisses to be planted on <i>your</i> head. Working in the engine room leaves a slippery sheen of sweat on the tinkerer’s body, but she still smells wonderfully appetizing. Even moreso when a final tug draws the opening of her jumpsuit over " + (shekka.hasCock() ? "her musky horsecock." : "dripping dual-clitted pussy."));
 	output("\n\nYou’re giving a front row seat to her skyrocketing heartbeat as you transition to " + (shekka.hasCock() ? "fondling her hefty horseballs." : "teasing the first of her feminine love buzzers.") + " A squeak of surprise escapes her lips, followed by a brief moan as you fight against her confining cleavage, nibbling and kissing her smooth scales with practiced care. Slipping free of her grasping hands, you kiss down her belly in an inexorable march to her waiting sex.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	if (shekka.hasCock())
 	{
 		output("\n\nIn the sweltering heat of the engine room, the musky scent of shekka’s equine member permeates your every sense. It was still mostly soft when you slid the zipper open, but with each passing second it grows larger and harder. The choice between the first kiss going to her head or her balls is an agonizing decision, one the weighty testes lose. You plant a kiss directly on the tip of her bulbous flare, still small and puffy for now.");

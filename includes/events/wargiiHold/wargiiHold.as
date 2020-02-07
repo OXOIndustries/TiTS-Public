@@ -456,7 +456,7 @@ public function wargiiBadEnds():void
 		output("\n\nTime fades into meaninglessness as you get off for what you think might be the fifth or sixth time. You barely even keep track anymore. It all just turns to mush, and you quickly lose track of even your consciousness.");
 		for(var x:int = 0; x < 7; x++) { pc.orgasm(); }
 		pc.libido(150);
-		pc.lust(100);
+		pc.changeLust(100);
 		pc.physique(50);
 		pc.intelligence(-30);
 		pc.willpower(-30);
@@ -500,7 +500,7 @@ public function wargiiBadEnds():void
 		{
 			//output("\n\nYour stance is wobbly and shaken - not because you’re wounded or you’re too exhausted to keep going, but because you’re just so horny. The Milodan in front of you look so delicious in their armor, and you can smell their overbearing musk from where you are. You close your eyes as you imagine you spending time with the warriors some other way, when you feel a blunt, stinging pain at the back of your head.");
 			output("When you awake, you’re " + (currentLocation != "UVGR G8" ? "exactly where you were before you lost the fight":"back in the hold proper") + ", but there’s nobody around you. The Milodan warrior is gone" + (fightHasCaptive() ? ", as is the Korgonne captive they were hauling off":"") + ". You have a bit of a bump on your head, but otherwise, you’re fine – and <i>ragingly</i> horny. Although you’ve been stripped of your possessions, your limbs are unbound and free; apparently, the Milodan warrior you were facing off with did not consider you a threat." + ((pc.lust() >= pc.lustMax() || flags["WARGII_BADEND_FUCKED"] != undefined) ? " It probably had something to do with how you succumbed to your baser desires in the fight.":""));
-			pc.lust(200);
+			pc.changeLust(200);
 			if(currentLocation == "UVGR G8")
 			{
 				currentLocation = "KORGII D10";
@@ -518,7 +518,7 @@ public function wargiiBadEnds():void
 			output("\n\n<i>“Crawl,”</i> he demands with a tug, and you do so: anything for your captor. Your [pc.hips] grind against each other with each crawl forward, your [pc.vagina] dripping with arousal, your juices leaking down your thighs in submissive pleasure. Your gaze is hypnotized by your Milodan’s own gait, his muscular glutes and thick thighs dancing in front of you; you can’t resist, and you lunge forward, planting your face into his powerful butt and giving his left cheek a thick lick through the nylon of his armor.");
 			output("\n\nHe grunts in surprise, but chuckles, and gives your leash another yank. You idly wonder just how this encounter is going to end....");
 			processTime(30);
-			pc.lust(100);
+			pc.changeLust(100);
 			processTime(35);
 			addButton(0,"Next",bsFemaleFeelbadWargiiBadEndForLustyThots2);
 		}
@@ -686,7 +686,7 @@ public function maleBreederWargiiBadEnd2():void
 	processTime(120);
 	pc.orgasm();
 	pc.libido(100);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",maleBreederWargiiBadEnd3);
 }

@@ -56,7 +56,7 @@ public function kqVictorySurprise():void
 	output(", careful not to brush the tightly-bound shaft below. <i>“I love you, [pc.name]" + (kiroKallyThreesomes() > 0 ? " - you and Kally both":"") + ". You don’t have to say it back.”</i> The kui-tan sprawls wider across the couch, presenting herself. <i>“Right now... just let me reward you. We can talk out the serious stuff later.”</i> Perhaps feeling that she hasn’t seduced you enough, she adds, <i>“" + ((!(kiro.vaginalVirgin && pc.hasCock())) ? "I cum so easy ever since Po had me in her clutches.":"You can have my virginity, if you want it.") + "”</i>");
 	output("\n\nIt’s a more than appealing offer.");
 	processTime(5);
-	pc.lust(25);
+	pc.changeLust(25);
 	kqVictoryMenu1();
 }
 
@@ -131,7 +131,7 @@ public function dontWantSexFromYou():void
 	output("\n\n<i>“Oh.”</i> Kiro sniffles, wiping her nose on her freshly laundered armfur. <i>“It figures." + (kiroKallyThreesomes() > 0 ? " At least I have Kally.":" I finally meet someone good enough to consider an honorable relationship with, and they’re the one person with the balls to turn me down.") + "”</i> Her sable lips quirk at that thought a moment before she springs to her feet. <i>“Let me get dressed. I must look as stupid as a girl misreading signs at the yearly fertility festival...”</i> A voluminous mass of striped tail swishes by a few inches from your face; the kui-tan makes for a nearby door. <i>“Don’t go anywhere, okay? We still have a lot to talk about.”</i>");
 	output("\n\nYou can do that much.");
 	processTime(5);
-	pc.lust(-5);
+	pc.changeLust(-5);
 	pc.libido(-2);
 	clearMenu();
 	addButton(0,"Next",postFuckTalkies,false);
@@ -172,7 +172,7 @@ public function rideKirosVictoryCocku(x:int):void
 	else output("womb");
 	output(", but all good things must come to an end.");
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	if(x >= 0) pc.loadInCunt(kiro,x);
 	else pc.loadInAss(kiro);
 	kiro.orgasm();
@@ -354,7 +354,7 @@ public function fuckKirosPussyAwwwYeeeeeeea(x:int):void
 	output("\n\nThe warmth and weight of the outlaw’s sack against your [pc.belly] ratchets up warningly as Kiro tears a package open with her teeth and tosses it your way. <i>“I plan pirate jobs, Angel. I prepare for sex.”</i> She smirks a little blearily. <i>“Now help me get this condom on before I ruin another room.”</i>");
 	output("\n\nAnother one?");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	kiro.orgasm();
 	pc.applyCumSoaked();
 	clearMenu();

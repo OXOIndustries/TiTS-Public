@@ -585,7 +585,7 @@ public function yesAzraLetsBang():void
 	{
 		output("\n\nAzra glances at a nearby clock, then devilishly flashes her teeth. <i>“Then you’d better be ready to back up your boasting.”</i> She tugs a fastener on her armor, letting a heavy plate fall to the floor. <i>“Because I’ve been counting down the minutes until we could do this again.”</i> She shakes off another piece, revealing the perfect golden skin beneath. <i>“So what do you say, Captain?”</i> A lust-fattened suula-cock flops free, backed up by shining balls who look to have bathed in pussyjuice.");
 		processTime(1);
-		pc.lust(10);
+		pc.changeLust(10);
 		azraSexMenu();
 	}
 }
@@ -1233,7 +1233,7 @@ public function azraSexApproach():void
 		output(num2Text(hours) + " hours or so, I’ll be here to rock your world.”</i> She giggles, amused by your seemingly endless libido. <i>“Is there anything else I can help my " + azraBoyfriend() + " with today?”</i>");
 		output("\n\n<b>Any sex with Azra will need to happen later...</b>")
 		processTime(3);
-		pc.lust(-5);
+		pc.changeLust(-5);
 		azraMenu();
 		//gray out sex button :3
 		addDisabledButton(4,"Sex","Sex","Azra won’t be ready for sex again for another day.");
@@ -1251,7 +1251,7 @@ public function azraSexApproach():void
 		output("\n\nThe golden-scaled suula’s crotch guard thumps into the ground heavily. You note that she’s not wearing any panties.");
 		azraSexMenu();
 		processTime(3);
-		pc.lust(5);
+		pc.changeLust(5);
 		//add call out option
 		addButton(5,"Call Out",callOutAzraPanties,undefined,"Call Out","How can she ruin panties if she isn’t wearing any?! The universe needs to know.");
 	}
@@ -1482,7 +1482,7 @@ public function azraHyperDocking(x:int):void
 	pc.orgasm();
 	IncrementFlag("AZRA_DOCKED");
 	IncrementFlag("AZRA_SEXED");
-	if(flags["AZRA_DOCKED"] >= 4) pc.lust(25);
+	if(flags["AZRA_DOCKED"] >= 4) pc.changeLust(25);
 	pc.createStatusEffect("Azra Sex CD");
 	pc.setStatusMinutes("Azra Sex CD",24*60);
 	clearMenu();
@@ -1552,7 +1552,7 @@ public function azraMorningFucko():void
 	else output("So you claim. Convince me.”</i>");
 
 	output("\n\nThe suula kisses you gently, her plush black lips warm and moist. Instead of pulling back, she breaks it by drifting down and kissing your chin, then your neck. Angelic wings flutter happily above as Azra moves lower. She briefly contacts a [pc.nipple] but doesn’t linger. Her slithering tongue slides across your [pc.belly] as she journeys further south. The supple softness of a plump lip brushes your [pc.cockHead] just before the suula’s wiggling muscle slurps back in, the tip whipping back to slide along your length as it retreats, savoring the musky presence of your [pc.cock " + x + "].");
-	pc.lust(15);
+	pc.changeLust(15);
 	//Nobone
 	if(!pc.isErect()) 
 	{
@@ -1635,7 +1635,7 @@ public function azraMorningFucko():void
 	}
 	//[Next] -> actual fuckkin
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",actualMorningAzraBone,x)
 }

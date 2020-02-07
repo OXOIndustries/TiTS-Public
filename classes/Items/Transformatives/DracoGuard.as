@@ -366,7 +366,7 @@
 						
 						output(" Your hands instinctively move to your rack, groping at yourself and feeling your tits growing even more! By the time they settle down, feeling heavier and fuller than ever, <b>you guess you must have " + pc.breastCup(0) + "s now!</b>");
 						changes++;
-						pc.lust(10 + rand(6));
+						pc.changeLust(10 + rand(6));
 					}
 					else output("\n\n" + pc.breastRatingLockedMessage());
 				}
