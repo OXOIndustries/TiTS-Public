@@ -2485,10 +2485,10 @@ package editor.Descriptors {
         }
 
         // Balls
-        public const ballCount__info: FunctionInfo = new FunctionInfo()
+        public const ballCountIs__info: FunctionInfo = new FunctionInfo()
             .setArgResultValidatorFunc(rangeValidator)
-            .setDesc('Balls is equal to 1 or 2 or 3...');
-        public function ballCount(... args): int {
+            .setDesc('Balls count is equal to 1 or 2 or 3...');
+        public function ballCountIs(... args): int {
             return equalsEval(this.owner.balls, args.map(typeNameToIndex));
         }
 
