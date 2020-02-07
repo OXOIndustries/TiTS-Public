@@ -1,43 +1,48 @@
-# Parsers
-## Understanding parser text
-This is how the parsers text is grouped.
+# Understanding the language
+### Code Syntax
+> `[ (identifier) (arguments) | (results) ]`
 
-`[ (identifier) (optional operator) (arguments) | (results) ]`
+`[` starts a parser and `]` ends a parser.
 
-*Note: This does not apply if there is an operator (>, =)*
+An `identifier` is a list of `identity` separated by `.` Each `identity` accesses a variable starting with the `Object` that was passed to the `interpreter` on creation.
+
+The `arguments` is a list of `String` or `Number`. They are separated by a `space`, `tab` and/or `newline`.
+
+The `results` is a list of `String`. They are separated by `|`. They can include a parser.
 
 Examples:
 > `[pc.name]`
 ```
-identifier: "pc.name"
+identifier: ["pc", "name"]
 arguments: []
 results: []
 ```
 > `[pc.cockNoun 1]`
 ```
-identifier: "pc.cockNoun"
+identifier: ["pc", "cockNoun"]
 arguments: [1]
 results: []
 ```
 > `[silly|enabled|disabled]`
 ```
-identifier: "silly"
+identifier: ["silly"]
 arguments: []
 results: ["enabled", "disabled"]
 ```
-> `[pc.milkVolRange 0 100 1000 5000|0~100|100~1000|1000~5000|5000+]`
+> `[pc.cumQRange 0 100 1000 5000|0~100|100~1000|1000~5000|5000+]`
 ```
-identifier: "pc.milkVolRange"
+identifier: ["pc", "cumQRange"]
 arguments: [0, 100, 1000, 5000]
 results: ["0~100", "100~1000", "1000~5000", "5000+"]
 ```
-*Note: `milkVolRange` does not exist at time of writing*
 
-## Relation between the code and text
-Everything starts with the Descriptor classes. They are a wrapper that limits access to the game. Anything `public` can be used in the text.
+# Relation between the code and parsers
+The `interpreter` takes in a `Object`. Anything `public` can be used in the text.
+
+In the code, a new TiTSDescriptor is passed to the `interpreter`. A Descriptor class is a wrapper around game code to limit access. 
 
 ## Visiblity
-The entry point is TiTSDescriptor. The interpreter will start evaluating identifiers here.
+The entry point is TiTSDescriptor. The interpreter will start evaluating `identifier` here.
 
 > `[silly|enabled|disabled]`
 
@@ -88,30 +93,6 @@ Anything else will coerced to `String`.
 Any other data types will be coerced to `String`.
 
 ---
-## Argument Grouping
-`arguments` can be grouped together using parentheses `(` `)`.
-> `[pc.hasPerk (Fecund Figure)|exceptionally wide|] hips`
-```
-identifier: "pc.hasPerk"
-arguments: ["Fecund Figure"]
-results: ["exceptionally wide", ""]
-```
----
-## Nesting in `arguments`
-When `:` is used, all `results` are changed to `arguments`.
-> `[b:|This is bold text]`
-```
-identifier: "b"
-arguments: ["This is bold text"]
-results: []
-```
----
-
-## Capitalization
----
-The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap:|[...]]`.
-
----
 # Adding new parsers
 Anything `public` in TiTSDescriptor or subsequent classes will available to the interpreter.
 
@@ -125,15 +106,15 @@ Example:
 
 ## FunctionInfo
 This is for describing a `Function`.
-This info is accessed by the interpreter by taking the last part of the `identifer` and adding `__info`.
+This info is accessed by the interpreter by taking the last `identity` in an `identifier` and adding `__info`.
 
-> `cockSimple` -> `cockSimple__info`
+> `pc.cockSimple` -> `pc.cockSimple__info`
 
 ---
 ### argResultValidator
 > `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
 
-This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function and . Return a `String` when there is a problem, `null` otherwise.
+This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
 
 An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` take in one optional `argument` and no `results`.
 
@@ -143,7 +124,7 @@ An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` tak
 
 This changes how the code written.
 
-`[b:|This is bold text]` normally turns into `b("This is bold text")`
+`[b|This is bold text]` normally turns into `b("This is bold text")`
 
 Since `toCode` was supplied, it becomes `"<b>This is bold text</b>"`
 
@@ -157,3 +138,13 @@ Since `toCode` was supplied, it becomes `"<b>This is bold text</b>"`
 pc.hasPerk("HoneyPot")
 ```
 ---
+### getDesc/setDesc
+This sets the description that will be displayed in the editor.
+
+---
+### includeResults
+This changes how functions are called.
+
+Normally, they are called `func.apply(self, args)`, but this changes it to `func.call(self, args, results)`.
+
+*Note: `apply` spreads `args` over the paramters. `call` does not spread.*

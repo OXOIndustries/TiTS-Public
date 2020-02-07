@@ -15,7 +15,7 @@
 |identifier  | `identity , ~("." , identity )`
 |arg         | `" " , (number|text)`
 |result      | `"|" , code`
-|code        | `"[" , identifier, ((":" , ~result)|(~arg , ~result)) , "]"`
+|code        | `"[" , identifier, ~arg , ~result , "]"`
 |body        | `text , code`
 > Some information on the language definition can be found here
 https://github.com/end5/SceneWriter/blob/master/Editor/Parser/LangDef.txt
@@ -36,7 +36,6 @@ The Lexer reads text and groups the characters together to create a Token.
 |Pipe           | "\|"
 |LeftParen      | "("
 |RightParen     | ")"
-|Colon          | ":"
 
 Examples:
 > `This is text.`
@@ -79,9 +78,10 @@ Text: "disabled"
 RightBracket: "]"
 Dot: "."
 ```
+---
 ## Parser
 The Parser reads each Token from the Lexer looking for a pattern.
-If the Tokens match the pattern, the Parser creates a Node.Using the pattern, The Nodes are organized into a tree structure (AST aka Abstract Syntax Tree).
+If the Tokens match the pattern, the Parser creates a Node. The Nodes are organized into a tree structure (AST aka Abstract Syntax Tree).
 Each Node has a type, a value and children (list of Nodes).
 
 |Node Type  |Value         |Children
@@ -90,7 +90,7 @@ Each Node has a type, a value and children (list of Nodes).
 |String     |string        |
 |Number     |number        |
 |Concat     |              |list of Node Type String or Eval
-|Eval       |              |[Node Type Retrieve, Node Type Args, Node Type Results]
+|Eval       |              |list where 0: Node Type Retrieve, 1: Node Type Args, 2: Node Type Results
 |Retrieve   |              |list of Node Type Identity
 |Args       |              |list of Node Type String or Number
 |Results    |              |list of Node Type Concat or String or Eval
@@ -125,30 +125,22 @@ Concat
 ┗━ String: ".""
 ```
 Any `argument` surrounded in parentheses `(` `)` includes whitespace.
-> `[b (This is bold text)].`
+> `[pc.hasPerk (Iron Will)|yes|no].`
 ```
 Concat
 ┣━ Eval
 ┃   ┣━ Retrieve
-┃   ┃   ┗━ Identity: "b"
+┃   ┃   ┣━ Identity: "pc"
+┃   ┃   ┗━ Identity: "hasPerk"
 ┃   ┣━ Args
-┃   ┃   ┗━ String: "This is bold text"
+┃   ┃   ┗━ String: "Iron Will"
 ┃   ┗━ Results
+┃   ┃   ┣━ String: "yes"
+┃   ┃   ┗━ String: "no"
 ┗━ String: ".""
 ```
-The `:` changes all the `results` to `arguments`.
-> `[b:|This is bold text].`
-```
-Concat
-┣━ Eval
-┃   ┣━ Retrieve
-┃   ┃   ┗━ Identity: "b"
-┃   ┣━ Args
-┃   ┃   ┗━ String: "This is bold text"
-┃   ┗━ Results
-┗━ String: ".""
-```
-### Interpreter
+---
+## Interpreter
 The Interpreter traverses a tree of Nodes (AST) and produces text.
 Each Node has a specific operation determined by its type.
 
