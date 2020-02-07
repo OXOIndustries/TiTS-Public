@@ -1074,7 +1074,7 @@ public function kaneBadEndTwo():void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
-	currentLocation = "GAME OVER";
+	moveTo("GAME OVER");
 	processTime(60*24*(20+rand(50)));
 
 	output("The young human explorer checked the holo-map emitted by her codex, before carefully peeking over the boulder, peering down the steaming, thickly vegetated valley again. She knew she had to be careful: she was on her own, many miles out from Esbeth in uncharted territory,");

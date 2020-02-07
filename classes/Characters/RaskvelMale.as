@@ -255,7 +255,7 @@
 			{
 				output("The raskvel continue to pin you down with their bodies, determinedly ignoring your struggles and waiting for you to give up. Their leathery scales slide over your [pc.skinFurScales] as three pairs of hands go exploring, trailing over your [pc.chest], squeezing your [pc.butt], fondling your at your groin. Even in the warm, dusty, muffled chaos it’s obvious that immobilizing you is a secondary concern, next to the overriding need to give your alien physique a good grope.");
 				applyDamage(new TypeCollection( { tease: 10 + rand(8) } ), this, target, "minimal");
-				target.energy(-5);
+				target.changeEnergy(-5);
 				//Lust 0-80:
 				if(target.lust() < 80) output(" You feel drained and hot underneath the unwelcome attention.");
 				else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");

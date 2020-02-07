@@ -388,7 +388,7 @@ public function payVKoForHealing(cost:int):void
 	else output("as the horse that you so resemble");
 	output(".");
 	processTime(8+rand(5));
-	pc.HP(pc.HPMax());
+	pc.changeHP(pc.HPMax());
 	approachVKo(false);
 }
 //Negatory to healing:

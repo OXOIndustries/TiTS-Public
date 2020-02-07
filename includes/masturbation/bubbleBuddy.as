@@ -240,7 +240,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 			pc.applyCumSoaked();
 		}
 		//increase lust by 1-3 and non-goos gain the “Cum Soaked” status
-		pc.lust(1+rand(3));
+		pc.changeLust(1+rand(3));
 		itemConsume(item);
 	}
 	//Large Bubble
@@ -261,7 +261,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 		}
 		//increase libido by 1, lust by 2-5, and non-goos gain the “Cum Soaked” status
 		pc.libido(1);
-		pc.lust(2+rand(4));
+		pc.changeLust(2+rand(4));
 		itemConsume(item);
 	}
 	//Huge Bubble
@@ -288,7 +288,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 		}
 		//increase libido by 1, lust by 7-10, and non-goos gain the “Cum Soaked” status
 		pc.libido(1);
-		pc.lust(7+rand(4));
+		pc.changeLust(7+rand(4));
 		itemConsume(item);
 	}
 	clearMenu();
@@ -370,7 +370,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		output("\n\nThe first test is figuring out how best to drink from it without wasting the precious reserves. You give the surface a testing poke, feeling it wobble. Placing the bubble to your lips, you nibble at the edges, " + pc.mf("chuckling","giggling") + " to yourself at the ridiculousness of it all. Still, the insistent throbbing of your [pc.cocks], and the need to fill your [pc.balls] until " + (pc.balls <= 1 ? "it" : "they") + " churn with potent seed is very persuasive.");
 		output("\n\nYou nibble at the thin boundary between your [pc.lips] and their liquid prize; it still takes a little work, but finally something gives. Your flavorsome [pc.cumNoun] graces the tip of your tongue, and you open wide, all but stuffing the bubble into your mouth. You swallow it down with a wicked smile, spitting out the then-empty membrane afterwards, smacking your [pc.lips] together contentedly.");
 		output("\n\nIt doesn’t take long for tingles of pleasure to rush their way to your nethers, heralding future growth in a way that gets you hot under the collar.");
-		pc.lust(10);
+		pc.changeLust(10);
 		//increase libido by 2, lust by 10, trigger low-level nuki...growth (Whatever it’s called)
 		//Fen note: Nope. No libido gain.
 		processTime(6);
@@ -393,7 +393,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		output("\n\nYou hum against it, feeling the vibrations tremble through. through the bubble’s membrane. After that it’s just a gentle nibble. Even with that, the pressure of the bubble has your [pc.cumNoun] spurting past your mouth! Yo hurriedly suck and swallow, pressing as much of the bubble up against your lips as you can get away with. The heady scent of [pc.cumNoun] fills your nose, and your prostate already feels like it’s seething with more, getting ready to dump its contents into your balls.");
 		output("\n\nYou sigh and pat your [pc.belly], feeling smug as your body begins its work.");
 		//increase libido by 2, lust by 10, trigger medium-level nuki...growth (Whatever it’s called)
-		pc.lust(10);
+		pc.changeLust(10);
 		processTime(6);
 		pp.createPerk("Fixed CumQ",4000,0,0,0);
 		pc.loadInMouth(pp);
@@ -410,7 +410,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		output("\n\nAfter what feels like a straight minute, you manage to find a rythm of swallowing, until your stomach feels packed with cum. Already the weight of your own [pc.balls] seems to have doubled, and your cock is fiercely erect as the heady aroma and overindulgent state of your body sends hormones into overdrive.");
 		output("\n\nStifling a burp, you let the empty bubble sag to the ground, wiping some of the cum from your chest with a grin. You give your soft orbs a squeeze, feeling them grow thicker by the moment. Look out universe.");
 		//increase libido by 3, lust by 10-15, trigger large-level nuki...growth (Whatever it’s called)
-		pc.lust(10);
+		pc.changeLust(10);
 		processTime(6);
 		pp.createPerk("Fixed CumQ",10000,0,0,0);
 		pc.loadInMouth(pp);
@@ -427,7 +427,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		output("\n\nTime to get to business. You open your [pc.mouth] wide, with a soft <i>“Aaah~”</i>, before biting down as hard as you can. The bubble doesn’t so much burst as it does unleash itself into your mouth and all over your face. Gulping it down is an immediate challenge, forcing you to nearly choke on [pc.cumNoun]. It doesn’t take long for your stomach to fill, and it takes even less time to gather an all-new spunky coating.");
 		pc.applyCumSoaked();
 		output("\n\nYour body is overwhelmed in little to no time, and it’s a bit of a struggle to keep so much [pc.cumNoun] down.");
-		pc.lust(10);
+		pc.changeLust(10);
 		processTime(6);
 		pp.createPerk("Fixed CumQ",40000,0,0,0);
 		pc.loadInMouth(pp);
@@ -700,7 +700,7 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 		output("\n\n<i>“Ooooh,”</i> she moans, sliding her fingers in after the cum bubble. Through the galotian’s semi-transparent mass, you can easily make out the shadow of her wiggling fingers and the wobbling sphere of your latex package. Fingertips playing across her lips, Celise gasps and pushes your egg-sized gift deeper and deeper, her breasts shrinking slightly as her pussy thickens and her abdomen bulges. Caressing herself, the girl’s legs tremble with delight, ripples of bliss sending her jiggling like a gelatinous sculpture in an earthquake.");
 		output("\n\n<i>“Ah! Ah! Aaaaaaah!”</i> she gasps as she pushes the bubble into where her womb would be, belly swelling as if undergoing an exceedingly rapid pregnancy. The dark shadow of the bubble is momentarily lost amid a murky, [pc.cumColor] mist. You guess that her digestive system must’ve melted a small hole in the orb, to get the cream out. Your cum spreads within Celise’s gooey frame as she reaches her climax. Her legs vibrate with her wordless bliss before losing their consistency, collapsing into her more normal puddle. With a heaving motion, her massive belly shrinks as the latex bubble slides back out of the goo girl and wobbles onto the deck of your ship.");
 		output("\n\nIt seems Celise has managed to get the cum out of the bubble and filled it up with a bit of her own goo before the latex resealed itself. Pantomiming the panting gasps of a new mother, she tenderly picks up the goo-filled violet blob and cradles it atop her breasts. <i>“A sweet little baby doh’rahn,”</i> she sighs. <i>“Betcha didn’t know we could cross-breed, huh? I sure hope you’ll take responsibility,”</i> she giggles. Leave it to Celise to turn a little snack into a whole production!");
-		pc.lust(2+rand(4));
+		pc.changeLust(2+rand(4));
 		processTime(5);
 		//[End]
 		clearMenu();
@@ -743,7 +743,7 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 		else output("D-cups!");
 		output(" <i>“What do you think? Will people be able to tell they’re fake?”</i> she asks with a demonstrative jiggle. Her milkshake’s just as hypnotically undulating as ever, but the dark shadows of the cum bubbles in her chest are plainly visible through the galotian’s semi-transparent body.");
 		processTime(4);
-		pc.lust(5);
+		pc.changeLust(5);
 		IncrementFlag("CELISE_LARGE_BUBBED");
 		//[Too Obvious] [Perfect]
 		//Perfect option is grayed out if the player doesn’t have a penis. Mouse over text: You’ll need sex organs for this. How did you fill up the Bubble Buddy without them?
@@ -763,7 +763,7 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 		output("\n\nThe Bubble Buddy’s surface reseals the microscopic breach and you’re left with a lilac-colored sphere, roughly two feet across and sagging slightly under its gooey contents. The sheath tries to contract, but its galotian occupant pushes back, forcing it to expand instead. The orb distorts and deforms, hand-prints pushing from within. The hands are followed by forearms and shoulders as the bottom gains another pair of bumps that resolve into shapely legs. The squeaking, groaning latex gradually gains shape as Celise forms her body within the glossy sheath, her torso expanding and her breasts bulging outward. Finally, her head emerges from between her shoulders with a squeaking shake.");
 		output("\n\nPerfectly sealed inside a latex body-condom, Celise looks more like a rahn than a galotian. The girl’s normally sloshing exterior actually has tone and definition, her sleek, rubber shell magnifying the absurdly disproportionate dimensions of her sexpot form. Unsteadily rising to her unfamiliar feet, she barely manages to stand, snapping off another salute.");
 		processTime(4);
-		pc.lust(5);
+		pc.changeLust(5);
 		//[Pop Her] [Fuck Her]
 		clearMenu();
 		if(pc.hasCock()) addButton(1,"Fuck Her",fuckCeliseAfterTooMuchStuff,undefined,"Fuck Her","Use the bubble buddy suit as a condom.");
@@ -811,7 +811,7 @@ public function celiseFutaGooForYou2():void
 	output(", you pat the silly slime and assure her that you’ll take care of her, even if she is a terrifying alien beast now. She looks up at you with big, puppydog eyes and a simpering smile of innocent trust, your cum still floating around inside her.");
 	//Lust increases 3-7
 	processTime(10);
-	pc.lust(3 + rand(5));
+	pc.changeLust(3 + rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1032,7 +1032,7 @@ public function rahnCumBubbleGift(item:ItemSlotClass):void
 		output("\n\n<i>“It’s just that you’ve asked me the same question three times now,”</i> she prompts, a little aggrieved.");
 		output("\n\n<i>“Oh, ha ha hah,”</i> she nervously titters. <i>“Just something on my mind, I guess. I’m sorry about that. Let’s get you all finished up- oh.”</i> She stops mid-sentence as the bubble in her body ruptures, her expression coloring slightly as your [pc.cumColor] spunk diffuses behind her plump cheeks. You can practically see her legs rubbing together under the desk as your cum fills her head and floods the gel girl’s senses. With gasping, lustful starts and stops, Flahne manages to finish processing the other woman’s paperwork and sends her on her way.");
 		output("\n\nYou rise and wave at the panting girl as you step away. Even from this distance, the smell of her honeyed nectar is unmistakable. The saucy rahn girl seems to have orgasmed just from eating your jizz bubble. You make a mental note to bring her more later.");
-		pc.lust(5+rand(3));
+		pc.changeLust(5+rand(3));
 		processTime(12);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1053,7 +1053,7 @@ public function rahnCumBubbleGift(item:ItemSlotClass):void
 		output("\n\nWhen the lobby is clear once more, you step over to Flahne, the two of you wearing a matching pair of grins. The gel girl shivers, ripples running through her body as the last of your bubbles dissolves inside her. <i>“Whew,”</i> she pants. <i>“I don’t usually have to put my foot down, but every so often, we get jerks who just want to throw their weight around. Thanks again for the snack, [pc.name]! Dealing with those rascals is a lot easier with something more nourishing than lollipops in me.”</i>");
 		output("\n\nYou set your hand on her shoulder and give the sweet girl an encouraging squeeze.");
 		processTime(20);
-		pc.lust(3);
+		pc.changeLust(3);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1065,7 +1065,7 @@ public function rahnCumBubbleGift(item:ItemSlotClass):void
 		output("\n\nYou look over the coin-sized device. It’s a simple squeeze-and-shoot interface, set to automatically upload the pictures right to your Extranet Messenger. It seems you could adjust the destination, easily enough. It’s got an option to send the pictures to a GalLink Fuckmeet group, as well as to the Tamani Corp marketing division. If you sent it to the GalLink, some of Flahne’s other friends could enjoy the show, but if you sent it to Tamani Corp, the whole extranet could get an eyeful.");
 		//[Private] [GalLink] [Extranet]
 		processTime(3);
-		pc.lust(3);
+		pc.changeLust(3);
 		clearMenu();
 		addButton(0,"Private",flahneCumPhotoshoot,0);
 		addButton(1,"GalLink",flahneCumPhotoshoot,1);
@@ -1091,7 +1091,7 @@ public function rahnCumBubbleGift(item:ItemSlotClass):void
 		output(" through the sheer fabric of her skirt. You lightly slap the hand away and stuff another two spheres into her quivering quim.");
 		output("\n\n<i>“H-how many of those things do you have down there?”</i> she gasps as a door opens and she straightens up again. <i>“H- hello, how may I help you today?”</i> Between her legs, you’ve just about run out of the smaller bubbles, leaving only the big boys. Moreover, you’ve already got a good dozen little ones in her and the rahn’s pussy is looking pretty packed. For most other races, this would be a problem, but the rahn are about the second stretchiest species in the galaxy. Time to see just how big you can make that womb.");
 		processTime(15);
-		pc.lust(10+rand(10));
+		pc.changeLust(10+rand(10));
 		clearMenu();
 		addButton(0,"Next",flahneHugeBubbleStuffing2);
 	}
@@ -1118,7 +1118,7 @@ public function flahneCumPhotoshoot(arg:int):void
 	output("\n\nThe rahn secretary recovers quickly, her tongue lapping up the globular curtains of spunk that cascade from her face and wash over her breasts. She cups both hands together, shoveling bowls of jizz into her ravenous mouth, puckered lips slurping at the sagging ropes of your glossy spoo. You snap pictures of the cream-covered civil servant from a variety of angles, getting in close to capture the draining seed that slowly drips down her cute mouth and into her taut throat.");
 	output("\n\nWhen, at last, she’s gathered up the last of your spilt spunk, she turns to cleaning out the burst bubble between her curves. Flahne vigorously laps at the interior of the latex, finishing her meal to the last, succulent drop. Gripping the burst condom between her lips, she proudly smiles up at the camera like a cat showing off its latest kill and you obligingly click a picture of the contented rahn.");
 	output("\n\n<i>“Thanks again for the meal, [pc.name].”</i> Flahne gurgles with delight, taking back her CaptchaLens and dropping it into her purse. <i>“Remind me to return the favor one of these days.”</i> She buttons up her blouse and rises to unlock the lobby doors and take care of the traffic her little lunch break built up. On your way out, you check your Codex to see where those pictures and videos went.");
-	pc.lust(5+rand(6));
+	pc.changeLust(5+rand(6));
 	processTime(25);
 	if(arg == 2) 
 	{
@@ -1212,13 +1212,13 @@ public function galLinkConsequence():void
 		output("\n\nYou place a finger on the rahn’s face where a nose would be on any other race. <i>“Boop,”</i> you announce with a grin, offering no further explanation.");
 		output("\n\nFlahne’s bubbling ire slowly trickles away into exasperated mirth. <i>“You dummy. I don’t care that you posted those on GalLink. Those sluts are always posting smutty pictures of themselves. I just wanted you to keep the pictures for yourself as something special. Guess we’ll have to try it again some time,”</i> She finishes, walking back to her desk with a booty-shaking gait that looks ready to tear open her skirt’s seams with every step.");
 		//player’s lust increases by 5-10
-		pc.lust(5+rand(6));
+		pc.changeLust(5+rand(6));
 	}
 	else
 	{
 		output("\n\nWrapping an arm around the receptionist’s backside, you give her a squeeze. <i>“Ah, come on. You know you love putting on a show. I bet if I brought out another cum bubble right now, you wouldn’t even think twice before popping it all over yourself again.”</i>");
 		output("\n\nFlahne furrows her little brow and meets your dismissive gaze with narrowed, violet eyes. She slides a hand down and grabs your crotch possessively. <i>“You’re just lucky you’re so tasty,”</i> she says with a squeeze. Pushing you away and marching back to her desk, the rahn glances back and sticks out her tongue. It’s good to keep ‘em riled up, you muse with an appreciative leer at the gel girl’s ample curves.");
-		pc.lust(5+rand(6));
+		pc.changeLust(5+rand(6));
 	}
 	processTime(4);
 	clearMenu();
@@ -1394,7 +1394,7 @@ public function giveVaandeTheGiftOfCum(item:ItemSlotClass):void
 	//Cum bubbles: huge:
 	if(item is HugeCumBubble) output("\n\nSuitably slicked by your seeping spunk, Vaande rolls to her side and motions for you to rise with the oozing remnants of your cum bubble. <i>“Be a dear, and finish me off, won’t you?”</i> She gestures to the cascade of gooey ‘hair’ that hangs around one half of her elfin face. There’s a tension to her voice that seems to carry an urgency with it, so you set to work, holding the cum sack over her head and squeezing fresh spouts of [pc.cumNoun] from the condom to shower the lavender woman in your warmth. She draws a sharp breath as the [pc.cumNoun] pools on her hair and forms sticky cataracts that fall across her face in a [pc.cumVisc] deluge. She can’t help herself from letting the long, sinuous length of her tongue gather up precious beads of thick cream.");
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	IncrementFlag("VAANDE_BUBBLED");
 	itemConsume(item);
 	clearMenu();
@@ -1501,7 +1501,7 @@ public function bubbleBuddyVaandeEpilogue():void
 	processTime(660);
 	pc.energyRaw = 0;
 	pc.credits += 15 + rand(16);
-	pc.HP(-Math.round(pc.HPMax()/2));
+	pc.changeHP(-Math.round(pc.HPMax()/2));
 	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -208,9 +208,10 @@
 		{
 			output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It’s almost like the more you hurt her, the more excited she gets.");
 			output("\n\nGrinning she says, <i>“Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don’t know what I might do...”</i>");
-			HP(25);
-			lust(5+rand(3));
-			target.lust(2);
+			changeHP(25);
+			changeLust(5+rand(3));
+			output("\n\nHot!");
+			target.changeLust(2);
 		}
 		
 		private function motorboatedByASpork(target:Creature):void

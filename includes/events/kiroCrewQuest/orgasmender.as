@@ -1,7 +1,7 @@
 //[DUN] Healing Consentacle Tank
 //Original: Working on idea still, Healing Consentacles, inflation, bukkake, goo, all gender's applicable. The idea is to have a shipboard goo vat (like a star wars bacta tank) but it also has tentacles that move in to 'help the healing process' if you are way over on your lust levels. - Please Send Email to discuss? This request doesn't need to go in immediately at game start.
 //Additional: quick layout:
-//It involves lots of mechanical tentacles in a healing vat, possibly provided by two OC's I've been concepting in my head.   No interaction, other than them selling you the device is really planned out (their 'personal' services are expensive!) so the whole event would be a repeatable encounter with the device you install in your medical bay with options of 1) 'just heal' 2) 'just massage' 3) 'heal + tentacle massage'  4) 'heal + tentacle orgy'.   the massage in mind is just to help players with copious amounts of breast milk get a good milking and massage (will probably increase lust).  initial calibration scene would be 'heal + massage' with an option to 'test full calibration mode' which would activate the orgy scene.  I could write a fair bit of it myself, but I'm not very talented with a lot of prose and getting the personal descriptors down correctly, so someone would need to come in and edit in all of those parts.  I could probably write it from a futa perspective, but again I'd hope someone could come in and use much better descriptors!
+//It involves lots of mechanical tentacles in a healing vat, possibly provided by two OC's I've been concepting in my head. No interaction, other than them selling you the device is really planned out (their 'personal' services are expensive!) so the whole event would be a repeatable encounter with the device you install in your medical bay with options of 1) 'just heal' 2) 'just massage' 3) 'heal + tentacle massage' 4) 'heal + tentacle orgy'. the massage in mind is just to help players with copious amounts of breast milk get a good milking and massage (will probably increase lust). initial calibration scene would be 'heal + massage' with an option to 'test full calibration mode' which would activate the orgy scene. I could write a fair bit of it myself, but I'm not very talented with a lot of prose and getting the personal descriptors down correctly, so someone would need to come in and edit in all of those parts. I could probably write it from a futa perspective, but again I'd hope someone could come in and use much better descriptors!
 //LastLego/EnderHoof
 
 //Fen Idears:
@@ -21,9 +21,16 @@ public function showOrgasmender():void
 	showName("\nORGASMENDER");
 	showBust("ORGASMENDER");
 }
+
+public function shipOrgasmenderBonus(btnSlot:Number = 0):void
+{
+	output("\n\nThe sterile-looking, white-rimmed tank of your “Orgasmender” rests in a back corner, ready to heal and violate simultaneously.");
+	addButton(btnSlot, "Orgasmender", climbIntoTheDamnedTank, undefined, "Orgasmender", "Climb inside and get some tainted healing.");
+}
+
 public function healingConsentacleTankBonus():Boolean
 {
-	if(flags["ORGASMENDER"] == undefined) output("\n\nA sterile-looking, white-rimmed tank sits in the back corner of the room, its transparent aluminum surface stamped with two bright red hearts. In between the cartoonish organs is an airtight door stenciled with a stylized logo reading, <i>“Orgasmender.”</i> You suppose it must be some kind of healing tank.");
+	if(flags["ORGASMENDER"] == undefined) output("\n\nA sterile-looking, white-rimmed tank sits in the back corner of the room, its transparent aluminum surface stamped with two bright red hearts. In between the cartoonish organs is an airtight door stenciled with a stylized logo reading, “Orgasmender.” You suppose it must be some kind of healing tank.");
 	else output("\n\nYou spot the Orgasmender’s sterile-looking, white-rimmed tank in a back corner of the room. You know from an experience that it’s far more full of life than its charming exterior indicates, but it certainly does its job well enough.");
 	if(currentLocation != "KQ L28") output(" <b>It seems out of place, like it doesn’t truly belong in this place. Perhaps this is a <i>placeholder</i> location for it?</b>")
 	//[Look Closer] [Climb In]
@@ -383,7 +390,7 @@ public function orgasmenderScene2():void
 		output("\n\nIt’s perfect, a sense of constant relief that never gets old mixed with a hint of sensuous delight. You could cum from this alone in time you’re sure, but between this and what’s going on down south, you don’t know how long you can hold onto your sanity. Every caress, every squeeze - it’s all answered by more gushes of milk, drowning out your thoughts in horny yet contented bliss. If you could, you’d sign up to do this every day, just give milk and cum your brains out for the rest of eternity... Stars, you’re so close to cumming!");
 	}
 	processTime(30);
-	pc.lust(2000);
+	pc.changeLust(2000);
 	clearMenu();
 	addButton(0,"Next",orgasmenderScene3);
 }
@@ -492,8 +499,8 @@ public function orgasmenderScene4():void
 	{
 		pc.loadInNipples(pp);
 	}
-	pc.HP(pc.HPMax());
-	pc.energy(40);
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(40);
 	pc.taint(3);
 	IncrementFlag("ORGASMENDER");
 	clearMenu();

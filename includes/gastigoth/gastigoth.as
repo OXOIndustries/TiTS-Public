@@ -758,7 +758,7 @@ public function brandMissionarySex(x:int):void
 	output("\n\n<i>“Please keep going. Let me help you get off, too.”</i>");
 	output("\n\nWell, if she insists...");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	//[Buttjob] [Finish Inside]
 	addButton(0,"Buttjob",heliaButtjob,x,"Buttjob","Grab Hélla’s ass and finish all over that scaly butt.");
@@ -1007,7 +1007,7 @@ public function kasmiransOffer():void
 	output("\n\nTurning back to you as the ausar man huffs and knots himself, the warden adds, <i>“I believe that explains our position quite thoroughly, but if you have any questions, I’d be happy to answer them. Otherwise, you’re free to peruse our catalogue of miscreants and malcontents for one that suits your desires. It’s that easy.”</i>");
 
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	//[Services] [Gastigoth] [Warden] [Prisoners]
 	//[Done]
@@ -1417,7 +1417,7 @@ public function tamtamStuffGo(impregnate:Boolean = false):void
 		output("\n\n<i>“Oh, size doesn’t matter!”</i> Tam teases, squeezing down all around you. <i>“Come on, give it to me rough!”</i>");
 	}
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",tamtamPrisonFinisher,[x, impregnate]);
 }
@@ -1489,7 +1489,7 @@ public function capnKhorganPrisonVisit(impregnate:Boolean = false):void
 	output(".");
 
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 
 	clearMenu();
 	

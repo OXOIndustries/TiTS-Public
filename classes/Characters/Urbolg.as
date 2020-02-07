@@ -262,7 +262,7 @@
 			if(this.shields() <= 0 || this.lust() >= 80)
 			{
 				output("Urbolg gives up.");
-				this.HP(-1000);
+				this.changeHP(-1000);
 				return;
 			}
 			var target:Creature = selectTarget(hostileCreatures);

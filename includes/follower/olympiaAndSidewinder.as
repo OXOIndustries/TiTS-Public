@@ -131,7 +131,17 @@ public function hijackThisShippyShopPrompt():void
 		return;
 	}
 	
-	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, your current ship will be left abandoned.");
+	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, <b>your current ship will be left abandoned</b>.");
+	
+	if(!canAbandonShip(shits["SHIP"]))
+	{
+		output("\n\nUnfortunately, you would be unable to part with your current ship. Maybe you should return with another ship--one that you are willing to sacrifice for the <i>Sidewinder</i>...");
+		output("\n\n");
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	output("\n\nAre you sure you want to hijack the <i>Sidewinder</i>?");
 	output("\n\n");
 	
@@ -154,7 +164,7 @@ public function hijackThisShippyShop():void
 		output("drop trou and mount the hardlight dildo, nestling onto the big shaft of hardlight meat as you take the controls. Oooh, that tingles!");
 		if(pc.hasVagina()) pc.cuntChange(0,250);
 		pc.buttChange(250);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	//else: 
 	else output("deactivate the hardlight shaft - for now, at least - and sit yourself in the captain’s chair. The controls react to you in an instant, brightening with golden light as key panels snap into place on either side of you.");
@@ -194,7 +204,7 @@ public function disarmOlympia():void
 	{
 		output("The moment you see her finger sliding into the trigger guard, your instincts kick into overdrive. You reach for her gun, but just a second too late: Olympia pulls the trigger, sending a volley of buckshot slamming into your shields, hard enough to blow you backwards over the command chair.");
 		output("\n\n<i>“I don’t think so,”</i> she growls, advancing on you. <i>“Leave now.”</i>");
-		pc.shields(-50);
+		pc.changeShields(-50);
 		clearMenu();
 		//[Leave] [Diplomacy]
 		//As per above options
@@ -316,7 +326,7 @@ public function diplomacyDatFuckbot():void
 	author("Savin");
 	output("You raise your hands slowly. <i>“Okay, let’s talk this through.”</i>");
 	output("\n\nOlympia stares down the sights of her shotgun. <i>“I’m listening.”</i>");
-	output("\n\nYou give her the pitch: she hates pirates. Olympia loyalty isn’t to the crew of Zheng Shi, but to the <i>Sidewinder</i> itself. So why stop you from taking the ship if she’s here, on board, able to keep working on it to her heart’s content? After all... what difference does it make if it’s you or the L.D.C. in the pilot’s seat?");
+	output("\n\nYou give her the pitch: she hates pirates. Olympia’s loyalty isn’t to the crew of Zheng Shi, but to the <i>Sidewinder</i> itself. So why stop you from taking the ship if she’s here, on board, able to keep working on it to her heart’s content? After all... what difference does it make if it’s you or the L.D.C. in the pilot’s seat?");
 	output("\n\nThe draconic gynoid furrows her brow, thinking for a long moment. The a hint of a smile spreads on her lips, and she ejects the shells from her shotgun and drops it at your feet. <i>“Very well... captain. As long as I am allowed to stay with the Sidewinder, I don’t care who commands her.”</i>");
 	output("\n\nShe nods and turns back to the hatch. <i>“I’ll get the engines up and running at a hundred and ten. Just don’t get us blown up, captain. The pirates won’t be happy to see this beauty go.”</i>");
 	output("\n\nShe goes running as you get back into the captain’s chair and spool the <i>Sidewinder</i>’s systems up. Sure enough, a few moments later and the deck is thrumming with the massive engine block’s vibrations... and pirates and coming out of the woodwork, crawling all over the walkways and gangplanks.");
@@ -496,7 +506,7 @@ public function nameTheSidewinder():void
 		output("<i>“Very good, captain,”</i> Olympia says, taking the datapad back.");
 	}
 	output(" <i>“I’ll have hull painted next time we dock. Perhaps even add your company colors? Hmm! Either way, thank you for taking me aboard, captain. Even now, I have the feeling that I’ll be much happier here on your crew than I ever was on Zheng Shi... or before. If there’s anything I can do to help you on your mission, you have only to ask.”</i>");
-	output("\n\nAs she says it, Olympia’s already turning back to her work, but not with a sultry wink and a brush of her tail against your [pc.leg]. She is still a sexbot, after all...");
+	output("\n\nAs she says it, Olympia’s already turning back to her work, but not without a sultry wink and a brush of her tail against your [pc.leg]. She is still a sexbot, after all...");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -508,10 +518,10 @@ public function approachOlympia(back:Boolean = false):void
 	clearOutput();
 	showOlympia();
 	author("Savin");
-	if(flags["RECRUITED_OLYMPIA"] < 2)
+	if(flags["OLYMPIA_RECRUITED"] < 2)
 	{
 		firstTimeOlympiaDebrief();
-		flags["RECRUITED_OLYMPIA"] = 2;
+		flags["OLYMPIA_RECRUITED"] = 2;
 		return;
 	}
 	else if(back)
@@ -598,7 +608,7 @@ public function olympiasHistory():void
 	showOlympia();
 	author("Savin");
 	output("<i>“What do you remember from before we met?”</i> you ask her. <i>“About your past, I mean.”</i>");
-	output("\n\n<i>“Not much,”</i> Olympia answers. There’s no hesitation in her voice; it’s a casual response to a simple question, you suppose. After you remain silence for a few moments, your synthetic dragoness sighs and adds, <i>“I remember a few snippets... things that awful bitch Teyaal tried to purge but stayed clogged up in backups. Just a few blurry faces, corrupted views of corridors and ship berths, some containers... the first truly cogent memory I can access is my reactivation after Teyaal reprogrammed me.”</i>");
+	output("\n\n<i>“Not much,”</i> Olympia answers. There’s no hesitation in her voice; it’s a casual response to a simple question, you suppose. After you remain silent for a few moments, your synthetic dragoness sighs and adds, <i>“I remember a few snippets... things that awful bitch Teyaal tried to purge but stayed clogged up in backups. Just a few blurry faces, corrupted views of corridors and ship berths, some containers... the first truly cogent memory I can access is my reactivation after Teyaal reprogrammed me.”</i>");
 	output("\n\nWhat exactly does she remember, then? Maybe those bits and pieces could help you figure out who she was stolen from.");
 	output("\n\nOlympia considers it a moment. <i>“If you found out, would you not be legally obligated to return me? I am legally someone’s stolen property, after all. I would... not wish to cause you inconvenience, captain.”</i>");
 	output("\n\nIs that all? The hesitation in her voice says that’s not what’s really on her mind.");
@@ -618,7 +628,7 @@ public function olympiasModelNumbro():void
 	showOlympia();
 	author("Savin");
 	output("<i>“So, what features come standard on your model?”</i> you ask, eying the curvaceous gynoid up and down. She certainly looks full featured from where you’re standing, but it’s nice to know the technical specs.");
-	output("\n\n<i>“Hmm. I’ve done some research on myself since coming aboard. This appears to be a KihaCorp class six companion droid model, of the ninth revision series. It seems to have been a limited edition run made for wealthy gryvain on the homeworld. Unfortunately most of the model’s technical specifications are closely guarded corporate property, and too complex to be hacked unnoticed. I’ve had to make do with reviews and hearsay online just to learn about myself. Ironic, isn’t it? That I can be so creative, design blueprints for vastly powerful weapons and one-of-a-kind starships... but I’m deprived of an understand of my own body. I can tell you what I do know though.”</i>");
+	output("\n\n<i>“Hmm. I’ve done some research on myself since coming aboard. This appears to be a KihaCorp class six companion droid model, of the ninth revision series. It seems to have been a limited edition run made for wealthy gryvain on the homeworld. Unfortunately most of the model’s technical specifications are closely guarded corporate property, and too complex to be hacked unnoticed. I’ve had to make do with reviews and hearsay online just to learn about myself. Ironic, isn’t it? That I can be so creative, design blueprints for vastly powerful weapons and one-of-a-kind starships... but I’m deprived of an understanding of my own body. I can tell you what I do know though.”</i>");
 	output("\n\nYou nod. <i>“Please.”</i>");
 	output("\n\n<i>“My body and mind were built for pleasure. My owner’s, yours, a whole train of anonymous men... it doesn’t matter to a companion droid, as long as we please organics, it’s like an orgasm delivered straight to the brain. It shouldn’t matter what kind of pleasure; pleasant conversation or an intimate date with a gaming console... but sex is the idea. The tactile sensation I’m capable of receiving at once is an order of magnitude beyond any organic’s, and I’m quite capable of reaching my own orgasms based on that. Like you, I have erogenous zones. Even places I’ve learned to like being touched beyond that.”</i>");
 	output("\n\nPerhaps to show the point, Olympia runs a hand down from her bosom to her hip, squeezing the soft synthflesh. The silicone underneath spreads between her fingers, giving the impression that she’s sinking her fingers into a supple flank.");
@@ -865,7 +875,7 @@ public function uniformOlympia():void
 	olympia.armor = new SteeleTechSuit();
 	showOlympia();
 	processTime(4);
-	pc.lust(4);
+	pc.changeLust(4);
 	//actually set clothing.
 	clearMenu();
 	addButton(0,"Next",olympiasClothes)
@@ -881,7 +891,7 @@ public function olympiasLabcoat():void
 	output("\n\nOlympia scrunches her lips to the side, thinking. <i>“If you insist. I have to admit, that attire does bring back certain unpleasant memories. But the obvious appeal of the sexy scientist doesn’t escape me.”</i>");
 	output("\n\nThat seems to be enough to convince her. Olympia " + ((olympia.armor is SteeleTechSuit) ? "slowly unzips her catsuit, letting the latex pool around her feet before stepping":"steps") + " over towards the drawer that holds all her belongings. She quickly retrieves her lab coat and undergarments, sliding them on with practiced ease. Once done, she gives you a slight nod. <i>“Done. Anything else, captain?”</i>");
 	processTime(3);
-	pc.lust(2);
+	pc.changeLust(2);
 	//actually set clothing.
 	olympia.armor = new KhansLabCoat();
 	showOlympia();
@@ -899,7 +909,7 @@ public function olympiaNakkersLetsGo():void
 	output("\n\nOlympia grins at you, hands on her broad hips. <i>“Mmm, that feels much better. Nice to have a little fresh air on my skin, synthetic or not.”</i>");
 	output("\n\nAnd it’s a nice view, too...");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	//actually set clothing.
 	olympia.armor = new EmptySlot();
 	showOlympia();
@@ -1123,7 +1133,7 @@ public function sexWithOlympia():void
 	else output("\n\n<i>“Just that you need some R&R,”</i> you suggest.");
 	output("\n\nOlympia raises an eyebrow and curls her tail all the way around your [pc.leg]. <i>“Is that so? Well then, captain, your command is my wish...”</i>");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	olympiaCrewSexMenu();
 }
 

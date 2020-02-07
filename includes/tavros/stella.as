@@ -1660,8 +1660,8 @@ public function stellaKnockupCheck():void
 		pc.createStatusEffect("STELLA_PREGNANT",kids);
 		//3 month incubation!
 		pc.setStatusMinutes("STELLA_PREGNANT",60*24*30*3);
+		AddLogEvent("A text message from Stella pings your Codex. <b>She’s definitely pregnant!</b>");
 	}
-	AddLogEvent("A text message from Stella pings your Codex. <b>She’s definitely pregnant!</b>");
 }
 
 //After Delivery scene

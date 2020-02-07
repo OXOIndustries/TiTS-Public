@@ -175,7 +175,7 @@ public function lookAtBianca(from:int = 0):void
 	output("\n\nEmerging from the bottom of her waist-length coat are " + (biancaLover() ? "three" : "two") + " supremely fluffy tails the same golden-blonde color, swishing to and fro with a life of their own. Much like her ears, their rich, fragrantly groomed fur is gold at the base but gradually brightens to a snowy white at the tips. Although her delightful floof is impressive, it’s not expansive enough to obscure her grope-able butt.");
 	output("\n\nDespite her creamy plushness, she’s somewhat muscular too");
 	if (flags["MET_BIANCA"] & 2) output(", thanks all the running around she does escaping from danger and searching for patients");
-	output(". There’s an Olympian stamina about her that speaks of diligence in diet and exercise - " + (pc.tone >= 80 ? "you wonder if you’d be able to keep up with her in a marathon" : "you wonder if anyone could keep up with her in a marathon.") + " That said, you do identify the barest hint of fatigue behind her politeness, and a thin sheen of sweat on her forehead.");
+	output(". There’s an Olympian stamina about her that speaks of diligence in diet and exercise - " + (pc.tone >= 80 ? "you wonder if you’d be able to keep up with her in a marathon" : "you wonder if anyone could keep up with her in a marathon") + ". That said, you do identify the barest hint of fatigue behind her politeness, and a thin sheen of sweat on her forehead.");
 	output("\n\n" + (from != 0 ? "Completing her look is a pair of knee-length, grimy boots." : "Completing her look is a pair of knee-length, grimy boots that end inches away from some scuffed knee-pads.") + " At first they look mundane, but there’s an interesting design around the heels and soles -- perhaps something to lighten her step?");
 	output("\n\n" + (flags["BIANCA_SEEN_PUSSY"] == undefined ? "You can only guess as to what her hidden pussy must look like. There’s no visible bulge but the plump outline of female flesh there." : "Between her legs you know she’s hiding a tight, fat-lipped pussy that can get as wet as an ausar’s when aroused. You vividly recall the red color of her sapphic flesh and the sound she made when you teased her button-like clit.") + " Fit snug between her pillowy cheeks and kept warm by the overhead presence of her tails is most certainly her asshole, right where it belongs.");
 	output("\n\nAll in all, Bianca is <i>ravishing,</i> enchanted with an otherworldly glamor. Her body is attraction enough, but her smile is weapons-grade relief capable of thawing the most cold-hearted brutes out there.");
@@ -839,32 +839,31 @@ public function biancaBoothBonus(btnSlot:int = 0, planet:String = null):Boolean
 			output(" The counter is bare and a few people catch their breaths on the provided amenities. A white holo-sign on the desk reads: <b>Service and Checkup Hours: 17:00-20:00! 50 credits per condition!</b> You’ll have to come by later if you want to see what this is all about.");
 		}
 		// Repeat Encounter; if PC has used booth once (before work hours)
-		else output("\n\nDr. Ketria’s checkup booth stands quiet and idle for now. Some spacers rest their butts on the floating, blue-cushioned seats whilst idly chatting about this and that. There’s nothing meaningful to do at this makeshift clinic without its attending physician.");
+		else output("\n\nDr. Ketria’s checkup booth stands quiet and idle for now. A white holo-sign on the desk reads: <b>Service and Checkup Hours: 17:00-20:00! 50 credits per condition!</b> Some spacers rest their butts on the floating, blue-cushioned seats whilst idly chatting about this and that. There’s nothing meaningful to do at this makeshift clinic without its attending physician.");
 
 		return false;
 	}
-	else
+	
+	// PC has never met Bianca (during booth work hours)
+	if ((flags["MET_BIANCA"] & 6) == 0)
 	{
-		// PC has never met Bianca (during booth work hours)
-		if ((flags["MET_BIANCA"] & 6) == 0)
-		{
-			if (flags["MET_BIANCA"] == undefined) output("\n\nA murmuring crowd gathered near the exit draws your attention. A bespectacled woman stands there, speaking to the enamored colonists and explorers. Just a glance at her charming smile, twitching fox ears, and fluffy tails from this distance indicates the <i>physical</i> appeal of the gesturing lady.");
-			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " seated on one of several chairs while she performs a medical checkup.");
-			output(" Talkative locals and Rushers are lined up waiting their turn and the mood seems energetic enough. You could join the procession and see what the hubbub is about. Hopefully before it gets any bigger.");
-			if (flags["MET_BIANCA"] == undefined) flags["MET_BIANCA"] = 1;
-			else flags["MET_BIANCA"] |= 1;
-		}
-		// PC has met Bianca in the field but never used the booth
-		else if ((flags["MET_BIANCA"] & 4) == 0) output("\n\nThe endearing doctor you’ve met, Bianca Ketria, is happily providing her tender love and care to the people who’ve lined up at her booth. There’s quite a crowd, and the mood is energetic and slightly amorous. You could join the line and see the enthusiastic caregiver again. Hopefully before it gets any bigger.");
-		// Repeat Encounter; if PC has used booth once (during work hours)
-		else output("\n\nDr. Ketria is there at her booth as usual, doling out checkups and supplies to the ever-eager men and women who wait patiently in line. There’s something uncannily mesmerizing about her very presence. An aura of dignity radiates from her like soft rays of sunlight. Her focus right now is on " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + ". Even if you are hale and hearty you feel getting your daily checkup would be worth it just to be around her.");
-
-		if ((flags["MET_BIANCA"] & 6) == 0) addButton(btnSlot, "Fox-Woman", meetingBiancasBooth, undefined, "Fox-Woman", "Get in line to meet the gorgeous fox!");
-		else if (flags["BIANCA_ANNOYED"] > GetGameTimestamp()) addDisabledButton(btnSlot, "Bianca", "Bianca", "Bianca is not pleased with you wasting her time. Hopefully in a few days you’ll be able to get back in her good graces.");
-		else if (pc.hasStatusEffect("Got Bianca Checkup")) addDisabledButton(btnSlot, "Bianca", "Bianca", "You already received a checkup from Bianca today. One per customer!");
-		else addButton(btnSlot, "Bianca", ((flags["MET_BIANCA"] & 4) == 0 ? meetingBiancasBooth : enteringBiancasBooth), undefined, "Bianca", "Get in line for a checkup from Bianca!");
-		return true;
+		if (flags["MET_BIANCA"] == undefined) output("\n\nA murmuring crowd gathered near the exit draws your attention. A bespectacled woman stands there, speaking to the enamored colonists and explorers. Just a glance at her charming smile, twitching fox ears, and fluffy tails from this distance indicates the <i>physical</i> appeal of the gesturing lady.");
+		else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " seated on one of several chairs while she performs a medical checkup.");
+		output(" Talkative locals and Rushers are lined up waiting their turn and the mood seems energetic enough. You could join the procession and see what the hubbub is about. Hopefully before it gets any bigger.");
+		if (flags["MET_BIANCA"] == undefined) flags["MET_BIANCA"] = 1;
+		else flags["MET_BIANCA"] |= 1;
 	}
+	// PC has met Bianca in the field but never used the booth
+	else if ((flags["MET_BIANCA"] & 4) == 0) output("\n\nThe endearing doctor you’ve met, Bianca Ketria, is happily providing her tender love and care to the people who’ve lined up at her booth. There’s quite a crowd, and the mood is energetic and slightly amorous. You could join the line and see the enthusiastic caregiver again. Hopefully before it gets any bigger.");
+	// Repeat Encounter; if PC has used booth once (during work hours)
+	else output("\n\nDr. Ketria is there at her booth as usual, doling out checkups and supplies to the ever-eager men and women who wait patiently in line. There’s something uncannily mesmerizing about her very presence. An aura of dignity radiates from her like soft rays of sunlight. Her focus right now is on " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + ". Even if you are hale and hearty you feel getting your daily checkup would be worth it just to be around her.");
+
+	if ((flags["MET_BIANCA"] & 6) == 0) addButton(btnSlot, "Fox-Woman", meetingBiancasBooth, undefined, "Fox-Woman", "Get in line to meet the gorgeous fox!");
+	else if (flags["BIANCA_ANNOYED"] > GetGameTimestamp()) addDisabledButton(btnSlot, "Bianca", "Bianca", "Bianca is not pleased with you wasting her time. Hopefully in a few days you’ll be able to get back in her good graces.");
+	else if (pc.hasStatusEffect("Got Bianca Checkup")) addDisabledButton(btnSlot, "Bianca", "Bianca", "You already received a checkup from Bianca today. One per customer!");
+	else addButton(btnSlot, "Bianca", ((flags["MET_BIANCA"] & 4) == 0 ? meetingBiancasBooth : enteringBiancasBooth), undefined, "Bianca", "Get in line for a checkup from Bianca!");
+	
+	return true;
 }
 
 public function meetingBiancasBooth():void
@@ -1027,7 +1026,7 @@ public function enteringBiancasBooth():void
 	{
 		case "mhen'ga":
 			// rand 5 (mhen'ga exclusive 1, syri on planet, is friends with PC/syriCrew)
-			if (!syriAtFreeezer())
+			if (flags["MET_SYRI"] != undefined && !syriAtFreeezer())
 			{
 				temp = "Quickly taking your place in Bianca’s so far insubstantial line, you immediately recognize the raven-haired ausar <i>right in front of you,</i> eyebrows raising in surprise. Her blue coat stands out easily, especially in this light. <i>“Hey, Syri,”</i> you ";
 				if (pc.isBimbo() || pc.isBro() || pc.isNice()) temp += "pat her muscled arm.";

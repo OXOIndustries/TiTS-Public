@@ -9,14 +9,19 @@ Anal ravishing can then commence. No matter what commands are entered, orgasm by
 Effects include but are not limited to: enlarged posterior, increased rectal nerve density, feelings of emptiness, stronger orgasms, regeneration via anal cum-absorption, sexual mania, headaches, spanking fetish, submissive tendencies, blood pressure spikes, and thinking of oneself as little more than property to be used and abused.*/
 
 //Initial Encounter
-public function buttslutinatorBonus():Boolean
+public function buttslutinatorBonus(btnSlot:int = 0):Boolean
 {
 	if(currentLocation != "KQ N20") output("\n\n<b>This doesn’t belong, but it’s here anyway. Probably a fragment of future content, meant to appear somewhere not yet developed...</b> ");
-	output("A pearly white, ‘A’-shaped device stands square in the middle of the room. Two control sticks flank the far side, clearly for the user’s hands, but how to use such a device? A strange gap is placed at the peak of the unusual ‘A,’ though the edges are both round and padded. The nearer side of the device is padded as well, made from some kind of spongy-looking material. When you take a step closer to it, the padding instantly adopts the shape of your [pc.legOrLegs], in perfect inverse.");
-	output("\n\nYou suppose that you would have to bend over the top to use it. Strange.");
-	addButton(0,"Use Device...",useTheButtslutinator,undefined,"Use Device...","Bend yourself over the bizarre device and see what it does. It’s obviously going to be sexual. Of that you can be sure.");
+	else if(currentLocation != "SHIP INTERIOR")
+	{
+		output("A pearly white, ‘A’-shaped device stands square in the middle of the room. Two control sticks flank the far side, clearly for the user’s hands, but how to use such a device? A strange gap is placed at the peak of the unusual ‘A,’ though the edges are both round and padded. The nearer side of the device is padded as well, made from some kind of spongy-looking material. When you take a step closer to it, the padding instantly adopts the shape of your [pc.legOrLegs], in perfect inverse.");
+		output("\n\nYou suppose that you would have to bend over the top to use it. Strange.");
+	}
+	else output("\n\nThe “Buttslutinator” is installed and ready for use. It’s pearly white, ‘A’-shaped frame rests invitingly in a private corner of your vessel.");
+	if(currentLocation == "SHIP INTERIOR") addButton(btnSlot,"Buttslutinator",useTheButtslutinator,undefined,"Buttslutinator","Put the “Buttslutinator” to work doing what it does best...");
+	else addButton(btnSlot,"Use Device...",useTheButtslutinator,undefined,"Use Device...","Bend yourself over the bizarre device and see what it does. It’s obviously going to be sexual. Of that you can be sure.");
 	if(currentLocation == "KQ N20") return kiroQuestHallwaysEncounters();
-	else return false;
+	return false;
 }
 
 public function slutPCButt():void
@@ -71,7 +76,7 @@ public function useTheButtslutinator():void
 		output("\n\nYet you can’t quite ignore the needles poised behind you, connected to sinister, metallic umbilicals. Whatever nefarious payload they were once loaded with is seemingly long gone, harmlessly deposited directly into your veins, but you can’t help but feel that there is more to all this.");
 		output("\n\nOne last time, you futilely struggle against the metallic restraints. Something isn’t right here. You might not be feeling anything just yet, but you’re pretty sure that you shouldn’t be restrained and injected by strange furniture, no matter how high-tech it seems (or how hot the porn on its viewscreen might be).");
 		processTime(5);
-		pc.lust(40);
+		pc.changeLust(40);
 		clearMenu();
 		addButton(0,"Next",firstButtSlutPart2);
 	}
@@ -219,7 +224,7 @@ public function useTheButtslutinator():void
 		output("\n\n<i>“Big butt slut,”</i> you mouth, then giggle, idly twerking, feeling your too-juicy hindquarters quiver and shake. You wish it was on the yummy screen, framed by the words that seem increasingly prevalent in the pornographic montage. Phrases like <i>“good sluts get fucked”</i> and <i>“eager pets get to play”</i> seem particularly important, but you can’t seem to shake the more boring words either. <i>“Obey.”</i> It’s so singular next to the others that it rattles around in your dizzy little head, bouncing with all the kinetic energy of your oh-so-fuckable ass.");
 		output("\n\n<i>“Obey.”</i> It spills from your lips without conscious thought. Your asshole relaxes at the thought, and your eyes dilate. A dozen images of girls and boys alike, all cumming from getting fucked, flashes by in an instant, underscoring a none-too-subtle point: <i>Obedience is pleasure.</i> It makes sense. Why else would the word be so large and accompanied by such delightful imagery. Once the word fades, it still lingers there whenever you see someone climax. <i>She must be obeying.</i> The thought arrives unbidden.");
 		processTime(15);
-		pc.lust(1000);
+		pc.changeLust(1000);
 		clearMenu();
 		addButton(0,"Next",buttSlutBadEnd);
 	}
@@ -254,7 +259,7 @@ public function buttSlutBadEnd2():void
 	{
 		pc.orgasm();
 	}
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",buttSlutBadEnd3);
 }
@@ -298,7 +303,7 @@ public function firstButtSlutPart2():void
 	output("\n\nHow didn’t you notice it before? How didn’t you notice how empty, how awfully your anus aches? If your arms were free, you would be stuffing your fingers - no, your fist up inside yourself. You could find something, anything to tame the void within. It isn’t a sexual desire. It’s simple physics. Your asshole is empty, and like any other void in nature, the force of its yawning vacuum will attract something to fill it in time.");
 	output("\n\nThe porn you’re watching seems so much clearer now. Those expressions of rapture aren’t sexual in nature. They’re... religious, an affirmation of the proper way of the universe. Your [pc.thighs] flex against the restraints, not in an effort to escape but in an effort to open wider, to pull your cheeks apart and better reveal your [pc.asshole]. Only now do you see the sublime beauty of your bondage, how it perfectly aligns your body to be plundered by the first passerby.");
 	processTime(13);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",firstButtSlutPart3);
 }

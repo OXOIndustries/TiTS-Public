@@ -89,7 +89,9 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		addButton(2,"Female",startMindwashSceneLucas, "female");
 		addButton(3,"Futa",startMindwashSceneLucas, "futa");
 		addButton(4,"Game: CoC",startMindwashSceneLucas,"CoC");
-		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		var button:Number = 5;
+		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"Sexdoll",genericSexdollEncounter,true);
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -345,7 +347,9 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		addButton(2,"Female",mindwashVisorScenes, "female");
 		addButton(3,"Futa",mindwashVisorScenes, "futa");
 		addButton(4,"Game: CoC",mindwashVisorScenes,"CoC");
-		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		var button:Number = 5;
+		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"Sexdoll",genericSexdollEncounter,true);
 		return;
 	}
 	

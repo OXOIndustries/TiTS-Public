@@ -1177,7 +1177,7 @@ public function genesModsBellyrubRelease():void
 	processTime(3);
 	pc.lust(10+rand(5));
 	geneSubmissionLevel(-3);
-
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1358,7 +1358,7 @@ public function genesModsLickedOut():void
 	
 	output("\n\n<i>“That was good for a start to our little massaging session,”</i> purrs Gene, all mocking, casual menace. He taps your throbbing [pc.clit] with his long, purple tongue, laughing softly as it makes you twitch. <i>“Time to get a bit more serious.”</i>");
 
-	if (pc.vaginas.length > 0)
+	if (pc.vaginas.length > 1)
 	{
 		output("\n\nYou moan woozily as he trails that devilishly long, prehensile muscle of his further back, trailing over the lips of your [pc.vagina 1], pushing inside to swab at its sensitive entrance.");
 		

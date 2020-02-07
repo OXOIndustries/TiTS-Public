@@ -86,7 +86,7 @@ package classes.Items.Transformatives
 			if (target.legCount == 2 && target.legType == GLOBAL.TYPE_HUMAN)
 			{
 				// nop
-				// slightly nicer way to organise the condition checks
+				// slightly nicer way to organize the condition checks
 			}
 			else if (target.legCountUnlocked(2) && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 			{

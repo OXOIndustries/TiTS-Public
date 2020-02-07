@@ -98,7 +98,7 @@ package classes.Items.Transformatives
 					pc.cocks[0].cLengthRaw = 7;
 					pc.libido(4);
 					pc.orgasm();
-					pc.lust(34);
+					pc.changeLust(34);
 					pc.boostCum(2);
 				}
 				//Dick but a canine dick to change
@@ -143,7 +143,7 @@ package classes.Items.Transformatives
 					target.cocks[selCock].cockColor = "red";
 					pc.libido(4);
 					pc.orgasm();
-					pc.lust(34);
+					pc.changeLust(34);
 					if(pc.cockTotal(GLOBAL.TYPE_CANINE) < pc.cockTotal()-1) output(" If only the others would follow suit.");
 					else if(pc.cockTotal(GLOBAL.TYPE_CANINE) < pc.cockTotal()) output(" If only the other one would follow suit.");
 					pc.boostCum(4);
@@ -218,7 +218,7 @@ package classes.Items.Transformatives
 								if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 2;
 								else pc.cocks[x].cLengthRaw += 1;
 							}
-							pc.lust(40);
+							pc.changeLust(40);
 							pc.libido(0.5);
 							pc.boostCum(1);
 						}
@@ -238,7 +238,7 @@ package classes.Items.Transformatives
 								if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 3;
 								else pc.cocks[x].cLengthRaw += 2;
 							}
-							pc.lust(40);
+							pc.changeLust(40);
 							pc.libido(0.5);
 							pc.boostCum(1);
 						}
@@ -271,7 +271,7 @@ package classes.Items.Transformatives
 								if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 3;
 								else pc.cocks[x].cLengthRaw += 2;
 							}
-							pc.lust(40);
+							pc.changeLust(40);
 							pc.orgasm();
 							pc.ballFullness = 0;
 							pc.libido(0.5);
@@ -305,7 +305,7 @@ package classes.Items.Transformatives
 								if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 4;
 								else pc.cocks[x].cLengthRaw += 3;
 							}
-							pc.lust(40);
+							pc.changeLust(40);
 							pc.orgasm();
 							pc.ballFullness = 0;
 							pc.libido(0.5);
@@ -337,7 +337,7 @@ package classes.Items.Transformatives
 								if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 6+rand(3);
 								else pc.cocks[x].cLengthRaw += 4+rand(3);
 							}
-							pc.lust(40);
+							pc.changeLust(40);
 							pc.orgasm();
 							pc.ballFullness = 0;
 							pc.libido(0.5);

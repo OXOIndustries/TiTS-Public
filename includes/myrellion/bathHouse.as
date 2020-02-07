@@ -210,7 +210,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		else output("Who dares, wins.");
 		output(" You weave your way down beneath the water’s surface, letting your hands play across her tight behind. You’re treated to another gasp, a sharp suck of breath the moment your fingers caress the myr’s ass, but to your delight she presses back against your hand a moment later. She likes it!");
 		output("\n\nYou slip a little closer behind her, groping and squeezing that firm behind of hers until her back is flush with your [pc.chest]. Something tells you the poor red myr’s never had anything like this happen to her before: she just doesn’t know what to do! The myr alternates between moaning, gasping, and grinding against your hand. It’s hard to resist the urge to slip your hand down between her legs and see what she thinks about a little fingering.");
-		output("\n\nYou resist the temptation of her rose-red honeypot, and instead begin the long journey up around around her slender frame. Your hands glide along her flat belly, up to the tantalizing mounds of her heaving breasts. This time she doesn’t even gasp when you start to grope her, but just leans back against you, wrapping an arm around your [pc.hip] and letting you have your way with her body - utterly and completely at your mercy. And here you thought all red myr were the dominant types...");
+		output("\n\nYou resist the temptation of her rose-red honeypot, and instead begin the long journey up around her slender frame. Your hands glide along her flat belly, up to the tantalizing mounds of her heaving breasts. This time she doesn’t even gasp when you start to grope her, but just leans back against you, wrapping an arm around your [pc.hip] and letting you have your way with her body - utterly and completely at your mercy. And here you thought all red myr were the dominant types...");
 		output("\n\n");
 		if(pc.isTreated() && pc.isBro()) output("After that, it’s just like milking a cow-girl! ");
 		output("Your hands cup and caress her heavy teats, squeezing every so gently to massage the pent-up nectar inside to bubble up from her stiff nipples. The myr woman gives a lurid moan as a squirt of amber liquid ejaculates from her breasts, splattering across the poolside and soaking your fingers.");
@@ -368,9 +368,9 @@ public function honeyPotFunTimes():void
 	pp.milkMultiplier = 100;
 	pp.milkFullness = 100;
 	pc.milkInMouth(pp);
-	pc.energy(pc.energyMax());
-	pc.HP(pc.HPMax());
-	pc.lust(10+rand(10));
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
+	pc.changeLust(10+rand(10));
 	pc.shower();
 	processTime(20);
 	clearMenu();

@@ -59,19 +59,21 @@
 		{
 			if (target is PlayerCharacter) 
 			{
+				var changeAmt:Number = 0;
 				if (!target.hasStatusEffect("Focus Pill"))
 				{
 					target.createStatusEffect("Focus Pill", 0, 0, 0, 0, false, "Pill", "You feel sharper, more able to focus and process your senses.", false, 60);
-					target.lust(-25);
+					changeAmt = -25;
 				}
 				else
 				{
 					target.setStatusMinutes("Focus Pill", 60);
-					target.lust(-5);
+					changeAmt = -5;
 				}
 				clearOutput();
 				if(inCombat()) output("You pop a Focus Pill into your mouth. As it dissolves, you start to feel a little calmer and more focused in on the task at hand.");
 				else output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn’t know you were holding, and focus in on the task at hand.");
+				target.changeLust(changeAmt);
 			}
 			//Not player!
 			else

@@ -425,7 +425,7 @@ package classes.UIComponents
 			{
 				UIStyleSettings._gCodexTreeHeaderFormatter = new TextFormat();
 				UIStyleSettings._gCodexTreeHeaderFormatter.size = 28;
-				UIStyleSettings._gCodexTreeHeaderFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gCodexTreeHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gCodexTreeHeaderFormatter.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gCodexTreeHeaderFormatter.kerning = true;
 				UIStyleSettings._gCodexTreeHeaderFormatter.leading = 0;
@@ -1286,18 +1286,56 @@ package classes.UIComponents
 					color: "#00CCFF",
 					marginRight: 5
 				}
+
+				var shieldHeal:Object = {
+					fontFamily: "Lato",
+					//fontSize: 18,
+					color: "#caf4ff",
+					marginRight: 5
+				}
 				
 				var hpDamage:Object = {
 					fontFamily: "Lato",
 					//fontSize: 18,
-					color: "#00CC2F",
+					//OLD: color: "#00CC2F",
+					color: "#fc3a3a",
+					marginRight: 5
+				}
+
+				var hpHeal:Object = {
+					fontFamily: "Lato",
+					//fontSize: 18,
+					color: "#00ff16",
 					marginRight: 5
 				}
 				
 				var lustDamage:Object = {
 					fontFamily: "Lato",
 					//fontSize: 18,
-					color: "#DD597E",
+					//color: "#DD597E",
+					//color: "#dd597e",
+					color: "#ff00f0",
+					marginRight: 5
+				}
+
+				var lustHeal:Object = {
+					fontFamily: "Lato",
+					//fontSize: 18,
+					color: "#ffadc4",
+					marginRight: 5
+				}
+
+				var energyDamage:Object = {
+					fontFamily: "Lato",
+					//fontSize: 18,
+					color: "#ffd207",
+					marginRight: 5
+				}
+
+				var energyHeal:Object = {
+					fontFamily: "Lato",
+					//fontSize: 18,
+					color: "#fff3be",
 					marginRight: 5
 				}
 				
@@ -1392,8 +1430,13 @@ package classes.UIComponents
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".viewed", viewedCodexEntry);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".active", activeCodexEntry);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".shield", shieldDamage);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".shieldHeal", shieldHeal);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".hp", hpDamage);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".hpHeal", hpHeal);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".lust", lustDamage);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".lustHeal", lustHeal);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".energy", energyDamage);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".energyHeal", energyHeal);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}

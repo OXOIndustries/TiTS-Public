@@ -59,14 +59,14 @@ public function knockOnBigTiddyGFDoor():void
 		output("\n\n<i>“Oh...”</i> she seems to shrink away at the question, and you notice her fidgeting with some of the rings on her fingers absentmindedly. <i>“I was... having a disagreement with my master...”</i>");
 		output("\n\nYou raise your brow, your fast twisting up in confusion. <i>“Your master?”</i> you ask aloud.");
 		if (pc.isNice()) output(" <i>“We were alone.”</i>");
-		else if (pc.isMisc()) output(" <i>“Honey, that’s not the kind of crazy I like”</i>");
+		else if (pc.isMisc()) output(" <i>“Honey, that’s not the kind of crazy I like.”</i>");
 		else output(" <i>“What the fuck are you talking about?”</i>");
 		output("\n\n<i>“I’m sorry, I...”</i> she winces, as if somebody yelled directly into her ear, staying silent after for a long moment. Watching her closely, it almost looks like she’s listening to someone speak. <i>“I was... high...”</i> she shifts in her seat.");
 		output("\n\nShe’s lying. Badly.");
 		output("\n\n<i>“Right....”</i> Well this went south fast. Again.");
 		output("\n\nYou turn your head and eyeball the door, ready to ditch this crazy chick.");
 		if (pc.isNice()) output(" The door isn’t far, and silently you plan to excuse yourself without harming the addled woman.");
-		else if (pc.isMisc()) output("Shame she’s nuts, since she’s so damn hot. You eyeball the door, planning a quick escape.");
+		else if (pc.isMisc()) output(" Shame she’s nuts, since she’s so damn hot. You eyeball the door, planning a quick escape.");
 		else output(" The door isn’t far, but you ready yourself all the same, not knowing what the crazy woman will do.");
 		output(" A loud gasp turns your attention back to The Servant.");
 		output("\n\nHer face is flushed, sweat forming on her pale brow. She lets out another gasp, gripping onto the edge of the table for support, her fingers shaking. Shuddering, her gasping becomes a depraved moan.");
@@ -84,7 +84,7 @@ public function knockOnBigTiddyGFDoor():void
 		{
 			if (pc.isCrotchGarbed()) output(" You pull your [pc.cock] free");
 			else output(" You stroke your [pc.cock]");
-			output(", wrapping your fingers around your already rock-hard mast. With just that simple touch, a lusty moan escapes your [pc.lips]; your senstive cockflesh throbs in your grasp, every wrist driven pump egged on by the display the pale woman is putting on.Your burning hot [pc.cockShape] member already slick with your [pc.cumColor] pre.");
+			output(", wrapping your fingers around your already rock-hard mast. With just that simple touch, a lusty moan escapes your [pc.lips]; your senstive cockflesh throbs in your grasp, every wrist driven pump egged on by the display the pale woman is putting on. Your burning hot [pc.cockShape] member already slick with your [pc.cumColor] pre.");
 		}
 		else if (pc.hasVagina()) output(" You move your fingers down, pushing them between your legs, and running them over your already wet cunt. With just that simple touch, a lusty moan escapes your [pc.lips], your senstive cuntflesh quivering at the faintest stimulation. Your eyes stay fixed on the pale woman before you as you slip your fingers inside, your burning hot snatch already yearning to be <b>fucked</b>.");
 		else output(" You rub your bare groin feebly. Despite your lack of sex organs, you feel your crotch burn, itching to be touched. Somehow, the simple act of rubbing yourself feels like heaven, almost like having your lost sex back once more.");
@@ -654,7 +654,7 @@ public function bigTiddyGFUnderTable(isMouth:Boolean):void
 	}
 
 	processTime(5+rand(7));
-	pc.lust(10+rand(6));
+	pc.changeLust(10+rand(6));
 
 	clearMenu();
 	addButton(0, "Next", (isMouth ? bigTiddyGFUnderTableMouth : bigTiddyGFUnderTableHands));
@@ -733,6 +733,7 @@ public function bigTiddyGFUnderTableMouth():void
 	if (pc.hasCock() && pc.shortestCockLength() <= 14)
 	{
 		var cockIdx:int = pc.cockThatFits(14, "length");
+		if(cockIdx < 0) cockIdx = pc.smallestCockIndex();
 
 		output("A pair of soft, pillowy lips press gently against your [pc.cockHead "+cockIdx+"]. The Servant plants a tender kiss right on the tip of your still rising cock while her hand coaxes you up to your full mast. Slowly, you feel her lips part, and from between them her tongue gently gives you a small, teasing lick. Unlike her delicate fingers, her tongue is quite warm, the difference in temperature such a stark contrast that the small lick affects you far more than it should.");
 		
@@ -819,7 +820,7 @@ public function bigTiddyGothGFStripHer():void
 	flags["BIGTIDDYGOTHGF_NAKED"] = 1;
 
 	processTime(5+rand(3));
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	if (pc.hasCock() && pc.shortestCockLength() <= 16) addButton(0, "Fuck Her", bigTiddyGothGFFuckHer, undefined, "Fuck Her", "Lay her down and plow her.");
@@ -828,12 +829,12 @@ public function bigTiddyGothGFStripHer():void
 	if (pc.hasVagina() || (pc.hasCock() && pc.shortestCockLength() <= 16)) addButton(1, "Eat Her Out", bigTiddyGothGFEatHerOut, undefined, "Eat Her Out", "Why not make a meal out of her?");
 	else addDisabledButton(1, "Eat Her Out", "Eat Her Out", "You need a vagina, or a cock shorter than 16 inches!");
 
-	if (pc.hasVagina() || (pc.hasCock() && pc.shortestCockLength() <= 16)) 
+	if (pc.hasCock() && pc.shortestCockLength() <= 16)
 	{
 		if (flags["BIGTIDDYGOTHGF_CUNTFUCKED"] != undefined) addButton(2, "Ass Fuck", bigTiddyGothGFAssFuck, undefined, "Fuck Her Ass", "Bend her over and take her hard.");
 		else addDisabledButton(2, "Ass Fuck", "Fuck Her Ass", "You must have fucked her cunt first!");
 	}
-	else addDisabledButton(2, "Ass Fuck", "Fuck Her Ass", "You need a vagina, or a cock shorter than 16 inches!");
+	else addDisabledButton(2, "Ass Fuck", "Fuck Her Ass", "You need a cock shorter than 16 inches!");
 
 	if (flags["BIGTIDDYGOTHGF_NECKHER"] != undefined) addButton(3, "Necklace", bigTiddyGothGFFuckNecklace, undefined, "The Necklace", "Let the Necklace have a turn... this could get weird!");
 	else addDisabledButton( 3, "Necklace", "The Necklace", "You should probably talk to her about it first!")
@@ -847,6 +848,7 @@ public function bigTiddyGothGFFuckHer():void
 	bigTiddyGothGFBust(true);
 
 	var cockIdx:int = pc.cockThatFits(16, "length");
+	if(cockIdx < 0) cockIdx = pc.smallestCockIndex();
 
 	output("The Servant bites her lip, clearly liking your choice. <i>“If that is what you wish...”</i> she turns to the table, reaching out and taking hold of the candles on top. <i>“Then so it shall be.”</i> She collects the candles and moves them away, placing them around the room in different locations, keeping the illumination of the room consistent.");
 	
@@ -919,7 +921,7 @@ public function bigTiddyGothGFEatHerOut():void
 
 	output("\n\nEagerly, you put your tongue into a spin, ravenously attacking her pussy and clit. The Servant moans like a bitch in heat, and around your shoulders you feel her legs clench, her muscles tight and twitching. More of her sweet juices soak your face, dripping down your chin from flowing so freely. Your blood is starting to boil now, and down below your [pc.crotch] yearns to be touched and played with. The Servant lets out a shuddering gasp, letting you know you’ve got her right where you want her. With her well in hand, you slowly slip your hand down to tend to yourself.");
 
-	var cockIdx:int = pc.hasCock() ? pc.cockThatFits(16, "length") : -1;
+	var cockIdx:int = (pc.hasCock() ? pc.cockThatFits(16, "length") : -1);
 
 	if (cockIdx >= 0)
 	{
@@ -984,6 +986,7 @@ public function bigTiddyGothGFAssFuck():void
 
 
 	var cockIdx:int = pc.cockThatFits(16, "length");
+	if(cockIdx < 0) cockIdx = pc.smallestCockIndex();
 
 	output("The Servant’s eyes go wide in disbelief, the pale woman almost seeming to lose her balance and fall over. <i>“Oh wow... um, of course... anything you want.”</i> The dark woman turns back towards the table and reaches out, taking hold of the candles on top, her hands shaking. She collects and moves them away, placing them around the room in different locations, keeping the illumination of the room consistent. As she does, she glances over her shoulder, tossing you nervous glances.");
 	
@@ -1074,7 +1077,7 @@ public function bigTiddyGothGFSexNecklaceYou():void
 	bigTiddyGothGFBust();
 	showBust("SERVANT_NOCRYSTAL_NUDE");
 
-	var cockIdx:int = pc.hasCock() ? pc.cockThatFits(16, "length") : -1;
+	var cockIdx:int = (pc.hasCock() ? pc.cockThatFits(16, "length") : -1);
 
 	output("You tell The Servant you want to wear it.");
 	
@@ -1224,7 +1227,7 @@ public function bigTiddyGothGFSexNecklaceHer():void
 	
 	output("\n\nAbsently, you watch the new tendril stir and move, lifting up and moving towards your groin. The head of the tendril is different from the others, capped by a head that resembles the tip of a cock, crowned with soft looking barbs. The cock-like tendril snakes up to meet you, dripping wet with what looks like cum.");
 
-	var cockIdx:int = pc.hasCock() ? pc.cockThatFits(16, "volume") : -1;
+	var cockIdx:int = (pc.hasCock() ? pc.cockThatFits(16, "volume") : -1);
 
 	if (cockIdx >= 0 && !pc.hasVagina())
 	{

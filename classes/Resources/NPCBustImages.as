@@ -55,6 +55,8 @@
 		public static var UTHSTAR:Object = new UthstarBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		public static var YOHSL:Object = new YohSLBusts();
+		public static var R4:Object = new R4Busts();
+		public static var DEIMACOS:Object = new DeimacosBusts();
 		
 		public static function hasBustsForCharacter(bustName:String):Boolean
 		{
@@ -72,33 +74,41 @@
 			return false;
 		}
 		
-		public static var LastArtistUsed:String = "";
-		
 		CONFIG::IMAGEPACK
 		{
 			// We only care about the specific artist we're currently displaying the bust for, so....
 			public static function hasHighResBustForCharacter(bustName:String):Boolean
 			{
-				if (bustName == "none") return false;
-				if (LastArtistUsed.length <= 0) return false;
-				
-				if ("Full_" + bustName in NPCBustImages[LastArtistUsed])
-				{
-					return true;
-				}
-				
-				return false;
+				return (getHighResBustForCharacter(bustName) != null);
 			}
 			
 			public static function getHighResBustForCharacter(bustName:String):Class
 			{
 				if (bustName == "none") return null;
-				if (LastArtistUsed.length <= 0) return null;
 				
-				if ("Full_" + bustName in NPCBustImages[LastArtistUsed])
+				var opts:GameOptions = kGAMECLASS.gameOptions;
+				
+				if ((bustName) in opts.configuredBustPreferences)
 				{
-					return NPCBustImages[LastArtistUsed]["Full_" + bustName];
+					if (opts.configuredBustPreferences[bustName] == "NONE") return null;
+					if (("Full_" + bustName) in NPCBustImages[opts.configuredBustPreferences[bustName]]) 
+					{
+						return NPCBustImages[opts.configuredBustPreferences[bustName]]["Full_" + bustName];
+					}
 				}
+				
+				if (("Full_" + bustName) in NPCBustImages[opts.primaryBustArtist])
+				{
+					return NPCBustImages[opts.primaryBustArtist]["Full_" + bustName];
+				}
+				
+				if (("Full_" + bustName) in NPCBustImages[opts.secondaryBustArtist])
+				{
+					return NPCBustImages[opts.secondaryBustArtist]["Full_" + bustName];
+				}
+				
+				// We should only ever need to look at the configured preferences and the primary and secondary busts for the full res images.
+				// Once a bust has randomly been selected in instances where there is no existing preference, then the selection code sets it *as* a preference to be used.
 				
 				return null;
 			}
@@ -111,6 +121,7 @@
 			var custom:CustomBust = new CustomBust(bustName, embedded);
 			return custom;
 		}
+		
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class
 		{
@@ -133,7 +144,6 @@
 				if (opts.configuredBustPreferences[bustName] == "NONE") return null;
 				
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
-				LastArtistUsed = opts.configuredBustPreferences[bustName];
 				return tBust;
 			}
 			
@@ -143,7 +153,6 @@
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
 				if (tBust != null)
 				{
-					LastArtistUsed = opts.primaryBustArtist;
 					return tBust;
 				}
 			}
@@ -154,7 +163,6 @@
 				tBust = lookupBustInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
 				if (tBust != null)
 				{
-					LastArtistUsed = opts.secondaryBustArtist;
 					return tBust;
 				}
 			}
@@ -177,7 +185,6 @@
 					if (tBust != null)
 					{
 						opts.configuredBustPreferences[bustName] = tArtist;
-						LastArtistUsed = tArtist;
 						return tBust;
 					}
 				}
@@ -194,53 +201,6 @@
 			var bounds:Rectangle;
 			var doNude:Boolean = false;
 			if (bustName.indexOf("_NUDE") != -1) doNude = true;
-			
-			/*
-			// If there's a configured bust for this ident, use it
-			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
-			if (bustName in opts.configuredBustPreferences)
-			{
-				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.configuredBustPreferences[bustName]], doNude);
-				if (bounds != null) return bounds;
-			}
-			
-			// If the primary artist has the bust, use it
-			if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist])
-			{
-				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.primaryBustArtist], doNude);
-				if (bounds != null) return bounds;
-			}
-			
-			// or the secondary
-			if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist])
-			{
-				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.secondaryBustArtist], doNude);
-				if (bounds != null) return bounds;
-			}
-			
-			// If fallbacks are enabled...
-			if (opts.bustFallbacks)
-			{
-				// Failing that, try the remaining artists at random- if we find one, set that as the configured value for it
-				var possibleArtists:Array = GLOBAL.VALID_ARTISTS.filter(function(e:*, idx:int, a:Array):Boolean {
-					return !(e == kGAMECLASS.gameOptions.primaryBustArtist || e == kGAMECLASS.gameOptions.secondaryBustArtist || e == "NONE");
-				});
-				
-				while (possibleArtists.length > 0)
-				{
-					var idx:int = rand(possibleArtists.length);
-					var tArtist:String = possibleArtists[idx];
-					possibleArtists.splice(idx, 1);
-					
-					bounds = lookupBoundsInClass(bustName, NPCBustImages[tArtist], doNude);
-					if (bounds != null)
-					{
-						opts.configuredBustPreferences[bustName] = tArtist;
-						return bounds;
-					}
-				}
-			}
-			*/
 			
 			// Get bounds that match the saved artist
 			var tArtist:String = "";

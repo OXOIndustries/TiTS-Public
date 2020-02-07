@@ -80,8 +80,8 @@ public function extrameetStartPage():void
 		output("\n\nYour current location is: " + getPlanetName());
 		output("\n\nWhy not try and make a connection?");
 	
-		addButton(0,"Start Swiping",extrameetStartSwipe,undefined,"Start Swiping","Look at profiles of local singles");
-		addButton(1,"Review Match",extrameetReview,undefined,"Review Your Matches","Look at matches you haven’t dated yet");
+		addButton(0,"Start Swiping",extrameetStartSwipe,undefined,"Start Swiping","Look at profiles of local singles.");
+		addButton(1,"Review Match",extrameetReview,undefined,"Review Your Matches","Look at matches you haven’t dated yet.");
 		addButton(14,"Back",smutFapMenu);
 	}
 	else
@@ -90,7 +90,7 @@ public function extrameetStartPage():void
 		output("\n\nWelcome to ExtraMeet!");
 		output("\n\nSign up today and meet local singles in your area!");
 		output("\n\nWhy not try and make a connection?");
-		addButton(0,"Sign Up",extrameetSignup,undefined,"Sign Up","Create an account");
+		addButton(0,"Sign Up",extrameetSignup,undefined,"Sign Up","Create an account.");
 		addButton(14,"Back",smutFapMenu);
 	}
 }
@@ -111,7 +111,7 @@ public function extrameetSignup():void
 	
 	flags["EXTRAMEET_SIGNUP"] = 1;
 	
-	addButton(0,"Start Swiping",extrameetStartSwipe,undefined,"Start Swiping","Look at profiles of local singles");
+	addButton(0,"Start Swiping",extrameetStartSwipe,undefined,"Start Swiping","Look at profiles of local singles.");
 	addButton(14,"Back",smutFapMenu);
 }
 
@@ -135,7 +135,7 @@ public function extrameetStartSwipe():void
 	{
 		rn = rand(len);
 		extrameetDisplayProfile(pospro[rn]);
-		addButton(0,"Swipe Left",extrameetSwipeLeft,pospro[rn],"Swipe Left","Reject the current profile");
+		addButton(0,"Swipe Left",extrameetSwipeLeft,pospro[rn],"Swipe Left","Reject the current profile.");
 		addButton(1,"Swipe Right",extrameetSwipeRight,pospro[rn],"Swipe Right","Gimme! Gimme!");
 	}
 	else
@@ -175,7 +175,7 @@ public function extrameetReview():void
 			extrameetDisplayProfile(pospro[i]);
 			//special menu for shekka
 			if (user == "GadgetGirl") addButton(i, user, extrameetShekkaDate, undefined, "Ask", "Ask Shekka about the profile. Some teasing might be in order.");
-			else addButton(i, user, extrameetSetMeet, pospro[i], user, "Set up a date with " + user);
+			else addButton(i, user, extrameetSetMeet, pospro[i], user, "Set up a date with " + user + ".");
 		}
 	}
 	else
@@ -203,8 +203,8 @@ public function extrameetSwipeRight(prof:String):void
 		
 		//special logic for shekka profile
 		if (extrameetGetUserName(prof) == "GadgetGirl") addButton(1, "Ask", extrameetShekkaDate, undefined, "Ask", "Ask Shekka about the profile. Some teasing might be in order.");
-		else addButton(1,"Set a Meet",extrameetSetMeet,prof,"Set a Meet","Codex and chill");
-		addButton(0,"Keep Swiping",extrameetStartSwipe,undefined,"Keep Swiping","Look at some more profiles");
+		else addButton(1,"Set a Meet",extrameetSetMeet,prof,"Set a Meet","Codex and chill.");
+		addButton(0,"Keep Swiping",extrameetStartSwipe,undefined,"Keep Swiping","Look at some more profiles.");
 	}
 	else
 	{
@@ -632,6 +632,7 @@ public function extrameetSetMeet(prof:String):void
 	//showName("\nEXTRAMEET");
 	//author("Fr0sty");
 	output("You log off and pull yourself to you feet. You’ve got a hot date now, so you get yourself ready and head out to the bar to meet your match.");
+	output("\n\n");
 	processTime(20 + rand(15));
 	flags[prof] = 1;
 	var loc:String = getPlanetName().toLowerCase();  //current planet
@@ -649,7 +650,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_KAEDE") extrameetKaedeDate();
 		else
 		{
-			output("\n\nError finding date");
+			output("Error finding date");
 			addButton(14,"Bail",extrameetBailScene);
 		}
 	}
@@ -662,7 +663,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_ENCHANTINGFAE") extrameetEnchantingFaeDate();
 		else
 		{
-			output("\n\nError finding date");
+			output("Error finding date");
 			addButton(14,"Bail",extrameetBailScene);
 		}
 	}
@@ -676,7 +677,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_TRUEPOWER69") extrameetTruePower69Date();
 		else
 		{
-			output("\n\nError finding date");
+			output("Error finding date");
 			addButton(14,"Bail",extrameetBailScene);
 		}
 		
@@ -690,7 +691,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_REBEL23") extrameetRebel23Date();
 		else
 		{
-			output("\n\nError finding date");
+			output("Error finding date");
 			addButton(14,"Bail",extrameetBailScene);
 		}
 		
@@ -705,7 +706,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_PROSNUGGLER23") extrameetProSnuggler23Date();
 		else
 		{
-			output("\n\nError finding date");
+			output("Error finding date");
 			addButton(14,"Bail",extrameetBailScene);
 		}
 	}
@@ -725,7 +726,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_SEXYYDADDYY") extrameetSexyyDaddyyDate();
 		else
 		{
-			output("\n\nError finding date");
+			output("Error finding date");
 			addButton(14,"Bail",extrameetBailScene);
 		}
 	}

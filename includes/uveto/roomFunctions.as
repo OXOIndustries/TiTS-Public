@@ -91,11 +91,21 @@ public function GlacialRiftEncounterBonus():Boolean
 			}
 			choices.push(chaurmineChasmShit);
 		}		
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
+		if(flags["UVGR_SAVICITE_IDOL"] != undefined)
 		{
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
+		}
+		if(MailManager.isEntryViewed("joyco_uveto_hazmat_advisory"))
+		{
+			choices.push(encounterMilodanFutazon);
+			choices.push(encounterMilodanFutazon);
+		}
+		if(pc.level >= 10 && flags["MET_MILODAN_FUTAZON"] != undefined)
+		{
+			choices.push(encounterMilodanBruiser);
+			choices.push(encounterMilodanBruiser);
 		}
 		//Run the event
 		choices[rand(choices.length)]();
@@ -778,8 +788,8 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	output(" and make for your gear....");
 
 	removeUvetoCold();
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	moveTo("UVI H32");
 
 	processTime(30);
@@ -1023,10 +1033,10 @@ public function uvetoIrson3():void
 	output("\n\n<i>“What are you - aahh! I can’t... So good!”</i>");
 	output("\n\nThe way she’s babbling, you feel like somehow you’re only getting half the conversation. Is the microphone busted?");
 	output("\n\n<i>“Okay! Okay!”</i> Steph gasps, flopping back. She gives a nervous look between the feral beast overtop her and the camera drone. Biting her lip, Steph hooks her hands under her legs and curls herself up at the monster, presenting her still-stuffed pussy to it like an eager whore. The drake growls, shifting its massive weight to reveal a dick every bit as massive and reptilian as you’d expect from such a monster, peeking out of a deep-seated slit in its hide quarters. It grows and grows, from a tapered tip already as big as your fist to a tree-trunk shaft that throbs with bestial desire.");
-	output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 	//First time only!:
 	if(flags["STEPH_DARGONED"] == undefined)
 	{
+		output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 		output("\n\n<i>“S-should we cut the feed?”</i> a man asks. <i>“That thing-”</i>");
 		output("\n\nA woman answers coldly, <i>“No! Keep the drone online!”</i>");
 		output("\n\nHuh? Are you getting some sort of interference... or is chatter from the studio bleeding onto the video?");

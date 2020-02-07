@@ -350,7 +350,7 @@ public function kaseTailTouch(btnSlot:int = 0):void
 	output("\n\n<i>“And this,”</i> he says, blood rushing to his face, turning it bright red, <i>“Is a more... romantic gesture, and uhm... is usually reserved for the bedroom.”</i> He stutter with his words, <i>“but i-it can be used in public as a display of dominance.”</i> There’s an awkward silence after that as Kase’s tails linger in their position, right before he coughs and pulls the furry appendages back, <i>“A-anyway, I hope I’ve taught you what you were looking to learn.”</i> ");
 	output("\n\nYou smile at the blushing kaithrit and tell him he was very helpful.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5+rand(5));
 	
 	kaseCrewTalkMenu();
@@ -372,12 +372,12 @@ public function kaseSex():void
 	{
 		if(pc.hasCock())
 		{
-			if(pc.cockThatFits(1000) >= 0) addButton(1, "ReceiveBJ", penisRouter,[kaseSexRecOral,1000,false,0], "Receive BJ", "Get Kase’s mouth between your legs.");
+			if(pc.cockThatFits(1000) >= 0) addButton(1, "ReceiveBJ", penisRouter,[kaseSexRecOral,1000,false,0], "Receive BJ", "Get Kase’s mouth between your [pc.thighsOrLegs].");
 			else addDisabledButton(1,"ReceiveBJ","ReceiveBJ","The poor kitty-boy has no chance of handling such enormity.");
 		}
 		else addDisabledButton(1, "ReceiveBJ", "Receive BJ", "You need to have genitals and not be a taur for this.");
 		//Overwrite cock selection
-		if(pc.hasVagina()) addButton(2, "Get Licked", kaseSexRecOral, -1, "Get Licked", "Get Kase’s mouth between your legs.");
+		if(pc.hasVagina()) addButton(2, "Get Licked", kaseSexRecOral, -1, "Get Licked", "Get Kase’s mouth between your [pc.thighsOrLegs].");
 		else addDisabledButton(2, "Get Licked", "Get Licked", "You need to have genitals and not be a taur for this.");
 	}
 	else 
@@ -423,7 +423,7 @@ public function kaseSexGiveOral():void
 	output("\n\n<i>“Th-thank you, Captain,”</i> he stutters between deep breaths, untangling his tails from your head, <i>“I... I hope I can repay the favor sometime.”</i>");
 	output("\n\nHe probably will, but for now, you want to enjoy Kase’s cock while you have it. So, you return your lips to his still-twitching prick, kissing and licking away stray cum, getting him nice and clean and enjoying his flavour while the femboy whimpers and gasps at your touch. You’ll have to leave your place between your subordinate’s legs at some point, but until then, you’ve got a cock to spit-shine.");
 	
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(15+rand(10));
 	var ppKase:PregnancyPlaceholder = getKasePregContainer();
 	pc.loadInMouth(ppKase);
@@ -554,7 +554,7 @@ public function kaseSexGetFuck():void
 	output("\n\nStill, his pumping hips give you more than enough to keep you moaning, Kase’s soft barbs touching and caressing all your most sensitive places like a living sextoy. " + ((pc.hasVagina() && pc.looseness() >= 3) || (!pc.hasVagina() && pc.ass.looseness() >= 3) ? "Even with the looseness of your [pc.vagOrAss], the kaithrit’s girth still leaves you hugging at his shaft. " : "You clench down around his tool, making him work for every inch he moves. ") + "Your lover’s voice quivers and stutters, his thrusts becoming jerky and fast, bouncing your body " + (pc.hasBreasts() ? "and [pc.breasts] " : "") + "back and forth against the mattress as he fucks you, racing towards his orgasm.");
 	output("\n\n<i>“C-captain,”</i> he shudders between pleasured groans, <i>“" + (silly ? "M-my brogurt!" : "I-I’m going to- unf!") + "”</i>");
 	output("\n\nWith that, his wide hips lurch forward, driving his thick cock deep inside of you, and setting you crying out all over again. The kaithrit grunts hard, and you can feel his already monstrous length engorging and convulsing inside your [pc.vagOrAss]. You nearly scream when the first shot of his molten, alabaster cum hits your inner walls, Kase beginning to buck against your [pc.hips] with his own. And with you still grinding your sides against your lover’s spasming dick, you feel compelled to cum yourself.");
-	output("\n\nYou do just that, your need for release overtaking your willpower until a wave of endorphins slams into your mind’s shore. A cry of bliss permeates the once steady moaning of the room. Your [pc.vagOrAss] clenches down around Kase’s engorged shaft, convulsing around it as your climax ensues. " + (pc.hasVagina() ? "[pc.Girlcum] pools out around your lover’s cock, spraying down his svelte midsection and wetting his pale flesh with your feminine nectar" : "Your inner walls spasm against your lover’s cock, making the feline femboy groan as your [pc.asshole] clenches around him") + ". " + (pc.hasCock() ? "You grit your teeth as your [pc.cocks] empty themselves all over your [pc.chest], coating you with [pc.cum]. " : "") + "All the while, Kase fills you with his cum, letting his heavy sack empty into your " + (pc.hasVagina() ? "womb" : "depths") + " until you’re feeling bloated and full of warm, thick seed.");
+	output("\n\nYou do just that, your need for release overtaking your willpower until a wave of endorphins slams into your mind’s shore. A cry of bliss permeates the once steady moaning of the room. Your [pc.vagOrAss] clenches down around Kase’s engorged shaft, convulsing around it as your climax ensues. " + (pc.hasVagina() ? "[pc.Girlcum] pools out around your lover’s cock, spraying down his svelte midsection and wetting his pale flesh with your feminine nectar" : "Your inner walls spasm against your lover’s cock, making the feline femboy groan as your [pc.asshole] clenches around him") + ". " + (pc.hasCock() ? "You grit your teeth as your [pc.cocks] empty" + (pc.cocks.length == 1 ? "s itself" : " themselves") + " all over your [pc.chest], coating you with [pc.cum]. " : "") + "All the while, Kase fills you with his cum, letting his heavy sack empty into your " + (pc.hasVagina() ? "womb" : "depths") + " until you’re feeling bloated and full of warm, thick seed.");
 	output("\n\nKitty-spooge leaks from your well-used " + (pc.hasVagina() ? "pussy" : "pucker") + " as your orgasm finally begins to decline, still twitching with aftershocks of pleasure. A pleasant afterglow replaces the haze of bliss once clouding your sight, leaving you looking up at Kase, his chest heaving, panting heavily.");
 	output("\n\n<i>“Captain...”</i> the well-spent kaithrit breathes, keeping himself buried inside you.");
 	output("\n\nIt seems that’s all he has to say, or all he can muster. All the same, you smile up at the femboy, reaching a hand up to cup his cheek. You pull him down into a kiss as you unwind your [pc.legs] and wrap an arm around his girly shoulders. He breathes a contented sigh as he happily lowers himself onto you, returning your embrace, and your kiss. Already being able to feel Kase’s cock going soft, you roll the both of you over on your sides, getting comfortable as you press yourself against your lover’s body. Not more than a moment later you feel his fuzzy pine tails wrap around your waist, holding you like an extra set of furry arm.");
@@ -683,7 +683,7 @@ public function kaseSexThreesomeAnno():void
 	output("\n\nAt last, you both seem to come down from your peaks, tired but satisfied. Kase looks up at you with an almost amazed smile, and your smile right back down at him. You pick yourself up and off the femboy’s softening dick, letting it flop down onto his stomach where it wets his midsection with alabaster spunk and girlcum alike. Rolling off the poor, abused kitty, you turn to Anno, who’s still panting from her ride" + (flags["KASE_3SUM_ANNO"] != undefined ? " and pulling her lube-slick fingers from her pussy" : "") + ".");
 	if(pc.hasVagina())
 	{
-		output("\n\nShe gazes down at you cum-filled cunt and smirks, <i>“You’re not gonna keep that all for yourself, are you, boss?”</i>");
+		output("\n\nShe gazes down at your cum-filled cunt and smirks, <i>“You’re not gonna keep that all for yourself, are you, boss?”</i>");
 		output("\n\nBefore you can figure out what she’s talking about, she darts down between your [pc.legs] with surprising speed for her tired state. The ausar flicks her tongue across your [pc.vagina], gathering some of Kase’s salty spooge and making you gasp as it travels. Then her oral organ all but delves between your puffy, oversensitive nether lips, leaving you whimper quietly as she takes in all the kaithrit essence she herself didn’t get to enjoy.");
 		output("\n\nSoon, Anno’s had her fill and rises to her knees again, licking her lips and wiping her mouth.");
 	}
@@ -739,7 +739,7 @@ public function kaseCrewStressRelief():void
 	
 	flags["KASE_STRESS"] = 1;
 	IncrementFlag("KASE_SEXED");
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(15+rand(5));
 	
 	kaseCrewMenu();
@@ -759,7 +759,7 @@ public function kaseScritches():void
 	output("\n\nYou tell him you’re glad to help your employees feel better.");
 	
 	IncrementFlag("KASE_SCRITCH");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(15+rand(5));
 	
 	kaseCrewMenu();
@@ -912,7 +912,7 @@ public function kaseCrewWake():void
 				output("\n\nHe grunts quietly, gritting his teeth and arching his back while his hips buck forward against your hand. His nubby cock spasms in your grip, dispensing a night’s worth of thick, white kitty-cum all across your sheets and fingers until his plump balls have been all but emptied.");
 				output("\n\nThen, he’s still again, sleeping away happily, his face burning red and his chest heaving. Now all there is to do is get up, and get ready to start another day...");
 				processTime(10+rand(5));
-				pc.lust(33);
+				pc.changeLust(33);
 				break;
 				
 		default:output("<b>!KASE WAKE-UP SWITCH BROKEN!>/b>");
@@ -987,7 +987,7 @@ public function kaseVoyeurAnno():void
 	output("\n\n<i>“Y-yes,”</i> the catboy says shakily, barb-lined tool leaking onto the floor in the open, <i>“Th-thank you, ma’am... I’ll, uh, see you some other time.”</i> He then looks toward you and gives an awkward smile, blushing hard with his package still dangling in the open, legs all wobbly with the force of his climax, <i>“I- uhm, Captain...”</i>");
 	output("\n\nYou give him a little salute and a grin, then leave him alone to rest, all naked by himself. What a crew you run here.");
 	
-	pc.lust(33);
+	pc.changeLust(33);
 	pc.createStatusEffect("Kase-Anno Voyeur Cooldown",0,0,0,0,true,"","",false,60*24);
 	processTime(10+rand(5));
 	

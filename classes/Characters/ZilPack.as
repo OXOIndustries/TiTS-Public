@@ -288,7 +288,7 @@
 			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You’ve given into these aliens twice already. Surely the third time is the charm...");
 			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You’ve let them use you a handful of times. What’s once more?");
 			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You’ve given in countless times already, why not live it up?");
-			target.lust(10+target.libido()/10);
+			target.changeLust(10+target.libido()/10);
 		}
 		
 		private function zilPheromoneFanPlural(target:Creature):void 
@@ -298,7 +298,7 @@
 			if (target.physique() + rand(20) + 1 > 20) 
 			{
 				output("\nThey get tired long before you do and give up, but it still leaves a cloud of their delicious aroma floating around you. It’s strong enough to make your pulse quicken.");
-				target.lust(5+target.libido()/20);
+				target.changeLust(5+target.libido()/20);
 			}
 			else 
 			{
@@ -311,14 +311,14 @@
 					if(kGAMECLASS.silly) output("stupid ");
 					output("sexy dick-scent!");
 				}
-				target.lust(10+target.libido()/10);
+				target.changeLust(10+target.libido()/10);
 			}
 		}
 		
 		private function zilHoneyDripPlural(target:Creature):void 
 		{
 			output("Flying up into the air, the two zil begin to jack themselves off, stroking their thick, scented dongs while amber droplets drip from their thick dickskin. Their pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral like honey, and though it doesn’t seem laced with his pheromones, the lewdness of it all quickens your pulse.");
-			target.lust(5+target.libido()/20);
+			target.changeLust(5+target.libido()/20);
 		}
 		
 		private function flurryOfBlowsPlural(target:Creature):void

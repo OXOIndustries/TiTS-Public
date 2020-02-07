@@ -702,7 +702,7 @@ package classes.Items.Transformatives
 							if(target.vaginas[i].bonusCapacity < 100) target.vaginas[i].bonusCapacity += 5;
 						}
 						// (also +15 lust)
-						target.lust(15);
+						target.changeLust(15);
 						changes++;
 					}
 					// pc fertility up to max

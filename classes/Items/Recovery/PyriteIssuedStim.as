@@ -67,17 +67,17 @@
 			{
 				kGAMECLASS.clearOutput();
 				//Consume:
-				kGAMECLASS.output("You press the applicator tip against your arm and barely even feel the teltale pinch of an injection. The rush of jittery, high-octane energy has your [pc.legOrLegs] bouncing and your jaw clenching. (<b>+" + healing + " Energy</b>)");
-				target.energy(healing);
+				kGAMECLASS.output("You press the applicator tip against your arm and barely even feel the teltale pinch of an injection. The rush of jittery, high-octane energy has your [pc.legOrLegs] bouncing and your jaw clenching.");
+				target.changeEnergy(healing);
 			}
 			else
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " injects the Pyrite-issue stimpen");
-				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost.");
 				else kGAMECLASS.output(" to no effect.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			target.taint(1);
 			return false;

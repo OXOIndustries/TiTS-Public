@@ -24,13 +24,14 @@ public function biancaSexings():void
 
 	if (pc.hasSSTD())
 	{
+		var sstdTotal:int = pc.sstdTotal();
 		// pc Has SSTD (never sexed Bianca - you don't get sex!)
 		if (flags["BIANCA_SEXED"] == undefined)
 		{
 			output("The longer you stare at Bianca the blurrier your crossing sight gets. It becomes more obvious how horny you are, how horny she makes you. It comes as a sudden shock when she turns to face you. Her glowing visage startles you into a slow gasp, and then she’s leaning in on you, pressing a hand to your head. <i>“[pc.name]?”</i>");
 			output("\n\nA pounding headache at your temple recedes like a wave at her coming, moving to places yet unreached. <i>“Something’s wrong...”</i> she whispers, straddling you. A light slap to the cheek shakes you from an overwhelming lassitude, lifting a thousand-pound press off your lungs and your brain. When your brain clicks back on there’s a glowing hoop around your wrist that vies for your attention the way her large boobs do.");
 			output("\n\n<i>“Ah, that explains it. No wonder you looked so bothered. I thought you were aroused, but I was only half-right,”</i> Bianca smiles. <i>“You’ve contracted a sexually transmitted disease, [pc.name]... and were I in your place, I’d seek treatment right away. Fortunately, I have the medicine on me right now!”</i>");
-			output("\n\nBianca pulls out a few colored pills and a flask of water. <i>“However, I’m afraid this comes at a cost. It is the only thing I cannot offer for free on the regular. I insist you take it. The <b>" + (pc.sstdTotal() > 1 ? "250" : "350") + " credit cost</b> is nothing compared to your health.”</i>");
+			output("\n\nBianca pulls out a few colored pills and a flask of water. <i>“However, I’m afraid this comes at a cost. It is the only thing I cannot offer for free on the regular. I insist you take it. The <b>" + (sstdTotal > 1 ? "250" : "350") + " credit cost</b> is nothing compared to your health.”</i>");
 			output("\n\nWell this has certainly killed the mood...");
 		}
 		// pc Has SSTD (after sexing Bianca once)
@@ -41,10 +42,10 @@ public function biancaSexings():void
 			output("\n\nW-What? Why would she even say such a thing..?");
 			output("\n\n<i>“There’s nothing to be ashamed of, [pc.name].”</i>");
 			output("\n\n<i>“Who said anything about-”</i>");
-			output("\n\nAll you get is a wide, gleaming grin. She knows what you want. And she’s making it clear the only way you’re going to get it is if you accept the three pills in her hand. <i>“" + (pc.sstdTotal() > 1 ? "250 credits, as your condition is poor" : "350 credits") + ",”</i> she says. <i>“Please take them. Money is no object for your health, least of all mine.”</i>");
+			output("\n\nAll you get is a wide, gleaming grin. She knows what you want. And she’s making it clear the only way you’re going to get it is if you accept the three pills in her hand. <i>“" + (sstdTotal > 1 ? "250 credits, as your condition is poor" : "350 credits") + ",”</i> she says. <i>“Please take them. Money is no object for your health, least of all mine.”</i>");
 		}
 
-		if (pc.credits < (pc.sstdTotal() > 1 ? 250 : 350)) addDisabledButton(0, "Get Cured", "Get Cured", "You cannot afford the medication.");
+		if (pc.credits < (sstdTotal > 1 ? 250 : 350)) addDisabledButton(0, "Get Cured", "Get Cured", "You cannot afford the medication.");
 		else addButton(0, "Get Cured", getBiancasSexualHealing, undefined, "Get Cured", "Alright. It’s worth it.");
 		addButton(1, "No Thanks", tellBiancaYouLikeBeingADiseaseBag, undefined, "No Thanks", "No.");
 	}
@@ -178,7 +179,7 @@ public function biancaSexings():void
 				if (flags["BIANCA_KNOWS_PC_DICK"] == 0 && pc.hasCock()) output("<i>“Ooh! You grew something wonderful, [pc.name]? I can’t wait to try it out! I wonder if I get to be the first to play with it?”</i>");
 				if (pc.hasCock())
 				{
-					if (pc.isCrotchExposed()) output(" Your [pc.cocksLight] " + (pc.hasCocks() ? "rise" : "rises") + " eagerly for her, happy as can be when her " + (pc.hasCocks() ? "hands fly" : " flies") + " up and down the meaty, veiny " + (pc.hasCocks() ? "shafts." : "shaft."));
+					if (pc.isCrotchExposed()) output(" Your [pc.cocksLight] " + (pc.hasCocks() ? "rise" : "rises") + " eagerly for her, happy as can be when her " + (pc.hasCocks() ? "hands fly" : "hand flies") + " up and down the meaty, veiny " + (pc.hasCocks() ? "shafts." : "shaft."));
 					else output(" Your [pc.cocksLight] strain against the confines of your clothing, every begging throb a cry for help.");
 				}
 				else
@@ -220,6 +221,7 @@ public function getBiancasSexualHealing():void
 	author("William");
 	processTime(5+rand(3));
 
+	var sstdTotal:int = pc.sstdTotal();
 	output("You don’t even get a chance to reach for your money before Bianca thrusts the medicine past your lips and offers the flask of water. Once the pills are sliding down to your gut you get a moment to wonder just why she’s being so forceful. The great results of biomedical advances surprises you the next second, purging your system of harmful elements. Your SSTD is cured, and Bianca is pleased.");
 	// never Sexed Bianca
 	if (flags["BIANCA_SEXED"] == undefined)
@@ -234,6 +236,7 @@ public function getBiancasSexualHealing():void
 		output("\n\n<i>“Now... how about we pick up where we left off?”</i> she purrs, scooting back. <i>“I haven’t forgotten how well you tease, [pc.name]...”</i>");
 		output("\n\nOh boy.");
 	}
+	getSSTDPurgeFromBianca(sstdTotal);
 
 	biancaSexMenu();
 }
@@ -1963,7 +1966,7 @@ public function biancasAFoxAndShesLickingAHole(vagIdx:int):void
 	}
 	output("\n\nA throaty purr of some kind is muffled " + (pc.balls > 0 ? "by your [pc.ballsNoun]" : "by your slit") + "; a full-body vibration wracks her until you’re paralyzed by the residual aftershock. <b>She just came.</b> <i>Bianca just creamed herself!</i> Awakened underneath all her mannerly behavior is just a slut that longs for contact, for love, for control... who are you to deny her that? She was kind enough to get you into this state, to prepare you for the sole purpose of making her feel this way.");
 	output("\n\nYou have a <i>purpose</i> now.");
-	output("\n\nAnd the first step towards achieving it is by shoving more cunt-drunk doctor inside. Still slurping and suckling, the thirsty medic dances across [pc.vaginaColor " + vagIdx + "] walls with heedless abandon, her wild side fully unlocked and unwilling to cede ‘defeat’. It takes you more than a few seconds to register that she’s dropped one hand from your thigh to pry open your twat, hooking fingers into the labia and clawing her way up as deep as the natural order will accommodate. Her soft nails stroke recklessly at your walls alongside her flailing tongue, committing crimes against your cunt, imprinting their shapes within your shuddering swamp.");
+	output("\n\nAnd the first step towards achieving it is by shoving more cunt-drunk doctor inside. Still slurping and suckling, the thirsty medic dances across [pc.vaginaColor " + vagIdx + "] walls with heedless abandon, her wild side fully unlocked and unwilling to cede ‘defeat’. It takes you more than a few seconds to register that she’s dropped one hand from your thigh to pry open your twat, hooking fingers into the labia and clawing her way up as deep as the natural order will accommodate. She recklessly strokes at your walls alongside her flailing tongue, committing crimes against your cunt, imprinting their shapes within your shuddering swamp.");
 	output("\n\nThe ends justify the means by spinning you around the edge of ecstasy. Orgasms that range from tremulous, delightful shivers to rumbling earthquakes stick it to your mind in every possible way that you’re swirling on the lofty precipice of powerful release. Bianca’s sawing in two different places at once, channeling exuberant pleasure and roughness into your joy-inundated system. The ambidextrous fox then lowers her other hand, digging into implacably tight pants to tend a monstrous libido, gulping audibly all the refreshment she’s harvested from you.");
 	output("\n\nOnce she does, everything changes. There’s this moment of unity, where your pace and hers match up and you moan with saliva-splattering happiness. You’re leaking and dripping everywhere. You’re a hot fucking mess, and she is too. Your [pc.pussies] greet" + (!pc.hasVaginas() ? "s":"") + " the reinvigorated doctor’s injections of wildly wagging maw-flesh. Bianca’s radiant eyes narrow and widen to the masturbating strokes of pronounced boobflesh and gushing milf-cunt, fucking herself while you fuck yourself with her. A rich burst of dual orgasm strikes the two of you, again and again...");
 	// Cock
@@ -2248,6 +2251,7 @@ public function howAppropriateBiancaYouLeakLikeACow():void
 		output("\n\nYou can think of a few things in the meantime. For now, it’s back to the trail...");
 	}
 
+	biancaSexed("MILK");
 	// Trips Flag \\SEEN BIANCA'S NAKED CHEST
 	flags["BIANCA_SEEN_TITS"] = 1;
 	// Remove the cum/milk effects
@@ -2522,8 +2526,8 @@ public function downTheFoxGoesOntoPCTongue():void
 	// processTime 8-16\rand minutes
 	processTime(8+rand(9));
 
-	// imagePack: embed future Bianca facesitting pic here9999
-
+	// imagePack: embed future Bianca facesitting pic here
+	showImage("BiancaFaceSits");
 	output("Unlacing your hands you grip Bianca’s waist, lift your nose from the furrow, breathe, and yank back. In a gradual motion you rainbow through the air, falling from your knees to your back in a painless shift.");
 	output("\n\n<i>“Ah!”</i> she yelps cutely, scrabbling at the " + (getPlanetName().toLowerCase() == "mhen'ga" ? "tree" : "wall") + " before stumbling back with you - in the seconds before impact, there’s a <b>very</b> deep sense of satisfaction that her ass has nowhere to go but on and around your face" + (pc.hasWings() ? "; you spread your [pc.wings] before they bend inappropriately":"") + ". The shock of stopping a moon from colliding with its planet is totally absorbed by your head in an act of celestial chivalry. Both of Bianca’s aft quarters have firmly slammed your skull into the ground, cratering your cheeks under their superlative and intensely arousing burden.");
 	output("\n\nNow you know what being a pancake is like!");
@@ -2604,7 +2608,7 @@ public function doneEatingFoxMilfForNow(fromAllIn:Boolean):void
 		{
 			output(" your [pc.cocksLight] of all the [pc.cumNoun] striping your " + (pc.hasCocks() ? "shafts" : "shaft") + ", slurping your softening meat");
 			if (pc.balls > 0) output(" and your [pc.ballsNoun]");
-			output(" . It takes her only a second to have your sensitive " + (pc.hasCocks() ? "dicks" : "dick") + " shining.");
+			output(". It takes her only a second to have your sensitive " + (pc.hasCocks() ? "dicks" : "dick") + " shining.");
 		}
 		else output(" your groin of [pc.girlCumFlavor] arousal, careful to avoid turning you on again.");
 	}

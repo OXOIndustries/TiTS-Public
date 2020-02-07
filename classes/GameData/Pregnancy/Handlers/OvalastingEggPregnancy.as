@@ -278,7 +278,7 @@ package classes.GameData.Pregnancy.Handlers
 			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
 			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
-			pData.pregnancyQuantity = kGAMECLASS.ovalastingEggCount();
+			pData.pregnancyQuantity = kGAMECLASS.ovalastingEggCount(mother, pregSlot);
 			var pEggs:int = pData.pregnancyQuantity;
 		}
 		

@@ -446,8 +446,8 @@ public function doSiegwulfeAction(arg:Array):void
 			processTime(5);
 			
 			//Set PC lust to 33, or add +10 Lust, whichever ends higher.
-			if(pc.lust() < 23) pc.lust(33, true);
-			else pc.lust(10);
+			if(pc.lust() < 23) pc.changeLust(33, true);
+			else pc.changeLust(10);
 			
 			addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
 			break;
@@ -1453,7 +1453,7 @@ public function siegwulfeTheMilkmAId(fromInv:Boolean):void
 	pc.milked();
 	//Puts you at 33 lust if you were below it, increases it by 30 otherwise
 	if (pc.lust() < 33) pc.lust(33, true);
-	else pc.lust(33);
+	else pc.changeLust(33);
 	//Makes you orgasm if you were high lust or Treated
 	if (hornyPC) pc.orgasm();
 	//Gain 10 energy
@@ -2630,7 +2630,7 @@ public function siegwulfeStalking():void
 	output("\n\n<i>“M-mistress?!”</i> you cry out in surprise, feeling her " + (pc.isNude() ? "peel away your layers until you’re naked in her groping hands" : "unabashedly grope your naked form") + ". <i>“Oh!”</i>");
 	output("\n\nWith the way she’s pressed against you from behind, you can hear and feel just how hard she’s breathing in your ear, almost panting with overflowing desire. Her thick silicon nipples are hard against your back, jutting into your [pc.skinFurScales] and slowly trickling milk. You almost jump in shock at the sudden wet warmth of her tongue licking the back of your neck, followed by light nips at your ears, quiet growls emanating from her throat. Despite being taken so off-guard, you’re so aroused by your mistress’ sheer <i>possessiveness</i> of you that you can’t say no.");
 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	addButton(0, "Next", siegwulfeRut);
 }
 
@@ -2706,9 +2706,13 @@ public function siegwulfeLaying():void
 	showSiegwulfe();
 	processTime(10+rand(11));
 	
+	var babies:int = pc.statusEffectv1("Siegwulfe Eggnancy Ends");
+	var belly:int = pc.statusEffectv2("Siegwulfe Eggnancy Ends");
 	var scene:int = pc.statusEffectv4("Siegwulfe Eggnancy Ends");
 	var pregSlot:int = pc.statusEffectv3("Siegwulfe Eggnancy Ends");
 	pc.removeStatusEffect("Siegwulfe Eggnancy Ends");
+	
+	var bigEgg:Boolean = true;
 
 	switch (scene)
 	{
@@ -2720,7 +2724,7 @@ public function siegwulfeLaying():void
 				output("\n\n<i>“Oh...”</i> she murmurs, a smile surreptitiously creeping across her face. <i>“About time.”</i>");
 				output("\n\nYou’re about to respond before you feel another lurch, this one even stronger. You cry out in an embarrassingly shrill voice, panting on your hands and [pc.knees].");
 				if (pc.hasLowerGarment() || pc.hasArmor()) output(" [wulfe.name] reaches back and pulls your " + (pc.hasArmor() ? "[pc.armor]" : "[pc.lowerGarments]") + " down and y");
-				else output(" Y")
+				else output(" Y");
 				output("ou suddenly realize how <i>wet</i> you are, lubricant dripping from your " + (pregSlot != 3 ? "[pc.pussy]." : "[pc.asshole]."));
 				output("\n\n<i>“Good [pc.boyGirl],”</i> [wulfe.name] breathes, face flushed in arousal. <i>“Let me help.”</i>");
 				output("\n\nShe plunges two fingers into your weakening orifice as you give up all pretense of containing the sensation, instead letting your head droop while you groan in a mixture of confused arousal and pleasure. Now that you’re over the initial surprise, this feels <i>incredibly</i> good... so much so that you can’t tell whether it’s one of [wulfe.name]’s eggs or your orgasm approaching.");
@@ -2857,5 +2861,13 @@ public function siegwulfeLaying():void
 	}
 
 	pc.orgasm();
-	addButton(0, "Next", mainGameMenu);
+	
+	output("\n\n<b>You have laid " + num2Text(babies) + " eggs");
+	if (scene < 3) output(" this clutch");
+	output("!</b>");
+	
+	output("\n\n");
+	oviliumEggReward(bigEgg);
+	
+	//addButton(0, "Next", mainGameMenu);
 }

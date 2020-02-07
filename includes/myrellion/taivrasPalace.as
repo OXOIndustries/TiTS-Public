@@ -235,14 +235,19 @@ public function bribeTaivrasGateGuards():void
 		addButton(14,"Back",mainGameMenu);
 	}
 	var gems:int = 0;
+	var offworldGems:int = 0;
 	//Check if PC has any "GEM" type items.
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
-		if(pc.inventory[x].type == GLOBAL.GEM) gems++;
+		if(pc.inventory[x] is Picardine || pc.inventory[x] is Kirkite || pc.inventory[x] is Satyrite || pc.inventory[x] is GemSatchel) gems++;
+		else if(pc.inventory[x].type == GLOBAL.GEM) offworldGems++;
 	}
 	if(gems == 0) addDisabledButton(1,"Gems","Gems","You don’t have any gems.");
 	else if(gems == 1) addButton(1,"Gem",giveDemAGem,gems,"Gem","Offer the gem you’re carrying.");
-	else addButton(2,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
+	else addButton(1,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
+	if(offworldGems == 0) addDisabledButton(1,"ExoticGems","ExoticGems","You don’t have any exotic gems.");
+	else if(offworldGems == 1) addButton(1,"Exotic Gem",giveDemAnExoticGem,gems,"Exotic Gem","Offer the exotic gem you’re carrying.");
+	else addButton(1,"ExoticGems",giveDemAGem,gems,"ExoticGems","Maybe they’d be interested in one of the exotic gems you’re carrying...");
 }
 
 public function giveDemAGem(gems:int):void
@@ -260,6 +265,22 @@ public function giveDemAGem(gems:int):void
 	clearMenu();
 	addButton(14,"Back",bribeTaivrasGateGuards);
 }
+public function giveDemAnExoticGem(gems:int):void
+{
+	clearOutput();
+	showPraetorians();
+	output("You take out a pouch ");
+	if(gems > 1) output("laden with gemstones");
+	else if(pc.hasItemByClass(GemSatchel)) output("laden with gemstones");
+	else output("with a gemstone");
+	output(" and offer them to the guards, hoping to appeal to their avarice. The guards approach, their dark eyes glinting with greed as you reveal your briberous payload. When they get a good look at the stones, though, their lips curl, and the lead guard plants her hands on her hips.");
+	output("\n\n<i>“Is that it?”</i> she scowls, squinting at your offering. <i>“No, no, I’m not going to risk Queen Taivra’s wrath for </i>that<i>,”</i> she scoffs, shoving your hand back.");
+	output("\n\n<i>“We can get gemstones anywhere,”</i> the other nyrea says. <i>“Come on, if you want to buy your way in, cough up something really </i>unique<i>. Something special!”</i>");
+	output("\n\nSomething special, huh? Maybe a truly precious metal would suit them better...");
+	clearMenu();
+	addButton(14,"Back",bribeTaivrasGateGuards);
+}
+
 
 //[Plat190]
 //Offer your chunk of Platinum 190. Surely these ladies can appreciate the rare beauty of precious metals!

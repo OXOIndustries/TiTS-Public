@@ -103,10 +103,10 @@
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
 			kGAMECLASS.output("You pull out the sludgy fungal extract from your pack and uncork it, instantly scrunching your nose up at the pungent aroma of it. Still, you force yourself to knock it back, draining the vial down and grunting as it burns your throat.");
-			if (healing > 0) kGAMECLASS.output(" You quickly feel a rush of vigor... and a hint of arousal burning your cheeks. (<b>+" + healing + " HP</b>)");
+			if (healing > 0) kGAMECLASS.output(" You quickly feel a rush of vigor... and a hint of arousal burning your cheeks.");
 			else kGAMECLASS.output(" You are hit by a rush of arousal!");
-			targetCreature.lust(20);
-			targetCreature.HP(healing);
+			targetCreature.changeHP(healing);
+			targetCreature.changeLust(20);
 			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 		}
 		
@@ -118,10 +118,10 @@
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
 			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " drinks down the draft, looking a little hornier");
-			if (healing > 0) kGAMECLASS.output(" and more than a little healthier! (<b>+" + healing + " HP</b>)");
+			if (healing > 0) kGAMECLASS.output(" and more than a little healthier!");
 			else kGAMECLASS.output("!");
-			targetCreature.lust(20);
-			targetCreature.HP(healing);
+			targetCreature.changeHP(healing);
+			targetCreature.changeLust(20);
 			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 		}
 	}

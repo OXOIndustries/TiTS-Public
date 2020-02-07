@@ -6,8 +6,8 @@ public function initMhengaRooms():void
 	rooms["SHIP HANGAR"].runOnEnter = mhengaShipHangarFunc;
 	rooms["SHIP HANGAR"].planet = "PLANET: MHEN'GA";
 	rooms["SHIP HANGAR"].system = "SYSTEM: ARA ARA";
-	rooms["SHIP HANGAR"].outExit = "SPACEPORT ELEVATOR";
-	rooms["SHIP HANGAR"].outText = "Down";
+	rooms["SHIP HANGAR"].southExit = "SPACEPORT ELEVATOR";
+	//rooms["SHIP HANGAR"].outText = "Down";
 	rooms["SHIP HANGAR"].moveMinutes = 2;
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.PUBLIC);
@@ -19,8 +19,8 @@ public function initMhengaRooms():void
 	rooms["SPACEPORT ELEVATOR"].description = "A standard self-assembling cargo elevator towers overhead, connected to dozens of landing pads covered with brilliantly flashing lights. The supporting girders are stamped with the logo of Pyrite Heavy Industries, the subgroup of Pyrite Industries that handles the largest constructions. The whole thing still gleams like new, even in an environment so damp that the metal is sweating drops of condensation. The doors to the elevator are open; all you need to do is push the button to go back to your ship. Fences and the wall of a building to the east keep you penned in this area, but a doorway marked “Customs” to the east could be entered if you wish to explore.";
 	rooms["SPACEPORT ELEVATOR"].planet = "PLANET: MHEN'GA";
 	rooms["SPACEPORT ELEVATOR"].system = "SYSTEM: ARA ARA";
-	rooms["SPACEPORT ELEVATOR"].inExit = "SHIP HANGAR";
-	rooms["SPACEPORT ELEVATOR"].inText = "Up";
+	rooms["SPACEPORT ELEVATOR"].northExit = "SHIP HANGAR";
+	//rooms["SPACEPORT ELEVATOR"].inText = "Up";
 	rooms["SPACEPORT ELEVATOR"].eastExit = "CUSTOMS OFFICE";
 	rooms["SPACEPORT ELEVATOR"].moveMinutes = 2;
 	rooms["SPACEPORT ELEVATOR"].addFlag(GLOBAL.OUTDOOR);

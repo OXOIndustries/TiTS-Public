@@ -1,6 +1,7 @@
 import classes.Items.Toys.NivasBionaHole;
 import classes.Items.Toys.TamaniBionaHole;
 
+/*
 public function resetKiroQuest():void
 {
 	flags["KQ_MET_SEXDOLL_VUL"] = undefined;
@@ -36,8 +37,36 @@ public function resetKiroQuest():void
 	flags["KQ_VR_DEMONTIME"] = undefined;
 	flags["KQ_VR_DEMONFIGHT"] = undefined;
 	flags["KQ_VR_DEMONFUKK"] = undefined;
-	move("SHIP INTERIOR");
-}
+	
+	==========================================
+	       PO + TFs + GENERAL ROUTING
+	  ==========================================
+	KQ_START
+		Timestamp of when she's captured, used for calculating TFs
+	KQ_RESCUED
+		Timestamp of when you enter Po's lab. If not undefined, stops TF progress.
+		Once set, disables the entrance to Po's lab.
+	KQ_LAST_HOUR_TF
+		The last hour of TF. Used to avoid repeat procs.
+	KQ_BUY_OFFER
+		Highest amount offered to buy Kiro.
+		-1 if bought with platinum :3
+	KQ_OFFER_FAIL
+		Number of failed offers
+	KQ_PLAT_OFFERED
+		1 = offered platinum!
+	KQ_PO_DEAD
+		1 = PC did it.
+		2 = kiro did it
+	KIRO_RECRUITED
+		1 = Recruited Kiro!
+	KIRO_ONBOARD
+		1 = Kiro is currently crew.
+		-1 = Kiro is kicked off.
+	Kiro TFs:
+		Ditz Speech at the end so kiro.isBimbo() works.
+		
+}*/
 
 public function kiroQuestRoomUpdate():void
 {
@@ -46,11 +75,13 @@ public function kiroQuestRoomUpdate():void
 	else if(!rooms["KQ P14"].hasFlag(GLOBAL.NPC) && flags["KQ_MINIBOSS_DOWNED"] == undefined) rooms["KQ P14"].addFlag(GLOBAL.NPC);
 }
 
+/*
 public function kiroQuestTestResetPrompt():void
 {
 	output("\n\nIf you’re done testing this unfinished content, you can be returned to your ship by selecting “Return”.");
 	addButton(0,"Return",resetKiroQuest);
 }
+*/
 
 public function initKQRooms():void
 {
@@ -278,7 +309,7 @@ public function initKQRooms():void
 
 	rooms["KQ P14"] = new RoomClass(this);
 	rooms["KQ P14"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ P14"].description = "<i>“Captain’s Quarters.”</i> That’s what the sign above the doorway to the north says, and unlike all its fellows, this portal yawns wide-open, all but beckoning you to venture inside. The space beyond looks like some kind of waiting room, but you’ll have to step inside for a better look. Lots of scuffs from heeled boots mar the floor around the door as if large numbers of heeled women go in and out with regularity.\n\nYou can continue looping idly around to the south and west, or gather your courage to venture forth."
+	rooms["KQ P14"].description = "“Captain’s Quarters.” That’s what the sign above the doorway to the north says, and unlike all its fellows, this portal yawns wide-open, all but beckoning you to venture inside. The space beyond looks like some kind of waiting room, but you’ll have to step inside for a better look. Lots of scuffs from heeled boots mar the floor around the door as if large numbers of heeled women go in and out with regularity.\n\nYou can continue looping idly around to the south and west, or gather your courage to venture forth."
 	rooms["KQ P14"].planet = "N/A";
 	rooms["KQ P14"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ P14"].northExit = "KQ P12";
@@ -434,7 +465,7 @@ public function initKQRooms():void
 
 	rooms["KQ R10"] = new RoomClass(this);
 	rooms["KQ R10"].roomName = "\nKITCHEN";
-	rooms["KQ R10"].description = "While this area is clearly a kitchen, it has little to do with the common cooking spaces one would find on a less developed world. The dish combination dish dispenser and cleaning system stands proudly next to the food synthesizer and waste disposal systems. Rather than a table and chairs, there is a single, hovering seat, plush with padding and treated with a thick layer of glossy waterproofing. Pressing the button on the armrest causes the floor panel in front of it to levitate into place as an eating surface - and it exposes a recessed, spongy fuckpit underneath.\n\nFlickering holographic light provides a privacy screen for the bedroom to the east. An unlabeled hatch on the western wall beckons as well.";
+	rooms["KQ R10"].description = "While this area is clearly a kitchen, it has little to do with the common cooking spaces one would find on a less developed world. The combination dish dispenser and cleaning system stands proudly next to the food synthesizer and waste disposal systems. Rather than a table and chairs, there is a single, hovering seat, plush with padding and treated with a thick layer of glossy waterproofing. Pressing the button on the armrest causes the floor panel in front of it to levitate into place as an eating surface - and it exposes a recessed, spongy fuckpit underneath.\n\nFlickering holographic light provides a privacy screen for the bedroom to the east. An unlabeled hatch on the western wall beckons as well.";
 	rooms["KQ R10"].planet = "N/A";
 	rooms["KQ R10"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ R10"].northExit = "";
@@ -498,7 +529,7 @@ public function initKQRooms():void
 	rooms["KQ T14"].southExit = "";
 	rooms["KQ T14"].westExit = "";
 	rooms["KQ T14"].moveMinutes = 1;
-	rooms["KQ T14"].runOnEnter = kiroQuestTestResetPrompt;
+	rooms["KQ T14"].runOnEnter = encounterDatPoBitchBaybeee;
 	rooms["KQ T14"].addFlag(GLOBAL.INDOOR);
 	rooms["KQ T14"].addFlag(GLOBAL.HAZARD);
 	rooms["KQ T14"].addFlag(GLOBAL.OBJECTIVE);
@@ -597,7 +628,7 @@ public function initKQRooms():void
 	rooms["KQVR W1"].roomName = "THE\nROAD";
 	rooms["KQVR W1"].description = "Walking along the road, the landscape abruptly shifts from gravel and dirt to rocky outcroppings and hard, cracked mud beneath your feet. The further west you head, the more the world changes until the sky takes on the faint red glow of sunset, an imposing mountain looming in the distance. The road continues stretching west, leading deeper into mountainous terrain.\n\nThere is no Safe Zone here.";
 	rooms["KQVR W1"].planet = "N/A";
-	rooms["KQVR W1"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W1"].system = "SYSTEM: N/A";
 	rooms["KQVR W1"].northExit = "";
 	rooms["KQVR W1"].eastExit = "KQVR M0";
 	rooms["KQVR W1"].southExit = "";
@@ -611,7 +642,7 @@ public function initKQRooms():void
 	rooms["KQVR W2"].roomName = "BROKEN\nROAD";
 	rooms["KQVR W2"].description = "";
 	rooms["KQVR W2"].planet = "N/A";
-	rooms["KQVR W2"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W2"].system = "SYSTEM: N/A";
 	rooms["KQVR W2"].northExit = "";
 	rooms["KQVR W2"].eastExit = "KQVR W1";
 	rooms["KQVR W2"].southExit = "";
@@ -625,7 +656,7 @@ public function initKQRooms():void
 	rooms["KQVR W3"].roomName = "\nMOUNTAINSIDE";
 	rooms["KQVR W3"].description = "";
 	rooms["KQVR W3"].planet = "N/A";
-	rooms["KQVR W3"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W3"].system = "SYSTEM: N/A";
 	rooms["KQVR W3"].northExit = "";
 	rooms["KQVR W3"].eastExit = "KQVR W2";
 	rooms["KQVR W3"].southExit = "";
@@ -639,7 +670,7 @@ public function initKQRooms():void
 	rooms["KQVR W4"].roomName = "\nMOUNTAINS";
 	rooms["KQVR W4"].description = "Stumbling along the winding, rising path along the mountain, the air actually gets cleaner as you walk. Aside from the dizzying height and the soreness of your legs, this isn’t too bad. You glance out at the landscape below and see the divisions of land - the forest you initially emerged from, a desert, a ruined city, and the road leading to where you are now. You have to admit, it’s been <i>somewhat</i> of an adventure.\n\nThere is no Safe Zone here.";
 	rooms["KQVR W4"].planet = "N/A";
-	rooms["KQVR W4"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W4"].system = "SYSTEM: N/A";
 	rooms["KQVR W4"].northExit = "";
 	rooms["KQVR W4"].eastExit = "KQVR W3";
 	rooms["KQVR W4"].southExit = "";
@@ -653,7 +684,7 @@ public function initKQRooms():void
 	rooms["KQVR W5"].roomName = "\nMOUNTAINS";
 	rooms["KQVR W5"].description = "";
 	rooms["KQVR W5"].planet = "N/A";
-	rooms["KQVR W5"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W5"].system = "SYSTEM: N/A";
 	rooms["KQVR W5"].northExit = "";
 	rooms["KQVR W5"].eastExit = "KQVR W4";
 	rooms["KQVR W5"].southExit = "";
@@ -688,41 +719,130 @@ public function kiroQuestHallwaysEncounters():Boolean
 	IncrementFlag("KQ_STEP");
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["KQ_STEP"] >= 4 && rand(3) == 0) {
-		//Reset step counter
-		flags["KQ_STEP"] = 0;
-		//POSSIBLE ENCOUNTERS! SABERFLOOF!
-		choices.push(genericSexdollEncounter,genericSexdollEncounter);
-		
-		//Run the event
-		choices[rand(choices.length)]();
+	if(flags["KQ_RESCUED"] == undefined)
+	{
+		if(flags["KQ_STEP"] >= 4 && rand(3) == 0) {
+			//Reset step counter
+			flags["KQ_STEP"] = 0;
+			//POSSIBLE ENCOUNTERS! SABERFLOOF!
+			if(rand(4) == 0) choices.push(taursuitsBonusFunz);
+			else choices.push(genericSexdollEncounter,genericSexdollEncounter);
+			
+			//Run the event
+			choices[rand(choices.length)]();
+			return true;
+		}
+	}
+	else KQKiroFollowBonusTexts();
+	return false;
+}
+
+//Landing
+public function landOnKiroQuest():void
+{
+	shipLocation = "KQ N32";
+	processTime(8*55);
+	clearOutput();
+	showName("A\nFREIGHTER");
+	author("Fenoxo");
+	output("The coordinates you received turned out to be correct, if remote - about as far as you can get from the nearest planet without sailing into deep, deep space. Kiro’s ship must have been packing some high grade scanners to catch a signal from the distant craft. You spool up your sensors for a look at the vile, sputtering behemoth and get back... almost nothing: shields. It has shields, though they resist your attempts to secure a reading on their strength, type, and manufacturer. All you know is that they exist and that they stymie your attempts to detect anything inside their protective dome.");
+	output("\n\nYou tap the controls to close the distance, fully prepared to blast your way through the invisible barrier, when dozens of turrets appear across his crater-pocked surface, nearly deafening you in shrill, screaming tones lock-on tones. You throw your ship through maneuver after maneuver, yet the turrets precisely track your course, never once deviating from perfect aim. Strangely, they do not fire. They follow you like a dog waiting for a treat: completely alert and ready to spring into action at the first opportunity.");
+	output("\n\nA small gap in the shields folds open, though it exposes a landing bay rather than a vulnerable system - and Kiro’s ship too, dark and unpowered. More turrets line the inside - if you land there, you doubt they’ll let you leave in one piece.");
+	output("\n\nDo you attempt a landing?");
+	clearMenu();
+	addButton(0,"Yes",saveKiroLanding);
+	addButton(1,"No",dontLandThereImOut);
+}
+
+//No
+public function dontLandThereImOut():void
+{
+	clearOutput();
+	showName("I’M\nOUT");
+	author("Fenoxo");
+	output("You reverse course and book it out of there before you can get blown out of the sky. Getting yourself killed or enslaved won’t save Kiro.");
+	processTime(4*61);
+	shipLocation = "TAVROS HANGAR";
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Yes
+public function saveKiroLanding():void
+{
+	clearOutput();
+	showName("\nLANDING");
+	author("Fenoxo");
+	output("Fuck the danger! You throttle up and gently maneuver into the hangar, keeping one eye on a bank of turrets, just in case. You know you’d never react fast enough to dodge if they fired, but you can’t stop yourself from watching all the same. A bead of sweat oozes down your brow while you cross the threshold. By the time you extend the landing gear and settle into the place in the bigger craft’s hold, you’re mopping up moisture and lightly shaking.");
+	output("\n\nNo shots are fired. You’re safe. Sort of.");
+	output("\n\nYour surroundings show up as empty, aside from the turrets. You could safely disembark at any time. Leaving? Leaving might be problematic. You doubt an attempt to take off will end well.");
+	clearMenu();
+	addButton(0,"Next",move,"KQ N32");
+}
+
+//Try to fly out:
+/* cut content?
+	As you spin up your engines, you notice flashes of light out of the corners of your eyes.
+	It is the last thing your atomized body is capable of experiencing.
+*/
+
+public function hangarBonusText():Boolean
+{
+	output("This excessively broad hangar would look at home in any self-respecting station, core-ward or otherwise. Instead, this heavy duty docking area was constructed inside junky-looking wreck of a freighter. Looks can be deceiving, of course. For all its rust, holes, and pock-marked craters, this vessel is clearly packed to the gills with advanced tech - including the capital-sized, prototype turrets " + (flags["KQ_RESCUED"] == undefined ? "keeping watch over the parked vessels":"that once watched over the parked vessels. Now, they sag like sleeping sentinels, a threat only to the floor below") + ".");
+	output("\n\nA single crooked doorway provides access to the rest of the ship, bearing toward the local ‘north’.");
+	output("\n\nThe [pc.ship] sits parked here alongside Kiro’s leaf-shaped craft, though the latter is fully powered down and essentially dead without its captain inside.");
+	if(flags["KQ_RESCUED"] != undefined)
+	{
+		getBackToShipsWivKiroFollows();
 		return true;
 	}
 	return false;
 }
 
-public function hangarBonusText():void
-{
-	output("This excessively broad hangar would look at home in any self-respecting station, core-ward or otherwise. Instead, this heavy duty docking area was constructed inside junky-looking wreck of a freighter. Looks can be deceiving, of course. For all its rust, holes, and pock-marked craters, this vessel is clearly packed to the gills with advanced tech - including the capital-sized, prototype turrets " + (9999 == 9999 ? "keeping watch over the parked vessels":"that once watched over the parked vessels. Now, they sag like sleeping sentinels, a threat only to the floor below") + ".");
-	output("\n\nA single crooked doorway provides access to the rest of the ship, bearing toward the local ‘north’.");
-	output("\n\nThe [pc.ship] sits parked here alongside Kiro’s leaf-shaped craft, though the latter is fully powered down and essentially dead without its captain inside.");
-}
-
 public function kqt12Bonus():Boolean
 {
-	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, <i>“Lab.”</i> That must be where she" + (9999 == 9999 ? "’s":" was") + " keeping Kiro!");
+	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, “Lab.” That must be where she" + (flags["KQ_RESCUED"] == undefined ? "’s":" was") + " keeping Kiro!");
+	if(flags["KQ_RESCUED"] != undefined) setNavDisabled(NAV_SOUTH_DISABLE);
 	return kiroQuestHallwaysEncounters();
 }
 public function kqr20bonus():Boolean
 {
-	showImage("ObediencePoster");
-	output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+	if(flags["KQ_POSTER_LOOT"] == undefined)
+	{
+		showImage("ObediencePoster");
+		output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+		addButton(0,"TakePoster",takeObediencePoster,undefined,"Take Poster","Take down the poster. Maybe it’ll look nice in your ship?");
+	}
+	else
+	{
+		output("There used to be a holographic poster hung here, but you took it.\n\nYou can follow this passage to the north and west.");
+	}
 	return kiroQuestHallwaysEncounters();
 }
+
+public function takeObediencePoster():void
+{
+	flags["KQ_POSTER_LOOT"] = 1;
+	quickLoot(new ObediencePoster);
+}
+public function takeMindfuckPoster():void
+{
+	flags["KQ_POSTER_LOOT_2"] = 1;
+	quickLoot(new MindfuckPoster);
+}
+
 public function kqn14Bonus():Boolean
 {
-	showImage("MindfuckPoster");
-	output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
+	if(flags["KQ_POSTER_LOOT_2"] == undefined)
+	{
+		showImage("MindfuckPoster");
+		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
+		addButton(0,"TakePoster",takeMindfuckPoster,undefined,"Take Poster","Take down the poster. Maybe it’ll look nice in your ship?");
+	}
+	else
+	{
+		output("There used to be a holographic poster here, but you took it down.\n\nThe passageway stretches east and west.");
+	}
 	return kiroQuestHallwaysEncounters();
 }
 public function kqp22bonus():Boolean
@@ -738,7 +858,7 @@ public function kqp28Bonus():Boolean
 {
 	//22 broken cleaning robots, funky smelling old failsafe mops, and a dildo bucket. All use a new scene I havent written yet.
 	//If Kiro is fully converted, add a Kiro bionacock!
-	output("The doorway swishes open, and you step into... a storage closet. Unlike the hallway that lead you here, this dingy chamber looks like it hasn’t a single iota of effort put into its appearance. There are cheap, functional racks along the walls, absolutely filled with dozens of cleaning robots, each obviously broken in new and exciting ways. Some are caked with musky-smelling mystery fluids that leave little doubt as to what caused their demise. Others are missing limbs or bear attachments worn all the way down to the nub. Mops lie piled in a bucket labelled <i>“FOR EMERGENCY USE ONLY.”</i> They’ve all been used, multiple times.");
+	output("The doorway swishes open, and you step into... a storage closet. Unlike the hallway that lead you here, this dingy chamber looks like it hasn’t a single iota of effort put into its appearance. There are cheap, functional racks along the walls, absolutely filled with dozens of cleaning robots, each obviously broken in new and exciting ways. Some are caked with musky-smelling mystery fluids that leave little doubt as to what caused their demise. Others are missing limbs or bear attachments worn all the way down to the nub. Mops lie piled in a bucket labelled “FOR EMERGENCY USE ONLY.” They’ve all been used, multiple times.");
 	output("\n\nA bucket near the door, labelled similarly, ");
 	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
 	{
@@ -767,12 +887,12 @@ public function inspectDildoBin():void
 	//Empty:
 	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
 	{
-		output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket had an emergency of its own: you taking everything inside it.");
+		output("The “EMERGENCY USE ONLY” dildo bucket had an emergency of its own: you taking everything inside it.");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return;
 	}
-	output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket holds the following:");
+	output("The “EMERGENCY USE ONLY” dildo bucket holds the following:");
 	clearMenu();
 	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] == undefined)
 	{
@@ -877,7 +997,7 @@ public function examinePink():void
 	addButton(0,"Unlock",vaginaRouter,[attemptPinkUnlock,15,1,0,false],"Unlock","Attempting to unlock the door means putting the pink phallus in one of your holes, to be clear.");
 	if(pc.hasItemByClass(MitziBionaHole) || pc.hasItemByClass(NivasBionaHole) || pc.hasItemByClass(TamaniBionaHole)) addButton(1,"Bionahole",useBionaholeSuccess,undefined,"Bionahole","Use a bionahole instead of subjecting one of your holes to this place’s madness.");
 	else addDisabledButton(1,"Bionahole","Bionahole","If you had a bionahole with you, you could try using that instead of one of your holes...");
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 //[Vagchoices]
@@ -904,7 +1024,7 @@ public function attemptPinkUnlock(x:int):void
 			output("\n\nRed lights flash above while a warning buzz blares from the wall behind. Uh oh.");
 			output("\n\nAn electric shock strikes your prostate with all the force of a conjured lightning bolt, clenching every single muscle in your body at once hard enough to squeeze a weak rope of [pc.cum] onto the floor. You have no chance to react nor the capability to. One moment, you’re savoring a little pleasure, the next you’re twitching and spurting - violently out of control. You cum so hard it hurts. Every drop of spooge in your body sprays out, your [pc.cocks] jerking and whirling, launching spunk messily enough to glaze most of your front.");
 			output("\n\nYou whimper kittenishly in between dick-wringing shocks, somehow equal parts ecstatic and tortured, haplessly shuddering as you’re forced to unload. In the back of your misfiring mind, you feel like livestock, like a higher power has taken control of your bodily functions to use for its own ends. It would be more alarming if it wasn’t so hot - if it didn’t make you squeal and splurt harder than ever before.");
-			output("\n\nThe rectal thunderstorm ends as soon as it begins. Something warm and wet oozes deep into you, and slide forward, the devious dick holding your ass up in the air until it escapes with an audible ‘pop’. Glowing purple cream rings your " + (pc.ass.looseness() < 4 ? "temporarily ":"") + "gaped backdoor, soaking into your skin before you can recover to wipe it off.");
+			output("\n\nThe rectal thunderstorm ends as soon as it begins. Something warm and wet oozes deep into you, and you slide forward, the devious dick holding your ass up in the air until it escapes with an audible ‘pop’. Glowing purple cream rings your " + (pc.ass.looseness() < 4 ? "temporarily ":"") + "gaped backdoor, soaking into your skin before you can recover to wipe it off.");
 			output("\n\nWhatever was in the tainted juices, it doesn’t seem to bother you. If anything, it soothes the pain away in your ass. You’re almost tempted to jump back onto the wall and ride the lightning for a second time, but common sense prevails.");
 			output("\n\nYour ass won’t be the key (or is that keyhole?) to this door.");
 			processTime(10);
@@ -961,12 +1081,12 @@ public function attemptPinkUnlock(x:int):void
 		if(pc.taint() < 33) 
 		{
 			output(". You slide off before you get any more turned on. Time is of the essence.");
-			pc.lust(2);
+			pc.changeLust(2);
 		}
 		else if(pc.taint() < 66) 
 		{
 			output(". You spend a few seconds lamely grinding yourself on the dildo before you realize that it’s not going to anything else. Blushing, you decide to move on.");
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 		else
 		{
@@ -1123,7 +1243,7 @@ public function weenUpADingleDanglehole(x:int):void
 	//Never opened a door
 	else
 	{
-		output("With a great deal of trepidation, you align your [pc.cock " + x + "] with the rubbery " + (black ? "black":"red") + " opening and gently nudge your [pc.cockHeadNoun " + x + "] inside. Infinitely smooth artificial material meets your tender organic flesh with surprising comfort, allowing you to slide in as smoothly as a lover’s vagina. It’s comfortable - almost too comfortable. The temperature is well above ambient. The material is snug without being restrictive. It caresses you, beckoning you with ardoer sufficient to shame a thirsty succubus.");
+		output("With a great deal of trepidation, you align your [pc.cock " + x + "] with the rubbery " + (black ? "black":"red") + " opening and gently nudge your [pc.cockHeadNoun " + x + "] inside. Infinitely smooth artificial material meets your tender organic flesh with surprising comfort, allowing you to slide in as smoothly as a lover’s vagina. It’s comfortable - almost too comfortable. The temperature is well above ambient. The material is snug without being restrictive. It caresses you, beckoning you with ardor sufficient to shame a thirsty succubus.");
 		output("\n\nYou enter the ‘keyhole’ fully" + (pc.hasKnot(x) ? ", firmly seating your [pc.knot " + x + "] in the process":"") + ".");
 	}
 
@@ -1153,13 +1273,17 @@ public function weenUpADingleDanglehole(x:int):void
 		var select:int = TFs[rand(TFs.length)];
 		
 		//TF texts here :3
-		//"Priapism”</i> rolled:
+		//"Priapism" rolled:
 		if(select == 1)
 		{
 			output("\n\nYou wipe a bead of sweat from your forehead and withdraw all " + num2Text(Math.floor(pc.cocks[x].cLength())) + " inches of tumescent " + (!pc.hasVagina() ? "maleness":"herminess") + " shocked at how hard - how perfectly firm you remain. Sure, sliding yourself into a hole felt good, but not so good that you’d keep raging a full minute after yanking it out. Did it do something to you? Did that high powered squeeze conceal something more insidious? You wait for two more minutes, not touching yourself, not thinking of anything erotic. No matter how much " + (!pc.isBimbo() ? "mental math":"time you spend mentally sing-songing your ABC’s") + ", your cock" + (pc.hasCocks() ? "s remain":" remains") + " fully erect, almost painfully so.");
 			if(!pc.isCrotchExposed()) output(" Wearing your [pc.crotchCovers] with " + (!pc.hasCocks() ? "a rager":"ragers") + " like this is going to be a problem...");
 			output("\n\n<b>You’ve been cursed with priapism!</b> A scan with your Codex determines that it should fade in eight hours or so, so you’ve got that going for you.");
+			// TIme-based priapism, ignore timer reduction from orgasms
 			pc.applyPriapism();
+			pc.setStatusValue("Priapism", 1, 1);
+			pc.setStatusMinutes("Priapism", (8*60));
+			pc.setStatusTooltip("Priapism", (pc.getStatusTooltip("Priapism") + " <b>The condition is also unaffected by orgasms.</b>"));
 			pc.taint(2);
 			//Queue event to remove bits
 			if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
@@ -1171,7 +1295,7 @@ public function weenUpADingleDanglehole(x:int):void
 			return;
 		}
 		//Biggus Boyo!
-		//Enlargement if under 16”</i> (mini), 20”</i> (normie), or 30”</i> (hung)
+		//Enlargement if under 16" (mini), 20" (normie), or 30" (hung)
 		else if(select == 2)
 		{
 			var gains:int = 1 + rand(2);
@@ -1196,7 +1320,7 @@ public function weenUpADingleDanglehole(x:int):void
 			output(", whether you wanted it or not.");
 			pc.cocks[x].cLengthRaw += gains;
 			pc.taint(2);
-			pc.lust(6);
+			pc.changeLust(6);
 			pc.libido(1);
 			processTime(10);
 			clearMenu();
@@ -1208,7 +1332,7 @@ public function weenUpADingleDanglehole(x:int):void
 		{
 			output("\n\nAs you drag your reluctant dick free from the picky prick-holster, you notice just how hard it got you, and you’re tempted to slam yourself back in. Alarms be damned, you could bang that wall-socket to at least one orgasm, maybe two or three if you were so determined. You’re about to do just that when you notice something odd about your [pc.cockNounSimple " + x + "] - the veins came out far darker than when you pushed yourself in. The aberrant hue is rapidly fading, but it’s clear that a recessed trap has had its way with your genitalia, <b>subtly tainted you</b> with mysterious, sluttifying compounds.");
 			pc.taint(5);
-			pc.lust(4);
+			pc.changeLust(4);
 			pc.libido(1);
 			processTime(10);
 			clearMenu();

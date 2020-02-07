@@ -17,6 +17,7 @@ package classes.GameData
 	import classes.Characters.SandWorm;
 	import classes.Characters.Shizuya;
 	import classes.Characters.StormguardMale;
+	import classes.Characters.ZaikaMilkThief;
 	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -773,9 +774,9 @@ package classes.GameData
 					if(npcShooter == "Mitzi" && rand(3) == 0) 
 					{
 						var mitziTexts:Array = [];
-						if(kGAMECLASS.mitzi.canLactate()) mitziTexts.push("The vibrations from firing " + weapon.description + " into " + target.getCombatName() + " release rivers of milk from Mitzi's straining nipples.");
+						if(kGAMECLASS.mitzi.canLactate()) mitziTexts.push("The vibrations from firing " + weapon.description + " into " + target.getCombatName() + " release rivers of milk from Mitzi’s straining nipples.");
 						if(kGAMECLASS.flags["MITZI_SOAKED"] != undefined) mitziTexts.push("Mitzi squirts <i>everywhere</i> while firing off " + weapon.description + " at " + target.getCombatName() + ".");;
-						mitziTexts.push("Mitzi's here to shoot " + weapon.description + " at " + target.getCombatName() + " and drink cum... and she's all out of cum!");
+						mitziTexts.push("Mitzi’s here to shoot " + weapon.description + " at " + target.getCombatName() + " and drink cum... and she’s all out of cum!");
 						mitziTexts.push(("Mitzi creams herself from the vibrations caused by unloading " + weapon.description + " into " + target.getCombatName() + "!"));
 						output(mitziTexts[rand(mitziTexts.length)]);
 					}
@@ -1535,9 +1536,12 @@ package classes.GameData
 		}
 		public static function applyGassed(target:Creature, tooltip:String = ""):void
 		{
-			target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
-			target.aimMod -= 5;
-			target.reflexesMod -= 5;
+			if(!target.hasStatusEffect("Gassed"))
+			{
+				target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
+				target.aimMod -= 5;
+				target.reflexesMod -= 5;
+			}
 			if(tooltip != "") target.setStatusTooltip("Gassed", tooltip);
 		}
 		public static function applyGrapple(target:Creature, chance:int = 30, apply:Boolean = false, tooltip:String = ""):void
@@ -1871,8 +1875,8 @@ package classes.GameData
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon() && !target.hasBlindImmunity())
 			{
 				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
-				else if (attacker is PlayerCharacter) output("<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>");
-				else output("<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
+				else if (attacker is PlayerCharacter) output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>");
+				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
 				applyBlind(target, 3);
 			}
@@ -2957,6 +2961,11 @@ package classes.GameData
 					}
 				}
 			}
+			if(target is ZaikaMilkThief)
+			{
+				if(!target.hasStatusEffect("MeleeHit")) target.createStatusEffect("MeleeHit");
+				return false;
+			}
 			return false;
 		}
 		//SHIP SPECIAL ATTACKS!
@@ -2982,3 +2991,4 @@ package classes.GameData
 	}
 
 }
+

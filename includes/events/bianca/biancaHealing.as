@@ -125,11 +125,8 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 		output("\n\nHer dainty hands and twinkling eyes are soon tracing across your [pc.skinFurScales] from top to bottom again, checking for bruises, lacerations, and damages of any kind. When her exploratory prods press on hidden soreness her ears twitch and she smiles apologetically, waiting a few seconds before drawing another pattern down your [pc.hips] and your [pc.legs].");
 		output("\n\nWith a mental note of all your problem areas, Bianca " + (inBooth ? "paces to the counter and collects a jar thick with labels" : "unzips a bag and reveals a thick jar"));
 		if (pc.HPQ() < 60) output(" and " + (inBooth ? "some bandages for the worse injuries" : "a roll of bandages"));
-		output(". She dons a pair of disposable gloves and rubs dollops of the warm paste to your bruises and cuts");
-		if (pc.HPQ() < 60) output(" then applies a clean bandage to the more grievous wounds");
-		output(".");
-		output("\n\nYou brace yourself for cold medicine as she dons a pair of disposable gloves and rubs the (thankfully) warm paste to your throbbing bruises and cuts");
-		if (pc.HPQ() < 60) output(" then wraps a clean cloth slathered in a pleasantly-cool fast-acting gel to more grievous and unclosed wounds");
+		output(". You brace yourself for cold medicine as she dons a pair of disposable gloves and rubs dollops of the (thankfully) warm paste to your throbbing bruises and cuts");
+		if (pc.HPQ() < 60) output(" then wraps a clean cloth slathered in the fast-acting gel to the more grievous and unclosed wounds");
 		output(".");
 		// PC under 50% HP
 		if (!inBooth && pc.HPQ() < 50)
@@ -349,11 +346,12 @@ public function biancaTreatmentSSTDFollowup(inBooth:Boolean):void
 	var cost:int = 350;
 	// PC has SSTD | Add-on to others if SSTD is present. SSTD is checked last.
 	output("\n\n<i>“[pc.name],”</i> Bianca huffs in a perturbed voice. Half-inquisitive and half-nervous, she claps her hands on her thighs; she bends low, quizzing your slightest tics down to individual electrical signals from your brain. Occasionally she gropes a part of your body, zeroing in on her suspicion with unyielding authority. When her eerily extreme examination resolves into truth, it leaves her with a lowset and sharply concerned expression.");
+	var sstdTotal:int = pc.sstdTotal();
 	// PC has Multiple SSTDs
-	if (pc.sstdTotal() > 1)
+	if (sstdTotal > 1)
 	{
 		output("\n\nQuite frankly, you’re a mess. The tall fox lays you down forcefully, feeling out your temperature and more. Pulling up her codex, she taps away frantically with one hand while guiding an attached, colorful loop around your [pc.hand]. Vibrant colors probe your veins, running an infallible diagnostic.");
-		output("\n\nWhatever result it gave certainly smacked her in the face - it was the equivalent to a ship flying out of the screen the way she reacted to it. <i>“[pc.name]!”</i> Bianca nearly yells, her eyes squinting and her cheeks twitching. <i>“You’ve contracted not one but " + num2Text(pc.sstdTotal()) + " sexually transmitted diseases! And worse,”</i> she puts her codex down and takes on a " + (inBooth ? "harsher tone" : "tone that makes you feel like a suspended student") + ", <i>“the unclassified microsurgeon suite in your body wasn’t able to handle " + (pc.sstdTotal() == 2 ? "either" : "any") + " of them.”</i>");
+		output("\n\nWhatever result it gave certainly smacked her in the face - it was the equivalent to a ship flying out of the screen the way she reacted to it. <i>“[pc.name]!”</i> Bianca nearly yells, her eyes squinting and her cheeks twitching. <i>“You’ve contracted not one but " + num2Text(sstdTotal) + " sexually transmitted diseases! And worse,”</i> she puts her codex down and takes on a " + (inBooth ? "harsher tone" : "tone that makes you feel like a suspended student") + ", <i>“the unclassified microsurgeon suite in your body wasn’t able to handle " + (sstdTotal == 2 ? "either" : "any") + " of them.”</i>");
 		output("\n\nShe can’t figure out whether to chide you further in the midst of her confusion.");
 		output("\n\n<i>“You need a cure, and I am willing to offer a further discount than what is available in the clinics: two-hundred fifty credits. Please, [pc.name], think of your health. You cannot go on like this!”</i>");
 		cost = 250;
@@ -399,12 +397,12 @@ public function biancaTreatmentSSTDFollowup(inBooth:Boolean):void
 	if (pc.credits >= cost)
 	{
 		output("\n\n<i>Will you spend " + cost + " credits to cure your sickness?</i>");
-		addButton(0, "Cure", biancaGetsYouFuckreadyButNotLikeThat, inBooth, "Cure", (cost == 250 ? "Spend 250 credits to cure multiple SSTDs." : "Spend 350 credits to cure your SSTD."));
+		addButton(0, "Cure", biancaGetsYouFuckreadyButNotLikeThat, inBooth, "Cure", (sstdTotal > 1 ? "Spend 250 credits to cure multiple SSTDs." : "Spend 350 credits to cure your SSTD."));
 	}
 	else
 	{
 		output("\n\nUnfortunately, even if you wanted to, you simply can’t afford this.");
-		addDisabledButton(0, "Cure");
+		addDisabledButton(0, "Cure", "Cure", "You cannot afford the medication.");
 	}
 
 	addButton(1, "No Cure", tellBiancaYouLikeYourSSTDs, inBooth, "Do Not Cure", "You’re going to have to deal with it.");
@@ -418,10 +416,11 @@ public function biancaGetsYouFuckreadyButNotLikeThat(inBooth:Boolean):void
 	author("William");
 	processTime(2+rand(2));
 
+	var sstdTotal:int = pc.sstdTotal();
 	if (inBooth)
 	{
 		output("Before you even finish agreeing, Bianca provides you three pills - white, pink, red - and a flask of water. You take what’s offered and gulp it down right away. A few minutes later, a gurgling sound ripples up from your belly, coursing upwards and colliding with your brain, sending out a broadcast of something <i>cleansing.</i> Seconds after, you feel perked up, the invisible weight of infection lifted.");
-		if (pc.sstdTotal() > 1) { }
+		if (sstdTotal > 1) { }
 		else if (pc.hasSSTD("Furpies", true)) output(" A low growl and a sudden realization of your former infatuation with furrier men and women signals the end of your Furpies Infection. Somehow it’s rather relieving to look at that kui-tan male in line and not think about becoming his live-in cock milker.");
 		else if (pc.hasSSTD("Locofever", true)) output(" The swampy heat in your crotch clears up as the fever breaks and your body thrusts out a layer of cold sweat. The bacterial lust wreaking havoc on your mind is expelled, and Bianca wipes your moistened brow with a wet towel.");
 		else if (pc.hasSSTD("Sneezing Tits", true)) output(" Your nose clears up in the most satisfyingly crisp way possible. Neither nasal passage is congested and now you feel no insistently creeping urge to sneeze. All you can do is inhale deeply and exhale happily.");
@@ -445,8 +444,12 @@ public function biancaGetsYouFuckreadyButNotLikeThat(inBooth:Boolean):void
 			addDisabledButton(1, "Treatment");
 		}
 	}
+	getSSTDPurgeFromBianca(sstdTotal);
+}
+public function getSSTDPurgeFromBianca(sstdTotal:int):void
+{
 	IncrementFlag("BIANCA_TREATMENT");
-	pc.credits -= (pc.sstdTotal() > 1 ? 250 : 350);
+	pc.credits -= (sstdTotal > 1 ? 250 : 350);
 	pc.removeSSTDs();
 }
 

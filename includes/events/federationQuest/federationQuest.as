@@ -1004,7 +1004,7 @@ public function fedQuestSquadVictory():void
 		output("You watch with a self-satisfied smirk as the last of the gold myr give in to their desires, joining the growing orgy on the floor. Over-stimulated myr are groping and kissing and fingering with lust-addled abandon. That they’re all sisters doesn’t seem to even phase them anymore: whatever discipline and reserve these soldiers had has been completely eroded by your sensual assault. The familiar scents of honey and sex start filling the air, corresponding to the moans of the defeated golds.");
 		output("\n\nThe way they’re looking at you, dark eyes full of need and desire, it would be so easy to just lose yourself in that orgiastic scene for a while...\n\n");
 		
-		pc.lust(33);
+		pc.changeLust(33);
 		addButton(0, "Join In", fedQuestOrgyJoin, undefined, "Join In", "Help yourself to a place in the gold myr orgy sprawling out around you. ");
 		addButton(1, "Leave", CombatManager.genericVictory, undefined, "", "");
 	}
@@ -1134,7 +1134,7 @@ public function fedQuestOrgyCock():void
 	output("\n\nAnother of the myr cups her cheeks and pulls your cocksleeve first into a kiss, then into her chest, urging her sister to suckle. More myr converge around the three of you, groping and kissing. Someone thrusts a breast into your face, and myrish nectar flows across your [pc.lips]. Someone’s hands grab your [pc.butt], and another myr licks your [pc.chest]. Other girls come up behind <i>them</i> and tend to their sister’s needs while you keep plowing that first juicy cunny.");
 	output("\n\nThe myr you’re fucking cums long before you do, completely inexperienced at taking dick and loving the new sensations you’re helping her experience. The moment she hits her climax, though, one of her sisters rolls her off your cock and takes her place, thrusting her own abdomen down on your shaft. Well, one rebel’s as good as the next, you guess -- you thrust deep into her virginal passage, making that honey-flushed rump jiggle with the impacts.");
 	
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	processTime(30);
 	addButton(0, "Next", fedQuestOrgyCock2, undefined, "", "");
 }
@@ -2588,7 +2588,7 @@ public function fedQuestResolutionCaptured3():void
 	output("\n\nLooks like your job is done here.");
 	pc.createStatusEffect("Lieve Disabled", 0, 0, 0, 0, true, "", "", false, 60*3);
 	processTime(60*2+rand(16));
-	pc.lust(pc.lustMin(), true);
+	pc.changeLust(pc.lustMin(), true);
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }

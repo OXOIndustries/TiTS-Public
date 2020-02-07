@@ -58,7 +58,34 @@ public function canadiaGloryhole():Boolean
 		addButton(0,"Use Hole",mountGloryhole,undefined,"Use the gloryhole, and the person working inside.")
 	}
 	vendingMachineButton(1, "XXX");
+	if(flags["KALLY_POSTERED"] == undefined)
+	{
+		output("\n\nOccupying an otherwise bare wall next to the door, is a poster of the bar-tending Tanuki. Apparently she's looking for new hires! You could swipe it to decorate your own vessel with if you wished, though the double-sided stickytape holding it to the wall might make that a tricky proposition. How steady are your fingers?");
+		addButton(2,"Take Poster",takeKallyPoster,undefined,"Take Poster","Stealing this is going to require steady hands. Are you up to the challenge?");
+	}
 	return false;
+}
+public function takeKallyPoster():void
+{
+	clearOutput();
+	if(pc.aim()/2+rand(20)+1 > 30)
+	{
+		showName("\nYOINK!");
+		pc.addMischievous(2);
+		output("With hands steady enough to bullseye a swamp rat from 100 meters out with a G-17, you carefully separate the poster of the curvaceous bartender from the wall without any damage. Score!\n\nOh, and the back has information on the artists - Tsuda's lines and Tisinrei's colors!\n\n");
+		processTime(5);
+		quickLoot(new KallyPoster());
+		flags["KALLY_POSTERED"] = 1;
+	}
+	else
+	{
+		showName("\nDISASTER!");
+		output("No matter how careful you try to be, your hands are just too jittery! The poster rips in four different places before you give up and let it dangle from the wall like a cowboy's fringe.");
+		processTime(5);
+		flags["KALLY_POSTERED"] = -1;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 public function gloryholeGenerate():void

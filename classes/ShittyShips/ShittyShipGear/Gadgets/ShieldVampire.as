@@ -103,8 +103,8 @@
 					if (dr.shieldDamage > 0) 
 					{
 						var shieldHeal:Number = Math.ceil(dr.shieldDamage);
-						output(" (<b>S:</b> +<b><span class='shield'>" + shieldHeal + "</span></b>)");
-						usingCreature.shields(shieldHeal);
+						//output(" (<b>S:</b> +<b><span class='shield'>" + shieldHeal + "</span></b>)");
+						usingCreature.changeShields(shieldHeal);
 					}
 				}
 				//Fail!

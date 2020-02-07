@@ -73,7 +73,7 @@ package classes.Items.Transformatives {
 					if(pc.totalVaginas() > 1) output("s");
 					output(" vibrating in anticipation of pushing out babies at a faster rate. The sensation is so powerful that it leaves you breathless and a little randy.");
 					pc.pregnancyIncubationBonusMotherRaw = 2.5;
-					pc.lust(10);
+					pc.changeLust(10);
 				}
 				//Pregspeed -> 3x
 				else if(pc.pregnancyIncubationBonusMotherRaw < 3)
@@ -128,7 +128,6 @@ package classes.Items.Transformatives {
 				}
 				//Libido gain - only if pregspeed boost
 				pc.slowStatGain("libido",15);
-				pc.lust(15);
 				//Low lib:
 				if(pc.libido() < 20) output("\n\nThe aftermath leaves you a little aroused, evidenced by your increased moistness.");
 				//Lowmed lib:
@@ -161,6 +160,7 @@ package classes.Items.Transformatives {
 					output(" that needs to be constantly creampied... It isn’t until you orgasm that you realize you ought not to be idly diddling yourself. Whoops!");
 					pc.orgasm();
 				}
+				if(pc.libido() < 80) pc.changeLust(15);
 			}
 			else {	
 				output(target.capitalA + target.short + " consumes the motherhusk to no effect.");

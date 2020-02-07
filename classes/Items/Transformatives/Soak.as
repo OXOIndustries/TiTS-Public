@@ -254,7 +254,7 @@ package classes.Items.Transformatives
 			output("it’s awesome! Right now, you’re surfing on a wave of euphoria that makes the rest of your life pale in comparison, and the knowledge that the effects will eventually wear off causes a sudden sense of foreboding. You wonder if you’ll ever be able to live without Soak. But this worry too is soon forgotten, replaced by some dirty fantasy.");
 			applySoak(pc,8*60);
 			kGAMECLASS.processTime(1);
-			pc.lust(5);
+			pc.changeLust(5);
 			clearMenu();
 			addButton(0,"Next",soakEffectsSceneWheee2,pc);
 		}
@@ -284,7 +284,7 @@ package classes.Items.Transformatives
 			if(pc.hasCock()) output(" Setting the Codex to mirror mode and pulling up your cock, your suspicions are confirmed, prompting an excited giggle.");
 			else output(" After a quick glance, your suspicions are confirmed, prompting an excited giggle.");
 			kGAMECLASS.processTime(2);
-			pc.lust(5);
+			pc.changeLust(5);
 			clearMenu();
 			addButton(0,"Next",soakEffectsSceneWheee3,pc);
 		}
@@ -308,7 +308,7 @@ package classes.Items.Transformatives
 			output("\n\nEven if you wanted to resist, this takes you far past the limit of your willpower, and you bring a hand down to gently massage your [pc.clits], encouraging even more growth. " + (pc.totalClits() == 1 ? "It":"Each of them") + " must have swollen almost half an inch larger by now. The touch causes you to tremble with ecstasy, your legs weakening momentarily. As soon as you recover, your other hand moves of its own accord to the slit of your [pc.vagina " + x + "], introducing a finger all the way in with needy haste, knuckles pressing against your swollen pussylips in a very gratifying manner.");
 			output("\n\nThis new sensation is too much, and you immediately freeze in an attempt not to cum. The slightest stimulus could set off your orgasm, but you want to save it for the <i>real</i> thing. First, you release your [pc.clits], then you carefully pull the finger out of your [pc.vagina " + x + "], trying your darndest not to think of cock (and failing). Still, you manage to stave off the impending climax.");
 			kGAMECLASS.processTime(2);
-			pc.lust(5);
+			pc.changeLust(5);
 			clearMenu();
 			addButton(0,"Next",soakEffectsSceneWheee4,pc);
 		}
@@ -360,7 +360,7 @@ package classes.Items.Transformatives
 			{ // successful edging
 				output("\n\nThe small accident almost sends you tumbling over the edge, but you freeze your hands and manage not to cum, somehow. After this close call, you decide that you’ve edged yourself enough, now all that’s left to do is find a sexy partner to help sate your pent-up lust! Just thinking about it causes you to giggle with glee!");
 				// maximize Lust;
-				pc.lust(pc.lustMax()*3);
+				pc.changeLust(pc.lustMax()*3);
 				// apply Soak status effect with a duration of 8h;
 				//FEN NOTE: DOne earlier.
 				// pass 45 min (after applying status effect);
@@ -398,7 +398,7 @@ package classes.Items.Transformatives
 			}
 			kGAMECLASS.processTime(2);
 			applySoak(pc,8*60);
-			pc.lust(5);
+			pc.changeLust(5);
 			clearMenu();
 			addButton(0,"Next",soakOverdose2,pc);
 		}
@@ -424,7 +424,7 @@ package classes.Items.Transformatives
 			}
 			else output("\n\nBy this point, you are just following blind instinct. You continue to finger yourself with debauched abandon, the squishing and slapping sounds only eclipsed by the noises coming out of your throat in between ragged breaths - your shameless, needy moans would outclass any slut right now.");
 			kGAMECLASS.processTime(2);
-			pc.lust(25);
+			pc.changeLust(25);
 			clearMenu();
 			addButton(0,"Next",soakOverdose3,pc);
 		}
@@ -444,7 +444,7 @@ package classes.Items.Transformatives
 			if(pc.hasCock()) output(" Suddenly, [pc.eachCock] fires the rest of its own load without even being touched, painting your [pc.chest] and [pc.face] with long ropes of [pc.cumNoun].");
 			output(" And yet, the blissful sensations coursing through your groin don’t seem anywhere near the end. There is always <i>more</i> coming out! The puddle of fluids under your [pc.footOrFeet] continues to expand as [pc.eachVagina] releases a steady flow of [pc.girlCum].");
 			kGAMECLASS.processTime(2);
-			pc.lust(25);
+			pc.changeLust(25);
 			clearMenu();
 			addButton(0,"Next",soakOverdose4,pc);
 		}
@@ -488,7 +488,7 @@ package classes.Items.Transformatives
 			// OR, if already under Deep Heat renew the duration to 8h1min;
 			// rest for 1 hour (after applying statuses);
 			// set Lust to 80;
-			if(pc.lust() < 80) pc.lust(80-pc.lust());
+			if(pc.lust() < 80) pc.changeLust(80-pc.lust());
 			// check for bad end (see below);
 			// if the bad end triggers, create button: Next (goes to bad end);
 			var ODNum:Number = 0;
@@ -749,7 +749,7 @@ package classes.Items.Transformatives
 					if(pc.fertilityRaw > 5) pc.fertilityRaw = 5;
 					output("\n\nYou’re about to resume your business, when suddenly your Codex beeps a medical notification: <i>Warning, new ovulation detected. Ovule development speed above previous baseline.</i> After skimming through the detailed information, you surmise your" + (pc.hasCock() ? " feminine" : "") + " reproductive system is working more effectively than before to ensure a successful insemination. <b>You have become more fertile!</b>");
 				}
-				else if(pc.pregnancyIncubationBonusMother() < 10)
+				else if(pc.pregnancyIncubationBonusMotherRaw < 10)
 				{
 					soakChanges += 1;
 					pc.pregnancyIncubationBonusMotherRaw += 0.5;

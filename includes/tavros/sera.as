@@ -1088,7 +1088,7 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	output(" and started eating me out, you wouldn’t do it? You’d stand up for yourself and show me what real pleasure was?”</i> Sera laughs and points at the floor. <i>“Down " + pc.mf("boy","girl") + ". Go on.”</i>");
 	output("\n\nYou ball your fists and... get down, [pc.cocks] getting harder with each passing second. If you didn’t, she’d just shoot you down anyway. That’s how you justify it to yourself, anyway.");
 	output("\n\n<i>“I knew it. Well, start licking, and I’ll see about starting that stroking I promised. A dick that mountainous does deserve a chance to go off.”</i> Sera hefts her weighty balls out of the way to expose a glistening, cerulean slit. <i>“Come and get it.”</i>");
-	output("\n\nYou do, eagerly and immediately. You bury your nose in her box and set to work, kissing and licking her outer lips to get her worked up. Your [pc.cockBiggest] swells even bigger, ready for the promised strokes, but nothing happens. Just when you’re about to pull away, you feel something long looping around around your girthy tool. So much blood surges into your organ in response that you feel like you’re close to bursting. The cunt-muffled moan that emerges from you pleases Sera if the way she’s grabbing your head and pressing it against her entrance is any indication.");
+	output("\n\nYou do, eagerly and immediately. You bury your nose in her box and set to work, kissing and licking her outer lips to get her worked up. Your [pc.cockBiggest] swells even bigger, ready for the promised strokes, but nothing happens. Just when you’re about to pull away, you feel something long looping around your girthy tool. So much blood surges into your organ in response that you feel like you’re close to bursting. The cunt-muffled moan that emerges from you pleases Sera if the way she’s grabbing your head and pressing it against her entrance is any indication.");
 	output("\n\n<i>“That’s a good, bitch. Lick that cunt. Show it why a good tongue is better than a big dick any day of the week.”</i> She nudges your pre-leaking boner with a toe. <i>“Silly " + pc.mf("boy","girl") + ". Now, about that stroking....”</i>");
 	output("\n\nHer tail unwinds, releasing your length. You keep licking, figuring she’s going to start stroking. The truth turns out to far, far more unusual than that. Her spaded tail-tip appears on your leaking [pc.cockHeadBiggest], rubbing back and forth. You feel its smooth surface splitting apart, opening up. It exposes a veiny shaft that can’t be more than a few inches long. It doesn’t feel overly girthy either, but when she aligns it with your pre-pissing cock-slit, you realize that it’s more than thick enough for what she intends.");
 	output("\n\nYou pull away to protest, only to have your face rammed back into the demonic cleft with a double-handed grip. The cock-tail follows her hands’ example and forcefully plows your [pc.cockBiggest] wide open. Luckily, you were horny enough that you’re full of pre-cum. The copious cock-juice makes the dick-on-dick penetration far less painful than you anticipated. In fact... feeling her sliding deeper feels kind of nice. Your [pc.cockBiggest] lurches approvingly.");
@@ -1427,12 +1427,10 @@ public function releaseCuntTailOnSeraCleanup():void
 	//Time forward an hour
 	processTime(50 + rand(11));
 	pc.loadInMouth(chars["COCKVINE"]);
-	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
-	pc.HP(-5);
-	pc.energy(-30);
-
 	output("You lean against the wall outside the Dark Chrysalis a while later, gathering yourself. Your mouth is absolutely caked with the musky, slightly herbal tang of plant cum, and your [pc.ass] and back sting mightily from the whip welts that have been enthusiastically applied there. You can’t help but look venomously down at your [pc.cockTail], which is still throbbing with post-coital bliss. Next time, you swear to yourself. Next time, you’ll control it.");
-	
+	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
+	pc.changeHP(-5);
+	pc.changeEnergy(-30);
 	currentLocation = "9018";
 	
 	clearMenu();

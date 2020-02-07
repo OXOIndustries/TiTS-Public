@@ -89,8 +89,7 @@
 				this.addFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
 
 				var healing:Number = 3400 + rand(200);
-				usingCreature.HP(healing);
-				
+							
 				if(usingCreature.hasPerk("PCs")) 
 				{
 					clearOutput();
@@ -100,7 +99,8 @@
 				{
 					output("Swarms of spider-like repair bots scuttle across the surface of " + (usingCreature.getCombatName()) + ", patching damage.");
 				}
-				output(" (<b>H:</b> +<b><span class='hp'>" + healing + "</span></b>)");
+				//output(" (<b>H:</b> +<b><span class='hp'>" + healing + "</span></b>)");
+				usingCreature.changeHP(healing);
 			}
 			return false;
 		}

@@ -333,7 +333,7 @@ package classes.Items.Transformatives
 			if (target.elasticity < elasticityLimit)
 			{
 				output("\n\nYou shudder violently as waves of pleasure suddenly shoot up in your [pc.vagOrAss]. You guide your fingers inside, finding that <b>you can stretch your insides more than ever before without discomfort</b> despite unaltered tightness.");
-				target.lust(10 + rand(5));
+				target.changeLust(10 + rand(5));
 				target.elasticity += 1;
 				if (target.elasticity > elasticityLimit) target.elasticity = elasticityLimit;
 				changes++;
@@ -358,7 +358,7 @@ package classes.Items.Transformatives
 				}
 				output(kGAMECLASS.formatList() + "</b> than it was before!");
 				
-				target.lust(10+rand(4));
+				target.changeLust(10+rand(4));
 				changes++;
 			}
 			
@@ -368,7 +368,7 @@ package classes.Items.Transformatives
 				output("\n\nYou feel something odd in your joints. After some experimental stretching you’ve found yourself able to fold in entirely unnatural ways - you can effortlessly touch the base of your tail with your nose, folding both forward and backward alike! You already have kinky ideas of putting this into some use.");
 				output("\n\n(<b>Perk Gained: Flexibility</b> - You can bend and stretch more than most other creatures.)");
 				target.createPerk("Flexibility", 0, 0, 0, 0, "You can bend and stretch more easily than normal.");
-				target.lust(20+rand(10));
+				target.changeLust(20+rand(10));
 				changes++;
 			}
 			
@@ -487,7 +487,7 @@ package classes.Items.Transformatives
 					}
 					output(kGAMECLASS.formatList() + "</b> than it was before!");
 					
-					target.lust(10 + rand(4));
+					target.changeLust(10 + rand(4));
 					changes++;
 				}
 				
@@ -603,7 +603,7 @@ package classes.Items.Transformatives
 							output(" Finally, a sheath begins forming around your cock’s base, tightening and pulling your cock inside its depths.");
 						
 						output("\n\nYou spend a few moments collecting yourself, cleaning the spunk off your <b>" + (target.cocks[x].cType != GLOBAL.TYPE_FELINE ? "new" : "improved") + " kitty pecker</b>.");
-						target.lust(20 + rand(20));
+						target.changeLust(20 + rand(20));
 						changes++;
 						// target.shiftCock(x,GLOBAL.TYPE_FELINE); // not using it since it default function is for kaithrits
 						target.cocks[x].cType = GLOBAL.TYPE_FELINE;
@@ -633,7 +633,7 @@ package classes.Items.Transformatives
 						output(num2Text(int(target.cocks[x].cLength())) + "</b> inches. It looks like it was small even for a cat...");
 					}
 					changes++;
-					target.lust(10 + rand(5));
+					target.changeLust(10 + rand(5));
 				}
 			}
 			
@@ -681,7 +681,7 @@ package classes.Items.Transformatives
 			else if(!target.hasStatusEffect("Uniball") && target.balls > 0)
 			{
 				output("\n\nYou gasp and bunch your fists as what feels like a soft vice clamps down on your balls, pushing them upwards and inwards. It’s not painful exactly but whatever is happening to them is intense enough for sweat to stand out on your brow. When the sensation dissipates somewhat, you slide a hand downstairs uncertainly. <b>You’ve grown a tight-fitting pouch</b> which holds your [pc.balls] up to the back of your thighs.");
-				target.lust(10);
+				target.changeLust(10);
 				target.createStatusEffect("Uniball", 0, 0, 0, 0, true, "", "", false, 0);
 				changes++;
 			}
@@ -1215,7 +1215,7 @@ package classes.Items.Transformatives
 					}
 					output(kGAMECLASS.formatList() + ".");
 				}
-				target.lust(10 + rand(10));
+				target.changeLust(10 + rand(10));
 				changes++;
 			}
 			

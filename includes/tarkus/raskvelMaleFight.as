@@ -907,6 +907,7 @@ public function consensualGangBang():void
 	output(" in response to his energetic thrusting. You moan happily around the big, purple cock in your mouth, spreading your tongue along its sleek underside, allowing the pounding you’re taking from behind do all the forward work, and are rewarded a moment later when the raskvel clutches your [pc.hair] reactively and groans in exultant orgasm, shooting a thick load down your throat. The other two last a little longer and you float blissfully on a symphony of ecstatic male gasps and exultations, gratified by your ability to occupy three youthful fucks at once, until your tightening hand and [pc.vagOrAss] finally forces them over the edge, making them pulse their last into and onto you.");
 
 	output("\n\nThey spoon into you once they’re all done, sleek scales padding your [pc.butt], [pc.boobs] and [pc.legOrLegs], just one big pile of mutually satisfied, sticky flesh enjoying the afterglow.");
+
 	output("\n\n<i>“One of our better break times that,”</i> murmurs one.");
 	output("\n\n<i>“You’re a hell of a ride, offworlder,”</i> says another, heartfelt. <i>“Makes me want to get off this rock and see if you’re all as good as that.”</i>");
 
@@ -914,11 +915,13 @@ public function consensualGangBang():void
 	processTime(65);
 	for(var i:int = 0; i < 3; i++)
 	{
+		pc.loadInMouth(enemy);
 		if(pc.hasVagina())
 		{
 			for(var v:int = 0; v < pc.vaginas.length; v++) { pc.loadInCunt(enemy, v); }
 		}
-		else enemy.loadInAss(pc);
+		else pc.loadInAss(enemy);
+		pc.applyCumSoaked();
 	}
 	pc.orgasm();
 	pc.orgasm();
@@ -1454,9 +1457,12 @@ public function loseToRaskvelAndGetGangBangued():void
 		output("\n\n<i>“You’re probably wondering why we haven’t mistaken you for a raskvel, am I right offworlder?”</i> the biggest one laughs");
 		if(pc.isCrotchGarbed()) output(" as he busily rips off your [pc.lowerGarments]");
 		output(". <i>“It’s just, oh, everything about you. The way you walk, how you hold yourself, the manner with which you speak to us. You’re a tourist, aren’t you? Thought the way we look was so cute you had to be it, right? But being raskvel means coping with a lot of urges. Constant urges. I don’t think I have to give you the aphro, you know exactly what I’m talking about.”</i> It’s true; the jostling of brawny, familiar flesh on yours is filling you with inadvertent, irrepressible desire, your ");
-		if(pc.totalVaginas() == 1) output("pussy");
-		else output("pussies");
-		output(" oozing excitement, and your");
+		if(pc.hasVagina())
+		{
+			if(pc.totalVaginas() == 1) output("pussy");
+			else output("pussies");
+			output(" oozing excitement, and your");
+		}
 		if(pc.cockTotal() > 0) 
 		{
 			output(" cock");
@@ -1597,11 +1603,13 @@ public function loseToRaskvelAndGetGangBangued():void
 	processTime(55);
 	for(var i:int = 0; i < 3; i++)
 	{
+		pc.loadInMouth(enemy);
 		if(pc.hasVagina())
 		{
 			for(var v:int = 0; v < pc.vaginas.length; v++) { pc.loadInCunt(enemy, v); }
 		}
 		else enemy.loadInAss(pc);
+		pc.applyCumSoaked();
 	}
 	pc.orgasm();
 	CombatManager.genericLoss();

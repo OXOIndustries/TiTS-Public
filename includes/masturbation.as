@@ -522,7 +522,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	}
 	if(pc.hasDildo())
 	{
-		fap new FapCommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Dildo";
 		fap.ttHeader = "Dildo";
 		fap.ttBody = "Make use of a dildo to please yourself.";
@@ -775,8 +775,8 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 				if(pc.hasCock()) output("jacking off like wild.");
 				else if(pc.hasVagina()) output("grinding your [pc.vaginas] like wild.");
 				else output("playing with yourself like some kind of wild animal.");
-				pc.lust(5);
 				output(" Fuck! Now you’re even hornier.");
+				pc.changeLust(5);
 			}
 			else 
 			{
@@ -1621,7 +1621,7 @@ public function milkturbation():void
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
 		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.milkColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
-		pc.lust(5 + rand(3));
+		pc.changeLust(5 + rand(3));
 		pc.boostLactation(1);
 	}
 	//Milk Success!
@@ -1760,7 +1760,7 @@ public function milkturbation():void
 		if(!orgasmed && orgasmOdds <= 20)
 		{
 			output("\n\nSlowing to a trickle as your supply exhausts itself, your " + possessive(pc.chestDesc()) + " flow finally gives up in spite of your relentless tugging. You’ve milked out as much as you can by hand, leaving yourself with sore, glossy nipples and a moistened front. Tending to such a sensitive area has left you with a certain residual warmth in your [pc.crotch]");
-			pc.lust(10 + rand(4));
+			pc.changeLust(10 + rand(4));
 			if(pc.lust() < pc.lustMax()) output(", but it’s not unmanageable.");
 			else {
 				output(", <b>and you’re going to have to masturbate immediately if you want to have any chance of thinking straight in the near future.</b>");
@@ -3424,7 +3424,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(arg == "Mitzi") 
 	{
 		output("\n\nOf course, your indiscriminate licking lights a fire in your loins. Mitzi wasn’t kidding about the aphrodisiacs.");
-		pc.lust(100);
+		pc.changeLust(100);
 	}
 	output("\n\nGrinning to yourself, you ");
 	if(!pc.isCrotchExposed()) output("slip out of your clothes");
@@ -4961,16 +4961,24 @@ public function setupDildoFap(dildy:ItemSlotClass):void
 //Dildonics... the art of fucking your own worthless ass on a plastic dick.
 public function useDildoOnPussy(x:int):void
 {
+	var dildo:ItemSlotClass = chars["CARL"].inventory[chars["CARL"].inventory.length-1];
+	//Savicite Dildo does its own thing:
+	if(dildo is DildoSavicite)
+	{
+		saviciteDildoUsings(x);
+		return;
+	}
 	//Force passthru for anal!
 	if(x < 0)
 	{
 		analDildoFappins(x);
 		return;
 	}
+	
+	//Else continue as normies
 	clearOutput();
 	showName("USING:\nDILDO");
 	author("Fenoxo");
-	var dildo:ItemSlotClass = chars["CARL"].inventory[chars["CARL"].inventory.length-1];
 	var cock:CockClass = (dildo as Dildo).cock();
 	var material:String = (dildo as Dildo).material;
 	var timesUsed:Number = (dildo as Dildo).timesUsed;
@@ -5378,10 +5386,17 @@ public function useDildoOnPussy(x:int):void
 
 public function analDildoFappins(x:int):void
 {
+	var dildo:ItemSlotClass = chars["CARL"].inventory[chars["CARL"].inventory.length-1];
+	//Savicite Dildo does its own thing:
+	if(dildo is DildoSavicite)
+	{
+		saviciteDildoUsings(x);
+		return;
+	}
 	clearOutput();
 	showName("USING:\nDILDO");
 	author("Fenoxo");
-	var dildo:ItemSlotClass = chars["CARL"].inventory[chars["CARL"].inventory.length-1];
+	
 	var cock:CockClass = (dildo as Dildo).cock();
 	var material:String = (dildo as Dildo).material;
 	var timesUsed:Number = (dildo as Dildo).timesUsed;
@@ -5599,6 +5614,167 @@ public function analDildoFappins(x:int):void
 	pc.orgasm();
 	if(cumQ > 0) pc.loadInAss(cockSack);
 	(dildo as Dildo).timesUsed++;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Steele fucks themselves with the dildo, either vaginally or anally, their stimulation enhanced by the lust-inducing energies emanating from the savicite.
+//Tooltip, under Masturbation menu, Ship or Private: “SavDildo”, “Spear yourself on the Korgonne cock-shaped savicite dildo. With the glowing green mineral’s lust-inducing properties, you probably won’t stop until you’re thoroughly stretched by the crystalline knot.”
+//Steele takes out the Savicite Dildo, and decides where they want to take it anally or vaginally, or put it back in their inventory
+public function saviciteDildoUsings(x:int):void
+{
+	clearOutput();
+	showName("SAVICITE\nDILDO");
+	author("Athena+Fenoxo");
+	//[Savicite Dildo Masturbation] 
+
+	output("After getting yourself comfortable, you take out the savicite dildo from your bag. You can feel ");
+	//If PC has vagina and crotch is covered:
+	if(pc.hasVagina())
+	{
+		output("moisture beading from your [pc.vaginas], ");
+		if(!pc.isCrotchExposed()) output("dampening your [pc.crotchCoverUnder]");
+		else output("dripping down your [pc.thighs]");
+	}
+	if(pc.isHerm()) output(", and ");
+	if(pc.hasCock())
+	{
+		output("your [pc.cocks] jump" + (!pc.hasCocks() ? "s":"") + " to attention");
+		if(!pc.isCrotchExposed()) output(", creating a noticeable bulge in your [pc.crotchCover]");
+	}
+	if(!pc.hasGenitals()) output("a tingling sensation in your [pc.crotch] and [pc.asshole]");
+	output(" as you gently fondle the smooth, vivid green surface of the crystalline canine faux-cock. You bite your [pc.lipChaste] at the thought of taking its glowing emerald shaft all the way to the knot, the psionic energies radiating out of this otherworldly sex toy amplifying your lustful desires with each passing second.");
+
+	output("\n\nQuickly, ");
+	if(!pc.isCrotchExposed()) output("you take off your [pc.crotchCovers], planting");
+	else if(!pc.isChestExposed()) output("you strip out of your [pc.chestCovers], planting");
+	else output("you plant");
+	output(" yourself back down on the ground with the personal pleasure toy in hand");
+	if(flags["SAVICITE_DILDO_USES"] == undefined) output(", perverted fantasies flooding your mind while you contemplate the unique possibilities this lust-inducing space rock holds. Every square inch of [pc.skinFurScalesNoun] that makes contact with the savicite sends waves of orgasmic pleasure rocketing through your body. What would happen if it touched something more sensitive?");
+	else output(", perverse memories flooding your mind while you recall the possibilities this lust-inducing space rock holds. Every square inch that it contacts lights up with pleasure and desire. You can scarcely hold yourself back from jamming it somewhere more sensitive this very moment!");
+
+	output("\n\nYou begin rubbing the tapered tip of the canine psuedo-cock in a circle around the ");
+	if(pc.hasLipples()) output("sensitive edges of your mouthy-nipple");
+	else output("areola of your [pc.nipple]");
+	output(", air flooding your lungs as the warm, lustrous mineral does its work. ");
+	//If PC is lactating:
+	if(pc.isLactating()) output("Some of your [pc.milkNoun] leaks out onto your [pc.chest], getting smeared around by the dildo like a [pc.milkVisc] brush, painting them [pc.milkColor] before you clean it with your [pc.tongue]. ");
+	output("It doesn’t take long before you’ve adjusted to the stimulation, and you take to probing one nipple and then the other, savouring the psionic sensations coursing through your [pc.fullChest].");
+	//If largest breast size rating is 3 or higher:
+	var tidSize:Number = pc.biggestTitSize();
+	if(tidSize >= 3) 
+	{
+		output(" Eventually, you lean back and balance the dildo between your cleavage, ");
+		//If largest breast size is 8 or higher:
+		if(tidSize >= 8) output("completely enveloping it inside your [pc.biggestBreastDescript] while ");
+		output("the bulbous knot rolling across your [pc.breastCupSize]s, imagining yourself titfucking an invisible korgonne partner as you slide the shaft up and down.");
+	}
+	else output(" Playfully, you begin to imagine your dildo belonging to an invisible korgonne, rubbing and tweaking your [pc.nipples] as your mind’s eye tries to conjure up their fluffy dog-like face.");
+
+	output("\n\nAs your lust-addled mind wanders, your hand slips down to your ");
+	if(pc.hasVagina()) output("[pc.vaginas], slowly rubbing a finger through your moistened folds until you subconsciously pinch your [pc.clits],");
+	//If PC has penis:
+	else if(pc.hasCock()) output("throbbing [pc.cocks], rubbing your fingers along the shaft until you roughly jerk the overstimulated [pc.cockHeads],");
+	else output("[pc.asshole], rubbing a finger gently around the rim until a spike of pleasure makes your [pc.hips] jerk,");
+	output(" sending you hurtling back to reality. Amidst your newfound lucidity, you finally realize how long you had ignored your sorely neglected " + (pc.hasGenitals() ? "loins":"heiny") + ".");
+	output(" To think, you’d feel such powerful sensations just from skin contact! Licking your [pc.lipsChaste], you slide this shaft down along your [pc.belly], basking in the radiant glow of the dildo before rubbing it along the inside of your [pc.thigh]. It tingles as you massage it with the tapered green tip, only to veer upwards and over toward your [pc.butt]. You gingerly rub the shaft along both of your ass-cheeks, one at a time, kneading the knot into the small of your back. If this thing had a vibrator, you’d no doubt be giving yourself a heavenly massage right now, yet the sensations racking your body assure you the savicite’s lusty glow is far more potent than any vibrator could hope to be.");
+
+	if(tidSize >= 3) output("\n\nYour mind wanders back to your invisible lover,");
+	else output("\n\nYour mind floods with fantasies of invisible lovers,");
+	output(" and you line the tip with your mouth as if you were about to give them a blowjob. As soon as your tongue touches the tip, you see your [pc.face] faintly reflected on the dildo’s sleek surface, your [pc.eyes] peering back at you like glowing emeralds as you stare into its lustrous surface...any doubts or hesitations slowly leave your mind as your floodgates finally burst. Almost instinctively, you begin sucking on the tip, polishing the underside with your [pc.tongue] until you swear you could practically taste your illusory lover’s pre-cum. You shove the tip deep into the inside of your cheeks, focusing on the pleasure flowing through your loins as the vision becomes clearer. All you want is to make this psuedo-cock cum... cum... CUM!");
+
+	output("\n\nAs jolts of pleasure from above and below rock your body, you take a deep breath and shove the dildo all the way into your mouth until you’re kissing the knot with your [pc.lips], concentrating on the mental image of your throat bulging as they empty their balls into your mouth. Obviously, there’s no real cum to swallow, yet you feel yourself gulping feverishly, anyways. It seems you can’t help but react like a well-trained cumslut, ");
+	if(!pc.isBimbo() && !pc.isCumSlut()) output("though you’re too lust-rattled to determine if this is normal for you, or if the psionic energy emanating from the savicite has somehow overpowered you. ");
+	else if(pc.isBimbo()) output("which you sort of are when you think about. At moments like this, when all you can think about is wrapping yourself around a hard dick, you feel more you than ever.");
+	else output("though you sort of are in some ways. Cum drinking isn't exactly a strange idea; desiring it even more than usual is entirely too pleasant - addictive even.");
+	output(" As you pull the dildo out of your mouth, you feel one more shockwave travel down your body");
+	if(pc.hasGenitals())
+	{
+		output(", until you look down and realize that your " + (pc.legCount > 2 ? "underside":"lap") + " is absolutely drenched");
+	}
+	output("! Who knows how many times you came during your lust-drunk stupor? " + (pc.isBimbo() ? "Lots, you hope! ":"") + "Well, as one hand idly");
+	if(pc.hasVagina()) output(" fiddles with your [pc.cunts]");
+	else if(pc.hasCock()) output(" caresses your [pc.cocks]");
+	else output(" circles the rim of your [pc.asshole]");
+	output(" and the other tightly grips the silvery base of the dildo, you know: it won’t be the last. It’s time to shove this erotic emerald deep inside you, where it belongs.");
+
+	output("\n\nYour heart skips a beat as soon as the thought of shoving this perfectly crafted canine pseudo-cock up your [pc.vagOrAss " + x + "] crosses your mind.");
+	//If PC has a penis:
+	if(pc.hasCock())
+	{
+		output(" You drag the shaft of the dildo along your cum-slick [pc.cocks], " + (pc.isHerm() ? "before sliding it along the lips of your [pc.vaginas], ":"") + "thoroughly coating it with your natural lubricant for the knotting to come. You even give the tip a sultry lick, just to be sure, getting a sampling of your ");
+		if(pc.isHerm()) output("mixed-juice cocktail");
+		else output("[pc.cumFlavor] dick-juices");
+		output(" in the process.");
+	}
+	//if PC has a vagina and no penis:
+	else if(pc.hasVagina()) output(" You drag the shaft of the dildo along your [pc.girlCumNoun]-slick thighs and between the folds of your labia, trying to get as much lubrication as you can so you’re ready for the knotting to come. You even give the tip a sultry lick, just to be sure, getting a sampling of your [pc.girlCumFlavor] " + (pc.libido() < 50 ? "feminine":"cunt") + " juices in the process.");
+	else output(" Giving the spit-slick dildo an extra lick for good measure, you prepare yourself for the knotting to come.");
+
+	output("\n\nWith one hand spreading your [pc.vagOrAss " + x + "] as wide as you can, you line the glimmering green gem up with your [pc.vagOrAss " + x + "] and slowly guide it in. As soon as the tip touches the " + (x >= 0 ? "pussy lips":"rim") + ", your whole body shudders");
+	if(pc.hasCock()) output(", drawing a little extra pre-cum that oozes down your " + (pc.balls > 0 ? "[pc.balls]":"[pc.cockNounComplex]"));
+	else if(pc.hasVagina()) output(", drawing a little extra [pc.girlCum] that slithers down your leg. Suddenly, your " + (x < 0 ? "empty ":"") + "[pc.vaginas] clench" + (!pc.hasVaginas() ? "es":"") + " and sputter" + (!pc.hasVaginas() ? "es":""));
+	output(" as the lust-inducing energy travels through your the most sensitive parts of your body like a lightning bolt. You home in on the powerful sensations flooding from your [pc.vagOrAss " + x + "] as you inch the savicite further and further until you finally find a point where you can comfortably begin fucking yourself.");
+
+	if(x >= 0) pc.cuntChange(x,100);
+	else pc.buttChange(100);
+	output("\n\nTrying to get a good angle, you lean forward as you pump it along the lining of your [pc.vagOrAss " + x + "], basking in the warmth as the tip pokes and rubs the deepest parts of your body. While you started with slow, jerky motions, as your body adjusts to both the pressure and the increased pleasure brought on by your glowing green invader, you find your hand motions smoothing out, leading to long drags that bring the head almost out of your [pc.vagOrAss " + x + "], only to bring it back down just above the solid viridescent knot. Every movement sends surges of signals rushing through your body like electricity; your pleasure doubles, or even triples as you bury your knotted toy deeper. While it clearly hasn’t done anything to make your body more sensitive, it still has you on a hair trigger. It feels like even the slightest breeze might set you off on your next orgasm.");
+	processTime(20);
+	pc.orgasm();
+	pc.orgasm();
+	pc.changeLust(pc.lustMax());
+	clearMenu();
+	addButton(0,"Next",saviciteDildoUsingsPartDueces,x);
+}
+
+public function saviciteDildoUsingsPartDueces(x:int):void
+{
+	clearOutput();
+	showName("SAVICITE\nDILDO");
+	author("Athena+Fenoxo");
+
+	//Anal
+	if(x < 0)
+	{
+		output("A devilishly delightful thought arrives as your desire mounts. Getting on your back, you thrust your pelvis into the air");
+		//If PC leg count >1:
+		if(pc.legCount > 1) output(", [pc.legs] splayed outwards");
+		output(" while you try to balance yourself, spreading your ");
+		if(pc.wingCount > 1) output("[pc.wings] and ");
+		if(pc.tailCount > 0) output("carefully positioning your [pc.tails] in conjunction with");
+		output(" elbows as you try to regain a firm grip on the end of the dildo. It’s not the most comfortable position you could’ve chosen, but it does give you a clear view of " + (x >= 0 ? "your dripping wet box":"the dildo") + " while you continue to hump yourself with steadily-increasing ferocity.");
+		if(pc.hasGenitals())
+		{
+			output(" Pursing your lips, you blow towards your ");
+			if(pc.hasVagina()) output("[pc.clits]");
+			if(pc.isHerm()) output(" and ");
+			if(pc.hasCock()) output("[pc.cocks]");
+			output(", the small breezes working their magic on ");
+			if(pc.hasCocks() || pc.isHerm() || pc.totalClits() > 1) output("them");
+			else output("it");
+			output(" as your orgasm hits your like a bullet.");
+		}
+	}
+	else
+	{
+		output("Your [pc.girlCumNoun] trickles out and runs down your stomach as not one, not two, three orgasms seem to hit your body in succession, each one stronger than the last. Every gasp you make and every twitch of your asshole around the savicite dildo seems to carry you from one climax to the next in a chain reaction of visceral pleasure. Some of your juices drip down your body and " + (pc.biggestTitSize() >= 1 ? "pool between your tits, eventually drooling all the way down to your bottom lip. You absentmindedly lick up a bit of it in the throes of your eighth orgasm.":"reach your chin, eventually going over your bottom lip, which you absentmindedly lick while in the throes of your eighth orgasm.") + " Or was it the ninth? How could you possibly keep count at this point.");
+	}
+	output("\n\nAs you lose yourself to the bouts of insatiable pleasure rocking your body, you shift into a new position, this time squatting with the bottom of dildo sitting on the ground beneath you. With one hand on the base of the dildo and the other shoved up ");
+	if(x < 0 && pc.hasVagina()) output("your sodden box, your feverish thrusts milk out yet more of your body’s natural lube. So much leaks out, in fact, that your clenching sphincter soon glides along the surface with ease despite how tightly it still tries to grip it.");
+	else if(x < 0) output("against your ring, feverishly rubbing, you discover whole new heights of climax and bliss.");
+	else output("against [pc.oneClit], you frig your way to an even wetter, messier, more out of control state. You're like a runaway train of orgasms, little more than a clutching, clenching bundle of misfiring pleasure nerves.");
+	output(" You bounce on top of the glowing dildo in short, rapid motions, hammering yourself with increasing intensity as the unnatural desire worms its way through the insides of your " + (x >= 0 ? "vagina":"ass") + ", warming your abdomen  and goading you towards new heights of depravity. Occasionally, you stop to grind your rear-end against the bulge at the bottom, soaking in the fantastic feeling of its " + (x >= 0 ? "girlcum-":"") + "slick surface rubbing between your cheeks as the tip pokes at the deepest reaches of your " + (x >= 0 ? "cunt":"gut") + ".");
+
+	output("\n\nAs your mind and body once again adjust to the intense stimulation, your thoughts drift back to your imaginary " + (pc.biggestTitSize() >= 3 ? "korgonne":"lover") + ", wondering what they’d be doing underneath you. Perhaps looking up at you with a pitiful whine, their face contorted as the intensity of your tight hole sucks them in, panting and grunting, scarcely able to contain their virile lust, practically begging for your to take the knot? Or would they be looking at you with a calm, self-assuring smile as they drink in every inch of your wanton hole, working its magic on their swollen breeding stick? The possibilities race through your mind, each one more raunchy than the last" + (pc.hasVagina() ? ", your free hand ravaging your [pc.clit] as your lust spirals out of control":"") + ".");
+
+	output("\n\n" + (pc.hasVagina() ? "The puddle of [pc.girlCumNoun] underneath you grows wider, and e":"E") + "xhaustion finally begins to overtake your libido, so you finally decide it’s time for the grand finale. In one smooth motion, you plant yourself directly onto the knot, taking it all in just as yet another wave of orgasms ripples through your body");
+	if((x < 0 && pc.hasVagina()) || pc.hasVaginas()) output(", and your [pc.cunts] utterly drench your fingers as you finger-bang yourself through each one, practically soaking the ground in a puddle underneath you");
+	output(". All throughout, you pull on the knotted pseudo-member, trying to take the knot out just so you can ram it back in. Just as you finally succeed, you cum like you’ve never came before, sending the dildo flying out behind you. Your mind goes blank, then you fall face-forward" + (pc.hasVagina() ? " into the growing puddle of girl-cum underneath you, your tongue lazily lapping at the [pc.girlCumFlavor] fluid as it hangs out of the side of your mouth, and":",") + " your ass still hanging in the air, no doubt winking as it yearns for the return of your green, glowing friend.");
+	output("\n\nAfter resting for a few minutes, you regain enough of your strength to gather your gear, carefully cleaning off the savicite dildo and place it back in your bag.");
+	processTime(25);
+	IncrementFlag("SAVICITE_DILDO_USES");
+	pc.slowStatGain("libido",5);
+	for(var i:int = 0; i < 10; i++) { pc.orgasm(); }
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

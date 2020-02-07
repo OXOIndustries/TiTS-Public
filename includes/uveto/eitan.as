@@ -595,7 +595,9 @@ public function prisonerEitanAskMiloCulture():void
 	showEitan();
 	processTime(11);
 
-	output("\You haven’t had the pleasure of interacting with the milodan outside of Uveto. You understand that they’ve become a star-faring race, but he and his tribe are still here on Uveto. You ask Eitan if he could describe his race’s culture: their values; how they establish a hierarchy; why some tribes are still on Uveto; whatever he can tell you.");
+	output("You haven’t had the pleasure of interacting with the milodan outside of Uveto");
+	if(flags["ICEQUEEN COMPLETE"] <= -2 || flags["ICEQUEEN COMPLETE"] > 0) output("--well except your encounter with Zaalt");
+	output(". You understand that they’ve become a star-faring race, but he and his tribe are still here on Uveto. You ask Eitan if he could describe his race’s culture: their values; how they establish a hierarchy; why some tribes are still on Uveto; whatever he can tell you.");
 	output("\n\nEitan doesn’t immediately answer. He scratches at his chin and his lip curls in consideration. He maintains eye contact with you, though: he hasn’t ignored your questions and he’s trying to put his thoughts to words.");
 	output("\n\n<i>“I feel that my species has become... segregated, over the generations,”</i> he starts. <i>“Centuries ago, Uveto first made contact with aliens calling themselves... the ‘Akkadi,’ if I remember right.”</i> He crooks his head. <i>“I’m not sure if that’s what they called themselves, actually. Oral history has a way of becoming muddied over time.”</i>");
 	output("\n\n<i>“Whatever, it’s not important,”</i> he says, standing upright. <i>“What’s important is that the milodan, from that point on, had become... apart from themselves. There were tribes that took the Akkadi up on their offers and joined them in the stars, bringing food, medicine, and tools from elsewhere in the universe. And there were tribes that remained here on Uveto, my own among them.”</i>");
@@ -647,7 +649,7 @@ public function prisonerEitanTellsYouYouWerentThereMan():void // But you were
 	output("\n\nHe knows that’s not a satisfactory answer, so he continues before you interject. <i>“I won’t pretend that the milodan are in the right. There’s hardly ever a ‘right side’ in a war, and our aggression is why we’re here in this hole in the first place. But that doesn’t excuse what the korgonne have done to us all my life.”</i>");
 	output("\n\nYou muse that vengeance must have been one of his motivators for doing what he did.");
 	output("\n\n<i>“Of course, [pc.name] Steele, but vengeance was just</i> one<i>.”</i> He leans on his pickaxe, placing both hands on the butt of its handle, one on top of the other, and resting his chin on them. <i>“Less than a generation ago, the korgonne had negotiated a ceasefire when their chief offered to surrender himself to us.”</i>");
-	output("\n\n<i>Surely,</i> you muse, as a sign of good faith, the milodan kept him around rather than execute him.");
+	output("\n\n<i>“Surely,”</i> you muse, as a sign of good faith, the milodan kept him around rather than execute him.");
 	output("\n\n<i>“The trade wasn’t made with my tribe, so I wouldn’t know. I’d like to learn what we did with him just as badly as you, I think. Maybe not for the same reasons, though.”</i> He straightens his back and keeps a smooth face, preventing you from getting a good read on what he means. <i>“We went from out-and-out war with each other to petty skirmishes between single korgonne and milodan out in the snow. And that’s how it stayed for most of my life, well after I was made Alpha, and well before,”</i> he pauses, glancing towards the milodan chain-gang, <i>“this.”</i>");
 	output("\n\nIf Eitan were willing to trade that peace, however strenuous it was, you say that he must not have been very comfortable with it in the first place.");
 	output("\n\n<i>“I wouldn’t trust a korgonne to wash my underclothes,”</i> he says bitterly. <i>“We have been enemies for</i> generations, <i>[pc.name] Steele. I agreed to nothing, never mind some silly ceasefire. When Pyrite approached my tribe with offers of gaining the upper hand and taking their Hold for ourselves in exchange for shiny rocks that we can’t eat or use for warmth, it seemed like an obvious choice.”</i> The corners of his lips curl into a small snarl. <i>“We would have succeeded if it were only the korgonne we had to deal with.”</i>");
@@ -848,7 +850,7 @@ public function unfotunatelyEitanShallNoLongerBeNude(clothes:ItemSlotClass):void
 			output(", the milodan hadn’t ever <i>dreamed</i> of doing: not only did you defeat a Frostwyrm in combat... but you then went on to <i>mate</i> with it.");
 			output("\n\n<i>“You’re lying,”</i> he says immediately, his eyes narrowing.");
 			output("\n\nYou continue: not <i>only</i> did you mate with it, but you <i>successfully crossbred</i> with it. You have a clutch of Frostwyrm half-breeds out in the Uveto ocean waiting for you.");
-			output("\n\n<i>“That’s impossible,”</i> he says, his words coming out harsher and sterner. <i>“I had believed you up until now, [pc.name] Steele, but now I think your whole story might be some naïve lie to try and get me to lower my inhibitions.”</i>");
+			output("\n\n<i>“That’s impossible,”</i> he says, his words coming out harsher and sterner. <i>“I had believed you up until now, [pc.name] Steele, but now I think your whole story might be some naive lie to try and get me to lower my inhibitions.”</i>");
 			output("\n\nIf you were the type to lie, especially after everything you’ve done for Eitan, you probably would have done it by now. [frostwyrm.name] isn’t exactly the type to be welcoming towards guests – you had to fend her off two or three times yourself before you two came to an understanding – so you can’t exactly introduce Eitan to her. You instead ask Eitan to consider two things: if you were going to lie, why would you wait until now to do it, and if you were going to lie, why would it be about something so over-the-top? Why wouldn’t you lie about something smaller?");
 			output("\n\nEitan grumbles to himself and chews at nothing as he considers your words. You’ve been nothing but honest up until now, and he knows it, but to think that someone had not only bested a Frostwyrm in combat, and not only mated with it, but also <i>crossbred</i> with it, is so grandiose that you think the only way to truly convince him is if he sees it for himself.");
 		}
@@ -1058,7 +1060,7 @@ public function timeForTheMilosToGoFree():void
 	output("\n\nYou allow your eyes to fall down Eitan’s body: from his face, to his barrel chest, to his washboard abs hidden beneath that thin undershirt you gave him, to those thin pants with holes that the korgonne gave him to keep him decent. When you eye the bulge in his pants and you see the way his tail swishes when you stare at it, you get a pretty solid idea of what it is he wants to ‘discuss’ with you in his tribe.");
 	output("\n\nStill, the ball’s in your court. He’s giving you the option to visit, and hell, it doesn’t have to go any further than words if you don’t want. You tell him that you’ll consider it.");
 	output("\n\n<i>“You can find us to the south and east from your offworlder settlement,”</i> he instructs. <i>“Towards the ocean where the Frostwyrm makes its territory. You’ll find that we aren’t very... approachable to strangers, but if you say my name, they’ll know to turn to me first.”</i>");
-	output("You tell him you’ll keep it in mind as he lifts the now-loose harness up and over his head, tossing it into the snow at the foot of the Hold’s trap door. He turns and makes for his tribe’s home without another word.");
+	output("\n\nYou tell him you’ll keep it in mind as he lifts the now-loose harness up and over his head, tossing it into the snow at the foot of the Hold’s trap door. He turns and makes for his tribe’s home without another word.");
 	output("\n\n<b>Eitan can now be found at his tribe, east of Irestead.</b>");
 
 	IncrementFlag("EITAN_PRISONER_NEGOTIATIONS");
@@ -1089,7 +1091,10 @@ public function eitansTribe():Boolean
 
 		output("When you crest one last snow dune, you finally see what can only be the milodan tribe that Eitan invited you to.");
 		output("\n\nWhat you see is a number of pitched tents – more than a dozen but less than thirty – in a semi-circle formation, with the ‘mouth’ of the tribe opening towards a beaten path that other milodan come and go from. The tents are made from furs and leathers of Uveto’s native wildlife stitched together, forming tight-knit and sturdy canvases that don’t even flap in the wind. Milodan of all shapes and sizes are milling about, each of them responsible for some job: the youngest ones are grooming the older ones, while the able-bodied ones are either bringing in a fresh kill or are dressing down an earlier one.");
-		output("\n\nYou aren’t really sure how to approach the tribe, though. Eitan told you that his name would be enough to get you to him, but... well, how do you approach <i>any</i> milodan? Every single one you met before Eitan was aggressive, and Eitan himself needed to be whittled down over time.");
+		output("\n\nYou aren’t really sure how to approach the tribe, though. Eitan told you that his name would be enough to get you to him, but... well, how do you approach <i>any</i> milodan? Every single one you met before Eitan was aggressive");
+		if(flags["SYRI_MILOFUCK"] != undefined) output("--well, except the ones you ‘hunted’ with Syri--");
+		else output(", ");
+		output("and Eitan himself needed to be whittled down over time.");
 		output("\n\nBut then you figure, " + (pc.isNice() ? "you have to believe that Eitan was telling the truth, and that the milodan aren’t so immediately bloodthirsty that they’ll take you to their alpha once you say his name. If you didn’t believe Eitan’s word, then why are you here in the first place?" : "fuck it; <i>if</i> any milodan were to start something with you, you damn-near singlehandedly cleared them all out of the korgonne Hold when they attacked, <i>and</i> you’ve subdued their alpha. What’s a sentry going to do to you?"));
 		output("\n\nWhen you approach the tribe by cresting the hill and making its way down its broad side, a patch of snow explodes to your side. You freeze in place, and look toward the tribe’s walls - on one of the higher towers stands a milodan with a rifle trained on your position. That was a warning shot. Eitan wasn’t kidding.");
 		output("\n\nStill, you don’t move, and you’re soon joined by another milodan warrior, this one wielding a spear made from stone. You say Eitan’s name, and that changes everything. The milodan already in front of you widens his eyes, straightens his back, lifts his spear, and waves his hand behind him to the incoming wave of milodan warriors. They all stop.");
@@ -1360,7 +1365,7 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 	output("Both of your hands quest down between you, both of them on his body as they travel southward. Your fingertips dig into the fur on his chest, feeling how tight the muscles underneath that thick, bushy milodan fur of his are, before going on and feeling the ridge of each and every pronounced ab on his six-pack bulging through his belly fur. He clenches at your touch, thickening the muscles against your fingers, making you pause, which makes him chuckle once.");
 	output("\n\nYour left hand gets impatient and dips further down, faster, seeking out his pitch-black rod, its pointed head poking at your pelvis. They gently coil around his thick shaft – you can feel his heart through the thick skin of his cock, bloating it with every pump, making the prongs and ridges on the underside of the head bloat against your touch with every beat. He hisses inwardly at your touch and pumps his hips forward, fucking his cock into your grip, splitting the gap in your hand open wider and gliding your grip down the length of his shaft. His fist-sized fuzzy balls");
 	if (pc.balls > 0) output(" press into yours, rubbing right up against them");
-	else if (pc.hasVagina()) output(" press against your [pc.vagina " + vagIdx +"], the fur on his nuts tickling your vulva");
+	else if (vagIdx >= 0) output(" press against your [pc.vagina " + vagIdx +"], the fur on his nuts tickling your vulva");
 	else output(" glide against the blank slate that is your crotch");
 	output(" with his hump. Inches pour from his sheath, making you wonder just how much more he has hidden in there.");
 	output("\n\nYour right hand is a bit more reserved, drinking in his body with every touch and tickle against his ironclad, muscled body. They count, and double-check, each of his abs, before going lower to massage at his waist, where his stomach becomes his groin. You can feel the heat of his cock radiate against the back of your hand, guiding you towards its warmth; before long, you’re leaning your shoulder deeper between you two, until your fingers grace the base of his cock, where it connects with his body, and your knuckles bump against that thick, inflating knot down there.");
@@ -1384,9 +1389,10 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 	output("\n\nYour body submits to the pleasure of being Eitan’s hot water bottle, and you have your first orgasm before he has his second: your " + (vagIdx < 0 ? "[pc.asshole]" : "[pc.vagina " + vagIdx + "]") + " clenches, and a thunderbolt of pleasure rips through you, from your " + (vagIdx < 0 ? "sphincter" : "cooch") + " to your scalp. It’s not just one orgasm, either: it’s so many, so quickly, that you couldn’t hope to count them with a clearer head than yours. You’d clench tighter onto Eitan if he didn’t already have you so full that you’re stretched to the limit around him. Your [pc.legOrLegs] " + (pc.hasLegs() ? "shake" : "shakes") + " in the pleasure, quivering against Eitan’s tight body, and your vision grows blurry and crossed; you have to bite into your lower lip to keep from screaming something in pleasure – or from blacking out.");
 	if (pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output("\n\nAnd <i>then,</i> your [pc.cock] follows suit, stiff as iron and red with the blood keeping it stiff. With your body arched as it is, your cock is pointed like a weapon back at your chest, and your [pc.cum] rockets from you, painting yourself [pc.cumColor] from your stomach to");
-		if (pc.cumQ() < 250) output(" your chest");
-		else output(" your face" + (pc.cumQ() < 3000 ? "." : ", and then as far as the wall behind you."));
+		if (cumQ < 250) output(" your chest");
+		else output(" your face" + (cumQ < 3000 ? "." : ", and then as far as the wall behind you."));
 		output(" With every push of Eitan’s cock into your body, he milks your prostate for more of your own jizz to cover you, and even when you don’t have anything left to shoot, the constant hammering of his body into yours ekes out orgasm after dry orgasm.");
 	}
 	output("\n\nHis second round is much faster than his first, owing both to your own pleasure setting off his fuse, and to the fact that he’s probably sensitive so soon after his first round. This time, when it happens, his body stiffens upright: both of his hands find your waist, gripping your handles as hard as his hand on your ass (which, in the heat of the moment, you hardly notice), and he thrusts forward once more, stuffing at much of himself as he can into you.");
@@ -1397,7 +1403,7 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 
 	// end scene (scene: Get Fucked); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0); go to (scene: Aftercare)
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	if (vagIdx < 0) pc.loadInAss(eitan);
 	else pc.loadInCunt(eitan, vagIdx);
 	eitan.orgasm();
@@ -1477,7 +1483,7 @@ public function lickingMiloPolesFromTheUvetanSnow():void
 
 	// end scene (scene: Suck Him); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0);
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	var eitan:Creature = getEitan();
 	pc.loadInMouth(eitan);
 	pc.loadInMouth(eitan);
@@ -1551,7 +1557,7 @@ public function getOnTopOfEitansCock(vagIdx:int):void
 
 	// end scene (scene: Ride Eitan); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0); go to (scene: Aftercare)
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	if (vagIdx < 0) pc.loadInAss(eitan);
 	else pc.loadInCunt(eitan, vagIdx);
 	eitan.orgasm();

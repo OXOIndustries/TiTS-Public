@@ -16,7 +16,7 @@ public function studyHerPaigeByPaige():void
 	output("\n\nWhat do you want to appreciate next?");
 
 	// end scene (scene: SSBW); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	var values:Array = ["SSBW", 0];
 
@@ -52,7 +52,7 @@ public function paigesChestHasTwoGreatTreasures(values:Array):void
 	output("\n\nYou open your mouth wide and loll your [pc.tongue] out, worming it into the depths of her cleavage and giving her a long, thick lick up the inside of her boob; you swing the tip of your tongue across her nipple before you return to her cleavage and do the same to the other one, getting it just as moist with your spit. It’s going to leave her fur on your tongue, but you don’t care – it’s making Paige shiver with pleasure, and that’s all you’re after.");
 
 	// end scene (scene: SSBWC); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWC";
 	values[1] += 1;
@@ -89,7 +89,7 @@ public function paigesBellyIsEvenTastierThanTheFoodInIt(values:Array):void
 	output("\n\nShe, perhaps unconsciously, humps her stomach against your face, as if she were trying to imprint the sensation of her muscled stomach against you. Of course, you don’t stop here – that’s what you’re here for: to give her body the attention she wants. You can feel every bump of her rock-hard abdominals press into your features; it’s like she’s hiding a set of smooth rocks underneath her fur. You get started on another wet pass, from top to bottom – you might habe miscounted how many she has, and you’ll need to quadruple check.");
  
 	// end scene (scene: SSBWSt); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWSt";
 	values[1] += 1;
@@ -126,7 +126,7 @@ public function theLamenessOfTheseFunctionPunsMakesPaigeGroin(values:Array):void
 	output("\n\nPaige’s hand runs " + (pc.hasHair() ? "through your [pc.hair]" : "over your head") + ", and she keeps her legs spread wide open for you, giving you access to everything. It’s a vulnerable position for her: when your [pc.tongue] washes against her thick, hard, muscled thigh, she shivers and recoils against you, hoping to guide you towards her juicy center, but you don’t. Instead, you just pucker your lips and give her thick yoga thighs another wet kiss.");
  
 	// end scene (scene: SSBWG); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWG";
 	values[1] += 1;
@@ -165,7 +165,7 @@ public function paigesLovelyLongLegsLickedLasciviously(values:Array):void
 	output("\n\nThat’s okay, though. You’re pretty sure you’re both going to win before the end of this.");
 
 	// end scene (scene: SSBWL); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWL";
 	values[1] += 1;
@@ -207,7 +207,7 @@ public function paigeUsesItForSittingButtYouUseItForFun(values:Array):void
 	output("\n\nThen again, you doubt she’d mind all that much if you went in for the kill....");
 
 	// end scene (scene: SSBWBu); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWBu";
 	values[1] += 1;
@@ -254,7 +254,7 @@ public function paigeWouldNormallyMindYouGoingBehindHerBack(values:Array):void
 	output("\n\nStill, even as your tongue lashes in small circles at different parts of her muscled back, as far down as the curve of her waist and as high up as between her shoulder-blades, you have to admit to yourself, neither of those options are unappealing, exactly. There’s always going to be more of her to spend time with, and if you really wanted to start kissing her back at any point, it wouldn’t be too long or too boring a detour. If you wanted to kiss that sensitive neck, or those pert-and-firm cheeks, now would be a good time to segue into them. Or, you could even choose a third option, if you wanted.");
  
 	// end scene (scene: SSBWB); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWB";
 	values[1] += 1;
@@ -300,7 +300,7 @@ public function paigeHasAHornyHeadWorshippingHerShoulders(values:Array):void
 	output("\n\nAs much as you could spend the next hour finding and committing to memory every little ridge and contour in her shoulders, she’s still got a body for you to better acquaint yourself with. You can go in a handful of directions from here, each of them with their own merits; you just need to make up your mind.");
 
 	// end scene (scene: SSBWS); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWS";
 	values[1] += 1;
@@ -338,7 +338,7 @@ public function paigeIsAtLargeArmedAndDelicious(values:Array):void
 	output("\n\nStill, as strong as her arms are and as much as you could spend hours just fawning over them, there’s still much more of her body for you to visit. You could spend some more time at her back, kissing at her spine... or maybe at her shoulders and neck... or you could get back underneath her and start kissing down her chest, or at her chiselled six-pack abs. You have possibilities, and you’re just as excited to pick an option as she is.");
 
 	// end scene (scene: SSBWA); increase Lust by 2; advance the clock by 1 minute
-	pc.lust(2);
+	pc.changeLust(2);
 	processTime(1);
 	values[0] = "SSBWA";
 	values[1] += 1;
@@ -397,7 +397,7 @@ public function paigesPussyPacifiesPuppyPamperingPCs(values:Array):void
 	output("\n\nNo movie is complete without a dinner, though: the show is accompanied by her cunt clenching on your invading [pc.tongue], keeping it from pulling away and squashing it with her vaginal muscles, coating it from tip to root in her taste. All that pussy juice has nowhere to go but straight into your mouth and down your chin. And it’s your job, as her willing devotee, to ensure that you don’t leave a drop behind.");
 
 	// increase Lust by 50
-	pc.lust(35+pc.libido()/3);
+	pc.changeLust(35+pc.libido()/3);
 
 	addButton(0, "Next", paigeSuccessfullyWorshipped, values);
 }

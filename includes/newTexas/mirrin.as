@@ -624,7 +624,7 @@ public function repeatableMirrinTraining():void
 		//PC gains +50 lust.
 		output("<i>“Hey Mirrin, can we do some training?”</i>");
 		output("\n\n<i>“Of course, Steele. I just need to go change a sec,”</i> she says in a chipper manner. She’s even got something of a genuine smile on her face. What could it be for...");
-		output("\n\nYou spot that the gym floor is a little more crowded than usual. Did Quenton organise something...?");
+		output("\n\nYou spot that the gym floor is a little more crowded than usual. Did Quenton organize something...?");
 		output("\n\nMirrin returns and immediately most of the heads in the room turn to her. She’s not looking at them but her face is prideful all the same. She’s wearing a thin latex bikini, almost completely transparent. You don’t even <i>need</i> your imagination anymore! Although, a second look suggests the bikini bottoms might not be too adept at holding back the monsters beneath...");
 		output("\n\nIt’s only just dawned on you that you’ve been staring her up and down at point blank range for almost a minute. The she-dragon casually clears her throat.");
 		output("\n\n<i>“Eyes up here, Steele,”</i> she says with a knowing smirk. ");
@@ -1721,7 +1721,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 		output("\n\nBut then your vision... dims and... it’s dificult to...");
 		pc.loadInMouth(mirrin);
 		processTime(20);
-		pc.HP(-5);
+		pc.changeHP(-5);
 		clearMenu();
 		addButton(0,"Next",mirrinFirstTimev3Part2);
 	}
@@ -2473,7 +2473,7 @@ public function uhOhButtmiliation():void
 	if(pc.isHerm()) output("With a tongue-blocked scream of pained pleasure, your [pc.cocks] and [pc.pussies] can’t hold back, unleashing a steamy, simultaneous burst of [pc.cum] and [pc.girlCum] all over your [pc.legs] and the bed!");
 	else if(pc.hasCock()) output("With a tongue-blocked scream of pained pleasure, your [pc.cocks] has all the [pc.cum] you could muster unleashed against your [pc.belly]! It forms a gooey splatterzone on your underside and the bed.");
 	//PC has vagina:
-	else if(pc.hasVagina()) output("With a tongue-blocked scream of pained pleasure, your [pc.pussies] has all the [pc.girlCum] you could muster unleashed! It all spurts out uselessly against your [pc.legs] in a warm glaze.");
+	else if(pc.hasVagina()) output("With a tongue-blocked scream of pained pleasure, your [pc.pussies] has all the [pc.girlCum] you could muster unleashed! It all spurts out uselessly against your [pc.legOrLegs] in a warm glaze.");
 	
 	output("\n\nNot to be outdone, you feel your qilin lover extract her massive meat when you’re mid orgasm, the emptiness you feel as it leaves your gaping [pc.asshole] adding catharsis to pleasure and pain. She very quickly moves off of the bed, jerking both her horsecocks with her free hand. Damn, those massive fingers! The familiar sight of her urethra pointed right at your face is enough warning for what’s to cum...");
 	output("\n\nWith her dataslate pointed between her cocks and your face and a rising crescendo in her restrained wails, a thick, superhot double load of smoky dragoness babybatter splatters right into your [pc.face]! Keeping her grip stable even with the wild pumping she’s got going on, the qilin keeps virile shot after virile shot focused on your scrunched up face. You just about close your eyelids in time before you’re blinded!");

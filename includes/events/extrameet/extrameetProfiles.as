@@ -607,7 +607,7 @@ public function extrameetLethalLadyProfile():void
 {
 	output("The profile picture on your screen is a headshot of a very beautiful Gryvain. While she doesnt look old by any means, you can tell she is far from young just by the way she carries herself.");
 	output("\n\nUsername: LethalLady");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 150 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tavros");
@@ -665,7 +665,7 @@ public function extrameetFrankMollyProfile():void
 {
 	output("The profile picture on your screen is of a pair of New Texans, a man and a woman. Both of them seem to be of standard New Texan stock, with horns, muscles, and curves.");
 	output("\n\nUsername: Frank&Molly");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 38 Years");
 	output("\nRace: Human+");
 	output("\nPlanet: New Texas");
@@ -803,7 +803,7 @@ public function extrameetMissyMayDate():void
 	//showName("0MissyMay0");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
-	output("You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn’t seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table");
+	output("You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn’t seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table.");
 	output("\n\n<i>“Hey. [pc.name] Steele? I’m May.”</i> She smiles at you while you size her up. Based on her chest and lips, she must be the woman in the picture. While her figure is a bit less voluptuous than most women on the planet, her bust is still remarkable, sticking out a foot off her chest. Her hair is mud brown, but you notice she isn’t sporting typical New Texan horns. Or any horns for that matter. You introduce yourself and she takes a seat across from you, smiling politely. <i>“So, been on the planet long?”</i>");
 	output("\n\nYou tell her you’re just passing through, searching for any typical New Texan markers while you speak. As far as you can tell she’s pure human, with a little added on the chest.");
 	output("\n\nShe notices your stare and rolls her eyes. <i>“Don’t tell me you were hoping for a Treated bimbo cow.”</i> When you don’t answer right away she giggles. <i>“Yeah, I figured that would be the case. I’m on planet for a work contract, and let me tell you the locals are exhausting. In more ways than one.”</i>");
@@ -872,7 +872,6 @@ public function extrameetVKODate():void
 	showName("\nV-KO#1221341");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
-	
 	output("You enter The Bucking Bronco and spot your date sticking out like a sore thumb. She’s seated near the back of the bar, sitting very still and with perfect posture. You make your way over, noting she doesn’t even turn to regard you as you make your approach. When you finally reach the nursedroid she just stares off into space. After a moment, you clear your throat and speak to her. <i>“Hello?”</i>");
 	output("\n\nIn a quick jerking motion her head turns to you, taking you by surprise and making you jump. <i>“Hello! I am V-KO#1221341. You may call me V-KO. Please take a seat.”</i> She lifts an arm and motions towards a chair across from her");
 	output("\n\nSlowly you take your seat, keeping a close eye on the nursedroid. You can tell she is properly looking at you now, and seems to be sizing you up. In an attempt to break up the awkward silence, you introduce yourself.");
@@ -926,8 +925,8 @@ public function extrameetVKOSex():void
 	if (pc.balls > 0) 	output(" You throw your head back and groan as your [pc.balls] start to churn.");
 	
 	output(" Sensing your orgasm, you feel your date’s cunt clamp down tight on you, squeezing your dick so hard she almost crushes it. You try to cry out, but only groan louder as your cock pulses in the iron tight snatch, your thick load exploding from your [pc.cockHead " + kok + "]. Deep inside the synthetic cunt you feel an odd sucking, seemingly pulling the cum right out of you. The sucking only makes your orgasm more intense, and you feel your body shake uncontrollably. A minute later you feel the pressure on your dick release, and you stagger backwards, pulling yourself free.");
-	output("\n\n<i>“That was most impressive.”</i> You hear the droid shift in the darkness. <i>“You vitality is 10% higher than I anticipated. However, I detect lower than normal protein in your ejaculate. Might I suggest a supplement?”</i>");
-	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyse your spunk?");
+	output("\n\n<i>“That was most impressive.”</i> You hear the droid shift in the darkness. <i>“Your virility is 10% higher than I anticipated. However, I detect lower than normal protein in your ejaculate. Might I suggest a supplement?”</i>");
+	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyze your spunk?");
 	output("\n\n<i>“Very well. You should leave first as to not arouse suspicion. I will remain here for a few moments. It was a splendid date, and above average sex. Thank you, and please cum again!”</i> You hear the nurse give out an odd electronic chuckle, and it takes you a moment to get what she’s laughing about.");
 	output("\n\n<i>“Right...”</i> You turn around and fumble around for the door knob. Light assaults your eyes as you open the door and step out into the bar. You glance back at your date, who smiles at you and waves. <i>“Bye...”</i> You exit the closet and close the door, leaving the weird droid in the closet.");
 	
@@ -1006,7 +1005,7 @@ public function extrameetSexyyDaddyySex():void
 	output("\n\nYou can’t help but struggle, the monster clearly too much for you. In your mind you can’t help but feel like you bit off more than you can chew, but that seems far too ironic a thought. You breathe through your nose while the massive dong in your mouth throbs, each pulse pressing it harder against your teeth, and with each press Orren moans louder. Your hands keep working the shaft, stroking up and down the whole of his length more on their own than anything. You’re operating on autopilot now, barely aware of your actions. A few moments later something changes. Something is coming. Your eyes open wide in fear. He’s cumming.");
 	output("\n\nYou feel it with your hands first, a surge of something right under the surface. A massive load firing out of the chamber. When it hits the top you feel it. You gag and choke as an impossible about of cum blasts into your mouth, the cockhead far too large to spit out. Hot spunk fills your throat, exploding out of Orren with such force you feel it come out of your nose. You squeeze his cock hard, more on reflex than anything, the fight part of a fight or flight response. That only makes Orren moan louder, the pain making his orgasm all the better. Pulling with both your hands, you yank the monster out of your mouth with all your strength, teeth marks scratching into Orren as you pull. The Thraggen groans so lewdly you think he might cum again after that.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.exhibitionism(2);
 	processTime(10 + rand(15));
 	pc.loadInMouth(chars["SEXYYDADDYY"]);
@@ -1126,7 +1125,7 @@ public function extrameetLaughingDragonProfile():void
 {
 	output("The profile picture on your screen is of a very drunk Gryvain. You can tell she’s plastered out of her mind not only by her expression, but by the pile of empty bottles next to her in the picture.");
 	output("\n\nUsername: LaughingDragon");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 67 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: New Texas");
@@ -1609,7 +1608,7 @@ public function extrameetNympho69Profile():void
 {
 	output("The profile picture on your screen is of a semi erect cock being held and shown off. Even half hard it seems fairly large.");
 	output("\n\nUsername: Nympho69");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 65 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Mhen’ga");
@@ -1693,7 +1692,7 @@ public function extrameetLooking4a3rdProfile():void
 {
 	output("The profile picture on your screen is of an ausar couple. They are holding each other close, while staring at the camera. He looks serious, while she looks playful.");
 	output("\n\nUsername: Looking4a3rd");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 27 Years");
 	output("\nRace: Ausar");
 	output("\nPlanet: Mhen’ga");
@@ -2064,7 +2063,7 @@ public function extrameetTruePower69Profile():void
 {
 	output("The profile picture on your screen is of a very large cock. Although you can’t get a good sense of scale, you can tell it’s at least a foot long. The only other information you can tell is whomever it is connected to seems quite muscular and large.");
 	output("\n\nUsername: True_Power69");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 40 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Tarkus");
@@ -2207,7 +2206,7 @@ public function extrameetShekkaDate():void
 	output("\n\nShekka pulls you against her chest as you continue unzipping all the way down to her crotch. You don’t get to leave the transient prison of reptilian cleavage for a few moments, enough time for a few kisses to be planted on <i>your</i> head. Working in the engine room leaves a slippery sheen of sweat on the tinkerer’s body, but she still smells wonderfully appetizing. Even moreso when a final tug draws the opening of her jumpsuit over " + (shekka.hasCock() ? "her musky horsecock." : "dripping dual-clitted pussy."));
 	output("\n\nYou’re giving a front row seat to her skyrocketing heartbeat as you transition to " + (shekka.hasCock() ? "fondling her hefty horseballs." : "teasing the first of her feminine love buzzers.") + " A squeak of surprise escapes her lips, followed by a brief moan as you fight against her confining cleavage, nibbling and kissing her smooth scales with practiced care. Slipping free of her grasping hands, you kiss down her belly in an inexorable march to her waiting sex.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	if (shekka.hasCock())
 	{
 		output("\n\nIn the sweltering heat of the engine room, the musky scent of shekka’s equine member permeates your every sense. It was still mostly soft when you slid the zipper open, but with each passing second it grows larger and harder. The choice between the first kiss going to her head or her balls is an agonizing decision, one the weighty testes lose. You plant a kiss directly on the tip of her bulbous flare, still small and puffy for now.");
@@ -2317,7 +2316,7 @@ public function extrameetPowerLovers2Profile():void
 {
 	output("The profile picture on your screen is of two gabilani, one male and one female. By the looks of them, they are an item, the male having his arm draped over the female.");
 	output("\n\nUsername: PowerLovers2");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 32 Years");
 	output("\nRace: Gabilani");
 	output("\nPlanet: Tarkus");
@@ -2345,7 +2344,7 @@ public function extrameetAvarice56Profile():void
 {
 	output("The profile picture on your screen is of a naked Gryvain woman with a massive cock in her mouth. She is fairly attractive, and it staring right at the camera while deepthroating the huge dong.");
 	output("\n\nUsername: Avarice56");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 80 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tarkus");
@@ -2387,7 +2386,7 @@ public function extrameetHawtShotProfile():void
 {
 	output("The profile picture on your screen is of a massive dick. Seriously. It’s just a huge dick.");
 	output("\n\nUsername: HawtShot");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 54 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tarkus");
@@ -2847,7 +2846,7 @@ public function extrameetSirenSongProfile():void
 {
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Siren_Song");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 102 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Myrellion");
@@ -2889,7 +2888,7 @@ public function extrameetPurpleBowtieProfile():void
 {
 	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 32 Years");
 	output("\nRace: Kui-tan");
 	output("\nPlanet: Myrellion");
@@ -3201,7 +3200,7 @@ public function extrameetStormDragonProfile():void
 {
 	output("The profile picture on your screen is a headshot of a rather striking Gryvain woman. The give away as to her species is the pair of dark horns sprouting out from her head. Her hair is bright blue, and along her hairline you notice curious runic tattoos.");
 	output("\n\nUsername: Storm_Dragon");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 102 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Uveto");
@@ -3475,7 +3474,7 @@ public function extrameetDomme90Profile():void
 {
 	output("The profile picture on your screen is of a very angry looking Dzaan. She’s beautiful, but her expression reads more as hostile rather than sexy. Like, really hostile.");
 	output("\n\nUsername: Domme_90");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 82 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Uveto");

@@ -1236,8 +1236,22 @@ public function shekkaGrindsFinish():void
 
 public function fuckedShekka():void
 {
-	if(flags["TIMES_SEXED_SHEKKA"] == undefined) flags["TIMES_SEXED_SHEKKA"] = 0;
-	flags["TIMES_SEXED_SHEKKA"]++;
+	IncrementFlag("TIMES_SEXED_SHEKKA");
+}
+public function timesSexedShekka():int
+{
+	var timesSexed:int = 0;
+	if(flags["TIMES_SEXED_SHEKKA"] !== undefined) timesSexed += flags["TIMES_SEXED_SHEKKA"];
+	if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] !== undefined) timesSexed += flags["TIMES_TAILVIBED_WITH_SHEKKA"];
+	if(flags["SHEKKA_ONAHOLED"] !== undefined) timesSexed += flags["SHEKKA_ONAHOLED"];
+	if(flags["SHEKKA_GYMMED"] !== undefined) timesSexed += flags["SHEKKA_GYMMED"];
+	if(flags["SHEKKA_OVIED"] !== undefined) timesSexed += flags["SHEKKA_OVIED"];
+	if(flags["SHEKKA_TRIED_2_BREED_U"] !== undefined) timesSexed += flags["SHEKKA_TRIED_2_BREED_U"];
+	if(flags["SHEKKA_BUTTFUCKED_U"] !== undefined) timesSexed += flags["SHEKKA_BUTTFUCKED_U"];
+	if(flags["SHEKKA_BLOWN"] !== undefined) timesSexed += flags["SHEKKA_BLOWN"];
+	if(flags["SHEKKA_RIDDEN"] !== undefined) timesSexed += flags["SHEKKA_RIDDEN"];
+	
+	return timesSexed;
 }
 
 //Big Dick Ear Shenanigans
@@ -2854,7 +2868,7 @@ public function cureRewardUseDick():void
 	//Merge
 	output("\n\nIt takes at least a few more minutes for the both of you to come crashing down from the sexual high, although Shekka still occasionally twitches in the aftershocks of pleasure. <i>“Sweet fucking stars... I’m not sure what even came over me...”</i> she nuzzles your chest and wipes a little sweat from her brow.");
 	output("\n\nAfter you’ve both cooled down properly, and wiped yourselves off, the little Raskvel tiptoes and pulls you down for a quick kiss. <i>“Thank you again, [pc.name]. I’ll uh... I’ll let you know how distribution goes. Okay?”</i> You give her an affirmative nod, a ruffle of her quilly-hair, and return to your adventure.");
-	IncrementFlag("TIMES_SEXED_SHEKKA");
+	fuckedShekka();
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
@@ -2922,7 +2936,7 @@ public function vaginaSexWithShekkaOnCureThing():void
 
 	output("\n\nAfter you’ve both cooled down properly, and wiped yourselves off, the little Raskvel tiptoes and pulls you down for a quick kiss. <i>“Thank you again, [pc.name]. I’ll uh... I’ll let you know how distribution goes. Okay?”</i> You give her an affirmative nod, a ruffle of her quilly-hair, and return to your adventure.");
 	processTime(30);
-	IncrementFlag("TIMES_SEXED_SHEKKA");
+	fuckedShekka();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3010,7 +3024,7 @@ public function welcomeShekkaToTheTeam2():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	author("SomeKindofWizard");
-	output("<i>“Your ship is so, so neat. Look at the style of it! Your father had great taste.”</i> Shekka says, looking around with no small amount of awe. She rests her hands on her exceptional hips, gears turning behind her eyes.<i>“What happens next? I realize now I don’t really get the whole... entirety of your mission then. Or is it really just one great big sexy party? I’m cool with either.”</i>");
+	output("<i>“Your ship is so, so neat. Look at the style of it! You" + (PCShipIsCasstech() ? "r father had" : " have") + " great taste.”</i> Shekka says, looking around with no small amount of awe. She rests her hands on her exceptional hips, gears turning behind her eyes.<i>“What happens next? I realize now I don’t really get the whole... entirety of your mission then. Or is it really just one great big sexy party? I’m cool with either.”</i>");
 	//You have Anno:
 	if(annoIsCrew())
 	{

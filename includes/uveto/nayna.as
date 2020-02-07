@@ -1766,7 +1766,7 @@ public function helpNaynaWithBallflation():void
 	output("\n\nIt’s a messy task - one that takes the better part of an hour, but somebody has to do it.");
 	if(pc.isBimbo()) output(" Somebody that absolutely loves sneaking tastes of the product every chance [pc.heShe] gets.");
 	output(" By the time you finish, you’re halfway to hard again, but Nayna looks absolutely, completely relieved - if a bit exhausted. She lays there, letting her little cleaning robot zap the spunk out of her fur and panting for her breath.");
-	output("\n\n<i>“You... you were right. That was fun.”</i> Shuddering, the bunny tries to tuck herself back into her clothes, wincing when the tightness squeezes another jet of white from balls that look a little bigger than she should be. <i>“F-f-fuuuuck.”</i> Nayna’s ears go flat when she realizes what she’s said, but with a slight shudder, she looks back your way. <i>“This doesn’t mean I’m a slut.”</i> She pauses. <i>“Not a total one anyway. Those dick-girls on the rim know what they’re doing.");
+	output("\n\n<i>“You... you were right. That was fun.”</i> Shuddering, the bunny tries to tuck herself back into her clothes, wincing when the tightness squeezes another jet of white from balls that look a little bigger than she should be. <i>“F-f-fuuuuck.”</i> Nayna’s ears go flat when she realizes what she’s said, but with a slight shudder, she looks back your way. <i>“This doesn’t mean I’m a slut.”</i> She pauses. <i>“Not a total one anyway. Those dick-girls on the rim know what they’re doing.”</i>");
 	processTime(20);
 	pc.lust(15);
 	clearMenu();

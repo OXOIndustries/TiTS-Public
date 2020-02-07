@@ -27,8 +27,14 @@ public function seraRecruited():Boolean
 }
 public function seraIsCrew():Boolean
 {
-	if(seraAtNursery()) return false;
-	return (flags["SERA_CREWMEMBER"] == 1);
+	var inCrew:Boolean = (flags["SERA_CREWMEMBER"] == 1);
+	if(seraAtNursery())
+	{
+		// If Sera is already in crew, remove her from nursery if not on Tavros!
+		if(inCrew && shipLocation != "TAVROS HANGAR") pc.removeStatusEffect("Sera at Nursery");
+		else return false;
+	}
+	return inCrew;
 }
 public function seraAtTavros():Boolean
 {
@@ -1953,12 +1959,6 @@ public function seraBitchTrainingRide():void
 	if(vIdx < 0) vIdx = pc.biggestVaginaIndex();
 	var tinyVag:Boolean = (pc.vaginalCapacity(vIdx) < chars["SERA"].cockVolume(0) || pc.vaginas[vIdx].looseness() < 4);
 	
-	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
-	{
-		seraBitchImpregnateRide(vIdx, tinyVag);
-		return;
-	}
-	
 	// Final
 	// Requires: 80 obedience, medium/high lust
 	if(obedience >= 80 && chars["SERA"].lust() >= 33 && pc.lust() >= 33)
@@ -3608,6 +3608,12 @@ public function seraBitcheningSexRide():void
 	var vIdx:int = pc.cuntThatFits(chars["SERA"].cockVolume(0));
 	if(vIdx < 0) vIdx = pc.biggestVaginaIndex();
 	var tinyVag:Boolean = (pc.vaginalCapacity(vIdx) < chars["SERA"].cockVolume(0) || pc.vaginas[vIdx].looseness() < 4);
+	
+	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
+	{
+		seraBitchImpregnateRide(vIdx, tinyVag);
+		return;
+	}
 	
 	output("You smile at Sera and, without saying a word, twirl a finger. The fantastically augmented human flips over onto her back immediately, grinning back.");
 	output("\n\n<i>“Has [pc.master] come for a nice long ride on the Sera train?”</i> she coos, twiddling and tweaking her nipple piercings as she gazes up at you, generous erection pointing upwards. <i>“I do so enjoy watching you squirt yourself silly on me.”</i>");

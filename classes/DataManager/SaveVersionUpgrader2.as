@@ -302,7 +302,7 @@
 		{
 			if (data.version != this._newVersionValue)
 			{
-				throw new VersionUpgraderError("Upgrader Version 2 recieved data version " + data.version + " during a verification call. Wakka wakka.");
+				throw new VersionUpgraderError("Upgrader Version 2 received data version " + data.version + " during a verification call. Wakka wakka.");
 			}
 			
 			if (data.minVersion != this._newVersionValue)

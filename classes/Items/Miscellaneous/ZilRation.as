@@ -76,11 +76,11 @@
 						kGAMECLASS.output("\n\nYou idly rub at your crotch");
 						if(!target.isCrotchExposed()) kGAMECLASS.output(" through your [pc.lowerGarment]");
 						kGAMECLASS.output(" while entertaining a daydream about an encounter with a zil in the jungle. " + (rand(2) == 0 ? "She" : "He") + " comes upon you before you’re ready and instead of fighting, you offer not to resist... in exchange for more rations.\n\nShaking your head to clear away the increasingly lustful fantasy, you can’t help but wonder if this stuff is effecting you somehow... spiking your libido to match the aliens’ own.");
-						target.lust(5);
+						target.changeLust(5);
 					}
 					else {
 						kGAMECLASS.output("\n\nA wicked thought surfaces in your mind: what if the zil are just misunderstood? What if they live a freer, happier existence by strutting around like they do, seducing any new person they meet into a pleasure-filled coupling. You start heating up the more you think about it until you’re almost overwhelmed by desire. You fan at your neck to cool off, turning your attention back to the taste in your mouth. This stuff is definitely boosting your libido.");
-						target.lust(10);
+						target.changeLust(10);
 					}
 					target.slowStatGain("libido",1+rand(2));
 					changes++;
@@ -423,7 +423,7 @@
 				//B cups
 				else {
 					kGAMECLASS.output(" Your B-cups tingle pleasantly, giving you just enough time to get your hands up to wrap around them. Almost on cue, your breasts swell up into your hands, expanding and jiggling with each passing moment, feeling so warm and wonderful as they expand. <b>You barely suppress a moan as you grow into nicely-rounded C-cups.</b> They still tingly hotly with the pleasant aftershocks of excitement.");
-					target.lust(5);
+					target.changeLust(5);
 				}
 				target.breastRows[0].breastRatingRaw++;
 				changes++;
@@ -476,7 +476,7 @@
 				else kGAMECLASS.output("wet pussies");
 				kGAMECLASS.output(". You gingerly touch your folds and shudder with excitement before drawing away. You’ll need to get yourself off soon. Catching your nose, a sweet smell lingers on your fingertips. You look closer at the stained digits and realize that <b>your [pc.girlCum] has been replaced by a honey-like substitute!</b>");
 				//Raise lust!
-				target.lust(50);
+				target.changeLust(50);
 				target.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 				changes++;
 			}

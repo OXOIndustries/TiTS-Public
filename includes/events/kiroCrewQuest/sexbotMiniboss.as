@@ -11,6 +11,7 @@ public function kqMinibossEncounter():Boolean
 {
 	if(flags["KQ_MINIBOSS_DOWNED"] == undefined)
 	{
+		flags["KQ_STEP"] = undefined;
 		author("Wsan");
 		showKQMiniboss();
 		output("\n\nYou stop suddenly, becoming aware of movement in the freighter up ahead. The figure doesn’t appear to possess any of your misgivings, approaching you with a mischievous if not outright smug smile across her smooth metallic face. Unarmed - and it is a <i>she</i> despite the hardening futanari cock throbbing between her curvy thighs, from the looks of it - she has feminine features and the commanding presence of a woman in charge, from the way she moves her faux-heeled feet to emphasize her assets to the confidence in her expression. You’re not her first fight.");
@@ -53,7 +54,7 @@ public function yesToGooeyFillings():void
 	output("\n\nShe kept her promise but oh fuck, she never said anything about how long her orgasm would last. Her balls pulse and throb against your chin but never seem to diminish in size, leading you to wonder if what’s being so erotically pumped into you might not be sourced from somewhere else. Struggling back, you feel like you’ve drunk half a gallon before she releases you, her monumental prick slipping from your [pc.lips] with a slurp.");
 	output("\n\n<i>“Oh, god, that was good,”</i> she sighs, stretching out. <i>“Alright, back to our little backyard scrap then, I suppose. Tastes good, right?”</i>");
 	output("\n\nYou get back to your [pc.feet] as the over-endowed woman bends over, exposing the glistening pussy between her legs for just a second as she picks up her whip. The bit about her cum being non-aphrodisiac was <i>definitely</i> a lie - you can feel it heating you up from the inside even now, burning your cheeks. You won’t fall for that again... even if she is a sexy bitch.");
-	pc.lust(10);
+	pc.changeLust(10);
 	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
@@ -81,6 +82,10 @@ public function awwwHellllNoSexbot():void
 //Player defeat
 public function loseToKQMiniboss():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	showKQMiniboss(true);
 	author("Wsan");
 	var x:int = -1;
@@ -258,7 +263,7 @@ public function loseToKQMiniboss4():void
 	output("\n\nAll you know, day in and day out, is being ridden hard by your mistress or other sexbots <i>for</i> your mistress. It’s all you’ve ever known and all you ever will know, and you’re content with that. It is, after all, what you were designed for.");
 	processTime(10*60);
 	pc.orgasm();
-	pc.lust(100);
+	pc.changeLust(100);
 	badEnd();
 }
 
@@ -270,7 +275,8 @@ public function youDefeatDatSexdollMeanbot():void
 	IncrementFlag("KQ_MINIBOSS_DOWNED");
 	output("You stand over the defeated sexbot as she looks up at you, panting and moaning. You’re not sure those moans are <i>entirely</i> real owing to her nature but you have to admit - she looks the part. Her mouth hangs open as she moves her hands between her legs, making to wrap her fingers around her still-erect femprick and the dripping slit behind her weighty nutsack.");
 	output("\n\nYou could leave the horny bitch to her own devices or take her for the ride of her artificial life, though the latter seems like it could potentially be disastrous - there’s no telling what manner of drug-laced gifts this slut has to offer you.");
-	while(pc.lust() < 33) pc.lust(1);
+	if(pc.lust() < 33) pc.changeLust(Math.ceil(33-pc.lust()));
+	else pc.changeLust(1);
 	processTime(3);
 	clearMenu();
 	addButton(0,"Fuck",fuckWsansSexdoll,undefined,"Fuck","Take the plunge and fuck the sexbot.");
@@ -387,7 +393,7 @@ public function suckMinibossBotDick():void
 	output("\n\nTime to blow her mind. Straightening your neck you begin taking her deeper and deeper, bobbing your head as she lies back and moans in delight. Each stroke brings you closer to having those overripe balls right on your chin, inch after inch disappearing down your throat. You’ve got a sexbot on her back practically begging you to continue, to keep sucking, knowing that she’s completely at your mercy and she’d do anything for you to keep going. The thought is more than a little empowering.");
 	output("\n\nAs a sexbot, though, she’s designed to cum when her owner wants - and you want it <i>now</i>. Her groans take on a longer, more desperate note and her nuts draw taut against her underside, her fingers tapping you on the head. She’s juuust about to cum...");
 	processTime(15);
-	pc.lust(45);
+	pc.changeLust(45);
 	clearMenu();
 	addButton(0,"Swallow",swallowTheDongForYourMinibossGoddess,undefined,"Swallow","Hold her down and drink everything she has to give you. <i>Everything.</i>");
 	addButton(1,"Spit",dontDrinkSexbotCumYouDoof,undefined,"Spit","Redirect the flow - you don’t know what kind of drugs this sexbot has in her cum.");
@@ -420,7 +426,7 @@ public function swallowTheDongForYourMinibossGoddess():void
 	processTime(15);
 	pc.orgasm();
 	pc.taint(100);
-	pc.lust(3000);
+	pc.changeLust(3000);
 	//routes to bad end follow-ons
 	clearMenu();
 	addButton(0,"Next",loseToKQMiniboss2);
@@ -438,7 +444,7 @@ public function dontDrinkSexbotCumYouDoof():void
 	output("\n\nIt only takes a minute of this for her to pass out, still casually swallowing down her own seemingly never-ending supply. Her skin ripples and shifts, taking on a shinier gleam... is her cum a transformative? Good thing you didn’t go all the way...");
 	output("\n\nYou leave her there, her own giant dick embedded in her throat, to sleep it off. Not like there’s much you can do for her and besides, you don’t have any real inclination to do anything about it. In fact, she looks a little hot tied to herself like that, albeit in a ridiculous way. Enough to make the less-endowed jealous.");
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -475,7 +481,7 @@ public function rideSexbotDickYouDumbass(x:int):void
 	output("\n\nThough you don’t bother to answer her pleas, she’s about to get what she wants - going so rough like this is tantamount to opening the floodgates and there’s only so much of it you can take before you want to explode all over her. Shuddering and groaning, you raise yourself up once more, shaking in anticipation.");
 	output("\n\nWhere should you let her cum?");
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"All Inside",catchARoboLoadInsideLikeADoof,x,"All Inside","Get every last drop of this thick, hot cock’s load inside you.");
 	addButton(1,"Outside",dontBeADummyDONTSWALLOWCUMMIES,undefined,"Outside","Don’t let the drug-filled sexbot cum inside you.");
@@ -542,7 +548,7 @@ public function catchARoboLoadInsideLikeADoof(x:int):void
 	processTime(15);
 	pc.taint(100);
 	pc.orgasm();
-	pc.lust(50);
+	pc.changeLust(50);
 	if(x >= 0) pc.loadInCunt(enemy,x);
 	else pc.loadInAss(enemy);
 	pc.loadInMouth(enemy);

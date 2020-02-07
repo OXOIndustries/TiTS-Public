@@ -1004,7 +1004,7 @@ public function ratsWilliamWantedANextButtonHere():void
 			else if (ratsPCIsKnown()) output(" Is... is that how you do business?");
 			output("”</i>");
 			output("\n\nYou clear your jizz-scented throat and stand, looking down at the exhausted rats. Damn, something about this just makes you <i>proud</i>. <i>“");
-			if (ratsPCIsKnown()) output("That’s my business.");
+			if (ratsPCIsKnown()) output("That’s my business. ");
 			output("Guess I don’t have to pay huh?");
 			output("”</i>");
 			output("\n\n<i>“Uhh...”</i> they moan, finally heaving and sitting up. The rodenian tucks her ears and groans,");
@@ -3012,7 +3012,7 @@ public function ratsAllGangThingsComeToAnEnd(vagId:int):void
 		if (pc.HP() <= 0) output("\n\nStanding is surprisingly easy too. You check yourself for wounds from the fight, finding that they’ve all vanished away. <b>The rats must have healed your injuries</b>!");
 	}
 
-	if (pc.HP() <= 0) pc.HP(pc.HPMax());
+	if (pc.HP() <= 0) pc.changeHP(pc.HPMax());
 	IncrementFlag("RATS_GANGBANGED");
 	
 	ratsLossFinish();

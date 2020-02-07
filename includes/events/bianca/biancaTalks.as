@@ -578,7 +578,7 @@ public function theSpaceAdventuresOfDrKetria(inRandomEncounter:Boolean = false):
 	output("\n\n<i>“It’s...”</i> Bianca sighs a lengthy, numbing sigh. <i>“It’s not that I’m tired of it, but I needed to distance myself from the Core worlds and especially the military. I wanted to work on my own, work at my own pace, do what I want, set my own rules." + (!biancaTalkedTopic(BIANCA_TOPIC_WORK) ? " You’re not wrong, either. It sounds like a mad dash because it is.":" I’m driving myself to feel like I have some semblance of control that I didn’t have before.") + "”</i>");
 	output("\n\nHer gaze turns, and she folds her arms. <i>“" + (flags["BIANCA_CONFRONTED"] == 1 ? "You know full well how my life was before I met you, so I won’t go into detail on that." : "The last three years of my life have been my utter worst.") + " I could work at any clinic I want, find a comfy job on a wealthy planet, or take another tour of duty.”</i>");
 
-	output("\n\nShe turns back to you, marble eyes thinned to a sedate strand. <i>“But all of those roads lead to the same outcome: being under watch, having no privacy. My tolerance for that is quite low now...”</i> Bianca explains in a sterile tone, almost sounding like she laments her old life. <i>“...Perhaps non-existence. Out here on the planet rush, I can live in relative freedom off of my savings and do my job the way I want to. Being here empowers me... gives me that rush of <b>purpose,</b>”</i> she clenches her hand, <i>“a reason to live! And my reason to live? It’s to give others the chance to keep living. It always has been. I feel that my life matters only when I’m using it to save others. But,”</i> she chuckles, recognizing the dramatic wording she used, <i>“I guess this all makes me a vagrant at best and a deluded heroine at worst.”</i>");
+	output("\n\nShe turns back to you, marble eyes thinned to a sedate strand. <i>“But all of those roads lead to the same outcome: being under watch, having no privacy. My tolerance for that is quite low now...”</i> Bianca explains in a sterile tone, almost sounding like she laments her old life. <i>“...Perhaps non-existent. Out here on the planet rush, I can live in relative freedom off of my savings and do my job the way I want to. Being here empowers me... gives me that rush of <b>purpose</b>,”</i> she clenches her hand, <i>“a reason to live! And my reason to live? It’s to give others the chance to keep living. It always has been. I feel that my life matters only when I’m using it to save others. But,”</i> she chuckles, recognizing the dramatic wording she used, <i>“I guess this all makes me a vagrant at best and a deluded heroine at worst.”</i>");
 
 	output("\n\nPrayer, huh? Is she a follower of the Church of the One, then?");
 	output("\n\n<i>“Not exactly, but I’ve always been fascinated. When I first looked up to the starry skies, I felt smaller than I was. I thought to myself... all those stars are distant places. Who knows who lives out there? Who knows what exists beyond them? As I grew older, I chose to believe in... something. It didn’t matter what. I am not superstitious, but I believe, deep down... that there are things out there we can never know, may never know... you get the picture, right? I don’t believe in any God, but I believe that there’s a possibility <b>something</b> exists that defies our understanding. That... and I used to study old Earth religions.”</i>");
@@ -988,7 +988,7 @@ public function chattingAboutMiscWithAFoxyDoc(inRandomEncounter:Boolean = false)
 			output("\n\nThere’s the click of a holo-selfie being snapped.");
 			output("\n\nBefore you even finish blinking and coping, she withdraws and hides her hands behind her back. <i>“Hee hee, that’s for future reference...”</i>");
 			output("\n\nA-All she had to do was ask... wait, what are you thinking? That <i>is</i> how she asks for something!");
-			pc.lust(5+pc.libido()/10);
+			pc.changeLust(5+pc.libido()/10);
 			break;
 		// rand 5 (rut or heat, leads to sex options at >=51 familiarity. NO BACK OUT)
 		case 4:
@@ -1255,7 +1255,7 @@ public function convinceBiancaYoureNotASpaceHobo(inRandomEncounter:Boolean = fal
 	{
 		output("\n\n<i>“You could say that,”</i> you reply with a sly, widening grin. <i>“Dear old dad gave me a few unique suggestions but there’s one I took to like I was born for it. " + (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE ? "I learned to earn everything in life from very early on and I was used to moving around from house to house, so it’s no surprise I guess that I ended up learning the traits of" : "I learned to get used to moving around and enjoying every bit of rest I could, since I chose to become") + " a... smuggler. It might sound bad, but I inspected all cargo and never ran dangerous goods, though some were definitely illegal to own or to use. Or both.”</i>");
 		output("\n\n<i>“Is that so, [pc.name]? Imagine the headlines, hee hee. The [pc.son] of Steele Tech’s founder, the inheritor of the company, little more than a black market courier! Oh, you must have some tales!”</i>");
-		output("\n\nYou have one, in fact. Cutting your teeth as a quick-witted, agile, ‘doesn’t stay in one place too long’ kind of [pc.guyGirl] wasn’t as routine as being a merc or mentally oriented as being a geek. Relying on gut instinct was the name of the game. Being aware, alert, street smart, space smart... all sorts of things. It’s not for the faint of heart, and not for poor decision makers");
+		output("\n\nYou have one, in fact. Cutting your teeth as a quick-witted, agile, ‘doesn’t stay in one place too long’ kind of [pc.guyGirl] wasn’t as routine as being a merc or mentally oriented as being a geek. Relying on gut instinct was the name of the game. Being aware, alert, street smart, space smart... all sorts of things. It’s not for the faint of heart, and not for poor decision makers.");
 		output("\n\nBut you’re digressing: you ran with a small time gang once, and they had plans for the entire system. Long story short, you explain to the strangely young and enraptured looking Bianca how you rolled with them, how you learned the tricks of your trade... then made out like a bandit when they got too big for their britches. When they started getting into more and more dangerous games, you got out, putting their leadership in jail and making off with most of the earnings from a recent job.");
 		output("\n\n<i>“Oh, it sounds like such an adventure! Maybe someday I’ll get to see you being cool for myself?”</i>");
 		output("\n\nReally? ‘Cool’? What’s gotten into her?");
@@ -1467,7 +1467,7 @@ public function biancaAndHerFamily(inRandomEncounter:Boolean):void
 		output("\n\nBut what about her daughter? Cecily. She has her still, right? And she’s still wearing a ring, too.");
 		output("\n\nBianca looks at her finger and squints. <i>“This isn’t the ring Dian gave me. I gave that to Cecily. Two years after the incident I was able to marry again. My daughter is grown up and pursuing her goals. For the time being, I’ve asked them not to contact me. Three years is a long time, I understand, but I don’t have the strength to face that part of me yet.”</i>");
 		output("\n\nYou nod slowly, unsure of what else to say.");
-		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?");
+		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?”</i>");
 		output("\n\nUntil next time.... Sauntering off, Bianca disappears into the night.");
 		output("\n\nHopefully her words ring true.");
 		// Bianca disappears two days
@@ -1478,7 +1478,6 @@ public function biancaAndHerFamily(inRandomEncounter:Boolean):void
 
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
-
 	}
 	// Repeat, (ONLY after [Confront]ing Bianca)
 	else
@@ -1525,7 +1524,7 @@ public function optimisticResponseToThisSpaghetti(inRandomEncounter:Boolean):voi
 	output("\n\nBianca gestures thoughtfully, a nod of the head and a casting of the eye. <i>“Forgiveness is hard, especially when the other person thinks they are unstoppable. But you’re right, [rival.heShe] is relying on someone else’s strength. When that’s gone...”</i>");
 	output("\n\nOnly time will tell.");
 	processTime(3);
-	biancaTalkEndMenu(false);
+	biancaTalkEndMenu(inRandomEncounter);
 }
 
 //[Distrust]
@@ -1540,7 +1539,7 @@ public function distrustBiancaSpaghetti(inRandomEncounter:Boolean):void
 	output("\n\nYour doctor nods quietly, knowing this is your battle. She takes a sip from her glass and comments, <i>“Distrust can be worse than decision sometimes, [pc.name]. When you make your judgment, do so with resolve.”</i>");
 	output("\n\nYou will. Oh, you will.");
 	processTime(3);
-	biancaTalkEndMenu(false);
+	biancaTalkEndMenu(inRandomEncounter);
 }
 
 //[No Chance]

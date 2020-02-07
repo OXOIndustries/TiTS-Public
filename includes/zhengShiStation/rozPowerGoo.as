@@ -134,6 +134,10 @@ public function startPhase2():void
 	output("\n\nRoz runs her hands up and down her sheer latex catsuit, letting her gooey body ever-so-slightly deform under her touch. When she gets to where a simulated nipple peeks out, her whole body jiggles with a shock of self-stimulated pleasure. <i>“That’s the stuff. C’mon and take me already... or better yet, hold still while I take <b>you</b>!”</i>");
 	output("\n\nShe’s not gonna take no for an answer.");
 
+	//Disable Roz a few hours so she can fix her armor.
+	pc.createStatusEffect("DisabledRoz");
+	pc.setStatusMinutes("DisabledRoz",60*5);
+
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }
@@ -1115,7 +1119,7 @@ public function wsanLossScene():void
 	CombatManager.genericLoss();
 }
 
-//Female Scene: Roz’s Cum Receptacle”</i>);
+//Female Scene: Roz’s Cum Receptacle
 //Also applies to traps/shemales. If PC qualifies for the dick’d loss scene as well, make it a tossup which they get.
 public function rozsCumReceptacleEnd():void
 {
@@ -1126,14 +1130,15 @@ public function rozsCumReceptacleEnd():void
 	{
 		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	}
-	output("\n\n<i>“Alright, I can work with this,”</i> Roz drawls,");
-	if(pc.isHerm()) output(" rubbing a pair of fingers through your twat before gripping your cock between her gooey digits. <i>“Couple hundred years ago, when I was just a little young thing, I used to love making my own member and plowing pretty girls with with... preferably with a couple dozen men servicing me while I worked. Isn’t it just the best, bein’ a little bit of both? How’s about I show you how I used to live when I was a wild thing, living like a cum-dumpster on two legs?”</i>");
-	else if(pc.hasVagina()) output(" rubbing at your [pc.cunt " + x + "]. <i>“Nice lil’ puss you’ve got here. I’ve always been a little envious of havin’ a real one... a nice lil’ baby maker between my legs, begging for any man to come and plow it. Maybe a dozen of ‘em in rapid succession, all trying to be the lucky man to breed me. Instead I gotta wait for hundreds of men to pump their seed in me, bloat me up enough that I can split myself in two. Not that I don’t enjoy the process... in fact, maybe you could help me out with that!”</i>");
+	output("\n\n<i>“Alright, I can work with this,”</i> Roz drawls");
+	if(pc.isHerm()) output(", rubbing a pair of fingers through your twat before gripping your cock between her gooey digits. <i>“Couple hundred years ago, when I was just a little young thing, I used to love making my own member and plowing pretty girls with with... preferably with a couple dozen men servicing me while I worked. Isn’t it just the best, bein’ a little bit of both? How’s about I show you how I used to live when I was a wild thing, living like a cum-dumpster on two legs?”</i>");
+	else if(x >= 0) output(", rubbing at your [pc.cunt " + x + "]. <i>“Nice lil’ puss you’ve got here. I’ve always been a little envious of havin’ a real one... a nice lil’ baby maker between my legs, begging for any man to come and plow it. Maybe a dozen of ‘em in rapid succession, all trying to be the lucky man to breed me. Instead I gotta wait for hundreds of men to pump their seed in me, bloat me up enough that I can split myself in two. Not that I don’t enjoy the process... in fact, maybe you could help me out with that!”</i>");
 	else if(pc.hasCock() && pc.biggestCockLength() < 6) 
 	{
-		output(" wrapping her fingers around your [pc.cock]. <i>“Ohh, what a cute lil’ pecker you’ve got here! Personally I’m more of a fan of getting plowed by men with big members and bigger libidos, but you know, I’ve got a soft spot for cuties with precious little peens.”</i>");
+		output(", wrapping her fingers around your [pc.cock]. <i>“Ohh, what a cute lil’ pecker you’ve got here! Personally I’m more of a fan of getting plowed by men with big members and bigger libidos, but you know, I’ve got a soft spot for cuties with precious little peens.”</i>");
 		output("\n\nHer goo ripples around your cock, enveloping you in a jiggling wet handjob. <i>“But you know what I like better? Watchin’ little things like this flop around and leak their goo while their owner is getting hammered from behind by big strong men-folk. How’d you like to help me live out a little fantasy of mine? I’m not asking, of course, but it’s nice if you acknowledge what a little slut your body wants to be... you’ll cum a whole lot more for me if you’re into it.”</i>");
 	}
+	else output(".");
 	output("\n\nGrinning mischievously while she pleasures you, Roz leans in and whispers, <i>“There’s a ship scheduled to come back in just a couple minutes, and if I know my pirates, it’s full of sweaty, pent-up horny hermaphrodites desperate for any excuse to unload. Don’t worry, I’ll be riding shotgun for the gangbang - can’t let you have <b>all</b> the fun, after all.”</i>");
 	output("\n\nBefore you can ask what she means, the goo-girl presses her lips to you, hushing you with a kiss. As she does, Roz starts to slip out of her bodysuit. She zips it down to her crotch, letting her massive tits spill out against your [pc.chest], then stripping it off her shoulders and kicking it off her legs; the last leg still wrapped up in the tight latex gives the suit a flick, flinging it over into the open cockpit of her power armor. Once she’s nice and nude, the azure goo presses herself against you, deforming her body somewhat to perfectly mirror the front of yours.");
 	output("\n\n<i>“There we go,”</i> she purrs, <i>“Oh, it’s so hard to not just jump on you and bang ya silly... but I’m a patient girl. I know how to wait, to savor the hunt. Or I just like to edge myself... sometimes it gets hard to tell. Hey, hold onto this for me, huh?”</i>");
