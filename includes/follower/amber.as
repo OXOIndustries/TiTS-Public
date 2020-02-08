@@ -24,6 +24,7 @@ Dryad xpac written by Wsan.
 	AMBER_TALK_STAGE stage of unlocked talk topics 0/undef = Past & Crew, 1 = Family, 2 = Life, 3 = Cure, 4 = Drugs
 	AMBER_CREW_SEX 0/undef = no, 1 = yes
 	AMBER_CURED undef/0 uncured, 1 = cured
+	AMBER_THROBB Number of doses of Throbb given
 	AMBER_DUMBFUCK Number of doses of dumbfuck given
 	AMBER_DUMBFUCK_LASTGIVEN currently under the influence of dumfuck, 0/undef = n0, 1 = yes
 	AMBER_EQUILICUM Been given equilicum 0/undef = no, 1 = yes
@@ -1631,7 +1632,7 @@ public function amberOnShipInjectThrobb() : void
 	}
 
 
-	processTime(10);
+	processTime(5);
 	IncrementFlag("AMBER_THROBB");
 	clearMenu();
 	addButton(0, "Sex", amberOnshipSex);
