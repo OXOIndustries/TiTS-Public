@@ -74,7 +74,7 @@ public function oviliumEffects():void
 				output("\n\n");
 				
 				pc.fertilityRaw += 0.5;
-				pc.lust(5);
+				pc.changeLust(5);
 				processTime(8);
 			}
 			// ([if pc has vag]: pc becomes preg with eggs -- one womb at a time!)

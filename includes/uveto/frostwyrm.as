@@ -400,7 +400,7 @@ public function frostwyrmBadEnd():void
 
 	processTime(90);
 	pc.removeAll();
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	addButton(0,"Next",frostwyrmBadEndII);
 }
 
@@ -708,7 +708,7 @@ public function nameThatFrostwyrm1():void
 	output(" She doesn’t answer, but underneath you, you feel her lungs heaving in short bursts, crudely mimicking laughter. If this is a power Frostwyrms like herself have....");
 	output("\n\nYou brace yourself on her body, excited more than ever to get to work repopulating her species.");
 	processTime(65+rand(3));
-	pc.lust(50);
+	pc.changeLust(50);
 	
 	processTime(5);
 	clearMenu();
@@ -3410,7 +3410,7 @@ public function frostwyrmXMasEnding():void
 	output("\n\nYou lay one arm across her muzzle and give her a gentle kiss on the tip of her flaring nose. "+ (silly ? "<i>“Same.”</i>" :"You couldn’t have said it better."));
 
 	processTime(5);
-	pc.lust(50);
+	pc.changeLust(50);
 	
 	var currDate:Date = new Date();
 	flags["FROSTWYRM_XMAS"] = currDate.fullYear;

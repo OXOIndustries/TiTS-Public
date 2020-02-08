@@ -120,7 +120,7 @@ public function losingToStahVipah():void
 			output(" <i>“You’re going to give me all your credits or all-”</i> she stops, eyes shifting sideways before she glances back at you, cheeks discolored. <i>“All your credits or all your cock. Just like I want.”</i>");
 			output("\n\nThe sensual snakegirl leans back and considers you. <i>“Is it working?”</i>");
 			output("\n\n<i>“In a manner of speaking,”</i> you murmur, feeling your [pc.cocks] harden, <i>“yes.”</i>");
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else
 		{

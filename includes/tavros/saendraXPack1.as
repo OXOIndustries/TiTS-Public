@@ -1617,7 +1617,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 	}
 	
 	if (flags["ZIL_CALLGIRL_SEXED"] == undefined) flags["ZIL_CALLGIRL_SEXED"] = 0;
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	zilCallgirlSexMenu();
 	return;
@@ -2174,7 +2174,7 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 	output("\n\nYou sigh and pull yourself off of her, letting the excess honey dribble down your chin as you lean back, as full as you can stand to be of her sweet, sweet nectar. The waspy " + (isMommy ? "mother" : "whore") + " smiles, eyes drooping heavily as her body continues to quake and quiver from the orgasm. <i>“My, you... you have a talented mouth,”</i> she murmurs, tracing her finger through some of the spilled honey surrounding her and bringing it to her mouth. She cleans the golden digit with relish, sucking up every drop with seductive moans.");
 	output("\n\nSatisfied with your sweet meal, you roll off the bed and start to collect your gear. By the time you have, the well-sucked call girl’s cleaned up most of her mess, scooping the spilled honey into some bottles from her nightstand. Something tells you this happens to her pretty regularly.");
 	
-	pc.lust(25);
+	pc.changeLust(25);
 	// +25 Energy
 	pc.energy(25);
 	zilCallGirlSexed(true);

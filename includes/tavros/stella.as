@@ -240,7 +240,7 @@ public function meetingStella():void
 		output("\n\n<i>“So, " + pc.mf("big boy","hottie") + ",”</i> she whispers, wrapping her arms around your neck. <i>“Got some time to play with your little doggie?”</i>");
 		output("\n\nStella’s clearly used to getting what she wants, but are you gonna give it to her?");
 		processTime(35);
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	else
 	{
@@ -386,7 +386,7 @@ public function letsFuckeySuckeyStella():void
 		if(stellaPregnantShowing()) output(", her pregnancy making it feel a little like you’re returning to your housewife");
 		output(". By the time you put her down on the bed, she remembers what you’re here for and lights up like a firework.");
 		processTime(10);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	output("\n\nIt’s up to you what you want to do with her.");
 	//[Appearance] [Talk] [Pussy] [Assfuck] [Oral]
@@ -1449,7 +1449,7 @@ public function moreStellaPetPlayPostCollarShop():void
 
 	processTime(15);
 	if(pc.hasCock()) pc.orgasm();
-	else pc.lust(5);
+	else pc.changeLust(5);
 	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",moreStellaPetPlayPostCollarShop2);
@@ -1484,7 +1484,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 
 		output("\n\nYou snap some pictures with the overjoyed bimbo clambering all over you, the best of them probably the one where you managed to get her to be still for 0.5 seconds as she smushed her face into yours and looked up for the photo. Both of you are wearing huge grins in it, and she’s tilting her head upwards to proudly show off the collar.");
 		processTime(20);
-		pc.lust(3);
+		pc.changeLust(3);
 	}
 	else
 	{
@@ -1695,7 +1695,7 @@ public function stellaKidTalkScene():void
 	StatTracking.track("pregnancy/total sired",kiddos);
 
 	processTime(20);
-	pc.lust(5);
+	pc.changeLust(5);
 	//Go to sex menu, with Breed available (sry).
 	stellaMenu();
 }

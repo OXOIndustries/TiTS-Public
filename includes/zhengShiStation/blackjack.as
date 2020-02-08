@@ -820,6 +820,7 @@ public function pcWinsVsRoocipher():void
 			else if(pc.libido() < 66) output(" This game just got a lot sexier! Now you <i>have</i> to keep playing!");
 			else output(" Holy shit, do you get to keep the clothes too? You <i>have</i> to find out, you <i>have</i> to keep winning!");
 			output("\n\nBetter set it aside for now...");
+			pc.changeLust(5);
 		}
 		// Repeat (lewdness minimum <=3 gamegasms)
 		else if(flags["ROO_GASMED"] <= 3)
@@ -828,7 +829,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nHer too-tight jacket, a chic symbol of formality and professionalism, is coming off. Dainty hands close in on gold buttons, twisting and sliding them through clear-cut fabric slots. With each unfastening her quality bosom presses heavier on her uniform, accelerating the process and threatening to rip the last two from their strings. Sumptuous breasts, relieved of the weight pushing them up, tear her tucked shirt out from her belted skirt.");
 			output("\n\nLike before, she tosses you the item, laughing as your nostrils flare to better inhale that lung-pleasing fragrance.");
 			output("\n\nRoo dances left and right, expressing relief and enjoyment at her titillating liberation. Her big and bouncy boobs are flaunted so temptingly that you feel getting thrown out for a single touch might be worth it... to some people. Focusing on the game is going to get a lot harder with those sweater puppies flopping around though, especially under a shirt so light it’s like a glorified cloth obscuring the view...");
-			pc.lust(1);
+			pc.changeLust(6);
 		}
 		// Repeat (lewdness intensifies 4-9 gamegasms)
 		else if(flags["ROO_GASMED"] < 10)
@@ -848,7 +849,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nThe ruby-eyed dealer gives you a lovely little dance, thrusting her hips back and her chest forward, hooking a finger past the neckline and dragging down so that you might feast your eyes on stress-sedating fields of voluptuous kaithrit breast. That weightless gray shirt that cloaks her divine bosom has all the insignificance of tissue paper. It would be <i>so easy</i> to remove, to free her jiggle from solitary confinement!");
 			output("\n\nBut, alas...");
 			output("\n\nRadiating from the vestment’s inner lining is a strong, soothing, cherry-scented perfume, and it smells heavenly. It keeps your mind off the jealousy others begin to display, and the siren call of womanly bounty. <i>“Come on, [pc.name]! Let’s keep going!”</i> she exclaims.");
-			pc.lust(2);
+			pc.changeLust(7);
 		}
 		// Repeat (lewdness maximizes 10+ gamegasms)
 		else
@@ -860,10 +861,9 @@ public function pcWinsVsRoocipher():void
 			output("\n\nHer uppermost clothing splits apart and the flung buttons launch into uncertainty, pinging off heads and tables. The cherry-scented wind produced by the act gently breezes " + (!pc.hasHair() ? "across your scalp":"through your [pc.hairColor] [pc.hairs]") + "; an expansive smile brightens your slowly blushing [pc.face] watching her breasts flop in opposite directions below the shirt. Hefting the torn garment, Roo throws it to the side, gazing at you longingly, directing her very essence to you.");
 			output("\n\nSupple boobs blithely cupped captivate every titgazing gambler. Her shirt is always the same tantalizing vestment, creasing to the waves of her rippling chest. Even while she performs a little dance, hopping to the left, curving to the right, playing with her magnificent mammaries, you spot her once or twice close to breaking her the rules, close to giving you a double-presentation instead of the usual peek past the neckline into her purr-rattled breasts.");
 			output("\n\nYou’re tranquilized by their anxiety-quelling quaverings, but mildly frustrated when the show ends. An exhilarated coo slips out of Roo’s lips when she sits, reassuming her role. <i>“[pc.name],”</i> her eyes close, <i>“another round?”</i>");
-			pc.lust(3);
+			pc.changeLust(8);
 		}
 		processTime(4);
-		pc.lust(5);
 		rooStrips(1);
 		showRoo();
 		rooMenu();
@@ -879,6 +879,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\n<i>“Ready or not!”</i> she giggles, flinging her skirt directly at your face with enough speed and surprise you can’t catch it. Your nose is struck by the residual pheromones hidden behind her satiny red panties, and now she looks less a dealer and more like a frat girl partying in the dorm.");
 			output("\n\nHer hips aggressively cock and the springy plushness they’ve accumulated quivers attractively. More freckles can be seen around her flawless waistline, deepening in presence towards her ass. Her shoulders roll, and her chest bounces in rhythm; she seats herself, hurriedly shuffling the deck after that blithe and brazen conduct. <i>“You’re on a roll, [pc.name]!”</i>");
 			output("\n\nFlirtatious as ever, she asks, <i>“Will it stay that way?”</i>");
+			pc.changeLust(5);
 		}
 		// Repeat (lewdness minimum <=3 gamegasms)
 		else if(flags["ROO_GASMED"] <= 3)
@@ -895,7 +896,7 @@ public function pcWinsVsRoocipher():void
 			}
 			output("\n\nThe impish bunny-cat then plants it back in the seat and reshuffles the deck as if it never happened. <i>“You’re certainly destined for greatness, [pc.name]!”</i>");
 			output("\n\nThat may just be true.");
-			pc.lust(1);
+			pc.changeLust(66);
 		}
 		// Repeat (lewdness intensifies 4-9 gamegasms)
 		else if(flags["ROO_GASMED"] <= 9)
@@ -913,7 +914,7 @@ public function pcWinsVsRoocipher():void
 			else output(", and the projected stimulation woefully ends when she unsnaps the inveigling article.");
 			output("\n\nYou catch her skirt and stare at it, sensing the faintness of ladyscent. In your beating heart, you feel like she was right there on you the whole time.");
 			output("\n\n<i>“Oh, [pc.name],”</i> Roo titters, <i>“you know how to rejuvenate a game! I’ll need to order you another drink soon!”</i>");
-			pc.lust(2);
+			pc.changeLust(7);
 		}
 		// Repeat (lewdness maximizes 10+ gamegasms)
 		else
@@ -924,10 +925,9 @@ public function pcWinsVsRoocipher():void
 			output("\n\nSaliva-sparkling lips form a moaning ‘O’ shape; Roo leans over the table on the verge of crawling across, seating herself in your lap, and unleashing her suppressed cravings. Frisky white tails gyrate wildly, settling on wrapping around her whenever they feel the need to clench. She drags backwards, her yielding and malleable tits contouring to every obstacle in their way, so sensitive that she could be mistaken for a victim of Dumbfuck.");//nice~
 			output("\n\nHer once-professional mien has been replaced with covetous cupidity. Even when she turns her back to shake her ass, she is always locked to you, watching for the twinkles in your [pc.eyes], the slow blinks you give, the tiny shudders on your mouth. You stare enraptured at her panty-covered ass, counting the freckles on either side. The ripples fanning through her copious squish, over and around the ribboned side-ties of her panties, never fail to make your mouth water.");
 			output("\n\n<i>“Ahh, [pc.name],”</i> Roo hums, <i>“it’s never a bad day when you’re here. Luck in [pc.raceShort] form! Are we to play again?”</i> There’s a transient glower that passes across her face. Three words form on her pretty lips: <i>claim your prize.</i>");
-			pc.lust(3);
+			pc.changeLust(8);
 		}
 		processTime(5);
-		pc.lust(5);
 		rooStrips(2);
 		showRoo();
 		rooMenu();
@@ -944,6 +944,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nWhen your brain clarifies her new state of undress, taking your eyes off Roo’s exposed bosom is impossible - your attention is dominated by her gorgeous tits. Nipples as large as bubblegum wads shine, fully erect and begging to be tweaked. The kaithrit does so, tugging her luscious bust in solid gropes, throwing her head back with a lustful cry. It’s not hot enough in here to sweat, but her sublime teats glisten. You see why: there’s a burgundy blush of shameless arousal budding in her soft cleavage.");
 			output("\n\nSitting again, the table acts as the perfect boobshelf. The rabbit’s rounded tits are set high with little sag and no end of wanton jiggle. <i>“This is the most rousing game I’ve had this month! Oh, [pc.name], you must make it one to remember,”</i> she flicks you a card, <i>“for both of us!”</i>");
 			output("\n\nYou’re not sure why, but the desire to keep playing has been <i>bolstered...</i>");
+			pc.changeLust(5);
 		}
 		// Repeat (lewdness minimum <=3 gamegasms)
 		else if(flags["ROO_GASMED"] <= 3)
@@ -957,7 +958,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\n<i>“Mmmh!”</i> Roo strikes another pose, thrusting her chest out, pink teats jutting powerfully. Her lush scent wafts your way. It’s a hedonistic spectacle that you aren’t motivated to look away from until she deals you another hand.");
 			output("\n\n<i>“You aren’t going to leave a lady like this, are you?”</i>");
 			output("\n\nYou’re not, right?");
-			pc.lust(1);
+			pc.changeLust(6);
 		}
 		// Repeat (lewdness intensifies 4-9 gamegasms)
 		else if(flags["ROO_GASMED"] <= 10)
@@ -971,7 +972,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nFor a nervous second you wonder if this is a developing obsession, but the way she looks at you, the vermilion shape of her glimmering eyes... there’s an emotion in her broadcast that touches you on a personal level. What exactly is it that she hopes you feel? And why you? No doubt though, you’re aware of a uniquely pleasurable and satisfying feeling you struggle to identify, and it grows each time she ‘rewards’ you.");
 			output("\n\nAnother card comes your way after the shirt, but you’re finding it difficult to keep your [pc.eyes] away from her bright pink nipples.");
 			output("\n\nYou’ll have to keep winning, then. Walking away with your fortunes early is one end to the story, but if you want to understand her, then only by staying will you do so.");
-			pc.lust(2);
+			pc.changeLust(7);
 		}
 		// Repeat (lewdness maximizes 10+ gamegasms)
 		else
@@ -984,10 +985,9 @@ public function pcWinsVsRoocipher():void
 			output("\n\nMore security shows up for her safety... probably yours too. A large crowd of boob-gazers follows.");
 			output("\n\nThe air around you smells more like her as the seconds pass, but you can’t see her groin - she’s sat down, grasping, no, fumbling for her cards. Her voice buds at the back of her mouth, locked away by pursed lips. There’s only one person between you and her, your real prize.");
 			output("\n\nWill you reach out?");
-			pc.lust(3);
+			pc.changeLust(8);
 		}
 		processTime(5);
-		pc.lust(5);
 		rooStrips(3);
 		showRoo();
 		rooMenu();
@@ -1009,6 +1009,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nAnd... wait, you’ve only just now noticed that part of her thighs aren’t actually thighs, but bands of some sort. Some kind of stripping on her right leg blends in perfectly with her flesh, and a web of imperceptible wires are threading into her nethers. Several boxes are held in place... vibrators? Receivers? It’s no surprise you hadn’t spotted them before, they’re tiny, and obscured easily by buxom skin.");
 			output("\n\n<i>“This is a special moment, [pc.name],”</i> Roo seats herself on her underwear, <i>“you have earned well today, but the game is not over juuuuust yet! If you can continue your winning streak, you will earn the greatest prize of all: you’ll get a <b>jackpot!</b>”</i> Her voice comes out in heated moans, and she trembles in bottled excitement. <i>“Will you rise to the occasion?”</i>");
 			output("\n\n" + (pc.hasCock() ? "Something between your legs is rising to the occasion, that’s for sure... but y":"Y") + "ou almost wonder if refusal is an option. <i>What is going to happen if you reach that peak?</i>");
+			pc.changeLust(5);
 		}
 		// Repeat (lewdness minimum <=3 gamegasms)
 		else if(flags["ROO_GASMED"] <= 3)
@@ -1021,7 +1022,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nHer body jerks upwards while she slides another finger in, coming away with strands of femme cum clinging to her digits; Roo groans, her thighs quivering, silencing her unsteady voice with a taste of secreted bliss. The kitten preens herself a little too long, delighting in what must be a fantastic taste to go with a promising, scintillating scent. Soon enough, she seats herself, visibly horny" + (pc.hasCock() ? " and looking ready to take your painfully erect [pc.cockBiggestNoun]":"") +".");
 			output("\n\n<i>“[pc.name], allow me to shuffle this deck, and let us all to bear witness to your final victory! You can do it!”</i> Roo’s fists pump and her pussyscent thickens, threatening to make this area reek with her womanly musk.");
 			output("\n\nMore than that, you can see an incredible thrill running through her like a soft wave. After what happened last time she must be <i>expecting</i> you to win...");
-			pc.lust(1);
+			pc.changeLust(6);
 		}
 		// Repeat (lewdness intensifies 4-9 gamegasms)
 		else if(flags["ROO_GASMED"] <= 10)
@@ -1037,7 +1038,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nFrom what you’ve seen, you hope she never does.");
 			output("\n\nWatching her squirm to maintain her air of etiquette, struggling to fortify herself for something that she’s slowly learning may be a guarantee when you sit down...");
 			output("\n\n<b>It’s up to you to put the ‘nova’ in <i>Treasure Nova...</i></b>");//Nice :3
-			pc.lust(2);
+			pc.changeLust(7);
 		}
 		// Repeat (lewdness maximizes 10+ gamegasms)
 		else
@@ -1050,10 +1051,9 @@ public function pcWinsVsRoocipher():void
 			output("\n\n<i>“You’re so close,”</i> she says softly, stepping back and hopping from the effluent-covered table. She handles her cards better than you’d think, like her clothes were all obstructing the true woman in front of you. <i>“I’m right here...”</i> she places her cards down, <i>“...will you have me again?”</i>");
 			output("\n\nThings have quieted down, and at the very edge of your perceptive auditory range, you can hear the pounding in her chest. Her calm motions belie the cresting excitement within. You will win this. You can’t <i>not</i> win this.");
 			output("\n\nRoo knows it’s going to happen. What she doesn’t know is <i>when</i> it will happen. But when it does, she’ll be reminded forevermore that you will <i>always</i> be her player one.");
-			pc.lust(3);
+			pc.changeLust(8);
 		}
 		processTime(5);
-		pc.lust(5);
 		rooStrips(4);
 		showRoo();
 		rooMenu();
@@ -1089,7 +1089,7 @@ public function pcWinsVsRoocipher():void
 			//loot dat shit and whatnot
 			//Dont forget to drank dat drunk
 			processTime(6);
-			pc.lust(10);
+			pc.changeLust(10);
 			pc.imbibeAlcohol(50);
 			roogasm();
 			output("\n\n");
@@ -1112,7 +1112,7 @@ public function pcWinsVsRoocipher():void
 			output(".");
 			output("\n\nA few minutes later, Roo’s table is taken over by a man you’re almost certain is an android with how emotionless he is. The kaithrit will probably be back tomorrow. In the meantime, you should figure out what you can do with some non-taxable income...");
 			processTime(7);
-			pc.lust(12);
+			pc.changeLust(12);
 			pc.imbibeAlcohol(50);
 			roogasm();
 			clearMenu();
@@ -1149,7 +1149,7 @@ public function pcWinsVsRoocipher():void
 					output("\n\nYou look down again, noting Roo’s increasing sexual distress. Were you to fuck her, she’d be all yours, a sight for others to envy. You’d be playing with her right in front of everyone and probably end up in a highly rated porn clip on some dingy website.");
 					output("\n\nBut is that a reason to say no to someone so needy?");
 					processTime(7);
-					pc.lust(15);
+					pc.changeLust(15);
 					clearMenu();
 					//[Sex] [Turn Down]
 					addButton(0,"Sex",rooSexMenu,true,"Sex","Now that she’s done for the day, what’s stopping you from getting your real reward?");
@@ -1162,7 +1162,7 @@ public function pcWinsVsRoocipher():void
 					output("\n\nShe stumbles into the arms of security to be led out, leaving you to finish your drink and consider growing genitals to take advantage of a future opportunity...");
 					//[Next] // Go to Turn Down
 					processTime(7);
-					pc.lust(10);
+					pc.changeLust(10);
 					clearMenu();
 					addButton(0,"Next",turnDownRoocipher);
 				}
@@ -1186,7 +1186,7 @@ public function pcWinsVsRoocipher():void
 					output("\n\nLike before, security shows up with their own small praises, silently keeping the crowds back while affording you an opportunity to claim Roo in front of every pirate and merc in <i>Treasure Nova.</i>");
 					output("\n\nIf you want her, she’s more than ready for it.");
 					processTime(7);
-					pc.lust(15);
+					pc.changeLust(15);
 					clearMenu();
 					//[Sex] [Turn Down]
 					addButton(0,"Sex",rooSexMenu,true,"Sex","Now that she’s done for the day, what’s stopping you from getting your real reward?");
@@ -1198,7 +1198,7 @@ public function pcWinsVsRoocipher():void
 					output("\n\n<i>“It’s a shame you’ve nothing here,”</i> she giggles, gripping your [pc.thighs] and rising up to plant a lipsticked kiss on your cheek. <i>“But there’s my gift to you,”</i> she whispers, her breath warmly washing across your [pc.skinFurScales]. <i>“Come back soon, okay?”</i>");
 					output("\n\nShe stumbles into the arms of security to be led out, leaving you to finish your drink and consider growing genitals to take advantage of a future opportunity...");
 					processTime(7);
-					pc.lust(10);
+					pc.changeLust(10);
 					clearMenu();
 					addButton(0,"Next",turnDownRoocipher);
 				}
@@ -1234,7 +1234,7 @@ public function pcWinsVsRoocipher():void
 				output(" Between her hot and heavy breaths, she whispers, <i>“Will you have me, too? You’ve been patient long enough.”</i>");
 				output("\n\nHer two tails weave around your waist, pulling you a little closer, increasing her odds that you might say ‘yes’ just a little bit.");
 				processTime(7);
-				pc.lust(15);
+				pc.changeLust(15);
 				clearMenu();
 				//[Sex] [Turn Down]
 				addButton(0,"Sex",rooSexMenu,true,"Sex","Now that she’s done for the day, what’s stopping you from getting your real reward?");
@@ -1246,7 +1246,7 @@ public function pcWinsVsRoocipher():void
 				output("\n\nHer free hand sinks to your crotch only to find disappointment. <i>“As always, you never fail to impress, but... it’s a shame there’s nothing here,”</i> she laughs, running her hand across your barren loins. <i>“But that’s fine. You’re more important.”</i>");
 				//[Next] // Go to [Turn Down]
 				processTime(7);
-				pc.lust(10);
+				pc.changeLust(10);
 				clearMenu();
 				addButton(0,"Next",turnDownRoocipher);
 			}
@@ -1870,7 +1870,7 @@ public function undertableOral(forceGenital:Number = 0):void
 		output("while you do it. Her inundated pathway shines a brain-mellowing [pc.cumGem] color, speeding you downwards through her wobbling heaven. In your [pc.cockNoun " + x + "] you can feel her heart bouncing around your firm boner like the hypnotic jiggle of her boobs flopping like crazy into your [pc.dickSkin " + x + "]. You almost want to sit up and pin her to the table, slam your [pc.cockType " + x + "] dick in [pc.knotBallsHilt " + x + "]-deep, but then you would miss out on your initial request...");
 		output("\n\nThe kaithrit pushes back on your groin and abruptly unsheathes you from her wet, heaving valley. You almost explode on her then and there, and you would have if she didn’t grip tight to your painfully-bobbing dick" + (pc.hasCocks() ? "s":"") + ", breathing a pacifying air across their quivering shapes.");
 		processTime(25);
-		pc.lust(25);
+		pc.changeLust(25);
 		clearMenu();
 		addButton(0,"Next",rooBeej2,x);
 	}
@@ -2165,7 +2165,7 @@ public function tableFuckRoo():void
 		output("\n\nRoo raises a finger to one sugarmound and your boner’s added inches " + (!pc.isCrotchExposed() ? "nearly thrust your meat through your [pc.crotchCoverUnder]":"throb out a [pc.cumVisc] strand of goop onto her crotch") + ". The carmine-colored cat regards your awestruck countenance with a tiny laugh as you struggle to " + (!pc.isCrotchExposed() ? "free your [pc.cocks] and ":"") + "mount her. <i>“It’s a super-charged drug, little like lactaid. It doesn’t last long, but it does leave me rather burdened! Make sure you milk me really good! And... I can always get more...”</i> she giggles.");
 		output("\n\nOh fuck.");
 		processTime(5);
-		pc.lust(3);
+		pc.changeLust(3);
 		clearMenu();
 		addButton(0,"Next",rooTableFuck,true);
 		return;
@@ -2213,7 +2213,7 @@ public function tableFuckRoo():void
 		}
 	}
 	processTime(5);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",rooTableFuck,false);
 }
@@ -2280,7 +2280,7 @@ public function rooTableFuck(milky:Boolean = false):void
 		pc.milkInMouth(ppBJMeow);
 	}
 	processTime(15);
-	pc.lust(35);
+	pc.changeLust(35);
 	clearMenu();
 	addButton(0,"Next",rooTableFuck2,milky);
 }

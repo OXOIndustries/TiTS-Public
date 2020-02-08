@@ -250,7 +250,7 @@ public function serviceAgroshYaSloot():void
 	output("\n\n<i>“Yes <b>master</b>,”</i> Ardia whimpers. Good enough for Agrosh, it seems: he releases her tit and shoves her down on the couch beside you. The poor girl’s dick and balls wobble heavily in your face as she just about sinks into the cushions.");
 	output("\n\nAgrosh’s hand finds the back of your head and shoves your [pc.face] down into Ardia’s crotch. <i>“She’s earned herself an orgasm. Work hard, and maybe I’ll fuck you raw enough to cum too.”</i>");
 	processTime(30);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",serviceAgroshYaSloot2);
 }
@@ -633,7 +633,7 @@ public function chooseAnArdiaDrink(drink:String = ""):void
 					pc.reflexesMod-= .5;
 					pc.intelligenceMod-= .5;
 					pc.willpowerMod-= .5;
-					pc.lust(5);
+					pc.changeLust(5);
 				}
 				else output("\n\nYou’ve gotten as much from the mead as you’re going to get.");
 			}
@@ -645,7 +645,7 @@ public function chooseAnArdiaDrink(drink:String = ""):void
 				pc.aimMod-= .5;
 				pc.intelligenceMod-= .5;
 				pc.willpowerMod-= .5;
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 			pc.imbibeAlcohol(10);
 		}
@@ -665,7 +665,7 @@ public function chooseAnArdiaDrink(drink:String = ""):void
 		output("\n\nArdia wiggles her hips and squeezes a handful of butt, spreading herself out so much that you can see the outline of her labia and asshole through the latex. That’s all the teasing you can stand - you lunge forward, hooking your fingers through the hips of the buxom dzaan’s uniform and yanking it down around her ankles. You’re instantly rewarded with a face-full of brown bottom pushing back against you, followed by a fleshy slap of the alpha-girl’s balls on your chin. Her keratin-nubbed member dangles between her thick thighs, already crowned with a murky white bead.");
 		output("\n\nWith another shake of her hips, Ardia kicks off her uniform and grips the edge of the bar with her ass thrust back to you. <i>“Eat up,”</i> she purrs.");
 		processTime(10);
-		pc.lust(15);
+		pc.changeLust(15);
 		clearMenu();
 		addButton(0,"Eat Her Out",eatOutArdia,undefined,"Eat Her Out","Munch on Ardia’s proverbial rug.");
 	}
@@ -685,7 +685,7 @@ public function eatOutArdia():void
 	output("\n\n<i>“I can’t tell which I like more,”</i> Ardia moans, reaching down and wrapping her hands around her shaft. <i>“Getting eaten out, or feeling you loving on my alpha side... mm, help me make a decision, [pc.name]?”</i>");
 	output("\n\nWell, you can sure tell which of her genitals <i>you</i>’re most interested in...");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	pc.girlCumInMouth(ardia);
 	clearMenu();
 	//[Her Pussy] [Her Balls]
@@ -719,7 +719,7 @@ public function worshipArdiasSilkyCunny():void
 
 	pc.girlCumInMouth(ardia);
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	if(pc.hasCock())
 	{
@@ -744,7 +744,7 @@ public function worshipArdiasBalls():void
 	output("\n\nAnd you’re clearly having an effect. Ardia’s breath comes in shuddering gasps, making her butt jiggle and you can hear her tits slapping her dusky flesh from above. She’s so deliciously thick that every gasp and moan sends ripples through her gropable body, coming faster and faster as you worship the liberated libertine’s dick from stem to crown until finally you feel it tensing. Her pussylips squeeze around your nose and her balls clench hard, presaging the oncoming eruption. A final gasp heralds it, a heartbeat before you hear the wet squirt of cum splattering on the deck, and then smell the rich masculine scent of wasted seed. Thick streaks of it paint Ardia’s thighs, joining with the rich nectar of her womanhood as the orgasm rocks straight through her soft body.");
 	output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from between her legs, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down, legs spread to show her cum-soaked thighs and glistening " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "blunt ":"") + "cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
 	processTime(30);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Suck Her",suckArdiaDownSloot,undefined,"Suck Her","Go down on Ardia’s cum-drooling tool and get a fad load of her jizz.");
 	addButton(1,"Ride Her",rideArdiasDickYo,undefined,"Ride Her","Climb into Ardia’s lap and ride that intoxicating cock of hers.");
@@ -775,7 +775,7 @@ public function suckArdiaDownSloot():void
 
 	if(!addictedToArdia() && !immuneToArdia()) output("\n\nWait, getting ready to... shouldn’t you, " + (pc.isBimbo() ? "like" : "well") + ", pull her out first?");
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	//[Swallow] [Jerk Her]
 	if(addictedToArdia())
@@ -1136,7 +1136,7 @@ public function giveArdiaAnusoft():void
 	processTime(10);
 	ardia.ass.addFlag(GLOBAL.FLAG_PUMPED);
 	pc.destroyItemByClass(Anusoft);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Her Butt",cockSelect,[worshipArdiasButtYouSluuuut,ardia.analCapacity(),true,0],"Her Butt","Ardia’s body is so lush and soft, it’s hard to decide what you like best... but you gotta say, it’s her jiggling butt that gets you hardest.");
 }

@@ -336,7 +336,7 @@ public function ulaFirstTimeRemeet():void
 
 	//CHOICES
 	processTime(5);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Breed Her",breedWithUla);
 	else addDisabledButton(0,"Breed Her","Breed Her","You need a penis for this.");
@@ -780,7 +780,7 @@ public function ulaPussyFuck():void
 	output("\n\nIgnoring how your face is drenched in her sloppy juices, painted from cheek to cheek in korgonne-cum, you’re still going, driving her wild. It feels like you’re addicted to pussy, like you can’t get enough. Your whole mouth aches from eating her out. You feel like you’ve swallowed gallons of girlish goo, but <i>you want more</i>. It’s like an addiction, only there’s no satisfying it. You always want more. No matter how horny you get, the desire for more delicious, savory slit overwhelms your personal need.");
 	output("\n\n<i>Pussy!</i>");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",morePussThirst);
 }
@@ -2060,7 +2060,7 @@ public function eatOutPregnantUla():void
 	pc.girlCumInMouth(ula);
 
 	processTime(30);
-	pc.lust(50);
+	pc.changeLust(50);
 
 	//Pull Away - requires WQ 50%+ //Enjoy Pussy
 	clearMenu();
@@ -2096,7 +2096,7 @@ public function pullAwayFromPregUlaCunt():void
 	output("”</i> Smiling drunkenly, she goes to work on her cunt, whimpering your name again and again.");
 	output("\n\nStaggering out the door is like walk through a bed of coals, but somehow, you manage.");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	if(!ulaChief()) addButton(0,"Next",move,rooms[currentLocation].northExit);
 	else addButton(0,"Next",move,rooms[currentLocation].southExit);
@@ -2254,7 +2254,7 @@ public function ulaVoluntaryPregPussyMunchEpilogueWithBadEndChance():void
 		output("”</i>");
 		output("\n\nThat sounds just perfect to you.");
 		processTime(60);
-		pc.lust(50);
+		pc.changeLust(50);
 		clearMenu();
 		addButton(0,"Next",ulaPregPussBadEnd);
 	}

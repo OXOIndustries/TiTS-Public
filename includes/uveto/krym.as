@@ -406,7 +406,7 @@ public function loseToThatIcyBimbo():void
 
 	output("\n\nBut a stormy amazon like her can’t be satisfied just by owning your face...");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	krymCombatTrack(false);
 	//[Next]//to relevant version. If the PC is a herm or a shemale, 50/50 odds between which scene they get.
 	clearMenu();

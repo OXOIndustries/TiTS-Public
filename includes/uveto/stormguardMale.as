@@ -577,7 +577,7 @@ public function spankDatTank():void
 	// +Lust. Storm Lancer set to improved form for next encounter regardless of honor status. Set SLKnowName to 1
 	output("\n\n");
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	flags["MET_GEL_ZON"] = 1;
 	IncrementFlag("SPANKED_SG_COUNT");
 	//Sort... seen is dick for appearance stuff
@@ -699,7 +699,7 @@ public function fuckTheStormguardsButt():void
 		output("\n\n<i>“You enjoying that, boy?”</i> you " + pc.mf("husk","purr") + ", coiling his dick with flicks of the wrist. <i>“Are you?”</i> You receive nothing but a rumbling, catching groan in response. You exult in your conquest, this vainglorious beast you’ve tamed with your own hand, increasing the fervency with which you pound his big, tough backside. You could have a say over whether he cums his brains out here or not...");
 
 		processTime(5);
-		pc.lust(10);
+		pc.changeLust(10);
 		//[Let Him] [Deny]
 		clearMenu();
 		addButton(0,"Let Him",letSGCum);

@@ -73,7 +73,7 @@ public function forgehoundEncounter():Boolean
 		output("\n\n<i>“I- I won’t let you win that easy,”</i> you say, trembling as you struggle to steady your breathing. <i>“I won’t!”</i>");
 		output("\n\n<i>“Well, we did only fuck once,”</i> he says, stopping and shrugging. <i>“If you really want to make this formality long and drawn-out, we can. Makes it even sweeter when you give up. But honestly,”</i> he adds, smirking at you, <i>“you don’t look like you’ll put up much of a fight.”</i>");
 		output("\n\n<i>“S-shut up,”</i> you mutter.");
-		pc.lust(25);
+		pc.changeLust(25);
 		clearMenu();
 		addButton(0,"Fight",forgehoundFightSetup,true);
 		addButton(1,"Submit",submitToForgehound,undefined,"Submit","Give in. The large, domineering man is just too intimidating and hot for you to fight him.");
@@ -634,7 +634,7 @@ public function yesIllMakeYouCumForgy():void
 	output("\n\n<i>“Aw, fine,”</i> you sigh. <i>“Here, I’ll scratch my extranet mail on the ground. Hit me if you want to start a circus.”</i>");
 	output("\n\nYou can’t tell if he’s sobbing or shaking in rage, but either way your job here is done. You leave with a spring in your step.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -841,7 +841,7 @@ public function fistDatTaurBoi():void
 	//set a flag for this, might try and crowdfund an expansion where he shows up again in trap form wanting to get fucked.
 	IncrementFlag("FORGEHOUND_FISTED");
 	processTime(20);
-	pc.lust(5);
+	pc.changeLust(5);
 	output("\n\n");
 	CombatManager.genericVictory();
 }

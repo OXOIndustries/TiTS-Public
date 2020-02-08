@@ -201,7 +201,7 @@ public function doggieStyleDatSaberDoggie():void
 	pc.cockChange();
 
 	processTime(5);
-	pc.lust(1000);
+	pc.changeLust(1000);
 	//[Nah] [Yes]
 	clearMenu();
 	addButton(0,"Nah",dontLetTheMilodanGetOffHesADork,x,"Nah","Why would you worry about his pleasure?");
@@ -666,7 +666,7 @@ public function giveMilodanMalesStinkyButtholeALick():void
 	output("\n\n....");
 	output("\n\nBy the time you let him go, you’ve made him paint both the ice and his stomach in pearlescent white jizz. His cock is still drooling pre-cum even now, but you’ve had your fun. Leaving the still-shaking barbarian on the ground, you walk away with a smile. Maybe you should do this more often.");
 	processTime(60);
-	pc.lust(30);
+	pc.changeLust(30);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -1276,7 +1276,7 @@ public function milodanCockWorship():void
 	// merge
 	output("\n\nUnable to hold himself back, the leopard-man’s hips start humping your face, making you realize just how much strength and force is backing that glistening tower. Brutal balls slam into your chin and cheeks, flinging beads of their smutty lacquer into your orifices. Penile barbs curl against your [pc.skinFurScales] and then your ears. The milodan finally halts himself only after eclipsing you in his clenching ballsack, pulling back to present you with the tip of a hard, juicy cock that <b>needs your mouth.</b>");
 	processTime(20);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",worshipMilodanPolePartDeus);
 }

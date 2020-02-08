@@ -431,7 +431,7 @@ public function thePirateQueenScenario(exhibition:Boolean):void
 	output("\n\nWith that done you wipe away any cum on your lips and check out your figure. Your belly is still slim and yet you feel so full. Weird. You proceed onwards towards your goal.");
 	output("\n\nMoving through the ship you find yourself caught between a forked hallway and the heavy footsteps of patrolling guards. The left hall leads to ‘Testing Center 34-N.’ The right hall leads to ‘Nutrient Stalls 12-N.’ You can’t let yourself get caught by the guards and there isn’t an immediate alternative, so which hallway do you take?");
 	processTime(55 + rand(11));
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	// Left Hallway follows A path and Right Hallway follows B path.
 	//[Left Hallway] [Right Hallway] [Bail]
@@ -497,7 +497,7 @@ public function part3ADoorDildo(exhibition:Boolean):void
 	output("\n\nEventually your oral orgasm subsides and you slide off of the dildo. The door opens up and you shakily walk through it.\n\nYou have to complete your mission.");
 	processTime(55 + rand(11));
 	pc.orgasm();
-	pc.lust(20);
+	pc.(20);
 	clearMenu();
 	// Next Scene
 	// Go to Part 3 - The Bad End
@@ -532,7 +532,7 @@ public function nutrientStallsWheee(exhibition:Boolean):void
 	output("\n\nAs you catch your breath you wonder just how much cum you drank. No matter how much you ingested, it wasn’t enough. Your body craves more, but your stomach must be bloated by now. Upon examination however, your belly is nice and flat; kind of empty when you think about it.");
 	processTime(55 + rand(11));
 	// Next Scene
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	// Next Scene
 	//[Next] or [Bail]
@@ -733,7 +733,7 @@ public function simmCaged3A(exhibition:Boolean):void
 	output("\n\nThe guard releases her hold on your skull and you fall backwards onto your butt. She chuckles and walks away. You blissfully start sucking a finger in and out of your mouth. Tasting what little cum you didn’t swallow, you start rolling it around with your tongue.");
 	output("\n\nThe guard eventually returns with a plate of cold fruit and warm meat. She hand feeds each piece to you like a pet, one bite at a time. Once or twice you catch a finger between your lips, sucking on them as she pulls her hand away. When you’re finished you lie down full of food and semen and try to get a real night’s worth of sleep.");
 	processTime(55 + rand(11));
-	pc.lust(100);
+	pc.changeLust(100);
 	// Next Scene
 	//[Next] [Bail]
 	//Tooltip Next: Proceed with the simulation.

@@ -300,7 +300,7 @@ public function watchOvirDancer():void
 	if(!knowBethsOvir()) output(" But you still get the feeling that you’re not quite clever enough to see the whole picture, somehow.\n\nThe girl is quite pretty, possibly even beautiful, and it’s very much a pleasure to watch her dance. All the same, there’s something off about her that you can’t put your finger on. You study her for a bit longer before you decide to leave, but between her proud, happy smiles and the enticing shake of her hips, you never figure out why you have such a strange hunch.");
 	//it’s your gaydar, bro
 	//end, add lust, pass time
-	pc.lust(27);
+	pc.changeLust(27);
 	processTime(12);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -364,7 +364,7 @@ public function teaseTheOvir():void
 	output("\n\nHalfway into another cock-stroking ring around the pole the ovir comes to a slow stop, as do the voices of the watchers soon after. Everyone in the room seems to have guessed why, and is staring with anticipation. Shaking slightly with built-up tension, the dancer’s face scrunches cutely and her hips twitch. A moment later, she loses the fight to hold back, and a stroke of white cum erupts from her cock, flying into the air and arcing to splat on the stage. The crowd cheers wildly, and two more shots shortly follow, both stretching higher than the first. The ovir’s buckled knees wobble in climax and she lowers herself to the floor, still gripping the pole with both hands and softly pumping her hips. Aftershocks drool from her slit as she leans forward, resting her forehead against the pole and breathing heavily.\n\nWhile the assembled patrons continue to hoot and stamp and more than a few let out orgasmic grunts of their own, the ovir makes eye contact with you from behind the pole. Lowering her lids seductively, she blows a kiss, then hauls herself upright and begins to dance again, as satisfied and confident in her body as she was before you exposed her. Feeling more than a little horny and exhilarated enough to do a dance of your own, you separate from the crowd and leave.");
 	//end, add lust, add 1% exhib if below 66% threshold or 2% if above, pass time
 	pc.exhibitionism(2);
-	pc.lust(27);
+	pc.changeLust(27);
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1118,7 +1118,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 		pc.girlCumInMouth(ppKat);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	// Vag
 	if(service == "vagina")
@@ -1133,7 +1133,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 		pc.girlCumInMouth(ppKat);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	// Everything
 	else if(service == "all")
@@ -1151,7 +1151,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 		pc.girlCumInMouth(ppKat);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	
 	totalEarnings = brothelWhorePayment(baseEarnings, service);
@@ -1224,7 +1224,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		// + 2 hours
 		processTime(120);
 		// + Lust
-		pc.lust(5);
+		pc.changeLust(5);
 		pc.exhibitionism(1);
 		// Base hands pay-out: 50 credits + 30
 		baseEarnings += 80;
@@ -1258,7 +1258,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		// + 2 hours
 		processTime(120);
 		// + Lust
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.exhibitionism(1);
 		// Base mouth pay-out: 70 credits + 30
 		baseEarnings += 100;
@@ -1546,7 +1546,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			if(!InCollection(1, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA big, gruff human tough, tattoos festooned down both arms, wants some one-on-one... and very discrete... treatment. He barks and groans, blindfolded and hands tied to the ceiling by magnetic hard-points, as you apply the lash to his muscular back and ass, casually telling him what a bad boy he’s been. Honestly, given the amount of unsolicited fondles and pinches to the [pc.ass] you’ve received whilst you’ve been here from guys who look exactly like this, it’s a pretty satisfying hour.");
-				pc.lust(10);
+				pc.changeLust(10);
 				processTime(60);
 				scenesLimit--;
 				scenesIndex[scenesIndex.length] = 1;
@@ -1691,7 +1691,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("\n\nNo matter how seductive you try to be, no takers accept your presence. You try to vary your approach, from a passive lily to a more aggressive pussy pusher, but your potential targets are either too entralled by other performances or flat-out uninterested as they dismissively brush you away.");
 		output("\n\nEventually you head back up to the counter to meet the mistress....");
 		// + Lust
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	
 	// Randomized bonus pay buffs
@@ -2376,7 +2376,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			processTime(10 + minPass);
 			
 			//Lust maxed out
-			pc.lust(pc.lustMax(), true);
+			pc.changeLust(pc.lustMax(), true);
 			
 			// [pb]
 			addButton(0, "Next", brothelTrappifyAnswer, "trap");
@@ -2704,7 +2704,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 		// + 2 hours
 		processTime(120);
 		// + Lust
-		pc.lust(5);
+		pc.changeLust(5);
 		pc.exhibitionism(1);
 		// Base hands pay-out: 70 credits
 		baseEarnings += 70;
@@ -2735,7 +2735,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 		// + 2 hours
 		processTime(120);
 		// + Lust
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.exhibitionism(1);
 		// Base mouth pay-out: 100 credits
 		baseEarnings += 100;
@@ -2969,7 +2969,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 			if(!InCollection(1, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA big, gruff human tough, tattoos festooned down both arms, wants some one-on-one... and very discrete... treatment. He barks and groans, blindfolded and hands tied to the ceiling by magnetic hard-points, as you apply the lash to his muscular back and ass, casually telling him what a bad boy he’s been. Honestly, given the amount of unsolicited fondles and pinches to the [pc.ass] you’ve received whilst you’ve been here from guys who look exactly like this, it’s a pretty satisfying hour.");
-				pc.lust(10);
+				pc.changeLust(10);
 				processTime(60);
 				scenesLimit--;
 				scenesIndex[scenesIndex.length] = 1;
@@ -3122,7 +3122,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 		output("\n\nNo matter how seductive you try to be, no takers accept your presence. You try to vary your approach, from a passive boi toy to a more aggressive leg humper, but your potential targets are either too entralled by other performances or flat-out uninterested as they dismissively brush you away.");
 		output("\n\nEventually you head back up to the counter to meet the mistress....");
 		// + Lust
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	
 	// Randomized bonus pay buffs
@@ -3158,7 +3158,7 @@ public function brothelTurnTrixLicensedWhoreTrap(service:String = "none"):void
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 		pc.girlCumInMouth(ppKat);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	
 	// Everything
@@ -3177,7 +3177,7 @@ public function brothelTurnTrixLicensedWhoreTrap(service:String = "none"):void
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 		pc.girlCumInMouth(ppKat);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	
 	totalEarnings = brothelWhorePaymentTrap(baseEarnings, service);

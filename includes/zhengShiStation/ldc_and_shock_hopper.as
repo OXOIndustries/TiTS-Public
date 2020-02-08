@@ -265,7 +265,7 @@ public function loseToShockHopper():void
 		output("\n\n<i>“Interesting...”</i> Your heart kind of flutters when she brushes the long bangs of her hair, an automatic reaction to her satisfaction. <i>“I’ll buy that.”</i> You’re left feeling utterly hollow when she throws the switch again, like your arousal has been sucked out of your soul. <i>“I bet you’re feeling lost... maybe needy now, " + (pc.tallness + 10 < enemy.tallness ? "little ":"") + "[pc.boyGirl].”</i> You nod unthinkingly, a low ‘yes’ building in the back of your throat. You can’t stop yourself from mouthing the word, embarrassment exploding across your cheeks. <i>“You’ve done as you were told,”</i> she rolls her shoulders, <i>“you’ve earned a little reward I think. Something that shows you how I care for mine.”</i>");
 		output("\n\nThe laquine lieutenant yanks hard on the clasp of her package-defining zipsuit, the parting of the teeth as loud as the kick to her stim-unit. <i>“One of the perks of being a slave is having nothing to worry about except pleasing your owner,”</i> she arches back, exhaling when her corset gives in to the weight of her heaving bosom curtained by blue and beige fur. <i>“You can let your mistress do the thinking now.”</i> Her pulsating horse-cock shoots skyward from behind the zipper, thickening when the sagging, pheromone-drenched testes flop out beneath it, dragging her into a more pleasing state of undress. <i>“My dick needs sucking,”</i> she peels off her gloves, curling her fingers around one jutting black nipple, <i>“and you’re about to learn why the Jumpers " + (silly ? "rule":"are on top") + ".”</i>");
 		processTime(25);
-		pc.lust(50);
+		pc.changeLust(50);
 		clearMenu();
 		addButton(0,"Next",loseToJumpBossPart2Nonbust);
 	}
@@ -357,7 +357,7 @@ public function loseToShockHopper():void
 		else output("cups your [pc.vagOrAss]");
 		output(" adoringly, <i>“and then you’ll learn why the Jumpers " + (silly ? "rule":"are on top") + ".”</i>");
 		processTime(25);
-		pc.lust(50);
+		pc.changeLust(50);
 		clearMenu();
 		addButton(0,"Next",loseToJumpBossPart2Busted);
 	}
@@ -768,7 +768,7 @@ public function fuckTheHopper(x:int):void
 	output("\n\nNow that’s an example worth following. As soon as you see what the pirate boss is up to, you follow suit, letting the bottom of one thrust against the Hopper’s clit carry you straight back in between her pussylips. You’re rewarded by a shriek, muffled by her mouthful of dick, and then you’re sinking into the silken chasm of her quim.");
 	if(x >= 0) pc.cockChange();
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",fuckTheHopper2,x);
 }
@@ -875,7 +875,7 @@ public function rideHopperSlut(x:int):void
 		output("\n\nThis cat’s pretty good for a proxy dick!");
 	}
 	processTime(30);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",rideHopperSlut2,[x,y]);
 }
@@ -978,7 +978,7 @@ public function domTheLDCsAss(x:int):void
 	else if(pc.isMischievous()) output("<i>“Hard to believe the big man on this rock was actually a little man who, by the looks of it,”</i> you rub a hand over his plump butt, <i>“needs his little ass pounded.”</i>");
 	else output("<i>“Just like the rest of your crew,”</i> you grunt, running a heavy hand across his plump ass cheeks, gripping hard enough to make him squeak. <i>“A slut. But one that needs a good stretching himself to really... <b>fit</b> the role.”</i>");
 	processTime(10);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",domTheLDCsAss2,x);
 }
@@ -1666,7 +1666,7 @@ public function laquineShockyThreesomes(x:int):void
 	output("\n\nYou smirk, wondering aloud what kind of sounds he’d be making if you stuck it in him" + (pc.cockTotal() > 1 ? ", especially as you have more than one":"") + ". Unable to fire off a witty retort, all the sissy-boy can do is stare reluctantly at your aching member" + (pc.hasCocks() ? "s":"") + ".");
 	output("\n\n");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",laquineShockyThreesomes2,x);
 }
@@ -1717,7 +1717,7 @@ public function laquineShockyThreesomes2(x:int):void
 	output(" You tug and tweak the weapons-grade nipples between your fingers, grinding the unbalanced candy-rabbit’s ass into your personal space.");
 	output("\n\n<i>“H-hey, don’t you know how to treat a woman?”</i> the bunny-boy quips, but he’s just trying to distract from his inattentiveness - if he practiced what he preached, then he’d have been all over her from the start. That’s something you growl out to him after the next feral thrust into still-stretching anus.");
 	processTime(15);
-	pc.lust(1000);
+	pc.changeLust(1000);
 	clearMenu();
 	addButton(0,"Next",laquineShockyThreesomes3,x);
 }

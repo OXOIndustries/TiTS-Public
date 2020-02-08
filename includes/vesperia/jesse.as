@@ -562,7 +562,7 @@ public function jesseFirstTeaseII(title:int):void
 
 	pc.createStatusEffect("Jesse Bar Cooldown",0,0,0,0,true,"","",false,60*12);
 	flags["JESSE_TEASE_STATE"] = 1;
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -639,7 +639,7 @@ public function jesseSecondTeaseII():void
 	output("\n\nYou empathise with her, telling her she did well. She did as you commanded, more or less. Before she removes herself, you manage to get in a quick peck on her cheek, causing it to flush pink and puff up. She doesn’t say much but you can tell by the way she looks at you, the way she ambles away with a small swing in her hips, and the slovenly kiss she blows you that she wouldn’t mind seeing you again.");
 	output("\n\nAs she heads off to the guest rooms, you reorganize yourself, dust your body down and get back to the ship.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	moveTo("SHIP INTERIOR");
 	flags["JESSE_TEASE_STATE"] = 2;
 	processTime(10);
@@ -1169,7 +1169,7 @@ public function jesseSexBagOTricksRelease(x:int = -1):void
 	output("\n\nOnce she’s finished, she gathers her bag, blows you a kiss, and leaves for the station.");
 
 	processTime(60 + rand(15));
-	pc.lust(100);
+	pc.changeLust(100);
 
 	clearMenu();
 	addButton(0,"Next",jesseSexEnd);
@@ -1203,7 +1203,7 @@ public function jesseSexBagOTricksContinue(x:int = -1):void
 	output("\n\n<i>“Owwwww, ow ow,”</i> she complains, rubbing her elbows. You can’t help but chuckle at it. While she very gingerly redresses, taking extra time with her tight boxers, and tries to take her distracted gaze away from you, there’s a window to repack her bag with the used toys. Once it’s packed she lifts it by the shoulder and blows you a kiss. With a mutual wave, she leaves the ship.");
 
 	processTime(60 + rand(15));
-	pc.lust(100);
+	pc.changeLust(100);
 
 	clearMenu();
 	addButton(0,"Next",jesseSexEnd);

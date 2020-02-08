@@ -746,7 +746,7 @@ public function lundSexStarter():void
 		
 		processTime(5);
 	}
-	pc.lust(4);
+	pc.changeLust(4);
 	lundSexMenu();
 }
 
@@ -2254,7 +2254,7 @@ public function repeatLundCookies():void
 		output("\n\nYou <i>do</i> happen to have more....");
 
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.loadInMouth(lundCumPlaceholder());
 		//[=Again=][=Enough=]
 		// give the PC the Orally-Filled status
@@ -2622,7 +2622,7 @@ public function lundBadEndFinale():void
 	output("\n\nYour rub your hand gently over his balls as they clench and lurch, followed by several thick, juicy gouts of his cum flooding into you. You swallow his every load eagerly, your mind wandering to the more nostalgic times you had taken him into your mouth like this. You hear the telltale sound of teeth against crumbly flour again, and his body reacts once more.");
 	output("\n\nIn the ten years it’s been since you gave yourself to your master; you never did find the limit to his stamina.");
 	pc.libido(200);
-	pc.lust(200);
+	pc.changeLust(200);
 	pc.willpower(-100);
 	pc.intelligence(-20);
 	//output("\n\n<b>GAME OVER</b>");
@@ -2653,7 +2653,7 @@ public function enoughBeforeLundBadEnds():void
 	output("\n\nYou’ll make up your mind when you leave....");
 
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	pc.energy(-100);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

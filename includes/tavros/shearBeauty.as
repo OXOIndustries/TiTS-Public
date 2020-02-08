@@ -474,7 +474,7 @@ public function cutHair(hairInches:Number):void
 		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(hairInches) + " inches long!</b>");
 		else if(pc.hasFur()) output(" <b>You have nothing but fur on your head!</b>");
 		else output(" <b>You are totally bald!</b>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
 	processTime(7);
@@ -648,7 +648,7 @@ public function hairColorizing(newColor:String = "black"):void
 		if(pc.hasCock()) output("and the way she’s grinding ever-so-slightly against your bulge, ");
 		output("she’s teasing herself just as much.");
 		output("\n\nFinally you’re treated to a short but sweet kiss as the last of the gel is used up, and by the time Ceria pulls her lips away and gets off your lap the last vestiges of [pc.hairColor] have vanished from the tips of your hair, leaving you with a pleasant tingle in your roots as the gel finishes ensuring its work is permanent. <b>Your hair is now " + newColor + "!</b>");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	pc.hairColor = newColor;
 	pc.credits -= ceriaServicePrice(500);
@@ -1048,7 +1048,7 @@ public function furColorApplicationGo(newColor:String):void
 		if(pc.hasCock()) output(" and narrowly avoids brushing your erection with her fingertips");
 		output(". <i>“Of course, if you want to try out a different color sometime, I’ll gladly do this for you again any time you want.”</i>");
 		output("\n\nCeria eventually takes her hands off of your body and gets up to put her shirt back on, allowing you to reclaim your gear and get a proper look at your new coloration. <b>Your fur is now " + newColor + "!</b>");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	else
 	{
@@ -1196,7 +1196,7 @@ public function touchPointyEars():void
 
 	output("\n\nFinally you let up, letting go of Ceria with one last flourish of your fingertips across the back of her ear. She promptly fumbles under the counter for a few seconds, pulling out a sign marking the salon as temporarily closed, and fixes you with a hungry look. <i>“Okay, after a display like that there’s no way you’re not taking responsibility for turning me on, right, " + pc.mf("hunk","cutie") + "?”</i>");
 
-	pc.lust(12);
+	pc.changeLust(12);
 	processTime(8);
 
 	ceriaSexMenu(true);
@@ -1390,7 +1390,7 @@ public function giveDatElfSlootOral():void
 
 	//[Next] Exit conversation with Ceria.
 	processTime(24);
-	pc.lust(13 + rand(10));
+	pc.changeLust(13 + rand(10));
 	pc.girlCumInMouth(chars["CERIA"]);
 	fuckedCeria(true);
 	clearMenu();
@@ -1622,7 +1622,7 @@ public function earFuckWithCeria():void
 	output("\n\nEncouraged by the sight of the lust-drunk elf, you wrap your fingers the whole way around and start to pump her from wide base to narrow tip, jacking off Ceria’s ear just as fast and hard as any dick. She reacts about as you would expect. Her mouth hangs slack whenever it isn’t moaning obscenities, and tiny puddles of drool are beginning to form atop her DD-cup cleavage. She seems oblivious to her own state, so oblivious that she doesn’t even react when you start smearing pussy-juice on her other ear, allowing you to pump both sides of her head equally forcefully.");
 	output("\n\nCeria’s eyes roll back until they’re little more than white slits, and a ragged moan rips its way out of her throat, blissfully screaming, <i>“Yessssss!”</i> Her hips twitch wildly, and the scent of strawberries fills the air, followed shortly by the sound of her sweet-scented girlcum splattered against the floor. You let go of her ears, too turned on by elf to hold back any longer. It’s time you got to ride one of those sexy, elven blessings and see if your pussy can make her squirt as easily as your hands.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",earFuckCeriaPart2);
 }

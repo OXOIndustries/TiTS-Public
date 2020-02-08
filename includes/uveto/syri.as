@@ -48,7 +48,7 @@ public function syriFreezerKissHer():void
 	output("\n\n<i>“Yeah, okay,”</i> Syri chuckles once you break the kiss. Her tail flicks onto your [pc.leg], teasing at your crotch. <i>“I guess you took that whole ‘I love you’ thing seriously. Good, cuz I </i>meant<i> it...”</i>");
 	output("\n\nYour lover gives you a playful wink and leans back, running her tongue over her lips. <i>“I love the taste of you, too. Wouldn’t mind getting a little more back at your place...”</i>");
 	processTime(3);
-	pc.lust(2);
+	pc.changeLust(2);
 	while(pc.lust() < 33)
 	{
 		pc.lust(1);

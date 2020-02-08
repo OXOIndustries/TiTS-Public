@@ -1042,7 +1042,7 @@ public function lerrisNoTyNoDrinks():void
 	
 	output("\n\nYou heft Lerris out of your lap and skedaddle while you can, hearing moans and wet sounds behind you until you’re back out of the shop.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 
 	currentLocation = "9007";
 	clearMenu();

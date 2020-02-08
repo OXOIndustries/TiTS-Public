@@ -980,7 +980,7 @@ public function tuuvaSex25Event():void
 	output("\n\n<i>“P-please...”</i> She whimpers out, and you decide that she’s had enough teasing.");
 	output("\n\nHow do you take her?");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	//Show Sex Menu
 	tuuvaSexMenu();
 }
@@ -1842,7 +1842,7 @@ public function pbcookie4Tuuva():void
 	IncrementFlag("TUUVA_COOKIES");
 	pc.createStatusEffect("Tuuva Pooped");
 	pc.setStatusMinutes("Tuuva Pooped",35);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

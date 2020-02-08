@@ -250,7 +250,7 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 				processTime(3);
 				flags["SERA_TALKS_IMPREGNATE"] = 2;
 				//+Lust
-				pc.lust(15);
+				pc.changeLust(15);
 			}
 			else
 			{
@@ -295,7 +295,7 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 				processTime(3);
 				flags["SERA_TALKS_IMPREGNATE"] = 2;
 				//+Lust
-				pc.lust(15);
+				pc.changeLust(15);
 			}
 			addButton(0, "Next", approachServantSera);
 			break;
@@ -466,7 +466,7 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			output("\n\n<i>“Yes [pc.master],”</i> she groans in response, savoring your harshness and her submission to it. You take off your [pc.gear], clamber into bed and watch as the curvy demon-morph crawls down to the other end, curling herself up in sheets and resting against your [pc.feet], prehensile tail gently wrapping itself around " + (!pc.hasLegs() ? "your tip" : "your lower legs") + ". Mmm... that soft warmth does feel nice. Like a big, sexy water bottle. You let yourself relax and slowly drift off into lusty, spicy dreams of conquest and sadistic indulgence.");
 			// +Lust, Sera set to invited
 			processTime(1);
-			pc.lust(15);
+			pc.changeLust(15);
 			if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA") flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
 			flags["SERA_SLEEP_CHOICE"] = 0;
 			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);
@@ -478,7 +478,7 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			output("\n\nYou doze in the succubus’s embrace, her voice murmuring and hushing enticements and invitations gentle black waves that you slip beneath...");
 			// +Lust, Sera set to invited
 			processTime(1);
-			pc.lust(15);
+			pc.changeLust(15);
 			if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA") flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
 			flags["SERA_SLEEP_CHOICE"] = 1;
 			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);

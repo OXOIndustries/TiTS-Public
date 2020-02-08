@@ -622,7 +622,6 @@ public function lucaIsVeryTasty(fromSexRouter:Boolean):void
 	author("RequiemForAMeme");
 	processTime(20);
 	
-	pc.lust(pc.lustMax());
 
 	//Hide this paragraph if coming from "like" confession branch.
 	if (fromSexRouter) output("Luca smiles and quickly switches places with Sebastian. She grabs your [pc.hand] and leads you to her room. As soon as the door hisses closed Luca tells you take a seat on the couch. She darts across the room to her workstation and starts messing with a panel built into the wall.\n\n");
@@ -670,6 +669,7 @@ public function lucaIsVeryTasty(fromSexRouter:Boolean):void
 	output("\n\nYou feel Luca’s cock expand as you deepthroat her. Your body tenses up as you experience " + (lucaFixation() ? "yet another" : "a") + " minor orgasm. She releases more precum into your stomach. You don’t think you can hold back much longer. You kiss the base of Luca’s cock then start to move again.");
 	output("\n\nYou move back and feel Luca’s cock slide out of your throat. " + (pc.hasVagina() ? "It feels almost like she was fucking your pussy." : "It feels incredible as though your throat had become a pussy.") + " You make sure your [pc.lips] are firm as your drag them up her shaft. Every inch that passes your oral seal sends shivers down your spine. You pull away agonizingly slow, feeling more and more empty. You’re trapped in this torturous pleasure of slowly pulling her cock out of your throat. You need to taste her seed again.");
 	output("\n\nLuca’s crown slips from your incredibly empty throat. Her cock is leaking precum like a faucet. Tasting so much of her pre at once nearly sets you off again. Your lips tighten down around her thick head as your tongue gets to work again. Your mind and senses have cleared. Every drop that touches your tongue sets off small fireworks in your mind. You wonder if Luca treats all her subs to such delicious jizz. The thought of Luca with another sub completely and utterly lavishing her in attention annoys you. You want her cock all to yourself and you’re going to prove that you deserve it.");
+	pc.changeLust(pc.lustMax());
 	
 	addButton(0, "Next", lucaIsVeryTastyInYourMouth);
 }
@@ -916,7 +916,6 @@ public function lucaDenialStarts():void
 	showLuca(true);
 	author("RequiemForAMeme");
 	processTime(5);
-	pc.lust(10+pc.libido()/4);
 
 	output("Luca begins by caressing and massaging your body. Her fingers dance across your [pc.skin] as she explores your");
 	if (pc.tone < 25) output(" soft");
@@ -936,6 +935,7 @@ public function lucaDenialStarts():void
 	if (pc.hasPerk("Buttslut")) output(" wanton");
 	output(" pucker. Once the last bead is in, you feel your entire lower region start to faintly vibrate and buzz.");
 	output("\n\n<i>“These will keep you nice and on edge while I go back to the lounge for a few hours,”</i> Luca tells you. <i>“Don’t think about cumming either. My little ones will be keeping an eye on you.”</i>");
+	pc.changeLust(10+pc.libido()/4);
 	
 	addButton(0, lucaSafeWord, lucaWontDenyYou);
 	addButton(1, "Say Nothing", lucaJustStayTiedUpAndHorny);
@@ -1090,7 +1090,7 @@ public function lucaJustStayTiedUpAndHorny():void
 	pc.createStatusEffect("Denied By Luca");
 	IncrementFlag("LUCA_DENIED");
 	// Set Lust to max and give appropriate debuffs.
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.shower();
 
 	addButton(0, "Next", leaveLotusEater);
@@ -1454,7 +1454,7 @@ public function lucaIsVeryTastyAndIDontWannaHideIt():void
 	output("\n\n<i>“Um... Nothing,”</i> " + (customer == 0 ? "Tess replies. <i>“I just, well I’m just jealous of your subs that can fit under the counter.”</i>" : "the patron replies. <i>“Ahem. If you’re busy then it can wait.”</i>"));
 	output("\n\n<i>“" + (customer == 0 ? "Aww Tess, I know just how to make you feel better..." : "Nonsense, I would never let such a lovely patron...") + "”</i> The conversation fades as the two of them step away. Meanwhile you’re left hot and panting, your tongue lolling out of your mouth. Your orgasm is still so close. Your " + pc.cockAndVagina("[pc.cocks]", "[pc.vaginas]", " and ") + (pc.isHerm() || pc.hasCocks() || pc.hasVaginas() ? " are" : " is") + " burning with need.");
 	
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	addButton(0, "Next", lucaComesRightInYourMouthInPlainViewOfEveryone);
 }

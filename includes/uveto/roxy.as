@@ -3089,7 +3089,7 @@ public function roxySexIdeaNo():void
 	}
 	
 	processTime(5);
-	pc.lust(60);
+	pc.changeLust(60);
 	clearMenu();
 	if (flags["ROXY_IDEA_REFUSE"] == 1) addButton(0, "Next", roxyGreet);
 	else
@@ -5142,7 +5142,7 @@ public function roxyBedSex():void
 	processTime(10 + rand(10));
 	pc.girlCumInMouth(roxy);
 	pc.applyPussyDrenched();
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0, "Spoon Her", penisRouter,[roxyBedSexSpoonHer,roxy.vaginalCapacity(),false,0], "Spoon Her", "Take Roxy slowly, be the big spoon that shows their lover what it truly means to be cared for.");
 	addButton(1, "Rvs Cowgirl", penisRouter,[roxyBedSexRvsCowgirl,roxy.vaginalCapacity(),false,0], "Reverse Cowgirl", "Mount Roxy and let her have a little fun. Remind her what it’s like when she’s not pregnant!");
@@ -6073,7 +6073,7 @@ public function roxyIntimacySitWith(loc:int=0):void
 	
 	clearMenu();
 	processTime(60 + rand(60));
-	pc.lust(30);
+	pc.changeLust(30);
 	addButton(0, "Next", roxyIntimacyMenu, loc);
 }
 public function roxyIntimacyRubTummy(loc:int=0):void
@@ -6109,6 +6109,6 @@ public function roxyIntimacyRubTummy(loc:int=0):void
 
 	clearMenu();
 	processTime(10 + rand(10));
-	pc.lust(5);
+	pc.changeLust(5);
 	addButton(0, "Next", roxyIntimacyMenu, loc);
 }
