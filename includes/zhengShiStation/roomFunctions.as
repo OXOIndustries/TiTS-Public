@@ -693,7 +693,7 @@ public function landingAtZhengShi():void
 		//[Next]
 		//Recharge PC HP to max; reduce lust to minimum.
 		sleepHeal();
-		pc.lust(-100);
+		pc.changeLust(-100);
 		clearMenu();
 		addButton(0,"Next",firstTimeZhengApproach);
 	}

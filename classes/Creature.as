@@ -5210,13 +5210,36 @@
 		{
 			//Cap healing display for actual accuracy?
 			if(arg > 0 && (arg + lust() > lustMax())) arg = Math.ceil(lustMax()-lust());
-			if(outputText)
+			if(outputText && arg != 0)
 			{
 				var healTxt:String = " (<b>";
 				healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(arg) + "</span></b>)";
 				kGAMECLASS.output(healTxt);
 			}
 			this.lust(arg);
+		}
+		public function changeLustTo(arg:Number = 0, outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			if(arg > lustMax()) arg = lustMax();
+			if(arg < lustMin()) arg = lustMin();
+			if(outputText)
+			{
+				//Track what lust was
+				var oldLust:Number = lust();
+				//Set new lust
+				lust(arg,true);
+				//Figure out the difference
+				oldLust = lust() - oldLust;
+				//Display it :3
+				if(oldLust != 0)
+				{
+					var healTxt:String = " (<b>";
+					healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(oldLust) + "</span></b>)";
+					kGAMECLASS.output(healTxt);
+				}
+			}
+			else lust(arg,true);
 		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number

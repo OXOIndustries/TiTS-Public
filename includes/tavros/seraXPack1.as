@@ -1403,10 +1403,10 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 			output("\n\nWhen she pulls her prodigious bulbous head out almost to your teeth, keeping it there and demanding you polish it, you do so, roiling your tongue across her cum-slit and the light, slightly giving flesh around it, the taste of her pre inundating your taste buds; when she says that you aren’t vocalizing your enjoyment enough, you ramp up the wet sounds you are already making, your muffled groaning around her cock fueled by the vibrations juddering through your core. It’s around then that the first customer comes in...");
 			
 			processTime(25 + rand(11));
-			var changeL:Number = 15;
-			if(pc.exhibitionism() >= 33) changeL += 15;
-			if(pc.exhibitionism() >= 66) changeL += 15;
-			pc.changeLust(changeL);
+			var changeL2:Number = 15;
+			if(pc.exhibitionism() >= 33) changeL2 += 15;
+			if(pc.exhibitionism() >= 66) changeL2 += 15;
+			pc.changeLust(changeL2);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXhibitionBlowjob, [2, vagIndex]);
 			return;
@@ -1530,10 +1530,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			output("\n\n<i>“Ooh,”</i> sighs Jardi, blinking a couple of times. Her pupils dilate and she smiles at you amorously. You do the same back, practically giggling together at how wonderful everything is.");
 			
 			processTime(25);
-			var changeL:Number = 15;
-			if(pc.hasCock()) changeL += 15;
-			if(pc.hasVagina()) changeL += 15;
-			pc.changeLust(changeL);
+			var changeL3:Number = 15;
+			if(pc.hasCock()) changeL3 += 15;
+			if(pc.hasVagina()) changeL3 += 15;
+			pc.changeLust(changeL3);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXJardiThreesome, "hookah");
 			return;
