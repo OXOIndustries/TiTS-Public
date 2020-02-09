@@ -23,7 +23,7 @@ package classes.Characters
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
-			this.short = "Model 18";
+			this.short = "twin bots";
 			this.originalRace = "ausar";
 			this.a = "the";
 			this.capitalA = "The";
@@ -59,6 +59,10 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 40;
+			
+			this.HPMod = 200;
+			this.HPRaw = this.HPMax();
+			this.shieldsRaw = this.shieldsMax();
 			
 			this.femininity = 80;
 			this.eyeType = 0;
@@ -216,7 +220,7 @@ package classes.Characters
 			//Constantly lusting
 			applyDamage(new TypeCollection( { tease: 5 } ), this, this, "suppress");
 			//Make sure they both stay even with lust
-			if (bot17.lust() > this.lust()) this.lust(bot17.lust()-this.lust());
+			if (bot17.lust() > this.lust()) this.lust(bot17.lust() - this.lust());
 
 			var choices:Array = [];
 
