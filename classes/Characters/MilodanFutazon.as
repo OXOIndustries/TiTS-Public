@@ -32,7 +32,7 @@ package classes.Characters
 			this.originalRace = "milodan";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The hulking monster of a milodan lumbers and snarls in front of you. Normally the more subdued and sensual sex of the saber-toothed race, an unknown mutagen has turned her into a behemoth that would make all but the largest males tremble. Every inch of her massive body is covered in thick muscle and wild, shaggy fur. Huge claws sprout from her hands that she seems just as keen to sink into you as her unbelievable bitch boner. Surprisingly her tits and ass seem to have grown in pace, or maybe even more than the rest of her. The titanic globes swing heavily as she moves, weighing her down quite noticeably.!";
+			this.long = "The hulking monster of a milodan lumbers and snarls in front of you. Normally the more subdued and sensual sex of the saber-toothed race, an unknown mutagen has turned her into a behemoth that would make all but the largest males tremble. Every inch of her massive body is covered in thick muscle and wild, shaggy fur. Huge claws sprout from her hands that she seems just as keen to sink into you as her unbelievable bitch boner. Surprisingly her tits and ass seem to have grown in pace, or maybe even more than the rest of her. The titanic globes swing heavily as she moves, weighing her down quite noticeably.";
 			this.customBlock = "Bluh.";
 			this.isPlural = false;
 
@@ -221,7 +221,7 @@ package classes.Characters
 		}
 		public function updateDesc():void
 		{
-			this.long = "The hulking monster of a milodan lumbers and snarls in front of you. Normally the more subdued and sensual sex of the saber-toothed race, an unknown mutagen has turned her into a behemoth that would make all but the largest males tremble. Every inch of her massive body is covered in thick muscle and wild, shaggy fur. Huge claws sprout from her hands that she seems just as keen to sink into you as her unbelievable bitch boner. Surprisingly her tits and ass seem to have grown in pace, or maybe even more than the rest of her. The titanic globes swing heavily as she moves, weighing her down quite noticeably.!";
+			this.long = "The hulking monster of a milodan lumbers and snarls in front of you. Normally the more subdued and sensual sex of the saber-toothed race, an unknown mutagen has turned her into a behemoth that would make all but the largest males tremble. Every inch of her massive body is covered in thick muscle and wild, shaggy fur. Huge claws sprout from her hands that she seems just as keen to sink into you as her unbelievable bitch boner. Surprisingly her tits and ass seem to have grown in pace, or maybe even more than the rest of her. The titanic globes swing heavily as she moves, weighing her down quite noticeably!";
 			if(this.HPQ() <= 25) long+="\n\nShe looks like she’s just barely hanging on at this point, though you can still plainly see the rage in her eyes.";
 			else if(this.HPQ() <= 50) long+= "\n\nHer insatiable battle lust seems to be waning in the wake of your beatings";
 			if(this.lustQ() >= 75) long+= "\n\nThe milodan beast looks almost overwhelmed by her lusts. Her cock is painfully hard, each vein popping out and throbbing hard. Her balls are swollen up even larger, pulsing as they somehow produce more than they can contain and leak the excess out in huge waves.";
@@ -263,7 +263,7 @@ package classes.Characters
 				applyDamage(new TypeCollection( { tease: 5 } ), this, this, "suppress");
 			}
 			if (this.lust() >= this.lustMax()) miloFutaReleaseLust(target);
-			else
+			else if (!target.hasStatusEffect("Grappled"))
 			{
 				var enemyAttacks:Array = [];
 				enemyAttacks.push({ v: bigMiloFutaPounce, w: 10 });

@@ -469,7 +469,7 @@
 			var hasChanged:Boolean = false;
 			
 			//On-use text
-			output("You apply the nanogel to your [pc.pussy " + x + "], making sure to spread it over the labia, [pc.clits] and inner walls as best you can. It feels cool to the touch, sending a shiver up your spine, but before long the sensation is replaced by an unbearable hotness, like your pussy has turned into an angry furnace, its walls contracting and relaxing on their own. It’s definitely not comfortable, but it’s not unpleasant either. A thin stream of something that looks like your [pc.girlCumNoun] starts to ooze out, so you suppose the nanogel must be doing something. ");
+			output("You apply the nanogel to your [pc.pussy " + x + "], making sure to spread it over the labia, [pc.clits] and inner walls as best you can. It feels cool to the touch, sending a shiver up your spine, but before long the sensation is replaced by an unbearable hotness, like your pussy has turned into an angry furnace, its walls contracting and relaxing on their own. It’s definitely not comfortable, but it’s not unpleasant either. A thin stream of something that looks like your [pc.girlCumNoun] starts to ooze out, so you suppose the nanogel must be doing something.");
 			
 			//Eliminate one extra clit
 			if( (change == 0) || (change2 == 0) )
@@ -477,12 +477,12 @@
 				if( target.vaginas[x].clits > 1 )
 				{
 					target.vaginas[x].clits -= 1;
-					target.lust(50);
 					
 					output("\n\nYour fingers go down to your clitoral region of their own volition. With how much your [pc.clits] are itching, you just can’t help it. ");
 					if( target.vaginas[x].clits > 1 ) output("One of them, however, is itching far more than the others, so you focus your efforts on that one. ");
 					output("Gently rubbing the region brings a soothing wave of relief, your unfocused eyes gaze upwards, and you continue to massage the region until the itching stops. As your wits return, you slowly realize something has gone missing. ");
-					output("<b>A quick examination confirms it: you have one less clit than before. Well, it’s not a big loss, since the others are now feeling that much more sensitive to compensate. </b>");
+					output("<b>A quick examination confirms it: you have one less clit than before. Well, it’s not a big loss, since the others are now feeling that much more sensitive to compensate.</b>");
+					target.changeLust(50);
 					hasChanged = true;
 				}
 				else change++;
@@ -570,9 +570,9 @@
 						libidoChange = rand(5)+1;
 						if( (target.libido()-libidoChange) < libidoLimit ) libidoChange = target.libido() - libidoLimit;
 						target.libido(-libidoChange);
-						target.lust(-50);
 						output("\n\nYour sex drive seems to have waned a bit too. Well, it’s not like it will prevent you from reaching orgasms. If anything, it means you won’t be at the mercy of your partners so easily, and you can probably hold back your orgasm much longer, forcing them to cum before you. Or maybe you could try becoming a pleasure delayer. ");
-						output("<b>Your libido has diminished slightly. </b>");
+						output("<b>Your libido has diminished slightly.</b>");
+						target.changeLust(-50);
 					}
 					
 					hasChanged = true;
@@ -679,13 +679,13 @@
 					milkMultiplierChange = milkMultiplierOld - target.milkMultiplier;
 					
 					target.milkFullness = Math.round(target.milkFullness/2) + 1;
-					target.lust(50);
 					output("\n\nTo your relief, the strange liquid is soon replaced by what is clearly your [pc.milkNoun], which leaks freely even though you’re applying no pressure. You decide to speed up the process by gently grabbing your breasts and giving them a good, slow massage. The numbness gradually subsides, replaced by a slight tingling that’s actually rather pleasant. The more [pc.milkNoun] comes out, the better it gets. You lose track of time draining your chest, until it stops leaking completely. You feel as if you’ve put out enough [pc.milkNoun] to feed a battalion, probably losing quite a few mammary glands in the process, whether you realize this or not. ");
 					output("<b>You have a feeling your [pc.milkNoun] output has </b>");
 					if ( milkMultiplierChange > 3 ) output("<b>diminished considerably. </b>");
 					if ( milkMultiplierChange == 3 ) output("<b>diminished a fair bit. </b>");
 					if ( milkMultiplierChange == 2 ) output("<b>diminished somewhat. </b>");
 					if ( milkMultiplierChange < 2 ) output("<b>slightly diminished. </b>");
+					target.changeLust(50);
 					
 					hasChanged = true;
 				}
@@ -774,13 +774,13 @@
 					target.buttRatingRaw -= buttChange;
 					if( target.buttRatingRaw < 0 ) target.buttRatingRaw = 0;
 					buttChange = oldButt - target.buttRatingRaw;
-					target.lust(50);
 					
 					output("\n\nFor some reason, the sensations are getting very good, as if your [pc.butt] was getting an expert massage! You grope it tentatively and notice your backside is getting leaner by the minute, but also more sensitive! ");
 					output("<b>Your [pc.asshole] has lost </b>");
 					if( buttChange >= 3 ) output("<b>a vast amount of size. </b>");
 					if( buttChange == 2 ) output("<b>a substantial amount of size. </b>");
 					if( buttChange < 2 ) output("<b>little bit of size. </b>");
+					target.changeLust(50);
 					
 					hasChanged = true;
 				}

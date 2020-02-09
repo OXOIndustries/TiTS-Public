@@ -295,7 +295,7 @@ package classes.Engine.Combat
 						{
 							output("\n<b>");
 							if (target is PlayerCharacter) output("The freezing sensation hits you, slowing down your movements. You’re frozen!");
-							else output("The freezing sensation slows down the target" + (!target.isPlural ? "’s" : "s’") + " movements. " + StringUtil.capitalize(target.getCombatName()) + " " + (!target.isPlural ? "is" : "are") + " frozen!");
+							else output("The freezing sensation slows down the target" + (!target.isPlural ? "’s" : "s’") + " movements. " + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " frozen!");
 							output("</b>");
 						}
 						// "Deep Freeze"
@@ -320,13 +320,13 @@ package classes.Engine.Combat
 				case "goovolver":
 					output("\n<b>");
 					if (target is PlayerCharacter) output("You don’t");
-					else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "don’t" : "doesn’t"));
+					else output(StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "don’t" : "doesn’t"));
 					output(" seem the least bit bothered by the miniature goo crawling over them.</b>");
 					break;
 				case "slut ray":
 					output("\n<b>");
 					if (target is PlayerCharacter) output("You don’t");
-					else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "don’t" : "doesn’t"));
+					else output(StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "don’t" : "doesn’t"));
 					output(" seem to be affected by the gun’s ray....</b>");
 					break;
 				default:
@@ -335,7 +335,7 @@ package classes.Engine.Combat
 					{
 						output("\n<b>");
 						if (target is PlayerCharacter) output("You don’t");
-						else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "don’t" : "doesn’t"));
+						else output(StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "don’t" : "doesn’t"));
 						output(" seem at all interested in " + possessive(attacker.getCombatName()) + " teasing.</b>");
 					}
 					break;
@@ -356,7 +356,7 @@ package classes.Engine.Combat
 					
 					output("\n");
 					if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
-					else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "are" : "is") + " mentally filled with sexual fantasies, briefly obscuring " + target.getCombatPronoun("hisher") + " vision with " + lewdAdjective + " images!");
+					else output(StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " mentally filled with sexual fantasies, briefly obscuring " + target.getCombatPronoun("hisher") + " vision with " + lewdAdjective + " images!");
 					output(" " + teaseReactions(damageResult.lustDamage, target));
 					break;
 				default:

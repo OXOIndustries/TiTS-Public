@@ -334,7 +334,7 @@ public function afterDollmakerFight():void
 	output("\n\n<i>“Well, no smoke coming out of her ears yet. That’s an encouraging sign,”</i> Badger remarks, ticking a box off on a clipboard. Lowering her opaque goggles and keeping her vision trained on the pexiga, she makes several more notations before speaking again. <i>“So, how’s it feel?”</i>");
 
 	//player didn’t bimbofy Penny
-	if(flags["PENNY_BADGER_BIMBO"] == undefined)
+	if(!penny.isBimbo())
 	{
 		if(!pc.isBimbo()) output("\n\nHow does it feel to be turning someone into a bimbo? You certainly never thought you’d be doing something like this, even a few months ago. At least it’s for a good cause, you rationalize, feeling a bit hot under the collar. It is a good cause, isn’t it?");
 		else output("\n\nYou giggle. <i>“Silly Badger! I’m not in the chair, the pexiga is! How could I feel anything?”</i> She barks out a little laugh and shakes her head.");
@@ -1282,7 +1282,7 @@ public function afterDollmakerFightForAbsentBadger():void
 		output("\n\nBoy, Doc Badger sure keeps this place a mess! It’s, like, super hard to find anything down here. You start getting a little flustered, apologizing to the pexiga with each broken device the two of you investigate. This is SO not fair!");
 		output("\n\nIt’s such a bummer that Badger’s not here to fix this stuff. Maybe if you were, like, a smart nerd then you could do the hammer and screwdriver stuff to these things. He heh. ‘Screw’ driver. That’d be a good name for a porn! It could, like, be about driving from place to place, picking up random strangers and then banging in the vehicle. You could even get, like, a bunch of people in there so you could be driving while you’re screwing!");
 		output("\n\nYou ask the pexiga what she thinks of your idea, but don’t even wait for her to not respond before you’re off on another tangent. How long has it been since you had an orgasm? It feels like forever! Before long, you’ve completely forgotten why you’re down here and are instead just playing with all the half-junked sex toys, trying to see if any of them could be used to soothe the growing heat in your [pc.groin].");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//Smuggler
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
@@ -1725,14 +1725,14 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		if(pc.hasVagina())
 		{
 			output(" The sheer pleasure of being plumped up is leaving you a bit antsy. Moisture starts dripping down from your [pc.vaginas].");
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 		if(pc.hasCock())
 		{
 			output(" It’s so exciting, being the center of all this attention. Your [pc.cocks] stiffen");
 			if(pc.cockTotal() == 1) output("s");
 			output(", with anticipation.");
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 		//player’s ass increases 3 steps
 		//[Next]
@@ -1803,7 +1803,7 @@ public function loseToNymFoeViaHPBimboStep3(pexiga:Boolean = true):void
 	if(pc.hasVagina())
 	{
 		output("Your loins ache with a powerful need, but you don’t want to interrupt the nurse lady before she’s done, so you bite down on the side of your lip and try to keep your hands balled into fists. ");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	if(pc.hasCock())
 	{
@@ -1818,7 +1818,7 @@ public function loseToNymFoeViaHPBimboStep3(pexiga:Boolean = true):void
 		output(" yet, but pre-cum is already dribbling down from your swollen tip");
 		if(pc.cockTotal() > 1) output("s");
 		output(". ");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	output("The steel tail keeps pumping");
 	if(siliconeSite == null || siliconeSite.value3 == 3) output(", but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
@@ -2015,7 +2015,7 @@ public function fuckTheNymFoe():void
 		if(!pc.isTaur()) output(" while the other lowers to pull her head even tighter against your overwrought mons");
 		output(". A tautness pulls at your body and it’s all you can do to push it back, shuddering with the effort.");
 		processTime(5);
-		pc.lust(20);
+		pc.changeLust(20);
 		clearMenu();
 		addButton(0,"Next",fuckNymFoe2);
 	}
@@ -2032,7 +2032,7 @@ public function fuckTheNymFoe():void
 		output(" as you grope the boob-buried droid, in no small part due to the innocent moans your every touch brings to her lips. Badger may have reprogrammed her to inflate intruders to absurd proportions, but she did nothing to prepare the nurse bot to handle a bit of her own medicine.");
 		//[Next]
 		processTime(5);
-		pc.lust(20);
+		pc.changeLust(20);
 		clearMenu();
 		addButton(0,"Next",fuckNymFoe2);
 	}
@@ -2052,7 +2052,7 @@ public function fuckTheNymFoe():void
 		if(pc.cockTotal() == 1) output("s");
 		output(" as you grope the boob-buried droid, in no small part due to the innocent moans your every touch brings to her lips. Badger may have reprogrammed her to inflate intruders to absurd proportions, but she did nothing to prepare the nurse bot to handle a bit of her own medicine.");
 		processTime(5);
-		pc.lust(20);
+		pc.changeLust(20);
 		clearMenu();
 		addButton(0,"Next",fuckNymFoe2);
 	}
@@ -2623,7 +2623,7 @@ public function turnInIQBGoneToPenpen():void
 		showPenny();
 		author("Adjatha");
 		//Normal Penny: 
-		if(flags["PENNY_BIMBO"] == undefined) output("<i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
+		if(!penny.isBimbo()) output("<i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
 		else output("<i>“Oooh, got something new for me, mate?”</i> You explain that the syringe is IQ B-Gone and it’d probably be better if Penny avoided taking it in her state. She giggles and shrugs. <i>“So what do we do with it?”</i> You suggest sending it off to the UGC. Keep it out of the wrong hands. <i>“If you think that’s, like, the right thing to do, I guess!”</i> Penny takes the needle and drops it in a box. <i>“Personally, I think I’d be way sexier with a few less IQ points,”</i> she teases, licking her lips with bubble-headed delight. Yeah, definitely better to keep that away from her.");
 	}
 	else
@@ -2705,7 +2705,7 @@ public function gushBadEndWithNymFoe():void
 	output("\n\nThe bimbo-proportioned nurse snuggles up against your gigantic, and still growing endowments, with a peculiar look on her face. <i>“Oh, I almost forgot!”</i> Nym-Foe produces a lollipop from her hefty cleavage, and holds the candy out to you with a smile. <i>“Because you’ve been a good " + pc.mf("boy","girl") + ". Now. How would you like to discuss your payment?”</i>");
 
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	
 	pc.removeAll();
 	
@@ -2819,7 +2819,7 @@ public function dolledBadEnd():void
 	output("\n\nBy the time the changes end, you feel like you’ve been stuffed into a slut-suit, and not one from a classy holo vid either. Your body jiggles with every breath and you feel like even a strong breeze would knock you over. The changes are so sweeping, it barely feels like your body anymore. More like your mind has been moved to some synthetic lovedoll, manufactured by somebody with only a vague understanding of biology.");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	pc.removeAll();
 	
@@ -2886,7 +2886,7 @@ public function dolledBadEnd2():void
 	output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked “Brain Melt,” but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
 
 	processTime(70);
-	pc.lust(10000);
+	pc.changeLust(10000);
 	
 	if(pc.willpower() > 5) pc.willpower(5, true);
 	if(pc.hasLegs() && !pc.hasLegFlag(GLOBAL.FLAG_HEELS))
@@ -2952,7 +2952,7 @@ public function drBadgersAssistantBadEnd():void
 	output("\n\n<i>“So tight!”</i> Badger marvels. <i>“I think you’re about ready for another dose.”</i> The firm, warm pressure in your [pc.asshole] relents just long enough for a cold pill the size of a thumb to slip in. <i>“We’re going to have so much fun together,”</i> the mad scientist promises as she jams her too-thick bitch breaker up your ass again, pumping thrusts driving the pill ever deeper into your gut.");
 
 	processTime(100);
-	pc.lust(1000);
+	pc.changeLust(1000);
 	
 	pc.removeAll();
 	
@@ -4444,7 +4444,6 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			output("\n\nWait, no! You can’t have more!");
 			if(pc.isBimbo()) output(" Even if giant titties would be fun... this is getting dangerous!");
 			output(" You quickly break away from the aura, slapping down on the gun’s off switch. Within seconds, the pink haze disappears as if it had never existed at all. Your body remains changed though, your proportions inflated significantly. Your muscles are smaller as well, but you’re sure you’ll be back to normal soon enough.");
-			output("\n\n");
 			
 			processTime(8);
 			
@@ -4452,7 +4451,9 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			// It’s the same status effect as you get in the doll maker fight, though somewhat changed. It’s minus 15 physique, but 1 point comes back every hour. Additionally, the player’s breasts, hip, and butt size are increased by 15 and decrease 1 per hour. When the effect ends, the player gets 1 bonus point to physique
 			nMult = 15;
 			createDollMakerStatusEffect(pc, "Bimboleum", (1 * nMult), (1 * nMult), (1 * nMult), (1 * nMult), false, (60 * nMult));
-			pc.lust(35);
+			pc.changeLust(35);
+
+			output("\n\n");
 			
 			IncrementFlag("DOLLMAKER_USE_EMITTER");
 			
@@ -4582,8 +4583,8 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			output("Sure, latex skin is fun and all, but maybe not permanently. You decide you’ll only spray yourself with some " + latexColorMin + ", and not so much that won’t come off.");
 			output("\n\nYou prepare the device, setting up the spray, replacing the can with the chosen color, and pointing the nozzle towards yourself. Nervousness sits in your frame as you continue, your fingers shaking slightly when you get ready to click the button.");
 			output("\n\nYou turn the device on and stand there as the " + latexColorMin + " latex goo bursts out, hitting you and crawling along your skin. It’s warm while it coats you up and down. You quickly move out of the way once you are completely wrapped in the stuff and decide you’ve got plenty of it. As expected, it makes your movements rigid, but eventually, you know it will chip off. For the time being, <b>you now have " + latexColorMin + " latex skin.</b>");
+			pc.changeLust(15);
 			output("\n\n");
-			
 			processTime(8);
 			
 			// Player gets status effect: Latex Sprayed
@@ -4594,7 +4595,6 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			pc.clearSkinFlags();
 			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 			pc.skinTone = latexColorMin;
-			pc.lust(15);
 			
 			IncrementFlag("DOLLMAKER_USE_SPRAY");
 			
@@ -4636,8 +4636,9 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 				pc.reflexes(-5);
 				pc.taint(1);
 			}
+			pc.changeLust(35);
 			output("\n\n");
-			pc.lust(35);
+			
 			
 			flags["DOLLMAKER_LATEX_SKIN"] = undefined;
 			
@@ -4675,6 +4676,8 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			output("\n\nSuddenly, a purple holoscreen flashes right in front of your eyes, somewhat transparent before images and videos begin to appear. Chicks with giant tits bursting out of their clothes, dudes swinging dicks big enough to break someone in half, femboys, snake girls, and much more are stuffed into your mind. You can think about nothing more than sex right now, your hands idly groping yourself while ideas of hardcore porn float through your head. Your brain is like a sponge to all this, sucking up every last drop... but of course, sponges can overflow. Who cares about the training you went through to defend yourself? You could just fuck every enemy until they’re screaming your name.... It’s like all the real memories of learning to fight are squeezed out to make more room for all the absurdly hot characters fucking their way into your head.");
 			output("\n\nWait, no!");
 			output("\n\nYou quickly take your hands from your [pc.groin] and grab the plates of the visor, ripping them off and turning the device off. Panting while you think of the " + (silly ? "sexcapade" : "sexual escapade") + " you just experienced, you realize how risky that just was. You hold up your hands in front of you... you DO remember how to fight, right? Of course you do. You just need a refresher is all.");
+			pc.changeLust(65);
+
 			output("\n\n");
 			
 			processTime(8);
@@ -4683,9 +4686,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			// Gain status effect: Mindwashed
 			// -10 aim, 1 point coming back every hour
 			nMult = 10;
-			createDollMakerStatusEffect(pc, "Mindwashed", (1 * nMult), 0, 0, 0, false, (60 * nMult));
-			pc.lust(65);
-			
+			createDollMakerStatusEffect(pc, "Mindwashed", (1 * nMult), 0, 0, 0, false, (60 * nMult));			
 			IncrementFlag("DOLLMAKER_USE_VISOR");
 			
 			addButton(0, "Next", drBadgerLabDollMaker, "play back");
@@ -4734,7 +4735,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			// Dumb speaking perks go away once the IQ-B-GONE effect ends
 			nMult = 40;
 			createDollMakerStatusEffect(pc, "IQ B-Gone", (1 * nMult), (1 * nMult), 0, 0, false, (60 * nMult));
-			pc.lust(65);
+			pc.changeLust(65);
 			if(!pc.hasPerk("Ditz Speech"))
 			{
 				output("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
@@ -4840,6 +4841,8 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			output("\n\nWith the lamp in hand, you aim it at your head and search the back of it for the ‘on’ switch. Once your finger has found it, you click it down and prepare yourself.");
 			output("\n\nYour [pc.eyes] begin rolling back slightly as the pink light is absorbed into your head, your focus disappearing on the spot while the lamp works its magic. Drool begins to drip from your open mouth. So pretty...");
 			output("\n\nIn a fit, you shake your head rapidly and let the lamp slip from your hands, dangling harmlessly whilst aiming at the floor. What the hell just happened? And why is that question not even rhetorical? Your palm wipes the sweat from your forehead, practically dripping when you pull it away. Everything is so hot in your head... maybe a nice, cold shower out to fix this.");
+			
+			pc.changeLust(65);
 			output("\n\n");
 			
 			processTime(1);
@@ -4848,8 +4851,6 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			// The usual: -15 willpower, 1 point coming back every hour, and an extra point when the effect ends
 			nMult = 15;
 			createDollMakerStatusEffect(pc, "Brainmelt Lamps", (1 * nMult), 0, 0, 0, false, (60 * nMult));
-			pc.lust(65);
-			
 			IncrementFlag("DOLLMAKER_USE_LAMP");
 			
 			addButton(0, "Next", drBadgerLabDollMaker, "play back");
@@ -5517,10 +5518,11 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			output("\n\nReaching out, you quickly slap the ‘suck’ button and the ‘blow’ button suddenly depresses itself from its active position, stopping the machine ubruptly. <i>Whew!</i>");
 			output("\n\nYou attempt to get back on your [pc.feet] again. It takes a couple tries but you are finally standing upright, your new curves jiggling with semi-solid bio-silicone. The feeling of it sends tingles across your [pc.skin].");
 			output("\n\nBefore you have the chance to inspect yourself thoroughly, you hear a shuffle somewhere nearby. You should get out of here before someone catches you!");
-			output("\n\n");
-			
+						
 			processTime(16);
-			pc.lust(50);
+			pc.changeLust(50);
+
+			output("\n\n");
 			
 			addButton(0, "Next", drBadgerSiliconeTankBimboGoCrazy, "leave");
 			break;
@@ -5560,10 +5562,12 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			output("\n\nWith an open palm, you attempt to slap the ‘suck’ button but the machine doesn’t respond. <i>Come on!</i> Panicking, you frantically tap both of the buttons on the panel and seemingly at random, the ‘blow’ button suddenly depresses itself from its active position and the machine stops ubruptly. <i>Finally!</i>");
 			output("\n\nWith that out of the way, you attempt to get back on your [pc.feet] again. It takes a couple tries but you are finally standing upright, your newly-shaped body bloated and jiggling with semi-solid bio-silicone. The feeling of it sends tingles across your [pc.skin]. This is heaven.");
 			output("\n\nBefore you have the chance to inspect yourself thoroughly, you hear a shuffle somewhere nearby. You should get out of here before someone catches you!");
+			
+			pc.changeLust(100);
+			processTime(35);
+
 			output("\n\n");
 			
-			processTime(35);
-			pc.lust(100);
 			
 			addButton(0, "Next", drBadgerSiliconeTankBimboGoCrazy, "sneak");
 			break;

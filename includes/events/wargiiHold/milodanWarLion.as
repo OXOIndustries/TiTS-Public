@@ -331,7 +331,7 @@ public function handiesForWarLions():void
 	output("\n\nWith a final whimper and a massive spurt from his cock, he collapses back onto the ground and falls unconscious. You gently pull yourself out, wipe your hand and cock on his fatigues, and stand back up" + (!pc.isCrotchExposed() ? " after clothing yourself":"") + ". He’ll be fine if you leave him here, though he might have some explaining to do about the state he’s in if he’s found by his own faction.");
 	output("\n\n");
 	processTime(7);
-	pc.lust(2);
+	pc.changeLust(2);
 	wargiiFightWinRouting();
 }
 

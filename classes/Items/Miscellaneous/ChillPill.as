@@ -65,7 +65,7 @@
 				
 				// Reduce lust
 				var lust:Number = pc.lust();
-				pc.lust(-15);
+				pc.changeLust(-15);
 				if(lust > pc.lust()) output("\n\nYou take a deep breath and realize that you feel a lot calmer. If nothing else, this pill has certainly made you less aroused.");
 				
 				var inHeat:Boolean = pc.inHeat();

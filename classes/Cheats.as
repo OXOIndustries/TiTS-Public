@@ -230,6 +230,8 @@
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
 			// Zheng Shi
 			kGAMECLASS.flags["KING_NYREA"] = 1; kGAMECLASS.flags["BEAT_TAIVRA_TIMESTAMP"] = kGAMECLASS.GetGameTimestamp();
+			// Dhaal
+			kGAMECLASS.flags["CHEAT_UNLOCK_DHAAL"] = 1;
 			// New Texas
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 			// Poe A

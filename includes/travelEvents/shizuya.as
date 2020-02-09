@@ -2624,7 +2624,7 @@ public function shizzyTwoAndTwoAlwaysMakesFun():void
 	else output("\n\nYou’re glad she’s on sterilex, otherwise there would definitely be a surprise waiting for both of you after this. Then again, an increasingly loud part of your brain is really getting off on that idea...");
 	output("\n\nSuddenly Shizuya is right on you, pressing those lovely lengths right into your [pc.chest]. <i>“Hey hon’, the tap’s right here if you want more.”</i> Her flares are pressed right to your face.");
 	output("\n\nYour mouth waters at the idea of getting a taste, but a heavy throb down below reminds you of your other needs.");
-	output("\n\n<i>“N-no, better idea!”</i> You stammer out before pushing her back again. You flop onto your back and spread your legs, pressing your hands into your [pc.vaginas] spreading" + (pc.hasVaginas() ? "them" : "it") + " open in invitation.");
+	output("\n\n<i>“N-no, better idea!”</i> You stammer out before pushing her back again. You flop onto your back and spread your legs, pressing your hands into your [pc.vaginas] spreading " + (pc.hasVaginas() ? "them" : "it") + " open in invitation.");
 	output("\n\nShizuya smirks and saunters up to your prone form, planting herself right in front of you and lifting your lower half up to level with her spears.");
 	output("\n\n<i>“So, how do you want it?”</i> She asks, pressing her tips to your" + (pc.hasVaginas() ? "multiple entrances." : " flower and [pc.asshole]."));
 	output("\n\n<i>“Both of them, just give me everything and don’t fucking stop!”</i> You probably shouldn’t say things like that, but your body really isn’t listening at this point, and frankly your mind isn’t that much more composed.");

@@ -790,7 +790,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			processTime(45);
 			eatHomeCooking(90);
-			pc.HP(50);
+			pc.changeHP(50);
 			
 			// [Next]
 			clearMenu();
@@ -1039,7 +1039,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			// Pass another hour. Restore some Health + Energy.
 			processTime(60 + rand(16));
 			eatHomeCooking(90);
-			pc.HP(50);
+			pc.changeHP(50);
 			
 			// Set Shade to Sister mode. Disable sex.
 			flags["SHADE_ON_UVETO"] = 3;

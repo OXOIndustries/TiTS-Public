@@ -243,7 +243,7 @@
 			//damage.multiply(0.5);
 			//output("\nTEST DATA: " + damage.getTotal());
 			output("\nHer shields flicker and come back online, soaking up the energy from your own!");
-			this.shields(Math.round(damage.getTotal()/2));
+			this.changeShields(Math.round(damage.getTotal()/2));
 		}
 		//Searing Bolt
 		//125% damage + blind effect. Costs 25 ENG.

@@ -349,7 +349,7 @@ public function sitOnTemptingKittyFace():void
 	else output("You’re going to be my chair for a while. It’s up to you if anyone else can sit here later, though.");
 	output("”</i>");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",sitOnTemptingKittyFace2);
 }
@@ -990,9 +990,9 @@ public function chooChooPussyPlowing(x:int):void
 		output("”</i>");
 		output("\n\nYou try and ignore both her and how horny her proposal makes you as you " + (!pc.isCrotchExposed() ? "re-cover and ":"") + "get ready to move." + (!pc.isCrotchExposed() ? " Your [pc.crotchCovers] feel noticeably tighter as you look back and see the milodan minx wave sensually at you.":" Your [pc.cock] stiffens noticeably as you look back at the milodan minx. Her eyes are glued to your shaft as it involuntarily expands under her scrutiny.") + " You turn and start moving away quicker, before you’re tempted into another round!");
 	}
-	output("\n\n");
 	processTime(45);
 	pc.lust(150);
+	output("\n\n");
 	enemy.loadInCunt(pc,x);
 	if(y >= 0) enemy.loadInAss(pc);
 	pc.orgasm();

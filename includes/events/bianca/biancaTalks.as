@@ -988,7 +988,7 @@ public function chattingAboutMiscWithAFoxyDoc(inRandomEncounter:Boolean = false)
 			output("\n\nThere’s the click of a holo-selfie being snapped.");
 			output("\n\nBefore you even finish blinking and coping, she withdraws and hides her hands behind her back. <i>“Hee hee, that’s for future reference...”</i>");
 			output("\n\nA-All she had to do was ask... wait, what are you thinking? That <i>is</i> how she asks for something!");
-			pc.lust(5+pc.libido()/10);
+			pc.changeLust(5+pc.libido()/10);
 			break;
 		// rand 5 (rut or heat, leads to sex options at >=51 familiarity. NO BACK OUT)
 		case 4:
@@ -1467,7 +1467,7 @@ public function biancaAndHerFamily(inRandomEncounter:Boolean):void
 		output("\n\nBut what about her daughter? Cecily. She has her still, right? And she’s still wearing a ring, too.");
 		output("\n\nBianca looks at her finger and squints. <i>“This isn’t the ring Dian gave me. I gave that to Cecily. Two years after the incident I was able to marry again. My daughter is grown up and pursuing her goals. For the time being, I’ve asked them not to contact me. Three years is a long time, I understand, but I don’t have the strength to face that part of me yet.”</i>");
 		output("\n\nYou nod slowly, unsure of what else to say.");
-		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?");
+		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?”</i>");
 		output("\n\nUntil next time.... Sauntering off, Bianca disappears into the night.");
 		output("\n\nHopefully her words ring true.");
 		// Bianca disappears two days

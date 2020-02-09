@@ -140,7 +140,7 @@ public function canIHelpYouSeraImDumb():void
 	}
 	//[continue with “merge Halloween opening or standard opening here”]
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",roughFunsWithSeras,furScore);
 }

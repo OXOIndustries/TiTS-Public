@@ -97,7 +97,7 @@ public function breederCunt():void
 	}
 	processTime(30);
 	pc.orgasm();
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",mitziPutsYouInHeat2);
 }

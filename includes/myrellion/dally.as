@@ -648,13 +648,13 @@ public function nectarSuckFromDallyProper():void
 	output("\n\nBy the time you rouse from your daze, Dally has gotten to his feet and moved down the stage. You’re about to stand up when a flashing hologram displaying the word ‘Tip’ appears alongside you. Small print appears below with the credit address for anything you’d like to give Dally. For backwater creatures, the myr seemed to have figured out payment terminals well enough.");
 	if(flags["DALLY_NECTAR_DRANK"] == undefined) flags["DALLY_NECTAR_DRANK"] = 0;
 	flags["DALLY_NECTAR_DRANK"]++;
+	//Gain some HP and energy whynot
+	pc.changeHP(Math.round(pc.HPMax()*.3333));
+	pc.changeEnergy(pc.energyMax());
+	pc.changeLust(15);
 	output("\n\nDo you tip Dally?");
-	pc.lust(15);
 	processTime(17);
 	pc.exhibitionism(1);
-	//Gain some HP and energy whynot
-	pc.energy(pc.energyMax());
-	pc.HP(Math.round(pc.HPMax()*.3333));
 	//output("\n\n[No Tip] [100 Creds] [250 Creds] [999 Creds]	");
 	dallyTipMenu();
 }

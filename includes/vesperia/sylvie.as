@@ -1892,7 +1892,7 @@ public function crotchBustingSnuSnuPartTwo():void
 		else output(", but you’re just getting started. With your knot stuck inside her, you fill her with enough spermy ecstasy that her hooves barely scrape the floor - and your [pc.butt] is lifted clean off the ground, supported entirely by the friction of your passion-conjoined forms. No seal is perfect, however. A few squirts later, [pc.cumGem] streams are spraying out of Sylvie’s puss in every direction, flooding the pool with evidence of the tryst.");
 		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the side, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
 	}
-	pc.HP(-40);
+	pc.changeHP(-40);
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
@@ -1913,7 +1913,7 @@ public function hipBustingSnuSnu3(cumBathed:Boolean):void
 	output("\n\nYou promise that you will while Sylvie downs her little pill. Instantly, her posture stiffens, and her gait straightens. She looks back your way, clutching her forehead and giggling as she grabs her things.");
 	output("\n\n<i>“I can’t believe I did that... and it didn’t kill you.”</i>");
 	output("\n\nExamining your tenderized thighs, neither can you.");
-	pc.HP(-10);
+	pc.changeHP(-10);
 	soreDebuff(3);
 	sweatyDebuff(2);
 	processTime(10);
@@ -2527,7 +2527,7 @@ public function redMyrSylvieFunz():void
 	output("\n\nShe sighs as the steamy bath washes off the excess venom, and you do your best to help scrub her down without making the problem worse. Barring a few irresistible nipple tweaks that prompt weak cries of bliss, you are mostly successful. Focus returns to the moose-taur’s eyes as she begins to come to her senses.");
 	output("\n\n<i>“Oh-oh god. A girl could get addicted to something like that. Every time I tried to form a thought it just changed into ‘get more kisses’,”</i> she explains, a hungry glow showing in her eyes. When she sees you staring she shakes her head. <i>“A-anyway, feel free to do that again any time. I think I’m gonna stay and soak a bit first though, my legs are still half numb.”</i>");
 	output("\n\nYou nod, pulling yourself out of the balmy pool and stretching. On your way out the door, you see the ");
-	if(cat) output("kaithrit");
+	if(!cat) output("kaithrit");
 	else output("gryvain");
 	output(" trying to rouse her partner. You toss a wink in her direction as you pass by, happy to see ");
 	if(cat) output("a flush travel from her chubby cheeks to the top of her chest");

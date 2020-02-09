@@ -422,10 +422,7 @@ Target Link
 			output("The drone Valden is inhabiting takes a moment to plant its feet and turtle up behind the heavy metal bulwark that replaces its face. You watch with annoyance as its energy shields thrum, recharging from the damage you’ve inflicted. Damn!");
 			var healing:int = Math.min(	Math.round((15 + rand(18) + rand(17))*hostCreature.shieldsMax()/100),
 										hostCreature.shieldsMax() - hostCreature.shields());
-			var damageResult:DamageResult = new DamageResult();
-			damageResult.shieldDamage = (-1 * healing);
-			outputDamage(damageResult);
-			hostCreature.shields(healing);
+			hostCreature.changeShields(healing);
 		}
 		
 		private static function valdenTracerRound(hostCreature:Creature, target:Creature, alliedCreatures:Array):void
@@ -520,7 +517,7 @@ Target Link
 			else target.createStatusEffect("Valden-Possessed", CombatManager.getRoundCount())
 			//-1 shield just to force a redraw. if anyone knows a better way to do it, pls fix.
 			target.shields(-1);
-			target.shields(target.shields()*valdenShieldBuffMult+1);
+			target.changeShields(target.shields()*valdenShieldBuffMult+1);
 			CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, target);
 		}
 	}

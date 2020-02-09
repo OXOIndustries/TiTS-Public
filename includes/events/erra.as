@@ -282,7 +282,7 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 		output("resulting in a sigh from Erra as she brings herself to sit down on the mattress. <i>“Well, honestly, I didn’t really get into, or know much about, this kind of stuff until I started hanging out with humans.”</i> The ausar smiles up at you, bringing herself down on all fours and crawling towards you. <i>“Ended up really liking it, getting treated like a puppy and all that stuff: the petting, the collars and leashes, all the ‘good girls’ and praise.”</i> She visibly shudders at her own words.");
 		output("\n\n<i>“But, you can treat me like a bad girl if you really want,”</i> the ausar whispers, smile turning to a lustful grin as her tail begins to sway back and forth.");
 		processTime(15);
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	else
 	{
@@ -316,7 +316,7 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 		}
 		output("\n\nYour soon-to-be pet lunges onto the bed, landing on all fours and tossing her collar to you. <i>“So,”</i> she begins, <i>“What do you have planned for your puppy today?”</i> Her smugness turns to lust, tail swishing left to right, left to right as she patiently awaits your next move.");
 		processTime(4);
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	
 	moveTo("ERRAS SHIP");
@@ -774,7 +774,7 @@ public function publicErraPets():void
 	output("\n\nMaybe you’ll have to take her up on that offer.");
 	pc.exhibitionism(1);
 	processTime(6);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Next",approachErra,true);
 }
@@ -793,7 +793,7 @@ public function erraSexPets():void
 	output("\n\nGrinning wide, you lean down and position your [pc.lips] close to one of Erra’s ears and whisper, <i>“C’mon, girl, cum for me. I know you want to.”</i> Barely a moment after you say that, your puppy’s voice catches. Her whole body tenses, furry fists clenching and arms and legs locking as her tail sticks straight up into the air. The ausar starts whimpering under the burning heat of her impending orgasm, and whimpering quickly turns to moaning as it begins. Your pet’s pussy convulses behind her, spraying girlcum all over her bed, her whole body shivering with the bliss of climax as she lets out a quivering groan of <i>“Fuuuuuuuck.”</i>");
 	output("\n\nErra is left with her tongue hanging out of her mouth, panting as she tries to recover from her orgasm. She fails, and falls onto the mattress, soaked with her juices, limbs sprawled in every direction. Your hand falls from her head, and you happily watch your puppy come down from her petting-induced climax. Sitting yourself down next to her, you run a hand across her cheek, giving her another <i>“Good girl”</i> as she looks up at you with a smirk, tail swaying gently behind her.");
 	processTime(18);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",erraSexPets2);
 }

@@ -165,7 +165,7 @@ public function iDidntStopTheRapingSorryReaha():void
 		output("\n\nSpeaking of, it looks like " + (silly ? "el Chupacabro" : "the Chupacabro") + " is just about ready to finish. A strong thrust forward and a power push of your head back down onto his shaft seems to signal his climax. He grunts hards as his massive tool spasms between your lips, the first rope of his potent seed spraying across the back of your throat. You can barely breath and are on the verge of losing consciousness at this point, the goat-bull looming over you bucking his hips forward against your face, large balls emptying down straight down your gullet. Your [pc.stomach] even starts to swell with the sheer size of the monsters monstrous load, rounding with each shot of cum.");
 		output("\n\nFinally, the beast of a bull seems to finish, and pulls his softening horsecock from your mouth, managing to leave alabaster essence splattered across your [pc.face]. The pheromones and the vigorous throat-fucking leave you dazed, barely able to comprehend what just happened.");
 		
-		pc.lust(75);
+		pc.changeLust(75);
 	}
 	else
 	{

@@ -417,7 +417,7 @@ package classes.Items.Transformatives
 			output(" Once the microsurgeons finish their changes, <b>you’re left with a sheathed and knotted black canine dick with a tapered head!</b>");
 			target.shiftCock(cockIdx, GLOBAL.TYPE_CANINE);
 			target.cocks[cockIdx].cockColor = "black";
-			target.lust(20+target.libido()/4);
+			target.changeLust(20+target.libido()/4);
 			target.slowStatGain("libido", 2);
 		}
 
@@ -445,7 +445,7 @@ package classes.Items.Transformatives
 			var growth:Number = (8 + rand(13))/10;
 			if (target.cockLengthUnlocked(cockIdx, target.cLength(cockIdx) + growth)) target.cocks[cockIdx].cLength(growth);
 			else target.cocks[cockIdx].cLength(1);
-			target.lust(5+target.libido()/10);
+			target.changeLust(5+target.libido()/10);
 		}
 
 		//if, and only if the pc has a pussy, and pc doesn't already have a black wet canine pussy; Change 1 Pussy to a black wet Canine Pussy, causes orgasm event, raise libido by 1 or 2 points
@@ -483,7 +483,7 @@ package classes.Items.Transformatives
 		private function clitGrowth(target:Creature):void
 		{
 			output("\n\nYou feel a rush of heat coursing through your body and into your [pc.clits]. The sudden burst of arousal doubles you over in shock, stopping you dead in your tracks. While you take a moment to make sure that your lady parts are still intact, you realize that your <b>" + (target.totalClits() > 1 ? "clits have" : "clit has") + " grown almost a half an inch!</b>");
-			target.lust(5+target.libido()/10);
+			target.changeLust(5+target.libido()/10);
 			target.clitLength += (2+rand(6))/10;
 			if (target.clitLength > 8) target.clitLength = 8;
 		}

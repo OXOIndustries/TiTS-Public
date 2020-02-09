@@ -464,7 +464,7 @@ public function exhibitionismStrip(voluntary:Boolean = true):void
 	// +20-30 mins
 	processTime(20 + rand(11));
 	
-	pc.lust(50);
+	pc.changeLust(50);
 	pc.exhibitionism(1);
 	
 	clearMenu();

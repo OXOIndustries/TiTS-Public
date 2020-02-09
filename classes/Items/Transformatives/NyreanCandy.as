@@ -569,7 +569,7 @@
 				else
 				{
 					//Increase Lust by 3:
-					target.lust(3);
+					target.changeLust(3);
 					
 					output("\n\nAs the effects of the rock candy wear off, you feel");
 					if(target.lust() < 33) output(" a bit randier than usual");

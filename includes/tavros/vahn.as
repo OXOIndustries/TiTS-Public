@@ -84,16 +84,34 @@ public function VahnTheMechanic():void
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
+	addButton(4,"BuyUniforms",buyUniformsFromVahn,undefined,"Buy Uniforms","As a SteeleTech employee, Vahn can probably hook you up with one of the corporate jumpsuits, assuming you want one.");
 	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
-	addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");
+	if(!shits["SHIP"].hasPerk("No Rename")) addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");
+	else addDisabledButton(8,"Name Ship","Name Ship","You lack the legal authority to name this vessel.");
 	addButton(10,"Buy Ship",vahnSellsShips,undefined,"Buy Ship","Buy a ship the local selection.");
 	if(shipStorageRoom() < shipStorageLimit()) addButton(11,"Stored Ships",storageShipsMenu,undefined,"Stored Ships","Examine your stored ships. You may swap out your current ship for one in storage at your leisure.");
 	else addDisabledButton(11,"Stored Ships","Stored Ships","You have no ships in storage right now.");
 	addButton(12,"Sell A Ship",sellAShipToVahn,undefined,"Sell A Ship","Sell a ship to Vahn.");
 	addButton(14,"Leave",mainGameMenu);
 }
+
+public function buyUniformsFromVahn():void
+{
+	clearOutput();
+	showVahn();
+	author("Fenoxo");
+	shopkeep = chars["VAHN"];
+	var suity:ItemSlotClass = new SteeleTechSuit();
+	suity.basePrice = 4500;
+	shopkeep.inventory = [new SteeleTechSuit()];
+
+	shopkeep.keeperBuy = "You ask Vahn if she can sell you any SteeleTech uniforms.";
+	output("\n\n<i>“Of course! Be my guest.”</i>\n");
+	buyItem();
+}
+
 
 public function sellAShipToVahn():void
 {
@@ -147,6 +165,11 @@ public function buildVahnsSellButtonsAndText(button:int,arg:String):void
 	{
 		output("\n\\\[Cannot Sell\\\] " + shits[arg].short);
 		addDisabledButton(button,shits[arg].short,shits[arg].short,"You can’t sell Dad’s old Casstech!");
+	}
+	else if(!canAbandonShip(shits[arg]))
+	{
+		output("\n\\\[Cannot Sell\\\] " + shits[arg].short);
+		addDisabledButton(button,shits[arg].short,shits[arg].short,"You cannot sell that vessel!");
 	}
 	else
 	{
@@ -331,6 +354,12 @@ public function shipTradeInPrice(ship:ShittyShip):Number
 {
 	return Math.round(ship.shipCost()/2);
 }
+public function canAbandonShip(ship:ShittyShip):Boolean
+{
+	if(ship.hasPerk("No Sell")) return false;
+	if(olympiaIsCrew() && ship is Sidewinder) return false;
+	return true;
+}
 public function shipBuyScreen(arg:ShittyShip):void
 {
 	clearOutput();
@@ -356,6 +385,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	var tradeInPrice:Number = shipTradeInPrice(shits["SHIP"]);
 	var totalCost:Number = (arg.shipCost()-tradeInPrice);
 	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy and Trade","You cannot trade in your Casstech. Vahn won’t take it.");
+	else if(!canAbandonShip(ship)) addDisabledButton(1,"Buy+Trade","Buy and Trade","You cannot trade this ship.");
 	else if(pc.credits >= totalCost) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy and Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
 	else addDisabledButton(1,"Buy+Trade","Buy and Trade","You still can’t afford the ship this way.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
 
@@ -727,8 +757,14 @@ public function shipCompareStat(ship:ShittyShip, newShip:ShittyShip, buttonToolt
 		else shipTooltip += ".)";
 	}
 	
-	shipTooltip += "\n\n<b><u>Purchase Cost</u>:</b> " + shipStatCompare(newShip.shipCost(), ship.shipCost());
-	if(newShip != ship) shipTooltip += "\n<b><u>w/Trade In</u>:</b> " + (newShip.shipCost()-shipTradeInPrice(ship));
+	shipTooltip += "\n\n<b><u>Purchase Cost</u>:</b>";
+	shipTooltip += " " + shipStatCompare(newShip.shipCost(), ship.shipCost());
+	if(!canAbandonShip(newShip) || !canAbandonShip(ship)) shipTooltip += ", <i>Cannot Sell!</i>";
+	if(newShip != ship)
+	{
+		shipTooltip += "\n<b><u>w/Trade In</u>:</b> " + (newShip.shipCost()-shipTradeInPrice(ship));
+		if(!canAbandonShip(newShip) || !canAbandonShip(ship)) shipTooltip += ", <i>Cannot Trade!</i>";
+	}
 	
 	if(buttonTooltip) return "<span class='words'><p>" + shipTooltip + "</p></span>";
 	return shipTooltip;

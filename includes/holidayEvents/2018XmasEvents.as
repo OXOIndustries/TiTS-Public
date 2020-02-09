@@ -149,7 +149,7 @@ public function riyaGrenceFuckaboo():void
 	output("\n\nThe rest of the party is pretty uneventful, compared to what you just saw anyway. You head out a few hours later, slightly drunker and <i>much</i> hotter around the collar. Nobody gave you any presents, though... guess that invite was an accident after all.");
 	pc.imbibeAlcohol(35);
 	processTime(45);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",move,"TAVROS LIFT");
 }
@@ -297,7 +297,7 @@ public function bakeCookiesWithEmbizzle():void
 	output("\n\nThat’s quite a menu she’s laid out for you.");
 
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Cocoa&Cuddle",cocoaAndEmbryCuddles);
 	if(pc.hasCock()) addButton(1,"Snowball",snowBallinWithEmbry);
@@ -428,7 +428,7 @@ public function snowballEmbryOutro():void
 	output("\n\nAfter a bit more time dozing in happy cuddles, you bid [embry.name] a fond farewell and head off to your ship.");
 	processTime(25);
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 //Candy Cane Oral
@@ -500,8 +500,9 @@ public function candyCaneOral():void
 	processTime(90);
 	if(pc.hasCock()) embry.loadInMouth(pc);
 	else embry.girlCumInMouth(pc);
+	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 //Cocoa and cuddles
@@ -528,9 +529,9 @@ public function cocoaAndEmbryCuddles():void
 	output("\n\nAfter a bit more time cuddling, you bid [embry.name] a fond farewell and head off to your ship.");
 	processTime(135);
 	restHeal();
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 public function carolJChristmasElfDreamyWeamy():void
@@ -609,7 +610,7 @@ public function carolJChristmasElfDreamyWeamy2():void
 	output("\n\nYou smile right along with her...until Molly grips the base of your cock tighter than tight. You wince and look down, only to find her smirking up at you. <i>“Just one problem with that.”</i> She lets go of your cock and crosses her arms, hip cocked to the side. <i>“You ever hear that it’s better to give than to receive? From what we’ve heard, you haven’t exactly </i>given<i> a whole lot lately.”</i>");
 	output("\n\n<i>“Or received!”</i> Holly chimes in, hopping down from her perch. <i>“Molly raises a good point. ‘Naughty or nice’ isn’t just about subjective interpretations of morality. It’s about Christmas! So...”</i> She looks to Molly. <i>“Gosh. His gee-arr ratio is really kind of anemic, isn’t it? We’re going to have to bump up </i>both<i> of those numbers if we’re going to get him on the ‘nice’ list. Only...”</i> She crosses her arms and bumps her hip against Molly’s, lost in thought. <i>“I have </i>no<i> idea how we’d be able to keep his giving and receiving balanced while we increase the numbers.”</i>");
 	output("\n\n<i>“Oh, don’t worry about </i>that.<i>”</i> Molly grins wide, and you gulp in anticipation. <i>“I have an idea. An awful, </i>wonderful<i> idea.”</i>");
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",carolJChristmasElfDreamyWeamy3);
 }
@@ -798,7 +799,7 @@ public function shipHubRatmas():void
 		output("\n\n<i>“[pc.Mister] CEOooohh, there’s your spot!”</i> the pink rat points to the last seat. What they’re sitting on is either too big or too small, so most of your guests end up standing or kneeling in their seats. Nothing left to do but take yours.");
 	}
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	ratmasRouting(1);
 }
 
@@ -838,7 +839,7 @@ public function galleyRatmas2018():void
 	output("\n\nAll that’s left is for them to set the cookies down. Cute ‘oohs’ and ‘ahhs’ at the sight and smell of those well-baked snacks fill your ears. They all take their seats, the pink rat pointing to yours. <i>“There you go, [pc.mister] CEO!”</i> Nothing left to do but take it.");
 
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	ratmasRouting(2);
 }
 
@@ -890,7 +891,7 @@ public function ratmas2018TheBeginningOfTheLoooood():void
 		output("\n\nOh.");
 		output("\n\nThe blue-eyed rat’s crawling between your legs. An impish simper rumbles up her throat as she presses her nose into your crotch" + (!pc.isCrotchExposed() ? " and fidgets with your [pc.crotchCovers]":"") + ". Guess they want to have a little fun before bed.");
 		processTime(25);
-		pc.lust(25);
+		pc.changeLust(25);
 	}
 	// PC lactating (MUST HAVE Normal or Inverted Nipples NOTHING ELSE! Also, Gooey/Cum/Girlcum cannot be the PC’s lactation)
 	else
@@ -913,7 +914,7 @@ public function ratmas2018TheBeginningOfTheLoooood():void
 		output("\n\n<i>Slurrrp.</i> The red and green eyed rodenians mewl softly against your [pc.skinFurScales], sending ripples through pliant titflesh. Your moans are encouraged, and your eyes begin to roll back from a lactic-induced mini-orgasm. " + (!pc.isCrotchExposed() ? "Even through your clothes, y":"Y") + "ou can’t hide how horny you are anymore. " + (!pc.isCrotchExposed() ? "Fluid sloughs inside your [pc.crotchCoverUnder] as t":"T") + "he last stubborn drops are pulled from your glands." + (pc.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK ? " Geez, now you’re missing something else to go with all this hot cocoa: marshmallows!!":""));
 		output("\n\nThe two rodenians disentangle, though Ffion stays close. Unblinking moist eyes stay focused on yours. You glance sideways, feeling fuzzy, like you’re in some half-fugue state, and spot Claes on all fours pressing her wrinkling nose close to your crotch. The three boys can’t hide the smell of their musk either: pre drips from their fully erect cocks. Looks like they want to have a little fun before bed.");
 		processTime(25);
-		pc.lust(25);
+		pc.changeLust(25);
 		pc.milked();
 	}
 	clearMenu();
@@ -1043,7 +1044,7 @@ public function doItKissDat2018RatMouf():void
 	output("\n\nWhen she stands, they all gather at your door. <i>“Sorry, [pc.mister] CEO, we gotta go! We cleaned up for you last night, and your gifts are under your pillow! See ‘ya!”</i>");
 	processTime(5);
 	flags["RATMAS_2018"] = 2;
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",epilogueRats2018cribmass);
 }
@@ -1058,7 +1059,7 @@ public function dontSmooch2018Rats():void
 	// Merge
 	flags["RATMAS_2018"] = 1;
 	processTime(5);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",epilogueRats2018cribmass);
 }

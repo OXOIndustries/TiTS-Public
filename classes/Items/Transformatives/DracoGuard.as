@@ -69,9 +69,9 @@
 				// Heal 20
 				// Restore 5 ENG
 				// +1 Libido
-				pc.HP(20);
-				pc.energy(5);
-				pc.lust(5);
+				pc.changeHP(20);
+				pc.changeEnergy(5);
+				pc.changeLust(5);
 				
 				var changes:int = 0;
 				var changeLimit:int = 1;
@@ -366,7 +366,7 @@
 						
 						output(" Your hands instinctively move to your rack, groping at yourself and feeling your tits growing even more! By the time they settle down, feeling heavier and fuller than ever, <b>you guess you must have " + pc.breastCup(0) + "s now!</b>");
 						changes++;
-						pc.lust(10 + rand(6));
+						pc.changeLust(10 + rand(6));
 					}
 					else output("\n\n" + pc.breastRatingLockedMessage());
 				}

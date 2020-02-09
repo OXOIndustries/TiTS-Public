@@ -216,7 +216,7 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 	output("\n\nYour pampered pooch is hyperventilating. His arms are only good for light, useless jerks to his bloated cock. You realize now that the only way to achieve a worthwhile orgasm is to switch positions, or smash his muzzle in all the way. Your partner needs you just as much as you need him.");
 	output("\n\nAll you have to do is figure out <i>where...</i>");
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	if(useCock) addButton(0,"Deepthroat",getDeepthroughted,x,"Deepthroat","Rail his mouth! It’s all you need, and all he needs!");
 	else addButton(0,"Stay",stayForBeejCuntsuckythings,x,"Stay","Stay right where you are. He’s got his dick in his hands and you need that muzzle where it is!");
@@ -585,7 +585,7 @@ public function frotAndFuck():void
 	}
 	//([Next] //if Hyper) [Fuck His Butt] [Keep Frotting]
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	if(pc.cocks[x].cLength() >= 20) addButton(0,"Next",keepuFrottuWang,x);
 	else

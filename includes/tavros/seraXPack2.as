@@ -27,8 +27,14 @@ public function seraRecruited():Boolean
 }
 public function seraIsCrew():Boolean
 {
-	if(seraAtNursery()) return false;
-	return (flags["SERA_CREWMEMBER"] == 1);
+	var inCrew:Boolean = (flags["SERA_CREWMEMBER"] == 1);
+	if(seraAtNursery())
+	{
+		// If Sera is already in crew, remove her from nursery if not on Tavros!
+		if(inCrew && shipLocation != "TAVROS HANGAR") pc.removeStatusEffect("Sera at Nursery");
+		else return false;
+	}
+	return inCrew;
 }
 public function seraAtTavros():Boolean
 {

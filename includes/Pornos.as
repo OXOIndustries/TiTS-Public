@@ -28,6 +28,6 @@ public function zilNightScienceBiPlay():void
 	output("\n\n<i>\"Hey! What are you doing in there! You aren't allowed in this lab room. If you don't unlock this door, I will call the police!\"</i> A nasaly voice shouts from just outside. The zil star looks confused, still grinning as the cameraman seems to scramble for something off screen. A sudden burst of bright green light streaks across the screen, taking half the far wall with it when it dims down. Exposed wall and circuitry frames a five meter thick hole in the wall, revealing the open bay doors of a rattling passenger cruiser. A number of crew members dash on, some carrying equipment and others carrying the cast members. The footage abruptly cuts to black mid exit, leaving you staring at the black screen in bewilderment.");
 	output("\n\nYour video display ejects the chip, and you shake your head. Whatever this film company is doing, you can't imagine they'll be doing it long.");
 
-    pc.lust(30+pc.libido()/4);
+    pc.changeLust(30+pc.libido()/4);
 	addButton(0,"Next",mainGameMenu);
 }

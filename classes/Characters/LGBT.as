@@ -289,9 +289,9 @@
 		public function rechargyBoi(target:Creature,newL:Boolean = false):void
 		{
 			if(newL) output("\n\n");
-			output("The LG-BT pauses, as if thinking about you carefully. You can hear its internals clicking, turning and whirring, energy redirected from some deep source towards recharging... and microfacturing. Its shield snaps back into place a moment later, its weapons throbbing with refreshed mercilessness. (+<b>" + Math.round(20) + "</b> Shields)");
-			this.energy(100);
-			this.shields(Math.round(20));
+			output("The LG-BT pauses, as if thinking about you carefully. You can hear its internals clicking, turning and whirring, energy redirected from some deep source towards recharging... and microfacturing. Its shield snaps back into place a moment later, its weapons throbbing with refreshed mercilessness.");
+			this.changeShields(Math.round(20));
+			this.changeEnergy(100);
 		}
 
 		//Gabilani Blurbs

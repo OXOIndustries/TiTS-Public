@@ -122,7 +122,7 @@ public function ohItsJustASexyCowDemon():void
 	output("\n\nIt’s phrased like a question, but the last four words cut through your self-discipline like a knife as an unmistakable command. Although you’re screaming at yourself on the inside to stop, your head turns slowly back towards the succubus. Somehow though, you manage to keep your eyes off of her breasts with the last shred of your control. You stare into her golden eyes, deep yellow pools that threaten to swallow you up. Before you’re consumed by her gaze, your peripheral vision notices the smile beneath those soulless orbs.");
 	output("\n\n<i>“Oooh, that is just the most precious thing when y’all mortals try to resist. You don’t even know what you’re missing by not just giving up right away, sugar. You should just plum <b>give in and look down.</b>”</i>");
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(10+rand(8));
 	
 	addButton(0, "Next", wowThoseAreSomeFineAssTiddies, undefined, "", "");
@@ -143,7 +143,7 @@ public function wowThoseAreSomeFineAssTiddies():void
 	output("\n\nWhen she starts speaking again, she begins squishing and moving the fleshy spheres in a pattern that is tantalizingly close to being decipherable. Maybe if you just look closely enough, you can figure out what that pattern is? You lose your resolve to puzzle it out in a matter of seconds. There’s no real conscious thought left. Everything in your brain has been replaced with thoughts of big, soft breasts and the sweet sound of your mistress’s voice.");
 	output("\n\n<i>“Now you’re gonna <b>give your soul to your mistress</b>, right?”</i> It occurs to you as you nod in agreement that the only thing you enjoy as much as watching your mistress’s boobs is obeying her. You don’t need a soul to keep your eyes open and locked on her chest. Why hold on to something you’re not going to need anymore? ");
 	
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(10+rand(6));
 	
 	addButton(0, "Next", okayLessCowAndMoreDemonButStillPrettySexy, undefined, "", "");
@@ -165,7 +165,7 @@ public function okayLessCowAndMoreDemonButStillPrettySexy():void
 	output("\n\nYour sexual need only grows as the succubus fucks herself deeper and harder, leaking a constant stream of her perverted fluid down her phallic tail to puddle under your [pc.ass] as her moans grow in volume. Her motions are vigorous enough to cause her nipples to leak generous amounts of sweet milk, and as she bucks her hips harder, it too begins to rain down on you. When you begin whining pitifully in need and begging your mistress to fuck you, it pushes her over the edge. She lets out a throaty, feminine shriek and creams all over her tail. Her inhuman cunt squirts torrents of translucent ladyspunk, the overwhelming majority of it hitting you right in the face. Your [pc.tongue] darts out unthinkingly, licking up every sweet drop you can. Your mistress is kind enough to squirt a generous amount on your [pc.chest] too, the slippery tide seeming endless as her spade fucks more and more of the stuff out onto you.");
 	output("\n\nMercifully, or to your perverted new mind, cruelly, the feminine bukkake ends, and the demonette gazes down at your wickedly. <i>“Aaahhh, that took the edge off. Maybe now I’ll take your soul.”</i>");
 	
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(5);
 	
 	addButton(0, "Next", yaasssSlayMeSuccucow, undefined, "", "");
@@ -187,7 +187,7 @@ public function yaasssSlayMeSuccucow():void
 	output("\n\nYour " + (pc.balls > 0 ? "[pc.balls] lurch" : "prostate throbs") + " as you spurt massive blobs of creamy pre-cum into her tunnel. Finally, you stop resisting, and give yourself over to orgasm... except you can’t. You moan whorishly and look down at where you’re connected to the demon. She giggles at the look of despair on your face before explaining. <i>“I said you couldn’t cum if I didn’t tell you to, darlin’. That wasn’t a command. It was a statement of fact.”</i> She cries out sweetly and gushes more girlcum as she bottoms out on your dick, stopping to grind your swollen organ around her clenching tunnel while she’s at it.");
 	output("\n\nYou ball up your fists so tightly that your nails cut your palms and curse at the top of your lungs. The demonette just laughs and clenches her vaginal muscles even tighter to torment you with more hellish pleasure. It all just feels so good, but you need to cum! Your cock is so engorged with blood that it feels half again as thick as usual, something your mistress relishes in as she returns to bouncing her fertile hips. It doesn’t take her long to torture you with another wonderful, horrible, clenching climax from her box. You’re at least prepared for the spray of milk this time, but the sweet white liquid is small consolation. You can’t stand the pleasure anymore, but that doesn’t stop the succubus. She rides you through three more orgasms before coming to a stop.");
 	
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	processTime(35+rand(20));
 	
 	addButton(0, "Next", okayEnoughForeplayLemmeSeedThatDemonPussy, undefined, "", "");

@@ -1,6 +1,7 @@
 ﻿package classes.ShittyShips
 {
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.ShittyShip;
 	import classes.GLOBAL;
 	import classes.Items.Protection.NovaShield;
@@ -28,7 +29,7 @@
 		//constructor
 		public function Blade()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -113,7 +114,8 @@
 
 			isUniqueInFight = true;
 			btnTargetText = "Blade";
-			
+			this.createPerk("No Rename");
+			this.createPerk("No Sell");
 
 			//kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
@@ -124,6 +126,37 @@
 		override public function get bustDisplay():String
 		{
 			return "BLADE";
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			d.a = "the ";
+			d.capitalA = "The ";
+			d.short = "Blade";
+			
+			var se:StorageClass;
+			var perkNoName:Boolean = true;
+			var perkNoSell:Boolean = true;
+			
+			for(var i:int = 0; i < d.perks.length; i++)
+			{
+				if(d.perks[i].storageName == "No Rename") perkNoName = false;
+				if(d.perks[i].storageName == "No Sell") perkNoSell = false;
+			}
+			if(perkNoName)
+			{
+				se = new StorageClass();
+				se.storageName = "No Rename";
+				d.perks.push(se.getSaveObject());
+			}
+			if(perkNoSell)
+			{
+				se = new StorageClass();
+				se.storageName = "No Sell";
+				d.perks.push(se.getSaveObject());
+			}
+
+			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 	}
 }

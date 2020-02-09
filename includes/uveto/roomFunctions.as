@@ -788,8 +788,8 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	output(" and make for your gear....");
 
 	removeUvetoCold();
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	moveTo("UVI H32");
 
 	processTime(30);

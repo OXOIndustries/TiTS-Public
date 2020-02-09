@@ -4,7 +4,7 @@
 public function kqVictoryRewardBonus(slot:int):void
 {
 	output("\n\nKiro’s vessel, the leaf-shaped <i>“Blade,”</i> sits parked precariously close to your own, almost like the independent-minded ‘nuki would rather risk crashing than having a little more distance. Your Codex chimes with a message from her, inviting you to come in and talk.");
-	addButton(slot,"Kiro's Ship",enterKirosShipForPostKQReward,undefined,"Kiro's Ship","It would seem Kiro wants to get together, perhaps to celebrate your victory over Illustria Po's mad laboratory.");
+	addButton(slot,"Kiro’s Ship",enterKirosShipForPostKQReward,undefined,"Kiro’s Ship","It would seem Kiro wants to get together, perhaps to celebrate your victory over Illustria Po’s mad laboratory.");
 }
 
 //ENTER!
@@ -56,25 +56,28 @@ public function kqVictorySurprise():void
 	output(", careful not to brush the tightly-bound shaft below. <i>“I love you, [pc.name]" + (kiroKallyThreesomes() > 0 ? " - you and Kally both":"") + ". You don’t have to say it back.”</i> The kui-tan sprawls wider across the couch, presenting herself. <i>“Right now... just let me reward you. We can talk out the serious stuff later.”</i> Perhaps feeling that she hasn’t seduced you enough, she adds, <i>“" + ((!(kiro.vaginalVirgin && pc.hasCock())) ? "I cum so easy ever since Po had me in her clutches.":"You can have my virginity, if you want it.") + "”</i>");
 	output("\n\nIt’s a more than appealing offer.");
 	processTime(5);
-	pc.lust(25);
+	pc.changeLust(25);
 	kqVictoryMenu1();
 }
 
 public function kqVictoryMenu1():void
 {
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Fuck Pussy",penisRouter,[fuckKirosPussyAwwwYeeeeeeea,80085,false,0],"Fuck Pussy",(kiro.vaginalVirgin ? "Take Kiro's virginity.":"Further cement your claim to the tanuki’s glimmering twat."));
+	if(pc.hasCock()) addButton(0,"Fuck Pussy",penisRouter,[fuckKirosPussyAwwwYeeeeeeea,80085,false,0],"Fuck Pussy",(kiro.vaginalVirgin ? "Take Kiro’s virginity.":"Further cement your claim to the tanuki’s glimmering twat."));
 	else addDisabledButton(0, "Fuck Pussy", "Fuck Pussy", "You lack the penis this requires.");
 	addButton(1,"RideHerCock",vaginaRouter,[rideKirosVictoryCocku,kiro.cockVolume(0),1,0,true],"Ride Her Cock","Let that velvet-wrapped beast-pole fill you warmth and love.");
-	if(flags["KIRO_GF"] == undefined) 
+	if(!kiroIsCrew())
 	{
-		addButton(2,"No Sex",dontWantSexFromYou,undefined,"No Sex","");
+		if(flags["KIRO_GF"] == undefined) 
+		{
+			addButton(2,"No Sex",dontWantSexFromYou,undefined,"No Sex","");
+		}
+		else 
+		{
+			addDisabledButton(2,"No Sex","No Sex","She’s already your girlfriend. Now isn’t exactly the time to be breaking up with her...");	
+		}
+		if(flags["KIRO_LOVED"] == undefined) addButton(3,"I Love You",tellKiroYaLoveHerYouDolt,undefined,"I Love You","Confess your own feelings right here, right now, damnit!");
 	}
-	else 
-	{
-		addDisabledButton(2,"No Sex","No Sex","She's already your girlfriend. Now isn't exactly the time to be breaking up with her...");	
-	}
-	if(flags["KIRO_LOVED"] == undefined) addButton(3,"I Love You",tellKiroYaLoveHerYouDolt,undefined,"I Love You","Confess your own feelings right here, right now, damnit!");
 }
 
 //I Love You
@@ -101,10 +104,10 @@ public function tellKiroYaLoveHerYouDolt():void
 	{
 		output("\n\n<i>“I couldn’t have asked for a better [pc.boyGirl]friend,”</i> the kui-tan proudly sighs.");
 		output("\n\nYou agree with her.");
-		output("\n\nKiro socks you in the shoulder hard. <i>“Don't let your head get too big about it.”</i> She flashes her fangs in a broad grin. <i>“");
+		output("\n\nKiro socks you in the shoulder hard. <i>“Don’t let your head get too big about it.”</i> She flashes her fangs in a broad grin. <i>“");
 		if(pc.hasCock())
 		{
-			output("Unless it's the one below the belt. " + (!pc.hasCocks() ? "That one can get as big as it wants.":"Those ones can get as big as they want."));
+			output("Unless it’s the one below the belt. " + (!pc.hasCocks() ? "That one can get as big as it wants.":"Those ones can get as big as they want."));
 			output(" Not even her chocolate fur can hide the crimson blush glowing beneath.");
 			output(" <i>“Now back to the matter at hand...”</i>");
 		}
@@ -128,7 +131,7 @@ public function dontWantSexFromYou():void
 	output("\n\n<i>“Oh.”</i> Kiro sniffles, wiping her nose on her freshly laundered armfur. <i>“It figures." + (kiroKallyThreesomes() > 0 ? " At least I have Kally.":" I finally meet someone good enough to consider an honorable relationship with, and they’re the one person with the balls to turn me down.") + "”</i> Her sable lips quirk at that thought a moment before she springs to her feet. <i>“Let me get dressed. I must look as stupid as a girl misreading signs at the yearly fertility festival...”</i> A voluminous mass of striped tail swishes by a few inches from your face; the kui-tan makes for a nearby door. <i>“Don’t go anywhere, okay? We still have a lot to talk about.”</i>");
 	output("\n\nYou can do that much.");
 	processTime(5);
-	pc.lust(-5);
+	pc.changeLust(-5);
 	pc.libido(-2);
 	clearMenu();
 	addButton(0,"Next",postFuckTalkies,false);
@@ -169,7 +172,7 @@ public function rideKirosVictoryCocku(x:int):void
 	else output("womb");
 	output(", but all good things must come to an end.");
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	if(x >= 0) pc.loadInCunt(kiro,x);
 	else pc.loadInAss(kiro);
 	kiro.orgasm();
@@ -184,7 +187,10 @@ public function rideKirosVictoryCocku2(x:int):void
 	output("Kiro’s eyes stop rolling back as her orgasm tapers down, and she finally starts to kiss you properly, tonguefucking you as what feel like gallons of excess, " + (x < 0 ? "ass-impregnating":"cunt-drenching") + " seed backwash down her pole, making that bulging middle ring so slick that you ca-");
 	output("\n\n<i>’POP’</i>");
 	output("\n\nYour well-filled [pc.vagOrAssNoun " + x + "] swallows the obstruction with ease, snapping tightly back against Kiro’s veiny second half as you glide down. Now it’s your turn to struggle to stay coordinated. Kiro’s tongue is everywhere. It roams over your [pc.lipsChaste]. It gently prods your own, sliding alongside it affectionately as she fills two holes with quiet intensity. You tremble in her paws, letting her. Your [pc.thighs] quiver, and you struggle to breath, too blissed out to worry as you begin to cum.");
-	output("\n\nYou’re a white-hot nova of lust and desire, wrapped tight around the biggest, most bestial fuckpole in the galaxy. Kiro keeps you moving, even when your spasming body bottoms out on her sheath, bunching it up against your {cum-drenched cuntlips/cum-drenched star}. She’s gentle, post-orgasm. Her fingers squeeze and tease as they guide you through your climax with perfect attentiveness. Somehow, through all the ecstatic euphoria, you feel safe above all else.");
+	output("\n\nYou’re a white-hot nova of lust and desire, wrapped tight around the biggest, most bestial fuckpole in the galaxy. Kiro keeps you moving, even when your spasming body bottoms out on her sheath, bunching it up against your");
+	if(x >= 0) output("cum-drenched cuntlips");
+	else output("cum-drenched star");
+	output(". She’s gentle, post-orgasm. Her fingers squeeze and tease as they guide you through your climax with perfect attentiveness. Somehow, through all the ecstatic euphoria, you feel safe above all else.");
 	output("\n\nShe cares for you.");
 	output("\n\nShe cradles you.");
 	output("\n\nShe fills you.");
@@ -205,7 +211,7 @@ public function rideKirosVictoryCocku3(x:int):void
 	clearOutput();
 	showKiro(true);
 	author("Fenoxo");
-	output("You aren’t sure at what point you start rolling your [pc.hips] in Kiro’s lap, but at some point, needs aside from companionship asserted themselves. Was it the tanuki’s fault? Her hands are on your [pc.butt], kneading the flesh, guiding you as you roll your creampied " + (x >= 0 ? "passage":"backdoor") + " around your throbbing horse-meat. Or did your own wanton desire for more coerce you into action?");
+	output("You aren’t sure at what point you start rolling your [pc.hips] in Kiro’s lap, but at some point, needs aside from companionship asserted themselves. Was it the tanuki’s fault? Her hands are on your [pc.butt], kneading the flesh, guiding you as you roll your creampied " + (x >= 0 ? "passage":"backdoor") + " around her throbbing horse-meat. Or did your own wanton desire for more coerce you into action?");
 	output("\n\nIt hardly seems to matter.");
 	output("\n\nStroking the lusty kui-tan’s cheek, you lift yourself up to feel even greater friction, arching your back so sharply that it nearly hurts, but the angle allows you to gyrate around steaming-hot cock in whole new ways. Kiro whimpers in the cutest way when a fist-sized globule of spent seed slips out of you and into her ballfur, matting around the overworked orbs. With a naughty giggle, you reach back to collect some in your palm, bringing it up to smear down your [pc.chest] as you drop back down, taking her to the hilt" + (pc.hasVagina() ? ", wet fur tickling your [pc.clits]":"") + ". An even naughtier idea occurs while you’re rubbing it into your [pc.nipples]: <i>what if you got Kiro to lick them clean?</i>");
 	output("\n\nYou don’t have to ask.");
@@ -259,7 +265,8 @@ public function rideKirosVictoryCocku3(x:int):void
 	pc.orgasm();
 	kiro.removePerk("Fixed CumQ");
 	clearMenu();
-	addButton(0,"Next",rideKirosVictoryCocku4,x);
+	if(!kiroIsCrew()) addButton(0,"Next",rideKirosVictoryCocku4,x);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 public function rideKirosVictoryCocku4(x:int):void
@@ -313,7 +320,7 @@ public function fuckKirosPussyAwwwYeeeeeeea(x:int):void
 		output("\n\n<i>“Oh Angel, that looks so fucking good.”</i> The grinning lawbreaker circles her cunt with her fingertips, pulling herself open to show you exactly how wet she is inside. <i>“You’re going to fit me perfectly, aren’t you?”</i> She thumbs at her clit, trembling in sudden, violent need. Her cock slaps hard against her belly, slinging a fat rope of pre-cum across her darker-furred face. <i>“Come fuck me." + (kiro.vaginalVirgin ? " Teach me how good it can be to get fucked like a girl. You’ll be the only [pc.guyGirl] in the whole galaxy with Kiro Tamahime’s v-card.":" You already own my v-card, and this time I’m asking for it - begging for it. Fuck my pussy like you own it.") + "”</i>");
 	}
 	//Merge
-	output("\n\nYou step forward with your [pc.cock " + x + "] in hand, lining the [pc.cockHead " +x  + "] up with the waiting tanuki’s dewy gash. Genitals brush genitals. The accidental touch leaves both of you swooning, equally amazed by the passionate heat radiating from the other’s loins. Kiro shifts, grabbing one leg by the ankle and raising it high overhead, to better present her bare cunt for the taking. She bites her lower lip and bats her eyelashes in your direction. Looking back, you see plainly displayed adoration mixed with a healthy coat of lust, but when it comes to Kiro, everything comes with a healthy coat of lust.");
+	output("\n\nYou step forward with your [pc.cock " + x + "] in hand, lining the [pc.cockHead " + x + "] up with the waiting tanuki’s dewy gash. Genitals brush genitals. The accidental touch leaves both of you swooning, equally amazed by the passionate heat radiating from the other’s loins. Kiro shifts, grabbing one leg by the ankle and raising it high overhead, to better present her bare cunt for the taking. She bites her lower lip and bats her eyelashes in your direction. Looking back, you see plainly displayed adoration mixed with a healthy coat of lust, but when it comes to Kiro, everything comes with a healthy coat of lust.");
 	output("\n\nShe’s blushing like a school-girl getting asked out for prom.");
 	//Normal
 	if(pc.cockVolume(x) <= kiro.vaginalCapacity(0))
@@ -347,7 +354,7 @@ public function fuckKirosPussyAwwwYeeeeeeea(x:int):void
 	output("\n\nThe warmth and weight of the outlaw’s sack against your [pc.belly] ratchets up warningly as Kiro tears a package open with her teeth and tosses it your way. <i>“I plan pirate jobs, Angel. I prepare for sex.”</i> She smirks a little blearily. <i>“Now help me get this condom on before I ruin another room.”</i>");
 	output("\n\nAnother one?");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	kiro.orgasm();
 	pc.applyCumSoaked();
 	clearMenu();
@@ -414,7 +421,8 @@ public function fuckKirosPussyAwwwYeeeeeeea3(x:int):void
 	kiro.loadInCunt(pc,0);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",fuckKirosPussyAwwwYeeeeeeea4,x);
+	if(!kiroIsCrew()) addButton(0,"Next",fuckKirosPussyAwwwYeeeeeeea4,x);
+	else addButton(0,"Next",mainGameMenu);
 }
 public function fuckKirosPussyAwwwYeeeeeeea4(x:int):void
 {
@@ -455,8 +463,8 @@ public function kqVictoryMenu2():void
 {
 	clearMenu();
 	addButton(0,"Join Me",joinMyCrewKiro,undefined,"Join Me","Invite Kiro to join the crew. Together, you can rule the galaxy as Rusher and Pirate!");
-	addButton(1,"Stay Solo",staySoloKiro,undefined,"Stay Solo","You aren't looking for another crew member right now.");
-	if(flags["KIRO_LOVED"] == undefined) addButton(2,"Confess Love",lateLoveDeclaration,undefined,"Confess Love","It's a little late, but confess your own love back to her.");
+	addButton(1,"Stay Solo",staySoloKiro,undefined,"Stay Solo","You aren’t looking for another crew member right now.");
+	if(flags["KIRO_LOVED"] == undefined) addButton(2,"Confess Love",lateLoveDeclaration,undefined,"Confess Love","It’s a little late, but confess your own love back to her.");
 	else addDisabledButton(2,"Confess Love","Confess Love","Been there, done that.");
 }
 
@@ -558,7 +566,7 @@ public function shipsFullGetKiros():void
 	clearOutput();
 	showName("MAKE\nROOM");
 	author("Fenoxo");
-	output("Your hangar is already at capacity. Kiro comes with her ship - if you want to recruit her, you'll need to sell off an old vessel to make room.");
+	output("Your hangar is already at capacity. Kiro comes with her ship - if you want to recruit her, you’ll need to sell off an old vessel to make room.");
 	output("\n\n<b><u>Stored Vessels</u>:</b>");
 	var storageLimit:int = shipStorageLimit();
 	var btnSlot:int = 0;

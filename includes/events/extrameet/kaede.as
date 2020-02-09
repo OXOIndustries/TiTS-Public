@@ -8,6 +8,7 @@ public function extrameetKaedeDate():void
 	{
 		extrameetKaedeRepeat();
 	}
+	IncrementFlag("EM_KAEDE_DATE");
 }
 
 public function extrameetKaedeRepeat():void
@@ -301,7 +302,7 @@ public function extrameetKaedeFuckHerAss():void
 	if(x >= 0) output(" Between your final thrusts, your mind races to make a choice.");
 
 	processTime(25);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	IncrementFlag("KAEDE_FUCKED");
 

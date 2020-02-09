@@ -133,8 +133,7 @@
 				healing = targetCreature.shieldsMax() - targetCreature.shields();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
-			targetCreature.shields(healing);
-			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
+			targetCreature.changeShields(healing);
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
@@ -146,8 +145,7 @@
 				healing = targetCreature.shieldsMax() - targetCreature.shields();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
-			targetCreature.shields(healing);
-			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
+			targetCreature.changeShields(healing);
 		}
 	}
 }

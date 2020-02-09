@@ -767,8 +767,8 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	//pc dick has double head flag:
 	if(!hardlighted && pc.cocks[x].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) output("sinking in, enveloping your topmost cockhead, and then doing it all over again for the second.");
 	else output("shoving the rest of it into his mouth.");
-	if(pc.cockTotal() > 1) output(" His free hand gives your [pc.cockSmallest] a slow, mechanical handjob, and he’s obviously more passionate about using his mouth.");
 	if(pc.cockTotal() > 2) output(" His free hand jumps between your other cocks, keeping them hard with idle handjobs, but he’s obviously more passionate about using his mouth.");
+	else if(pc.cockTotal() > 1) output(" His free hand gives your [pc.cockSmallest] a slow, mechanical handjob, and he’s obviously more passionate about using his mouth.");
 
 	output("\n\nHis snout continues to slide across your shaft, while his tongue ");
 	if(pc.balls > 1) output("reaches forward and licks your balls when he bottoms out, giving your [pc.sack] another spit-coating.");
@@ -1212,7 +1212,7 @@ public function doggyStyleWithGil():void
 	{
 		output(" You feel your own vaginal orgasm ");
 		if(hardlighted) output("drench your [pc.lowerUndergarment] with [pc.girlCum]");
-		else if(pc.isSquirter()) output("burst forth from your cunt and drench Gil’s tail in [pc.girlCum]");
+		else if(pc.isSquirter()) output("burst forth from your cunt and drench Gil’s thighs in [pc.girlCum]");
 		else 
 		{
 			output("drip down your ");

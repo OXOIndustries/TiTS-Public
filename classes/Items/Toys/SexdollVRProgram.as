@@ -27,7 +27,7 @@
 			
 			this.description = "a virtual reality program for fighting sexdolls";
 			
-			this.tooltip = "Using this item will unlock a virtual reality version of the fight with one of Doctor Po's sexdolls.";
+			this.tooltip = "Using this item will unlock a virtual reality version of the fight with one of Doctor Po’s sexdolls.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

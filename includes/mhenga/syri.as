@@ -1293,6 +1293,7 @@ public function catchAnalFromSyriIfYouDontUseACondom():void {
 //Blow Her
 public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 	if (postScene == null) clearOutput();
+	else output("\n\n");
 	showSyri(true);
 	author("Savin");
 	output("Grinning up at your hung alien lover, you ask her if she’d like some good old fashioned oral attention. Syri grins and rolls off you, cock rising skyward as you crawl downward, slipping between her spread legs to give yourself a good view of her eager member. The ausar’s veiny puppy pecker is nice and stiff, swaying slightly as it stands erect for your inspection. Syri gives a little whine and shifts her legs, and her shaft waggles comedically at you, nearly brushing up against your nose; you take the opportunity to let your [pc.tongue] play out, lapping at her sensitive underside. The taste is bitter, but the sound of Syri’s breath catching in her throat is exquisite, and with the look of wanton pleasure etched on her face to motivate you, you slip down toward her base, tongue probing at the red, pulsing prick down and down to its very roots, your fingers rubbing aside the downy fuzz around her stem to plant a kiss on her most sensitive flesh.");

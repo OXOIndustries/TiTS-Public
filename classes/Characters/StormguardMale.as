@@ -506,7 +506,7 @@
 			else output("prowling around you in the snow");
 			output(". <i>“But fearsome opponents call for all-or-nothing tactics!”</i>");
 			this.createStatusEffect("Shield CD",4,0,0,0);
-			this.shields(150);
+			this.changeShields(150);
 		}
 		//Covering Charge Mk2
 		//Becomes medium acc kinetic shot, high acc energy melee, low chance to cause stun

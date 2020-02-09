@@ -27,7 +27,7 @@
 			
 			this.description = "a holo-poster depicting two happy slaves";
 			
-			this.tooltip = "Using this item will install the holo-poster as a decoration on your ship.";
+			this.tooltip = "Using this item will install the holo-poster as a decoration on your ship.\n\nAccording to the signatures on the projector, this art was made by DCLZexon. Sweet!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

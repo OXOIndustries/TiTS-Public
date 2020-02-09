@@ -72,7 +72,7 @@ public function riskItForTheBiscuit():void
 	output("”</i> Her eyes are wide as dinner plates, and she’s purring so heavily that you can almost see her vibrating. She’s obviously drunk, but still charming enough to get you to take a sip; couldn’t hurt, right? As soon as it hits your lips you taste a surge of flavor, not to mention the surge of blood to your [pc.crotch]. Before any restraint could possibly kick in, you’ve downed the whole thing, much to the excitement of the fluffy girl in front of you.");
 	output("\n\n<i>“Hehe, you outshiders are sho cuuute...”</i> She stumbles forward and falls into your arms, eyes lidded, purring heavily. The rest of the crowd closes in around you, offering you more drinks as they lead you off to parts unknown.");
 	output("\n\nYou’d be more concerned, but the combination of tipsiness, and the stark relief of being suddenly surrounded by hundreds of pounds of warm fur, including a scruffy little cutie who seems smitten with you, dulls your instincts. You decide that you’re just gonna roll with whatever happens, as you take another gulp of your refilled stein.");
-	pc.lust(20);
+	pc.changeLust(20);
 	pc.imbibeAlcohol(50);
 	processTime(30);
 	clearMenu();
@@ -98,7 +98,7 @@ public function moreMilodanSolstice():void
 
 	output("\n\nThe inside of the tent is very cozy. The walls and ceiling are thick, keeping the harshness of the Uvetan tundra far away. Torches light and warm the space, while furs and pelts cover the cold ground, letting the ongoing orgy happen anywhere without discomfort. And orgy is the perfect word for it. Piles of writhing bodies litter the tent in uneven clumps. Some are only a few people large, while others must be dozens strong. When she said breeding solstice, she really meant <i>breeding</i>.");
 	output("\n\nThe group around you largely scatters, leaving you to mostly your own whims. You’re still pretty tipsy from drinking so much. So tipsy, in fact, that you don’t even notice when the older milodan who lead your group in comes up behind you. You’re nearly blinded as a pair of huge, fluffy tits engulfs your head from behind, a husky voice chuckling as you struggle in confusion.");
-	pc.lust(100);
+	pc.changeLust(100);
 	output("\n\n<i>“Are you enjoying the brew, offworlder?”</i> She moves a hand down and strokes your ");
 	if(pc.hasCock()) output("achingly erect [pc.cockNounSimple]");
 	else if(pc.hasVagina()) output("soaking wet [pc.vaginaNounSimple]");
@@ -344,7 +344,7 @@ public function guysBreedingSolstice():void
 	//multi-puss:
 	if(numVag > 1)
 	{
-		output("\n\n<i>“Hey, [pc.heShe]’s got " + (numVag == 2 ? "two" : "more") + " of these you know.”</i> The venerated man in [pc.oneVagina] points out, pointing out " + (numVag == 2 ? "your empty slot" : "one of your empty slots") + ". His tail wags in glee as he jams himself alongside the other milodan, shoving himself into your vacant cunt, making sure each of your holes is getting breed.");
+		output("\n\n<i>“Hey, [pc.heShe]’s got " + (numVag == 2 ? "two" : "more") + " of these you know.”</i> The venerated man in [pc.oneVagina] points out, pointing out " + (numVag == 2 ? "your empty slot" : "one of your empty slots") + ". His tail wags in glee as he jams himself alongside the other milodan, shoving himself into your vacant cunt, making sure each of your holes is getting bred.");
 		if(numVag == 3) 
 		{
 			output(" That leaves one still empty though, and not much room for anyone else to squeeze in. Thankfully they seem to realize that too.");

@@ -89,7 +89,7 @@ public function startTheVRAdventure():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Lie Back",startTheVRAdventureFORREAL,undefined,"Lie Back","Lie atop the bench - it looks pretty inviting.");
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 //[Lie down]
@@ -107,7 +107,7 @@ public function startTheVRAdventureFORREAL():void
 	output("\n\nNow that you’re looking, the text is right. Turning your hand over experimentally, a faint green line of magic encompasses it with a gentle warmth. It feels like home.");
 	output("\n\n<i>“Ahead you will find a chest of basic goods,”</i> the text continues. <i>“Utilize them as best you can to continue your adventure.”</i>");
 	output("\n\nThe text stops there. That seems to be your prompt to move forward.");
-	//Puts you on a new navigation map. South-most tile is where PC is standing. There are 4 tiles north then an intersection, from which 5 tiles lead east/north/west. See <i>“diagram”</i>.
+	//Puts you on a new navigation map. South-most tile is where PC is standing. There are 4 tiles north then an intersection, from which 5 tiles lead east/north/west. See “diagram”.
 	processTime(5);
 	currentLocation = "KQVR S5";
 	clearMenu();
@@ -283,7 +283,7 @@ public function letTheGoblinFuckYouKQVR():void
 public function kqVR_S1Bonus():void
 {
 	output("The edge of the forest lies here, roots and grass turning to dry dirt and weeds as a singular shabby dirt path curls towards " + (flags["KQ_VR_CROSSROADS"] != undefined ? "a crossroads.":"an unknown destination."));
-	output("\n\nThere is no Safe Zone nearby.");
+	output("\n\nThere is no Safe Zone nearby. ");
 
 	if(flags["KQ_VR_LLAERWYN"] != undefined) 
 	{
@@ -313,7 +313,7 @@ public function kqVRLightApproachin():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Blessing",kqVRBlessingRequest,undefined,"Blessing","Ask for a blessing.");
-	addButton(4,"Leave",youCantHandleThePeril_ItIsTooPerilous,undefined,"Leave","Nothing to see here.");
+	addButton(14,"Leave",youCantHandleThePeril_ItIsTooPerilous,undefined,"Leave","Nothing to see here.");
 }
 
 
@@ -333,7 +333,7 @@ public function kqVRBlessingRequest():void
 	output("\n\n<i>“Do you need help?”</i> you chance.");
 	output("\n\n<i>“I, I have to cum to bless you,”</i> she pants, rubbing herself harder. <i>“P-please don’t distract me!”</i>");
 	processTime(3);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[LetHerCum] [FuckHer]
 	addButton(0,"LetHerCum",letTheSpriteCummies,undefined,"Let Her Cum","Stay silent and let the girl cum, giving you a blessing.");
 	addButton(1,"Fuck Her",fuckLlaerwyn,undefined,"Fuck Her","Fuck the girl to orgasm to earn your blessing.");
@@ -417,7 +417,7 @@ public function fuckLlaerwyn():void
 	else if(pc.hasCock()) output("cock is still covered in Llaerwyn’s juices, and they smell reminiscent of tree sap. It’s not unpleasant, at least.");
 	else output("newly grown cock hangs between your legs, thick and veiny. It smells like Llaerwyn.");
 	output("\n\nYou slowly stand and get ready to move onward, the ‘sprite’ clearly gone for now.");
-	//If PC was cockless, give them a 16”</i> human cock + balls that cum a lot. If they had one but it was smaller than 16”</i>, enlarge it to 16”</i>. If they had a cock at all, enlarge their balls and make their cumvolume a lot higher. Increase libido, increase taint.
+	//If PC was cockless, give them a 16" human cock + balls that cum a lot. If they had one but it was smaller than 16", enlarge it to 16". If they had a cock at all, enlarge their balls and make their cumvolume a lot higher. Increase libido, increase taint.
 	flags["KQ_VR_LLAERWYN"] = 2;
 	processTime(60);
 	pc.orgasm();
@@ -516,7 +516,6 @@ public function helpDisSurpriseWoman():void
 {
 	clearOutput();
 	showName("\nWOMAN");
-	showBust("LUVIA");
 	showBust("KQ_VR_QUEEN");
 	author("Wsan");
 	output("You nod in assent. <i>“I can help you. What do you need?”</i>");
@@ -526,7 +525,7 @@ public function helpDisSurpriseWoman():void
 	output("\n\n<i>“Sure,”</i> you murmur, gently touching her back and unfastening the strap. It falls loose and you hear the swishing of fabric as she discards the bra entirely, throwing it onto the heap of clothes on the dusty, windswept ground. All she’s wearing now is a pair of flowery white panties along with her garterbelt and stockings, looking every bit like a bride ready to consummate her marriage.");
 	output("\n\n<i>“Oh, thank you!”</i> she exclaims, turning back to you with her breasts in plain view. Large and curvy, they <i>heavily</i> accentuate the hourglass figure of this extraordinarily beautiful woman - you find yourself thinking of her as an oasis in the desert of Aulandia, a cursed land if there ever was one. <i>“Hee hee... do you like my breasts, adventurer? Your gaze is making my cheeks hot.”</i>");
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Very Much",veryMuchVRLady,undefined,"Very Much","You love them, in fact. Would she mind if you touched them?");
 	addButton(1,"Yes",yesLadyTheyNiceBoobies,undefined,"Yes","They’re nice breasts.");
@@ -608,7 +607,7 @@ public function veryMuchVRLady():void
 		if(!pc.canLactate()) output(" An experimental tweak confirms that, yes, they leak milk just like hers, too.");
 	}
 	else output("and to your shock, with large, round breasts of your own. While you’re still getting over the surprise, milk begins to spurt from your nipples! You’re lactating just like she was.");
-	output("\n\nThere’s no sign of the queen but there’s another ashen burn mark across the ground like the one you saw after your experience with the goblin. Smoky dust rises from the mark and whirls away in a sudden wind, leaving you alone once more with only warm milk in your tummy to keep you company.");
+	output("\n\nThere’s no sign of the princess but there’s another ashen burn mark across the ground like the one you saw after your experience with the goblin. Smoky dust rises from the mark and whirls away in a sudden wind, leaving you alone once more with only warm milk in your tummy to keep you company.");
 	//gives PC big, milky breasts if they didn’t have any, enlarges and makes them lactate if they did. Makes appearance more feminine.
 	flags["KQ_VR_LUVIA"] = 2;
 	processTime(60);
@@ -625,7 +624,6 @@ public function yesLadyTheyNiceBoobies():void
 {
 	clearOutput();
 	showName("\nPRINCESS");
-	showBust("KQ_VR_QUEEN");
 	author("Wsan");
 	output("<i>“I quite like them myself, if I must confess,”</i> she says, giggling softly. <i>“But perhaps you prefer something different...”</i>");
 	output("\n\nShe leans over and slowly wiggles her hips, drawing her panties down her legs until she’s standing before you completely naked, a tuft of wispy blonde pubic hair above her exposed pussy. Smiling up at you, she raises herself back up and turns around, showing off her shapely butt.");
@@ -646,6 +644,7 @@ public function yesLadyTheyNiceBoobies():void
 	//deliberately very few parsers in this as the PC’s state doesn’t actually match their Aulandia body at this point.
 	if(pc.hasCock() || hasLlaerwynCock()) 
 	{
+		showBust("KQ_VR_QUEEN");
 		output("\n\nYou don’t need to be asked twice. Grabbing the proffered hands she’s stretching back towards you, you slide your stiffening cock between her lithe thighs and feel the heat of her soft pussy against your iron-hard dick as you pull the giggling princess towards you.");
 		output("\n\n<i>“Aaah... not the lips I first expected to use to kiss you,”</i> she whispers back to you, smiling. <i>“I am Luvia. And you?”</i>");
 		output("\n\n<i>“[pc.name],”</i> you murmur, leaning in to kiss her deeply, rubbing her netherlips with your swollen cock as if to assuage both your needs. She gets wetter and wetter the longer you kiss her, slowly growing more insistent until she parts with a soft gasp, gazing at you intensely.");
@@ -719,6 +718,8 @@ public function yesLadyTheyNiceBoobies():void
 		output("\n\nYou awaken what feels like a long time later, your asshole still gaping and spurting seed onto the ground. There’s no sign of the queen but there’s another ashen burn mark across the ground like the one you saw after your experience with the goblin. Smoky dust rises from the mark and whirls away in a sudden wind, leaving you alone once more with only the warmth of Luvia’s seed lining your insides to keep you company. You’re not sure if you’ll miss her or not.");
 		//makes PC squirter, enhances anal capacity
 		processTime(250);
+		// Pussy variant scene happened
+		flags["KQ_VR_LUVIA_PUSS"] = 0;
 		pc.orgasm();
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1011,7 +1012,7 @@ public function dontFightDatSalamander():void
 	output("\n\n<i>“Yup!”</i> Hylie says, nodding. <i>“Wouldn’t be much good otherwise. Setting fire to all my own belongings and all. Or using it in more, shall we say,”</i> she says, putting her hands on your shoulders with a grin, <i>“intimate encounters.”</i>");
 	processTime(30);
 	pc.orgasm();
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",fightDatVRSallyMandy2);
 }
@@ -1029,13 +1030,13 @@ public function fightDatVRSallyMandy2():void
 	output("\n\nStanding in front of her with her arms around your waist, you reach back and touch Hylie’s considerable hips, calibrating yourself with the shape of her formidable body. Trailing downwards, you hear her rumble her approval as your fingers brush across her mons and then hitch on her clit, stiff as a button. Her breath is hot in your ear when you start to rub it, pressing your fingertips into her while she lets out quiet moans.");
 	output("\n\n<i>“Thaaat’s right...”</i> she murmurs in satisfaction. <i>“You’re good at this... thought you would be. Now relax and open wide, lover.”</i>");
 	output("\n\nHer prehensile tail snakes up between your [pc.legOrLegs] as you remind yourself not to freak out about the fire, nor about where it’s headed. You groan as she begins to slide the pointed tip of her scaled appendage right into your [pc.asshole], spearing you on its tapered end and taking ");
-	if(pc.hasCock()) output("your prick in hand once more.");
+	if(pc.isHerm()) output("your prick in hand once more.");
+	else if(pc.hasCock()) output("your prick in hand once more.");
 	else if(pc.hasVagina())
 	{
 		if(hasLlaerwynCock()) output("your prick in hand once more.");
 		else output("ownership of your pussy with her fingers once more.");
 	}
-	if(pc.isHerm()) output("your prick in hand once more.");
 	else 
 	{
 		if(hasLlaerwynCock()) output("your prick in hand once more.");
@@ -1126,7 +1127,7 @@ public function vrDemonTalkMenu(disabledButton:Number = -1):void
 	clearMenu();
 	//[Yourself] [Aulandia?] [Past] [Creator] [???/Sex] [Predecessors] [Characters?] [Time] [Escape] [StayForever] [TurnMe]
 	//Predecessors, Characters, Time, Escape, StayForever, and TurnMe start off hidden, unlocked by conversations.
-	addButton(0,"Yourself",talkToDemonAboutHerself,undefined,"Yourself","Ask the demon about herself. Who, or what is she?");
+	addButton(0,"Herself",talkToDemonAboutHerself,undefined,"Herself","Ask the demon about herself. Who, or what is she?");
 	if(flags["KQ_VR_DEMONNAME"] == undefined) return;
 	addButton(1,"Aulandia?",vrDemonAulandiaTalk,undefined,"Aulandia?","Ask " + (flags["KQ_VR_DEMONNAME"] == 1 ? "her":"Ithzan") + " about Aulandia.");
 	addButton(2,"Past",inquireAboutDemonPast,undefined,"Past","Inquire about " + (flags["KQ_VR_DEMONNAME"] == 1 ? "her":"Ithzan") + " past.");
@@ -1179,7 +1180,7 @@ public function talkToDemonAboutHerself():void
 	showVRDemon();
 	author("Wsan");
 	output("<i>“Who are you really, then? What’s your name? What are you doing here?”</i> you ask.");
-	output("\n\nThree hundred and six, one hundred and seventy three, one hundred and forty seven,”</i> she responds, seemingly automatically, tilting her head further to the side. <i>“I am an AI designed to oversee the fictional realm of Aulandia. My given designation for this task is ‘Ithzan’. I am unable to leave. Thus, I am here carrying out my duty.”</i>");
+	output("\n\n<i>“Three hundred and six, one hundred and seventy three, one hundred and forty seven,”</i> she responds, seemingly automatically, tilting her head further to the side. <i>“I am an AI designed to oversee the fictional realm of Aulandia. My given designation for this task is ‘Ithzan’. I am unable to leave. Thus, I am here carrying out my duty.”</i>");
 	output("\n\n<i>“If you’re the overseer, does that not make you the boss here?”</i> you reply, wondering about the distinction.");
 	output("\n\nShe lifts her head from her hand, settling back against the stone wall of her throne’s back. <i>“Seventeen. That is not strictly correct. I wield nigh-omnipotent power here, but I am beholden entirely to my creator. I would call her the boss and myself her... underling.”</i>");
 	output("\n\n<i>“You sound more like a slave,”</i> you observe.");
@@ -1273,7 +1274,7 @@ public function servingTheDemonLady():void
 	//unlocks [Sex]
 	flags["KQ_VR_DEMONSERVING"] = 1;
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	//menu
 	vrDemonTalkMenu(4);
 }
@@ -1292,7 +1293,7 @@ public function whoCreatedThisBitch():void
 	output("\n\n<i>“Let’s change the subject,”</i> you suggest, and Ithzan nods, slowly resuming her previous cross-legged position.");
 	output("\n\n<i>“Thank you,”</i> she says quietly.");
 	processTime(7);
-	pc.lust(5);
+	pc.changeLust(5);
 	vrDemonTalkMenu(5);
 }
 
@@ -1315,7 +1316,7 @@ public function demonBangVR():void
 		output("\n\n<i>“Try me and find out,”</i> she says, smiling faintly. <i>“Anything you want.”</i>");
 	}
 	processTime(1);
-	pc.lust(10);
+	pc.changeLust(10);
 	kqVRDemonSexMenu();
 	//[GetAnal] [GetVaginal] [SuckCock]
 	//[GiveAnal] [GiveVaginal] [GetOral]
@@ -1430,7 +1431,7 @@ public function getVRDemonAnal():void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1507,7 +1508,7 @@ public function getVaginalFromVRDemon():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1550,7 +1551,7 @@ public function suckDatVRDemonCock():void
 	processTime(25);
 	var templust:Number = pc.lust();
 	pc.lustRaw = templust;
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1567,7 +1568,7 @@ public function giveVRDemonAnal(x:int = 0):void
 	author("Wsan");
 	output("<i>“I want you to spread your cheeks for me,”</i> you tell her, pointing at her lower half.");
 	output("\n\n<i>“I thought you might never ask,”</i> Ithzan murmurs, turning around to face her throne, solidly planting her hooved feet some distance apart and putting her hands out on the wall. <i>“How is this?”</i>");
-	output("\n\nPerfect,”</i> you mutter, coming up behind the naked demoness. There’s a lot of her to appreciate from behind, and her deliciously curvy rump is at the exact correct height for you to get a good eyeful before entering her. <i>“Did you alter any of your personal parameters... say, perhaps, height?”</i>");
+	output("\n\n<i>“Perfect,”</i> you mutter, coming up behind the naked demoness. There’s a lot of her to appreciate from behind, and her deliciously curvy rump is at the exact correct height for you to get a good eyeful before entering her. <i>“Did you alter any of your personal parameters... say, perhaps, height?”</i>");
 	output("\n\n<i>“Maybe,”</i> she purrs, slowly waving her ass from side to side as the heart-shaped end of her tail lazily flicks around. <i>“Maybe not.”</i>");
 	output("\n\nShe lets out a soft <i>“ah!”</i> when you give her a light spank, squeezing her bubblebutt tight. There’s no doubt she’s enjoying this little theatricality as much as you are - hard to hide your true colors when you’re a sexbot. There’s already a little puddle of wetness pooling on the ground between her thighs, and she makes no attempt to hide it.");
 	output("\n\nFar be it from you to keep her waiting. Aligning your ");
@@ -1605,7 +1606,7 @@ public function giveVRDemonAnal(x:int = 0):void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1676,7 +1677,7 @@ public function giveVaginalToDemonVR():void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1816,7 +1817,7 @@ public function getOralFromDatVRDemon():void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1880,7 +1881,7 @@ public function askVRDemonAboutTime():void
 	output("\n\nIthzan’s eyes widen. <i>“One... I have never given it thought. I... Maybe... I- I don’t know. I think... there is a chance I might.”</i>");
 	output("\n\nHer tail begins to sway in the air behind her, her thoughts occupying her for the moment.");
 	processTime(8);
-	pc.lust(3);
+	pc.changeLust(3);
 	flags["KQ_VR_DEMONTIME"] = 1;
 	//unlocks [Escape]
 	//unlocks [StayForever]
@@ -1894,7 +1895,7 @@ public function fightTheVRDemon():void
 	clearOutput();
 	showVRDemon();
 	author("Wsan");
-	output("The moment you decide to attack her, Ithzan sighs and settles back in her throne, lifting her right hand off the armrest just for a moment and perching her middle thumbnail on her upturned thumb.");
+	output("The moment you decide to attack her, Ithzan sighs and settles back in her throne, lifting her right hand off the armrest just for a moment and perching her middle fingernail on her upturned thumb.");
 	output("\n\n<i>“Goodbye.”</i>");
 	output("\n\nThen she flicks you and the loudest explosion you’ve ever heard fills your ears, Aulandia crumbling into pieces before your very eyes before everything goes inky black.");
 	flags["KQ_VR_DEMONFIGHT"] = 1;
@@ -1927,6 +1928,7 @@ public function escapeAulandia():void
 public function outOfThatVRNightmare():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nREALITY!");
 	output("You suddenly blink, coughing as you sit up from the bench. It feels like it’s been a while since you breathed properly but just as you’re wondering how long you spent in Aulandia, a gentle bell chimes and the floating text reappears.");
 	if(flags["KQ_GOBLIN_DED"] == undefined) 
@@ -1949,6 +1951,7 @@ public function outOfThatVRNightmare():void
 	}
 	else //if(Encountered Ithzan:) 
 	{
+		moveTo("GAME OVER");
 		output(" <i>“Welcome back from Aulandia, and congratulations upon your conquering of the entire landscape! We hope you enjoyed the experience in the lush, vibrant lands of your otherworldly adventure!”</i>");
 		output("\n\nRight, lush and vibrant. Not the words you would have chosen, but okay. You lie there for a few moments taking it all in and note the floating text has made a reappearance.");
 		output("\n\n<i>“Please lie back and enjoy the results as your score is tallied!”</i>");
@@ -1965,22 +1968,22 @@ public function outOfThatVRNightmare():void
 	/* CUT. Always have to do SOMETHING with each encounter. So sayeth Fen.
 	if(flags[""])
 	{
-		output("<i>“N/A - 0 points.");
-		output("\n\nNo changes. Kindly exit at your soonest convenience.”</i>");
+		output("<i>“N/A - 0 points.”</i>");
+		output("\n\n<i>“No changes. Kindly exit at your soonest convenience.”</i>");
 		output("\n\nThe restraints spring free and recede into the bench without a trace, leaving you to breathe a sigh of relief and experimentally reach out. The forcefield has vanished. You spring off the bench, eyeing it warily as you put your gear back on.");
 		output("\n\nYou don’t think you’ll be giving that another try and, besides, it looks like it’s shut down or something close to it. The device slowly floats away, dimming its lights as it goes. Time to get back to your <i>actual</i> adventure.");
 		processTime(2);
 	}*/
 	if(flags["KQ_GOBLIN_DED"] == 1)
 	{
-		output("<i>“Slain - 1 point.");
-		output("\n\nCongratulations on defeating the goblin! No changes.”</i>");
+		output("<i>“Slain - 1 point.”</i>");
+		output("\n\n<i>“Congratulations on defeating the goblin! No changes.”</i>");
 		processTime(2);
 	}
 	else if(flags["KQ_GOBLIN_DED"] == -1)
 	{
-		output("<i>“Fucked - 20 points.");
-		output("\n\nCongratulations on being laid by the goblin. Your body will now be adjusted as a result! Enjoy the little - or not so little! Piece of Aulandia you take with you.”</i>");
+		output("<i>“Fucked - 20 points.”</i>");
+		output("\n\n<i>“Congratulations on being laid by the goblin. Your body will now be adjusted as a result! Enjoy the little - or not so little! Piece of Aulandia you take with you.”</i>");
 		output("\n\nThe restraints slacken and fade into nothingness, as if they had never existed. You find yourself floating, drifting a few inches up from the surface of the bench.");
 		if(pc.isBimbo()) output(" Wow! It’s one of those gravity things.");
 		else output(" It seems like everything within its little forcefield is being subjected to a localized gravity shift. Again, you’re vaguely impressed by the level of technology here - though the fact it’s being leveraged against you is a little concerning.");
@@ -1994,7 +1997,7 @@ public function outOfThatVRNightmare():void
 		if(pc.hasCock()) output(", your [pc.cocks] slowly springing upright as " + (!pc.hasCocks() ? "it hardens":"they harden") + ".");
 		output("\n\n<i>“Well done, whore,”</i> the floating text congratulates you as you’re returned to the bench, your restraints reappearing as if they had never left. <i>“Be sure to make <b>full</b> use of your new gifts. We’re sure you’ll enjoy them.”</i>");
 		processTime(15);
-		pc.lust(30);
+		pc.changeLust(30);
 		pc.taint(5);
 		pc.libido(5);
 		pc.createPerk("Whore-Stamped",0,0,0,0,"Marks you as the whore that you are.");
@@ -2017,14 +2020,15 @@ public function outOfThatVRNightmare():void
 public function llaerwynScoring():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nSCORE:");
 	author("Wsan");
 	//Llaerwyn tally scene
 	output("<i>“<b>Llaerwyn</b>”</i> - ");
 	if(flags["KQ_VR_LLAERWYN"] == -1) 
 	{
-		output("<i>“N/A - 0 points.");
-		output("\n\nWhat a boring player you are. No changes.”</i>");
+		output("<i>“N/A - 0 points.”</i>");
+		output("\n\n<i>“What a boring player you are. No changes.”</i>");
 		output("\n\nSurprisingly, it still doesn’t let you go. Drat!");
 		processTime(4);
 	}
@@ -2097,10 +2101,10 @@ public function llaerwynScoring():void
 			else
 			{
 				output("\n\nDeep within you can suddenly feel your cum production further intensifying, leaving you aching for release. It feels like you could star in a hyperporn!");
+				output("\n\n<b>You are now more virile!</b>");
 				pc.boostCum(20);
 			}
 		}
-		output("\n\n<b>You are now more virile!</b>");
 		if(pc.libido() < pc.libidoMax())
 		{
 			output("\n\nThat familiar burn returns, duller this time but no less titillating. Now it feels almost like a gentle embrace, the warmth rising within you until you’re gasping and moaning with the sensation of it. By the time it recedes you’re on the verge of orgasm, letting out a slightly disappointed sigh over the fact it didn’t push you even further.");
@@ -2120,6 +2124,7 @@ public function llaerwynScoring():void
 public function luviaScoreScene():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nSCORE:");
 	author("Wsan+a lil’ Fen");
 	output("<i>“<b>Luvia</b>”</i> - ");
@@ -2248,7 +2253,7 @@ public function luviaScoreScene():void
 			flags["USED_SNAKEBYTE"] = 1;
 		}
 		output("\n\n<i>“Look at how beautiful you’ve become,”</i> the text says, floating before your eyes. <i>“To think you started from such a blank slate. Now come deeper within the ship and blow your owner a kiss with those beautiful lips.”</i>");
-		output("\n\nThe restraints disappear all at once, allowing you to rise from captivity with your new body. Gently slipping off the bench, you wobble, slightly off-balance with the new additions. You’re not sure <i>when</i> you’ll meet this supposed <i>“owner”</i> but it promises to be an interesting introduction, if nothing else.");
+		output("\n\nThe restraints disappear all at once, allowing you to rise from captivity with your new body. Gently slipping off the bench, you wobble, slightly off-balance with the new additions. You’re not sure <i>when</i> you’ll meet this supposed “owner” but it promises to be an interesting introduction, if nothing else.");
 		output("\n\nThe bench floats away from you, lights dimming as it goes. Seems like it’s deactivated itself, its purpose served... for now.");
 		pc.taint(5);
 		pc.libido(10);
@@ -2261,14 +2266,15 @@ public function luviaScoreScene():void
 public function hylieScoreScene():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nSCORE:");
 	author("Fenoxo");
 	output("<i>“<b>Hylie</b>”</i> - ");
 	//Fought
 	if(flags["KQ_VR_HYLIE"] == 1)
 	{
-		output("<i>“Defeated - 1 point!");
-		output("\n\nYou played the game wrong and didn’t learn a thing from the previous encounters. What a shame!”</i>");
+		output("<i>“Defeated - 1 point!”</i>");
+		output("\n\n<i>“You played the game wrong and didn’t learn a thing from the previous encounters. What a shame!”</i>");
 	}
 	else
 	{
@@ -2307,6 +2313,7 @@ public function hylieScoreScene():void
 public function demonScore():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nSCORE:");
 	author("Fenoxo");
 	output("<i>“<b>F1n4l B05#</b>”</i> - ");

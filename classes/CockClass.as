@@ -98,12 +98,13 @@
 		//MEMBER FUNCTIONS
 		//COCK VOLUME
 		public function volume():Number {
+			var r:Number = thickness()/2;
 			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder:Number = Math.PI * thickness()/2 * thickness()/2 * (cLength() - thickness()/2);
+			var cylinder:Number = Math.PI * Math.pow(r, 2) * (cLength() - r);
 
-			var tip:Number = (4/3 * Math.PI * thickness()/2 * thickness()/2 * thickness()/2)/2;
+			var tip:Number = (4/3 * Math.PI * Math.pow(r, 3))/2;
 			//If blunt, tip is converted to cylinder as well.
-			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (Math.PI * thickness()/2 * thickness()/2 * thickness()/2);
+			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (Math.PI * Math.pow(r, 3));
 			//If flared, tip is multiplied by 1.3.
 			if(hasFlag(GLOBAL.FLAG_FLARED)) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
@@ -111,10 +112,13 @@
 				tip = tip * .75;
 				cylinder = cylinder * .75;
 			}
-			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
+			//OLD: If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
+			//New PR insanity: If double headed, the tip is approximately two hemispheres on two sides of a isosceles right-angled triangle based prism and this junction's volume what's rounded by a hemishere's surface.
 			if(hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
 			{
-				tip = 2 * (2/3 * Math.PI * thickness()/4 * thickness()/4 * thickness()/4) + (Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
+				//OLD: tip = 2 * (2/3 * Math.PI * thickness()/4 * thickness()/4 * thickness()/4) + (Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
+				//new PR insanity: cylinder = Math.PI * Math.pow(r, 2) * (cLength() - Math.SQRT2 * r/2 - r/2);
+				tip = 2 * (2/3 * Math.PI * Math.pow(Math.SQRT2 * r/2, 3)) + (0.512 * Math.PI * Math.pow(r, 3));
 			}
 			return Math.round((tip + cylinder) * 100) / 100;
 			//EXAMPLES

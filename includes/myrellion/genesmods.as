@@ -1177,7 +1177,7 @@ public function genesModsBellyrubRelease():void
 	processTime(3);
 	pc.lust(10+rand(5));
 	geneSubmissionLevel(-3);
-
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

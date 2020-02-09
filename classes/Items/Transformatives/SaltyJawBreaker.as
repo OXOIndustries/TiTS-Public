@@ -51,7 +51,7 @@ package classes.Items.Transformatives {
 				else output(" You"); 
 				output(" suck on it for several minutes, savoring the flavor while it slowly melts into a small bit. When it’s dissolved into a manageable size, you promptly swallow it, and it quickly settles in your stomach.");
 				
-				target.energy(5);
+				target.changeEnergy(5);
 				
 				//if player has external balls
 				if(target.balls > 0) {

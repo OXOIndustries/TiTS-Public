@@ -1695,7 +1695,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 		
 	output("\n\nShe plants two wet kisses to [pc.eachCockHead]");
 	if (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FORESKINNED)) output(", sliding your foreskin back,");
-	output(" and then to your [pc.knotOrSheath]. Spittle runs down her chin, plastering the fur around her lips to her skin before attaching itself to your swelling length in ruddy strings, all for the goal of getting your dicks to drool as messily as she does. [pc.CumColor] preseed beads at your summit, forming a dollop that is lapped up before it sags. The laquine visibly shudders, all sorts of sensations firing in her crossing eyes and aroused nerves. For a few seconds all she can do is stroke her cheek across the underside of your [pc.cocksLight].");
+	output(" and then to your [pc.knotOrSheath]. Spittle runs down her chin, plastering the fur around her lips to her skin before attaching itself to your swelling length in ruddy strings, all for the goal of getting your dick" + (pc.hasCocks() ? "s":"") + " to drool as messily as she does. [pc.CumColor] preseed beads at your summit, forming a dollop that is lapped up before it sags. The laquine visibly shudders, all sorts of sensations firing in her crossing eyes and aroused nerves. For a few seconds all she can do is stroke her cheek across the underside of your [pc.cocksLight].");
 	
 	
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\n<i>“Tryin’ to break every bitch you lay, [pc.name]?”</i> Roxy asks, inhaling more musk from your beefy, turgid tool. <i>“Mmf, big fat pony-mounter like this, can’t wait to see every vein standing out. You came well equipped for a laquine; no dick like horsedick!”</i>");
@@ -4226,7 +4226,7 @@ public function roxyPregMoveEmail():String
 	}
 	else
 	{
-		eText += "Yo [pc.name]. I’ve entered the second trimester of my pregnancy, so I gonna move into the nursery on Tavros. So don’t freak out if you can’t find me on Uveto.";
+		eText += "Yo [pc.name]. I’ve entered the second trimester of my pregnancy, so I’m gonna move into the nursery on Tavros. So don’t freak out if you can’t find me on Uveto.";
 		eText += "\n\nI’ll be in the temp housing according to Briget. She’s nice.";
 		eText += "\n\nHope you visit me.";
 	}
@@ -5119,7 +5119,7 @@ public function roxyBedSex():void
 	output("\n\nSmooth oral flesh drags over tensing and relaxing nerves of pussy-flesh, being rinsed and eventually caked in the hot flavor of a hypersexual bunny-girl. She rocks backwards and then forwards on restless inertia to give you more room, only pinging her black pearl off the tip of your nose. Into the chair her marvelous moistness collects, leaks, and spills from when it can longer settle into the material.");
 	if (pc.hasLongTongue())
 	{
-		output("\n\nThere’s no reason to hold back, and with as much gentleness as you can manage (to avoid plunging her into an instant, pleasure-seizing wreck), you unfurl your endowed tongue until you’re packing her pussy to the cervix. Although you can’t exercise the most muscle control like this, you are pushing against her deepest nerves. <i>“I’ll... I’ll never get tired of that!”</i> she squeaks, <i>“oh, this is everything I needed!”</i>");
+		output("\n\nThere’s no reason to hold back, and with as much gentleness as you can manage (to avoid plunging her into an instant, pleasure-seizing wreck), you unfurl your endowed tongue until you’re packing her pussy to the cervix. Although you can’t exercise the most muscle control like this, you are pushing against her deepest nerves. <i>“I’ll... I’ll never get tired of that!”</i> she squeaks, <i>“Oh, this is everything I needed!”</i>");
 		output("\n\nThat makes you happy.");
 	}
 	output("\n\nClosing in around your spear, her cushioning cunt presses down on your [pc.tongue] with great pressure; a scaldingly hot discharge seeps around the usable space in her tunnel. From plump, quivering muff to throat, a neck-distending orgasm rains into your wide open mouth. Even as she’s cumming, clinging to you with foot and finger, you suckle her through this electrifying orgasm, gulping calmly from her pliant pussy.");

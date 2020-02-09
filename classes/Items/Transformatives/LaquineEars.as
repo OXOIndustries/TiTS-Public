@@ -174,7 +174,7 @@ package classes.Items.Transformatives
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
+					if(pc.vaginalPuffiness(i, true) < 3 || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
 				}
 			}
 			/*
@@ -303,7 +303,7 @@ package classes.Items.Transformatives
 						textBuff = ParseText(textBuff);
 					}
 					pc.balls = 2;
-					pc.lust(30);
+					pc.changeLust(30);
 				}
 				else textBuff += ParseText(pc.ballsLockedMessage());
 			}
@@ -331,7 +331,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\nNow you’ll be filling your partner’s every holes twice as well... you’ve certainly got enough production to cast a [pc.cumVisc] blanket over someone too. All that’s left is to find that lucky partner...";
 					textBuff = ParseText(textBuff);
 					pc.balls = 4;
-					pc.lust(33);
+					pc.changeLust(33);
 				}
 				else textBuff += ParseText(pc.ballsLockedMessage());
 			}
@@ -352,7 +352,7 @@ package classes.Items.Transformatives
 				textBuff += "\n\nNow that your body is adequately broadcasting its truest, basest intentions, you wonder how much easier it’ll be to pick up a few bar hopping hotties. Anyone that gets in your way from now on is going to have to fight the compulsion to spread their legs in front of you, too!";
 				textBuff += "\n\n(<b>Perk Gained: Musky Pheromones</b> - Pheromones grant a +5 musk bonus to tease attack and arousal.)";
 				pc.createPerk("Musky Pheromones", 0, 0, 0, 0, "Grants a +5 musk bonus to tease attacks.");
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 			// (Vag) Horsepussywhynot?
 			else if(select == 6)
@@ -376,7 +376,7 @@ package classes.Items.Transformatives
 						else textBuff += "stare down";
 						textBuff += ParseText(" and discover that your [pc.vaginaNoun " + x + "] has changed shape!");
 						textBuff += "\n\nIn its place, <b>you’ve developed an equine vagina, complete with lips so large and plush that they look to have been recently pumped.</b>";
-						pc.lust(10);
+						pc.changeLust(10);
 						pc.slowStatGain("libido",5);
 						pc.shiftVagina(x,GLOBAL.TYPE_EQUINE);
 						pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
@@ -390,7 +390,7 @@ package classes.Items.Transformatives
 				choices = [];
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800)
+					if(pc.vaginalPuffiness(i, true) < 3 || pc.vaginas[i].bonusCapacity < 800)
 					{
 						choices.push(i);
 					}
@@ -410,7 +410,7 @@ package classes.Items.Transformatives
 							textBuff += "\n\nYou feel as though you’ve been submerged in water, the waves forcibly stroking you from several angles while your engorging pussylips dip and rise in the opposite directions.";
 							textBuff += "\n\nOnce the damp pussy-molding comes to an end, you realize that, for better or worse, <b>your [pc.vagina " + x + "] is slightly pumped!</b> When your thighs squirm around, you’re rubbing into more of that fertile flesh, sort of rubbery without being drenched. The sized-up lips obscure [pc.oneClit], meaning that it has more lovely friction to create on future emergences.";
 							textBuff = ParseText(textBuff);
-							pc.lust(8);
+							pc.changeLust(8);
 							pc.inflateVagina(x);
 							puffed = true;
 						}
@@ -421,7 +421,7 @@ package classes.Items.Transformatives
 							if(pc.clitLength < 1.5) textBuff += "You attribute that to the fact your [pc.clits] " + (pc.totalClits() == 1 ? "is":"are") + " struggling to maintain presence in the changing landscape, sort of like medieval fiefdoms.";
 							textBuff += "\n\nThe rubbery, hypersensitive lips spread into a chubbier shape than they were ever intended for. It’s taking up more space than it has a right to. But you don’t care about that. When you rub a finger across your beautifully soaked and bloated mound of [pc.vaginaColor " + x + "] twat, you can only think how good it’s going to feel smashing it in someone’s face. There’s just too much to worship down there. You think you could vanish anyone in <b>your fully pumped cunt.</b>";
 							textBuff = ParseText(textBuff);
-							pc.lust(10);
+							pc.changeLust(10);
 							pc.inflateVagina(x);
 							puffed = true;
 						}
@@ -434,7 +434,7 @@ package classes.Items.Transformatives
 							textBuff += "Pangs of pleasure bring you to a stop. Demanding throbs draw your eyes to your [pc.vagina " + x + "]" + (!pc.isCrotchExposed() ? ", forcing you to slip aside your [pc.crotchCoverUnder]":"") + ". Your horse-pussy is wettening and tingling, like you’ve just begun fingering yourself. [pc.GirlCumColor] droplets of fresh moisture glaze the [pc.vaginaColor " + x + "] exterior of your rubbery twat, and those fat lips are doing the impossible, spreading into a somehow wider shape. Redness explodes across your [pc.face], thoughts of this new and wonderful development rushing as quick as the transformation occurs.";
 							textBuff += "\n\nOnce it ends, it doesn’t take a genius to see <b>that your mare-cunt is fatter than it was before, the lips slightly pumped.</b> You already had plenty of pussy to worship... but damn, you could probably bury an entire face in there now, not to mention hug a big, fat cock tighter! Just touching it produces the lewdest squelch!";
 							textBuff = ParseText(textBuff);
-							pc.lust(10);
+							pc.changeLust(10);
 							pc.inflateVagina(x);
 							puffed = true;
 						}
@@ -460,14 +460,14 @@ package classes.Items.Transformatives
 						if(pc.vaginas[x].bonusCapacity < 333)
 						{
 							textBuff += (puffed ? "\n\nAs an added bonus (though you’re not sure that a sudden hollowness is a normal feeling), t":"T") + "he tiny robots swarming through your genome are no doubt working some kind of biology-rebuilding magic in your vaginal tunnel. There are subtle differences in shape, like you’re expanding outwards. Warm tingles spread through your reproductive system, stretching the shape of your interior to account for greater insertions. <b>You’re able to slide more of your [pc.hand] in than before.</b> It brings an instant rush of arousal, especially when you realize it’s also going to help more kids make their trip into the galaxy.";
-							pc.lust(5);
+							pc.changeLust(5);
 						}
 						// middling variant
-						else if(600)
+						else if(pc.vaginas[x].bonusCapacity < 600)
 						{
 							textBuff += (puffed ? "\n\nThe changes don’t end with your expanded exterior. ":"") + "A twinge in your vaginal interior leads you to feel it’s become... stretchier. You feel <i>emptier.</i> <b>Why aren’t you mounted on a huge dick right now?</b> Laquines are known for a few things, and having big cocks and bigger cumshots are a few of those important facts. Why aren’t you bearing their kids, either? There’s <i>a lot</i> of room in there, more than silly things like <i>nature</i> would allow normally.";
 							textBuff += "\n\nYou shake your head, a blush spreading across your cheek. When you slide a [pc.finger] into your pussy, <b>you are much deeper than before. In fact, if you wanted to, your entire hand could slide in without an ounce of pain.</b>";
-							pc.lust(10);
+							pc.changeLust(10);
 						}
 						// huge capacity variant
 						else
@@ -475,7 +475,7 @@ package classes.Items.Transformatives
 							textBuff += (puffed ? "\n\nAn equally stark change comes on the back of the previous. ":"") + "A powerful rumble vibrates in your feminine canal. You think you’re developing a stomach ache, maybe you haven’t eaten. But that’s not it. A wave of arousal comes crashing down on you, girly jizz flowing as if you were being lavished with great amounts of attention. Your reproductive canal begins to stretch thanks to the biological rewriting of the tiny robots encouraging this unnatural growth.";
 							textBuff += "\n\nLow, bass-like ‘thumps’ vibrate through your waistline, ending at your curves. Your [pc.vaginaColor " + x + "] interior is flexing and getting stretchier, obscenely so, making you feel like little more than the most perfect cock holster. There’s no dick you wouldn’t be able to hilt yourself on now, save for the most extreme displays of grotesque masculinity. When you gingerly test the limits of your morphed biology, your [pc.pussyNoun " + x + "] is able to accept your entire hand <b>and keep going.</b> You pull back in a mixture of awe and trepidation.";
 							textBuff += "\n\nImagining the near-infinite depths someone can sink into you brings an instant rush of lust. And that’s before you realize just how many kids you could give birth to at once. Maybe you should put this newfound ability to use soon?";
-							pc.lust(20);
+							pc.changeLust(20);
 						}
 						pc.vaginas[x].bonusCapacity += 75;
 					}
@@ -723,7 +723,7 @@ package classes.Items.Transformatives
 						}
 						textBuff += " You look on in stunned excitement, getting bigger and harder. When your [pc.cockNoun " + x + "] finally stops its excited pulsing, you have two more inches of throbbing equine fuckmeat.";
 						//+lust
-						pc.lust(15);
+						pc.changeLust(15);
 					}
 					//3"
 					else if(growth == 3)
@@ -732,14 +732,14 @@ package classes.Items.Transformatives
 						if(pc.lust() >= 75) textBuff += " as it begins to swell, the already rigid boner expanding";
 						else textBuff += " as it unexpectedly surges to full size and beyond";
 						textBuff += ", so hot and hard that pre-cum squeezes out in thick streams. The musky member wobbles deliciously under its own weight, bowing down to gravity’s increasing effects as it expands. The girth swells apace with the length as it expands, every inch of bunny-horse-meat tingling hotly, promising you the best orgasm of your life if you just reach down and stroke it. Then it stops. You’re three inches longer than you were a minute ago.";
-						pc.lust(34);
+						pc.changeLust(34);
 					}
 					//4"
 					else if(growth == 4)
 					{
 						textBuff += ParseText("Pleasure assails you from nowhere as your [pc.cock " + x + "] balloons. The veins fill, then bloat, then expand some more, transforming into highways full of nutrients to feed your burgeoning cockmeat. In between, fresh flesh fills the gaps while the whole of the shaft lengthens, pushing your fattened, flaring head further from your body. One inch... then two... then three... You feel like it’s never going to stop. Rhythmic bliss scours through your mind, filling you with delirious, sensuous need. With a final pulse, ");
 						textBuff += "your [pc.cock " + x + "] shoots a wave of pre-cum hard enough to splatter something ten feet away, the transformation complete. You’re four inches longer and horny as hell!";
-						pc.lust(60);
+						pc.changeLust(60);
 					}
 					//5"
 					else if(growth == 5)
@@ -749,7 +749,7 @@ package classes.Items.Transformatives
 						else textBuff += ", flexing powerfully with new flesh";
 						textBuff + ". The newborn dickskin is glossy, unmarred by a single touch, and it smells powerfully of your cock, secreting more pheromones than the rest of your member put together. Clear pre-jizz dribbles from your flaring head as it stretches away from your body, hotter and harder, longer and more pleasurable than ever before.";
 						textBuff += ParseText("\n\nInch after inch emerges, a seemingly unending tide of new dick that leaves you gasping and panting, watching your [pc.cock " + x + "] transform into a perfect example of bloated hypersexuality. Your [pc.hips] shudder, humping another two inches worth of dick into the open air. Your head swims, and your drizzling laquine length hoses a bucket’s worth of pre onto the floor as it finishes growing, trembling in orgiastic delight. How ever will you satiate such an incredible boner?");
-						pc.lust(80);
+						pc.changeLust(80);
 					}
 					//6"
 					else
@@ -813,7 +813,7 @@ package classes.Items.Transformatives
 						if(pc.cockTotal() == 1) textBuff += "is";
 						else textBuff += "are";
 						textBuff += " only half-hard at best. Your [pc.sack] churns, and [pc.cum] dribbles from your [pc.cockHeads]. There’s no room inside your body for all the sperm being manufactured all of a sudden. It spills out in gooey ropes, splattering on the ground. Yet soon enough the flow thins to a trickle, redirecting to fill your [pc.balls], inflating them to the size of apples. Only then does the pressure ease off and the arousal recede, <b>leaving you with bigger, more productive balls.</b>";
-						pc.lust(15);
+						pc.changeLust(15);
 					}
 					//4-5 diameter (to grapefruit)
 					else if(pc.ballDiameter() < 4)
@@ -824,7 +824,7 @@ package classes.Items.Transformatives
 						textBuff += ", your [pc.balls] expand. It’s a subtle growth, like an angel is reaching down from the heavens to pour <i>more</i> into each of your testes. They engorge with new flesh and new seed, and that pleasant warmth becomes a sensuous tingle. <b>Your nuts are easily the size of grapefruits.</b>";
 						textBuff += "\n\nYou moan and massage your newly-swollen nutsack, dribbling pre so thick that it’s the same [pc.cumColor] as your [pc.cumNoun]. Is this how all laquines are? Big balled bunnies that just love having their nuts rubbed? Stars, you could probably cum from this alone with enough time and effort, but you’re a busy [pc.manWoman]. You begrudgingly pull your hand free to return focus to your current task.";
 						//+15 lust
-						pc.lust(15);
+						pc.changeLust(15);
 					}
 					//(perks) 5-7 diameter. (to cantaloupe)
 					else
@@ -832,7 +832,7 @@ package classes.Items.Transformatives
 						textBuff += "A sharp pinch in your [pc.sack] disturbs you from your previous activity, forcing you to pay attention to the changes that are rippling through your [pc.balls]. Now that you’re looking, it’s clear that this is no subtle change. Your testicles are packing on weight worse than a galotian at a bukkake party. The pinch you felt was the sudden addition of a half-pound of new weight to your reproductive tissues.";
 						textBuff += "\n\nThere’s no pain any longer, however. Whatever the Laquine Ears are doing to make your nuts grow so rapidly is also reinforcing the connective tissues of your sack and dilating your internal cum-tubes to handle the additional sperm they’ll be producing. You heft one in your hand, feeling it pulse, delighting in the warm throb of your body becoming bigger and better with each passing second. It’s exquisite, and yet... are laquines supposed to be this big? Are their balls supposed to be so luxuriously soft, so swollen that they spill out over the sides of your hand?";
 						textBuff += "\n\nYou’ve always been quite bulgy, but this is a pleasing new development. Your churning, expanding, ballooning cum factories have got to be the heaviest un-augmented nuts in the sector. You’d have to turn to Throbb or Suma Cream to find anyone who could rival you for raw, majestic endowment. <b>Your canteloupe-sized balls</b> lurch and gurgle one last time before they settle into your hand. Excess seed dribbles from your [pc.cocks] as you give them a happy squeeze and consider how carefully you’ll need to walk to avoid pressing too firmly on the virile spunk-tanks.";
-						pc.lust(20);
+						pc.changeLust(20);
 					}
 					textBuff = ParseText(textBuff);
 					laquineBallSizeUp(pc);
@@ -869,7 +869,7 @@ package classes.Items.Transformatives
 					{
 						pc.boostCum(10);
 					}
-					pc.lust(oldLust+10,true);
+					pc.changeLust(oldLust+10,true);
 				}
 				//Up to 6L
 				else if(pc.maxCum() < 18000)
@@ -907,7 +907,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\nYou slick your whole lower body with it, but each time you reach for your length, your traitorous body steals away the bliss, packing it deep in your [pc.balls] for later use. Just when think you’re going to go mad, it stops. Your [pc.cocks] are soaked, but the troublesome hyper-lubrication stops. Inside, you feel sore, like you haven’t cum in ages. You aren’t entirely sure what happened. <b>Maybe the Laquine Ears upgraded your body to produce bigger, heavier loads?</b>";
 					textBuff += "Jacking off suddenly seems like a great idea.";
 					textBuff = ParseText(textBuff);
-					pc.lust(1000);
+					pc.changeLust(1000);
 					if(pc.ballFullness < 99) pc.ballFullness = 99;
 					while(pc.maxCum() < 30000)
 					{
@@ -1164,7 +1164,7 @@ package classes.Items.Transformatives
 					textBuff += " slit is liable to leave you happily pregnant. It’s incredibly difficult to view that as a bad thing, but it might be best to lock yourself in the ship for a few weeks if you want to keep ";
 					if(pc.legCount > 1) textBuff += ParseText("your [pc.legs] closed.");
 					else textBuff += "yourself from getting creampied every two steps.";
-					pc.lust(100);
+					pc.changeLust(100);
 					//Yay, heat!
 					//v1 - fertility boon
 					//v2 - minimum lust boost
@@ -1672,7 +1672,7 @@ package classes.Items.Transformatives
 				pc.slowStatGain("libido",1);
 				textBuff = ParseText(textBuff);
 				//Reduce lust now that it's over.
-				pc.lust(-50);
+				pc.changeLust(-50);
 			}
 			//(Penis) Minor length gain (0.1"-0.2") up to (10" mini/16" norm/20" hung)";
 			if(select == 2)
@@ -1771,7 +1771,7 @@ package classes.Items.Transformatives
 				textBuff = ParseText(textBuff);
 				pc.exhibitionism(1);
 				pc.slowStatGain("libido",1);
-				pc.lust(33);
+				pc.changeLust(33);
 				pc.applyPussyDrenched();
 			}
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
@@ -1814,7 +1814,7 @@ package classes.Items.Transformatives
 				textBuff += " in your [pc.vagina " + x + "]. You try to ignore it, but it only grows stronger the longer you wait. Fuck it! You cast your eyes around, making sure that nobody is paying you any mind, then stuff your fingers deep into your [pc.vagina " + x + "], finding that they slip in with far more ease than they ought to. <b>Though you are no looser, you can take larger insertions with ease, allowing you to take bigger dicks before you start to stretch.</b>";
 				textBuff += "\n\nThe urge fades, but not before you have a dizzy grin plastered on your face.";
 				textBuff = ParseText(textBuff);
-				pc.lust(10);
+				pc.changeLust(10);
 				pc.vaginas[x].bonusCapacity += 5;
 			}
 			//(Hueg Boobers) Loose a cup size down to G.
@@ -1930,7 +1930,7 @@ package classes.Items.Transformatives
 				textBuff += ParseText(" <i>“Oh my it’s so small still. You aren’t quite big enough to mate a girl like me, not yet.”</i> She rubs you slyly, teasing your undersized dick with her fluffy, paw-like hands. <i>“You’re going to have to use more Laquine Ears if you want to be " + pc.mf("man","woman") + " enough. And after that, maybe keep using them, just to see how big you can get.”</i> She kisses your [pc.cockHeadBiggest], slipping her tongue out to whirl around it. <i>“I’d better be on my way. Maybe you’ll be big enough to breed me next time...”</i>");
 				textBuff += "\n\nThe mysterious laquine rolls away, a sad smile on her face. <i>“My pussy is just so... empty.”</i>";
 				textBuff += "\n\nYou reach for her, but she’s already hopping away. The further she gets, the less visible her form becomes until she vanishes entirely, like she never existed at all. Did you just hallucinate that? Even if the bunny wasn’t real, the leftover arousal is.";
-				pc.lust(10);
+				pc.changeLust(10);
 				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(textBuff);
 			}
@@ -1949,7 +1949,7 @@ package classes.Items.Transformatives
 				textBuff += "\n\nInstead of sinking deep into her pink tunnel, the sensation vanishes as the laquine abruptly loses cohesion, briefly turning transparent before fading away. Faintly you can hear her voice crying, <i>“Noooooooo!”</i> as she disappears.";
 				textBuff += "The whole thing was a vivid hallucination, but the boner you got from it was definitely not illusory in the slightest.";
 				if(!pc.isCrotchExposed()) textBuff += " You’ll be walking bow-legged for a moment until it goes down.";
-				pc.lust(100);
+				pc.changeLust(100);
 				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(textBuff);
 			}
@@ -2207,7 +2207,7 @@ package classes.Items.Transformatives
 				if(kGAMECLASS.flags["LAQUINE_GENT_BONED"] == undefined) textBuff += " Did you just get so horny you hallucinated a hot bunny stud?";
 				else textBuff += " Maybe you should be concerned by your hallucinatory lover, but right now you’re feeling too well and truly satisfied to care.";
 				pc.clearHeat();
-				pc.lust(100);
+				pc.changeLust(100);
 				textBuff = ParseText(textBuff);
 				IncrementFlag("LAQUINE_GENT_BONED");
 				if(!fap) AddLogEvent(textBuff,"passive",deltaShift);
@@ -2241,7 +2241,7 @@ package classes.Items.Transformatives
 					textBuff += " The bizarre persistence of this hallucination nags at you, but not as badly as the freshly stoked heat between your [pc.thighs].";
 				}
 				textBuff = ParseText(textBuff);
-				pc.lust(20);
+				pc.changeLust(20);
 				IncrementFlag("LAQUINE_FADEAWAY");
 				IncrementFlag("LAQUINE_GENT_BONED");
 				if(!fap) AddLogEvent(textBuff,"passive",deltaShift);

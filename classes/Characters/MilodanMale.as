@@ -513,7 +513,7 @@
 			if(this.HP() < this.HPMax())
 			{
 				output(" He appears rejuvenated and stronger than ever!");
-				this.HP(100);
+				this.changeHP(100);
 			}
 			else output(" He appears stronger than ever!");
 			this.physiqueMod += 35;

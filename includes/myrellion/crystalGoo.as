@@ -715,7 +715,7 @@ public function fuckGooSexThatsForGays():void
 	output("\n\n<i>“Alright. Now if you come with me I’ll take you back to the village proper where you can be on your way. Unless there was something you wanted, then you can do that,”</i> she says, beckoning for you to join her. You stand and walk to the door with her, turning back before leaving to say goodbye to your recent friends.");
 	output("\n\n<i>“You know where to find me. I’ll probably be back down here after I make sure this one gets back to her city-folk life. My name is Issett by the way, since we were never properly introduced,”</i> she says as she waves goodbye. You give her your name as you leave, returning to the front of the cave.");
 	processTime(5);
-	pc.HP(-1);
+	pc.changeHP(-1);
 	clearMenu();
 	//not sure about resetting position.
 	addButton(0,"Next",mainGameMenu);

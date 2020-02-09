@@ -108,12 +108,12 @@ package classes.Items.Miscellaneous
 					target.milkMultiplier = 75;
 				}
 				//target.milkFullness = 100;
-				target.lust(25);
 
 				//Start lactation. +Lust.
 				output("\n\nWith that done, you toss the pen aside and wait for it to take effect - a very short wait, it turns out. A few moments after you’ve injected yourself, you feel a clenching in your [pc.chest], followed by a stretching sensation that leaves you groaning. After a few moments, you glance down at your [pc.nipples] and see that they’re beading with [pc.milk].");
 
 				output("\n\nYou grin ear to ear as your chest swells with liquid bounty, ready to be suckled out at your leisure. Mmm, and playing with your milky tits sure feels nice, too... maybe you ought to take a few minutes off and really enjoy yourself first...");
+				target.changeLust(25);
 			}
 			else
 			{

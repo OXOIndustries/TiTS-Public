@@ -53,7 +53,7 @@ package classes.Items.Transformatives {
 				{
 					output("\n\nIt takes less than a minute for you to double over from the stabbing pain in your gut. Your stomach ties itself in knots while you drop to the ground and double over. An involuntary spasm squeezes your middle like a toothpaste tube, and everything you’ve eaten in the past few hours comes up in a wave of burning pain - including the mushroom.");
 					output("\n\nThat <b>hurt</b>! (-" + (Math.round(pc.HPMax()* 0.5)+1) + ")");
-					pc.HP(-1*(Math.round(pc.HPMax()* 0.5)+1));
+					pc.changeHP(-1*(Math.round(pc.HPMax()* 0.5)+1));
 					return false;
 				}
 				pc.taint(5);
@@ -74,7 +74,7 @@ package classes.Items.Transformatives {
 						else output("body");
 						output(" is your only reaction to the strange fungus, and even that fades a second later, leaving you feeling oddly flushed and a little turned on.");
 						//Small lust gain.
-						pc.lust(5);
+						pc.changeLust(5);
 					}
 					//4-5
 					else if(pc.cumQualityRaw < 5)
@@ -126,7 +126,7 @@ package classes.Items.Transformatives {
 						else output("in front of your [pc.leg]");
 						output(". At least the spunkshroom did <i>something</i>.");
 						//Max lust!
-						pc.lust(pc.lustMax());
+						pc.changeLust(pc.lustMax());
 						i = 0;
 						while(pc.maxCum(true) < 150 && i < 800)
 						{
@@ -208,7 +208,7 @@ package classes.Items.Transformatives {
 						if(pc.balls > 0) output("[pc.balls] feeling heavy.");
 						else output("body feeling a bit backed up and ready to go.");
 						//Gib blue balls status!
-						pc.lust(10);
+						pc.changeLust(10);
 						pc.applyBlueBalls();
 						i = 0;
 						while(pc.maxCum(true) < 1100 && i < 800)
@@ -258,7 +258,7 @@ package classes.Items.Transformatives {
 						output(", bobbing and bulging with unspent need.");
 						output("\n\nIt’s a mercy when you black out after the tenth imaginary cum-shot.");
 
-						pc.lust(pc.lustMax());
+						pc.changeLust(pc.lustMax());
 						i = 0;
 						while(pc.maxCum(true) < 2000 && i < 800)
 						{
@@ -348,7 +348,7 @@ package classes.Items.Transformatives {
 						if(pc.balls > 1) output("[pc.balls] still feel blue enough to burst. You need release!");
 						else output("libido is still raging like you haven’t gotten off in years. You need release!");
 						//+33lust.
-						pc.lust(33);
+						pc.changeLust(33);
 						//Apply blueballs / fillcum. :3	
 						pc.applyBlueBalls();
 						pc.boostCum(10);
@@ -403,7 +403,7 @@ package classes.Items.Transformatives {
 			//orgasm, then +66 lust
 			kGAMECLASS.processTime(10);
 			pc.orgasm();
-			pc.lust(+66);
+			pc.changeLust(+66);
 			pc.applyCumSoaked();
 			clearMenu();
 			addButton(0,"Next",kGAMECLASS.mainGameMenu);

@@ -3117,9 +3117,9 @@ public function approachQuinn():void
 		output(" has been long and tense, and I want sex. You will come with me to my home, [pc.name] Steele. Or you will fetch one of my men, as you wish.”</i>");
 		
 		//Lust to 30 if <30
-		if(pc.lust() < 33) pc.lustRaw = 33;
-		while(pc.lust() < 33) { pc.lustRaw += 5; }
-
+		if(pc.lust() < 33) pc.changeLust(Math.ceil(33-pc.lust()));
+		else pc.changeLust(4);
+		
 		flags["MET_QUINN"] = 1;
 		//[Sex] [No] [Appearance]
 		clearMenu();
@@ -3202,7 +3202,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 		output("\n\n<i>“My tribe have many trophies,”</i> murmurs Quinn, sliding backwards onto the bed. Her crotch and chest armor is a hushed whisper as it slides back, and the intense, irresistible smell of fem-zil fills the close space; between her bare yellow legs is as neat and puffy a vajazzle as you’re ever likely to see. She touches a small, erect black nipple, her eyes pots of liquid gold in the flickering light. <i>“Only the most honored get to see some, though.”</i>");
 	}
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[Zil on top] [Every hole] [Scizzor]
 	clearMenu();
 	var dickFits:Boolean = (pc.cockThatFits(quinnVaginalCapacity()) >= 0);

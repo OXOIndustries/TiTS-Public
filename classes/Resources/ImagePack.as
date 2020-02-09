@@ -34,6 +34,8 @@ package classes.Resources
 			public static const Bianca_Equine_BJ:Class;
 			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_fellatio_dog.png", mimeType = "image/png")]
 			public static const Bianca_Canine_BJ:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/biancaPinkFacesittingColored.jpg", mimeType = "image/jpg")]
+			public static const BiancaFaceSits:Class;
 
 			//CAMERON SPLAYED
 			[Embed(source = "../../assets/images/imagepack/cameron/javkiller_cameron.png", mimeType = "image/png")]
@@ -104,6 +106,12 @@ package classes.Resources
 			public static const jumperFelineVaginalMoira:Class;
 			[Embed(source = "../../assets/images/imagepack/jumpers/jumperHorseVaginalMoira.jpg", mimeType = "image/jpg")]
 			public static const jumperHorseVaginalMoira:Class;
+
+			//KALLY IS BEST GURL
+			[Embed(source = "../../assets/images/imagepack/kally/tsuda_inked_Tisinrei_color_kally_advert.png", mimeType = "image/png")]
+			public static const KallyPoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kally/tsuda_inked_tisinrei_color_kally_bar_lewd.png", mimeType = "image/png")]
+			public static const KallyLewdBar:Class;
 
 			//KELLY
 			[Embed(source = "../../assets/images/imagepack/kelly/dsan_nenette_kelly_herm_horsecock_laquine.jpg", mimeType = "image/jpg")]

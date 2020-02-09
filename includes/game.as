@@ -12,13 +12,16 @@ import classes.Items.Armor.Unique.Omnisuit;
 import classes.Items.Armor.AugmentWeaveArmor;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Tents.HLTent;
 import classes.Items.Transformatives.Cerespirin;
 import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
 import classes.Items.Decorations.ObediencePoster;
 import classes.Items.Decorations.MindfuckPoster;
+import classes.Items.Decorations.KallyPoster;
 import classes.RoomClass;
 import classes.StorageClass;
+import classes.Tent;
 import classes.UIComponents.ContentModules.MailModule;
 import classes.UIComponents.SquareButton;
 import flash.events.Event;
@@ -373,12 +376,12 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	if (currentLocation == "SHIP INTERIOR")
 	{
-		if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, "Exit Ship", move, rooms[currentLocation].outExit);
+		if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, "Exit Ship", exitShip);
 		else addDisabledButton(7, "Exit Ship", rooms[currentLocation].outText, "You can’t exit your ship here!");
 	}
 	if (currentLocation == shipLocation)
 	{
-		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		if(!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", enterShip);
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
 	if (rooms[currentLocation].hasFlag(GLOBAL.SHIPHANGAR))
@@ -404,6 +407,16 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	// Show the minimap too!
 	userInterface.showMinimap();
 	userInterface.perkDisplayButton.Activate();
+}
+public function enterShip():void
+{
+	pc.removeStatusEffect("Ship Repair Paused");
+	move("SHIP INTERIOR");
+}
+public function exitShip():void
+{
+	pc.removeStatusEffect("Ship Repair Paused");
+	move(rooms[currentLocation].outExit);
 }
 
 public function shipHangarButton(btnSlot:int = 7):void
@@ -807,6 +820,7 @@ public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
 public const CREW_EITAN: int = 24;
 public const CREW_ARDIA: int = 25;
+public const CREW_KIRO_BIMBO: int = 26;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -835,6 +849,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (yammiRecruited()) crewMembers.push(CREW_YAMMI);
 	if (olympiaRecruited()) crewMembers.push(CREW_OLYMPIA);
+	if (kiroBimboRecruited()) crewMembers.push(CREW_KIRO_BIMBO);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -874,6 +889,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (syriIsCrew()) crewMembers.push(CREW_SYRI);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
 	if (olympiaIsCrew()) crewMembers.push(CREW_OLYMPIA);
+	if (kiroBimboIsCrew()) crewMembers.push(CREW_KIRO_BIMBO);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -990,6 +1006,7 @@ public function getCrewOnShip():Array
 	if (siegwulfeIsCrew()) c.push(wulfe);
 	if (olympiaIsCrew()) c.push(olympia);
 	if (kiroIsCrew()) c.push(kiro);
+	if (kiroBimboIsCrew()) c.push(kiro);
 	return c;
 }
 
@@ -1020,6 +1037,7 @@ public function getGunnersOnShipNames():Array
 	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
 	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
+	if (kiroBimboIsCrew()) crewMembers.push(kiro.short);
 	return crewMembers;
 }
 
@@ -1049,6 +1067,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (syriIsCrew()) crewMembers.push("Syri");
 	if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (olympiaIsCrew()) crewMembers.push("Olympia");
+	if (kiroBimboIsCrew()) crewMembers.push(kiro.short);
 	
 	if (allcrew)
 	{
@@ -1271,6 +1290,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
+	if (kiroBimboIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			//9999 tbd crewMessages += kiroCrewBonus(btnSlot, InCollection(CREW_KIRO, crewMembers));
+			addButton(btnSlot,"[kiro.name]",approachBimboKiroCrew);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
 	if (mitziIsCrew())
 	{
 		count++;
@@ -1461,11 +1490,13 @@ public function isNight():Boolean
 public function canRest():Boolean
 {
 	if(flags["WARGII_PROGRESS"] == 2) return false;
+	if(currentLocation == "DHAAL L25") return false;
 	return true;
 }
 public function canSleep():Boolean
 {
 	if(InShipInterior(pc) && pc.hasStatusEffect("Disable Ship Bed")) return false;
+	if(currentLocation == "DHAAL L25") return false;
 	return true;
 }
 
@@ -1484,6 +1515,33 @@ public function restMenu():void
 	addButton(6, "Wait 2 hr", wait, 120, "Wait 2 Hours", "Wait for 2 hours.");
 	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
 	
+	if(!(pc.tent is Tent)) addDisabledButton(8,"Tent Sleep","Tent Sleep","You have no tent equipped in your tent slot right now.");
+	else if((pc.tent as Tent).ready() && pc.tent.type == GLOBAL.TENT) addItemButton(8, pc.tent, (pc.tent as Tent).useTent, undefined);
+	else
+	{
+		//Too lazy to find the disabled item button vers...
+		var hours:Number = 0;
+		var minutes:Number = 0;
+		var days:Number = 0;
+		var timeLeft:Number = (pc.tent as Tent).timeLeft();
+
+		var TT:String = "Your " + pc.tent.longName + " will need <b>";
+		//Figure out number of days, them remove time from Timeleft
+		if(timeLeft >= 60*24) days = Math.floor(timeLeft / (60 * 24));
+		timeLeft -= days * 60 * 24;
+		//Display daycount, no punctuation needed.
+		if(days > 0) TT += days + " day" + (days > 1 ? "s":"");
+		//Figure out hours left, then remove time from TimeLeft
+		if(timeLeft >= 60) hours = Math.floor(timeLeft / 60);
+		timeLeft -= hours * 60;
+		//Display hourcount, punctuate if daycount
+		if(hours > 0) TT += (days > 0 ? ", ":"") + hours + " hour" + (hours > 1 ? "s":"");
+		//Add last minutes to display, add punctuation if anything preceded
+		TT += ((days > 0 || hours > 0) ? ", ":"") + timeLeft + " minute" + (timeLeft > 1 ? "s":"");
+		addDisabledButton(8,"Tent On CD","Tent on Cooldown",TT + "</b> to recharge before you can use it again.");
+	}
+
+	//else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	addButton(9, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
 	
 	addButton(14, "Back", mainGameMenu);
@@ -1537,8 +1595,8 @@ public function wait(minPass:int = 0):void
 		waitMult *= 1.1 + 0.05*pc.statusEffectv1("Using Doctor's Bag");
 		pc.removeStatusEffect("Using Doctor's Bag");
 	}
-	if(pc.HPRaw < pc.HPMax()) pc.HP(Math.round(pc.HPMax() * waitMult));
-	if(pc.energyRaw < pc.energyMax()) pc.energy(Math.round(pc.energyMax() * waitMult));
+	if(pc.HPRaw < pc.HPMax()) pc.changeHP(Math.round(pc.HPMax() * waitMult));
+	if(pc.energyRaw < pc.energyMax()) pc.changeEnergy(Math.round(pc.energyMax() * waitMult));
 
 	if(pc.HPRaw < pc.HPMax() || pc.energyRaw < pc.energyMax()) output(" While doing this doesn’t keep you well rested, it manages to pass the time.");
 	
@@ -1606,7 +1664,7 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minPass);
-	pc.lust(postRestLustBonus);
+	pc.changeLust(postRestLustBonus);
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
@@ -1639,11 +1697,11 @@ public function restHeal():void
 	if(bonusMult != 0)
 	{
 		if(pc.HPRaw < pc.HPMax()) {
-			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
-			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.changeHP(Math.round(pc.HPMax() * bonusMult));
+			else pc.changeHP(Math.round(pc.HPMax() * .33 * bonusMult));
 		}
 		if(pc.energyRaw < pc.energyMax()) {
-			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+			pc.changeEnergy(Math.round(pc.energyMax() * .33 * bonusMult));
 		}
 	}
 	
@@ -2155,6 +2213,7 @@ public function hasDecorations():Boolean
 {
 	if(flags["KQ_POSTER_HUNG"] != undefined) return true;
 	if(flags["KQ_POSTER_2_HUNG"] != undefined) return true;
+	if(flags["KALLY_POSTER_HUNG"] != undefined) return true;
 	return false;
 }
 public function displayAPoster():void
@@ -2162,6 +2221,7 @@ public function displayAPoster():void
 	var choices:Array = [];
 	if(flags["KQ_POSTER_HUNG"] != undefined) choices.push(0);
 	if(flags["KQ_POSTER_2_HUNG"] != undefined) choices.push(1);
+	if(flags["KALLY_POSTER_HUNG"] != undefined) choices.push(2);
 
 	if(choices.length == 0) return;
 	var select:int = choices[rand(choices.length)];
@@ -2178,13 +2238,19 @@ public function displayAPoster():void
 		showImage("MindfuckPoster");
 		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>");
 	}
+	else if(select == 2)
+	{
+		output("\n\n");
+		showImage("KallyPoster");
+		output("The poster you swiped from the Kui Country Bar and Grill hangs in your ship, proudly displaying the image of the buxom bartender for you to admire at any time of day or night." + (kiroIsCrew() ? " [kiro.Name] can often be seen glancing in its direction.":""));
+	}
 }
 public function decorationsMenu():void
 {
 	clearOutput();
 	showName("\nDECORATIONS");
 	clearMenu();
-	if(flags["KQ_POSTER_HUNG"] == undefined && flags["KQ_POSTER_2_HUNG"] == undefined)
+	if(!hasDecorations())
 	{
 		output("You don’t have any decorations.");
 	}
@@ -2200,7 +2266,12 @@ public function decorationsMenu():void
 		if(flags["KQ_POSTER_2_HUNG"] != undefined)
 		{
 			output("\nA mindfuck holo-poster.");
-			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck","Take down the mindfuck holo-poster.");
+			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck Poster","Take down the mindfuck holo-poster.");
+		}
+		if(flags["KALLY_POSTER_HUNG"] != undefined)
+		{
+			output("\nA poster of Kally.");
+			addButton(button++,"Postr:Kally",removeDecoration,"Kally Poster","Take down the kally poster.");
 		}
 	}
 	addButton(14,"Back",mainGameMenu);
@@ -2215,10 +2286,15 @@ public function removeDecoration(arg:String):void
 		quickLoot(new ObediencePoster());
 		flags["KQ_POSTER_HUNG"] = undefined;
 	}
-	else if(arg == "Mindfuck") 
+	else if(arg == "Mindfuck Poster") 
 	{
 		quickLoot(new MindfuckPoster());
 		flags["KQ_POSTER_2_HUNG"] = undefined;
+	}
+	else if(arg == "Kally Poster") 
+	{
+		quickLoot(new KallyPoster());
+		flags["KALLY_POSTER_HUNG"] = undefined;
 	}
 	else 
 	{
@@ -2249,6 +2325,7 @@ public function shipMenu():Boolean
 	if(insideShipEvents()) return true;
 	
 	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
+	if(!kiro.isBimbo() && flags["KQ_RESCUED"] != undefined && flags["KQ_REWARDED"] == undefined) output("\n\n<b>Kiro's vessel is parked nearby</b>. (You can visit Kiro and her ship via the “Hangar” submenu on the landing area.)");
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -2264,6 +2341,7 @@ public function shipMenu():Boolean
 	else if(HPPercent < 100) output("\n<b>Alert!</b> Ship is <b>damaged</b>. Travel with care.");
 	
 	output("\n<b>Ship Armor:</b> " + shipHP + " / " + shipHPMax);
+	if(pc.hasStatusEffect("Ship Repair Paused") && !shekkaIsCrew()) output(", Ship repairs currently unavailable");
 	if(HPPercent < 100)
 	{
 		if(shekkaIsCrew()) output(" (Shekka is hard at work patching it up.)");
@@ -2346,6 +2424,11 @@ public function shipStatistics(backFunc:Function):void
 
 public function flyMenu():void
 {
+	if(shits["SHIP"] is Blade && kiroRecruited() && roamingKiroAvailable() && !kiroIsCrew())
+	{
+		kiroAutojoin();
+		return;
+	}
 	clearOutput();
 	showName("CHOOSE\nDESTINATION");
 	
@@ -2396,109 +2479,140 @@ public function flyMenu():void
 	}
 	else output("Where do you want to go?");
 	clearMenu();
+	
 	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
 	else addDisabledButton(0, "Tavros", "Tavros Station", "You’re already here.");
-	//MHEN'GA
-	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen’ga", flyTo, "Mhen'ga");
-	else addDisabledButton(1, "Mhen’ga", "Mhen’ga", "You’re already here.");
-	//TARKUS
-	if(tarkusCoordinatesUnlocked())
-	{
-		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
-		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
-	}
-	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
-	//MYRELLION
-	if(myrellionCoordinatesUnlocked())
-	{
-		if (flags["KQ2_MYRELLION_STATE"] == undefined)
-		{
-			if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
-			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
-		}
-		else if (flags["KQ2_MYRELLION_STATE"] != 1)
-		{
-			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
-			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
-		}
-		else
-		{
-			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
-		}
-	}
-	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
-	if(zhengCoordinatesUnlocked())
-	{
-		if (shipLocation != "ZS L50") addButton(4, "ZhengShi", flyTo, "ZhengShi");
-		else addDisabledButton(4, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
-	}
-	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
-
-	//NEW TEXAS
-	if(newTexasCoordinatesUnlocked())
-	{
-		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
-		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
-	}
-	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//POE A
-	if(poeACoordinatesUnlocked())
-	{
-		if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
-		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
-	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//UVETO
-	if (uvetoUnlocked())
-	{
-		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(7, "Uveto", "Uveto Station", "You’re already here.");
-	}
-	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//Canadia Station
-	if(canadiaUnlocked())
-	{
-		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
-		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
-	}
-	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//Gastigoth
-	if(gastigothCoordinatesUnlocked())
-	{
-		if(shipLocation != "K16_DOCK") addButton(9, "Gastigoth", flyTo, "Gastigoth");
-		else addDisabledButton(9, "Gastigoth", "Gastigoth Station", "You’re already here!");
-	}
-	else addDisabledButton(9, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
-	//Breedwell
-	if(breedwellCoordinatesUnlocked())
-	{
-		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
-		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
-		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
-		else if(!pc.hasGenitals()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
-		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
-		else if(pc.isTaur()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
-		else addButton(10, "Breedwell", flyTo, "Breedwell");
-	}
-	else addDisabledButton(10, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
-	//KQ2
-	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
-	{
-		addButton(11, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
-	}
-	//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
-	if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
-	{
-		addButton(11, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
-	}
-	if (flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined)
-	{
-		addButton(12,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
-	}
+	addButton(1, "Probe Loc.", flyLocationMenu, 0, "Probe Locations", "Choose a location where you can find the coordinates.");
+	addButton(2, "Misc. Loc.", flyLocationMenu, 1, "Miscellaneous Locations", "Choose a location.");
+	addButton(3, "Extra Loc.", flyLocationMenu, 2, "Extra Locations", "Choose a location.");
 	
 	addButton(14, "Back", mainGameMenu);
+}
+public function flyLocationMenu(section:int):void
+{
+	clearMenu();
+	
+	var btnSlot:int = 0;
+	switch(section)
+	{
+		/* Major Locations */
+		case 0:
+			//MHEN'GA
+			if(shipLocation != "SHIP HANGAR") addButton(btnSlot++, "Mhen’ga", flyTo, "Mhen'ga");
+			else addDisabledButton(btnSlot++, "Mhen’ga", "Mhen’ga", "You’re already here.");
+			//TARKUS
+			if(tarkusCoordinatesUnlocked())
+			{
+				if(shipLocation != "201") addButton(btnSlot++, "Tarkus", flyTo, "Tarkus");
+				else addDisabledButton(btnSlot++, "Tarkus", "Tarkus", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+			//MYRELLION
+			if(myrellionCoordinatesUnlocked())
+			{
+				if (flags["KQ2_MYRELLION_STATE"] == undefined)
+				{
+					if(shipLocation != "600") addButton(btnSlot++, "Myrellion", flyTo, "Myrellion");
+					else addDisabledButton(btnSlot++, "Myrellion", "Myrellion", "You’re already here.");
+				}
+				else if (flags["KQ2_MYRELLION_STATE"] != 1)
+				{
+					if (shipLocation != "2I7") addButton(btnSlot++, "Myrellion", flyTo, "MyrellionDeepCaves");
+					else addDisabledButton(btnSlot++, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
+				}
+				else
+				{
+					addDisabledButton(btnSlot++, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
+				}
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+			// Zheng Shi
+			if(zhengCoordinatesUnlocked())
+			{
+				if (shipLocation != "ZS L50") addButton(btnSlot++, "ZhengShi", flyTo, "ZhengShi");
+				else addDisabledButton(btnSlot++, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+			//DHAAL
+			if(dhaalCoordinatesUnlocked())
+			{
+				if (shipLocation != "DHAAL J3") addButton(btnSlot++, "Dhaal", flyTo, "Dhaal");
+				else addDisabledButton(btnSlot++, "Dhaal", "Dhaal", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+		break;
+		/* Minor Locations */
+		case 1:
+			//NEW TEXAS
+			if(newTexasCoordinatesUnlocked())
+			{
+				if(shipLocation != "500") addButton(btnSlot++, "New Texas", flyTo, "New Texas");
+				else addDisabledButton(btnSlot++, "New Texas", "New Texas", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//POE A
+			if(poeACoordinatesUnlocked())
+			{
+				if(shipLocation != "POESPACE") addButton(btnSlot++, "Poe A", flyToPoeAConfirm);
+				else addDisabledButton(btnSlot++, "Poe A", "Poe A", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//UVETO
+			if (uvetoUnlocked())
+			{
+				if (shipLocation != "UVS F15") addButton(btnSlot++, "Uveto", flyTo, "Uveto");
+				else addDisabledButton(btnSlot++, "Uveto", "Uveto Station", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//Canadia Station
+			if(canadiaUnlocked())
+			{
+				if (shipLocation != "CANADA1") addButton(btnSlot++, "Canadia", flyTo, "Canadia");
+				else addDisabledButton(btnSlot++, "Canadia", "Canadia Station", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//Gastigoth
+			if(gastigothCoordinatesUnlocked())
+			{
+				if(shipLocation != "K16_DOCK") addButton(btnSlot++, "Gastigoth", flyTo, "Gastigoth");
+				else addDisabledButton(btnSlot++, "Gastigoth", "Gastigoth Station", "You’re already here!");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+			//Breedwell
+			if(breedwellCoordinatesUnlocked())
+			{
+				// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
+				if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "You’re already here.");
+				else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
+				else if(!pc.hasGenitals()) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
+				else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
+				else if(pc.isTaur()) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
+				else addButton(btnSlot++, "Breedwell", flyTo, "Breedwell");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+		break;
+		/* Misc */
+		case 2:
+			//KQ2
+			if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
+			{
+				addButton(btnSlot++, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+			}
+			//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
+			if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
+			{
+				addButton(btnSlot++, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
+			}
+			// KiroQuest
+			if (flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined)
+			{
+				addButton(btnSlot++,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
+			}
+		break;
+	}
+	addButton(14, "Back", flyMenu);
 }
 
 public function flyTo(arg:String):void
@@ -2506,9 +2620,11 @@ public function flyTo(arg:String):void
 	generateMapForLocation("SHIP INTERIOR");
 	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
 	resetStepCounters();
-	
+	//Bumped these up here to tack onto the no repair status so it expires after a while.
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
 	// Pause any docked ship repairs--because the ship is not docked! (Should be removed after flyTo completes);
-	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, timeFlown);
 
 	//No travel events on first zheng visit.
 	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
@@ -2635,6 +2751,13 @@ public function flyTo(arg:String):void
 			landingAtZhengShi();
 			interruptMenu = true;
 			break;
+		case "Dhaal":
+			shipLocation = "DHAAL J3";
+			currentLocation = "DHAAL L21";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			flyToDhaalypoo();
+			interruptMenu = true;
+			break;
 		case "Poe A":
 			shipLocation = "POESPACE";
 			currentLocation = "POESPACE";
@@ -2675,8 +2798,7 @@ public function flyTo(arg:String):void
 			interruptMenu = flyToBreedwell();
 			break;
 	}
-	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
-	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
+	
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
@@ -3429,7 +3551,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			eventQueue.push(ratsRaidingXXXmas2018ByWill);
 		}
-		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0 && !rooms[arg].planet == "ZHENG SHI STATION")
 		{
 			eventQueue.push(encounterKrissy);
 		}
@@ -4403,20 +4525,19 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		// Bizzy mails
 		if (!MailManager.isEntryUnlocked("bizzy_camgirl_initiate") && pc.credits >= 50000 && zhengCoordinatesUnlocked())
 		{
 			goMailGet("bizzy_camgirl_initiate");
 		}
-
 		if (((flags["BIZZY_PORN_STUDIO"] == 3 && flags["BIZZY_PORN_STUDIO_TIMER"] <= GetGameTimestamp()) || flags["BIZZY_PORN_STUDIO"] >= 4) && !MailManager.isEntryUnlocked("bizzy_camgirl_profits"))
 		{
 			goMailGet("bizzy_camgirl_profits");
 		}
-
 		//Halloween pumpking event!
 		if(pc.level >= 7 && isHalloweenish())
 		{
-			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
+			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyRecruited() && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
 		}
 		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && myrellionCoordinatesUnlocked() && flags["TIMES_SEXED_SHEKKA"] != undefined)
@@ -4457,7 +4578,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//KIRO FUCKMEET
 		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", nextTimestamp, kiroFuckNetBonus(deltaT)); }
 		//KIRO DATEMEET
-		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 85 && kiroSexed() && rand(10) == 0 && roamingKiroAvailable()) { goMailGet("kirodatemeet"); }
+		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 85 && kiroSexed() && rand(10) == 0 && (roamingKiroAvailable() || crewKiroAvailable())) { goMailGet("kirodatemeet"); }
 		//KIRO SMUT!
 		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
 		
@@ -4614,7 +4735,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 
-	if (!pc.hasStatusEffect("Ship Repair Paused")) processShipHealing(deltaT,doOut,totalDays);
+	//Shekka ignores dis since she comes wiv shippy!
+	if (!pc.hasStatusEffect("Ship Repair Paused") || shekkaIsCrew()) processShipHealing(deltaT,doOut,totalDays);
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
@@ -4878,6 +5000,11 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 
 public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 {
+	/*flags["KIRO_BALLS"]
+		undefined = normie routine
+		1 = keep small
+		2 = dont go over med
+		3 = keep huge 	*/
 	//Kiro stuff
 	if(flags["KIRO_BAR_MET"] != undefined)
 	{
@@ -4889,6 +5016,21 @@ public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 			//Add half again after Kiro quest refractory treatment~!
 			if(kiro.refractoryRate >= 9992) kiro.ballSizeRaw += Math.ceil(totalHours/2);
 			
+			if(flags["KIRO_BALLS"] == 1)
+			{
+				if(kiro.ballDiameter() > 7) kiro.orgasm();
+			}
+			else if(flags["KIRO_BALLS"] == 2)
+			{
+				if(kiro.ballDiameter() > 24) kiro.orgasm();
+			}
+			else if(flags["KIRO_BALLS"] == 3)
+			{
+				while(kiro.ballDiameter() < 24)
+				{
+					kiro.ballSizeRaw += 20;
+				}
+			}
 			if (kiro.ballDiameter() > 20)
 			{
 				// original was rand(200) < ballSize per hour, ergo 10% per hour
@@ -5363,7 +5505,7 @@ public function badEnd(displayGG:String = "GAME OVER"):void
 	gameOverEvent = true;
 	backToPrimaryOutput();
 	
-	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
+	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorization system.
 	
 	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
 	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");

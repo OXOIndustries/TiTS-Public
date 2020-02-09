@@ -235,8 +235,9 @@ package classes.Characters
 				if (rand(2) == 0) mimbraneSkinContact(target);
 				else
 				{
-					if (target.lustMax() / target.lust() < 0.6) mimbraneSpit(target);
-					else mimbraneSmother(target);
+					if (target.lust() / target.lustMax() < 0.6) mimbraneSpit(target);
+					else if(!hasStatusEffect("Mimbrane Smother Cooldown")) mimbraneSmother(target);
+					else mimbraneSpit(target);
 				}
 			}
 		}
@@ -302,12 +303,14 @@ package classes.Characters
 			else
 			{
 				output(" The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration.");
-				target.lust(15 + target.libido()/10);
+				//target.lust(15 + target.libido()/10);
+				applyDamage(new TypeCollection( { drug: (10 + target.libido()/10) } ), this, target, "minimal");
 			}
 		}
 		
 		private function mimbraneSmother(target:Creature):void
 		{
+			createStatusEffect("Mimbrane Smother Cooldown", 4, 0, 0, 0, true, "", "", true, 0);
 			if(target.hasAirtightSuit())
 			{
 				output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net! Your head is encased in the parasite’s embrace, futilely trying to smother you in its slick, salacious skin. Its secretions don’t make it past your [pc.armor]; giving you a chance to breathe a sign of relief.");
@@ -324,7 +327,8 @@ package classes.Characters
 			
 			// hit
 			output(" Your head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breathe.");
-			target.lust(10 + target.libido()/10);
+			//target.lust(10 + target.libido()/10);
+			applyDamage(new TypeCollection( { drug: (7 + target.libido()/10) } ), this, target, "minimal");
 		}
 		
 		private function mimbraneLustCloud(target:Creature):void
@@ -349,7 +353,9 @@ package classes.Characters
 				
 				// Always increase lust from the initial attack
 				// No save will also attach a lust increasing effect to the player.
-				target.lust(10 + rand(10));
+				//target.lust(10 + rand(10));
+				applyDamage(new TypeCollection( { drug: (8 + target.libido()/10) } ), this, target, "minimal");
+
 
 				// no save
 				if (target.reflexes() + rand(20) + 1 < 15)
@@ -392,7 +398,8 @@ package classes.Characters
 			{
 				output(" You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your " + (target.hasArmor() ? "[pc.armor]" : "body") + ", forcing a healthy whiff of wanton lust down your nostrils.");
 
-				target.lust(5 + target.libido()/20);
+				//target.lust(5 + target.libido()/20);
+				applyDamage(new TypeCollection( { drug: (5 + target.libido()/20) } ), this, target, "minimal");
 
 				// not defeated
 				if (target.lust() < target.lustMax())

@@ -266,7 +266,7 @@ package classes.Characters
 			}
 			if (this.lust() >= this.lustMax()) miloFutaReleaseLust(target);
 			else if (this.HPQ() <= 50 && !this.hasStatusEffect("Used Rally")) rallyForStrength(target);
-			else
+			else if (!target.hasStatusEffect("Grappled"))
 			{
 				var enemyAttacks:Array = [];
 				enemyAttacks.push({ v: bigMiloFutaPounce, w: 10 });
@@ -324,7 +324,7 @@ package classes.Characters
 			createStatusEffect("Evasion Boost",20,0,0,0,false,"Icon_DefUp","+20% Evasion!",true,3);
 			createStatusEffect("Used Rally");
 			this.meleeWeapon.attack += 1;
-			this.HP(heal);
+			this.changeHP(heal);
 		}
 		//Pounce
 		//Grapples the PC, deals lust damage to the PC and, to a lesser extent the milodan, until they break out.

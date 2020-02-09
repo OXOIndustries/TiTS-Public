@@ -281,7 +281,14 @@
 					// Disabled buttons have no function
 					if (bd.func == null)
 					{
-						_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
+						if (bd.itemQuantity != 0 || (bd.tooltipComparison != null && bd.tooltipComparison.length > 0))
+						{
+							_buttons[i].setItemDisabledData(bd.buttonName, bd.itemQuantity, bd.stackSize, bd.tooltipHeader, bd.tooltipBody, bd.tooltipComparison);
+						}
+						else
+						{
+							_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
+						}
 					}
 					else
 					{
@@ -458,6 +465,7 @@
 			_buttonData[slot].itemQuantity = quantity;
 			_buttonData[slot].stackSize = stackSize;
 			_buttonData[slot].tooltipComparison = ttComparison;
+			//CheckPages();
 		}
 		
 		/**
