@@ -10,6 +10,7 @@ public function showKQTwins(nude:Boolean = false):void
 }
 public function twinSexdollEncounter():Boolean
 {
+	//Maaaybe shouldn't be able to fuck dolls as you're running away with your new crewmate
 	if (flags["KQ_RESCUED"] != undefined)
 	{
 		if (flags["KQ_TWINS_DOWNED"] == undefined)
@@ -45,49 +46,9 @@ public function twinSexdollEncounter():Boolean
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyActors(pc);
 		CombatManager.setHostileActors(new KQTwinA, new KQTwinB);
+		CombatManager.encounterTextGenerator(twinBotEncText);
 		CombatManager.encounterTextGenerator(function():String 
-		{
-			var s:String = "The two augmented sluts loom before you with an almost oppressive hunger about them.";
-
-			var en:Array = CombatManager.getHostileActors();
-			
-			var bot17:KQTwinA;
-			var bot18:KQTwinB;
-
-			for (var i:int = 0; i < en.length; i++)
-			{
-				if (en[i] is KQTwinA) bot17 = en[i];
-				else bot18 = en[i];
-			}
-			
-			if (bot17.isDefeated) s += "\n\n‘17’ is down for the count, reduced to a writhing, panting mess on the floor.";
-			else 
-			{
-				s += "\n\nThe one labeled ‘17’ is the smaller of the two. Her face is covered in a military-grade gas mask and visor, completely obscuring her face, including her eyes. Two, black ausar ears poke out from the top of her head. While she is the smaller of the pair, her own wobbling, immense tits are still substantial. Two gargantuan tits hang heavily from her chest, sloshing around almost completely unimpeded by the near-non-existent material covering them. The patches of fully exposed flesh reveal tan skin.\n\nBetween her cow-like thighs are her mammoth cock and balls. ";
-				// Low Lust
-				if (bot17.lustQ() <= 33) s += "Her dick is already mostly hard and flexing on its own, drooling out a constant stream of thick pre that seems to go straight through her suit.";
-				// Medium Lust
-				else if (bot17.lustQ() <= 66) s += "Her dick looks hard enough that it should be bursting through its confines, but it that glossy material is stronger than it looks. The amount of pre leaking through it is ridiculous! You’d better be careful not to trip on any of the growing puddles she’s leaving behind.";
-				//High Lust
-				else if (!bot17.hasStatusEffect("Frenzy")) s += "Her dick has gotten so hard that her suit has actually started to mold around it, allowing the over-sized pole to stand at its full glory while it drools dense pre like a broken spigot.";
-				//Frenzy
-				else s += "Her dick is harder than you thought was possible. It’s a good inch thicker and even longer than it was before, with a network of pulsating veins, most of which you’re <i>sure</i> weren’t there before. The two massive spheres below quake visibly as they pump what seems like gallons of augmented seed up the pipeline of her cock. Either she’s orgasming <i>constantly</i> or the increased flood of chemicals has driven her production to levels her body can’t possibly contain!";
-			}
-			if (bot18.isDefeated) s += "\n\n‘18’ is down on the ground, desperately seeking satisfaction. Despite that, her eyes never seem to look away from you.";
-			else
-			{
-				s += "\n\n‘18’ is the larger of the pair. Like her ‘sister’, she’s wearing a gas mask, only hers is shaped into the form of an animal skull, complete with modeled fangs, and lacking the eye-covering visor, letting you see her augmented red eyes. Like ‘17’, her dog-like ears poke out the top of her head, only hers are blonde, giving you some doubt as to their actual relation. Her breasts are so large that they seem to wobble under their own weight. Like her ‘sister’, the material clings to every small detail of her huge tits and big, meaty nipples, almost looking like a second layer of skin. Her flesh in tan, much like her supposed sibling.\n\nHer stallion-shaming member sits between her broodmotherly hips. It’s wrapped in a film-thin layer of latex that still keeps all the details visible. ";
-				if (bot18.lustQ() <= 33) s += "Her massive cock throbs ominously against its casing, looking like it’s going to burst out at any moment. Wads of pre drool out the tip constantly, soaking straight through the thin material.";
-				// Medium Lust
-				else if (bot18.lustQ() <= 66) s += "Her mammoth-sized dick is straining against its tight prison, the thumb-thick veins throbbing ominously as they send obscene amounts of filling into her already-overstuffed sausage. Dense pre pours out the tip like water from a heavily leaking tap.";
-				//High Lust
-				else if (!bot18.hasStatusEffect("Frenzy")) s += "Her absurdly tumescent bitch-breaker is so ragingly hard that it’s deforming the latex casing around it to allow it to stand higher. Molasses-thick pre pours out like a lewd waterfall, soaking the ground with deep pools of seed.";
-				//Frenzy
-				else s += "The latex around 18’s cock has morphed to allow it to stand completely unimpeded. The monolithic mass writhes and strains mid-air as it goes even further beyond hard, and reaches a new level of near-godly tumescence, gaining another two or three inches in the process. Her balls are also throbbing painfully hard, gaining a slight amount of mass as they work overtime to pump out an absurd amount of her ultra-virile seed. Said seed is firing out of her cumslit like the discharge from an out of control firehose in a decadent display of just how productive her mods have made her.";
-			}
-
-			return s;
-		});
+		);
 		CombatManager.victoryScene(beatUpTheOverAugmentedTwins);
 		CombatManager.lossScene(loseToTwinsAndFaceTheConsequences);
 		CombatManager.displayLocation("TWIN SEXBOTS");
@@ -96,9 +57,56 @@ public function twinSexdollEncounter():Boolean
 		return true;
 	}
 }
+public function twinBotEncText():String
+{
+	{
+		var s:String = "The two augmented sluts loom before you with an almost oppressive hunger about them.";
+
+		var en:Array = CombatManager.getHostileActors();
+		
+		var bot17:KQTwinA;
+		var bot18:KQTwinB;
+
+		for (var i:int = 0; i < en.length; i++)
+		{
+			if (en[i] is KQTwinA) bot17 = en[i];
+			else bot18 = en[i];
+		}
+		
+		if (bot17.isDefeated) s += "\n\n‘17’ is down for the count, reduced to a writhing, panting mess on the floor.";
+		else 
+		{
+			s += "\n\nThe one labeled ‘17’ is the smaller of the two. Her face is covered in a military-grade gas mask and visor, completely obscuring her face, including her eyes. Two, black ausar ears poke out from the top of her head. While she is the smaller of the pair, her own wobbling, immense tits are still substantial. Two gargantuan tits hang heavily from her chest, sloshing around almost completely unimpeded by the near-non-existent material covering them. The patches of fully exposed flesh reveal tan skin.\n\nBetween her cow-like thighs are her mammoth cock and balls. ";
+			// Low Lust
+			if (bot17.lustQ() <= 33) s += "Her dick is already mostly hard and flexing on its own, drooling out a constant stream of thick pre that seems to go straight through her suit.";
+			// Medium Lust
+			else if (bot17.lustQ() <= 66) s += "Her dick looks hard enough that it should be bursting through its confines, but it that glossy material is stronger than it looks. The amount of pre leaking through it is ridiculous! You’d better be careful not to trip on any of the growing puddles she’s leaving behind.";
+			//High Lust
+			else if (!bot17.hasStatusEffect("Frenzy")) s += "Her dick has gotten so hard that her suit has actually started to mold around it, allowing the over-sized pole to stand at its full glory while it drools dense pre like a broken spigot.";
+			//Frenzy
+			else s += "Her dick is harder than you thought was possible. It’s a good inch thicker and even longer than it was before, with a network of pulsating veins, most of which you’re <i>sure</i> weren’t there before. The two massive spheres below quake visibly as they pump what seems like gallons of augmented seed up the pipeline of her cock. Either she’s orgasming <i>constantly</i> or the increased flood of chemicals has driven her production to levels her body can’t possibly contain!";
+		}
+		if (bot18.isDefeated) s += "\n\n‘18’ is down on the ground, desperately seeking satisfaction. Despite that, her eyes never seem to look away from you.";
+		else
+		{
+			s += "\n\n‘18’ is the larger of the pair. Like her ‘sister’, she’s wearing a gas mask, only hers is shaped into the form of an animal skull, complete with modeled fangs, and lacking the eye-covering visor, letting you see her augmented red eyes. Like ‘17’, her dog-like ears poke out the top of her head, only hers are blonde, giving you some doubt as to their actual relation. Her breasts are so large that they seem to wobble under their own weight. Like her ‘sister’, the material clings to every small detail of her huge tits and big, meaty nipples, almost looking like a second layer of skin. Her flesh in tan, much like her supposed sibling.\n\nHer stallion-shaming member sits between her broodmotherly hips. It’s wrapped in a film-thin layer of latex that still keeps all the details visible. ";
+			if (bot18.lustQ() <= 33) s += "Her massive cock throbs ominously against its casing, looking like it’s going to burst out at any moment. Wads of pre drool out the tip constantly, soaking straight through the thin material.";
+			// Medium Lust
+			else if (bot18.lustQ() <= 66) s += "Her mammoth-sized dick is straining against its tight prison, the thumb-thick veins throbbing ominously as they send obscene amounts of filling into her already-overstuffed sausage. Dense pre pours out the tip like water from a heavily leaking tap.";
+			//High Lust
+			else if (!bot18.hasStatusEffect("Frenzy")) s += "Her absurdly tumescent bitch-breaker is so ragingly hard that it’s deforming the latex casing around it to allow it to stand higher. Molasses-thick pre pours out like a lewd waterfall, soaking the ground with deep pools of seed.";
+			//Frenzy
+			else s += "The latex around 18’s cock has morphed to allow it to stand completely unimpeded. The monolithic mass writhes and strains mid-air as it goes even further beyond hard, and reaches a new level of near-godly tumescence, gaining another two or three inches in the process. Her balls are also throbbing painfully hard, gaining a slight amount of mass as they work overtime to pump out an absurd amount of her ultra-virile seed. Said seed is firing out of her cumslit like the discharge from an out of control firehose in a decadent display of just how productive her mods have made her.";
+		}
+		if (bot17.hasStatusEffect("Gonna Gangbang")) s += "\n\n<b>17 is flanking you. Whatever she’s planning back there can’t be good. You should focus on her!</b>";
+		return s;
+	}
+}
 public function twinsRepeatEncounter():void
 {
+	clearOutput();
 	author("QuestyRobo");
+	showKQTwins(true);
 	output("Very little, if anything, has changed with these two since you last saw them. They’re still rolling on the floor, groping and thrusting into each other with the ferocity and precision of wild dogs. Yet you still feel a pointed desire radiating off of them, inviting you to join in with them.");
 	output("\n\nDo you really have time to spend fucking these two? <b>You’d best keep in mind how tainted these girls are and who made them. You’re not likely to get away with fucking them without something weird happening to you.</b>");
 }
@@ -108,7 +116,7 @@ public function beatUpTheOverAugmentedTwins():void
 {
 	showKQTwins(true)
 	author("QuestyRobo");
-	IncrementFlag("KQ_TWINS_DOWNED");
+	flags["KQ_TWINS_DOWNED"] = 1;
 	output("After a long, arduous fight, you stand over the two modded ausar bitches as they fall to the ground; panting, beaten, and still insanely horny. They try to pleasure themselves in any way they can (which is a lot of ways, considering how much they have to work with) but it seems like they can’t feel anything through their suits.");
 	output("\n\nThe intercom fires up again. <i>“Brilliant job, intruder. Once again, I apologize for the... rambunctiousness of my girls, but it seems you’ve dealt with them quite well. I think you deserve a reward for a job well done...”</i>");
 	output("\n\nSuddenly, the twins yell out in pleasure as their suits retract, leaving their implant-dotted skin fully exposed; a fact that they quickly take advantage of by mashing their obscenely over-grown tits and cocks together, mercilessly pleasuring each-other in raw, beast-like motions.");
@@ -291,7 +299,8 @@ public function runATrainOfHyperSluts():void
 	//Code note: make sure the parsers BEFORE growth are parsed before growth is applied and the parsers for post-growth are applied after the stat changes are made. It’ll be nicely noticeable if you jump a size category from the enlargement. -Fen
 	processTime(45);
 	pc.orgasm();
-	CombatManager.genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu);
 }
 //Lead
 //Choice only available if you have a pussy.
@@ -417,7 +426,8 @@ public function leadChooChooSlutTrainEpilogue(x:int):void
 	else output("ignore her as best you can");
 	output(", you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save after all!");
 	processTime(1);
-	CombatManager.genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu);
 }
 //Dick
 //Big cum production and refactory period boost, double if two cocks
@@ -508,7 +518,8 @@ public function twinsServicedYaDickNowEpilogue():void
 	pc.taint(3);
 	soreChange(1);
 	output("\n\n");
-	CombatManager.genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu);
 }
 //Pussy
 //increases wetness and acts as a use of the Pussy Pump, if still possible.
@@ -577,7 +588,8 @@ public function twinsNurseYouAfterEatingYourPuss():void
 	}
 	pc.boostGirlCum(10);
 	output("\n\n");
-	CombatManager.genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu);
 }
 //Give Oral
 //Gives flexible jaw, like Snakebyte, if you don’t have it. Massive extra taint gain if that happens.
@@ -655,7 +667,8 @@ public function suckDemTwinDicks():void
 	pc.applyCumSoaked();
 	for(var y:int = 0; y < 12 ; y++) { pc.orgasm(); }
 	flags["USED_SNAKEBYTE"] = 1
-	CombatManager.genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu);
 }
 //Loss
 public function loseToTwinsAndFaceTheConsequences():void
@@ -827,20 +840,3 @@ public function twinSlutBotsMaleBadEnd2():void
 	pc.lust(pc.lustMax());
 	badEnd();
 }
-/*
-if (inCombat())
-{
-	output("\n\n");
-	CombatManager.genericVictory();
-}
-else
-{
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-public function leaveMiloFutaAfterWin():void
-{
-  output("You leave the Milodan Amazon behind you and continue on your way.\n\n");
-  CombatManager.genericVictory();
-}
-*/

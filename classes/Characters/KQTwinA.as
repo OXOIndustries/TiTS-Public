@@ -13,6 +13,7 @@ package classes.Characters
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.author;
 
 	public class KQTwinA extends Creature
 	{
@@ -185,6 +186,7 @@ package classes.Characters
 
 			this._isLoading = false;
 		}
+
 		override public function get bustDisplay():String
 		{
 			return "KQ_TWIN_A";
@@ -205,9 +207,10 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
+			var bot18:KQTwinB;
 			for(var i:int = 0; i < alliedCreatures.length; i++)
 			{
-				if(alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
+				if (alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
 			}
 			//Constantly lusting
 			applyDamage(new TypeCollection( { tease: 5 } ), this, this, "suppress");
@@ -225,12 +228,15 @@ package classes.Characters
 			if (!bot18.isDefeated())
 			{
 				choices.push(botsOverload);
-				if (this.hasStatusEffect("Frenzy")) choices.push(botsGangbang);
+				if (this.hasStatusEffect("Frenzy") && !target.hasStatusEffect("Grappled")) choices.push(botsGangbangStart);
 			}
 			if(!target.hasStatusEffect("Trip") && !this.hasStatusEffect("Disarmed")) choices.push(whippyDoDaCurlsForTheGirls);
 			
 			//Frenzy Shift. Overrides other attacks
 			if (this.lust() >= this.lustMax()) choices = [frenzyShift17];
+			//Gangbang stuff
+			else if (this.hasStatusEffect("Gonna Gangbang")) choices = [grappleToGangbang];
+			else if (target.hasStatusEffect("Grappled")) choices = [botsGangbang];
 			choices[rand(choices.length)](target);
 		}
 		//Pummel
@@ -256,6 +262,7 @@ package classes.Characters
 		//+1 taint on hit
 		public function bot17Inject(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("17 clicks something on her wrist, causing needles to sprout at the tips of her fingers. She wiggles them playfully at you before charging you.");
 			if(combatMiss(this,target))
 			{
@@ -275,6 +282,8 @@ package classes.Characters
 		//Spray-Down
 		public function bot17SprayDown(target:Creature):void
 		{
+			author("QuestyRobo");
+			author("QuestyRobo");
 			output("17 suddenly seizes up and starts thrusting in place. She’s in an almost trance-like state as her cock and balls twitch violently, working up towards orgasm. Just when she’s about to blow, she suddenly grabs her cock and aims it straight at you as she moans in ecstasy.");
 			if(combatMiss(this,target))
 			{
@@ -290,11 +299,11 @@ package classes.Characters
 				applyDamage(new TypeCollection( { tease: 10+rand(3) } ), this, target, "minimal");
 			}
 		}
-
 		//Extreme lust damage. Almost (or entirely) none physical.
 		//Whipcrack
 		public function whippinAnCracklin(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("The lusty bot cracks her whip, the weapon glowing pink at the tip as it slices through the recycled air of the freighter!");
 			if(combatMiss(this,target))
 			{
@@ -312,6 +321,7 @@ package classes.Characters
 		//Low damage, lust gain.
 		public function bot17Burn(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("Without warning, 17 aims her arms straight at you. Small mechanisms open up on her wrists and blinding pink arcs of flame fire out at you.");
 			if (combatMiss(this,target))
 			{
@@ -328,17 +338,82 @@ package classes.Characters
 		//Increases lust for both.
 		public function botsOverload(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("18 activates the implants on her arm, transforming it into a small-scale tesla coil. She takes aim at you but relents on actually firing, looking unsatisfied.");
 			output("\n\n<i>“It’d be boring to just shock you like this, wouldn’t it? Lucky I have an idea! Sister, be a dear and come over here.”</i> 17 comes as instructed. <i>“Let’s link up.”</i> At that prompt, 17 wraps her arms around 18, grabbing her massive tits by the huge, meaty nipples and humping her totemic member through her sister’s thick legs.");
 			output("\n\nYou’re baffled, initially, until you take notice of the sparks flying off of 17 into 18’s arm. The coils hum and glow brighter and brighter as the more vocal sister moans louder and louder at her sister’s groping. Her moans reach crescendo just as the machinery on her arm starts to shake like it were about to blow. In a way, it does, as a massive surge of electricity and force fires out in your general direction, sending the two girls flying backward.");
-
+			if (combatMiss(this, target) || combatMiss(this, target) || combatMiss(this, target))
+			{
+				output("\n\nThe blast goes wide enough that you’re able to duck down and avoid it completely. There’s still enough force to nearly knock you off your feet, and enough electricity " + (target.hasHair() ? "to make your [pc.hair] stand up":"that your hair would probably be standing up if you had any") + ".");
+			}
+			else
+			{
+				output("\n\nThe wave of force crashes into you like a loaded freighter as it passes through your body. You feel your " + (pc.isGoo() ? "form destabilize":"bones almost compress") + " as you’re knocked to the ground, writhing as electric shocks cook you from the inside out. <b>In addition to the extreme pain, her attack has left you completely stunned!</b>/");
+				applyDamage(damageRand(new TypeCollection( { electric: 55 } ), 15), this, target, "minimal");
+	 			CombatAttacks.applyStun(target);
+			}
+			var bot18:KQTwinB;
+			for(var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if(alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
+			}
+			bot18.createStatusEffect("NO AI");
 		}
-
-
-
-
-{The wave of force crashes into you like a loaded freighter as it passes through your body. You feel your {bones almost compress/form destabilize} as you’re knocked to the ground, writhing as electric shocks cook you from the inside out. <b>In addition to the extreme pain, her attack has left you completely stunned!</b>/The blast goes wide enough that you’re able to duck down and avoid it completely. There’s still enough force to nearly knock you off your feet, and enough electricity {to make your [pc.hair] stand up/that your hair would probably be standing up if you had any}.}
-
+		//Gangbang
+		//17 will move behind the player. If the player does not attack 17 within one turn, she will grab the player. If the player does not break the grab within the next turn, they will take 100 lust damage.
+		//Frenzy move
+		public function botsGangbangStart(target:Creature):void
+		{
+			author("QuestyRobo");
+			output("While her sister distracts you, 17 holds back, instead circling around and taking position behind you. <b>Whatever she’s planning back there can’t be good!</b>");
+			this.createStatusEffect("Gonna Gangbang");
+		}
+		//Attack 17, interrupt gangbang before grapple
+		public function interruptGangbang(target:Creature):void
+		{
+			author("QuestyRobo");
+			output("17 recoils from your attack, retreating back to her original position. 18 tries to take advantage and attack you, but you easily deflect her uncoordinated manuver.");
+			this.removeStatusEffect("Gonna Gangbang");
+		}
+		//18 and 17 spend thier turns to initiate the grab
+		public function grappleToGangbang(target:Creature):void
+		{
+			author("QuestyRobo");
+			output("18 charges at you, screaming like a maniac. She draws enough of your attention that you don’t notice 17 taking the opportunity to pounce on you. The smaller sister restrains you while her larger sibling closes the gap. She reinforces her sister’s grip on you, and together they hoist you up and plant you on the hot, hard bed of their now-frotting members. <b>You have to get out of this <i>now!</i></b>");
+			CombatAttacks.applyGrapple(target);
+			var bot18:KQTwinB;
+			for(var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if(alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
+			}
+			bot18.createStatusEffect("NO AI");
+		}
+		public function botsGangbang(target:Creature):void
+		{
+			author("QuestyRobo");
+			output("\n\n<i>“Ready, sister?”</i> 18 asks her sibling as you struggle uselessly between the two. You’d have never guessed they were this strong, but you suppose they’d have to be in order to carry so much ‘extra weight’.");
+			output("\n\n17 breathes heavily in your ear, somehow signaling her approval to her sister. You hear a faint hiss before your nostrils are assaulted by a thick musk. <i>“Mistress is going to be mad we took our suits off without permission, but we just can’t pass up a chance like this!”</i>");
+			output("\n\nBefore you can respond, ");
+			if (target.isCrotchExposed) output("the two get to work ripping off your [pc.crotchCoverUnder] before ");
+			output("they line up ");
+			if (target.hasVagina) output("with your [pc.pussy] and [pc.anus]");
+			else output("at your [pc.anus], ready to double-team it");
+			output(". You squirm to try one last time but it’s already too late. The sisters thrust in tandem, ignoring any kind of resistance your hole" + (target.hasVagina() ? "s":"") + " can put up.");
+			output("\n\nThey ravage your body, stuffing you fuller than you ever thought possible. They thrust in and out several times, 18 laughing in your face as your eyes screw up into your head. Just when you think it’s all over for you, they stop, pulling out and dropping you to the ground. <i>“It can’t just be that easy. We have so many ideas for you!”</i>");
+			applyDamage(new TypeCollection( { tease: 100 } ), this, target, "minimal");
+			if (!target.isDefeated)
+			{
+				output("\n\nSomehow you manage to retain enough of your senses to continue fighting. The twins gasp in surprise as you rise to your [pc.footOrFeet], shaky and unbelievably horny as you are.");
+				output("\n\n<i>“Such stamina, sister! [pc.heShe]’ll be <b>very</b> fun once we break [pc.himHer]! Doesn’t look like it’ll be long now...”</i>");
+			}
+			var bot18:KQTwinB;
+			for(var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if(alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
+			}
+			bot18.createStatusEffect("NO AI");
+			target.removeStatusEffect("Grappled");			
+		}
 		//Frenzy Shift
 		//Happens at full lust.
 		//If one is downed, they will get back up at half health. If either is below half health, they will be brought up to half health
@@ -346,7 +421,9 @@ package classes.Characters
 		//Both gain damage resistance.
 		public function frenzyShift17(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("As ");
+			var bot18:KQTwinB;
 			for(var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				if (alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
@@ -359,23 +436,11 @@ package classes.Characters
 			output(" moaning in mind-bending bliss as their cocks spray thick cum in what seems like a continuous, shared orgasm.");
 			output("\n\n<i>“So horny! So hard! Need to fuck! Need to fuck! NEED TO FUCK! FUCK NOW!”</i>");
 			output("\n\nLooks like this is far from over!");
+			//Increase hp to half if below
+			while(this.HPQ() < 50) { this.HP(1); }
+			while(bot18.HPQ() < 50) { bot18.HP(1); }
 			this.createStatusEffect("Frenzy");
 			bot18.createStatusEffect("Frenzy");
 		}
-/*
-if (inCombat())
-{
-	output("\n\n");
-	CombatManager.genericVictory();
+	}
 }
-else
-{
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-public function leaveMiloFutaAfterWin():void
-{
-  output("You leave the Milodan Amazon behind you and continue on your way.\n\n");
-  CombatManager.genericVictory();
-}
-*/

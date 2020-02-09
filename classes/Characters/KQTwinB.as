@@ -13,6 +13,7 @@ package classes.Characters
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.author;
 
 	public class KQTwinB extends Creature
 	{
@@ -199,6 +200,7 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
+			var bot17:KQTwinA;
 			for(var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				if(alliedCreatures[i] is KQTwinA) bot17 = alliedCreatures[i];
@@ -222,6 +224,7 @@ package classes.Characters
 		//Pummel
 		public function bot18Pummel(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("18 bares her fists and charges you, her battle lust obvious even with her face completely covered.");
 			if(combatMiss(this,target))
 			{
@@ -242,6 +245,7 @@ package classes.Characters
 		//+1 taint on hit
 		public function bot18Inject(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("18 clicks something on her wrist, causing needles to sprout at the tips of her fingers. She wiggles them playfully at you before charging you.");
 			if(combatMiss(this,target))
 			{
@@ -261,6 +265,7 @@ package classes.Characters
 		//Spray-Down
 		public function bot18SprayDown(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("18 suddenly seizes up and starts thrusting in place. She’s in an almost trance-like state as her cock and balls twitch violently, working up towards orgasm. Just when she’s about to blow, she suddenly grabs her cock and aims it straight at you as she moans in ecstasy.");
 			if(combatMiss(this,target))
 			{
@@ -280,6 +285,7 @@ package classes.Characters
 		//Whipcrack
 		public function whippinAnCracklin(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("The lusty bot cracks her whip, the weapon glowing pink at the tip as it slices through the recycled air of the freighter!");
 			if(combatMiss(this,target))
 			{
@@ -297,6 +303,7 @@ package classes.Characters
 		//Chance to stun
 		public function bot18Lightning(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("18 starts twitching, at least more so than usual. You wonder if she’s finally starting to crack only for her to thrust her arm out at you, revealing a series of implants that create a small-scale tesla coil, arcing electricity throughout her body as it charges up. She moans ecstatically as the machinery in whines louder and louder. The modded-out fuckdoll cries out in faux-orgasm as electricity fires out at you!");
 			if (combatMiss(this,target)) 
 			{
@@ -321,7 +328,9 @@ package classes.Characters
 		//Both gain damage resistance.
 		public function frenzyShift18(target:Creature):void
 		{
+			author("QuestyRobo");
 			output("As ");
+			var bot17:KQTwinA;
 			for(var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				if (alliedCreatures[i] is KQTwinB) bot17 = alliedCreatures[i];
@@ -334,6 +343,9 @@ package classes.Characters
 			output(" moaning in mind-bending bliss as their cocks spray thick cum in what seems like a continuous, shared orgasm.");
 			output("\n\n<i>“So horny! So hard! Need to fuck! Need to fuck! NEED TO FUCK! FUCK NOW!”</i>");
 			output("\n\nLooks like this is far from over!");
+			//Increase hp to half if below
+			while(this.HPQ() < 50) { this.HP(1); }
+			while(bot18.HPQ() < 50) { bot18.HP(1); }
 			this.createStatusEffect("Frenzy");
 			bot17.createStatusEffect("Frenzy");
 		}

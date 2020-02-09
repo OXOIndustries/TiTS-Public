@@ -9,6 +9,7 @@ package classes.GameData
 	import classes.Characters.DrCalnor;
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
+	import classes.Characters.KQTwinA;
 	import classes.Characters.NymFoe;
 	import classes.Characters.NaleenHerm;
 	import classes.Characters.PlayerCharacter;
@@ -692,6 +693,7 @@ package classes.GameData
 			{
 				kGAMECLASS.quadommeDoubleTeam(attacker, target, true);
 			}
+			if (target is KQTwinA && target.hasStatusEffect("Gonna Gangbang")) (target as KQTwinA).interruptGangbang(attacker);
 			
 			return true;
 		}
@@ -919,6 +921,7 @@ package classes.GameData
 				target.createStatusEffect("KANE MELEE PREP");
 			}
 			if (target is DrCalnor) (target as DrCalnor).counterHook(attacker, special);
+			if (target is KQTwinA && target.hasStatusEffect("Gonna Gangbang")) (target as KQTwinA).interruptGangbang(attacker);
 
 			return true;
 		}
