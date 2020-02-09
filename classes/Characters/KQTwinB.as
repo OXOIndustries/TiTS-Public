@@ -227,7 +227,7 @@ package classes.Characters
 			var choices:Array = [];
 
 			choices.push(bot18Pummel);
-			choices.push(bot18Lightning);
+			if (!target.hasStatusEffect("Stunned")) choices.push(bot18Lightning);
 			if (!target.hasStatusEffect("Injected")) choices.push(bot18Inject);
 
 			//Frenzy Shift. Overrides other attacks
@@ -312,7 +312,7 @@ package classes.Characters
 				if (rand(3) == 0)
 				{
 					output(" Even after she finishes you can still feel the shocks working through your body, heavily limiting your movement. <b>You’re stunned!</b>");
-					CombatAttacks.applyStun(target,2);
+					CombatAttacks.applyStun(target,1);
 				}
 				applyDamage(new TypeCollection( { electric: 7 } ), this, target, "minimal");
 			}
@@ -337,6 +337,8 @@ package classes.Characters
 			//Increase hp to half if below
 			while(this.HPQ() < 50) { this.HP(1); }
 			while(bot17.HPQ() < 50) { bot17.HP(1); }
+			//make sure ally is full lust too
+			bot17.maxOutLust();
 			this.createStatusEffect("Frenzy");
 			bot17.createStatusEffect("Frenzy");
 		}

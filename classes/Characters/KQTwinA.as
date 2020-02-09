@@ -339,6 +339,8 @@ package classes.Characters
 				applyDamage(damageRand(new TypeCollection( { electric: 55 } ), 15), this, target, "minimal");
 	 			CombatAttacks.applyStun(target);
 			}
+			this.lust(6);
+			bot18.lust(6);
 			bot18.createStatusEffect("NO AI");
 		}
 		//Gangbang
@@ -351,11 +353,19 @@ package classes.Characters
 			this.createStatusEffect("Gonna Gangbang");
 		}
 		//Attack 17, interrupt gangbang before grapple
-		public function interruptGangbang(target:Creature,bot18:Creature):void
+		public function interruptGangbang():void
 		{
 			author("QuestyRobo");
-			output("17 recoils from your attack, retreating back to her original position. 18 tries to take advantage and attack you, but you easily deflect her uncoordinated manuver.");
+			output(" 17 recoils from your attack, retreating back to her original position. 18 tries to take advantage and attack you, but you easily deflect her uncoordinated manuver.");
 			this.removeStatusEffect("Gonna Gangbang");
+			this.createStatusEffect("No AI");
+			var bot18:KQTwinB;
+			var alliedCreatures:Array = CombatManager.getHostileActors();
+			for(var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if (alliedCreatures[i] is KQTwinB) bot18 = alliedCreatures[i];
+			}
+			bot18.createStatusEffect("No AI");
 		}
 		//18 and 17 spend thier turns to initiate the grab
 		public function grappleToGangbang(target:Creature,bot18:Creature):void
@@ -364,6 +374,7 @@ package classes.Characters
 			output("18 charges at you, screaming like a maniac. She draws enough of your attention that you don’t notice 17 taking the opportunity to pounce on you. The smaller sister restrains you while her larger sibling closes the gap. She reinforces her sister’s grip on you, and together they hoist you up and plant you on the hot, hard bed of their now-frotting members. <b>You have to get out of this <i>now!</i></b>");
 			CombatAttacks.applyGrapple(target);
 			bot18.createStatusEffect("NO AI");
+			this.removeStatusEffect("Gonna Gangbang");
 		}
 		public function botsGangbang(target:Creature,bot18:Creature):void
 		{
@@ -406,6 +417,8 @@ package classes.Characters
 			//Increase hp to half if below
 			while(this.HPQ() < 50) { this.HP(1); }
 			while(bot18.HPQ() < 50) { bot18.HP(1); }
+			//make sure ally is full lust too
+			bot18.maxOutLust();
 			this.createStatusEffect("Frenzy");
 			bot18.createStatusEffect("Frenzy");
 			bot18.createStatusEffect("NO AI");

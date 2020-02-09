@@ -109,6 +109,7 @@ public function twinsRepeatEncounter():void
 	output("Very little, if anything, has changed with these two since you last saw them. They’re still rolling on the floor, groping and thrusting into each other with the ferocity and precision of wild dogs. Yet you still feel a pointed desire radiating off of them, inviting you to join in with them.");
 	output("\n\nDo you really have time to spend fucking these two? <b>You’d best keep in mind how tainted these girls are and who made them. You’re not likely to get away with fucking them without something weird happening to you.</b>");
 	clearMenu();
+	var enemy:Creature = new KQTwinA();
 	//I could base it off of enemy capacity, but since it's a hyper-focused scene, might as well let hypers enjoy
 	//Also didn't do penis router cause the scene is focused on biggest dick anyway
 	if (pc.hasCock() && pc.cockThatFits(9000000) >= 0) addButton(0,"Run Train",runATrainOfHyperSluts,undefined,"Run Train","Be at the back and rail one sister while she fucks the other.");
@@ -132,7 +133,7 @@ public function beatUpTheOverAugmentedTwins():void
 	output("After a long, arduous fight, you stand over the two modded ausar bitches as they fall to the ground; panting, beaten, and still insanely horny. They try to pleasure themselves in any way they can (which is a lot of ways, considering how much they have to work with) but it seems like they can’t feel anything through their suits.");
 	output("\n\nThe intercom fires up again. <i>“Brilliant job, intruder. Once again, I apologize for the... rambunctiousness of my girls, but it seems you’ve dealt with them quite well. I think you deserve a reward for a job well done...”</i>");
 	output("\n\nSuddenly, the twins yell out in pleasure as their suits retract, leaving their implant-dotted skin fully exposed; a fact that they quickly take advantage of by mashing their obscenely over-grown tits and cocks together, mercilessly pleasuring each-other in raw, beast-like motions.");
-	output("\n\n<i>“They are yours to do with as you see fit. Don’t worry, they may seem rebellious, but given the right ‘stimulus’ they fall in line easily. Take as much time as you want, as well. Your friend {is starting to love/is loving} what I’m doing to her, and I’m sure we both want her to enjoy it for as long as possible!”</i> the doctor chuckles before cutting out, leaving you alone with the two hyper-pumped sluts.");
+	output("\n\n<i>“They are yours to do with as you see fit. Don’t worry, they may seem rebellious, but given the right ‘stimulus’ they fall in line easily. Take as much time as you want, as well. Your friend " + (flags["KQ_LAST_HOUR_TF"] < 18 ? "is starting to love":"is loving") + " what I’m doing to her, and I’m sure we both want her to enjoy it for as long as possible!”</i> the doctor chuckles before cutting out, leaving you alone with the two hyper-pumped sluts.");
 	output("\n\nDo you really have time to spend fucking these two? <b>You’d best keep in mind how tainted these girls are and who made them. You’re not likely to get away with fucking them without something very weird and very tainted happening to you.</b>");
 	clearMenu();
 	//I could base it off of enemy capacity, but since it's a hyper-focused scene, might as well let hypers enjoy
@@ -158,6 +159,10 @@ public function runATrainOfHyperSluts():void
 	if (x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(9000000);
 	if (pc.cockTotal() == 1) y = -1;
+	if(!inCombat())
+	{
+		setEnemy(new KQTwinA());
+	}
 
 	output("17 pounces on top of her sister, throwing her ass up into the air for you to see. Her plush, expansive rear wobbles like an overfilled waterbed while her puffy, blushing pussy is throbbing and gushing like a leaking dam. Just the sight of her hyper-exaggerated femininity gets your [pc.cocks] rock hard, and tells you exactly what you’re going to do with these two.");
 	output("\n\n<i>“Get up!”</i> you command. The two modded-out sluts immediately stand to attention, visibly panting in inhuman lust, obscene monster-cocks throbbing in eager anticipation for what you have in store. You motion 17 to turn around, watching her bounce as she does. When she gets in place, you roughly start manhandling her with one hand while your other ");
@@ -207,7 +212,7 @@ public function runATrainOfHyperSluts():void
 	}
 	output("\n\nThere’s a tingling sensation running all the way down your [pc.cocks] as you cram every inch you have into the mod-slut’s extremely accommodating hole" + (y >= 0 ? "s":"") + ". All the while, 18 is shrieking like a madwoman. <i>“YES, SISTER, RAVAGE ME! RUIN ME! Turn me into your cocksleeve while the intruder treats you like the fucktoy you are!”</i>");
 	output("\n\nThe encouragement sets you off running, springing your [pc.hips] to action like high powered pistons, building up momentum at an exponential rate. You saw your length" + (y >= 0 ? "s":"") + " in and out of her with almost unreal ease. It feels like her insides are made of some kind of frictionless material.");
-	if (flags["KQ_LAST_HOUR_TF"] >= 18) output("Knowing how Po does things, that might not be far from the truth.");
+	if (flags["KQ_LAST_HOUR_TF"] >= 18) output(" Knowing how Po does things, that might not be far from the truth.");
 	output("\n\nEach of your thrusts is mirrored by the double-teamed herm, manipulating her like a perverse marionette in order to propagate her incestuous plunge. The normally-silent pup-slut moans softly under your treatment. Despite her quietness, you somehow feel every moan reverberating into your brain, sharing her own lust with you in almost tantric fashion.");
 	//Small or Medium
 	if (pc.cocks[x].cLength() < 20)
@@ -218,7 +223,7 @@ public function runATrainOfHyperSluts():void
 		if (flags["KQ_VULPATRA_TAINTS"] != undefined || flags["KQ_VR_LLAERWYN"] == 2) output(", way more than the other experiments here have done to you");
 		output("! ");
 		//Low-medium taint
-		if (pc.taint() <= 66) output("You <i>know</i> you should stop before you take in too much of whatever vile chemicals are in her {ass and }pussy, but the diabolical concoction has seized control of your muscles!");
+		if (pc.taint() <= 66) output("You <i>know</i> you should stop before you take in too much of whatever vile chemicals are in her " + (y >= 0 ? "ass and ":"") + "pussy, but the diabolical concoction has seized control of your muscles!");
 		//high-max
 		else output("You almost howl in pleasure as the realization hits you. You don’t think you’ve ever felt more fulfilled doing anything than you have fucking this over-pumped skank’s " + (y >= 0 ? "welcoming cock-holsters":"slobbering slut-hole") + ", and if she’s just going to make sure that you can do that job as well as possible than who are you to argue? All you want to do, no, all you <i>need</i> to do is pummel her like a rutting beast while she makes your [pc.cocks] bigger than you could have ever imagined. What’s not to love?");
 	}
@@ -312,7 +317,11 @@ public function runATrainOfHyperSluts():void
 	processTime(45);
 	pc.orgasm();
 	if (inCombat()) CombatManager.genericVictory();
-	else addButton(0, "Next", mainGameMenu);
+	else 
+	{
+		clearOutput();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 //Lead
 //Choice only available if you have a pussy.
@@ -323,8 +332,12 @@ public function leadChooChooSlutTrain(hole:int):void
 	showKQTwins(true)
 	author("QuestyRobo");
 	var x:int = hole
+	if(!inCombat())
+	{
+		setEnemy(new KQTwinB());
+	}
 
-	output("\n\nWell, no one said you had good ideas. One look at the towering, obscene poles the two are toting and you knew <i>exactly</i> where you wanted this to go! You’re sure they’ll have a way to make it fit. Now, what you’re not sure about is if that way is going to work out well for you or not. ");
+	output("Well, no one said you had good ideas. One look at the towering, obscene poles the two are toting and you knew <i>exactly</i> where you wanted this to go! You’re sure they’ll have a way to make it fit. Now, what you’re not sure about is if that way is going to work out well for you or not. ");
 	if (pc.isBimbo()) output("Not like that’s something you’ve ever cared about when it came to taking cocks.");
 	else output("That’s something to worry about later, against your better judgment.");
 
@@ -341,7 +354,7 @@ public function leadChooChooSlutTrain(hole:int):void
 	if (pc.isBimbo()) output(" You know that she’s putting <i>something</i> in you and that if you asked some sciency egghead, they’d probably tell you how bad it was or something; but she said it would let you take dicks better, so who cares!");
 	else if (pc.taint() <= 66) output(" You recoil slightly at the feeling of <i>something</i> starting to seep into you. It’s obviously something bad but you can’t pull yourself away, not this far in. You’re locked into this, whether you want to be or not.");
 	else output(" The familiar tingle of Taint rushes through you faster and faster. You’re no strange to it at this point, though; you welcome the Taint" + (pc.taint() == pc.taintMax() ? ", you <i>love</i> the Taint!":".") + "");
-	output("\n\nYour [pc.ass] has also been tingling and shuddering, almost like something’s building just beneath your [pc.furSkinScales]. Before you can focus too much on that, though, 18 decides to make her move. She pulls back and batters against your [pc.vagOrAss " + x + "], not able to fit inside yet thanks to her size.");
+	output("\n\nYour [pc.ass] has also been tingling and shuddering, almost like something’s building just beneath your [pc.skinFurScales]. Before you can focus too much on that, though, 18 decides to make her move. She pulls back and batters against your [pc.vagOrAss " + x + "], not able to fit inside yet thanks to her size.");
 	output("\n\n<i>“You must be tired of the endless foreplay, though. You wanted us to fuck you, not just get your ass hotdogged for hours on end. Although, you seem to be enjoying it just fine.”</i> Before you can respond, she batters at you again, slathering your " + (x >= 0 ? "honeypot":"backdoor") + " with her insidious pre-spunk. Your hole quivers and begins to yield, slowly but surely.");
 	output("\n\nThe ‘slowly’ part gets obliterated in a second as she suddenly batters through with all the subtlety of a drunk bull with a five-foot erection in a china shop. 18 screams out in pleasure as well over a foot of her member sinks into your [pc.vagOrAss " + x + "]. You look back and see that 17 seems to have grown impatient and decided to start stuffing her sister silly, forcing her forward and causing her eyes to screw up into her head.");
 	output("\n\nWhile you’re looking back there, you notice something extra in your peripheral vision. Was your ass always that big? ");
@@ -429,7 +442,7 @@ public function leadChooChooSlutTrainEpilogue(x:int):void
 	clearOutput();
 	showKQTwins(true);
 	author("QuestyRobo");
-	output("\n\n<b>An hour later</i>");
+	output("<b>An hour later</b>");
 	output("\n\nYou fall to the floor, limp, your body swelled to unthinkable heights. 18 joins you, her form a near-mirror of your own. 17 is still standing but seems out of it, somehow. It takes a bit, but eventually, the strength returns to your body and you’re able to stand. You waddle up to 17, ready to punish her for what she did, only to find her sleeping while standing.");
 	output("\n\n18 weakly raises herself up before she begins to speak. <i>“The poor dear starts rutting if you tease her for too long. Apologies for her taking over you like that but she gets so hard to control when she’s like that. And then she overdoes it and passes out. She’ll be fine in a little bit if you’re concerned.”</i>");
 	output("\n\nYou just shake your head and start getting ready to set off again, but not before taking stock of what’s changed. You reach back and squeeze your rear. <b>Even just from feeling it, you can tell your [pc.ass] has grown tremendously!</b> The sheer amount of cum flowing out of you makes anything in-depth difficult, <b>but even just trying to stretch your [pc.vagOrAss " + x + "] tells you just how much easier it is to do.</b> Not the worst set of changes, especially considering the kind of person that runs this place.");
@@ -449,7 +462,7 @@ public function twinsServiceYaDick():void
 	showKQTwins(true);
 	author("QuestyRobo");
 
-	output("\n\nYou " + (!pc.isCrotchExposed() ? "fish out your maleness and ":"") + "present your [pc.cocks] to the two modded-out sluts. Their reaction is immediate; they sit up like obedient little pups begging for treats from their master. The sight of their obscenely titanic tits bouncing freely, fully ready to wrap around your pole" + (pc.cockTotal() >= 2 ? "s":"") + " gets your engines firing up.");
+	output("You " + (!pc.isCrotchExposed() ? "fish out your maleness and ":"") + "present your [pc.cocks] to the two modded-out sluts. Their reaction is immediate; they sit up like obedient little pups begging for treats from their master. The sight of their obscenely titanic tits bouncing freely, fully ready to wrap around your pole" + (pc.cockTotal() >= 2 ? "s":"") + " gets your engines firing up.");
 	if (pc.lust() <= 33) output(" You get fully hard in record time, surprising even yourself as you close the gap between yourself and the Twins.");
 	output("\n\n<i>“Oh my, just what are you going to do with " + (pc.cockTotal() >= 2 ? "those":"that") + ", intruder?”</i>");
 	output("\n\nYou answer by slapping your cock into her cleavage");
@@ -468,7 +481,7 @@ public function twinsServiceYaDick():void
 	output("\n\nYou feel yourself hurtling toward the edge when suddenly the pressure lifts as the two pull away from you. <i>“Well this is dull. Did you really want us to just sit there and let you cum into our breasts?”</i>");
 	output("\n\nThat’s not an option you’d be entirely opposed to, but what other options do you really have?");
 	output("\n\nDespite not saying that out loud, 18 responds. <i>“Oh, of course, the masks. I suppose it’s not obvious that we can open them.”</i> A faint, hydraulic hiss sounds out before the girls’ masks spring open. Your eyes go wide when the hatches fully pull back. Huge, glossy black lips spill out and wobble like tits breaking out of too-small bras. The expansive surfaces glisten like oiled latex, coated in thin layers of sweat. Their breath is hot and heavy as they finally taste the open air after Stars know how long being confined.");
-	output("\n\n<i>“Mmhmmm, it feels so good to be free again. Oh, I can practically <b>taste</b> your [pc.cocksLight] from here!”</i> Her voice has an almost hypnotic huskiness now that you’re sure wasn’t there before. Your member{s} feel{s} absurdly hard, even considering you were just on the verge of cumming! Your eyes hone in on their puffy puckers and stick like glue. If you try and pull away from one, all that happens is that you hook on to the other.");
+	output("\n\n<i>“Mmhmmm, it feels so good to be free again. Oh, I can practically <b>taste</b> your [pc.cocksLight] from here!”</i> Her voice has an almost hypnotic huskiness now that you’re sure wasn’t there before. Your member" + (pc.cockTotal() >= 2 ? "s feel":" feels") + " absurdly hard, even considering you were just on the verge of cumming! Your eyes hone in on their puffy puckers and stick like glue. If you try and pull away from one, all that happens is that you hook on to the other.");
 	output("\n\nYou find yourself meticulously cataloging every movement of their mouths, no matter how small. Your dick " + (pc.cockTotal() >= 2 ? "s twitch and flex":"twitches and flexes") + " as if the lewd lip motions were physically acting on " + (pc.cockTotal() >= 2 ? "them":"it") + ". Their movements become slower yet more exaggerated and deliberate. They’re playing you like a goddamn fiddle and they know it! Is that a bad thing, though? After all, you did want them to pleasure you. You can’t say the level of influence they have on you isn’t unnerving.");
 	output("\n\nYou don’t have the patience to worry about that, though. Right now your [pc.cocks] " + (pc.cockTotal() >= 2 ? "are":"is") + " <i>screaming</i> at you to get a taste of those lips! ");
 	if (pc.cockTotal() == 1) output("You decide to go for 17 first. Not much comes out of her mouth, so you might as well put it to work filling it up!  You grab her her head and yank her in, pressing her fat fuckhole onto your [pc.cockHead]. The over-inflated skank immediately clamps down like a vice, sealing you in the soft prison of her mouth.");
@@ -516,7 +529,7 @@ public function twinsServicedYaDickNowEpilogue():void
 	clearOutput();
 	showKQTwins(true);
 	author("QuestyRobo");
-	output("\n\nYou spend the next hour falling deeper into The Twin’s lip-fueled trance. You fuck and thrust like a living sex toy" + (pc.cockTotal() >= 2 ? ", double-stuffing both girls until your muscles are sore and burning!":", only switching girls when they make you do so.") + "");
+	output("You spend the next hour falling deeper into The Twin’s lip-fueled trance. You fuck and thrust like a living sex toy" + (pc.cockTotal() >= 2 ? ", double-stuffing both girls until your muscles are sore and burning!":", only switching girls when they make you do so.") + "");
 	output("\n\nYou’re not sure what happened but at some point, you blink and seemingly leap forward in time. You’re standing over the two, sore as you’ve ever been while the two are on the ground, passed out and swollen with your seed. How much did they make you cum?");
 	output("\n\nYou stare down at the two and immediately begin being drawn to their lips again. You pull away, not wanting to get dragged into another round, not when you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save! You get yourself ready again and set off, the thought of glossy black lips still in the back of your mind.");
 	if (pc.cockTotal() >= 2)
@@ -541,7 +554,7 @@ public function twinsServiceYaPussPuss():void
 	showKQTwins(true);
 	author("QuestyRobo");
 
-	output("\n\nYou’re not sure how exactly this is going to work, but you’re too horny right now to care! ");
+	output("You’re not sure how exactly this is going to work, but you’re too horny right now to care! ");
 	if (!pc.isNude()) output("You strip off your gear in a flash ");
 	else output("You reach down to your already-bare pussy ");
 	output("and start spreading them for the two over-sized sluts. They immediately drop what they’re doing and focus on you, gigantic cocks jutting straight at you. You shake your head and point to the twin monoliths, immediately shooting down the idea that you’ll be doing <i>that</i>.");
@@ -587,7 +600,7 @@ public function twinsNurseYouAfterEatingYourPuss():void
 	clearOutput();
 	showKQTwins(true);
 	author("QuestyRobo");
-	output("\n\nYou wake up a bit later, nearly panicking when you realize something is blocking out your vision and there’s something in your mouth. You squirm away when you realize it’s 18 nursing you.");
+	output("You wake up a bit later, nearly panicking when you realize something is blocking out your vision and there’s something in your mouth. You squirm away when you realize it’s 18 nursing you.");
 	output("\n\n<i>“You were so dehydrated, intruder. We needed to nourish you otherwise you wouldn’t have woken up.”</i> There’s a knowing snideness to her words. You know her milk is laced with <i>something</i>. It’s already making you horny again and you don’t have time for that (or do you?). Still, you grumble out an irritated <i>“thanks”</i> before starting to get your gear back on.");
 	output("\n\nThe Twins’ mouths are still exposed and they’re trying to tempt you into another round, but you manage to resist and get moving again, ready to save Kiro!");
 	pc.taint(3);
@@ -612,12 +625,12 @@ public function suckDemTwinDicks():void
 	showKQTwins(true);
 	author("QuestyRobo");
 
-	output("\n\nThe sight of the girl’s massive, visibly throbbing bitchbreakers and immense, over-stuffed sacks swaying brazenly in the open-air flips a switch in your brain. You start tracing along their thumb-thick veins with your eyes, watching them throb continuously as they feed the Twins’ immense pythons. The only time you look away is to watch their balls throb, brewing up their pool-filling loads at a super-human rate.");
+	output("The sight of the girl’s massive, visibly throbbing bitchbreakers and immense, over-stuffed sacks swaying brazenly in the open-air flips a switch in your brain. You start tracing along their thumb-thick veins with your eyes, watching them throb continuously as they feed the Twins’ immense pythons. The only time you look away is to watch their balls throb, brewing up their pool-filling loads at a super-human rate.");
 	if (pc.isBimbo()) output("\n\nYour mouth is totally watering and you don’t even care! Just the sight of huge, horny cocks getting all <i>hard</i> and <i>heavy</i> drives you wild, especially when they have super gigantic, yummy balls swinging just under them! The thought of draining both pairs of delicious sperm tanks is almost enough to make you light-headed.");
 	else output("\n\nYou try and get it out of your head, but no matter how much you try and get your head straight you get a whiff of their pheromones and your brain fills with images of gigantic cocks that you just can’t shake! You sigh and just resign yourself to it. You wanted to fuck anyway, and at least this way you’re not worrying about trying to shove those monsters where they shouldn’t be going.");
 	output("\n\nThey know you’re watching, it’d be obvious even if you couldn’t see them looking back at you. Their mouths are covered but their grins are so obvious that you can almost <i>feel</i> them through the masks. They start thrusting their junk harder, sending their genitals thrusting and crashing into each other, with painful-looking force.");
 	output("\n\n<i>“Are you enjoying the show?”</i> 18 asks sarcastically. <i>“I imagine bodies like ours aren’t common out there. It must be so enticing for you.”</i> The two stop thrusting, stand up and start strutting towards you, their enormous cocks still rock hard and jutting straight at you. They close in until they’re practically breathing on you, their immense members well within grabbing range... <i>“You can do more than look, you know.”</i>");
-	output("\n\nBefore your brain can even process her words, your body is already acting.on her invitation. Your hands dart to each member, totally unable to encircle even half of their immense girths. You stroke them off regardless, enjoying how their hot skin throbs constantly under your palms. ");
+	output("\n\nBefore your brain can even process her words, your body is already acting on her invitation. Your hands dart to each member, totally unable to encircle even half of their immense girths. You stroke them off regardless, enjoying how their hot skin throbs constantly under your palms. ");
 	if (pc.isBimbo()) output("Before you can start to steady yourself and take control of the situation, your body betrays you. Your traitorous hands simultaneously stroke up to the Twins’ tips, coating themselves in the seemingly-endless run-off. You take your hands away to collect yourself, only to ‘accidentally’ smear their juices all across your face. The potent pheromones knock the senses out of you, reducing all of your thoughts down to ‘get more cum!’");
 	else output("You continue jerking off the two lovely studs, working them over until they’re nice and drooly for you. You dip over to their cumslits and shudder when you feel the sheer amout they’re already letting out. You take a break from them to smear their essence all over your face. You breathe it in deep, feeling your [pc.legs] starting to shudder from the pleasure.");
 	output("\n\nYou fall to your kness" + (pc.isGoo() ? ", or at least the closest thing your gooey body has to them":"") +", fully submitting yourself to the two. They jump on the opportunity, closing the gap with you until you’re sandwiched between their pendulous sacks.");
@@ -665,7 +678,7 @@ public function suckDemTwinDicks():void
 	output("\n\nYou soldier on ahead with feverish determination. Your goal is so close that you can’t imagine backing out now. Every inch feels like a triumph, flooding your brain with endorphins and sending surges of pleasure through your body. You feel rewarded each time you take another bit of her member, your orgasm coming closer and closer in pace with your progress.");
 	output("\n\nYour body tenses when you start nearing the bottom. You start counting down the inches you have to go, ten... nine... eight...  It’s like an old shuttle launch only the thing blasting off is your [pc.crotch]! Five... four... three... two... Stars dance in your vision when you finally feel your [pc.lips] touch down on her base. You cum, <i>hard</i> and 17 follow! Your whole body shutters and vibrates while 17 pumps you full of seed and you’re utterly overwhelmed with pride and pleasure. So overwhelmed that you forget the part where you can’t breathe.");
 	output("\n\nBy the time you gather up enough sense to realize what’s happening, you’re already on the verge of passing out. You try to pull off on your own, but you don’t have enough strength left to do it fast enough. It’s all over, you think to yourself until you feel a hand grab you and yank you off.");
-	output("\n\n17 sprays your whole front down while you gasp for breath, occasionally coughing up a wad of her seed. You spend a good minute just resting" + (flags["USED_SNAKEBYTE"] == undefined ? "and checking out your newly-enhanced jaw":"") + ". It’s not until 17 finishes cumming that 18 decides to chime in.");
+	output("\n\n17 sprays your whole front down while you gasp for breath, occasionally coughing up a wad of her seed. You spend a good minute just resting" + (flags["USED_SNAKEBYTE"] == undefined ? " and checking out your newly-enhanced jaw":"") + ". It’s not until 17 finishes cumming that 18 decides to chime in.");
 	output("\n\nShe coughs to get your attention, <i>“excellent work, dear intruder! It’s been a while since I’ve seen sister cum that hard. I do hope you don’t intend to leave your job half-finished though...”</i> she jostles her own mammoth totem at you, not-so-subtly implying what she wants.");
 	if (pc.isBimbo()) output("\n\nWell, duh, of course you weren’t going to leave her hanging! You loosen up that wonderful mouth of yours and dive right in.");
 	else output("\n\nYou roll your eyes. Of course, you saw this coming and have already basically resigned yourself to it. Without a word, you grab her ogre cock, open your mouth, line it up, and slam down.");
@@ -696,7 +709,7 @@ public function twinSlutBotsFemaleBadEnd():void
 	showKQTwins(true);
 	author("QuestyRobo");
 	pc.lust(100);
-	output("\n\nYou fall to the ground, beaten and teased to the last of your resistance. The two modded futa-dolls loom over you, blocking out the light above you with the sheer mass of their genitals. 18 reaches down and pulls you to your knees, putting you at face-level with their crotches.");
+	output("You fall to the ground, beaten and teased to the last of your resistance. The two modded futa-dolls loom over you, blocking out the light above you with the sheer mass of their genitals. 18 reaches down and pulls you to your knees, putting you at face-level with their crotches.");
 	output("\n\nAs soon as 18’s obscene, twitching bulge fully dominates your sight, the loudspeaker hisses to life, and a familiar, taunting voice makes itself known. <i>“Oh my, it seems my girls were too much for you to handle. It’s a shame your naive heroics didn’t have the skill to back them up. Don’t worry, though, your friend is in good hands. As for you, you belong to my girls now. Even if they were willing to hand you over, I’d be remiss to deny them a plaything after so long. Don’t worry, their methods are not as refined as mine, but their aptitude for doll making is quite impressive. I look forward to reviewing their work after you’re done!”</i> You hear the maniacal doctor chuckling to herself before the feed cuts out.");
 	output("\n\nThere’s a moment of eerie silence after Po’s mocking voice leaves you. Even the two looming sex dolls pause, almost as if they’re waiting for something to happen. The quiet is broken by a faint, hydraulic hiss from both behind you and in front of you. The Twins let out a combined moan as their suits suddenly retract into some unseen devices. Without the tight suit to contain them, the built-up musk from what could be weeks or even months of confinement flows free with the force of a smoke bomb.");
 	output("\n\nThe surprise is enough to make you reel back, only to land in 17’s immense sack, resting against the musky spheres like an oversized pillow. The two’s pheromones flow off of them like raging waterfalls, and you just happen to be standing right under them! Blood rockets to your crotch as her pheromones swim up into your brain, waterlogging it in a thick, lusty miasma that makes your vision blur as your resistance wanes.");
@@ -709,6 +722,8 @@ public function twinSlutBotsFemaleBadEnd():void
 	if (pc.isBimbo()) output("but is that really a bad thing?");
 	else output("but an increasingly sizable part of you doesn’t seem to mind that idea.");
 	output(" <i>“After all, we have all the time in the world with this slut!”</i> 18 screams out as her and 17 thrust into you simultaneously.");
+	pc.buttChange(enemy.cockVolume(0));
+	if (!pc.isSexless()) pc.cuntChange(pc.biggestVaginaIndex(), enemy.cockVolume(0));
 	output("\n\nYour world shatters as your body is filled with more cock than most living beings should be expected to handle. The fact that your body is able to take all of it is either a miracle or, more likely, the result of the cocktail of chemicals laced in with likely every fluid in these stud’s bodies. The two moan out in sublime pleasure as they sheath themselves into you. As soon as they hit your limits with their first thrust, they pull out and then immediately slam themselves back in. These girls have <i>zero</i> regard for you in all of this!");
 	output("\n\n18 groans and screeches like a wild woman while she rails you, meanwhile 17 has gone eerily quiet. At the same time, your head starts to feel strange, like something’s squeezing down on it. The loud squelching of your hole" + (pc.isSexless() ? "":"s") + " being stretched wildly over and over again slowly gets drown out by an encroaching static-like noise. It gets louder and louder until it becomes the only thing you can hear.");
 	output("\n\nYour head feels light from the constant onslaught of noise. You feel like you’re about to pass out before a faint voice cuts through the static. <i>“Submit,”</i> is the first word that comes through clearly enough to make out. <i>“Submit,”</i> <i>“Slut,”</i> <i>“Cocksleeve,”</i> <i>“Cum junkie,”</i>. More and more words come out, printing themselves onto your brain as your body is reduced to nothing more than a living onahole. The only explanation you can come up with is that one or both of these girls is psionic.");
@@ -729,7 +744,7 @@ public function twinSlutBotsFemaleBadEnd():void
 	pc.orgasm();
 	pc.taint(100);
 	pc.loadInMouth(enemy);
-	if (pc.isFemale()) pc.loadInCunt(enemy,0);
+	if (!pc.isSexless()) pc.loadInCunt(enemy,0);
 	pc.loadInAss(enemy);
 	pc.lust(pc.lustMax());
 	processTime(5*60);
@@ -743,7 +758,7 @@ public function twinSlutBotsFemaleBadEnd2():void
 	showName("TWIN\nSEXBOTS");
 	author("QuestyRobo");
 	pc.lust(100);
-	output("\n\nYou spend the next... however long fading in and out of consciousness. Usually, you wake up to some strange device injecting something into you while one or both of your mistress’s plows you like the dirty slut you are. Each time it feels better. Each time your body grows larger, rounder, more slutty and perfect for your loving mistresses. The whole time you’re in the same room, being changed and tinkered with like a living science experiment.");
+	output("You spend the next... however long fading in and out of consciousness. Usually, you wake up to some strange device injecting something into you while one or both of your mistress’s plows you like the dirty slut you are. Each time it feels better. Each time your body grows larger, rounder, more slutty and perfect for your loving mistresses. The whole time you’re in the same room, being changed and tinkered with like a living science experiment.");
 	output("\n\nEventually, you wake up without any devices or restraints. You get up and wander around the room, trying to get your head together, maybe even remember what happened before you got here. More likely, though, you’ll just end up dropping to your knees and sucking off one of your mistresses again.");
 	output("\n\nSpeaking of which, your two amazing studs saunter in, cocks rock hard and ready for you. They’re not alone, though. Some robot lady and an oddly familiar kui-tan walk in after them.");
 	output("\n\n<i>“I’m impressed, girls! A near-perfect transformation. Now, ");
@@ -758,7 +773,6 @@ public function twinSlutBotsFemaleBadEnd2():void
 	output("\n\n<i>“You can have her ass. Sister called dibs on the mouth.”</i>");
 	output("\n\nPo chimes in one last time before she leaves, <i>“if you need me, I’ll be laying out the traps for our next guest. A cute little redhead kaithrit-ausar hybrid. She probably thinks she’s all clean after operating legitimately for a few years, but Black Void ties don’t wash off that easy.”</i>");
 	output("\n\nWith that, she walks off, closing the door shut and leaving you at the mercy of your new masters, as well as a familiar, yet twisted face.");
-	output("\n\n<b>GAME OVER</b>");
 	processTime(10*60);
 	pc.orgasm();
 	pc.lust(pc.lustMax());
@@ -770,7 +784,7 @@ public function twinSlutBotsMaleBadEnd():void
 	showKQTwins(true);
 	author("QuestyRobo");
 	pc.lust(100);
-	output("\n\nThe last of your strength fails and you fall to the ground, fully submitting to the two as they loom over you. You feel their attention immediately turn to your [pc.cocks] as ");
+	output("The last of your strength fails and you fall to the ground, fully submitting to the two as they loom over you. You feel their attention immediately turn to your [pc.cocks] as ");
 	if (pc.isCrotchExposed()) output("" + (pc.cockTotal() >= 2 ? "they swing":"it swings") + " brazenly in the open air");
 	else output("" + (pc.cockTotal() >= 2 ? "they tent":"it tents") + " your [pc.crotchCover]");
 	output(". They giggle and lean down onto you, planting their immense, wobbling tits just above your submissive body.");
@@ -783,7 +797,7 @@ public function twinSlutBotsMaleBadEnd():void
 	//"Small" cock, below 24
 	if (pc.biggestCockLength() <= 24)
 	{
-		output("\n\n17 grunts in irritation as she grinds into your [pc.cockLargest], seemingly very unsatisfied.");
+		output("\n\n17 grunts in irritation as she grinds into your [pc.cockBiggest], seemingly very unsatisfied.");
 		output("\n\n<i>“Yes, yes, I know [pc.heShe]’s too small. We can fix that <b>very</b> easily, though!”</i>");
 	}
 	//"Medium" cock, 24-40
@@ -798,6 +812,7 @@ public function twinSlutBotsMaleBadEnd():void
 		output("\n\n17 moans as she stretches herself out on just your tip. Yet, there’s an underlying hunger in her exhalations as if even your immense cock is just scratching the surface of her ultra-size queen desires.");
 		output("\n\n<i>“Oh yes, [pc.heShe] is <b>impressive</b>! " + (pc.biggestCockLength() < 48 ? "Almost as large as":"Even larger than") + " us, dear sister. You are right, though, why settle for this when [pc.heShe] could be <b>so</b> much bigger!”</i>");
 	}
+	pc.cockChange();
 	output(" 18 slams down onto your face, her soaking, puffy pussy lodging itself into your mouth while her immense ass and balls block any light from reaching you. Her juices leak into your throat unobstructed, the ultra-modded pup-skank’s lower lips so swollen and plump that they’re keeping your mouth pried wide open.");
 	output("\n\nThere’s an earthy-yet-sweet taste to it, almost like salted caramel. You suck it down like an infant at [pc.hisHer] mom’s teat. Each drop fills your body with a kind of sublime, alien warmth that crawls through your body and starts to pool in your crotch. The heat builds until it feels like there’s a pool of magma between your legs with a hot rod of molten iron sticking out. You groan into her muff as your body spasms and shocks run up and down your [pc.cocks].");
 	output("\n\nSuddenly you hear 17 roaring out in pleasure and feel a harsh tightness descend on your [pc.biggestCock]. <i>“Ooooh, it’s amaaaaazing!”</i> a ghostly voice rings in your ear, <i>“sister, let [pc.himHer] see!”</i>");
@@ -836,7 +851,7 @@ public function twinSlutBotsMaleBadEnd2():void
 	showBust("KQ_TWIN_SEXBOTS","ILLUSTRIA_PO",kiroBustDisplay(true));
 	showName("TWIN\nSEXBOTS");
 	author("QuestyRobo");
-	output("\n\n<i>Several days later</i>");
+	output("<i>Several days later</i>");
 	output("\n\nYou don’t know how long today’s session went; you stopped caring about that sort of thing a long time ago. All you know is that even after draining a river’s worth of cum into your mistresses, your cock is still raging hard and brimming with a fresh load to deposit.");
 	output("\n\nSuddenly the door to your chambers opens and the person on the other end isn’t one of your mistresses but instead a strange, blue woman.");
 	output("\n\n<i>“My, my, dears, you’ve certainly done quite a job here! And you say you did it within a day?”</i>");
@@ -846,7 +861,6 @@ public function twinSlutBotsMaleBadEnd2():void
 	output("\n\nThe blue lady nods and then pulls on a leash she’s been carrying. <i>“Come along, 65, we have a new subject to ‘orientate’. Say goodbye to your friend in there, if you wish.”</i>");
 	output("\n\nAs she leaves, you see a <i>very</i> busty, bimbo tanuki woman step into view. She stares at you for a second, eyes blank and vacant of any thought or feeling. You return with the same coldness, having no idea who she is, with the only thought in your head being a question of if she could take your cock or not. That doesn’t matter now, though. Your mistresses strut back into the room, smelling like the kind of pure, feminine <i>need</i> that makes you forget about anything else.");
 	output("\n\nYou pounce on them and become lost once more in the endless rut that is now your life.");
-	output("\n\n<b>GAME OVER</b>");
 	processTime(10*60);
 	pc.orgasm();
 	pc.lust(pc.lustMax());

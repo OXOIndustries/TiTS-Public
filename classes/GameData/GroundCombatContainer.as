@@ -1398,7 +1398,12 @@ package classes.GameData
 				output("\n\n<b>She reeks so strongly of pheromones that it’s starting to get to you.</b>");
 				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
 			}
-			
+			//Shamelessly stolen from shizzy cum since they're almost exactly the same 
+			if (target.hasStatusEffect("MILO CUM"))
+			{
+				output("\n\n<b>She reeks so strongly of pheromones that it’s starting to get to you.</b>");
+				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("MILO CUM")}), 20), null, target, "minimal");
+			}
 			// Zweet Breeze
 			// Pheromonal lust damage after all attacks are resolved. Starts strong, incrementally decreases as each of them is KO’d.
 			if (target.statusEffectv1("Zweet Breeze") > 0)
@@ -2276,6 +2281,7 @@ package classes.GameData
 			{
 				pc.removeStatusEffect("Grappled");
 				if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot’s grasp.");
+				else if (hasEnemyOfClass(KQTwinA) && hasEnemyOfClass(KQTwinB)) output("\nDespite the two’s best efforts, they’re unable to keep you restrained. You break out of their grip and leap away, leaving the two horny sluts to frot uselessly with each-other until they finish and paint themselves white with copious seed. Instead of calming them down, orgasming only seems to drive them crazier as they redouble their focus on you.");
 				else output("\nYou slip free of the grapple.");
 			}
 			if (pc.hasStatusEffect("Cockvine Grip"))
