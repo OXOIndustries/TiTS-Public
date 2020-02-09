@@ -47,8 +47,6 @@ public function twinSexdollEncounter():Boolean
 		CombatManager.setFriendlyActors(pc);
 		CombatManager.setHostileActors(new KQTwinA, new KQTwinB);
 		CombatManager.encounterTextGenerator(twinBotEncText);
-		CombatManager.encounterTextGenerator(function():String 
-		);
 		CombatManager.victoryScene(beatUpTheOverAugmentedTwins);
 		CombatManager.lossScene(loseToTwinsAndFaceTheConsequences);
 		CombatManager.displayLocation("TWIN SEXBOTS");
@@ -73,7 +71,7 @@ public function twinBotEncText():String
 			else bot18 = en[i];
 		}
 		
-		if (bot17.isDefeated) s += "\n\n‘17’ is down for the count, reduced to a writhing, panting mess on the floor.";
+		if (bot17.isDefeated()) s += "\n\n‘17’ is down for the count, reduced to a writhing, panting mess on the floor.";
 		else 
 		{
 			s += "\n\nThe one labeled ‘17’ is the smaller of the two. Her face is covered in a military-grade gas mask and visor, completely obscuring her face, including her eyes. Two, black ausar ears poke out from the top of her head. While she is the smaller of the pair, her own wobbling, immense tits are still substantial. Two gargantuan tits hang heavily from her chest, sloshing around almost completely unimpeded by the near-non-existent material covering them. The patches of fully exposed flesh reveal tan skin.\n\nBetween her cow-like thighs are her mammoth cock and balls. ";
@@ -86,7 +84,7 @@ public function twinBotEncText():String
 			//Frenzy
 			else s += "Her dick is harder than you thought was possible. It’s a good inch thicker and even longer than it was before, with a network of pulsating veins, most of which you’re <i>sure</i> weren’t there before. The two massive spheres below quake visibly as they pump what seems like gallons of augmented seed up the pipeline of her cock. Either she’s orgasming <i>constantly</i> or the increased flood of chemicals has driven her production to levels her body can’t possibly contain!";
 		}
-		if (bot18.isDefeated) s += "\n\n‘18’ is down on the ground, desperately seeking satisfaction. Despite that, her eyes never seem to look away from you.";
+		if (bot18.isDefeated()) s += "\n\n‘18’ is down on the ground, desperately seeking satisfaction. Despite that, her eyes never seem to look away from you.";
 		else
 		{
 			s += "\n\n‘18’ is the larger of the pair. Like her ‘sister’, she’s wearing a gas mask, only hers is shaped into the form of an animal skull, complete with modeled fangs, and lacking the eye-covering visor, letting you see her augmented red eyes. Like ‘17’, her dog-like ears poke out the top of her head, only hers are blonde, giving you some doubt as to their actual relation. Her breasts are so large that they seem to wobble under their own weight. Like her ‘sister’, the material clings to every small detail of her huge tits and big, meaty nipples, almost looking like a second layer of skin. Her flesh in tan, much like her supposed sibling.\n\nHer stallion-shaming member sits between her broodmotherly hips. It’s wrapped in a film-thin layer of latex that still keeps all the details visible. ";
@@ -260,7 +258,7 @@ public function runATrainOfHyperSluts():void
 	{
 		output("\n\nYou squirt into 17’s slutty, gluttonous hole" + (y >= 0 ? "s":"") + ", pumping out as much as you’re capable of. That doesn’t seem to be enough for her, though. A powerful jolt surges into your [pc.balls], sending you barreling into another orgasm, immediately. Your second, chemically induced spurt is <i>far</i> larger than your first, cramming what feels like a few extra quarts of [pc.cum] into the demanding mod-slut. Just when you think it’s over, another surge rushes into you, causing you to moan out as you fire off a third simultaneous orgasm that easily doubles the size of your last one. The diabolical pumping continues for what feels like hours until you’ve given 17 a cum-bloated belly that any size queen could appreciate. <b>The devilish lab-rat has boosted your cum production by an insane amount!</b>");
 		output("\n\nAn ethereal voice whispers <i>“That’s better...”</i> but you have no idea where it came from. Could that have been 17?");
-		while(pc.maxCum() < 4000 || pc.maxCum < oldCum*2.5)
+		while(pc.maxCum() < 4000 || pc.maxCum() < oldCum*2.5)
 		{
 			pc.boostCum(10);
 		}
@@ -271,7 +269,7 @@ public function runATrainOfHyperSluts():void
 	{
 		output("\n\nYou unload everything you have into 17’s welcoming hole" + (y >= 0 ? "s":"") + ", firing off your whole reserve at a frantic, almost painful pace. By the time you start to wind down, 17’s belly has bloated out to a pretty impressive degree. Just when you think you’re about to run dry, a surge of energy runs through your [pc.balls] and sets you off all over again. You dump out what feels like a whole second orgasm, and yet it’s still the same one! <b>Your cum production has easily doubled!</b>");
 		output("\n\nSomewhere deep in your mind, an etherial voice chuckles at you.");
-		while(pc.maxCum() < 9000 || pc.maxCum < oldCum*2)
+		while(pc.maxCum() < 9000 || pc.maxCum() < oldCum*2)
 		{
 			pc.boostCum(10);
 		}
@@ -286,7 +284,7 @@ public function runATrainOfHyperSluts():void
 		output("\n\n<i>“Good... very good,”</i> an ethereal voice whispers as you finally calm down.");
 	}
 	enemy.loadInCunt(pc,0);
-	if (y >= 0) enemy.loadinAss(pc);
+	if (y >= 0) enemy.loadInAss(pc);
 	//pc can use a dick bigger than enemy capacity in this scene, but should only get down to the knot if they fit
 	if (pc.hasKnot(x) && pc.cockVolume(x) <= enemy.vaginalCapacity()) 
 	{
@@ -299,7 +297,7 @@ public function runATrainOfHyperSluts():void
 	//Code note: make sure the parsers BEFORE growth are parsed before growth is applied and the parsers for post-growth are applied after the stat changes are made. It’ll be nicely noticeable if you jump a size category from the enlargement. -Fen
 	processTime(45);
 	pc.orgasm();
-	if(inCombat()) CombatManager.genericVictory();
+	if (inCombat()) CombatManager.genericVictory();
 	else addButton(0, "Next", mainGameMenu);
 }
 //Lead
@@ -328,7 +326,7 @@ public function leadChooChooSlutTrain(hole:int):void
 	if (x >= 0) output(" It’s getting <i>wet</i> too, far more than you usually do" + (pc.wetness(x) >= 3 ? ", and that’s saying something!":".") + "");
 	if (pc.isBimbo()) output(" You know that she’s putting <i>something</i> in you and that if you asked some sciency egghead, they’d probably tell you how bad it was or something; but she said it would let you take dicks better, so who cares!");
 	else if (pc.taint() <= 66) output(" You recoil slightly at the feeling of <i>something</i> starting to seep into you. It’s obviously something bad but you can’t pull yourself away, not this far in. You’re locked into this, whether you want to be or not.");
-	else output(" The familiar tingle of Taint rushes through you faster and faster. You’re no strange to it at this point, though; you welcome the Taint" + (pc.taint() = pc.taintMax() ? ", you <i>love</i> the Taint!":".") + "");
+	else output(" The familiar tingle of Taint rushes through you faster and faster. You’re no strange to it at this point, though; you welcome the Taint" + (pc.taint() == pc.taintMax() ? ", you <i>love</i> the Taint!":".") + "");
 	output("\n\nYour [pc.ass] has also been tingling and shuddering, almost like something’s building just beneath your [pc.furSkinScales]. Before you can focus too much on that, though, 18 decides to make her move. She pulls back and batters against your [pc.vagOrAss " + x + "], not able to fit inside yet thanks to her size.");
 	output("\n\n<i>“You must be tired of the endless foreplay, though. You wanted us to fuck you, not just get your ass hotdogged for hours on end. Although, you seem to be enjoying it just fine.”</i> Before you can respond, she batters at you again, slathering your " + (x >= 0 ? "honeypot":"backdoor") + " with her insidious pre-spunk. Your hole quivers and begins to yield, slowly but surely.");
 	output("\n\nThe ‘slowly’ part gets obliterated in a second as she suddenly batters through with all the subtlety of a drunk bull with a five-foot erection in a china shop. 18 screams out in pleasure as well over a foot of her member sinks into your [pc.vagOrAss " + x + "]. You look back and see that 17 seems to have grown impatient and decided to start stuffing her sister silly, forcing her forward and causing her eyes to screw up into her head.");
@@ -407,7 +405,7 @@ public function leadChooChooSlutTrain(hole:int):void
 	{
 		pc.ass.bonusCapacity += 100;
 		pc.ass.wetness(2);
-		pc.loadinAss(enemy);
+		pc.loadInAss(enemy);
 	}
 	pc.buttRating(3);
 	addButton(0,"Next",leadChooChooSlutTrainEpilogue,x);
@@ -426,7 +424,7 @@ public function leadChooChooSlutTrainEpilogue(x:int):void
 	else output("ignore her as best you can");
 	output(", you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save after all!");
 	processTime(1);
-	if(inCombat()) CombatManager.genericVictory();
+	if (inCombat()) CombatManager.genericVictory();
 	else addButton(0, "Next", mainGameMenu);
 }
 //Dick
@@ -438,7 +436,7 @@ public function twinsServiceYaDick():void
 	author("QuestyRobo");
 
 	output("\n\nYou " + (!pc.isCrotchExposed() ? "fish out your maleness and ":"") + "present your [pc.cocks] to the two modded-out sluts. Their reaction is immediate; they sit up like obedient little pups begging for treats from their master. The sight of their obscenely titanic tits bouncing freely, fully ready to wrap around your pole" + (pc.cockTotal() >= 2 ? "s":"") + " gets your engines firing up.");
-	if (pc.lust <= 33) output(" You get fully hard in record time, surprising even yourself as you close the gap between yourself and the Twins.");
+	if (pc.lust() <= 33) output(" You get fully hard in record time, surprising even yourself as you close the gap between yourself and the Twins.");
 	output("\n\n<i>“Oh my, just what are you going to do with " + (pc.cockTotal() >= 2 ? "those":"that") + ", intruder?”</i>");
 	output("\n\nYou answer by slapping your cock into her cleavage");
 	if (pc.cockTotal() >= 2)
@@ -459,7 +457,7 @@ public function twinsServiceYaDick():void
 	output("\n\n<i>“Mmhmmm, it feels so good to be free again. Oh, I can practically <b>taste</b> your [pc.cocksLight] from here!”</i> Her voice has an almost hypnotic huskiness now that you’re sure wasn’t there before. Your member{s} feel{s} absurdly hard, even considering you were just on the verge of cumming! Your eyes hone in on their puffy puckers and stick like glue. If you try and pull away from one, all that happens is that you hook on to the other.");
 	output("\n\nYou find yourself meticulously cataloging every movement of their mouths, no matter how small. Your dick " + (pc.cockTotal() >= 2 ? "s twitch and flex":"twitches and flexes") + " as if the lewd lip motions were physically acting on " + (pc.cockTotal() >= 2 ? "them":"it") + ". Their movements become slower yet more exaggerated and deliberate. They’re playing you like a goddamn fiddle and they know it! Is that a bad thing, though? After all, you did want them to pleasure you. You can’t say the level of influence they have on you isn’t unnerving.");
 	output("\n\nYou don’t have the patience to worry about that, though. Right now your [pc.cocks] " + (pc.cockTotal() >= 2 ? "are":"is") + " <i>screaming</i> at you to get a taste of those lips! ");
-	if (pc.cockTotal == 1) output("You decide to go for 17 first. Not much comes out of her mouth, so you might as well put it to work filling it up!  You grab her her head and yank her in, pressing her fat fuckhole onto your [pc.cockHead]. The over-inflated skank immediately clamps down like a vice, sealing you in the soft prison of her mouth.");
+	if (pc.cockTotal() == 1) output("You decide to go for 17 first. Not much comes out of her mouth, so you might as well put it to work filling it up!  You grab her her head and yank her in, pressing her fat fuckhole onto your [pc.cockHead]. The over-inflated skank immediately clamps down like a vice, sealing you in the soft prison of her mouth.");
 	else output("Good thing you have " + (pc.cockTotal() >= 3 ? "more than ":"") + "enough cocks for both of them! You put a hand on each of their heads and drag them toward your " + (pc.cockTotal() >= 3 ? "multitudinous":"duo of") + " members. You move them effortlessly until they reach your [pc.cockHeads], planing them on your tips");
 	output("\n\nThere’s an almost electric tingle when " + (pc.cockTotal() >= 2 ? "their":"her") + " lips meet your skin. Pleasure surges through your dick up to your brain, rattling your mind as though your head suddenly turned into a tumble dryer. The skin on " + (pc.cockTotal() >= 2 ? "their":"her") + " lips is so plush and warm that it’s almost unreal! You start comparing it to other things, in your head; from pussies to expensive sex toys. But each time you do it starts to feel better and better, almost as if they’re adapting to make sure you never want to stick your dick in anything else! All of this and " + (pc.cockTotal() >= 2 ? "she hasn’t":"they haven’t") + " even moved yet!");
 	output("\n\nWithout thinking you start pushing " + (pc.cockTotal() >= 2 ? "them":"her") + " down on your [pc.cocks]. Despite the tightness, " + (pc.cockTotal() >= 2 ? "they":"she") + " glide down your pole" + (pc.cockTotal() >= 2 ? "s":"") + " with ease, bringing you into the deepest depths of " + (pc.cockTotal() >= 2 ? "their":"her") + " boiling hot, chemical-laced hole" + (pc.cockTotal() >= 2 ? "s":"") + ". Every inch " + (pc.cockTotal() >= 2 ? "they":"she") + " advance seems to slow time as your eyes stay honed in on the way " + (pc.cockTotal() >= 2 ? "both of their":"17’s") + " lips deform around your girth" + (pc.cockTotal() >= 2 ? "s":"") + " The slick, seemingly always shining surface gleams directly into your eyes. You follow them like a kitten follows a toy.");
@@ -478,7 +476,7 @@ public function twinsServiceYaDick():void
 	if (pc.cockTotal() == 1)
 	{
 		output("17 sits there, licking her perfect puckers to make sure she’s swallowed every bit of your essence, meanwhile 18 is giving you the sultriest look she can, all the while breathing heavily in an exaggerated manner. Your [pc.cock] stays absolutely rigid at the sight and you feel your [pc.balls] flooding with a renewed load.");
-		output("\n\nWithout hesitation, you jump 18 and ram yourself " + (pc.biggestCockVolume > 9000000 ? "as far as you can go":"to the hilt") + " in her magnificent mouth. How could you think of going soft when one of your gloriously lippy mistresses hasn’t pleasured herself on your cock yet? 17 isn’t done yet either; ");
+		output("\n\nWithout hesitation, you jump 18 and ram yourself " + (pc.biggestCockVolume() > 9000000 ? "as far as you can go":"to the hilt") + " in her magnificent mouth. How could you think of going soft when one of your gloriously lippy mistresses hasn’t pleasured herself on your cock yet? 17 isn’t done yet either; ");
 		if (pc.balls >= 1) output("she cozzies up to your sack and starts planting kisses along the surface. ");
 		else output("she cozzies up to your [pc.ass] and starts kissing around your rear entrance. ");
 		output("Somehow her tongue feels just as good as when she was sucking your dick! How did you ever think of fucking anything else when these fucking lips are so good!?");
@@ -486,7 +484,7 @@ public function twinsServiceYaDick():void
 	}
 	else
 	{
-		output("The two lick their beautiful, perfect lips in order to get every last drop of your seed and musk down their throats. Despite the fact that you just finished filling them, you can tell that they already want <i>more</i>! Your [pc.cocks] remain painfully rigid and your [pc.balls] suddenly fill" + (pc.balls >= 2 ? "":"s") + " back up in record time. With the subtlety and self-control of a rutting animal, you grab the pair and ram yourself back in" + (pc.biggestCockVolume > 9000000 ? "":" to the hilt") + ".");
+		output("The two lick their beautiful, perfect lips in order to get every last drop of your seed and musk down their throats. Despite the fact that you just finished filling them, you can tell that they already want <i>more</i>! Your [pc.cocks] remain painfully rigid and your [pc.balls] suddenly fill" + (pc.balls >= 2 ? "":"s") + " back up in record time. With the subtlety and self-control of a rutting animal, you grab the pair and ram yourself back in" + (pc.biggestCockVolume() > 9000000 ? "":" to the hilt") + ".");
 		output("\n\nYour mind swims as the rest of the blood from your brain travels southward. The last thoughts you have stamped onto your brain are all about their lips; how beautiful and big they are, how good they feel wrapped around your [pc.cocks], and how stupid you’ve been for thinking that you’ve ever truly experienced pleasure before this moment!");
 		output("\n\nYou thrust until you cum, and no matter how much you cum you don’t slow down, you can’t slow down. You’re a machine now, made and molded only to shove your multiple masts into your mistresses’ luscious lips, indulging both of your rampant lusts as you lose sight of what you even came here for.");
 	}
@@ -494,7 +492,7 @@ public function twinsServiceYaDick():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	enemy.loadinMouth(pc);
+	enemy.loadInMouth(pc);
 	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",twinsServicedYaDickNowEpilogue);
@@ -518,7 +516,7 @@ public function twinsServicedYaDickNowEpilogue():void
 	pc.taint(3);
 	soreChange(1);
 	output("\n\n");
-	if(inCombat()) CombatManager.genericVictory();
+	if (inCombat()) CombatManager.genericVictory();
 	else addButton(0, "Next", mainGameMenu);
 }
 //Pussy
@@ -543,7 +541,7 @@ public function twinsServiceYaPussPuss():void
 	{
 		output("\n\nSuddenly, they stop. You look down at the pair and see 17 muscling out her sister in order to get sole custody over your puss. <i>“Hmph, so insistent, sister! Oh well, I suppose one of us had to do it. You’re in for a treat, intruder. ");
 		if (flags["KQ_TWINS_PUSSY_SUCK"] == undefined) output("I can’t imagine you’ve had this done by a real woman before.”</i> What is she planning?");
-		else outptu("You seemed to enjoy it quite a bit last time.”</i> You can’t wait.");
+		else output("You seemed to enjoy it quite a bit last time.”</i> You can’t wait.");
 		output("\n\nShe latches onto your [pc.vagina] with her mouth, latching on like a lamprey before darting her tongue back inside you. You groan out loud in pleasure, although you’re not sure if it’s from the penetration or the suction. Your hands instinctively dart down to the back of her head to keep her down, but you know that with the near-vacuum seal she’s formed that she wasn’t going anywhere.");
 		output("\n\nYou feel your pussy lips plump up in the iron lip-grip of the ausur-turned-sex-toy, all the while she ravages your passage like a wild beast. It’s like someone crossed a pussy pump and the world’s most proactive dildo and then stuck them onto a world champion pussy eater! Even when you start to buck uncontrollably from the sensation she doesn’t budge at all. The determined slut remains locked tight on your [pc.vagina], eating and sucking like a starving woman at a buffet.");
 	}
@@ -588,7 +586,7 @@ public function twinsNurseYouAfterEatingYourPuss():void
 	}
 	pc.boostGirlCum(10);
 	output("\n\n");
-	if(inCombat()) CombatManager.genericVictory();
+	if (inCombat()) CombatManager.genericVictory();
 	else addButton(0, "Next", mainGameMenu);
 }
 //Give Oral
@@ -617,7 +615,7 @@ public function suckDemTwinDicks():void
 	if (pc.isHerm())
 	{
 		output(" Both of your hands dart down to your own twin sexes, one wrapping around your [pc.biggestCock]");
-		if (pc.cockTotal() >= 2) output(", occasionally making an indecisive swap to " + (pc.cockTotal >= 3 ? "one of your other members":"your other member") + "");
+		if (pc.cockTotal() >= 2) output(", occasionally making an indecisive swap to " + (pc.cockTotal() >= 3 ? "one of your other members":"your other member") + "");
 		output(" while the other rams a few fingers into your [pc.pussy].");
 	}
 	else if (pc.hasCock()) output(" Both of your hands dart down to your [pc.cocks], stroking off your maleness while you practically worship theirs.");
@@ -663,11 +661,11 @@ public function suckDemTwinDicks():void
 	output("\n\n");
 	processTime(30);
 	pc.taint(7);
-	pc.loadinMouth(enemy);
+	pc.loadInMouth(enemy);
 	pc.applyCumSoaked();
 	for(var y:int = 0; y < 12 ; y++) { pc.orgasm(); }
-	flags["USED_SNAKEBYTE"] = 1
-	if(inCombat()) CombatManager.genericVictory();
+	flags["USED_SNAKEBYTE"] = 1;
+	if (inCombat()) CombatManager.genericVictory();
 	else addButton(0, "Next", mainGameMenu);
 }
 //Loss
@@ -679,7 +677,7 @@ public function loseToTwinsAndFaceTheConsequences():void
 	else twinSlutBotsFemaleBadEnd();
 }
 //Female
-public function twinSlutBotsFemaleBadEnd();
+public function twinSlutBotsFemaleBadEnd():void
 {
 	showKQTwins(true);
 	author("QuestyRobo");
@@ -717,7 +715,7 @@ public function twinSlutBotsFemaleBadEnd();
 	pc.orgasm();
 	pc.taint(100);
 	pc.loadInMouth(enemy);
-	if(pc.isFemale()) pc.loadInCunt(enemy,0);
+	if (pc.isFemale()) pc.loadInCunt(enemy,0);
 	pc.loadInAss(enemy);
 	pc.lust(pc.lustMax());
 	processTime(5*60);
