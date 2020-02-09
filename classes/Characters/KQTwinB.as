@@ -23,10 +23,10 @@ package classes.Characters
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
-			this.short = "twin bots";
+			this.short = "Model 18";
 			this.originalRace = "ausar";
-			this.a = "the";
-			this.capitalA = "The";
+			this.a = "";
+			this.capitalA = "";
 			this.long = "Placeholder";
 			this.customDodge = "";
 			this.customBlock = "";
@@ -60,6 +60,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 40;
 			
+			this.level = 10;
+			this.XPRaw = bossXP();
 			this.HPMod = 200;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
@@ -229,12 +231,12 @@ package classes.Characters
 			if (!target.hasStatusEffect("Injected")) choices.push(bot18Inject);
 
 			//Frenzy Shift. Overrides other attacks
-			if (this.lust() >= this.lustMax()) choices = [frenzyShift18];
+			if (this.lust() >= this.lustMax() && !this.hasStatusEffect("Frenzy")) choices = [frenzyShift18];
 			choices[rand(choices.length)](target,bot17);
 			
 		}
 		//Pummel
-		public function bot18Pummel(target:Creature):void
+		public function bot18Pummel(target:Creature,bot17:Creature):void
 		{
 			author("QuestyRobo");
 			output("18 bares her fists and charges you, her battle lust obvious even with her face completely covered.");
@@ -267,8 +269,8 @@ package classes.Characters
 			{
 				output("\n\nDespite your best efforts to fight her off, she manages to stick you with the needles, injecting their contents into your body. Heat starts to build at the injected area, slowly spreading out as your body fills with lust! You start feeling lightheaded and unfocused like your brain is filling up with cotton.");
 				applyDamage(new TypeCollection( { drug: 7 } ), this, target, "minimal");
-				target.intelligenceMod -= 4;
-				target.willpowerMod -= 4;
+				target.intelligenceMod -= 5;
+				target.willpowerMod -= 5;
 				target.taint(1);
 				if(!target.hasStatusEffect("Injected")) target.createStatusEffect("Injected",5,3,1,0,false,"Icon_DrugVial","An injected aphrodisiac. Excites over time. It should fade eventually.",true,0);
 				else target.addStatusValue("Injected",2,1);

@@ -13,7 +13,7 @@ public function twinSexdollEncounter():Boolean
 	//Maaaybe shouldn't be able to fuck dolls as you're running away with your new crewmate
 	if (flags["KQ_RESCUED"] != undefined)
 	{
-		if (flags["KQ_TWINS_DOWNED"] == undefined)
+		if (flags["KQ_TWINS_DOWNED"] != undefined)
 		{
 			output("\n\nThe two ausar “twins” that you defeated earlier are no longer here.");
 		}
@@ -23,7 +23,8 @@ public function twinSexdollEncounter():Boolean
 	else if (flags["KQ_TWINS_DOWNED"] != undefined)
 	{
 		output("\n\nThe two ausar “twins” that you defeated earlier are still here, still mindlessly rutting against each other. You could take them for a roll in the... floor if you wanted to.");
-		addButton(0,"Twins",twinsRepeatEncounter);
+		if (flags["KQ_POSTER_LOOT"] != undefined) addButton(0, "Twins", twinsRepeatEncounter);
+		else addButton(1,"Twins",twinsRepeatEncounter);
 		return false;
 	}
 	else 
@@ -107,6 +108,19 @@ public function twinsRepeatEncounter():void
 	showKQTwins(true);
 	output("Very little, if anything, has changed with these two since you last saw them. They’re still rolling on the floor, groping and thrusting into each other with the ferocity and precision of wild dogs. Yet you still feel a pointed desire radiating off of them, inviting you to join in with them.");
 	output("\n\nDo you really have time to spend fucking these two? <b>You’d best keep in mind how tainted these girls are and who made them. You’re not likely to get away with fucking them without something weird happening to you.</b>");
+	clearMenu();
+	//I could base it off of enemy capacity, but since it's a hyper-focused scene, might as well let hypers enjoy
+	//Also didn't do penis router cause the scene is focused on biggest dick anyway
+	if (pc.hasCock() && pc.cockThatFits(9000000) >= 0) addButton(0,"Run Train",runATrainOfHyperSluts,undefined,"Run Train","Be at the back and rail one sister while she fucks the other.");
+	else if (pc.hasCock()) addDisabledButton(0,"Run Train","Run Train","Even as capacious as this self-titled sexbot is, you’re too hung to squeeze inside.");
+	else addDisabledButton(0,"Run Train","Run Train", "You need a phallus for this!");
+	addButton(1,"Lead Train",vaginaRouter,[leadChooChooSlutTrain,enemy.cockVolume(0),1,0,false],"Lead Train","Be at the front and take one of them while they get fucked by the other.");
+	if (pc.hasCock()) addButton(2,"Get Service(P)",twinsServiceYaDick,undefined,"Get Service(P)","You’re not sure if their mouths are an option, but you’re sure they’ll manage.");
+	else addDisabledButton(2,"Get Service(P)","Get Service(P)","You need a phallus for this!")
+	if (pc.hasVagina()) addButton(3,"Get Service(V)",twinsServiceYaPussPuss,undefined,"Get Service(V)","You’re not sure if their mouths are an option, but you’re sure they’ll manage.");
+	else addDisabledButton(2,"Get Service(V)","Get Service(V)","You need a vagina for this!")
+	addButton(4,"Give Oral",suckDemTwinDicks,undefined,"Give Oral","Give the girls a little treat.");
+	addButton(14,"Leave",mainGameMenu);
 }
 //Victory
 //All sex scenes give large amounts of taint.

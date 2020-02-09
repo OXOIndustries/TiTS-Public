@@ -23,10 +23,10 @@ package classes.Characters
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
-			this.short = "twin bots";
+			this.short = "Model 17";
 			this.originalRace = "ausar";
-			this.a = "the";
-			this.capitalA = "The";
+			this.a = "";
+			this.capitalA = "";
 			this.long = "Placeholder";
 			this.customDodge = "";
 			this.customBlock = "";
@@ -60,6 +60,8 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 40;
 			
+			this.level = 10;
+			this.XPRaw = bossXP();
 			this.HPMod = 200;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
@@ -236,7 +238,7 @@ package classes.Characters
 			}
 			
 			//Frenzy Shift. Overrides other attacks
-			if (this.lust() >= this.lustMax()) choices = [frenzyShift17];
+			if (this.lust() >= this.lustMax() && !this.hasStatusEffect("Frenzy")) choices = [frenzyShift17];
 			//Gangbang stuff
 			else if (this.hasStatusEffect("Gonna Gangbang")) choices = [grappleToGangbang];
 			else if (target.hasStatusEffect("Grappled")) choices = [botsGangbang];
@@ -275,8 +277,8 @@ package classes.Characters
 			{
 				output("\n\nDespite your best efforts to fight her off, she manages to stick you with the needles, injecting their contents into your body. Heat starts to build at the injected area, slowly spreading out as your body fills with lust! At the same time, you feel yourself become heavier, more sluggish like the poison is numbing your muscles.");
 				applyDamage(new TypeCollection( { drug: 7 } ), this, target, "minimal");
-				target.physiqueMod -= 4;
-				target.reflexesMod -= 4;
+				target.physiqueMod -= 5;
+				target.reflexesMod -= 5;
 				target.taint(1);
 				if(!target.hasStatusEffect("Injected")) target.createStatusEffect("Injected",5,3,0,0,false,"Icon_DrugVial","An injected aphrodisiac. Excites over time. It should fade eventually.",true,0);
 				else target.addStatusValue("Injected",2,1);
@@ -315,7 +317,7 @@ package classes.Characters
 			else 
 			{
 				output("\n\nThe flames lick across your skin, leaving a strange sensation in their wake. The feeling quickly sinks into your skin, and you almost immediately realize it’s an aphrodisiac. The flames still burn, but it’s far less intense compared to the influx of lust.");
-				applyDamage(new TypeCollection( { drug: 3+rand(3), burn: 3 + rand(3) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 3+rand(3), burning: 3 + rand(3) } ), this, target, "minimal");
 			}
 		}
 		//Overload
@@ -333,7 +335,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("\n\nThe wave of force crashes into you like a loaded freighter as it passes through your body. You feel your " + (target.isGoo() ? "form destabilize":"bones almost compress") + " as you’re knocked to the ground, writhing as electric shocks cook you from the inside out. <b>In addition to the extreme pain, her attack has left you completely stunned!</b>/");
+				output("\n\nThe wave of force crashes into you like a loaded freighter as it passes through your body. You feel your " + (target.isGoo() ? "form destabilize":"bones almost compress") + " as you’re knocked to the ground, writhing as electric shocks cook you from the inside out. <b>In addition to the extreme pain, her attack has left you completely stunned!</b>");
 				applyDamage(damageRand(new TypeCollection( { electric: 55 } ), 15), this, target, "minimal");
 	 			CombatAttacks.applyStun(target);
 			}
@@ -406,6 +408,7 @@ package classes.Characters
 			while(bot18.HPQ() < 50) { bot18.HP(1); }
 			this.createStatusEffect("Frenzy");
 			bot18.createStatusEffect("Frenzy");
+			bot18.createStatusEffect("NO AI");
 		}
 	}
 }
