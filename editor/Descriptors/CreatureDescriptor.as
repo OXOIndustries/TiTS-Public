@@ -2113,7 +2113,7 @@ package editor.Descriptors {
         private function rangeValidator(args: Array, results: Array): String {
             if (args.length === 0) return 'needs at least one argument';
             if (results.length === 0) return 'needs at least one result';
-            if (results.length > args.length + 1) return 'has ' + (results.length - args.length + 1) + ' extraneous results';
+            if (results.length > args.length + 1) return 'has ' + (results.length - (args.length + 1)) + ' extraneous results';
             return null;
         }
 
