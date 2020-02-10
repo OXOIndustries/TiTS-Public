@@ -55,7 +55,25 @@ The `silly` is in TiTSDescriptor and is `public`, thus it can be used.
 
 ---
 ## How the interpreter handles data types
+---
+### Functions
+`Function` types are evaluated first. They are called with the `arguments` using `apply`.
+> `aFunc.apply(self, arguments)`
 
+or with `call` if `includeResults` is set. More on that in the `FunctionInfo` section.
+> `aFunc.apply(self, arguments, results)`
+
+Examples:
+> `[pc.cockNoun 1]`
+```
+pc.cockNoun(1)
+```
+
+The type of the result of the function call is then used below.
+If the return value is `null`, it will error. 
+
+---
+### Booleans
 `Boolean` types will not display. They are automatically turned into 
 ```
 if (identifier == true)
@@ -65,32 +83,20 @@ else if (results.length > 1)
 else
     ""
 ```
-Evaluation will fail if `arguments.length >= 0` or `results.length == 0` or `results.length > 2`
-
 ---
-`int`, `uint`, `Number`, etc. is displayed as is.
-
+### Numbers
+`Number` types do not display. They select from the `results`. If there are no `results` in the range, use empty string.
+```
+if (num < results.length)
+    results[num]
+else
+    ""
+```
 ---
+### Other
 `Object`, `null` will display an error.
 
----
-`Function` are called with the `arguments` using `apply`. 
-> `aFunc.apply(self, arguments)`
-
-Examples:
-> `[pc.cockNoun 1]`
-```
-pc.cockNoun(1)
-```
-
-If the return value is `null`, it will error. 
-
-If the return value has a `type` of `number` and `results[number]` exists, then `results[number]` will be used. This gives more range information in the interpreter's output.
-
 Anything else will coerced to `String`.
-
----
-Any other data types will be coerced to `String`.
 
 ---
 # Adding new parsers
