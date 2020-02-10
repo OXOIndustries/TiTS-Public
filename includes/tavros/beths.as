@@ -904,12 +904,17 @@ public function brothelWhorePayment(baseAmount:Number = 0, service:String = "non
 	// Bonus for contract workers who whore daily get a 25% bonus
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
 	{
+		var bonusTime:int = (1440);
+		// PC returns withing 24h and receives bonus payment, reset Turning Tricks timer
 		if(pc.hasStatusEffect("Turning Tricks Bonus"))
 		{
-			var bonusTime:int = (1440);
 			(returnAmount * 1.25);
+			// Reset timer
 			pc.setStatusMinutes("Turning Tricks Bonus", bonusTime);
+			// Player has received bonus
+			if (pc.statusEffectv1("Turning Tricks Bonus") == 0) pc.setStatusValue("Turning Tricks Bonus", 1, 1);
 		}
+		// PC qualifies for bonus the next time
 		else pc.createStatusEffect("Turning Tricks Bonus", 0, 0, 0, 0, true, "", "", false, bonusTime);
 	}
 	
@@ -1186,7 +1191,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	{
 		if(service != "all") output(" <i>“You’re a good little earner,”</i> she smirks, a small amount of color in her pale cheeks, raising an eyebrow at what you’ve brought in. <i>“Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 		else output(" <i>“You’re a good little earner,”</i> she goes on, raising an eyebrow at what you’ve brought in. <i>“Admirable lack of standards, too. Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
-		if(pc.hasStatusEffect("Turning Tricks Bonus")) output("\n\nYou look back at your codex and notice a bit more than what was split.\n\n<i>“That’s extra for being a productive whore,”</i> she smiles.");
+		if(pc.statusEffectv1("Turning Tricks Bonus") == 1) output("\n\nYou look back at your codex and notice a bit more than what was split.\n\n<i>“That’s extra for being a productive whore,”</i> she smiles.");
 	}
 	
 	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
@@ -2596,12 +2601,17 @@ public function brothelWhorePaymentTrap(baseAmount:Number = 0, service:String = 
 	// Bonus for contract workers who whore daily get a 25% bonus
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
 	{
+		var bonusTime:int = (1440);
+		// PC returns withing 24h and receives bonus payment, reset Turning Tricks timer
 		if(pc.hasStatusEffect("Turning Tricks Bonus"))
 		{
-			var bonusTime:int = (1440);
 			(returnAmount * 1.25);
+			// Reset timer
 			pc.setStatusMinutes("Turning Tricks Bonus", bonusTime);
+			// Player has received bonus
+			if (pc.statusEffectv1("Turning Tricks Bonus") == 0) pc.setStatusValue("Turning Tricks Bonus", 1, 1);
 		}
+		// PC qualifies for bonus the next time
 		else pc.createStatusEffect("Turning Tricks Bonus", 0, 0, 0, 0, true, "", "", false, bonusTime);
 	}
 	
@@ -3210,7 +3220,7 @@ public function brothelTurnTrixLicensedWhoreTrap(service:String = "none"):void
 	{
 		if(service != "all") output(" <i>“You’re a good little earner,”</i> she smirks, a small amount of color in her pale cheeks, raising an eyebrow at what you’ve brought in. <i>“Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 		else output(" <i>“You’re a good little earner,”</i> she goes on, raising an eyebrow at what you’ve brought in. <i>“Admirable lack of standards, too. Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
-		if(pc.hasStatusEffect("Turning Tricks Bonus")) output("\n\nYou look back at your codex and notice a bit more than what was split.\n\n<i>“That’s extra for being a productive whore,”</i> she smiles.");
+		if(pc.statusEffectv1("Turning Tricks Bonus") == 1) output("\n\nYou look back at your codex and notice a bit more than what was split.\n\n<i>“That’s extra for being a productive whore,”</i> she smiles.");
 	}
 	
 	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
