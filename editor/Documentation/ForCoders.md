@@ -148,3 +148,15 @@ This changes how functions are called.
 Normally, they are called `func.apply(self, args)`, but this changes it to `func.call(self, args, results)`.
 
 *Note: `apply` spreads `args` over the paramters. `call` does not spread.*
+
+---
+### identityOverride
+Setting this overrides the `identity` used when generating code.
+
+Example:
+> Override is `taint()`.
+
+> `[pc.taintIs 5|5|not 5]`
+```
+(pc.taint() === 5 ? "5" : "not 5")
+```

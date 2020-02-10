@@ -185,6 +185,7 @@ package editor.Lang.Interpret {
             var values: * = this.processChildren(node);
             var obj: * = this.globals;
             var name: String = '';
+            var codeStr: String = '';
 
             var infoObj: * = null;
             var identity: String;
@@ -220,9 +221,15 @@ package editor.Lang.Interpret {
 
                 selfObj = obj;
                 obj = obj[identity];
-                if (name.length > 0)
+                if (name.length > 0) {
                     name += '.';
+                    codeStr += '.';
+                }
                 name += identity;
+                if (idx == values.length - 1 && infoObj && infoObj.identityOverride)
+                    codeStr += infoObj.identityOverride;
+                else
+                    codeStr += identity + (typeof obj === 'function' ? '()' : '');
             }
 
             return new Product(
@@ -233,7 +240,7 @@ package editor.Lang.Interpret {
                     caps: caps,
                     info: infoObj
                 },
-                name
+                codeStr
             );
         }
 

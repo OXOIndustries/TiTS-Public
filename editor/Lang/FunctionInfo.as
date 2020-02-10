@@ -7,7 +7,8 @@ package editor.Lang {
         private var _toCode: Function;
         private var _desc: String;
         private var _includeResults: Boolean = false;
-        
+        private var _identOverride: String;
+
         /**
          * Sets function used to determine if the Args and Results passed to the matching function are correct
          * Strings in results will be surrounded with '"'
@@ -81,6 +82,19 @@ package editor.Lang {
          */
         public function get includeResults(): Boolean {
             return this._includeResults;
+        }
+
+        /**
+         * Overrides the `identity` used when generating code
+         * @param identity String
+         */
+        public function setIdentityOverride(identity: String): FunctionInfo {
+            _identOverride = identity;
+            return this;
+        }
+
+        public function get identityOverride(): String {
+            return this._identOverride;
         }
     }
 }
