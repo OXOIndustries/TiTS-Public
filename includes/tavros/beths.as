@@ -1192,6 +1192,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(service != "all") output(" <i>“You’re a good little earner,”</i> she smirks, a small amount of color in her pale cheeks, raising an eyebrow at what you’ve brought in. <i>“Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 		else output(" <i>“You’re a good little earner,”</i> she goes on, raising an eyebrow at what you’ve brought in. <i>“Admirable lack of standards, too. Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 		if(pc.statusEffectv1("Turning Tricks Bonus") == 1) output("\n\nYou look back at your codex and notice a bit more than what was split.\n\n<i>“That’s extra for being a productive whore,”</i> she smiles.");
+		// PC only qualifies for bonus, but hasn't actually received it (9999 maybe encourage PC to come back)
+		// else if(pc.hasStatusEffect("Turning Tricks Bonus")) output(" She smiles, <i>“Come back soon, regulars are properly rewarded.”</i>");
 	}
 	
 	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
@@ -3221,6 +3223,8 @@ public function brothelTurnTrixLicensedWhoreTrap(service:String = "none"):void
 		if(service != "all") output(" <i>“You’re a good little earner,”</i> she smirks, a small amount of color in her pale cheeks, raising an eyebrow at what you’ve brought in. <i>“Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 		else output(" <i>“You’re a good little earner,”</i> she goes on, raising an eyebrow at what you’ve brought in. <i>“Admirable lack of standards, too. Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 		if(pc.statusEffectv1("Turning Tricks Bonus") == 1) output("\n\nYou look back at your codex and notice a bit more than what was split.\n\n<i>“That’s extra for being a productive whore,”</i> she smiles.");
+		// PC only qualifies for bonus, but hasn't actually received it (9999 maybe encourage PC to come back)
+		// else if(pc.hasStatusEffect("Turning Tricks Bonus")) output(" She smiles, <i>“Come back soon, regulars are properly rewarded.”</i>");
 	}
 	
 	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
