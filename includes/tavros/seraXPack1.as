@@ -1761,10 +1761,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 				output(" to Jardi’s teasing touch.");
 			}
 			processTime(25 + rand(11));
-			var lustC:Number = 15;
-			if(pc.hasCock()) lustC += 15;
-			if(pc.hasVagina()) lustC += 15;
-			pc.changeLust(lustC);
+			var lustC2:Number = 15;
+			if(pc.hasCock()) lustC2 += 15;
+			if(pc.hasVagina()) lustC2 += 15;
+			pc.changeLust(lustC2);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXJardiThreesome, "hookah");
 			return;
@@ -1787,10 +1787,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			else output(" Her teeth gleam as she flares her hips to dip into Jardi’s seeping vagina, displaying her rear to you - her bloated balls, wet pussy, and large, round ass. <i>“Since you did such a good job of warming this slut up for the good, hard fucking I’m gonna give her...I will leave it up to you how you use your mouth to please me as I do.”</i>");
 			
 			processTime(10);
-			var lustC:Number = 5;
-			if(pc.hasCock()) lustC += 5;
-			if(pc.hasVagina()) lustC += 5;
-			pc.changeLust(lustC);
+			var lustC3:Number = 5;
+			if(pc.hasCock()) lustC3 += 5;
+			if(pc.hasVagina()) lustC3 += 5;
+			pc.changeLust(lustC3);
 			// [Balls] [Pussy] [Ass]
 			clearMenu();
 			addButton(0, "Balls", seraSexXXXJardiThreesome, "balls");
