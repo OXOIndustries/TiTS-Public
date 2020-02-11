@@ -40,21 +40,7 @@ package editor.Descriptors {
             }
         }
 
-        // Validators
-        private function oneResult(args: Array, results: Array): String {
-            if (results.length > 1) return "has too many results";
-            if (results.length === 0) return "needs one result";
-            if (args.length > 0) return "has too many arguments";
-            return null;
-        }
-
-        private function hasOneOptionalNumberArgManyResults(args: Array, results: Array): String {
-            if (args.length > 1) return "has too many arguments";
-            if (args.length == 1 && typeof args[0] !== 'number') return "needs one number argument";
-            if (results.length == 0) return "needs one result";
-            return null;
-        }
-
+        // New Parsers
         /**
          * Wraps a HTML tag around text
          * @param tag
@@ -65,7 +51,6 @@ package editor.Descriptors {
             return "<" + tag + ">" + text + "</" + tag + ">";
         }
 
-        // Test things
         private function iToCode(identifier: String, args: Array, results: Array): String {
             if (results.length > 0)
                 return '"' + htmlTagText('i', results[0].substring(1, results[0].length - 1)) + '"';
@@ -73,7 +58,7 @@ package editor.Descriptors {
                 return '"' + htmlTagText('i', "") + '"';
         }
         public const i__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneResult)
+            .addArgResultValidator(Validators.oneResult)
             .setToCodeFunc(iToCode)
             .setIncludeResults();
         public function i(args: Array, results: Array): String {
@@ -87,7 +72,7 @@ package editor.Descriptors {
                 return '"' + htmlTagText('b', "") + '"';
         }
         public const b__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneResult)
+            .addArgResultValidator(Validators.oneResult)
             .setToCodeFunc(bToCode)
             .setIncludeResults();
         public function b(args: Array, results: Array): String {
@@ -95,17 +80,18 @@ package editor.Descriptors {
         }
 
         public const cap__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneResult)
+            .addArgResultValidator(Validators.oneResult)
             .setIncludeResults();
         public function cap(args: Array, results: Array): String {
             return results[0].charAt(0).toLocaleUpperCase() + results[0].slice(1);
         }
 
         private function randToCode(identifier: String, args: Array, results: Array): String {
-            return 'RandomInCollection(' + results.join(', ') + ')';
+            return identifier + '(' + results.join(', ') + ')';
         }
         public const rand__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(hasOneOptionalNumberArgManyResults)
+            .setIdentityOverride('RandomInCollection')
+            .addArgResultValidator(Validators.hasOneOptionalNumberArgManyResults)
             .setToCodeFunc(randToCode)
             .setIncludeResults();
         public function rand(args: Array, results: Array): int {
@@ -115,13 +101,18 @@ package editor.Descriptors {
                 return Math.floor(Math.random() * results.length);
         }
 
-        // From TiTS
-        public const silly__info: FunctionInfo = new FunctionInfo().setDesc('Is Silly Mode engaged');
+        // From TiTS / Old Parsers
+        public const silly__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('gameOptions.sillyMode')
+            .setDesc('Is Silly Mode engaged');
         public function get silly(): Boolean {
             if (this.game.gameOptions)
                 return !!this.game.gameOptions.sillyMode;
             return false;
         }
+        public const easy__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('gameOptions.easyMode')
+            .setDesc('Is Easy Mode engaged');
         public function get easy(): Boolean {
             if (this.game.gameOptions)
                 return !!this.game.gameOptions.easyMode;
@@ -248,60 +239,54 @@ package editor.Descriptors {
         public function get bianca(): CreatureDescriptor { return this.charDesc["BIANCA"]; }
         public function get synphia(): CreatureDescriptor { return this.charDesc["SYNPHIA"]; }
 
-        // New parsers
-        // Validators
-        private function hasOneArgUpToTwoResults(args: Array, results: Array): String {
-            if (args.length > 1) return "has too many arguments";
-            if (args.length === 0) return "needs one argument";
-            if (typeof args[0] !== 'number') return "needs one number argument";
-            if (results.length > 2) return "has too many results";
-            return null;
-        }
-
-        private function rangeValidator(args: Array, results: Array): String {
-            if (args.length === 0) return 'needs at least one argument';
-            if (results.length === 0) return 'needs at least one result';
-            if (results.length > args.length + 1) return 'has ' + (results.length - args.length + 1) + ' extraneous results';
-            return null;
-        }
-
-        // Functionality
-        private function rangeEval(value: Number, args: Array): Number {
-            for (var idx: int = 0; idx < args.length; idx++) {
-                if (args[idx] <= value && (
-                    idx === args.length - 1 ||
-                    value < args[idx + 1]
-                )) {
-                    return idx;
-                }
-            }
-            return idx;
-        }
-
         // New Parsers
-        public const hourIs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function hourIs(arg: Number): Number {
-            return this.game.hours == arg ? 0 : 1;
+        public const hourIs__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('hours')
+            .setToCodeFunc(ToCode.equals)
+            .addArgResultValidator(Validators.range)
+            .setDesc('Hour is equal to 1 or 2 or 3...');
+        public function hourIs(... args): Number {
+            return Eval.equals(this.game.hours, args);
         }
-        public const hourRange__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public const hourRange__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('hours')
+            .setToCodeFunc(ToCode.range)
+            .addArgResultValidator(Validators.range)
+            .setDesc('Hour range');
         public function hourRange(... args): Number {
-            return rangeEval(this.game.hours, args);
+            return Eval.range(this.game.hours, args);
         }
-        public const dayIs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function dayIs(arg: Number): Number {
-            return this.game.days == arg ? 0 : 1;
+        public const dayIs__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('days')
+            .setToCodeFunc(ToCode.equals)
+            .addArgResultValidator(Validators.range)
+            .setDesc('Day is equal to 1 or 2 or 3...');
+        public function dayIs(... args): Number {
+            return Eval.equals(this.game.days, args);
         }
-        public const dayRange__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public const dayRange__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('days')
+            .setToCodeFunc(ToCode.range)
+            .addArgResultValidator(Validators.range)
+            .setDesc('Day range');
         public function dayRange(... args): Number {
-            return rangeEval(this.game.days, args);
+            return Eval.range(this.game.days, args);
         }
-        public const minuteIs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function minuteIs(arg: Number): Number {
-            return this.game.minutes == arg ? 0 : 1;
+        public const minuteIs__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('minutes')
+            .setToCodeFunc(ToCode.equals)
+            .addArgResultValidator(Validators.range)
+            .setDesc('Minute is equal to 1 or 2 or 3...');
+        public function minuteIs(... args): Number {
+            return Eval.equals(this.game.minutes, args);
         }
-        public const minuteRange__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public const minuteRange__info: FunctionInfo = new FunctionInfo()
+            .setIdentityOverride('minutes')
+            .setToCodeFunc(ToCode.range)
+            .addArgResultValidator(Validators.range)
+            .setDesc('Minute range');
         public function minuteRange(... args): Number {
-            return rangeEval(this.game.minutes, args);
+            return Eval.range(this.game.minutes, args);
         }
     }
 }

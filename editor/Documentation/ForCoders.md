@@ -35,6 +35,19 @@ identifier: ["pc", "cumQRange"]
 arguments: [0, 100, 1000, 5000]
 results: ["0~100", "100~1000", "1000~5000", "5000+"]
 ```
+---
+## Whitespace
+Newlines following the end of the `result` text are ignored.
+> `Silly mode is [silly`
+>
+> `|enabled`
+>
+> `|disabled`
+>
+> `].` 
+```
+Silly mode is disabled.
+```
 
 # Relation between the code and parsers
 The `interpreter` takes in a `Object`. Anything `public` can be used in the text.
@@ -55,7 +68,25 @@ The `silly` is in TiTSDescriptor and is `public`, thus it can be used.
 
 ---
 ## How the interpreter handles data types
+---
+### Functions
+`Function` types are evaluated first. They are called with the `arguments` using `apply`.
+> `aFunc.apply(self, arguments)`
 
+or with `call` if `includeResults` is set. More on that in the `FunctionInfo` section.
+> `aFunc.apply(self, arguments, results)`
+
+Examples:
+> `[pc.cockNoun 1]`
+```
+pc.cockNoun(1)
+```
+
+The type of the result of the function call is then used below.
+If the return value is `null`, it will error. 
+
+---
+### Booleans
 `Boolean` types will not display. They are automatically turned into 
 ```
 if (identifier == true)
@@ -65,32 +96,20 @@ else if (results.length > 1)
 else
     ""
 ```
-Evaluation will fail if `arguments.length >= 0` or `results.length == 0` or `results.length > 2`
-
 ---
-`int`, `uint`, `Number`, etc. is displayed as is.
-
+### Numbers
+`Number` types do not display. They select from the `results`. If there are no `results` in the range, use empty string.
+```
+if (num < results.length)
+    results[num]
+else
+    ""
+```
 ---
+### Other
 `Object`, `null` will display an error.
 
----
-`Function` are called with the `arguments` using `apply`. 
-> `aFunc.apply(self, arguments)`
-
-Examples:
-> `[pc.cockNoun 1]`
-```
-pc.cockNoun(1)
-```
-
-If the return value is `null`, it will error. 
-
-If the return value has a `type` of `number` and `results[number]` exists, then `results[number]` will be used. This gives more range information in the interpreter's output.
-
 Anything else will coerced to `String`.
-
----
-Any other data types will be coerced to `String`.
 
 ---
 # Adding new parsers
@@ -112,11 +131,25 @@ This info is accessed by the interpreter by taking the last `identity` in an `id
 
 ---
 ### argResultValidator
+> `addArgResultValidator(argResultValidator: Function)`
 > `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
 
 This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
 
 An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` take in one optional `argument` and no `results`.
+
+Multiple can be added to the `FunctionInfo` by calling `addArgResultValidator`. The order they are added is the order of testing.
+
+---
+### mapArgs
+> `addMapArgs(callback: Function)`
+> `callback(name: String, idx: int, arr: Array)`
+
+This maps `arguments` before being passed to `toCode`. Useful for converting types, flags, etc. to the corresponding index number.
+
+Each `argument` is surrounded by `""`.
+
+Multiple can be added to the `FunctionInfo` by calling `addMapArgs`. The order they are added is the order of processing.
 
 ---
 ### toCode
@@ -148,3 +181,15 @@ This changes how functions are called.
 Normally, they are called `func.apply(self, args)`, but this changes it to `func.call(self, args, results)`.
 
 *Note: `apply` spreads `args` over the paramters. `call` does not spread.*
+
+---
+### identityOverride
+Setting this overrides the `identity` used when generating code.
+
+Example:
+> Override is `taint()`.
+
+> `[pc.taintIs 5|5|not 5]`
+```
+(pc.taint() === 5 ? "5" : "not 5")
+```
