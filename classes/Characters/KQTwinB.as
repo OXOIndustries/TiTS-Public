@@ -339,8 +339,8 @@ package classes.Characters
 			output("\n\n<i>“So horny! So hard! Need to fuck! Need to fuck! NEED TO FUCK! FUCK NOW!”</i>");
 			output("\n\nLooks like this is far from over!");
 			//Increase hp to half if below
-			if(this.HPQ() < 50) this.HP(Math.ceil(this.HPMax()/2),true);
-			if(bot17.HPQ() < 50) bot17.HP(Math.ceil(bot17.HPMax()/2),true);
+			if(this.HPQ() < 50)  this.HP(this.HPMax()/2 - this.HP());
+			if(bot17.HPQ() < 50) bot17.HP(bot17.HPMax()/2 - bot17.HP());
 			//make sure ally is full lust too
 			bot17.maxOutLust();
 			this.createStatusEffect("Frenzy");

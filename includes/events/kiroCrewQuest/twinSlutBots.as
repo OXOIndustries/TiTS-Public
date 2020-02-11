@@ -6,7 +6,7 @@ public function showKQTwins(nude:Boolean = false):void
 {
 	showName("TWIN\nSEXBOTS");
 	//Don't actually know if there's gonna be a nude variant or not
-	showBust("KQ_TWIN_SEXBOTS" + (nude ? "_NUDE":""));
+	showBust("KQ_TWINS" + (nude ? "_NUDE":""));
 }
 public function twinSexdollEncounter():Boolean
 {
@@ -112,8 +112,7 @@ public function twinsRepeatEncounter():void
 	var enemy:Creature = new KQTwinA();
 	//I could base it off of enemy capacity, but since it's a hyper-focused scene, might as well let hypers enjoy
 	//Also didn't do penis router cause the scene is focused on biggest dick anyway
-	if (pc.hasCock() && pc.cockThatFits(9000000) >= 0) addButton(0,"Run Train",runATrainOfHyperSluts,undefined,"Run Train","Be at the back and rail one sister while she fucks the other.");
-	else if (pc.hasCock()) addDisabledButton(0,"Run Train","Run Train","Even as capacious as this self-titled sexbot is, you’re too hung to squeeze inside.");
+	if (pc.hasCock()) addButton(0,"Run Train",penisRouter,[runATrainOfHyperSluts,80085,false,0],"Run Train","Be at the back and rail one sister while she fucks the other.");
 	else addDisabledButton(0,"Run Train","Run Train", "You need a phallus for this!");
 	addButton(1,"Lead Train",vaginaRouter,[leadChooChooSlutTrain,enemy.cockVolume(0),1,0,false],"Lead Train","Be at the front and take one of them while they get fucked by the other.");
 	if (pc.hasCock()) addButton(2,"Get Service(P)",twinsServiceYaDick,undefined,"Get Service(P)","You’re not sure if their mouths are an option, but you’re sure they’ll manage.");
@@ -138,8 +137,7 @@ public function beatUpTheOverAugmentedTwins():void
 	clearMenu();
 	//I could base it off of enemy capacity, but since it's a hyper-focused scene, might as well let hypers enjoy
 	//Also didn't do penis router cause the scene is focused on biggest dick anyway
-	if (pc.hasCock() && pc.cockThatFits(9000000) >= 0) addButton(0,"Run Train",runATrainOfHyperSluts,undefined,"Run Train","Be at the back and rail one sister while she fucks the other.");
-	else if (pc.hasCock()) addDisabledButton(0,"Run Train","Run Train","Even as capacious as this self-titled sexbot is, you’re too hung to squeeze inside.");
+	if (pc.hasCock()) addButton(0,"Run Train",penisRouter,[runATrainOfHyperSluts,80085,false,0],"Run Train","Be at the back and rail one sister while she fucks the other.");
 	else addDisabledButton(0,"Run Train","Run Train", "You need a phallus for this!");
 	addButton(1,"Lead Train",vaginaRouter,[leadChooChooSlutTrain,enemy.cockVolume(0),1,0,false],"Lead Train","Be at the front and take one of them while they get fucked by the other.");
 	if (pc.hasCock()) addButton(2,"Get Service(P)",twinsServiceYaDick,undefined,"Get Service(P)","You’re not sure if their mouths are an option, but you’re sure they’ll manage.");
@@ -150,15 +148,19 @@ public function beatUpTheOverAugmentedTwins():void
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 //10-14 inch gain if “small”, 7-9 if “medium”, 4-6 if “big” or “hyper”,1-3 if “super hyper
-public function runATrainOfHyperSluts():void
+public function runATrainOfHyperSluts(x:int):void
 {
 	clearOutput();
 	showKQTwins(true);
 	author("QuestyRobo");
-	var x:int = pc.cockThatFits(9000000);
-	if (x < 0) x = pc.smallestCockIndex();
-	var y:int = pc.cockThatFits2(9000000);
-	if (pc.cockTotal() == 1) y = -1;
+	//var x:int = pc.cockThatFits(9000000);
+	//if (x < 0) x = pc.smallestCockIndex();
+	var y:int = -1;
+	if(pc.hasCocks())
+	{
+		if (x == 0) y == 1;
+		else y == 0;
+	}
 	if(!inCombat())
 	{
 		setEnemy(new KQTwinA());
@@ -250,19 +252,54 @@ public function runATrainOfHyperSluts():void
 	else
 	{
 		output("\n\nYou grow lowly in supreme satisfaction at what’s happening. You never thought you’d find anyone outside of legitimate giants that could take your deity-like size with such ease. Their own monumental dicks look almost puny by comparison. The thought that even someone like Illustria Po can’t even craft a cock that can even hope to match yours swells your ego as much as it does your [pc.cocks].");
-		output("\n\nA sublime sensation of growth washes over your member" + (y >= 0 ? "s":"") + ", expanding " + (y >= 0 ? "them":"it") + " to " + (y >= 0 ? "sizes":"a size") + " even further beyond. You don’t care, though" + (pc.taint() <= 66) ? ",despite your better judgement":"" + ". What’re another few inches on top of what you already have? These two seem more than willing to take it.");
+		output("\n\nA sublime sensation of growth washes over your member" + (y >= 0 ? "s":"") + ", expanding " + (y >= 0 ? "them":"it") + " to " + (y >= 0 ? "sizes":"a size") + " even further beyond. You don’t care, though" + (pc.taint() <= 66) ? ", despite your better judgement":"" + ". What’re another few inches on top of what you already have? These two seem more than willing to take it.");
 	}
 	//Sexy sexy cock changes
 	//10-14 inch gain if “small”, 7-9 if “medium”, 4-6 if “big” or “hyper”,1-3 if “super hyper”
 	var plus:Number = 0;
+	var plus2:Number = 0;
 	if (pc.cocks[x].cLengthRaw < 12) plus = 10+rand(5);
 	else if (pc.cocks[x].cLengthRaw < 20) plus = 7+rand(3);
 	else if (pc.cocks[x].cLengthRaw < 60) plus = 4+rand(3);
 	else plus = 1+rand(3);
-	if (pc.hasPerk("Mini")) plus--;
-	else if (pc.hasPerk("Hung")) plus++;
+	//These two werent significant enough at the higher growth sizes.
+	if (pc.hasPerk("Mini")) 
+	{
+		plus--;
+		if(plus > 5) plus--;
+		if(plus > 5) plus--;
+	}
+	else if (pc.hasPerk("Hung")) 
+	{
+		plus++;
+		if(plus < 5) plus++;
+		if(plus < 5) plus++;
+	}
+	if(plus < 2) plus = 2;
 	pc.cocks[x].cLengthRaw += plus;
-	if (y >= 0) pc.cocks[y].cLengthRaw += plus;
+	//Made it properly size for Y with the same basic formula as X.
+	if (y >= 0)
+	{
+		if (pc.cocks[y].cLengthRaw < 12) plus2 = 10+rand(5);
+		else if (pc.cocks[y].cLengthRaw < 20) plus2 = 7+rand(3);
+		else if (pc.cocks[y].cLengthRaw < 60) plus2 = 4+rand(3);
+		else plus2 = 1+rand(3);
+		if (pc.hasPerk("Mini")) 
+		{
+			plus2--;
+			if(plus2 > 5) plus2--;
+			if(plus2 > 5) plus2--;
+		}
+		else if (pc.hasPerk("Hung")) 
+		{
+			plus2++;
+			if(plus2 < 5) plus2++;
+			if(plus2 < 5) plus2++;
+		}
+		if(plus2 < 2) plus2 = 2;
+		pc.cocks[y].cLengthRaw += plus2;
+
+	}
 	pc.taint(3);
 
 	output("\n\nYou start thrusting faster than you thought you were capable of, spurred on by the fresh injection of cock-pumping chemicals. Your movements feel heavier and heavier with each passing second, yet your body and, increasingly, mind are determined to carry your dick no matter what. Every inch added to your [pc.cocks] adds to the sublime, brain-melting pleasure. The outside world starts to fade as the tight, squelching of her " + (y >= 0 ? "fuck holes":"pussy") + " grows louder and louder to your [pc.ears].");
@@ -310,7 +347,7 @@ public function runATrainOfHyperSluts():void
 		output("\n\nEven after you’ve finished unloading inside of her, your knot" + (pc.hasKnot(y) ? "s remain":" remains") + " firmly inflated and locked in her. She reacts like you’d expect any good dog-slut to react; drooling, yipping, and wagging her tail in pleasure at being so thoroughly tied and bred.");
 		output("\n\n<i>“Are you being knotted, sister? Oh, I’m so envious! I haven’t had a good knotting since Mother took ours. Oh, the days when you’d keep me tied down for hours on end...”</i>");
 	}
-	output("\n\nFinally, you pull out, taking far longer than you normally would thanks to the growth-inducing chemicals she’s pumped into you. Hefting up your [pc.cock " + x + "], you’d estimate that <b>she’s given you about " + num2Text(plus) + " extra inches of dickmeat!</b> While you’re examining your expanded inches, the two lab-dogs start ruthlessly rutting again, apparently still not satisfied. It keeps them out of your way, at least; even if you feel a dangerous desire to go back in for another round...");
+	output("\n\nFinally, you pull out, taking far longer than you normally would thanks to the growth-inducing chemicals she’s pumped into you. Hefting up your [pc.cock " + x + "], you’d estimate that <b>she’s given you about " + num2Text(plus) + " extra inches of dickmeat" + (y >= 0 ? " and that's not even considering the extra volume your second prong gained":"") + "!</b> While you’re examining your expanded inches, the two lab-dogs start ruthlessly rutting again, apparently still not satisfied. It keeps them out of your way, at least; even if you feel a dangerous desire to go back in for another round...");
 	output("\n\nYou get your gear back on and head out, the extra size weighing heavily on your mind.");
 	output("\n\n");
 	//Code note: make sure the parsers BEFORE growth are parsed before growth is applied and the parsers for post-growth are applied after the stat changes are made. It’ll be nicely noticeable if you jump a size category from the enlargement. -Fen
@@ -424,17 +461,17 @@ public function leadChooChooSlutTrain(hole:int):void
 	pc.taint(6);
 	if (x >= 0)
 	{
-		pc.vaginas[x].bonusCapacity += 100;
-		pc.vaginas[x].wetness(2);
+		pc.vaginas[x].bonusCapacity += 50;
+		pc.vaginas[x].wetness(1);
 		pc.loadInCunt(enemy,x);
 	}
 	else
 	{
-		pc.ass.bonusCapacity += 100;
-		pc.ass.wetness(2);
+		pc.ass.bonusCapacity += 50;
+		pc.ass.wetness(1);
 		pc.loadInAss(enemy);
 	}
-	pc.buttRating(3);
+	pc.buttRating(5);
 	addButton(0,"Next",leadChooChooSlutTrainEpilogue,x);
 }
 public function leadChooChooSlutTrainEpilogue(x:int):void
@@ -449,7 +486,7 @@ public function leadChooChooSlutTrainEpilogue(x:int):void
 	output("\n\nYou finally finish gearing back up and start heading out; something much easier said than done with how much cum you’re carrying around. 18 lets out a noise that’s somewhere between a laugh and a moan as she mockingly strokes her still-cum-spewing ogre cock at you. You ");
 	if (pc.isBimbo()) output("resist the urge for another round");
 	else output("ignore her as best you can");
-	output(", you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save after all!");
+	output(", you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save after all!\n\n");
 	processTime(1);
 	if (inCombat()) CombatManager.genericVictory();
 	else addButton(0, "Next", mainGameMenu);
