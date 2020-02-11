@@ -258,7 +258,7 @@ package classes.Characters
 				output("The blows connect with shocking force, pummeling you with hit after hit. Each strike is just subdued enough that you don’t think they’re capable of breaking your bones. Instead, it seems like she’s just tenderizing you for something else!");
 				for (var i:int = 0; i < 4; i++)
 				{
-					applyDamage(new TypeCollection( { kinetic: 7 } ), this, target, "minimal");
+					applyDamage(new TypeCollection( { kinetic: 13 } ), this, target, "minimal");
 				}
 				output("\n\nShe grins. <i>“You like it? There’s more where that came from.”</i>");
 			}
@@ -277,7 +277,7 @@ package classes.Characters
 			else
 			{
 				output("\n\nDespite your best efforts to fight her off, she manages to stick you with the medical-grade weapons, injecting their contents into your body. Heat starts to build there, slowly spreading out as your body fills with lust! At the same time, you feel yourself become heavier, more sluggish like the poison is numbing your muscles.");
-				applyDamage(new TypeCollection( { drug: 11 } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 12 } ), this, target, "minimal");
 				
 				target.taint(1);
 				if(!target.hasStatusEffect("Injected")) 
@@ -305,7 +305,7 @@ package classes.Characters
 				output("\n\nThe force of the blast splatters against you like a high-powered firehose, nearly knocking you off of your [pc.footOrFeet]. She cakes it onto you, layer after layer clinging to your unprepared body like hot glue. It overloads all of your senses; sight, smell, touch, the works. By the time it’s done, you feel like you’re more cum than [pc.race]. It feels like it’s seeping into your pores, delivering some faint but effective aphrodisiac into your blood, making your heart race and blood rocket to your crotch.");
 				if (target.isBimbo() || target.isCumSlut()) output(" Of course, you take the time to lick up as much yummy cummy as possible. Can’t, like, fight on an empty stomach!");
 				target.applyCumSoaked();
-				applyDamage(new TypeCollection( { tease: 10+rand(3) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { tease: 12+rand(3) } ), this, target, "minimal");
 			}
 		}
 		//Chemical Burner
@@ -321,7 +321,7 @@ package classes.Characters
 			else 
 			{
 				output("\n\nThe flames lick across your skin, leaving a strange sensation in their wake. The feeling quickly sinks into your skin, and you almost immediately realize it’s an aphrodisiac. The flames still burn, but it’s far less intense compared to the influx of lust.");
-				applyDamage(new TypeCollection( { drug: 3+rand(3), burning: 5 + rand(3) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 7+rand(3), burning: 45 + rand(3) } ), this, target, "minimal");
 			}
 		}
 		//Overload
