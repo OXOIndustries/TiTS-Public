@@ -118,11 +118,25 @@ This info is accessed by the interpreter by taking the last `identity` in an `id
 
 ---
 ### argResultValidator
+> `addArgResultValidator(argResultValidator: Function)`
 > `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
 
 This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
 
 An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` take in one optional `argument` and no `results`.
+
+Multiple can be added to the `FunctionInfo` by calling `addArgResultValidator`. The order they are added is the order of testing.
+
+---
+### mapArgs
+> `addMapArgs(callback: Function)`
+> `callback(name: String, idx: int, arr: Array)`
+
+This maps `arguments` before being passed to `toCode`. Useful for converting types, flags, etc. to the corresponding index number.
+
+Each `argument` is surrounded by `""`.
+
+Multiple can be added to the `FunctionInfo` by calling `addMapArgs`. The order they are added is the order of processing.
 
 ---
 ### toCode

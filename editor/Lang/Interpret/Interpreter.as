@@ -299,7 +299,7 @@ package editor.Lang.Interpret {
             const identifer: String = this.getName(node.children[0]);
 
             const argsValueArr: Array = new Array();
-            const argsCodeArr: Array = new Array();
+            var argsCodeArr: Array = new Array();
             for each (var child: * in args.value) {
                 argsValueArr.push(child.value);
                 argsCodeArr.push(child.code);
@@ -320,9 +320,12 @@ package editor.Lang.Interpret {
 
                 // Validate args and results
                 if (retrieve.value.info && retrieve.value.info.argResultValidator !== null) {
-                    const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
-                    if (validResult !== null) {
-                        this.createError(node.range, '"' + identifer + '" ' + validResult);
+                    for each (var validator: * in retrieve.value.info.argResultValidator) {
+                        const validResult: * = validator(argsValueArr, resultsValueArr);
+                        if (validResult !== null) {
+                            this.createError(node.range, '"' + identifer + '" ' + validResult);
+                            break;
+                        }
                     }
                 }
                 // No args or results if no validator
@@ -434,6 +437,9 @@ package editor.Lang.Interpret {
             }
 
             if (retrieve.value.info && retrieve.value.info.toCode !== null) {
+                if (retrieve.value.info.mapArgsCallbacks !== null)
+                    for each (var preprocessor: * in retrieve.value.info.mapArgsCallbacks)
+                        argsCodeArr = argsCodeArr.map(preprocessor);
                 returnCode = retrieve.value.info.toCode(retrieve.code, argsCodeArr, resultsCodeArr);
             }
 
