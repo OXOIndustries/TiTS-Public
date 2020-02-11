@@ -62,15 +62,18 @@ package editor.Display.Panes {
         }
 
         private function describeValue(key: String, obj: Object): String {
-            var text: String = key + ': ';
-            switch (typeof obj[key]) {
-                case 'string': text += 'text'; break;
-                case 'boolean': text += 'yes or no'; break;
-                case 'object': text += 'container'; break;
-                default: text += typeof obj[key]; break;
-            }
+            // var text: String = key + ': ';
+            // switch (typeof obj[key]) {
+            //     case 'string': text += 'text'; break;
+            //     case 'boolean': text += 'yes or no'; break;
+            //     case 'object': text += 'container'; break;
+            //     default: text += typeof obj[key]; break;
+            // }
+            // if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
+            //         text += ' - ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
+            var text: String = key;
             if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
-                    text += ' - ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
+                    text += ': ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
             return text;
         }
 
