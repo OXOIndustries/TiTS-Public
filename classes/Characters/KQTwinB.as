@@ -242,16 +242,16 @@ package classes.Characters
 			output("18 bares her fists and charges you, her battle lust obvious even with her face completely covered.");
 			if(combatMiss(this,target))
 			{
-				output("\n\nHer ‘extra mass’ makes her pretty clumsy, and you’re able to avoid her frantic blows with relative ease.");
+				output(" Her ‘extra mass’ makes her pretty clumsy, and you’re able to avoid her frantic blows with relative ease.");
 			}
 			else
 			{
-				output("\n\nHer fists connect with shocking force, pummeling you with blow after blow. Each hit is just subdued enough that you don’t think they’d break your bones. Instead, it seems like she’s just tenderizing you for what they have planned!");
-				output("\n\nShe grins. <i>“You like it? There’s more where that came from.”</i>");
+				output(" Her mitts connect with shocking force, pummeling you with blow after blow. Each hit is just subdued enough that you don’t think they’d truly injure you. Instead, it seems like she’s just tenderizing you for something else!");
 				for (var i:int = 0; i < 4; i++)
 				{
-					applyDamage(new TypeCollection( { kinetic: 5 } ), this, target, "minimal");
+					applyDamage(new TypeCollection( { kinetic: 8 } ), this, target, "minimal");
 				}
+				output("\n\nShe grins. <i>“You like it? There’s more where that came from.”</i>");
 			}
 		}
 		//Inject
@@ -260,19 +260,22 @@ package classes.Characters
 		public function bot18Inject(target:Creature,bot17:Creature):void
 		{
 			author("QuestyRobo");
-			output("18 clicks something on her wrist, causing needles to sprout at the tips of her fingers. She wiggles them playfully at you before charging you.");
+			output("18 clicks something on her wrist, causing needles to sprout at the tips of her fingers. She wiggles them playfully at you before charging.");
 			if(combatMiss(this,target))
 			{
-				output("\n\nHer ‘extra mass’ makes her pretty clumsy, and you’re able to avoid her with relative ease.");
+				output(" Her ‘extra mass’ makes her pretty clumsy, and you’re able to avoid her with relative ease.");
 			}
 			else
 			{
-				output("\n\nDespite your best efforts to fight her off, she manages to stick you with the needles, injecting their contents into your body. Heat starts to build at the injected area, slowly spreading out as your body fills with lust! You start feeling lightheaded and unfocused like your brain is filling up with cotton.");
-				applyDamage(new TypeCollection( { drug: 7 } ), this, target, "minimal");
-				target.intelligenceMod -= 5;
-				target.willpowerMod -= 5;
+				output(" Despite your best efforts to fight 18 off, she manages to stick you with the needles, injecting their contents into your body. Heat starts to build at the prickled site, slowly spreading out as your body fills with lust! You start feeling lightheaded and unfocused, almost like your brain is filling up with cotton.");
+				applyDamage(new TypeCollection( { drug: 11 } ), this, target, "minimal");
 				target.taint(1);
-				if(!target.hasStatusEffect("Injected")) target.createStatusEffect("Injected",5,3,1,0,false,"Icon_DrugVial","An injected aphrodisiac. Excites over time. It should fade eventually.",true,0);
+				if(!target.hasStatusEffect("Injected")) 
+				{
+					target.createStatusEffect("Injected",5,3,1,0,false,"Icon_DrugVial","An injected aphrodisiac. Excites over time. It should fade eventually.",true,0);
+					target.intelligenceMod -= 5;
+					target.willpowerMod -= 5;
+				}
 				else target.addStatusValue("Injected",2,1);
 			}
 		}
@@ -281,7 +284,7 @@ package classes.Characters
 		{
 			author("QuestyRobo");
 			output("18 suddenly seizes up and starts thrusting in place. She’s in an almost trance-like state as her cock and balls twitch violently, working up towards orgasm. Just when she’s about to blow, she suddenly grabs her cock and aims it straight at you as she moans in ecstasy.");
-			if(combatMiss(this,target))
+			if(rangedCombatMiss(this,target))
 			{
 				if (target.isBimbo() || target.isCumSlut()) output("\n\nDespite your best efforts, you fail to catch the creamy deluge. A powerful throb forces her cock off course at the last moment, sending it flying in seemingly every direction that isn’t yours. Rude!");
 				else output("You dodge out of the way, letting her titanic orgasm flow passed you like a rushing river. Thankfully she’s so distracted by her orgasm that she doesn’t bother readjusting until it’s too late.");
@@ -289,7 +292,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("\n\nThe force of the blast splatters against you like a high-powered firehose, nearly knocking you off of your [pc.feet]. She cakes it onto you, layer after layer clinging to your unprepared body like hot glue. It overloads all of your senses; sight, smell, touch, the works. By the time it’s done, you feel like you’re more cum than [pc.race]. It feels like it’s seeping into your pores, delivering some faint but effective aphrodisiac into your blood, making your heart race and blood rocket to your crotch.");
+				output("\n\nThe force of the blast splatters against you like a high-powered fire hose, nearly knocking you off of your [pc.footOrFeet]. She cakes it onto you, layer after layer clinging to your unprepared body like hot glue. It overloads all of your senses; sight, smell, touch, the works. By the time it’s done, you feel like you’re more cum than [pc.race]. It feels like it’s seeping into your pores, delivering some faint but effective aphrodisiac into your blood, making your heart race and blood rocket to your crotch.");
 				if (target.isBimbo() || target.isCumSlut()) output(" Of course, you take the time to lick up as much yummy cummy as possible. Can’t, like, fight on an empty stomach!");
 				target.applyCumSoaked();
 				applyDamage(new TypeCollection( { tease: 10+rand(3) } ), this, target, "minimal");
@@ -301,20 +304,21 @@ package classes.Characters
 		{
 			author("QuestyRobo");
 			output("18 starts twitching, at least more so than usual. You wonder if she’s finally starting to crack only for her to thrust her arm out at you, revealing a series of implants that create a small-scale tesla coil, arcing electricity throughout her body as it charges up. She moans ecstatically as the machinery in whines louder and louder. The modded-out fuckdoll cries out in faux-orgasm as electricity fires out at you!");
-			if (combatMiss(this,target)) 
+			if (rangedCombatMiss(this,target)) 
 			{
-				output("\n\nYou dive out of the way and manage to avoid the brunt of the attack, only getting a bit of static.");
+				output(" You dive out of the way and manage to avoid the brunt of the attack, only getting a bit of static.");
 				applyDamage(new TypeCollection( { electric: 1 } ), this, target, "minimal");
 			}
 			else
 			{
 				output("\n\nArcs of electricity surge into you, frying your nerves more than actually burning you. She’s obviously trying to disable you and not outright kill you, but it still hurts like hell!");
-				if (rand(3) == 0)
+				applyDamage(new TypeCollection( { electric: 7 } ), this, target, "minimal");
+				if (this.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !this.hasStatusEffect("bot18Lightning Stun Cooldown"))
 				{
+					createStatusEffect("bot18Lightning Stun Cooldown", 6);
 					output(" Even after she finishes you can still feel the shocks working through your body, heavily limiting your movement. <b>You’re stunned!</b>");
 					CombatAttacks.applyStun(target,1);
 				}
-				applyDamage(new TypeCollection( { electric: 7 } ), this, target, "minimal");
 			}
 		}
 		//Frenzy Shift
@@ -329,14 +333,14 @@ package classes.Characters
 			if (bot17.isDefeated()) output("18 falls to the ground, joining her sister in panting, disabling lust");
 			else output("the two modded-out puppers fall to the ground, panting in lust and looking like they’re about to give in");
 			output(", you get ready to celebrate another one of your patented Steele charm victories. Your self-congratulation is interrupted when the twins start writhing and moaning strangely. They shudder as the small tanks on their backs whur to life, pumping unknown chemicals into their bodies.");
-			output("\n\nBoth girls spring back to life,");
+			output("\n\n<b>Both girls spring back to life</b>,");
 			if (bot17.isDefeated()) output(" despite 17 being down for the count before, ");
 			output(" moaning in mind-bending bliss as their cocks spray thick cum in what seems like a continuous, shared orgasm.");
 			output("\n\n<i>“So horny! So hard! Need to fuck! Need to fuck! NEED TO FUCK! FUCK NOW!”</i>");
 			output("\n\nLooks like this is far from over!");
 			//Increase hp to half if below
-			while(this.HPQ() < 50) { this.HP(1); }
-			while(bot17.HPQ() < 50) { bot17.HP(1); }
+			if(this.HPQ() < 50) this.HP(Math.ceil(this.HPMax()/2),true);
+			if(bot17.HPQ() < 50) bot17.HP(Math.ceil(bot17.HPMax()/2),true);
 			//make sure ally is full lust too
 			bot17.maxOutLust();
 			this.createStatusEffect("Frenzy");
