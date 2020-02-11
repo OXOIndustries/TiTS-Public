@@ -8882,6 +8882,16 @@
 							physiqueMod += 4;
 							aimMod += 4;
 							break;
+						case "Injected":
+							if (statusEffects[x].value3 == 0) {
+								physiqueMod += 5;
+								reflexesMod += 5;
+							}
+							else if (statusEffects[x].value3 == 1) {
+								intelligenceMod += 5;
+								willpowerMod += 5;
+							}
+							break;
 					}
 					//trace("Removed: " + statusEffects[x].storageName + " at position " + x + ".");
 					statusEffects.splice(x,1);

@@ -817,7 +817,7 @@ public function kqr20bonus():Boolean
 	{
 		output("There used to be a holographic poster hung here, but you took it.\n\nYou can follow this passage to the north and west.");
 	}
-	return kiroQuestHallwaysEncounters();
+	return twinSexdollEncounter();
 }
 
 public function takeObediencePoster():void
