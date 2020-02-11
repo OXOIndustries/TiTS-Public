@@ -600,7 +600,14 @@ package classes.Resources.Busts
 		public var Bust_KQ_VR_QUEEN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vr_queen_futa.png", mimeType = "image/png")]
 		public var Bust_KQ_VR_QUEEN_FUTA:Class;
-		
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_twins.png", mimeType = "image/png")]
+		public var Bust_KQ_TWINS:Class;
+		public function get Bust_KQ_TWIN_A():Class { return Bust_KQ_TWINS; }
+		public function get Bust_KQ_TWIN_B():Class { return Bust_KQ_TWINS; }
+		//public var Bounds_KQ_TWIN_A:Rectangle = new Rectangle(50, 24, 37, 37);
+		//public var Bounds_KQ_TWIN_B:Rectangle = new Rectangle(116, 23, 42, 42);
+		public var Bounds_KQ_TWIN_A:Rectangle = new Rectangle(105, 5, 60, 60);
+		public var Bounds_KQ_TWIN_B:Rectangle = new Rectangle(35, 5, 60, 60);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy.png", mimeType = "image/png")]
 		public var Bust_KRISSY:Class;

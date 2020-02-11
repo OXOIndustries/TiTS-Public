@@ -232,7 +232,7 @@ package classes.Characters
 			if (!target.hasStatusEffect("Injected")) choices.push(bot17Inject);
 			if (this.hasStatusEffect("Frenzy")) choices.push(bot17SprayDown);
 			//Combination Attacks. Requires both to be up. To do this, I had bot 17 activate them, and 18 just has no ai for that round
-			if (!bot18.isDefeated())
+			if (!bot18.isDefeated() && !bot18.isImmobilized())
 			{
 				choices.push(botsOverload);
 				if (this.hasStatusEffect("Frenzy") && !target.hasStatusEffect("Grappled")) choices.push(botsGangbangStart);
