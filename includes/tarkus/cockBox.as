@@ -237,7 +237,7 @@ public function downloadDickBoxFirmware():void
 	
 	var success:Boolean = false;
 	
-	output("You connect your Codex to the machine's diagnostic port, but it would seem somebody augmented the device's security - probably somebody not to keen on having a pirate prank swinging between their thighs. You'll have to hack it.");
+	output("You connect your Codex to the machine's diagnostic port, but it would seem somebody augmented the device's security - probably somebody not too keen on having a pirate prank swinging between their thighs. You'll have to hack it.");
 	clearMenu();
 	addButton(0,"Hack",startDickboxUpgradeHack);
 	addButton(1,"Nevermind",useInstalledDickBox);
