@@ -717,7 +717,7 @@ public function amazonTFShitApplied():void
 	pc.reflexes(-3);
 	pc.aim(-2);
 	if(pc.tallness+12 <= 84) pc.tallness = 84;
-	else if(pc.tallness+12 <= 132) pc.tallness += 12;
+	else if(pc.tallness+12 <= 120) pc.tallness += 12;
 	pc.cumQualityRaw += .2;
 	pc.fertilityRaw += .2;
 	if(pc.breastRows[0].breastRatingRaw < 17 && pc.breastRows[0].breastRatingRaw + 5 > 17) pc.breastRows[0].breastRatingRaw = 17;
