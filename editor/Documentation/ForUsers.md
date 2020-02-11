@@ -39,6 +39,20 @@ results: ("0~100", "100~1000", "1000~5000", "5000+")
 ```
 
 ---
+## Whitespace
+Newlines following the end of the `result` text are ignored.
+> `Silly mode is [silly`
+>
+> `|enabled`
+>
+> `|disabled`
+>
+> `].` 
+```
+Silly mode is disabled.
+```
+
+---
 ## Argument Grouping
 `arguments` can be grouped together using parentheses `( )`. When grouped, `space`, `tab`, and `newline` are included.
 

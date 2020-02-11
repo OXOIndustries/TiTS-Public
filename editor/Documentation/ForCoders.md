@@ -35,6 +35,19 @@ identifier: ["pc", "cumQRange"]
 arguments: [0, 100, 1000, 5000]
 results: ["0~100", "100~1000", "1000~5000", "5000+"]
 ```
+---
+## Whitespace
+Newlines following the end of the `result` text are ignored.
+> `Silly mode is [silly`
+>
+> `|enabled`
+>
+> `|disabled`
+>
+> `].` 
+```
+Silly mode is disabled.
+```
 
 # Relation between the code and parsers
 The `interpreter` takes in a `Object`. Anything `public` can be used in the text.

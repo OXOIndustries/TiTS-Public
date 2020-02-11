@@ -281,7 +281,7 @@ package editor.Lang.Parse {
             while (this.lexer.peek() !== TokenType.EOS) {
                 // Search until something is found
                 newNode = this.code(); // StringNode or ConcatNode or EvalNode or null
-                if (!newNode) newNode = this.text(); // StringNode or null
+                if (!newNode) newNode = this.resultText(); // StringNode or null
                 if (!newNode) break;
 
                 arr.push(newNode); // StringNode or ConcatNode or EvalNode
@@ -297,6 +297,43 @@ package editor.Lang.Parse {
                     new TextRange(arr[0].range.start, arr[arr.length - 1].range.end),
                     arr
                 );
+        }
+
+        /**
+         * Parsing for text
+         * @return StringNode or null
+         */
+        private function resultText(): Node {
+            var start: TextPosition = this.createStartPostion();
+            var subText: String = '';
+            var newlines: String = '';
+            var type: int = this.lexer.peek();
+            while (
+                type !== TokenType.EOS &&
+                type !== TokenType.LeftBracket &&
+                type !== TokenType.RightBracket &&
+                type !== TokenType.Pipe
+            ) {
+                if (type === TokenType.Newline) {
+                    newlines += this.lexer.getText();
+                    type = this.lexer.advance();
+                }
+                else {
+                    if (newlines.length > 0) {
+                        subText += newlines;
+                        newlines = '';
+                    }
+                    subText += this.lexer.getText();
+                    type = this.lexer.advance();
+                }
+            }
+
+            if (subText.length === 0) return null;
+
+            return new StringNode(
+                new TextRange(start, this.createStartPostion()),
+                subText
+            );
         }
 
         /**
