@@ -5,6 +5,7 @@ package classes.Characters
 	//import classes.Items.Guns.*
 	import classes.Items.Melee.Whip;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Toys.TwinsVRProgram;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -51,7 +52,7 @@ package classes.Characters
 			baseHPResistances.pheromone.damageValue = -25.0;
 
 			this.physiqueRaw = 50;
-			this.reflexesRaw = 50;
+			this.reflexesRaw = 40;
 			this.aimRaw = 35;
 			this.intelligenceRaw = 20;
 			this.willpowerRaw = 15;
@@ -65,7 +66,7 @@ package classes.Characters
 			this.HPMod = 200;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
-
+			this.inventory = [new TwinsVRProgram()];
 			this.femininity = 80;
 			this.eyeType = 0;
 			this.eyeColor = "glowing red";

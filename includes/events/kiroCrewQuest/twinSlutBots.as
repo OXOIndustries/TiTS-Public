@@ -8,8 +8,20 @@ public function showKQTwins(nude:Boolean = false):void
 	//Don't actually know if there's gonna be a nude variant or not
 	showBust("KQ_TWINS" + (nude ? "_NUDE":""));
 }
-public function twinSexdollEncounter():Boolean
+public function twinSexdollEncounter(VR:Boolean = false):Boolean
 {
+	if(VR) 
+	{
+		clearOutput();
+		author("QuestyRobo");
+		showKQTwins();
+		output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, coming upon two over-endowed, overly lusty dolls...");
+		if(!pc.hasStatusEffect("VR_DOLLS")) pc.createStatusEffect("VR_DOLLS");
+		output("\n\nThe two ausar “twins” that you defeated earlier are still here, still mindlessly rutting against each other. You could take them for a roll in the... floor if you wanted to.");
+		clearMenu();
+		addButton(0, "Twins", twinsRepeatEncounter);
+		return false;
+	}
 	//Maaaybe shouldn't be able to fuck dolls as you're running away with your new crewmate
 	if (flags["KQ_RESCUED"] != undefined)
 	{
@@ -120,7 +132,18 @@ public function twinsRepeatEncounter():void
 	if (pc.hasVagina()) addButton(3,"Get Service(V)",twinsServiceYaPussPuss,undefined,"Get Service(V)","You’re not sure if their mouths are an option, but you’re sure they’ll manage.");
 	else addDisabledButton(2,"Get Service(V)","Get Service(V)","You need a vagina for this!")
 	addButton(4,"Give Oral",suckDemTwinDicks,undefined,"Give Oral","Give the girls a little treat.");
-	addButton(14,"Leave",mainGameMenu);
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(14,"Leave",vrLeave);
+	else addButton(14,"Leave",mainGameMenu);
+}
+
+public function vrLeave():void
+{
+	clearOutput();
+	showName("LOGGING\nOUT...");
+	output("With the simulation complete, it’s time to return to the real world...");
+	pc.removeStatusEffect("VR_DOLLS");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 //Victory
 //All sex scenes give large amounts of taint.
@@ -133,7 +156,7 @@ public function beatUpTheOverAugmentedTwins():void
 	output("\n\nThe intercom fires up again. <i>“Brilliant job, intruder. Once again, I apologize for the... rambunctiousness of my girls, but it seems you’ve dealt with them quite well. I think you deserve a reward for a job well done...”</i>");
 	output("\n\nSuddenly, the twins yell out in pleasure as their suits retract, leaving their implant-dotted skin fully exposed; a fact that they quickly take advantage of by mashing their obscenely over-grown tits and cocks together, mercilessly pleasuring each-other in raw, beast-like motions.");
 	output("\n\n<i>“They are yours to do with as you see fit. Don’t worry, they may seem rebellious, but given the right ‘stimulus’ they fall in line easily. Take as much time as you want, as well. Your friend " + (flags["KQ_LAST_HOUR_TF"] < 18 ? "is starting to love":"is loving") + " what I’m doing to her, and I’m sure we both want her to enjoy it for as long as possible!”</i> the doctor chuckles before cutting out, leaving you alone with the two hyper-pumped sluts.");
-	output("\n\nDo you really have time to spend fucking these two? <b>You’d best keep in mind how tainted these girls are and who made them. You’re not likely to get away with fucking them without something very weird and very tainted happening to you.</b>");
+	output("\n\nDo you really have time to spend fucking these two? <b>You’d best keep in mind how tainted these girls are and who made them. You’re not likely to get away with fucking them without something very weird and very tainted happening to you.</b>\n\n");
 	clearMenu();
 	//I could base it off of enemy capacity, but since it's a hyper-focused scene, might as well let hypers enjoy
 	//Also didn't do penis router cause the scene is focused on biggest dick anyway
@@ -186,7 +209,7 @@ public function runATrainOfHyperSluts(x:int):void
 	output("\n\n<i>“Ready to be the filling, sister? Don’t worry, you’ll be giving <b>me</b> a filling as well!”</i> 18 turns around and starts hot-dogging 17 to your pace. For her part, 17 seems to be holding out rather well, or at least she’s not really vocalizing anything. For all you know she’s already broken since she never speaks in a way you understand. That sort of thing isn’t really your concern; you continue squishing the modded-out pup-slut between you and her sister.");
 	output("\n\nFully warmed up and wanting to get on with the real action, you rear back, give her a heavy slap that draws out an audible moan, and press your [pc.cockHeads] against her fat, drooling pussy" + (y >= 0 ? " and yielding pucker":"") + ". 18 notices and makes her own moves, twisting around with a flourish, making sure to give you a nice view, and pressing her sister’s inhuman gut-buster against her own slobbering, cock-addicted fuckpit.");
 	output("\n\nYou thrust your [pc.hips] with all your might, stuffing your [pc.cocks] into her as hard as possible. The force is enough to push the ultra-hung bitch-dick into her sister’s eager hole, forcing its own tumescent shape onto her gut as it distends it beyond reason.");
-	pc.cockChange();
+	if(!pc.hasStatusEffect("VR_DOLLS")) pc.cockChange();
 	//"Small"
 	if (pc.cocks[x].cLength() < 12)
 	{
@@ -254,53 +277,56 @@ public function runATrainOfHyperSluts(x:int):void
 		output("\n\nYou grow lowly in supreme satisfaction at what’s happening. You never thought you’d find anyone outside of legitimate giants that could take your deity-like size with such ease. Their own monumental dicks look almost puny by comparison. The thought that even someone like Illustria Po can’t even craft a cock that can even hope to match yours swells your ego as much as it does your [pc.cocks].");
 		output("\n\nA sublime sensation of growth washes over your member" + (y >= 0 ? "s":"") + ", expanding " + (y >= 0 ? "them":"it") + " to " + (y >= 0 ? "sizes":"a size") + " even further beyond. You don’t care, though" + (pc.taint() <= 66) ? ", despite your better judgement":"" + ". What’re another few inches on top of what you already have? These two seem more than willing to take it.");
 	}
-	//Sexy sexy cock changes
-	//10-14 inch gain if “small”, 7-9 if “medium”, 4-6 if “big” or “hyper”,1-3 if “super hyper”
-	var plus:Number = 0;
-	var plus2:Number = 0;
-	if (pc.cocks[x].cLengthRaw < 12) plus = 10+rand(5);
-	else if (pc.cocks[x].cLengthRaw < 20) plus = 7+rand(3);
-	else if (pc.cocks[x].cLengthRaw < 60) plus = 4+rand(3);
-	else plus = 1+rand(3);
-	//These two werent significant enough at the higher growth sizes.
-	if (pc.hasPerk("Mini")) 
+	if(!pc.hasStatusEffect("VR_DOLLS"))
 	{
-		plus--;
-		if(plus > 5) plus--;
-		if(plus > 5) plus--;
-	}
-	else if (pc.hasPerk("Hung")) 
-	{
-		plus++;
-		if(plus < 5) plus++;
-		if(plus < 5) plus++;
-	}
-	if(plus < 2) plus = 2;
-	pc.cocks[x].cLengthRaw += plus;
-	//Made it properly size for Y with the same basic formula as X.
-	if (y >= 0)
-	{
-		if (pc.cocks[y].cLengthRaw < 12) plus2 = 10+rand(5);
-		else if (pc.cocks[y].cLengthRaw < 20) plus2 = 7+rand(3);
-		else if (pc.cocks[y].cLengthRaw < 60) plus2 = 4+rand(3);
-		else plus2 = 1+rand(3);
+		//Sexy sexy cock changes
+		//10-14 inch gain if “small”, 7-9 if “medium”, 4-6 if “big” or “hyper”,1-3 if “super hyper”
+		var plus:Number = 0;
+		var plus2:Number = 0;
+		if (pc.cocks[x].cLengthRaw < 12) plus = 10+rand(5);
+		else if (pc.cocks[x].cLengthRaw < 20) plus = 7+rand(3);
+		else if (pc.cocks[x].cLengthRaw < 60) plus = 4+rand(3);
+		else plus = 1+rand(3);
+		//These two werent significant enough at the higher growth sizes.
 		if (pc.hasPerk("Mini")) 
 		{
-			plus2--;
-			if(plus2 > 5) plus2--;
-			if(plus2 > 5) plus2--;
+			plus--;
+			if(plus > 5) plus--;
+			if(plus > 5) plus--;
 		}
 		else if (pc.hasPerk("Hung")) 
 		{
-			plus2++;
-			if(plus2 < 5) plus2++;
-			if(plus2 < 5) plus2++;
+			plus++;
+			if(plus < 5) plus++;
+			if(plus < 5) plus++;
 		}
-		if(plus2 < 2) plus2 = 2;
-		pc.cocks[y].cLengthRaw += plus2;
+		if(plus < 2) plus = 2;
+		pc.cocks[x].cLengthRaw += plus;
+		//Made it properly size for Y with the same basic formula as X.
+		if (y >= 0)
+		{
+			if (pc.cocks[y].cLengthRaw < 12) plus2 = 10+rand(5);
+			else if (pc.cocks[y].cLengthRaw < 20) plus2 = 7+rand(3);
+			else if (pc.cocks[y].cLengthRaw < 60) plus2 = 4+rand(3);
+			else plus2 = 1+rand(3);
+			if (pc.hasPerk("Mini")) 
+			{
+				plus2--;
+				if(plus2 > 5) plus2--;
+				if(plus2 > 5) plus2--;
+			}
+			else if (pc.hasPerk("Hung")) 
+			{
+				plus2++;
+				if(plus2 < 5) plus2++;
+				if(plus2 < 5) plus2++;
+			}
+			if(plus2 < 2) plus2 = 2;
+			pc.cocks[y].cLengthRaw += plus2;
 
+		}
+		pc.taint(3);
 	}
-	pc.taint(3);
 
 	output("\n\nYou start thrusting faster than you thought you were capable of, spurred on by the fresh injection of cock-pumping chemicals. Your movements feel heavier and heavier with each passing second, yet your body and, increasingly, mind are determined to carry your dick no matter what. Every inch added to your [pc.cocks] adds to the sublime, brain-melting pleasure. The outside world starts to fade as the tight, squelching of her " + (y >= 0 ? "fuck holes":"pussy") + " grows louder and louder to your [pc.ears].");
 	output("\n\nWhile you’re slowly losing your mind, 18 continues to take her sister like a pro, even if her pace becomes more and more beastial in response. All the while, she smirks at you with a palpable aura of smugness. <i>“Are you struggling, sister? I can see why with how much you’re pumping [pc.himHer] up. My, my, go easy on [pc.himHer]! We don’t want [pc.himHer] to get addicted now, do we?”</i> she says with a thick veneer of sarcasm.");
@@ -314,9 +340,12 @@ public function runATrainOfHyperSluts(x:int):void
 	{
 		output("\n\nYou squirt into 17’s slutty, gluttonous hole" + (y >= 0 ? "s":"") + ", pumping out as much as you’re capable of. That doesn’t seem to be enough for her, though. A powerful jolt surges into your [pc.balls], sending you barreling into another orgasm, immediately. Your second, chemically induced spurt is <i>far</i> larger than your first, cramming what feels like a few extra quarts of [pc.cum] into the demanding mod-slut. Just when you think it’s over, another surge rushes into you, causing you to moan out as you fire off a third simultaneous orgasm that easily doubles the size of your last one. The diabolical pumping continues for what feels like hours until you’ve given 17 a cum-bloated belly that any size queen could appreciate. <b>The devilish lab-rat has boosted your cum production by an insane amount!</b>");
 		output("\n\nAn ethereal voice whispers <i>“That’s better...”</i> but you have no idea where it came from. Could that have been 17?");
-		while(pc.maxCum() < 4000 || pc.maxCum() < oldCum*2.5)
+		if(!pc.hasStatusEffect("VR_DOLLS"))
 		{
-			pc.boostCum(10);
+			while(pc.maxCum() < 4000 || pc.maxCum() < oldCum*2.5)
+			{
+				pc.boostCum(10);
+			}
 		}
 	}
 	//Medium cummies
@@ -325,9 +354,12 @@ public function runATrainOfHyperSluts(x:int):void
 	{
 		output("\n\nYou unload everything you have into 17’s welcoming hole" + (y >= 0 ? "s":"") + ", firing off your whole reserve at a frantic, almost painful pace. By the time you start to wind down, 17’s belly has bloated out to a pretty impressive degree. Just when you think you’re about to run dry, a surge of energy runs through your [pc.balls] and sets you off all over again. You dump out what feels like a whole second orgasm, and yet it’s still the same one! <b>Your cum production has easily doubled!</b>");
 		output("\n\nSomewhere deep in your mind, an etherial voice chuckles at you.");
-		while(pc.maxCum() < 9000 || pc.maxCum() < oldCum*2)
+		if(!pc.hasStatusEffect("VR_DOLLS"))
 		{
-			pc.boostCum(10);
+			while(pc.maxCum() < 9000 || pc.maxCum() < oldCum*2)
+			{
+				pc.boostCum(10);
+			}
 		}
 	}
 	//High Cummies
@@ -339,8 +371,11 @@ public function runATrainOfHyperSluts(x:int):void
 		pc.boostCum(10)
 		output("\n\n<i>“Good... very good,”</i> an ethereal voice whispers as you finally calm down.");
 	}
-	enemy.loadInCunt(pc,0);
-	if (y >= 0) enemy.loadInAss(pc);
+	if(!pc.hasStatusEffect("VR_DOLLS"))
+	{
+		enemy.loadInCunt(pc,0);
+		if (y >= 0) enemy.loadInAss(pc);
+	}
 	//pc can use a dick bigger than enemy capacity in this scene, but should only get down to the knot if they fit
 	if (pc.hasKnot(x) && pc.cockVolume(x) <= enemy.vaginalCapacity()) 
 	{
@@ -353,7 +388,8 @@ public function runATrainOfHyperSluts(x:int):void
 	//Code note: make sure the parsers BEFORE growth are parsed before growth is applied and the parsers for post-growth are applied after the stat changes are made. It’ll be nicely noticeable if you jump a size category from the enlargement. -Fen
 	processTime(45);
 	pc.orgasm();
-	if (inCombat()) CombatManager.genericVictory();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
 		clearOutput();
@@ -408,7 +444,7 @@ public function leadChooChooSlutTrain(hole:int):void
 	output("\n\nBefore you can " + (pc.isBimbo() ? "admire":"dwell on") + " your expanding posterior, 18 slams her surprisingly strong hands onto your [pc.hips] and grabs on tight. <i>“Nggh! S-sister’s growing impatient, intruder! I’m going to get started before she gets <b>upset</b>.”</i>");
 	output("\n\nBefore you can even open your mouth, another several inches of log-like cock ram into your [pc.vagOrAss " + x + "], sapping the strength from your limbs as you’re stuffed " + (pc.isGoo() ? "near the limits of what your gelatinous body can take":"beyond what any non-goo should be able to take") + ". Before she can go any further, though, she’s suddenly pulled back.");
 	output("\n\n<i>“M-my, sister, you’re very excited today aren’t yoOOOUGHH!”</i> Without any warning, 17 spears both her sister on her cock and you on 18’s, stuffing your " + (x >= 0 ? "gaping, desperate cock-holster":"obscenely stretched bootyhole") + " with a good two feet of modded lady-cock. You and 18 groan out in unison as 17 seems to rip the reigns out from under to the two of you.");
-	pc.holeChange(x,enemy.cockVolume(0));
+	if(!pc.hasStatusEffect("VR_DOLLS")) pc.holeChange(x,enemy.cockVolume(0));
 	output("\n\n<i>“S-see? Now she’s upsEEEEET!”</i> 17 continues hammering her sister, and you in the process. Each forceful thrust brings you a few inches closer to bottoming out on her; the constant stream of body-and-mind-bending sex juices coming from her cumvein slowly molding your " + (x >= 0 ? "drenched pussy":"anal") + " passage to the shape of her fleshy battering ram of a cock. She’s not even thrusting consciously, she’s far too out of it to do anything more than ride the momentum of her sister’s hip-shattering swings. 18 moans and babbles like a whore, in your ear, desperately trying to vocalize something but totally unable to form words.");
 	output("\n\nYou’re not sure if it’s your own force of will or the obscene amount of aphrodisiacs in your body, but you manage to keep your composure inspite of being slowly turned into a living hyper-cock holster. ");
 	if (pc.isBimbo()) output("Despite the sheer volume of tasty, super huge cock going in and out of your [pc.vagOrAss " + x + "], you still want more out of 18. As soon as you’re able to summon up the strength, you thrust your [pc.hips] back into the super stud as soon as her equally-yummy sister drags her out of you.");
@@ -458,20 +494,23 @@ public function leadChooChooSlutTrain(hole:int):void
 	clearMenu();
 	processTime(60);
 	pc.orgasm();
-	pc.taint(6);
-	if (x >= 0)
+	if(!pc.hasStatusEffect("VR_DOLLS"))
 	{
-		pc.vaginas[x].bonusCapacity += 50;
-		pc.vaginas[x].wetness(1);
-		pc.loadInCunt(enemy,x);
+		pc.taint(6);
+		if (x >= 0)
+		{
+			pc.vaginas[x].bonusCapacity += 50;
+			pc.vaginas[x].wetness(1);
+			pc.loadInCunt(enemy,x);
+		}
+		else
+		{
+			pc.ass.bonusCapacity += 50;
+			pc.ass.wetness(1);
+			pc.loadInAss(enemy);
+		}
+		pc.buttRating(5);
 	}
-	else
-	{
-		pc.ass.bonusCapacity += 50;
-		pc.ass.wetness(1);
-		pc.loadInAss(enemy);
-	}
-	pc.buttRating(5);
 	addButton(0,"Next",leadChooChooSlutTrainEpilogue,x);
 }
 public function leadChooChooSlutTrainEpilogue(x:int):void
@@ -488,7 +527,8 @@ public function leadChooChooSlutTrainEpilogue(x:int):void
 	else output("ignore her as best you can");
 	output(", you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save after all!\n\n");
 	processTime(1);
-	if (inCombat()) CombatManager.genericVictory();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
 		clearMenu();
@@ -565,8 +605,11 @@ public function twinsServiceYaDick(x:int):void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	enemy.loadInMouth(pc);
-	pc.applyCumSoaked();
+	if(!pc.hasStatusEffect("VR_DOLLS"))
+	{
+		enemy.loadInMouth(pc);
+		pc.applyCumSoaked();
+	}
 	clearMenu();
 	addButton(0,"Next",twinsServicedYaDickNowEpilogue);
 }
@@ -578,20 +621,24 @@ public function twinsServicedYaDickNowEpilogue():void
 	output("You spend the next hour falling deeper into The Twin’s lip-fueled trance. You fuck and thrust like a living sex toy" + (pc.cockTotal() >= 2 ? ", double-stuffing both girls until your muscles are sore and burning!":", only switching girls when they make you do so.") + "");
 	output("\n\nYou’re not sure what happened but at some point, you blink and seemingly leap forward in time. You’re standing over the two, sore as you’ve ever been while the two are on the ground, passed out and swollen with your seed. How much did they make you cum?");
 	output("\n\nYou stare down at the two and immediately begin being drawn to their lips again. You pull away, not wanting to get dragged into another round, not when you have a " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend to save! You get yourself ready again and set off, the thought of glossy black lips still in the back of your mind.");
-	if (pc.cockTotal() >= 2)
+	if(!pc.hasStatusEffect("VR_DOLLS"))
 	{
+		if (pc.cockTotal() >= 2)
+		{
+			pc.boostCum(10);
+			pc.refractoryRate += 2.5;
+		}
 		pc.boostCum(10);
+		output("\n\n<b>Your orgasms seem like they're going to be messier in the foreseeable future...</b>");
 		pc.refractoryRate += 2.5;
+		pc.taint(3);
+		soreChange(1);
 	}
-	pc.boostCum(10);
-	output("\n\n<b>Your orgasms seem like they're going to be messier in the foreseeable future...</b>");
-	pc.refractoryRate += 2.5;
 	for(var y:int = 0; y < 5 ; y++) { pc.orgasm(); }
-	pc.taint(3);
-	soreChange(1);
 	processTime(50);
 	output("\n\n");
-	if (inCombat()) CombatManager.genericVictory();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
 		clearMenu();
@@ -659,51 +706,55 @@ public function twinsNurseYouAfterEatingYourPuss():void
 	output("You wake up a bit later, nearly panicking when you realize something is blocking out your vision and there’s something in your mouth. You squirm away when you realize it’s 18 nursing you.");
 	output("\n\n<i>“You were so dehydrated, intruder. We needed to nourish you otherwise you wouldn’t have woken up.”</i> There’s a knowing snideness to her words. You know her milk is laced with <i>something</i>. It’s already making you horny again and you don’t have time for that (or do you?). Still, you grumble out an irritated <i>“thanks”</i> before starting to get your gear back on.");
 	output("\n\nThe Twins’ mouths are still exposed and they’re trying to tempt you into another round, but you manage to resist and get moving again, ready to save Kiro!");
-	pc.taint(3);
+	if(!pc.hasStatusEffect("VR_DOLLS")) pc.taint(3);
 	processTime(15);
 
-	var puffNotice:Boolean = false;
-	var wetNotice:Boolean = false;
-	if(pc.vaginalPuffiness(0) < 3)
+	if(!pc.hasStatusEffect("VR_DOLLS"))
 	{
-		output("\n\n<b>This would be easier if you weren't feeling puffy and well, ripe between your thighs</b>.");
-		puffNotice = true;
-		pc.inflateVagina(0);
-	}
-	if(pc.vaginas[1].wetness() < 5)
-	{
-		pc.vaginas[1].wetness(2);
-		if(!puffNotice) output("\n\n<b>This would be easier if you weren't feeling discernably moister below the waist...</b>");
-		else output(" <b>You're wetter down there too, like, all the time.</b>");
-		wetNotice = true;
-	}	
-	if(pc.hasVaginas())
-	{
+		var puffNotice:Boolean = false;
+		var wetNotice:Boolean = false;
+		if(pc.vaginalPuffiness(0) < 3)
+		{
+			output("\n\n<b>This would be easier if you weren't feeling puffy and well, ripe between your thighs</b>.");
+			puffNotice = true;
+			pc.inflateVagina(0);
+		}
 		if(pc.vaginas[1].wetness() < 5)
 		{
-			if(!wetNotice)
-			{
-				if(!puffNotice) output("\n\n<b>This would be easier if you weren't feeling discernably moister below the waist...</b>");
-				else output(" <b>You're wetter down there too, like, all the time.</b>");
-				wetNotice = true;
-			}
 			pc.vaginas[1].wetness(2);
-		}
-		if(pc.vaginalPuffiness(1) < 3)
+			if(!puffNotice) output("\n\n<b>This would be easier if you weren't feeling discernably moister below the waist...</b>");
+			else output(" <b>You're wetter down there too, like, all the time.</b>");
+			wetNotice = true;
+		}	
+		if(pc.hasVaginas())
 		{
-			if(!puffNotice)
+			if(pc.vaginas[1].wetness() < 5)
 			{
-				if(!wetNotice) output("\n\n<b>This would be easier if you weren't feeling puffy and well, ripe between your thighs</b>.");
-				else output(" <b>And your feminine genitalia is puffier too!</b>");
-				puffNotice = true;
+				if(!wetNotice)
+				{
+					if(!puffNotice) output("\n\n<b>This would be easier if you weren't feeling discernably moister below the waist...</b>");
+					else output(" <b>You're wetter down there too, like, all the time.</b>");
+					wetNotice = true;
+				}
+				pc.vaginas[1].wetness(2);
 			}
-			pc.inflateVagina(1);
+			if(pc.vaginalPuffiness(1) < 3)
+			{
+				if(!puffNotice)
+				{
+					if(!wetNotice) output("\n\n<b>This would be easier if you weren't feeling puffy and well, ripe between your thighs</b>.");
+					else output(" <b>And your feminine genitalia is puffier too!</b>");
+					puffNotice = true;
+				}
+				pc.inflateVagina(1);
+			}
 		}
+		pc.boostGirlCum(10);
 	}
-	pc.boostGirlCum(10);
 
 	output("\n\n");
-	if (inCombat()) CombatManager.genericVictory();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
 		clearMenu();
@@ -781,12 +832,16 @@ public function suckDemTwinDicks():void
 	output("\n\nYou stand triumphantly over the two as they lay on the ground, weakly moaning while their well-spent cocks leak uselessly into the vast pools that they’ve made on the floor. With a belly full of cum," + (flags["USED_SNAKEBYTE"] == undefined ? " a new trick to pull out at parties,":"") + " about a dozen orgasms under your belt, and a twinkle in your eye, you get yourself ready to head out again, ready to face whatever Po has to throw at you!");
 	output("\n\n");
 	processTime(30);
-	pc.taint(7);
-	pc.loadInMouth(enemy);
-	pc.applyCumSoaked();
+	if(!pc.hasStatusEffect("VR_DOLLS")) 
+	{
+		pc.taint(7);
+		pc.loadInMouth(enemy);
+		pc.applyCumSoaked();
+		flags["USED_SNAKEBYTE"] = 1;
+	}
 	for(var y:int = 0; y < 12 ; y++) { pc.orgasm(); }
-	flags["USED_SNAKEBYTE"] = 1;
-	if (inCombat()) CombatManager.genericVictory();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0, "Next", vrLeave);
+	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
 		clearMenu();
