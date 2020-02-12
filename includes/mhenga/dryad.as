@@ -41,8 +41,13 @@ public function getDryadPregContainer():PregnancyPlaceholder
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	pp.cocks[0].cLengthRaw = 14;
-	if (flags["AMBER_EQUILICUM"] != undefined) pp.createPerk("Fixed CumQ",18000,0,0,0);
-	else pp.createPerk("Fixed CumQ", 6000, 0, 0, 0);
+	if (amberThrobbDoses() == 1) pp.cocks[0].cLengthRaw = 19;
+	else if (amberThrobbDoses() == 2) pp.cocks[0].cLengthRaw = 42;
+	var cummies:Number = 6000;
+	if (flags["AMBER_EQUILICUM"] != undefined) cummies += 12000;
+	if(amberThrobbDoses() == 1) cummies += 2000;
+	else if(amberThrobbDoses() == 2) cummies += 5000;
+	pp.createPerk("Fixed CumQ", cummies, 0, 0, 0);
 	if(!pp.hasVagina()) pp.createVagina();
 	pp.shiftVagina(0, GLOBAL.TYPE_EQUINE);
 	pp.vaginas[0].bonusCapacity = 200;

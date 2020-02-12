@@ -1558,7 +1558,7 @@ public function amberOnShipInjectThrobb() : void
 
 	pc.destroyItemByClass(Throbb);
 
-	if(amberDumbfuckDoses() == 0) {
+	if(amberThrobbDoses() == 0) {
 		output("You bend down and take her thick, heavy horsecock in hand, gently bouncing it up and down in your palm with light smacks.");
 
 		output("\n\n<i>“Oh, I like where this is going,”</i> Amber murmurs.");
@@ -1584,7 +1584,7 @@ public function amberOnShipInjectThrobb() : void
 			case 1:
 			case 2:
 				output("\n\n<i>“Ohh, haha,”</i> Amber pants, grinning wide. <i>“I am <b>so</b> ready to fuck.”</i>");
-				output("\n\n<i>“Sounds like a problem we can take care of,”</i> you murmur				");
+				output("\n\n<i>“Sounds like a problem we can take care of,”</i> you murmur.");
 				break
 			case 3:
 			case 4:
@@ -1593,7 +1593,7 @@ public function amberOnShipInjectThrobb() : void
 				output("\n\n<i>“Sounds good,”</i> you murmur.");
 		}
 
-	}else if(amberDumbfuckDoses() == 1) {
+	}else if(amberThrobbDoses() == 1) {
 		output("<i>“Ooohhhhh, yeeesssssss,”</i> Amber groans as you inject her with the Throbb, her impressive cock growing iron-hard in your hands. <i>“Oohhh that feels so good...”</i>");
 
 		output("\n\nShe’s a lot more at ease and prepared for the sensation this time, but that doesn’t stop her from tilting her head back and moaning like a whore as the ecstasy of growth rushes through her. Her quivering cock swells and throbs in your hands, thickening and stretching until you realize your fingers are being forced apart. Oh, she’s getting <i>big</i>...");
