@@ -47,6 +47,7 @@ public function encounterMilkThief():Boolean
 		else output("Don’t run, Rusher. I’m not going to hurt you - quite the opposite.”</i> The leering alien licks her lips. <i>“I’m going to make you cum so hard that you won’t mind giving me your rich, creamy... mmmilk. Every, single, drop,”</i> she hungrily purrs.");
 		output(" <i>“Don’t mistake my friendliness. <b>This is happening.</b> Make it easy on yourself, and I’ll be easy on you" + (enemy.biggestTitSize() > 8 ? ". So easy for you, baby":"") + ".”</i>");
 		output("\n\nYour Codex chooses this moment to chirp, <i>“Hostile zaika detected! Care should be taken when traveling on Dhaal if lactating!”</i>\n\nPerfect timing, as always.");
+		CodexManager.unlockEntry("Zaika");
 		var lied:Boolean = false;
 		//No boobs& no milk, no new PG: 
 		if(!pc.isLactating() && pc.biggestTitSize() < 1) 
