@@ -1130,7 +1130,25 @@ public function helpShadeClaimThatBounty():void
 	showBust(shadeBustDisplay());
 	showName("\nSHADE");
 
-	output("First scene");
+	output("You’ve barely made it to Shade’s porch before the door slides open automatically, admitting you entrance to the little above-ground bungalow. You descend quickly, keeping a hand on your [pc.weapon] until you reach the cozy living room at the bottom of the stairs.");
+	output("\n\nShade’s there waiting, wearing just her shirt and jeans");
+	if(pc.IQ() > 66) output(", not even her shoes or her gunbelt, you notice");
+	output(".");
+
+	output("\n\n<i>“Hey, [pc.name]. Glad you made it,”</i> she says, giving you a half-smile that transitions into a rough kiss. <i>“Had a real hard time wrangling this bounty of mine. Need some help finishing the job, though... and I couldn’t think of anyone better. One thing, though: need you to secure your weapons here. Trust me, we’ll all be safer without a [pc.weapon] swinging around in my house.”</i>");
+
+	if(pc.isBimbo()) output("\n\n<i>“Kay!”</i> you answer cheerily, tossing your weapons onto Shade’s couch.");
+	else output("\n\nYou quirk an eyebrow at Shade, earning a shrug in answer. <i>“Look, if you </i>need<i> a weapon in here, I’ve fucked up real bad already. Just need your help manhandling my quarry. C’mon, gimme a little credit here.”</i>\n\n<i>“Alright...”</i> you say, disarming.</i>");
+
+	output("\n\n<i>“Thanks,”</i> Shade grins. She tosses your arsenal into a locker on the wall and closes it tight. <i>“Now follow me. Got ‘er tied up just through here...”</i>");
+
+	output("\n\nShade puts a hand on your shoulder and gives you a little push towards her bedroom. Huh. You follow her guidance, stepping into a pitch-black room. She closes the door behind you, and you hear a <b>click</b> of the lock engaging. The lights snap on a second later, bathing Shade’s bedroom in sultry dim glow.");
+
+	output("\n\nAs promised, there's somebody tied up... in the bed. It takes a second for you to recognize her in the mood lighting, especially half-naked and bound by a pair of big, fuzzy pink handcuffs hanging from over the headboard. The first thing you alight on is a wild mane of curly red hair, falling down the figure's pale and freckled shoulders. A tail of the same bright ginger thrashes against the bedsheets between her legs, matching the coat on her forearms and legs. An ausar, with a pair of leaf-green eyes glowering at you from under her bangs, and a lush set of blue-painted lips sucking a geek ball firmly strapped around her face.");
+
+	output("\n\nShe's wearing nothing but a lacy black bra with cups that part around her nipples, and a tight pair of panties that hug an impressive bulge of doggy knot and plump fleshy balls.");
+
+	output("\n\nIt's Amara, the pirate lord.");
 
 	clearMenu();
 	addButton(0, "Next", shadeDisplaysHerBounty);
@@ -1143,7 +1161,16 @@ public function shadeDisplaysHerBounty():void
 	showBust(shadeBustDisplay(), amaraBustDisplay());
 	showName("SHADE\n& AMARA");
 
-	output("with Amara");
+	output("Before you can fully register what you're seeing, Shade's hand tightens on your shoulder. <i>“Listen, kid. I love ya something fierce, but Amara here's my kid's other parent. Always been good to us... to her... so I'm not gonna let you and me bein' a thing hurt Astra. That means you and Amy here need to work out whatever bad blood you've got. This is your chance to vent all those frustrations. You gonna be a good girl and let [pc.name] work it all out, Amy?”</i>");
+
+	output("\n\nThe only answer you get is a mighty throb from under the Dread Lord's panties. Her crimson cock peeks out from the band, rubbing against her belly.");
+
+	output("\n\n<i>“Do what you gotta do, [pc.name]. Just don't hurt her, and we can call everything even after this. Can't we? I ain't gonna try and make you be friends, but I can't have you two trying to hurt each other again. Understand?”</i>");
+
+	// PC won against Amara:
+	if(flags["KQ2_QUEST_FINISHED"] == 1) output("\n\nConsidering what happened to Amara at the end of your last encounter, you'd think you'd be the one tied up. She lost, after all.");
+
+	output("\n\nWith a husky whisper in your [pc.ear], Shade adds, <i>“Just between you and me... the mighty Dread Lord of the Void here is a shameless submissive slut. She likes to pretend she's a scary swingin' dick among the big bad pirates, but I've had nineteen years to find out all her little secrets. She's going to enjoy this as much as you will. Maybe more. So go on... whatever your twisted little libido can dream up.”</i>");
 
 	clearMenu();
 	addButton(0, "Take Dick", jumpThatPirateLord, undefined, "Take Dick", "You're not one to pass up a chance to ride a thick, red Ausar knot. Especiallly when it's attached to a smoking hot MILF who's more dangerous than half the foes you've faced so far put together.");
@@ -1158,7 +1185,14 @@ public function noThanksForThePirateLord():void
 	clearOutput();
 	author("Savin");
 
-	output("no thanks");
+	output("<i>“This is getting a little weird for me, Shade,”</i> you say, squirming out of her grip. This ain’t really your thing.");
+
+	output("\n\nShe scowls, hands on her hips. <i>“Listen, [pc.name], I’m not joking around when I say I can’t have you and Amara at each others’ throats. If you want to stay with me, you two gotta work <b>something</b> out. For Astra’s sake.”</i>");
+
+	output("\n\nShade sighs and sits down on the foot of the bed, looking up at you. <i>“I thought this’d be a nice surprise. Way to bury the hatchet in a way we’d all enjoy... I know all about that legendary Steele libido, and trust me, ours isn’t that far behind. I figured... I don’t know. Clearly <b>wrong</b>, whatever I thought. I just need to make this work <b>somehow</b>.”</i>");
+
+	output("\n\nIt’s an understandable position, even if Amara is a pirate. You might not want to bone down with a Dread Lord, but can you at least understand where Shade’s coming from. Right?");
+
 
 	clearMenu();
 	addButton(0, "Make Peace", makePeaceWithThePirateLord, undefined, "Make Peace", "You'll put aside your grudge with Amara. For Shade and Astra's sake.");
@@ -1170,7 +1204,24 @@ public function makePeaceWithThePirateLord():void
 	clearOutput();
 	author("Savin");
 
-	output("make peace");
+	output("You sigh and, after a moment’s hesitation, say that for Shade and Amara’s sake, you’ll let bygones be bygones.");
+
+	output("\n\nShade grins ear to ear and slaps Amara’s thigh. <i>“Hear that, Amy? Looks like [pc.name]’s willing to be a good sport. How about you, hmm?”</i>");
+
+	output("\n\nThere’s a series of wordless grunts from around Amara’s geek ball, and she yanks hard on the fluffy handcuffs. Shade chortles and reaches back to pull the gag out, just in time for Amara to bark out, <i>“That cattle prod fucking <b>hurts</b>, too!”</i>");
+
+	output("\n\nShade’s only response is another laugh. Amara huffs, bites her lip, and turns to you. <i>“You ");
+	// PC sold out Kara:
+	if(flags["KQ2_BETRAYED_KARA"] == 1 && flags["KQ2_QUEST_FINISHED"] == 2) output("were just duped by that smuggler bitch. I’ve got no bad blood with you, Steele.”</i>");
+	// PC beat Amara and Kara lived:
+	else if(flags["KQ2_QUEST_FINISHED"] == 1) output("managed to crush my XO and hand me my own ass pretty good. I’d rather have you as an ally... or at least, not as an enemy. If you can let it go, so can I.”</i>");
+	// Kara died protecting PC:
+	else output("mean that, even after your blue kitty pasted herself on my armor? Damn, that’s kind of cold... but if you’re willing, and it’s what Shade wants, I can overlook a broken leg and broken XO, too.”</i>");
+
+	output("\n\n<i>“That’ll have to do,”</i> Shade says, grabbing the pillow out from under Amara’s head and tossing it over the pirate’s naked crotch. <i>“So, uh, I guess I should untie you, huh Amy?”</i>");
+
+	output("\n\nAnd that’s your cue to leave, looks like. You give Shade a parting kiss on the cheek before slipping out of the room, leaving your lover and hers to their own devices. At least now you won’t have to worry about Amara’s pirates coming after you - though the rest of the Black Void may yet be another question.");
+
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
@@ -1181,7 +1232,9 @@ public function noWayPirateLord():void
 	clearOutput();
 	author("Savin");
 
-	output("no way");
+	output("You shake your head vigorously and step away from Shade and Amara, saying you aren’t going to be letting pirate scum off that easy. Certainly not in exchange for kinky sex.");
+
+	output("\n\nShade sighs long and hard, rubbing her face with her hands. You decide to slip away while you can, before Shade can throw a fit over the answer. She’s going to have to find some way to make this work, not you - she’s the one who decided it would be a good idea to have a kid with a pirate lord.");
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
@@ -1192,7 +1245,46 @@ public function jumpThatPirateLord():void
 	clearOutput();
 	author("Savin");
 
-	output("take dick");
+	output("Well, for Shade’s sake, you suppose you can plant yourself on that thick red rocket and take advantage of her tied-down paramore.");
+
+	output("\n\n<i>“I knew you had it in you,”</i> Shade chuckles, nipping your [pc.ear]. <i>“Have at her, [pc.name].”</i>");
+
+	output("\n\nYou pull your [pc.gear] off, letting an unabashedly lustful grin spread across your [pc.lips]. Amara, the pirate Dread Lord in all her near-naked glory, stares at you with wide eyes. There’s a little concern there, you’re sure, if not outright fear - but as you bare more and more [pc.skinFurScales], giving your [pc.butt] a little slap, you can see the hunger in there as well. Her crimson futa-cock starts rising off her belly of its own accord, wobbling in the air by the time you approach.");
+
+	output("\n\nBehind you, Shade leans back against the door - and you’re pretty sure you hear a zip-down from her jeans. You wonder, briefly, if Shade likes to watch this sort of thing? You haven’t really asked what gets the MILFy kitty going, come to think of it. Just about everything you do seems to, at least, so for now you’ll just have to make a show of it.");
+	// PC is Bimbo/Bro:
+	if(pc.isBimbo() || pc.isBro()) output(" Good thing you’ve got the body and the confidence for it!");
+
+	output("\n\nFlashing a quick grin over your shoulder, you crawl up onto the bed on all fours, planting your hands on either side of Amara’s wolven ears and roll your [pc.tongue] up one of her D-cup tits. You flick the nipple hard enough to make Amara wince - and make her dick throb, slapping against your thigh. <i>“Are they sensitive?”</i> you wonder aloud, tracing your hands down to the Dread Lord’s tits. You squeeze the pair of them, letting your fingers sink into the soft, freckled flesh. She’s got big, dark nipples, each stiff enough that you can feel every ridge and pebble as your palms brush over them. You can feel the pirate-bitch gasping, and her back arches off the bed - which only pushes her tits further into your hands.");
+
+	output("\n\nWhile your hands continue to play with Amara’s tits, you subtly shift your [pc.hips] so that your [pc.vagOrAss] is rubbing against her rock-hard pride. The pirate tenses, thrusting her hips up to meet you, but her tapered crown just skids off your thigh, poking you in the [pc.belly]. <i>“Enough of that!”</i> you chastise, sitting straight down on her pelvis. She’s the one wrapped up like a pretty little present for you, after all; you’re going to enjoy her at your own pace. Only when she stops squirming, surrendering to your two-fisted molestation of her chest, do you deign to start moving your hips.");
+
+	output("\n\n<i>“Ohhh,”</i> Shade purrs, <i>“I think you’ve got a hidden dom{me} streak in you! How have you let me take this lead all this time...”</i>");
+
+	output("\n\n<i>“It just seemed natural.”</i> You give her another grin and lift yourself on your [pc.knees], letting Amara’s cock naturally find its way through the cleft of your ass before you come back down. The bound pirate moans as your cheeks squeeze her, but her eyes go wild with desire when you lift again, and her crown manages to rub against the entrance of your [pc.vagOrAss]. You pinch her nipples just before sliding down on that thick puppy-cock, making sure you have this randy bitch’s <b>full</b> attention all the way down.");
+
+	output("\n\nAmara’s dick is thicker than average, but the length’s nothing to write home about - eight inches, about average for an ausar. {Indeed, it reminds you distinctively of Kaede’s as you settle down on it.} The knot’s nice and bulky, at least, and presses up between your thighs when you easily bottom out on its owner’s shaft. She throbs desperately inside you, shaking her hips like she wants to wedge that big bitch-breaker inside you already.");
+
+	output("\n\nNone of that, now. You give the wicked pirate a slap across the cheeks - just a gentle one to remind her of her place. Shade’s earlier suggestion bears out, and you feel Amara’s cock throb powerfully inside you. Warm precum spills out into your [pc.vagOrAss], and a dark flush spreads across the pirate’s cheeks far larger than the one your palm left. A little line of drool meanders down from around her ball gag, accompanying a moan that sounds awfully more like pleasure than pain.");
+
+	output("\n\nSomewhere behind you, Shade snickers, followed by some meaty wet sound from inside her jeans. You grin down at Amara, watching her blush spreading, and ask <i>“Oh, you like that, huh?”</i>");
+
+	output("\n\nShe squirms, trying to look away from you... so you bring a hand back and give her one from the other side. Her red rocket just about takes off, so hard all of a sudden that it feels more like steel than flesh. Her rosey little nipples become stiff points thrusting up from inside her lacey bra, begging you to reach down and pinch them. You do so with gusto, starting to work your hips around her tool while you pull and twist. If the Dread Lord likes it rough, you’re more than happy to give it to her.");
+
+	output("\n\nYou start bouncing your hips, taking the pirate’s thick red pride deep while your hands stay busy torturing her nipples and giving her ever-rougher slaps when Amara tries to squirm or struggle underneath you. Her mascara streams down the sides of her face, accompanied by drool from around her geek ball. What a mess! You sneer and laugh, playing up how much you enjoy her degradation, all the while riding her dick harder and harder.");
+
+	output("\n\nYou tell her that’s she’s such a dirty girl. What an absolute masochist. Who’d have thought the infamous Dread Lord Faell would get so hard from you slapping her around?");
+
+	output("\n\nShame and arousal are both clear on her face, but she can’t hide her arousal. You can <b>feel</b> how close to cumming she is already, the way her dick throbs and leaks inside you. The juicy sounds coming from Shade are getting louder, too - seems like both of your MILFs are enjoying the performance. Better end this on a high note, huh?");
+
+	output("\n\nYou grab the pirate lord’s big, ginger ears and give them a rough pull while you slam yourself down on her knot, moaning as your [pc.vagOrAss] spreads around the thick tie. Amara squirms, bucking her hips to try and thrust it up into you with desperate desire... and this time, you go ahead and let her act out her body’s breed-hungry needs. Your fuckhole accepts her fat bitch-breaker, sending shockwaves of pleasure pounding through your loins.");
+
+	output("\n\nAmara blabbers something through her geek ball, and you feel her cock swelling inside you. Her knot throbs, and you can feel her pounding heart rate through it right until a burst of warmth fills your [pc.vagOrAss]. You gasp, pulling on Amara’s ears and growling her name while she cums, demanding that she thrust herself even deeper inside until you, too, join her in climax. {pc.hasCock|Your [pc.cock] pumps its load all over the pirate lord’s bare, clamped tits, painting them [pc.cumColor] while she packs you with her own creamy load.|Your [pc.vagOrAss] trembles as the pirate lord’s tapered dick packs it with squirt after squirt of white warmth.] Pretty soon those palmable pale balls of hers are clenching under your [pc.butt], tensing over and over again until they’re empty and your belly is stuffed with warm contentment.");
+
+	output("\n\n<i>“Fuck! That was hot,”</i> Shade laughs. A moist hand slaps your ass, and your lover takes a seat beside you, grinning down at her partner. <i>“I’ve never seen you cum so fast, Amy. What happened to my big ol’ fuckbeast, huh?”</i>");
+
+	output("\n\nAmara’s eyes narrow, and she says something into her gag. Shade just snickers and runs her hand from your flanks up Amara’s belly, tweaking a tit before finally cupping her chin. Finally, she reaches down and unbuckles the ball gag, pulling it free... and pulling a six-inch spear of latex out of Amara’s throat attached to the inside of it.");
+
 
 	clearMenu();
 	addButton(0, "Next", finishWithThePirateLord);
@@ -1203,7 +1295,51 @@ public function enterThatPirateLord():void
 	clearOutput();
 	author("Savin");
 
-	output("give dick");
+	output("Well, for Shade’s sake, you suppose you can ignore Amara’s misdeeds long enough to fuck her silly. In her tied-down position, it’s the perfect opportunity to take your revenge.");
+
+	output("\n\n<i>“I knew you had it in you,”</i> Shade chuckles, nipping your [pc.ear]. <i>“Have at her, [pc.name].”</i>");
+
+	output("\n\nYou pull your [pc.gear] off, letting an unabashedly lustful grin spread across your [pc.lips]. Amara, the pirate Dread Lord in all her near-naked glory, stares at you with wide eyes. There’s a little concern there, you’re sure, if not outright fear - but as you bare more and more [pc.skinFurScales], starting to stroke your [pc.cock] to hardness, you can see the hunger in there as well. Her crimson futa-cock starts rising off her belly of its own accord, wobbling in the air by the time you approach.");
+
+	output("\n\nBehind you, Shade leans back against the door - and you’re pretty sure you hear a zip-down from her jeans. You wonder, briefly, if Shade likes to watch this sort of thing? You haven’t really asked what gets the MILFy kitty going, come to think of it. Just about everything you do seems to, at least, so for now you’ll just have to make a show of it.");
+	// PC is Bimbo/Bro:
+	if(pc.isBimbo() || pc.isBro()) output(" Good thing you’ve got the body and the confidence for it!");
+
+	output("\n\nFlashing a quick grin over your shoulder, you crawl up onto the bed on all fours, planting your hands on either side of Amara’s wolven ears and roll your [pc.tongue] up one of her D-cup tits. You flick the nipple hard enough to make Amara wince - and make her dick throb, slapping against your thigh. <i>“Are they sensitive?”</i> you wonder aloud, tracing your hands down to the Dread Lord’s tits. You squeeze the pair of them, letting your fingers sink into the soft, freckled flesh. She’s got big, dark nipples, each stiff enough that you can feel every ridge and pebble as your palms brush over them. You can feel the pirate-bitch gasping, and her back arches off the bed - which only pushes her tits further into your hands.");
+
+	output("\n\nWhile she’s squirming and moaning underneath you, run your fingers down the pirate lord’s toned tummy and her inner thigh, delving between her bound legs to heft those fat pale balls out of the way and brush her pussylips. Amara’s whole body tightens, straining against her shackles while you slide slowly into her and tease her warm, wet slit. It practically sucks you in, caressing your digits in its sultry embrace ‘till you’re buried to the knuckles inside the submissive pirate.");
+
+	output("\n\n<i>“That’s the stuff!”</i> Shade laughs. <i>“Put that bitch in her place.”</i>");
+
+	output("\n\nYou’re starting to wonder if you’ve been brought in after an argument or something. Ah well, no reason not to enjoy yourself anyway. Giving Amara’s tits a parting squeeze and lick, you get on your [pc.knees] between her spread-eagle legs and pin her dick down on her stomach, giving you full view of her red-maned quim. Her knot pulses to the same rhythm as her pussy-lips clenching around your fingers; when you draw them out, they come back covered in shiny fem-slime.");
+
+	output("\n\nShe’s ready for it, alright.");
+
+	output("\n\nGrinning, you use the [pc.cockHead] of your dick to lift up Amara’s balls before nestling it into the gulf of her quim, smearing her juices around the entrance. Taking it nice and slow, you keep on teasing the pirate lord’s pussy and clit ‘till she’s thrashing and moaning and leaking all over her thighs. Only then do you finally push forward, spearing the dread lord in one [pc.knotBallsBase]-deep thrust. Her whole body arches off the bed, tits thrusting to the ceiling with a whorish moan held back by her drool-covered gag.");
+
+	output("\n\nWhile she’s up off the bed, you hook your arms underneath Amara’s arms and use her body as leverage to ram your [pc.hips] down on her again, starting to thrust as hard as you can. In the process, her own veiny red rocket ends up pinned between your bodies, rubbing against your [pc.belly] every time you thrust deep into its owner. Shade moans just as loud as her lover does, knuckles deep in her own clunge. She moans something like <i>“Fuck, that’s hot,”</i> even as you’re starting to pick up speed, plowing into Amara’s juicy puss. The pirate’s ginger tail thrashes against the bed, slapping your [pc.legs] with all its fluffy might");
+	// PC has balls:
+	if(pc.hasBalls()) output(" - ticking your [pc.balls] as she does so");
+	output(".");
+
+	output("\n\nThe big bad pirate lord really does like getting treated like a piece of fuckmeat. How about that?");
+
+	output("\n\nEven as Amara’s squeezing her eyes closed and squirming, you can feel her quim squeeze wildly around your [pc.cock]. Her dick throbs every time you thrust into her, squirting little streams of cream onto the ausar-babe’s toned belly, like you’re pumping it out every time your pride drives into the hole hidden beneath her balls. Pretty soon her little belly button is a lake of the stuff, and it’s slowly oozing down her ribs onto the sheets. She can’t even look you in the eye now, but all that anger and resentment from when you first mounted her has melted away entirely, replaced by shamefast lust. Pretty soon she’s moving her hips with you, trying to get your [pc.cock] as deep as she can every time you thrust it in - and she moans like a whore when you drive her down into the bed, making her ankles strain against their restraints.");
+
+	output("\n\nEven over the groans of the bed and the pirate bitch between you, you can still hear the wet schlicks coming from where Shade’s leaning against the wall, enjoying every second of the show. Her own little moans are a nice contrast to the feral sounds coming from around Amara’s ballgag; you wipe away a little trail of drool spilling down around the ball and grin down at the pirate lord, telling her that she’s being such a good girl. Isn’t this a nice change of pace?");
+
+	output("\n\nAmara thrusts herself up at you, pulling her bindings taut in her frustration. A couple more thrusts deep into her muff settle her down right quick, though. Her body naturally submits to you, refusing its owner’s indignant resistance in favor of slutty squirts and squeezes. She makes a fine cocksleeve, still nice and tight despite her age, and so aggressive in the way she moves. It’s hard to hold yourself back, to keep from just going all out until her quim’s pumped full of your seed... but you want to enjoy this MILFy body as long as you can.");
+
+	output("\n\nOnly when you hear Shade gasping, grinding back against the wall as she gets near to finishing, do you let your rampant lusts fully take control. Your [pc.hips] slam into the pirate lord with all your might, driving your [pc.cock] into her until her own half-hard red root gives a pathetic little throb of defeat and surrenders its creamy load all over Amara’s stomach and tits. Her body arches, then goes limp in your arms, all the fight streaming out of her alongside the wasted seed.");
+
+	output("\n\nThe scent of cum steaming in the air is the last straw; you hilt yourself inside the dread lord’s pussy and let loose a torrent of your own [pc.cum] deep into her womb. Cum floods out from between her lips");
+	// PC has knot:
+	if(pc.hasKnot()) output(", right until you ram your knot in, making sure no more of your jizz will escape. Maybe you can really give Astra a little sister...");
+	else output(", staining her thighs and pooling under Amara’s ass.");
+
+	output("\n\nShade howls with laugher, watching her lover squirm under you, soaked in her cum and filling with yours. <i>“Atta girl! Take it like you deserve. Fuck, that was hot.”</i> A moist hand slaps your ass, and your lover takes a seat beside you, grinning down at her partner. <i>“I’ve never seen you cum so fast, Amy. What happened to my big ol’ fuckbeast, huh?”</i>");
+
+	output("\n\nAmara’s eyes narrow, and she says something into her gag. Shade just snickers and runs her hand from your flanks up Amara’s belly, tweaking a tit before finally cupping her chin. Finally, she reaches down and unbuckles the ball gag, pulling it free... and pulling a six-inch spear of latex out of Amara’s throat attached to the inside of it.");
 
 	clearMenu();
 	addButton(0, "Next", finishWithThePirateLord);
@@ -1215,7 +1351,59 @@ public function sailWithShade():void
 	author("Savin");
 	showBust(shadeBustDisplay(true), amaraBustDisplay());
 
-	output("with Shade");
+	output("You can dream up a lot of things you’d love to do to a tied-up hermaphrodite MILF, but every one of them can be improved by adding another chesty momma to the mix. You start to disrobe yourself, sauntering towards the bed, and cast a grin over your shoulder at Shade. <i>“Well? Are you coming or what?”</i>");
+
+	output("\n\n<i>“At least once,”</i> the cat-woman laughs. <i>“What, can’t handle the big, scary pirate lord on your own? Need momma to come and make sure");
+	// PC has cock:
+	if(pc.hasCock()) output(" you find the right hole... or the wrong one.");
+	else output(" she doesn’t knot you too fast?");
+	output(" Oh, don’t gimme that look. Fine. I guess I went to all this trouble, I might as well enjoy myself too. Don’t normally get to share Amy like this, so let’s make it count.”</i>");
+
+	output("\n\nA second later and Shade’s pulled her top over her head, bringing those big, beautiful jugs of hers to light. They sway hypnotically, nipples hardening with every breath while she hooks her thumbs into her jeans and slides them down those thick, toned thighs. The green body of her parasitic tail whips around excitedly, lunging toward the naked pillar of red dogmeat swaying between Amara’s legs. Shade hisses at it, circling around till she can sit on the side of the bed, planting her ass so close to Amara’s face that the ginger wolf’s cheek nearly disappears into her paramore’s flank.");
+
+	output("\n\nThe pirate grumbles something through her ball gag, pulling on her restraints hard enough to make the bed creak. <i>“What’s that, babe? Can’t quite hear you...”</i>");
+
+	output("\n\nShade flashes you a devious little grin of her own as she reaches down and tweaks the red ball between Amara’s lips. The gag makes a little hissing noise and then opens up, material sliding into itself and leaving a solid ring in place of itself. Amara sticks her tongue straight out of it and blows a juicy raspberry at Shade, but all that accomplishes is making the kitty laugh. She leans in and thrusts her own tongue back through the ring, making Amara’s eyes go wide - and leaving her cock surging upright, wobbling heavily in the air as you mount the bed behind the MILF-kitty. You run a playful hand up Amara’s veiny red pride, squeezing the knot and teasing your fingers all the way up to her tapered tip. She throbs in your grasp, and you can’t help but grin as a glistening bead of precum starts to form on her crown.");
+
+	output("\n\nWhen Shade breaks the kiss, her lips are sheened from her lover’s tongue. <i>“She’s got a real skilled tongue,”</i> the amazonian kaithrit purrs, stroking Amara’s ginger curls. <i>“And personally, I can’t think of a more fitting way to get even than planting your ass on her face.”</i>");
+
+	output("\n\nNow she’s talking. When Shade crooks her finger, you let her guide you up the ausar hermaphrodite’s curvy body, crawling over big hips, hard cock, and clamped tits until your [pc.knees] and pressed into Amara’s armpits and your crotch is hovering over her chin. Shade gives you a pat on the ass and slips down the side of the bed, mounting it behind you with a grunt of effort. The springs creak wearily beneath the three of you, quaking while you turn yourself around and plant your [pc.butt] squarely onto Amara’s cheeks.");
+
+	output("\n\nThe dread lord squirms, thrashing in her restraints and spewing muffled expletives at you until you press your rump down hard enough to nearly suffocate the bitch. Like some kind of perverted instinct, her tongue thrusts up against your taint, searching out some way to pleasure you.");
+
+	output("\n\n<i>“What a well-trained pet,”</i> you laugh, shifting your hips to give Amara access to your {balls / pussy // ass}. She goes at you hard, wriggling that canid tongue all over every inch.");
+
+	output("\n\n<i>“Yeah, she’s good with that mouth,”</i> Shade chuckles. She’s come to straddle the pirate’s hips, wrapping a hand around the veiny red rocket thrusting up from between Amara’s legs and rubbing it against her silver-maned muff. <i>“You haven’t lived until you’ve spent a night with Amy between your thighs from dusk ‘till dawn. Mmm.”</i>");
+
+	output("\n\nShade sighs, pressing Amara’s tie against her quim. <i>“But you can enjoy that tonight. It’s a safe day, so... I’m gonna help myself to a nice, creamy load. Been a while since you got to rawdog me, huh, Amy? Not that <b>you</b> miss it, trailing your bastards all across the stars. I’m sure there’s a girl or three on every planet eager for you seed, huh?”</i>");
+
+	output("\n\nYou can <b>feel</b> Amara trying to bitch and moan about the way Shade’s teasing her, but it only serves to heighten your pleasure. Her tongue thrashes around, {burying itself in your [pc.vagOrAss]/ slurping on your balls}. That intensity only redoubles when Shade rises up on her knees, slipping Amara’s tapered tip between her lips, and slides down the throbbing pole with a throaty moan. Her tits bounce heavily when her ass slaps into the hermaphrodite’s thighs,");
+	// Shade is milky:
+	if(shade.isLactating()) output(" beading with over-burdened milk from the impact. The MILF-kitty blushes, wiping herself off... until she sees you staring at those bountiful mammaries.");
+	else output(" quaking hypnotically. You just can’t peel your eyes off them...");
+
+	output("\n\nShade bites her lip and pushes her chest out invitingly, a temptation you can’t possibly resist. She takes your cheeks in hand and guides you down to one of her big tits, and you wrap your [pc.lips] around a rosey teat and start to suck and roll your tongue all around its pebbly peak. Shade shivers as you go to work on her, wrapping your arms around the MILF-kitty’s waist and bury yourself in her ample cleavage.");
+	// Shade is milky:
+	if(shade.isLactating()) output(" Her milk flows freely over your [pc.tongue], sweet and rich. You slowly close your eyes, suckingly gently while Amara tongues you.");
+	output(" Shade moans, stroking your [pc.hair] and rolling her hips around Amara’s cock, taking the throbbing knot between her lips with practiced ease.");
+
+	output("\n\nThe pirate gasps and squirms as she ties her lover, which you take as the perfect time to");
+	// PC has cock:
+	if(pc.hasCock()) output(" push your own [pc.cock] straight into her ring-gag, burying yourself in her throat. She gags, tongue lapping at your crown before you batter the back of her throat. Oh, that’s nice...");
+	else output(" push your hips deep down on her, all but forcing the pirate to tongue-fuck your [pc.vagOrAss]. She’s so deep now, and thrashing around so desperately!");
+	output("You can barely keep from moaning into Shade’s tit, pushing back onto her lover’s tongue and worshipping those beautiful mammaries of hers.");
+
+	output("\n\n<i>“I feel her getting close,”</i> Shade murmurs, moving her hips a little quicker. <i>“What a shameless sub, my Amara... a-ah! Here she comes.”</i>");
+
+	output("\n\nYou feel the pirate lord jerk against her restraints, thrusting herself up between Shade’s legs. The huntress arches her back, thrusting her tits all over your [pc.face], and lets out a throaty purr as Amara gives her a knot-deep creampie. While she’s shooting off, Amara’s tongue goes absolutely wild,");
+	// PC has cock:
+	if(pc.hasCock()) output(" and such sucks you with such furor that it’s impossible not to cum with her. You slap yourself down on the pirate’s face, driving your dick deep down her throat, and let yourself go. She’s got no choice but to swallow every drop or drown, and that just makes her throat massage your shaft all the more.");
+	else output(" thrusting so deep into your [pc.vagOrAss] that you nearly squeal. Orgasm comes crashing down on you a few moments later, nearly dislodging you from Amara’s face amidst a stream of giggling curses and climactic moans.");
+	output(" Shade holds you tight the whole way through, smiling down at you until you and Amara have both spent your loads, leaving each other nice and sticky.");
+
+	output("\n\n<i>“Mmm, that’s good,”</i> Shade purrs, grinding herself down on Amara’s knot. <i>“Feels just as thick and hard as the first night we met... heh. Sorry, kiddo, you definitely don’t want to hear two old women talking dirty.”</i>");
+
+	output("\n\nShe laughs and peels you out of her cleavage. You’re given a kiss and rolled off of Amara, landing beside the lovers as Shade hefts herself off Amara’s knot, leaving her silver-fringed pussy agape and dripping. With an exaggerated stretch, the kitty-MILF leans down, pressing her tits into her lover’s and slipping a thumb into the open ring-gag. <i>“Let’s get this off you, babe.”</i>");
 
 	clearMenu();
 	addButton(0, "Next", finishWithThePirateLord);
@@ -1226,7 +1414,35 @@ public function finishWithThePirateLord():void
 	clearOutput();
 	author("Savin");
 
-	output("combined outro");
+	output("The pirate gasps and coughs, gulping air before thrusting her tongue out at Shade. <i>“Damn it. When you text me saying you’re home alone, I expect it to <b>stay</b> that way. Hmph! And you...”</i>");
+
+	output("\n\nAmara pulls on her restraints, prompting Shade to release them so the pirate lord can sit up and face you. Her clamped and chained nipples somewhat diminish the glower she gives you, as does the red root twitching between her thighs. <i>“<b>You</b> are a good lay. Consider my concerns assuaged, Shade.”</i>");
+
+	output("\n\n<i>“Oh, I’m glad you approve!”</i> Shade says, rolling her eyes. <i>“I’d be so ashamed if my [pc.boyGirl]friend didn’t meet your expectations.”</i>");
+
+	output("\n\nShe leans down, releasing the shackles around Amara’s feet and removing the nipple clamps, finally giving the Dread Lord the opportunity to stand up, rolling her shoulders. She’s a tall slab of meat for an ausar, a bit over six foot, and now that she’s moving you can really get an appreciation for the firm muscle under that alabaster skin. Her hands go to her hips, staring back at you. <i>“");
+	// Silly:
+	if(silly) output("You mirin’?");
+	else output("Yeah, go ahead and look.");
+	// PC gave up Kara:
+	if(flags["KQ2_BETRAYED_KARA"] == 1 && flags["KQ2_QUEST_FINISHED"] == 2) output(" Starting to believe you made the right choice on the rooftop, huh?");
+	// PC beat Amara:
+	else if(flags["KQ2_QUEST_FINISHED"] == 1) output(" Trying to find the sexy battle scars you left me? Don’t worry, I get those med-gel’d off. Can’t have my kids asking why I keep coming home covered in laser burns.");
+	// Kara died protecting PC:
+	else output(" I’m a lot sexier out of the double casts your cobalt kitty-friend put me in.");
+	output(" This body of mine’s the best that next-generation gene-cloning can make. As close to perfection as the Void’s geneticists can get... miles ahead of the work that went into making you. No laws holding our scientists back.”</i>");
+
+	output("\n\n<i>“See, you’ve got being designer babies in common,”</i> Shade snickers. <i>“And if you’re going to flex, Amy, do it with those muscles instead of your pedigree. At least we can all enjoy that.”</i>");
+
+	output("\n\nAmara grins and does just that... before breaking pose to grab Shade around the middle and lift her up into a rough kiss. <i>“Seriously though: ask next time. I’d have said yes...”</i>");
+
+	output("\n\n<i>“I know. But you were <b>so much</b> harder when it was a surprise. So, are we all cool now? I don’t need to worry about you two bein’ all awkward and shit if you both end up over for dinner together?”</i>");
+
+	output("\n\n<i>“Normally, I’d collar a fine piece of ass like this, but... I guess I’ll settle for this,”</i> Amara grins.");
+
+	output("\n\nYeah, you guess it’s all cool now. For Shade’s sake, if not for the chance of getting another shot at Amara’s so-called perfect body.");
+
+	output("\n\n<i>“Great!”</i> Shade smiles, clapping her hands. <i>“Now both of you get dressed and fuck off. Astra’s gonna be home any minute and I need a shower.”</i>");
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
