@@ -32,6 +32,11 @@ public function astraBustDisplay(nude:Boolean = false):String
 	if(nude) return "ASTRA_NUDE";
 	return "ASTRA";
 }
+public function amaraBustDisplay(nude:Boolean = false):String
+{
+	//if(nude) return AMARA_NUDE; // Does not exist (yet?)
+	return "AMARA";
+}
 
 /* Shade Expansion 1: Ballad of the Ice Queen */
 // by Savin
@@ -678,7 +683,12 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 			response = "lover sibling decision";
 			tooltip = "This is Shade’s house. Time to make a decision about where you want the pair of you to go.";
 		}
-		
+		else if(MailManager.isEntryViewed("shade_bounty_work")) // && !EVENT_HAPPENED
+		{
+			response = "bounty";
+			tooltip = "This is Shade’s house. Time to assist your lover with that bounty.";
+		}
+
 		/* 9999 - Repeat events. Nothing planned yet? */
 		else
 		{
@@ -713,6 +723,9 @@ public function approachShadeAtHouse(response:String = "intro"):void
 	
 	switch(response)
 	{
+		case "bounty":
+			helpShadeClaimThatBounty()
+			break;
 		case "ho ho ho":
 			shadeHolidayKnock();
 			break;
@@ -1089,4 +1102,133 @@ public function ironsHouseBonus():Boolean
 	return false;
 }
 
+/* Shade Expansion 2: Punishing a Pirate Lord */
+
+public function getMailBountyWork():void
+{
+	// Shade must be lover, must have fought Amara KQ2_FOUGHT_AMARA is set????, must have done other Shade scenes
+	if(!shadeIsLover() || flags["SHADE_ON_UVETO"] < 3) return;
+
+	if(!MailManager.isEntryUnlocked("shade_bounty_work")) goMailGet("shade_bounty_work");
+}
+
+public function createBountyEmailShade():String
+{
+	var msg:String = "";
+	msg = "Hey Kiddo,\n\n";
+	msg += "Had a real dangerous bounty fly into Irestead today. Been looking for this one for a long time. We had ourselves a real rough-and-tumble scuffle just now, but I got 'em tied up here at the house. Could you come over and give me a hand? Need someone I can trust.\n\n";
+	msg += "Love ya,\n";
+	msg += "-Shade";
+	return msg;
+}
+
+public function helpShadeClaimThatBounty():void
+{
+	move(rooms[currentLocation].eastExit);
+	clearOutput();
+	author("Savin");
+	showBust(shadeBustDisplay());
+	showName("\nSHADE");
+
+	output("First scene");
+
+	clearMenu();
+	addButton(0, "Next", shadeDisplaysHerBounty);
+}
+
+public function shadeDisplaysHerBounty():void
+{
+	clearOutput();
+	author("Savin");
+	showBust(shadeBustDisplay(), amaraBustDisplay());
+	showName("SHADE\n& AMARA");
+
+	output("with Amara");
+
+	clearMenu();
+	addButton(0, "Take Dick", jumpThatPirateLord, undefined, "Take Dick", "You're not one to pass up a chance to ride a thick, red Ausar knot. Especiallly when it's attached to a smoking hot MILF who's more dangerous than half the foes you've faced so far put together.");
+	if(pc.hasCock()) addButton(1, "Give Dick", enterThatPirateLord, undefined, "Give Dick", "You can see a cute muff under the pirate lord's balls, glistening in the mood light. It's hard to pass up a chance to breed a smoking hot MILF who's more dangerous than half the foes you've faced so far put together. Maybe you can give Astra a new sibling...");
+	else addDisabledButton(1, "Give Dick", "Give Dick", "You can see a cute muff under the pirate lord's balls, glistening in the mood light. It's hard to pass up a chance to breed a smoking hot MILF who's more dangerous than half the foes you've faced so far put together. Maybe you can give Astra a new sibling... (Requires a cock.)");
+	addButton(2, "With Shade", sailWithShade, undefined, "With Shade", "Can't handle the big, bad pirate lord alone? Why not bring in some MILFy backup?");
+	addButton(3, "No Thanks", noThanksForThePirateLord, undefined, "No Thanks", "Uh... no thanks. This is getting weird.");
+}
+
+public function noThanksForThePirateLord():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("no thanks");
+
+	clearMenu();
+	addButton(0, "Make Peace", makePeaceWithThePirateLord, undefined, "Make Peace", "You'll put aside your grudge with Amara. For Shade and Astra's sake.");
+	addButton(1, "No Way", noWayPirateLord, undefined, "No Way", "You aren't going to go soft on pirate scum. Not now, not ever.");
+}
+
+public function makePeaceWithThePirateLord():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("make peace");
+
+	clearMenu();
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
+}
+
+public function noWayPirateLord():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("no way");
+
+	clearMenu();
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
+}
+
+public function jumpThatPirateLord():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("take dick");
+
+	clearMenu();
+	addButton(0, "Next", finishWithThePirateLord);
+}
+
+public function enterThatPirateLord():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("give dick");
+
+	clearMenu();
+	addButton(0, "Next", finishWithThePirateLord);
+}
+
+public function sailWithShade():void
+{
+	clearOutput();
+	author("Savin");
+	showBust(shadeBustDisplay(true), amaraBustDisplay());
+
+	output("with Shade");
+
+	clearMenu();
+	addButton(0, "Next", finishWithThePirateLord);
+}
+
+public function finishWithThePirateLord():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("combined outro");
+
+	clearMenu();
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
+}
 

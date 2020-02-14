@@ -219,6 +219,7 @@ public function configureMails():void
 	MailManager.addMailEntry("emmy_harness_here", harnessDeliveryMessageFromEmmy,"IT’S HERE!?!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 
 	MailManager.addMailEntry("letter_from_shade", createLetterFromShade, createSubjectFromShade, "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shade_bounty_work", createBountyEmailShade, "Bounty Work", "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("shade_xmas_invite", shademasEmailString, "Happy Holidays", "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
