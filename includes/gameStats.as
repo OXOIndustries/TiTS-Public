@@ -683,6 +683,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
 						case "SiegwulfeEggnancy": output2(" [wulfe.name], Eggs"); break;
 						case "IlariaPregnancy": output2(" Ilaria"); break;
+						case "StormguardPregnancy": output2(" " + (flags["MET_GEL_ZON"] != undefined "Gel Zon":"Stormguard Lancer") + ", Egg"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1228,6 +1229,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cunt Snake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
 				if(StatTracking.getStat("pregnancy/frostwyrm eggs laid") > 0)
 					output2("\n<b>* Births, [frostwyrm.name]’s Eggs:</b> " + StatTracking.getStat("pregnancy/frostwyrm eggs laid"));
+				if(StatTracking.getStat("pregnancy/gel zon births") > 0)
+					output2("\n<b>* Births, Gel Zon’s Children:</b> " + StatTracking.getStat("pregnancy/gel zon births"));
 				if(StatTracking.getStat("pregnancy/ilaria births") > 0)
 					output2("\n<b>* Births, Ilaria Children:</b> " + StatTracking.getStat("pregnancy/ilaria births"));
 				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
@@ -8437,6 +8440,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
 					var lancerSexed:int = (flags["SEXED_SG_MALE"] == undefined ? 0 : flags["SEXED_SG_MALE"]);
 					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
+					if(flags["SG_CON_WINS"] > 1) output2("\n<b>* " + lancerName + ", Times You Consecutively Won:</b> " + flags["SG_CON_WINS"]);
 					if(flags["STORMGUARD_HONOR"] != undefined)
 					{
 						output2("\n<b>* " + lancerName + ", Respect Level:</b> " + flags["STORMGUARD_HONOR"]);

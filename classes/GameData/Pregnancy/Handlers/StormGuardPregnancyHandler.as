@@ -174,9 +174,8 @@ package classes.GameData.Pregnancy.Handlers
 			//If this is the first birth, go at it.
 			if (!kGAMECLASS.disableExploreEvents())// || InRoomWithFlag(GLOBAL.HAZARD))
 			{
-				ChildManager.addChild((thisPtr as StormguardPregnancyHandler).stormguardChild(mother));
 				var pData:PregnancyData = mother.pregnancyData[pregSlot];
-			
+
 				ChildManager.addChild(
 					Child.NewChildWeights(
 						thisPtr.pregnancyChildRace, 
@@ -197,7 +196,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 
-			StatTracking.track("pregnancy/cundarian births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/gel zon births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
@@ -220,7 +219,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;			
 
-			StatTracking.track("pregnancy/cundarian births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/gel zon births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);					
 			

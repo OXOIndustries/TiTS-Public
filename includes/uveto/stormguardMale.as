@@ -46,7 +46,7 @@ PC loses to him: -1 Honorcount (added at end of current interaction)
 		SEXED_SG_MALE	- Times had any kind of intercourse with him
 		STORMGUARD_CD	- Cooldown after certain scenes	
 						- Status effect, not flag
-		SG_CON_WINS		- Consective tiems PC won
+		SG_CON_WINS		- Consective times PC won
 		SG_FEMDOMMED	- How many times PC has done femdom scene
 		SG_PREG_SOURCE	- 1 if impregnated by win
 						- 2 if impregnated by loss heat sex
@@ -587,6 +587,7 @@ public function losesToSG():void
 	clearOutput();
 	showStormguard();
 	author("Nonesuch");
+	flags["SG_CON_WINS"] == undefined;
 	output("Overwhelmed, you fall to the cold ground, putting your hands up to signal an end to the battle. There’s a click of weapons being holstered and armor retracting, followed by the heavy crunch of hooves in snow stalking towards you. ");
 	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
 	else output("The storm lancer");
@@ -2191,50 +2192,157 @@ public function worshipStormguardCuzHeBetterThanU():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-public function mirrinPregnancyEnds():void
+public function stormguardBirthing():void
 {
 	clearOutput();
-	author("SoAndSo");
+	author("Maye");
 	showName("\nBIRTHING!");
 
-	output("There’s a lurching in your [pc.belly].");
-	output("\n\n<i>“Ah!”</i>");
-	output("\n\nYou clutch at your gut as a dysphoria of realness and hormonal energy bleeds into your field of view, making you buckle over. A hot dampness makes itself known " + (pc.isCrotchExposed() ? "along your [pc.thighs]" : "in your [pc.lowerGarment]") + ": It’s time!");
-	if (InShipInterior())
+	output("Contractions rock your body. Your child is coming!");
+	if (InShipInterior()) output(" Grabbing the medkit from your bathroom, you stumble towards your bed. You drop your [pc.gear] on the floor and clamber up. Settling into your bed, you prepare yourself and begin to push.");
+	else if (InRoomWithFlag(GLOBAL.HAZARD)) output(" Like an idiot, you wandered into the wilds with a baby on the way. Now your idiocy is paying dividends. You drop your [pc.gear] on the ground as you search for somewhere, anywhere, safe and comfortable. You have no choice now, you will have to give birth unassisted. Hopefully, nothing goes wrong.");
+	else output(" You waddle as quickly as you can to the nearest health clinic. Explaining your situation, the nurses take you into a nearby room, smiling happily and congratulating you on the upcoming birth of your new son or daughter.");
+	//Merge
+	output("\n\nYou cry out, your voice a mixture of both pleasure and pain. You feel your cervix dilate as your womb prepares to expel its current occupant. Your mind is hazy. Your body is pumping you full of endorphins. Something large passes through your cervix and into your canal.");
+	//First cundarian kid
+	if (StatTracking.getStat("pregnancy/gel zon births") <= 0) 
 	{
-		output("\n\nThank fuck you’re on the ship!");
-		output("\n\nWithout an extra thought, you gingerly make your way to the captain’s chair.");
-		if (getPlanetName() != "Tavros Station") output("\n\nFrantically punching in co-ordinates for Tavros, you can do nothing but sit back as the shaky auto-pilot takes over. You feel like passing out every minute of the brief journey, clutching at your gut all the way. With blessed speed, you make it to the station just barely hanging in!");
+		//First ever kid
+		if (StatTracking.getStat("pregnancy/total births") <= 0) output(" Is... Is a kid supposed to feel like this?");
+		output(" Even in your addled state you can tell something is off. It feels like you are giving birth to a large spherical object.");
 	}
-	else if (InRoomWithFlag(GLOBAL.HAZARD))
-	{
-		output("\n\nAnd what a place to be in...");
-		output("\n\nThinking quickly, you sink yourself to the ground and huddle against the nearest flat surface you can feel behind you. You tap away on your codex like mad, flustered enough to miss the communicator several times.");
-		output("\n\nIn a moment of panicked gratitude, you send an emergency distress signal from the local wilderness.");
-		output("\n\nAn agonizingly short time later, a cavalcade of an ambulance with guards arrives. Feeling the hands of your saviours stretcher you onto the awaiting vehicle, everything becomes a bit blurrier, muffled...sleepier...easy now...");
-		output("\n\nYou start sending a local signal for emergency services, making sure that all the docking doors are open. Not long now, not long now...!");
-		output("\n\nIn the haze of pain and concentration you expend, medics arrive and tend to you like saviours from on high. Everything becomes a bit blurrier, muffled...sleepier...easy now...");
-	}
-	else
-	{
-		output("\n\nThinking on your toes, you find a wall to lean on. Using it as a support, you let yourself slide against it to the floor and make sure you can draw attention to your predicament from nearby hub dwellers.");
-		output("\n\n<i>“H-help! My water broke!”</i> you cry out with your eyes closed up, hoping for divine assistance as pain now takes over your body.");
-		output("\n\nThere’s a clamour of voices and movement with several passers-by rushing to your aid. They help you get into a comfortable position, using some jackets to aid your rest.");
-		output("\n\nIn no time at all, U.G.C officers and medical crew have already arrived and they stretcher you away. Everything becomes a bit blurrier, muffled...sleepier...easy now...");
-	}
-
-	processTime(3);
+	else output(" From experience, you know you are giving birth to the egg which holds your developing child.");
+	//Merge
+	output("\n\nThe object makes its way down your tunnel, your contractions pushing it along until it reaches the entrance to your canal. Soon it pops free and you stare at the thing that’s come out of you. You’ve given birth to a large, blue egg. Holding your ear against the surface, a tiny heartbeat, is audible. You cradle the egg in your arms, caressing it, whispering soothing words of comfort even if you are unsure if your newborn can hear them. The arrival of the nursery drone breaks you out of your stupor. You secure your egg inside with the utmost of care and kiss your child goodbye before sealing the drone. You watch it go with a heavy heart. It’s time to continue your adventure.");
+	//Clear preg related flags
+	flags["SG_PREG_SOURCE"] == undefined;
+	flags["SG_PREG_PC_KNOWS"] == undefined;
+	flags["SG_PREG_MET"] == undefined;
+	processTime(20);
 	clearMenu();
-	addButton(0,"Zzz...",wakeUpDoodUHaveMirrinBabiesToDeliver);
+	addButton(0,"Next",mainGameMenu);
 }
+public function stormguardBabyBlurbs(button:Number):Number
+{
+	if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 8, 13) == 1)
+	{
+		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_CUNDARIAN, ChildManager.GENDER_MALE, 8, 13);
+		output("\n\nYour cundarian" + (boy ? "son" : "daughter") + " is {crawling/1yr+:romping} around the room, incessantly investigating their surroundings." + (boy ? "He" : "She") + "’s already getting into all sorts of trouble. Gonna be a handful this one.");
+	}
+	else if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 8, 13) == 2)
+	{
+		output("\n\nYour two cundarian kids are playing, challenging each other to mock fights. Mostly, it just involves biting.");
+	}
+	else if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 8, 13) >= 3)
+	{
+		output("\n\nA big pile of your cundarians kids are holding a 'hunt' of sorts in one of the rooms. It seems they have decided one of the robot nurses is a 'dragon' and they are trying to take her down. They mob her with their little fists but they aren't very successful, the 'dragon' picking them up one by one and getting them ready for their nap.");
+	}
+}
+public function stormguardKidsOptions(button:Number):void
+{
+	if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 0, 13) > 0)
+	{
+		addButton(button,"Cundarian",visitCundarianKids);
+		button++;
+	}
+	else if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 13, 9001) > 0)
+	{
+		addDisabledButton(button,"Cundarian","Cundarian","You don’t have any kids young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
+		button++;
+	}
+	return button;
+}
+public function visitCundarianKids(choice:Number = -1):void
+{
+	clearOutput();
+	author("Maye");
+	showName("CUNDARIAN\nKIDS");
+	//Build menu
+	if (choice == -1)
+	{
+		output("Which age group will you interact with? (Buttons are in month age ranges)");
+		clearMenu();
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 0, 2) > 0) addButton(0,"0-2 Months",visitCundarianKids,0);
+		else addDisabledButton(0,"0-2 Months","0-2 Months","You have no kids in that age range.");
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 3, 6) > 0) addButton(1,"3-6 Months",visitCundarianKids,1);
+		else addDisabledButton(1,"3-6 Months","3-6 Months","You have no kids in that age range.");
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 7, 13) > 0) addButton(2,"7-13 Months",visitCundarianKids,2);
+		else addDisabledButton(2,"7-16 Months","7-16 Months","You have no kids in that age range.");
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 14, 9001) > 0) addDisabledButton(3,"14+ Months","14+ Month","These kids are too old to play with.");
+		return;
+	}
+	
+	var boy:Boolean = false;
+	var girl:Boolean = false;
+	var numBabies:int = 0;
+	
+	var minAge:int;
+	var maxAge:int;
+	var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_CUNDARIAN);
+	var tChildren:Array = [];
+	var childIdx:int = -1;
+	
+	if(choice == 0) { minAge = 0; maxAge = 2; }
+	else if(choice == 1) { minAge = 3; maxAge = 6; }
+	else if(choice == 2) { minAge = 7; maxAge = 13; }
+	
+	// Filter for children and ages
+	if(children != null && children.length > 0)
+	{
+		childIdx = 0; // The oldest should be first in the array!
+		if(maxAge != -1 && maxAge < minAge) maxAge = -1;
+		for(var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			var m:int = c.Months;
+			if((maxAge == -1 || m <= maxAge) && m >= minAge)
+			{
+				tChildren.push(c);
+				numBabies += c.Quantity;
+			}
+		}
+	}
+	// If valid children, set perameters.
+	if(tChildren.length > 0)
+	{
+		childIdx = rand(tChildren.length);
+		if(tChildren[childIdx].NumMale > 0) boy = true;
+		if(tChildren[childIdx].NumFemale > 0) girl = true;
+		if(boy && girl) boy = (rand(2) == 0);
+	}
 
-/*
-
-Birth
-Contractions rock your body. Your child is coming! {Town:You waddle as quickly as you can to the nearest health clinic. Explaining your situation, the nurses take you into a nearby room, smiling happily and congratulating you on the upcoming birth of your new son or daughter.}{Ship:Grabbing the medkit from your bathroom, you stumble towards your bed. You drop your weapons {!nude:and pc.gear} on the floor and clamber up. Settling into your bed, you prepare yourself and begin to push.}{BumFuckingNowhere:Like an idiot, you wandered into the wilds with a baby on the way. Now your idiocy is paying dividends. You drop your weapons {!nude:and pc.gear} on the ground as you search for somewhere, anywhere, safe and comfortable. You have no choice now, you will have to give birth unassisted. Hopefully, nothing goes wrong.}
-
-//merges
-You cry out, your voice a mixture of both pleasure and pain. You feel your cervix dilate as your womb prepares to expel its current occupant. Your mind is hazy. Your body is pumping you full of endorphins. Something large passes through your cervix and into your canal. {first cundarian:{first birth ever:Is… Is a kid supposed to feel like this?} Even in your addled state you can tell something is off. It feels like you are giving birth to a large spherical object.}}{else:From experience, you know you are giving birth to the egg which holds your developing child.}
-
-The object makes its way down your tunnel, your contractions pushing it along until it reaches the entrance to your canal. Soon it pops free and you stare at the thing that’s come out of you. You’ve given birth to a large, blue egg. Holding your ear against the surface, a tiny heartbeat, is audible. You cradle the egg in your arms, caressing it, whispering soothing words of comfort even if you are unsure if your newborn can hear them. The arrival of the nursery drone breaks you out of your stupor. You secure your egg inside with the utmost of care and kiss your child goodbye before sealing the drone. You watch it go with a heavy heart. It's time to continue your adventure.
-*/
+	//Look at egg (0-8 weeks)
+	if(choice == 0)
+	{
+	output("\n\nYou look upon your cundarian child. The brilliant blue egg rests inside an incubator machine, swaddled in soft cloth. Will it be a boy or girl? You can’t wait to find out!	");
+		processTime(2);
+	}
+	//Play with baby (9-24 weeks)
+	else if(choice == 1)
+	{
+		output("\n\nYou notice " + (numBabies >= 1 "one of":"") + " your newly hatched cundarian child" + (numBabies >= 1 "ren":"") + " sitting upright in " + (boy ? "his":"her") + " cradle. The small blue child looks towards you eagerly, gesturing that " + (boy ? "he":"she") + " wants the attention of " + (boy ? "his":"her") + " mother. " + (boy ? "His":"Her") + " face resembles yours, the crested eyebrows and finned ears of their father replaced with human equivalents. " + (boy ? "His" : "Her") + " hair, however, is still tentacled, the long blue appendages dangling from " + (boy ? "him":"her") + " head.");
+		output("\n\nYou pick your child up, lifting them out of the cradle. "+  (boy ? "He":"She") + " gurgles happily, inspecting you with wide eyes. " + (boy ? "His":"Her")  +" prehensile tentacles come up and touch your face, this action seemingly how they bond with their parent. " + (boy ? "His":"Her") + " little hand grips one of your fingers. Quite a grip on this one! " + (boy ? "He":"She") + " is gonna be quite the warrior.");
+		processTime(7);
+	}
+	//Play with baby (25-52 weeks)
+	else if(choice == 2)
+	{
+		//One kid
+		if(numBabies == 1)
+		{
+			output("\n\nYou see your cundarian child playing in the common area. " + (boy ? "He" : "She") + " holds a rattle in " + (boy ? "his" : "her") + " hand. " + (boy ? "He" : "She") + " wields it like a makeshift club, using it to bop nurse droids on the head. Upon spotting you, " + (boy ? "he" : "she") + " shakily gets to " + (boy ? "his" : "her") + " feet and wobbles over to you before demanding you pick " + (boy ? "him" : "her") + " up. <i>“Mu ma,”</i> " + (boy ? "he" : "she") + " gurgles, looking up at you very seriously. <i>“Mu ma.”</i>");
+			output("\n\nYou cradle your child in your arms, rocking them them gently as you weave a tale of your adventures. " + (boy ? "He" : "She") + " seems most interested in your battles, especially ones involving gigantic beasts. Soon " + (boy ? "he" : "she") + " falls asleep, and you put them to bed. It's time to let " + (boy ? "him" : "her") + " rest, and you cover " + (boy ? "him" : "her") + " with " + (boy ? "his" : "her") + " sheets before leaving.");
+			processTime(45);
+		}
+		//Multiple kids
+		else
+		{
+			ooutput("\n\nYou see your cundarian children playing in the common area. They hold rattles in their hands, wielding them like makeshift clubs. They use them to bop nurse droids, and each other on the head. One spots you and cries happily, your children shakily standing up and wobbling over to you. <i>“Mu ma,”</i> they gurgle, demanding your attention. <i>“Mu ma.”</i>");
+			output("\n\nYou sit down, letting your children nuzzle up against your body as you weave a tale of your adventures. Your progeny are enthralled by your stories, seeming most excited by your battles, especially ones involving gigantic beasts.");
+			output("\n\nAfter several tales, they fall asleep, their little heads resting against you. Nursedroids come by and pick them up one by one and take them to bed. You smile fondly as the last one is gathered up, before turning to leave.");
+			processTime(75);
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
