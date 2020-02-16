@@ -1826,7 +1826,7 @@ public function femdomSGOhhhhYeeeeaaahhh(x:int):void
 	output("\n\nYou ignore him, continuing on past his base to stroke his muscled, beefy ass before grasping his thick tail.");
 
 	output("\n\nYou suddenly yank it, pulling him down into the snow below. You");
-	if (pc.isNaga()) output("{leer");
+	if (pc.isNaga()) output(" leer");
 	else output(" stand");
 	output(" over his body triumphantly");
 	if (!pc.isNude())output(" and begin stripping off your [pc.gear]");
@@ -1837,7 +1837,7 @@ public function femdomSGOhhhhYeeeeaaahhh(x:int):void
 		if (pc.isTaur()) output(" press your hindquarters down");
 		else output(" kneel down");
 		output(", sandwiching his fat cock between your [pc.buttcheeks].");
-
+	}
 	output("\n\n");
 	if (pc.isBimbo()) output("<i>“You just won’t stop. Do you really want me that bad?”</i>");
 	else if (flags["SG_FEMDOMMED"] == undefined) output("<i>“You should be praised for your persistence at the very least,”</i>");
@@ -1916,7 +1916,7 @@ public function femdomSGOhhhhYeeeeaaahhh(x:int):void
 	if (pc.isGoo()) output(" his brilliant blue cum swirling through your translucent body, staining you with the color of his seed");
 	else output(" flooding your womb with his virile sperm");
 	output(". The first drop of his frothy load pushes you over the edge. Your [pc.legs] shake and [pc.hips] quiver as your pussy clamps down on his throbbing spear, intent on fulfilling its biological purpose.");
-	if (pc.hasCock()) output(" Thick ropes of [pc.cum] spurt from your [pc.cocks], splattering all over Gel Zon’s face and chest in a brilliant sheen of [pc.cumcolor].");
+	if (pc.hasCock()) output(" Thick ropes of [pc.cum] spurt from your [pc.cocks], splattering all over Gel Zon’s face and chest in a brilliant sheen of [pc.cumColor].");
 	output(" Explosions of pleasure wrack your body and you can’t help but cry lewdly in delight, your [pc.girlcum] leaking out,");
 	if (!pc.isSquirter()) output(" drenching");
 	else output(" covering");
@@ -1975,8 +1975,8 @@ public function femdomSGOhhhhYeeeeaaahhh(x:int):void
 	//So that heat sex loss and femdom victory scenes cause pregnancy but normal loss doesn't
 	var fertileStormguard:StormguardMale = new StormguardMale();
 	fertileStormguard.impregnationType = "StormguardPregnancy";
-	flags["SG_PREG_SOURCE"] = 1;
 	pc.loadInCunt(fertileStormguard,x);
+	flags["SG_PREG_SOURCE"] = 1;
 	stormguardHonor(1);
 	CombatManager.genericVictory();
 }
@@ -2156,7 +2156,7 @@ public function worshipStormguardCuzHeBetterThanU():void
 	output("’s prominent glans. Liberal amounts of pre flow forth from the head of his prick, like a veritable fountain of virility. Wrapping your [pc.lips] around his penis, the touch of your lips causes the barbarian to let out a sharp gasp of pleasure and you drink him in, his sweet liquid vanishing into the depths of your gullet.");
 
 	output("\n\nYour cocksucking lips slide down his shaft as you take more and more of him into you,");
-	if (pc.canDeepThroat()) output(" the entirety of his meaty rod disappearing down your throat.");
+	if (pc.canDeepthroat()) output(" the entirety of his meaty rod disappearing down your throat.");
 	else output(" until finally you can take no more.");
 	output(" The girth of his member expands the walls of your throat. Trapped by his big dick, your stifled moans cannot escape and the sound waves bounce helplessly off his flesh, stimulating him even further.");
 
@@ -2222,12 +2222,12 @@ public function stormguardBirthing():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-public function stormguardBabyBlurbs(button:Number):Number
+public function stormguardBabyBlurbs():void
 {
 	if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 8, 13) == 1)
 	{
 		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_CUNDARIAN, ChildManager.GENDER_MALE, 8, 13);
-		output("\n\nYour cundarian" + (boy ? "son" : "daughter") + " is {crawling/1yr+:romping} around the room, incessantly investigating their surroundings." + (boy ? "He" : "She") + "’s already getting into all sorts of trouble. Gonna be a handful this one.");
+		output("\n\nYour cundarian" + (boy ? "son" : "daughter") + " is crawling around the room, incessantly investigating their surroundings." + (boy ? "He" : "She") + "’s already getting into all sorts of trouble. Gonna be a handful this one.");
 	}
 	else if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 8, 13) == 2)
 	{
@@ -2238,7 +2238,7 @@ public function stormguardBabyBlurbs(button:Number):Number
 		output("\n\nA big pile of your cundarians kids are holding a 'hunt' of sorts in one of the rooms. It seems they have decided one of the robot nurses is a 'dragon' and they are trying to take her down. They mob her with their little fists but they aren't very successful, the 'dragon' picking them up one by one and getting them ready for their nap.");
 	}
 }
-public function stormguardKidsOptions(button:Number):void
+public function stormguardKidsOptions(button:Number):Number
 {
 	if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 0, 13) > 0)
 	{
@@ -2320,7 +2320,7 @@ public function visitCundarianKids(choice:Number = -1):void
 	//Play with baby (9-24 weeks)
 	else if(choice == 1)
 	{
-		output("\n\nYou notice " + (numBabies >= 1 "one of":"") + " your newly hatched cundarian child" + (numBabies >= 1 "ren":"") + " sitting upright in " + (boy ? "his":"her") + " cradle. The small blue child looks towards you eagerly, gesturing that " + (boy ? "he":"she") + " wants the attention of " + (boy ? "his":"her") + " mother. " + (boy ? "His":"Her") + " face resembles yours, the crested eyebrows and finned ears of their father replaced with human equivalents. " + (boy ? "His" : "Her") + " hair, however, is still tentacled, the long blue appendages dangling from " + (boy ? "him":"her") + " head.");
+		output("\n\nYou notice " + (numBabies >= 1 ? "one of":"") + " your newly hatched cundarian child" + (numBabies >= 1 ? "ren":"") + " sitting upright in " + (boy ? "his":"her") + " cradle. The small blue child looks towards you eagerly, gesturing that " + (boy ? "he":"she") + " wants the attention of " + (boy ? "his":"her") + " mother. " + (boy ? "His":"Her") + " face resembles yours, the crested eyebrows and finned ears of their father replaced with human equivalents. " + (boy ? "His" : "Her") + " hair, however, is still tentacled, the long blue appendages dangling from " + (boy ? "him":"her") + " head.");
 		output("\n\nYou pick your child up, lifting them out of the cradle. "+  (boy ? "He":"She") + " gurgles happily, inspecting you with wide eyes. " + (boy ? "His":"Her")  +" prehensile tentacles come up and touch your face, this action seemingly how they bond with their parent. " + (boy ? "His":"Her") + " little hand grips one of your fingers. Quite a grip on this one! " + (boy ? "He":"She") + " is gonna be quite the warrior.");
 		processTime(7);
 	}
@@ -2337,7 +2337,7 @@ public function visitCundarianKids(choice:Number = -1):void
 		//Multiple kids
 		else
 		{
-			ooutput("\n\nYou see your cundarian children playing in the common area. They hold rattles in their hands, wielding them like makeshift clubs. They use them to bop nurse droids, and each other on the head. One spots you and cries happily, your children shakily standing up and wobbling over to you. <i>“Mu ma,”</i> they gurgle, demanding your attention. <i>“Mu ma.”</i>");
+			output("\n\nYou see your cundarian children playing in the common area. They hold rattles in their hands, wielding them like makeshift clubs. They use them to bop nurse droids, and each other on the head. One spots you and cries happily, your children shakily standing up and wobbling over to you. <i>“Mu ma,”</i> they gurgle, demanding your attention. <i>“Mu ma.”</i>");
 			output("\n\nYou sit down, letting your children nuzzle up against your body as you weave a tale of your adventures. Your progeny are enthralled by your stories, seeming most excited by your battles, especially ones involving gigantic beasts.");
 			output("\n\nAfter several tales, they fall asleep, their little heads resting against you. Nursedroids come by and pick them up one by one and take them to bed. You smile fondly as the last one is gathered up, before turning to leave.");
 			processTime(75);

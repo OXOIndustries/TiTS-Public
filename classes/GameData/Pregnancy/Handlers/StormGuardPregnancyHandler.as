@@ -30,14 +30,14 @@ package classes.GameData.Pregnancy.Handlers
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;
 			_ignoreMotherInfertility = false;
-			_allowMultiplePregnancies = false;
+			_allowMultiplePregnancies = true;
 			_canImpregnateButt = false;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 1;
-			_definedAverageLoadSize = 100;
-			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGG;
+			_definedAverageLoadSize = 1000;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			_pregnancyChildRace = GLOBAL.TYPE_CUNDARIAN;
 			_childMaturationMultiplier = 1.0;
 						

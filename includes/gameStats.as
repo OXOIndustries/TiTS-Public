@@ -683,7 +683,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
 						case "SiegwulfeEggnancy": output2(" [wulfe.name], Eggs"); break;
 						case "IlariaPregnancy": output2(" Ilaria"); break;
-						case "StormguardPregnancy": output2(" " + (flags["MET_GEL_ZON"] != undefined "Gel Zon":"Stormguard Lancer") + ", Egg"); break;
+						case "StormguardPregnancy": output2(" " + (flags["MET_GEL_ZON"] != undefined ? "Gel Zon":"Stormguard Lancer") + ", Egg"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -9916,3 +9916,4 @@ public function listCharPerks(charName:String = ""):String
 
 	return txt;
 }
+
