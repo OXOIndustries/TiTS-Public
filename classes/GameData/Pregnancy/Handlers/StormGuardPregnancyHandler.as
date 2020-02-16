@@ -171,11 +171,10 @@ package classes.GameData.Pregnancy.Handlers
 
 		public static function stormguardOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
+			var pData:PregnancyData = mother.pregnancyData[pregSlot];
 			//If this is the first birth, go at it.
 			if (!kGAMECLASS.disableExploreEvents())// || InRoomWithFlag(GLOBAL.HAZARD))
 			{
-				var pData:PregnancyData = mother.pregnancyData[pregSlot];
-
 				ChildManager.addChild(
 					Child.NewChildWeights(
 						thisPtr.pregnancyChildRace, 

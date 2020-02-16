@@ -826,6 +826,7 @@ public function pitchVagimalKrym():void
 	output(". <i>“It isn’t everyday a fuck like you comes along...”</i>");
 	output("\n\nIs that the only reason, you wonder.");
 
+	processTime(45);
 	if(x >= 0) krymhilde.loadInMouth(pc);
 	pc.orgasm();
 

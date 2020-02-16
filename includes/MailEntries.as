@@ -343,6 +343,9 @@ public function configureMails():void
 	
 	//milodan futazons
 	MailManager.addMailEntry("joyco_uveto_hazmat_advisory", joycoUvetoHazmatAdvisoryEmail, "Urgent: Hazmat Advisory", "JoyCo HR", "HumanResources@JoyCo.corp", quickPCTo, quickPCToAddress);
+
+	//stormguard egg hatch email
+	MailManager.addMailEntry("stormguard_hatch", stormguardEggHatchEmail, "Congratulaions!", "Briget", "Briget@SteeleTech.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

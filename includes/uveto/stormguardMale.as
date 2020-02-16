@@ -55,6 +55,8 @@ PC loses to him: -1 Honorcount (added at end of current interaction)
 						- should reset at end of pregnancy
 		SG_PREG_MET		- PC has met Stormguard while pregnant with this kid
 						- should reset at end of pregnancy
+		SG_HATCH_TIMER	- keep track of when egg hatches
+						- reset after hatched
 */
 
 public function stormguardMaleEncounterAvailabale():Boolean
@@ -2143,7 +2145,7 @@ public function worshipStormguardCuzHeBetterThanU():void
 
 	output("\n\nThe heat of his round orbs blazes against your hands, the molten goodness inside hotter than a thousand suns. Your soft hands caress the lancer’s spheres, running over the blue skin of his sack in small circular motions as you bring your [pc.lips] down and kiss their sweaty surface. The taste of his nuts is orgasmic; it is infused with his manly essence and it drives you wild, reminding you of the glorious feeling of his thick dick splitting you apart as pressed up against your cervix and flooded your womb with his spunk.");
 
-	output("\n\nThe warrior moans appreciatively as every inch of his four fat testicles is peppered with soft kisses. You worship these idols of virility, and his ridged penis trembles with delight at your dutiful service, great globs of pre gushing forth from his girthy rod and all over your [pc.skinScalesFur]. The barbarian’s spear throbs with dire need and you pull away from his sack, pressing your face against the base of his prick. You look up at him with wide eyes, wordlessly asking for, no begging for his permission to continue.");
+	output("\n\nThe warrior moans appreciatively as every inch of his four fat testicles is peppered with soft kisses. You worship these idols of virility, and his ridged penis trembles with delight at your dutiful service, great globs of pre gushing forth from his girthy rod and all over your [pc.skinFurScales]. The barbarian’s spear throbs with dire need and you pull away from his sack, pressing your face against the base of his prick. You look up at him with wide eyes, wordlessly asking for, no begging for his permission to continue.");
 
 	output("\n\n<i>“What are you waiting for, slut?”</i> he rumbles loudly. <i>“Service your stud. Worship the one who owns your womb.”</i> The words spur you into action and your tongue slips between your lips. You move up his ridged length, never blinking or looking away, your svelte muscle running over every ridge and valley lining his cumvein. Every pleasured twitch of");
 	if (flags["MET_GEL_ZON"] != undefined) output(" Gel Zon");
@@ -2218,6 +2220,7 @@ public function stormguardBirthing():void
 	flags["SG_PREG_SOURCE"] == undefined;
 	flags["SG_PREG_PC_KNOWS"] == undefined;
 	flags["SG_PREG_MET"] == undefined;
+	flags["SG_HATCH_TIMER"] = 0;
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2262,13 +2265,13 @@ public function visitCundarianKids(choice:Number = -1):void
 	{
 		output("Which age group will you interact with? (Buttons are in month age ranges)");
 		clearMenu();
-		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 0, 2) > 0) addButton(0,"0-2 Months",visitCundarianKids,0);
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 0, 1) > 0) addButton(0,"0-1 Months",visitCundarianKids,0);
 		else addDisabledButton(0,"0-2 Months","0-2 Months","You have no kids in that age range.");
-		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 3, 6) > 0) addButton(1,"3-6 Months",visitCundarianKids,1);
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 2, 5) > 0) addButton(1,"2-5 Months",visitCundarianKids,1);
 		else addDisabledButton(1,"3-6 Months","3-6 Months","You have no kids in that age range.");
-		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 7, 13) > 0) addButton(2,"7-13 Months",visitCundarianKids,2);
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 6, 12) > 0) addButton(2,"6-12 Months",visitCundarianKids,2);
 		else addDisabledButton(2,"7-16 Months","7-16 Months","You have no kids in that age range.");
-		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 14, 9001) > 0) addDisabledButton(3,"14+ Months","14+ Month","These kids are too old to play with.");
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_CUNDARIAN, 13, 9001) > 0) addDisabledButton(3,"13+ Months","13+ Month","These kids are too old to play with.");
 		return;
 	}
 	
@@ -2314,13 +2317,13 @@ public function visitCundarianKids(choice:Number = -1):void
 	//Look at egg (0-8 weeks)
 	if(choice == 0)
 	{
-	output("\n\nYou look upon your cundarian child. The brilliant blue egg rests inside an incubator machine, swaddled in soft cloth. Will it be a boy or girl? You can’t wait to find out!	");
+	output("You look upon your cundarian child. The brilliant blue egg rests inside an incubator machine, swaddled in soft cloth. Will it be a boy or girl? You can’t wait to find out!	");
 		processTime(2);
 	}
 	//Play with baby (9-24 weeks)
 	else if(choice == 1)
 	{
-		output("\n\nYou notice " + (numBabies >= 1 ? "one of":"") + " your newly hatched cundarian child" + (numBabies >= 1 ? "ren":"") + " sitting upright in " + (boy ? "his":"her") + " cradle. The small blue child looks towards you eagerly, gesturing that " + (boy ? "he":"she") + " wants the attention of " + (boy ? "his":"her") + " mother. " + (boy ? "His":"Her") + " face resembles yours, the crested eyebrows and finned ears of their father replaced with human equivalents. " + (boy ? "His" : "Her") + " hair, however, is still tentacled, the long blue appendages dangling from " + (boy ? "him":"her") + " head.");
+		output("You notice " + (numBabies > 1 ? "one of":"") + " your newly hatched cundarian child" + (numBabies > 1 ? "ren":"") + " sitting upright in " + (boy ? "his":"her") + " cradle. The small blue child looks towards you eagerly, gesturing that " + (boy ? "he":"she") + " wants the attention of " + (boy ? "his":"her") + " mother. " + (boy ? "His":"Her") + " face resembles yours, the crested eyebrows and finned ears of their father replaced with human equivalents. " + (boy ? "His" : "Her") + " hair, however, is still tentacled, the long blue appendages dangling from " + (boy ? "him":"her") + " head.");
 		output("\n\nYou pick your child up, lifting them out of the cradle. "+  (boy ? "He":"She") + " gurgles happily, inspecting you with wide eyes. " + (boy ? "His":"Her")  +" prehensile tentacles come up and touch your face, this action seemingly how they bond with their parent. " + (boy ? "His":"Her") + " little hand grips one of your fingers. Quite a grip on this one! " + (boy ? "He":"She") + " is gonna be quite the warrior.");
 		processTime(7);
 	}
@@ -2330,14 +2333,14 @@ public function visitCundarianKids(choice:Number = -1):void
 		//One kid
 		if(numBabies == 1)
 		{
-			output("\n\nYou see your cundarian child playing in the common area. " + (boy ? "He" : "She") + " holds a rattle in " + (boy ? "his" : "her") + " hand. " + (boy ? "He" : "She") + " wields it like a makeshift club, using it to bop nurse droids on the head. Upon spotting you, " + (boy ? "he" : "she") + " shakily gets to " + (boy ? "his" : "her") + " feet and wobbles over to you before demanding you pick " + (boy ? "him" : "her") + " up. <i>“Mu ma,”</i> " + (boy ? "he" : "she") + " gurgles, looking up at you very seriously. <i>“Mu ma.”</i>");
+			output("You see your cundarian child playing in the common area. " + (boy ? "He" : "She") + " holds a rattle in " + (boy ? "his" : "her") + " hand. " + (boy ? "He" : "She") + " wields it like a makeshift club, using it to bop nurse droids on the head. Upon spotting you, " + (boy ? "he" : "she") + " shakily gets to " + (boy ? "his" : "her") + " feet and wobbles over to you before demanding you pick " + (boy ? "him" : "her") + " up. <i>“Mu ma,”</i> " + (boy ? "he" : "she") + " gurgles, looking up at you very seriously. <i>“Mu ma.”</i>");
 			output("\n\nYou cradle your child in your arms, rocking them them gently as you weave a tale of your adventures. " + (boy ? "He" : "She") + " seems most interested in your battles, especially ones involving gigantic beasts. Soon " + (boy ? "he" : "she") + " falls asleep, and you put them to bed. It's time to let " + (boy ? "him" : "her") + " rest, and you cover " + (boy ? "him" : "her") + " with " + (boy ? "his" : "her") + " sheets before leaving.");
 			processTime(45);
 		}
 		//Multiple kids
 		else
 		{
-			output("\n\nYou see your cundarian children playing in the common area. They hold rattles in their hands, wielding them like makeshift clubs. They use them to bop nurse droids, and each other on the head. One spots you and cries happily, your children shakily standing up and wobbling over to you. <i>“Mu ma,”</i> they gurgle, demanding your attention. <i>“Mu ma.”</i>");
+			output("You see your cundarian children playing in the common area. They hold rattles in their hands, wielding them like makeshift clubs. They use them to bop nurse droids, and each other on the head. One spots you and cries happily, your children shakily standing up and wobbling over to you. <i>“Mu ma,”</i> they gurgle, demanding your attention. <i>“Mu ma.”</i>");
 			output("\n\nYou sit down, letting your children nuzzle up against your body as you weave a tale of your adventures. Your progeny are enthralled by your stories, seeming most excited by your battles, especially ones involving gigantic beasts.");
 			output("\n\nAfter several tales, they fall asleep, their little heads resting against you. Nursedroids come by and pick them up one by one and take them to bed. You smile fondly as the last one is gathered up, before turning to leave.");
 			processTime(75);
@@ -2345,4 +2348,62 @@ public function visitCundarianKids(choice:Number = -1):void
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+public function processStormguardEggHatch(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if (flags["SG_HATCH_TIMER"] != undefined) flags["SG_HATCH_TIMER"] += totalDays;
+	
+	var timestamp:int = GetGameTimestamp() + deltaT;
+
+	if (flags["SG_HATCH_EMAIL"] == undefined && (flags["SG_HATCH_TIMER"] > 2 * 30))
+	{
+		timestamp = (GetGameTimestamp() + deltaT - (flags["SG_HATCH_TIMER"] * 24 * 60) + 2 * 30 * 24 * 60));
+		resendMail("stormguard_hatch", timestamp);
+		flags["SG_HATCH_EMAIL"] = 1;
+		flags["SG_HATCH_TIMER"] == undefined;
+	}
+}
+public function stormguardEggHatchEmail():String
+{
+	var msg:String = "";
+	//An unnecessarily large number of lines for such a short email
+	//Almost definitely a better way to do it, I can barely wrap my head around the preg code
+	var boy:Boolean = false;
+	var numBabies:int = 0;
+	
+	var minAge:int;
+	var maxAge:int;
+	var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_CUNDARIAN);
+	var tChildren:Array = [];
+	var childIdx:int = -1;
+	minAge = 0;
+	maxAge = 2;	
+	// Filter for children and ages
+	if(children != null && children.length > 0)
+	{
+		childIdx = 0;
+		if(maxAge != -1 && maxAge < minAge) maxAge = -1;
+		for(var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			var m:int = c.Months;
+			if((maxAge == -1 || m <= maxAge) && m >= minAge)
+			{
+				tChildren.push(c);
+				numBabies += c.Quantity;
+			}
+		}
+	}
+	// If valid children, set perameters.
+	if(tChildren.length > 0)
+	{
+		childIdx = rand(tChildren.length);
+		if(tChildren[childIdx].NumMale > 0) boy = true;
+		if(tChildren[childIdx].NumFemale > 0) girl = true;
+		if(boy && girl) boy = (rand(2) == 0);
+	}
+
+	msg += "Your child hatched! It was a beautiful baby " + (boy ? "boy":"girl") + ". " + (boy ? "His":"Her") + " face looks just like yours. I almost feel like I’m caring for you all over again! I just know he/she will make a proud addition to the Steele family.\n\nBridget";
+	return doParse(msg);
+	flags["SG_HATCH_EMAIL"] = 1;
 }
