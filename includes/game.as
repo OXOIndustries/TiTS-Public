@@ -4497,6 +4497,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processRoxyPregEvents(deltaT, doOut, totalDays);
 		processBizzyCamgirlPayments(deltaT, doOut, totalDays);
 		processPerditaPayments(deltaT, doOut, totalDays);
+		processStormguardEggHatch(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
