@@ -672,9 +672,23 @@ public function amberOnshipAppearance():void
 	else output(" sleek and shiny, your bond evident in its perfect sheen.");
 	output(" White spots are scattered across her haunches and parts of her body are wholly white, like her soft underside.");
 	
-	output("\n\nImpossible to ignore when you’ve known Amber as carnally as you have, her oversized pink equine cock");
-	if (amberDumbfuckDoses() >= 3) output(" is completely stiff against her slim body, ever drooling precum thanks to her insane libido.");
-	else output(" hangs underneath her slim body, not completely stiff but always on proud display.");
+	if(amberThrobbDoses() == 0)
+	{
+		output("\n\nImpossible to ignore when you’ve known Amber as carnally as you have, her oversized pink equine cock");
+		if (amberDumbfuckDoses() >= 3) output(" is completely stiff against her slim body, ever drooling precum thanks to her insane libido.");
+		else output(" hangs underneath her slim body, not completely stiff but always on proud display.");
+	}
+	//Throbbed once:
+	else if(amberThrobbDoses() == 1)
+	{
+		output("\n\nAmber’s thick pink horsecock is now even bigger than it ever was, permanently drooling sloppy precum from its head. You’d swear it throbs with desire whenever you glance at it - which you have to admit to yourself - is often. It’s a very eye-catching cock, and it seems like she enjoys having it as much as you do." + (amberDumbfuckDoses() >= 3 ? " Ever-stiff and wanting due to her insane libido, it bounces against her underside every few seconds.":" It hangs half-hard underneath her slim body, always proudly on display."));
+	}
+	//Throbbed twice:
+	else
+	{
+		output("\n\nAmber’s massive, mouth-watering gargantuan of a cock puts all but the most endowed to outright shame. Pink, veiny and throbbing in mesmerizing fashion, you can tell at a glance it’s somewhere north of forty inches long and so thick you wouldn’t be able to totally wrap your hands around it. Her beautiful flared cockhead ebbs and swells with her heartbeat, disgorging a thick, sticky stream of spunk across the floor of your ship every couple of seconds as she watches, cheeks flushed and a smile on her face.");
+		output("\n\nAt full erection it extends beyond her lower half, finally allowing the dainty ‘taur the vaunted privilege of being able to see her partner while she’s plowing the absolute fuck out of them with her tree trunk of a cock or spewing gallons of equine spunk into their stomach. Something she wildly appreciates, you’re sure." + (amberDumbfuckDoses() >= 3 ? " Thanks to her insane libido, she stands at her full, proud length whenever you happen to be around and likely even when you’re not, always ready for a good fuck.":" Half-hard, her proud length hangs from the underside of her slim body, just waiting for you to take an interest."));
+	}
 	output(" Backing it up are");
 	
 	if (amberEquilicumDoses() > 0) output(" four massive, hanging balls between her back legs. Each black orb is bigger than your head and filled with thick equine cum, endowing her with massive cumshots rivalling that of hyperpornstars.");
