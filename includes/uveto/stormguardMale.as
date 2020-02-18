@@ -2357,7 +2357,7 @@ public function processStormguardEggHatch(deltaT:uint, doOut:Boolean, totalDays:
 
 	if (flags["SG_HATCH_EMAIL"] == undefined && (flags["SG_HATCH_TIMER"] > 2 * 30))
 	{
-		timestamp = (GetGameTimestamp() + deltaT - (flags["SG_HATCH_TIMER"] * 24 * 60) + 2 * 30 * 24 * 60));
+		timestamp = (GetGameTimestamp() + deltaT - (flags["SG_HATCH_TIMER"] * 24 * 60) + 2 * 30 * 24 * 60);
 		resendMail("stormguard_hatch", timestamp);
 		flags["SG_HATCH_EMAIL"] = 1;
 		flags["SG_HATCH_TIMER"] == undefined;
@@ -2369,6 +2369,7 @@ public function stormguardEggHatchEmail():String
 	//An unnecessarily large number of lines for such a short email
 	//Almost definitely a better way to do it, I can barely wrap my head around the preg code
 	var boy:Boolean = false;
+	var girl:Boolean = false;
 	var numBabies:int = 0;
 	
 	var minAge:int;

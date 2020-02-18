@@ -19,9 +19,9 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Map.InRoomWithFlag;
 	
-	public class StormguardPregnancyHandler extends BasePregnancyHandler
+	public class StormGuardPregnancyHandler extends BasePregnancyHandler
 	{
-		public function StormguardPregnancyHandler() 
+		public function StormGuardPregnancyHandler() 
 		{
 			_handlesType = "StormguardPregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 180); // 180 days
