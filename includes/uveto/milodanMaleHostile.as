@@ -1640,13 +1640,13 @@ public function omegaLossToMiloMale2():void
 	//Next
 	//End Scene, move time forward a few hours, applies maximum ass looseness, Anally Filled status effect, and removes Fuck Fever (so no Strangely Warm or Flushed leftovers).
 	IncrementFlag("OMEGA_LOSS");
-	processTime(5*60);
 	for(var y:int = 0; y < 20;y++)
 	{
 		pc.orgasm();
 		pc.loadInAss(enemy);
 		pc.buttChange(enemy.cockVolume(0));
 	}
+	processTime(5*60);
 	CombatManager.genericLoss();
 }
 //Bad End Escape:
@@ -1753,12 +1753,12 @@ public function omegaBadEnd():void
 	if (pc.isLactating()) output(" Her clawed mitts jiggle your [pc.breasts]. <i>“You will feed the hungry.”</i>");
 	output(" She grabs you behind the head and pulls you into a searing kiss. When she pulls away, the priestess smiles and says, <i>“You will sing the praise of the spirits and be happy with us.”</i>");
 	output("\n\nYou cum again. You cum, and with that sacrosanct release of lewdness you know the rest of your life has truly begun.");
+	processTime(5*60);
 	for(var y:int = 0; y < 10;y++)
 	{
 		pc.orgasm();
 		pc.loadInAss(enemy);
 	}
-	processTime(5*60);
 	clearMenu();
 	addButton(0,"Next",omegaBadEndII);
 }
@@ -1775,10 +1775,10 @@ public function omegaBadEndII():void
 	output("\n\nThe final touch is to dress you in adornment befitting your new role: a stiff hide collar and necklaces made of shaped stones and bleached bones, a similarly made belt that holds up no trousers but accentuates your [pc.hips], bangles for your upper arms, wrists, and [pc.legs]. There isn’t an inch of your body that’s actually covered, but what use are clothes to an Omega who lives to be fucked? You smile and shake your head at the silly notion.");
 	output("\n\nOnce more the priestess plugs you with the Totem, and explains to you that it is the will of the spirits that you, the temple Omega, carry it within you at all times. It is only to be removed if it will be replaced with the flesh of an Alpha, and afterwards it must be immediately replaced. You don’t know how you will acclimate to your libido being supercharged all hours of the day, but don’t have time to ponder that as your daily duties begin. Another acolyte leads the biggest Milodan you’ve ever seen, a mountain of muscle and fur, into the inner sanctum. This hunter was away for a week tracking a mighty target, and although his prey was felled he still needs to soothe his boiling blood.");
 	output("\n\n<i>“That’s where you come in.”</i> Says the priestess, motioning the imposing tower of muscle over. She pops the Totem out of you just as he scoops you up and hilts himself in your [pc.ass]. The brutish barbarian settles for a breakneck pace from the start, and the priestess educates you in the first of the spirits’ axioms: hard work is holy work, and holy work is happy work. A haze of bliss fills your mind just as the flood of cum fills your ass, and you have to admit, you’re feeling pretty holy right now.");
+	processTime((2*60*24)+rand(1440));
 	for(var y:int = 0; y < 10;y++)
 	{
 		pc.orgasm();
 	}
-	processTime((2*60*24)+rand(1440));
 	badEnd();
 }
