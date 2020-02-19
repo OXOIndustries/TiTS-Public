@@ -129,6 +129,7 @@
 		//Holiday shit
 		include "../includes/holidayEvents/2018XmasEvents.as";
 		include "../includes/holidayEvents/2018Krissy.as";
+		include "../includes/holidayEvents/biancaVDay.as";
 		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";

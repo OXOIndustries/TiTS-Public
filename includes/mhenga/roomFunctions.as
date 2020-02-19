@@ -76,7 +76,8 @@ public function bountyBoardExtra():Boolean
 		if((flags["PUMPKING_COMPLETION"] == undefined || (flags["PUMPKING_COMPLETION"] != -1 && flags["PUMPKING_COMPLETION"] < 3)) && MailManager.isEntryViewed("pumpking_alert")) { /* Penny is gone! */ }
 		else pennyOffCrewKickedOff(btnSlot++);
 	}
-	
+	//Vday
+	if(biancaVDayHook()) return true;	
 	return false;
 }
 public function checkOutBountyBoard():void

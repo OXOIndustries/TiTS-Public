@@ -127,6 +127,8 @@ public function airFieldCentralBonus():Boolean
 
 public function DMZRandoEventsBonus():Boolean
 {
+	//Vday
+	if(biancaVDayHook()) return true;
 	if(sluttyMcSlutOralBonus()) return true;
 	return false;
 }

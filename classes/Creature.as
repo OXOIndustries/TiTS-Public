@@ -9733,6 +9733,10 @@
 			}
 			return false;
 		}
+		public function hasKnots():Boolean
+		{
+			return (totalKnots() > 1);
+		}
 		public function totalKnots():Number
 		{
 			if (cocks.length <= 0) return 0;
