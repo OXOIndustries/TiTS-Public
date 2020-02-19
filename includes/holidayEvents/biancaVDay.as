@@ -34,7 +34,8 @@ public function biancaVDayHook():Boolean
 	//Cooldown.
 	if(pc.hasStatusEffect("BiancaVDRejectCD")) return false;
 	//Late at night only! - FEN NOTE: Cut this. Let's make the event actually attainable.
-	//if(hours < 20) return false;
+	//Fen note: Will wants it to stay
+	if(hours < 20) return false;
 	//Need "Eat Her Out Unlocked":
 	if(flags["BIANCA_SEXED"] < 5 || biancaFamiliarity() < 49) return false;
 	//Once a year only!
