@@ -21,7 +21,7 @@ public function dockmasterBonus():Boolean
 }
 public function hasDockRaskDiscount():Boolean
 {
-	if(flags["DOCKMASTER_DISCOUNT"] != undefined && flags["DOCKMASTER_DISCOUNT"] + (60*24) < GetGameTimestamp()) return true;
+	if(flags["DOCKMASTER_DISCOUNT"] != undefined && flags["DOCKMASTER_DISCOUNT"] + (60*24) > GetGameTimestamp()) return true;
 	return false;
 }
 
@@ -363,7 +363,7 @@ public function dockmasterDiscountAsk():void
 	showDockmistress();
 	author("William");
 	// First Time (Discount Ask)
-	if (flags[DOCKMASTER_DISCOUNT_ASK] == undefined)
+	if (flags["DOCKMASTER_DISCOUNT_ASK"] == undefined)
 	{
 		// pc Bimbo
 		if (pc.isBimbo()) output("<i>“Sooo,”</i> you bat your eyes coquettishly, crimson mischief blooming across your [pc.face]. <i>“What’s it take to earn a discount around here? I’m up for anything, y’know!”</i>");
@@ -376,9 +376,12 @@ public function dockmasterDiscountAsk():void
 		// pc Hard
 		else output("<i>“Offer any discounts?”</i> you ask simply. <i>“I’m no pushover, so if there’s anything you need doing, let me know.”</i>");
 		// merge
-		output("\n\nThe plum-scaled raskvel looks you up and down with a predatory smirk. <i>“S’that so, spacer?”</i> A little lusty growl. <i>“I’m not into the whole haggling thing, but I think I can find a use for tongues that like to wag.”</i> Her cyber-tail swings behind her rotund rear, obviously picking up on your intentions. <i>“I could use a break. Could sit down for a while. You want a discount, you’re gonna have to negotiate with me down there,”</i> the fertility-fattened matron pats her crotch, firming her apron down over the outsized mound of her vulva. <i>“Gonna need to be a real persuasive argument before I go lowering my prices,{ heightBig: big /small: little} [pc.boyGirl].”</i>");
-		output("\n\n{bimbo: Oh yes! You’re super good at licking pussy! She wants to do it right here, too!?/ bro: Licking some muff? Sign you the fuck up. Here?/ else: Your blush deepens - but wait, does she mean... right here?}");
-		output("\n\n<i>“Mmhmm,”</i> she purrs; it’s a saucy, incensing sound. Her robo-legs are shifting excitedly. <i>“Fair warning, I don’t sit still and take it.”</i> The lop-eared lizard brushes her feather hair to the side, hopping in place, setting her spectacular assets to a jello jiggle. Slitted eyes alight on you. <i>“Ain’t gonna be the easiest discount of your life. Up to you,{ male: stud/ else: cutie}.”</i>");
+		output("\n\nThe plum-scaled raskvel looks you up and down with a predatory smirk. <i>“S’that so, spacer?”</i> A little lusty growl. <i>“I’m not into the whole haggling thing, but I think I can find a use for tongues that like to wag.”</i> Her cyber-tail swings behind her rotund rear, obviously picking up on your intentions. <i>“I could use a break. Could sit down for a while. You want a discount, you’re gonna have to negotiate with me down there,”</i> the fertility-fattened matron pats her crotch, firming her apron down over the outsized mound of her vulva. <i>“Gonna need to be a real persuasive argument before I go lowering my prices," + (pc.tallness > 4.5*12 ? " big":" little") + " [pc.boyGirl].”</i>");
+		output("\n\n");
+		if (pc.isBimbo()) output("Oh yes! You’re super good at licking pussy! She wants to do it right here, too!?");
+		else if (pc.isBro()) output(" Licking some muff? Sign you the fuck up. Here?");
+		else output(" Your blush deepens - but wait, does she mean... right here?");
+		output("\n\n<i>“Mmhmm,”</i> she purrs; it’s a saucy, incensing sound. Her robo-legs are shifting excitedly. <i>“Fair warning, I don’t sit still and take it.”</i> The lop-eared lizard brushes her feather hair to the side, hopping in place, setting her spectacular assets to a jello jiggle. Slitted eyes alight on you. <i>“Ain’t gonna be the easiest discount of your life. Up to you," + pc.mf("stud","cutie") + ".”</i>");
 		output("\n\nOne can only know what that entails, but...");
 		if (pc.libido() <= 33) output(" servicing a hot, gorgeous alien to save a bit of cash wouldn’t be so bad. She must taste amazing...");
 		else if (pc.libido() <= 66) output(" Gods only know how wet and tasty her pussy must be. And you get to lick that to save some cash? Steal of a deal!");
@@ -394,7 +397,7 @@ public function dockmasterDiscountAsk():void
 		//[Accept] [Decline]
 	}
 	processTime(1);
-	flags["DOCKMASTER_DISCOUNT_ASK"] == 1;
+	flags["DOCKMASTER_DISCOUNT_ASK"] = 1;
 	clearMenu();
 	addButton(0,"Accept",dockmasterFacesitting,undefined,"Accept");
 	if (flags["DOCKMASTER_FACESAT"] == undefined) addButton(1,"Decline",noNoToFacesitDiscount,undefined,"Decline","That sounds like too much work!");
@@ -675,7 +678,7 @@ public function dockmasterFacesitting():void
 		output("\n\n<i>“Ahhhh... now <b>that’s</b> how to take a break,”</i> she coos from her [pc.name]-shaped perch. Murmuring voices abound, you’re already being watched. Once or twice your " + (pc.legCount == 1 ? "leg jerks":"legs kick") + " while your [pc.hands] sink into the marshmallow curviness of her lower body, fondly groping, stroking blissful circles into queenly flesh. <i>“Gonna have to work around that thong while you’re down there.”</i> She pats what little of your head emerges from her sloping crack. <i>“But a resourceful spacer should know their way around a few obstacles, right? Here, let me get you on track.”</i>");
 		output("\n\nSuperlative hips massage you in up-and-down motions, dragging the silk-covered crease of her twin-clitted vagina up to your nose, and then down again. Rich, sugary horniness " + (pc.hasFur() ? "sponges into your fur":"coats your [pc.skinFurScalesNoun]") + ", effervescent plasters of her inexorable control. The steamy heat of her lust-sloppy mound plants itself against your [pc.lips], the cradle of her femininity too big to be contained by any underwear. Which is sopping-wet, too. Encountering the creamy taste of mature, experienced cunt, you smile, and give her a kiss on the lips, sampling the dominant lizard-bunny’s flavor of " + (flags["DOCKMASTER_PREGNANT"] != undefined ? "pregnancy-enhanced":"") + "lubricant.");
 		output("\n\n");
-		if (pc.isBro() || pc.isBimbo() || pc.libido >= 66) output("Unbeatable pheromones - you’re going to smell like an orgy.");
+		if (pc.isBro() || pc.isBimbo() || pc.libido() >= 66) output("Unbeatable pheromones - you’re going to smell like an orgy.");
 		else if (pc.libido() < 33) output("You like it. A lot.");
 		else output("Out of this world.");
 		output(" Every breath is thick with her scent, and each inhalation strengthens your urge to please her.");
@@ -697,7 +700,7 @@ public function dockmasterFacesitting():void
 		else
 		{
 			output("A discount for a sexy favor. There’s nothing wrong with eating some pussy for an hour or two to save some cash! After you tell the nameless dockmistress what you’re after, her expression turns lewd.");
-			output("\n\n<i>“Sure about that?”</i> she asks rhetorically. Her colossal body jitters, no doubt remembering how well you got her off before. <i>“I’m game. This way, " + (pc.mf("stud":"cutie") + ".”</i>");
+			output("\n\n<i>“Sure about that?”</i> she asks rhetorically. Her colossal body jitters, no doubt remembering how well you got her off before. <i>“I’m game. This way, " + pc.mf("stud","cutie") + ".”</i>");
 		}
 		// merge
 		output("\n\nFollowing the raskvel’s come-hither gesture, she leads you back to a familiar break spot and you wisely " + (pc.legCount == 1 ? "lower":"kneel") + " to her level and lean back, bracing for a thwomping. Two blue-violet dessert bowls float into view, carried by thick metal legs; the woman’s azure lips puff into a knowing ‘oh’. <i>“Don’t mind me,”</i> she purrs, filling her gloved hand with one massive, flawless cheek, <i>“I like a [pc.boyGirl] who knows what they’re doing.”</i>");
@@ -776,7 +779,7 @@ public function dockmasterFacesitting():void
 	var engy:Number = (10 + rand(11))/100;
 	pc.energy(pc.energyMax()*engy);
 	clearMenu();
-	addButton(0,"Next","keepBeingDockMastersSeat");
+	addButton(0,"Next",keepBeingDockMastersSeat);
 }
 public function keepBeingDockMastersSeat():void
 {
@@ -817,6 +820,7 @@ public function keepBeingDockMastersSeat():void
 
 	// sceneTag: processTime
 	processTime(45);
+	IncrementFlag("DOCKMASTER_FACESAT");
 	flags["DOCKMASTER_DISCOUNT"] == GetGameTimestamp();
 	pc.girlCumInMouth(new RaskvelFemale());
 	addButton(0,"Next",mainGameMenu);
