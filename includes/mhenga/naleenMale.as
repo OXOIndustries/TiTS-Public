@@ -102,7 +102,7 @@ public function defeatAMaleNaleen():void {
 	else addDisabledButton(1,"Get Blown","Get Blown","You need a penis and to be suitably aroused in order to get a blowjob.");
 	if(pc.lust() >= 33) addButton(2,"Blow Him",maleNaleenSucksPCOff,undefined,"Blow Him","The poor kitty just needed some loving. Now that he’s no longer dangerous, you can send him on his way with a smile...");
 	else addDisabledButton(2,"Blow Him","Blow Him","You’re not really in the mood to hand out blowjobs.");
-	addButton(3, "Buttfuck",getButtfuckedByDudeleen,undefined,"Get Buttfucked","Have the naughty kitty plow your ass.");
+	addButton(3, "Catch Anal",getButtfuckedByDudeleen,undefined,"Catch Anal","Have the naughty kitty plow your ass.");
 
 	addButton(14,"Leave",leaveDefeatedDudeleen);
 }
