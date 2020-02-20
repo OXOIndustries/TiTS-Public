@@ -1601,7 +1601,7 @@ public function applyUpbringing(arg:int = 0):void {
 		//Pampered
 		case GLOBAL.UPBRINGING_PAMPERED:
 			pc.willpowerRaw--;
-			pc.credits += 1000;
+			pc.credits += 2000;
 			break;
 		//Athletic
 		case GLOBAL.UPBRINGING_ATHLETIC:
