@@ -297,7 +297,7 @@ public function raskvelDockmasterMenu():void
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
 	addButton(2,"Flirt",flirtWivRaskDock,false,"Flirt","She does look like she could use a break from all the hard work...");
-	if(flags["DOCKMASTER_FACESAT"] == undefined) addButton(3,"Discount",dockmasterDiscountAsk,undefined,"Discount","Ask about a possible discount on purchases. Haggling is important.");
+	if(flags["DOCKMASTER_DISCOUNT_ASK"] == undefined) addButton(3,"Discount",dockmasterDiscountAsk,undefined,"Discount","Ask about a possible discount on purchases. Haggling is important.");
 	else if(hasDockRaskDiscount()) addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Discount","You've already got a discount, but that ass... it calls to you. Right? She wouldn’t mind taking a break, surely.");
 	else addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Facesitting","The deal is this: Let the fat-ass rask sit on you, and you can enjoy a nice discount.");
 	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(4,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
@@ -381,7 +381,7 @@ public function dockmasterDiscountAsk():void
 		if (pc.isBimbo()) output("Oh yes! You’re super good at licking pussy! She wants to do it right here, too!?");
 		else if (pc.isBro()) output(" Licking some muff? Sign you the fuck up. Here?");
 		else output(" Your blush deepens - but wait, does she mean... right here?");
-		output("\n\n<i>“Mmhmm,”</i> she purrs; it’s a saucy, incensing sound. Her robo-legs are shifting excitedly. <i>“Fair warning, I don’t sit still and take it.”</i> The lop-eared lizard brushes her feather hair to the side, hopping in place, setting her spectacular assets to a jello jiggle. Slitted eyes alight on you. <i>“Ain’t gonna be the easiest discount of your life. Up to you," + pc.mf("stud","cutie") + ".”</i>");
+		output("\n\n<i>“Mmhmm,”</i> she purrs; it’s a saucy, incensing sound. Her robo-legs are shifting excitedly. <i>“Fair warning, I don’t sit still and take it.”</i> The lop-eared lizard brushes her feather hair to the side, hopping in place, setting her spectacular assets to a jello jiggle. Slitted eyes alight on you. <i>“Ain’t gonna be the easiest discount of your life. Up to you, " + pc.mf("stud","cutie") + ".”</i>");
 		output("\n\nOne can only know what that entails, but...");
 		if (pc.libido() <= 33) output(" servicing a hot, gorgeous alien to save a bit of cash wouldn’t be so bad. She must taste amazing...");
 		else if (pc.libido() <= 66) output(" Gods only know how wet and tasty her pussy must be. And you get to lick that to save some cash? Steal of a deal!");
@@ -811,7 +811,7 @@ public function keepBeingDockMastersSeat():void
 	if (bonus.length > 0) bonus2 = RandomInCollection(bonus);
 
 	if (bonus2 == "Penny") output(" Penny is there too, arms folded with a great big smug grin on her face. Now that the show’s over, she gives a friendly nod and heads on her way. Welp.");
-	if (bonus2 == "Kiro") output(" {Bimbo} Kiro is carrying a hefty pair of swollen cum-tanks, dark precum splotches staining the front of her clothing. Yeah, she enjoyed the hell out of seeing you get ridden.");
+	if (bonus2 == "Kiro") output(" " + (kiro.isBimbo() ? "Bimbo":"") + " Kiro is carrying a hefty pair of swollen cum-tanks, dark precum splotches staining the front of her clothing. Yeah, she enjoyed the hell out of seeing you get ridden.");
 	if (bonus2 == "Mitzi") output(" Unsubtle Mitzi, your goblin-shaped bimbo slut, is jilling herself off in open amusement. She looks really sad now that the sex has ended, but blows you a kiss before waddling back to the [pc.ship].");
 	if (bonus2 == "Leila") output(" Being so tall, Leila is impossible to miss towering over a field of horny raskvel. An obvious [leila.cockType] bulge swells her [leila.uniform] with obvious lust. <i>“Hey, invite me next time, fucker! Doing someone in the ass while they’re busy is always a treat!”</i> She laughs, meandering back to your ship.”</i>");
 
@@ -821,7 +821,7 @@ public function keepBeingDockMastersSeat():void
 	// sceneTag: processTime
 	processTime(45);
 	IncrementFlag("DOCKMASTER_FACESAT");
-	flags["DOCKMASTER_DISCOUNT"] == GetGameTimestamp();
+	flags["DOCKMASTER_DISCOUNT"] = GetGameTimestamp();
 	pc.girlCumInMouth(new RaskvelFemale());
 	addButton(0,"Next",mainGameMenu);
 }
