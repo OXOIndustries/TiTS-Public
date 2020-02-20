@@ -285,18 +285,20 @@ public function dockmasterWeaponShop():void
 
 public function raskvelDockmasterMenu():void
 {
-	if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
+	if(hasDockRaskDiscount()) chars["DOCKMASTER"].sellMarkup = 0.75;
+	else if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
 	{
 		chars["DOCKMASTER"].sellMarkup = 0.95;
 		chars["DOCKMASTER"].buyMarkdown = 0.70;
 	}
+	else chars["DOCKMASTER"].sellMarkup = 1.0;
 	
 	clearMenu();
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
 	addButton(2,"Flirt",flirtWivRaskDock,false,"Flirt","She does look like she could use a break from all the hard work...");
 	if(flags["DOCKMASTER_FACESAT"] == undefined) addButton(3,"Discount",dockmasterDiscountAsk,undefined,"Discount","Ask about a possible discount on purchases. Haggling is important.");
-	else if(hasDockRaskDiscount) addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Discount","You've already got a discount, but that ass... it calls to you. Right? She wouldn’t mind taking a break, surely.");
+	else if(hasDockRaskDiscount()) addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Discount","You've already got a discount, but that ass... it calls to you. Right? She wouldn’t mind taking a break, surely.");
 	else addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Facesitting","The deal is this: Let the fat-ass rask sit on you, and you can enjoy a nice discount.");
 	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(4,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
 	else addDisabledButton(4,"Repair","Repair","Your ship is not damaged.");
@@ -420,81 +422,6 @@ public function noNoToFacesitDiscount():void
 	processTime(1);
 	raskvelDockmasterMenu();
 }
-//[Accept/Facesitting]
-public function dockmasterFacesitting():void
-{
-	// First Time (Accepted Facesitting)
-	if (flags["DOCKMASTER_FACESAT"] == undefined)
-	{
-		output("\n\nYou’re in - you give a signaling nod that all but makes the sweat-slick rask-lady squirm on the spot. <i>“C’mere, let’s find a decent spot. Don’t wanna hold up the traffic.”</i>");
-		output("\n\nClearing the way with slow swings of her giant wrench (she looks hot as fuck doing it, too), you’re led over to a makeshift rest spot. Couple of oil-stained chairs and rugs. She motions you into position and turns around, humming as she surveys the hangar. Before you can ask what’s up, the many powerful inches of her titanium tail loop around your{ isTaur: front legs/ else: [pc.legOrLegs]}, yanking hard. Arresting your fall to the deck is the deep lavender vale of her fat, cushiony ass. Pillowy mountains pull you into the fathomless fissure of her bottomless butt-cleavage before clenching down and taking control of your upper body.");
-		output("\n\n<i>“Let’s get you fitted in there nice and tight, spacer,”</i> she giggles in a deep, chesty voice.");
-		output("\n\nInstinctively, you grab for her hips, but she’s already moving backwards, ushering you towards the ground{ isTaur: on your side/ else: on your back}. The sweaty scent of a born broodmother registers with a triumphant thwack of mammoth assflesh to your [pc.skinFurScales] - <b>clench!</b> Lifting up by her augmented limbs, the shortstack goddess pulls her callipygian orbs apart, revealing the thin string of her devoured thong resting against her taint. There’s no time to wonder before she settles her heavy backside on your dazed head, engulfing you in smooth-scaled darkness. There’s so much malleable, forgiving <b>booty</b> that you can feel it <i>everywhere</i> - you really are buried in there, with no chance of escape!");
-		output("\n\n<i>“Ahhhh... now <b>that’s</b> how to take a break,”</i> she coos from her [pc.name]-shaped perch. Murmuring voices abound, you’re already being watched. Once or twice your{ leg jerks/ legs kick} while your [pc.hands] sink into the marshmallow curviness of her lower body, fondly groping, stroking blissful circles into queenly flesh. <i>“Gonna have to work around that thong while you’re down there.”</i> She pats what little of your head emerges from her sloping crack. <i>“But a resourceful spacer should know their way around a few obstacles, right? Here, let me get you on track.”</i>");
-		output("\n\nSuperlative hips massage you in up-and-down motions, dragging the silk-covered crease of her twin-clitted vagina up to your nose, and then down again. Rich, sugary horniness{ hasFur: sponges into your fur/ else: coats your [pc.skinFurScalesNoun]}, effervescent plasters of her inexorable control. The steamy heat of her lust-sloppy mound plants itself against your [pc.lips], the cradle of her femininity too big to be contained by any underwear. Which is sopping-wet, too. Encountering the creamy taste of mature, experienced cunt, you smile, and give her a kiss on the lips, sampling the dominant lizard-bunny’s flavor of{ dockmasterPregnant?: pregnancy-enhanced} lubricant.");
-		output("\n\n{libidoLow: You like it. A lot./ med: Out of this world./ highOrBimboBro: Unbeatable pheromones - you’re going to smell like an orgy.} Every breath is thick with her scent, and each inhalation strengthens your urge to please her.");
-		output("\n\n<i>“Take all the time you want, [pc.raceCute]-[pc.boyGirl]. Passing out won’t get you a discount, though.”</i>");
-	}
-
-}
-
-
-// Go to 'the big merge', append that scene to this part.
-
-// Repeat (Facesitting, discount is active)
-Without an ounce of shame, you offer the nameless dockmistress your face as the best seat on Novahome.
-output("\n\n<i>“You do realize that discount’s not a stacking offer, right?”</i> she trills. Her aug-tail’s swishing accelerates, and the aroused motions feed into her wobbling curves. <i>“But I’m not turning that down. C’mon, you know the score{ silly:- connect four}.”</i>");
-// Repeat (Facesitting, discount is inactive)
-A discount for a sexy favor. There's nothing wrong with eating some pussy for an hour or two to save some cash! After you tell the nameless dockmistress what you're after, her expression turns lewd.
-output("\n\n<i>“Sure about that?”</i> she asks rhetorically. Her colossal body jitters, no doubt remembering how well you got her off before. <i>“I’m game. This way,{ stud/ cutie}.”</i>");
-// merge
-Following the raskvel's come-hither gesture, she leads you back to a familiar break spot and you wisely{ mono: lower/ else: kneel} to her level and lean back, bracing for a thwomping. Two blue-violet dessert bowls float into view, carried by thick metal legs; the woman's azure lips puff into a knowing 'oh'. "Don't mind me," she purrs, filling her gloved hand with one massive, flawless cheek, "I like a [pc.boyGirl] who knows what they're doing."
-Smears of cunt-juice trickle down the meaty thickness of her impossibly-flared thighs. You only get a second to appreciate that detail before everything goes dark, and the soft, clenching enclosure of your shortstack dominant's fat fucking ass swallows your head into the chasmic divide. Deep lavender butt-cheeks distort and squish all around your [pc.face]. Supple, scaly hindquarters tighten up, more weight urging you to the ground. Riding the oceanic currents, you find yourself planted on your back and firmly pinned by the augged rascal, fit like a rivet beneath a sprawling exterior far beyond the proportions of most races. Soft fingers scratch the miniscule amount of your scalp emerging from her crack, and a voice comes, "Comfy, spacer? I bet. Hard to beat an ass like this{, though I think I've got some competition. biancaOnTarkus: There's a doctor wandering around downstairs, see her come and go once in a while. Can tell that foxy momma's lain a few./ else: I've seen a foxy momma come wandering through here once in a while, only ass as eye-catching as mine. You can tell she's a proud parent and looking for more.}"
-The silken pressure of a torso-sized derriere smushes your cheeks together. Then she starts humping. Slickened by sweat and arousal, plump thighs ride your face, building a tingling, suffocating friction. "Mmmm..." she hums, rotating her pillowy posterior in magical ways, rolling elephantine dimensions across your [pc.face] until your [pc.lips] meet the cusp of her chubby vulva. Recognizing you don't have much time before she starts moving again, you give both exposed clits a kiss and get down to business, breathing in, deeply, of her concentrated musk, worshipfully rubbing her buttery booty into your brain. Fuck, that's wonderful.
-output("\n\n<i>“This might be the best part. Getting off your feet after a long, hard day is one thing, but getting a good rub and polishing down there too?”</i> Her teeth click. <i>“Can’t beat it.”</i> More swiveling, more gyrating - the erotic encouragement feels paralyzingly good. You suck up her errant juices, and all of her scent that you can, each submissive act readying you for what’s to be a tough job.");
-Now, to get that thong...
-
-// append 'the big merge' here.
-// the big merge - sexytimes follow!
-A rain of delectable juices baptize your [pc.tongue] as it hooks into the front length of her inadequate lingerie. With a quick yank, you reveal the fullness of her moist trench and flatten your taste buds to the pleasure-pumped girth of her sloven folds. Overwhelming <b>heat</b> scorches your nervous system prior to her hips rocking again; dizzying pressure gradually intensifies. Hums of gratitude from above spur you into acting, and so you lap and you lick{ longTongue:, glad to have a long tongue perfect for slurping up a treat/ else: struggling not to spill any amount of her pearly cream}. Her plump muff slides and glides over your mouth, copious ladyflesh owning your every movement. Enjoying herself too much, she shifts faster, and faster, pressing so hard that her winking gash opens and engulfs the length of your nose in a passionate embrace.
-output("\n\n<i>“Mmmm...! That’s the stuff,”</i> she sighs. <i>“{first: I bet you’re already drunk on me, off-worlder/ Bet you’re already in a pussy-haze}.”</i> The rask’s azure clits grind across your hidden features, drawing lines through the puddles of slick goodness simmering between your [pc.skinFurScalesNoun] and the eclipse of her behemoth-sized bottom. <i>“{first: Can’t count the amount of eggs I’ve laid. Each one’s made me a little bit stronger, little more... potent. S’why you shouldn’t feel bad if you’re already out of it, I’m a needy woman./ else: There’s something special about the way you use your tongue. You’re definitely not under me just because of a discount.}”</i> There comes a cute laugh that you’re in no position to appreciate, not with a sensuous curtain of honey streaming past your [pc.lipsChaste]. <i>“{rand: Get my upper clit, if you can hear me. That’s every rask’s favorite spot. The bottom is for catching ‘em off guard.../ Kiss my clits, if you’re still there. Suck on each of ‘em.../ Wind your tongue around my clits, tug at ‘em, suck on ‘em...} I wanna see how persuasive you are... mmm...”</i>");
-You give one of the most charismatic answers of your life, doing exactly as she asks and reaping the rewards for it. She feels better, and you get more to drink. Thoughts evaporate one-by-one, tiny bubbles popping the more of <i>her</i> that you let inside. The [pc.raceShort]-framing burden of her ass thrusts backwards. The edge of your oral muscle swims through her labial line, opening the way, deflecting off her front pleasure-sensor and teasing the absolute hell out of her secondary button. "You're a talented one," she purrs. "Talk dirty to me. I can take it."
-Contact with the outside world diminishes. You don't really hear anything anymore, wholly preoccupied with the task of licking alien cunt, swirling around the gemini jewels of her joy-hole, eyes rolling back from a serious case of pussy-brain. Inheritance? Whatever. Exploration? Is what you're doing now any different? The discount all but forgotten, you follow the circular humps of her ass in a total fuck-me-fog, instinctually compliant to the pace it demands.
-When your [pc.tongue] slips inside the woman's melonous muff, a furrow of rippling muscle contracts around your invasion, but not too tightly! Swimming upstream, you take in the exotic feast of raskvel vagina, sinking in without any force. The outside was satin-soft and pleasant beyond all description, yet being inside the fat 'n fidgety quim is <b>the real</b> delight. Lapis wetness enmeshes your sex-taster in oral bliss. The constant spray of slickness and passion heightens your suckhole's sensitivity to that of a full-fledged genitalia; each suck, lick, kiss, and slurp brings orgasmic whiteness to your dizzy mind. Meanwhile, the puffy hole gorges itself on your nose in the process.
-// pc Long Tongue
-Extending your tongue with the power of science is paying off majorly. You widen your jaw and jam all that extra oral girth into the dockmistress' impatient box, driving her wild. Aggressive motions slam your head into the rug, but you don't care. You'll happily fend off the headaches if it means milking her glistening core of more nectar. Exhilarating cunnilingus rapidly elevates into a full-on tonguefucking, the whole of her sizeable plumpness bouncing against your skewering trespass with a level of need to match ausars in heat. 
-{isAusar,InHeat: Finally, a challenger!}
-// pc non-Long Tongue
-You flatten your tongue to side of her encompassing puss and circle the rask's vulnerable core, curling around the inside of her sodden twat until all the slime overrides your senses of taste and smell. Powerful bucks flatten your features concave. Musky pussy burrows past your mouth and squirts down your throat. Within seconds, you're being buffeted by the porcine tush of a woman driven wild, the vise of writhing velvet crushing all the feeling out of your maw. Broad, gargantuan asscheeks clap into your [pc.eyes], but you don't care - it's all worth it to feel the orgasmic trembles quivering through her wet, supple warmth.
-// pc Aphrospit
-Her quivering muff reacts splendidly to drug-enhanced bliss. Venomous saliva sparks a connection she could never be prepared for, soaking into the most sensitive parts of her lust-happy body. Soft moans turn into loud, euphoric screeches that nobody in Novahome will miss.
-// merge
-// pc Herm or Cock
-All this bouncing shakes a rush of [pc.cum] free; your [pc.cocks] detonate, spurting [pc.cumGem] torrents{ crotchNotExposed: into your clothing, filling your gear out into a spunky bubble/ else: into the air, ropes landing on your [pc.thighs]}. Fervent relief rhythmically jets as you're so assertively used. [pc.CumVisc] relief surges to the helpless lurch of your pinioned form, and, fuck, it only makes you wanna do more! Making her cum now is all that matters! {hasPussy: It's not just your male side getting off, but your [pc.pussiesLight] as well: all glands dilate to handle a cascade of{ squirting} bliss. Everything already felt empty and hollow, but now... it's like you've been holding your breath for days...
-// pc Pussy
-An onrush of passion{ explodes/ sprays/ squirts} from your [pc.pussies], all this slick thwumping and slapping and <b>pounding</b> knocking loose a muscle-locking orgasm. [pc.GirlCum] rushes, impulses of gummy-feeling ladyjizz{ crotchNotExposed: soaking the insides of your undies all the way through/ else: puddling on the floor between your trembling thighs}. It doesn't matter if you're cumming as hard as her or not. The fact you get to cum at all is perhaps more reward than saving a little cash.
-// merge
-output("\n\n<i>“F-Fuck, fuck yes!”</i> The firm sapphires of her double-nubs batter you senseless - she’s frenzied! Immersed in her gooey depths, you lose feeling in your [pc.arms] and go limp. A lack of oxygen takes its toll. <i>“Still hanging in there, hot-stuff?”</i> More juice than you can lick gushes from her snatch, and she slaps down hard enough to create an accurate render of your [pc.face] in the texture of her bubble-butt. A musical series of slaps and bounces stuff you into her nethers. More pressure than ever - she’s squeezing down on you with her entire body, each powerful impact making you tense and tighten. <i>“A little more... almost there! Slide in all the way, spacer, you’re about to get drenched reaaaal goood...!”</i>");
-You obey, of course, because doing what a lady says while you're eating her out feels amazing. Everywhere you lick elicits an orgasm from the shuddering mechanic, driving all cognition from your brain. Endlessly flowing excitement drips down to your neck and [pc.chestNoun], small hands holding tight to your body. Smothered under substantial weight, the riding stops in a climactic flash, and bolts of squirting joy lance the back of your throat. Gagging and choking are silly afterthoughts. You just prolong the joy she feels: the ultimate satisfaction of venting her libido into a willing suckslut. Everything condenses down to the violent pulsing of femgasm, an organic fusillade of sweet torrents settling in your belly. Embracing your role as a receptacle for a raskvel's lust, you mindlessly lick and clean and polish that pussy, giving the slick, wanton, gluttonous mound all the climaxes it deserves.
-She's a hard worker, and so are you. Cottony, fuzzy feelings caress you from the inside. The way she rubs her ass into your head, battening down on your sore jaw. You choose to believe it's sort of like a grateful victory lap. With her spunk in your gut, spreading tender warmth all over, you feel a blanket of contentment bundle around your brain. This is fine. You don't care when she'll deign to stand up. It's just more time to satisfy the cunt-obsessed thing living inside rent-free. You'll give her a spit-shine so long as she wants to revel atop her favorite pussy-licker.
-
-[Next]
-// sceneTag: PC orgasms if they have genitals
-// sceneTag: PC is 'Pussy Drenched'
-// sceneTag: PC is made 'Sore'
-// sceneTag: PC energy reduced 10-20%.
-
-It's dark, but you're still conscious. You can feel the aches in your jaw and the numbing heat tingly slowly across your [pc.face]. Experimentally, you feel your way out tongue-first. This sends a resuscitating spark to the raskvel dockmistress, and again you feel the hot, messy squirm. The hangar's lights overhead are blinding when that battleship-class ass rises. A network of viscous strings connect your features to her underbutt, peeling away when she scoots forward with an epic sigh of content.
-Sucking in air, you open your eyes to meet her looking down at you, stroking one indescribably buxom orb of her sapphire rear inches from your nose. "You've more than earned that discount, spacer," she winks, bending back as it to smother you again. It makes your{ [pc.cocksLight] twitch/ [pc.pussiesLight] crease/ [pc.asshole] squeeze}, and you lick your lips. "Oh I'm quite satisfied, but I figured you'd want to see how wet you got me." Damn, she's not wrong! Her crotch is an absolutely sopping-wet mess!
-...And so are you! Naturally, you're caked in girlcum, humidified by the residual warmth of her sweet, syrupy excess. {libidoLow?: Before she pulls away, you give her butt a small kiss. A little peck that makes the peanut gallery swoon./ else: Quickly, before she goes, you roll your tongue up one mythical curve of her ass, tasting the azure vale one last time with a thankful smile.} It's a little embarrassing, but it's nice. 
-What isn't nice is that she does stand up, taking that ass with her. Aww. Speaking of, you swear you can see an imprint of your [pc.face] in the pudgy mould of her tush. "Might wanna get a shower.{ discountActive: I'll refresh your discount for that. Good service deserves a good tip, and I don't skimp./ else: I'll give you a discount <b>for a day</b>. Y'wanna refresh it or get it again, you know what to do for me.}" With that, she grabs her wrench and returns to duty.
-output("\n\nSitting up, you find that you’re surrounded by other raskvel, with fellow Rushers standing far in the back pretending not to look at you.{ rand,PennyOnCrew: Penny is there too, arms folded with a great big smug grin on her face. Now that the show’s over, she gives a friendly nod and heads on her way. Welp./ kiro: {Bimbo} Kiro is carrying a hefty pair of swollen cum-tanks, dark precum splotches staining the front of her clothing. Yeah, she enjoyed the hell out of seeing you get ridden./ mitzi: Unsubtle Mitzi, your goblin-shaped bimbo slut, is jilling herself off in open amusement. She looks really sad now that the sex has ended, but blows you a kiss before waddling back to the [pc.ship]./ leila: Being so tall, Leila is impossible to miss towering over a field of horny raskvel. An obvious [leila.cockType] bulge swells her [leila.uniform] with obvious lust. <i>“Hey, invite me next time, fucker! Doing someone in the ass while they’re busy is always a treat!”</i> She laughs, meandering back to your ship.}");
-You don't jolt to your feet, because your neck is just a tad sore. Having a few hundred pounds of augmented broodmom jouncing your bones into a fine dust'll do that. Nothing a bit of R&R won't solve!
-...Should probably make use of that discount while it lasts before then.
-
-[Next] \\ Back to game
-// sceneTag: processTime
-
 
 //Flirt
 public function flirtWivRaskDock(repaired:Boolean = false):void
@@ -732,6 +659,168 @@ public function dicklessTakingTail():void
 }
 //[Next] //Pass time half an hour, become sticky and messy, lust spent
 
+//[Accept/Facesitting]
+public function dockmasterFacesitting():void
+{
+	clearOutput();
+	showDockmistress(true);
+	author("William");
+	// First Time (Accepted Facesitting)
+	if (flags["DOCKMASTER_FACESAT"] == undefined)
+	{
+		output("You’re in - you give a signaling nod that all but makes the sweat-slick rask-lady squirm on the spot. <i>“C’mere, let’s find a decent spot. Don’t wanna hold up the traffic.”</i>");
+		output("\n\nClearing the way with slow swings of her giant wrench (she looks hot as fuck doing it, too), you’re led over to a makeshift rest spot. Couple of oil-stained chairs and rugs. She motions you into position and turns around, humming as she surveys the hangar. Before you can ask what’s up, the many powerful inches of her titanium tail loop around your " + (pc.isTaur() ? "front legs":"[pc.legOrLegs]") + ", yanking hard. Arresting your fall to the deck is the deep lavender vale of her fat, cushiony ass. Pillowy mountains pull you into the fathomless fissure of her bottomless butt-cleavage before clenching down and taking control of your upper body.");
+		output("\n\n<i>“Let’s get you fitted in there nice and tight, spacer,”</i> she giggles in a deep, chesty voice.");
+		output("\n\nInstinctively, you grab for her hips, but she’s already moving backwards, ushering you towards the ground " + (pc.isTaur() ? "on your side":"on your back") + ". The sweaty scent of a born broodmother registers with a triumphant thwack of mammoth assflesh to your [pc.skinFurScales] - <b>clench!</b> Lifting up by her augmented limbs, the shortstack goddess pulls her callipygian orbs apart, revealing the thin string of her devoured thong resting against her taint. There’s no time to wonder before she settles her heavy backside on your dazed head, engulfing you in smooth-scaled darkness. There’s so much malleable, forgiving <b>booty</b> that you can feel it <i>everywhere</i> - you really are buried in there, with no chance of escape!");
+		output("\n\n<i>“Ahhhh... now <b>that’s</b> how to take a break,”</i> she coos from her [pc.name]-shaped perch. Murmuring voices abound, you’re already being watched. Once or twice your " + (pc.legCount == 1 ? "leg jerks":"legs kick") + " while your [pc.hands] sink into the marshmallow curviness of her lower body, fondly groping, stroking blissful circles into queenly flesh. <i>“Gonna have to work around that thong while you’re down there.”</i> She pats what little of your head emerges from her sloping crack. <i>“But a resourceful spacer should know their way around a few obstacles, right? Here, let me get you on track.”</i>");
+		output("\n\nSuperlative hips massage you in up-and-down motions, dragging the silk-covered crease of her twin-clitted vagina up to your nose, and then down again. Rich, sugary horniness " + (pc.hasFur() ? "sponges into your fur":"coats your [pc.skinFurScalesNoun]") + ", effervescent plasters of her inexorable control. The steamy heat of her lust-sloppy mound plants itself against your [pc.lips], the cradle of her femininity too big to be contained by any underwear. Which is sopping-wet, too. Encountering the creamy taste of mature, experienced cunt, you smile, and give her a kiss on the lips, sampling the dominant lizard-bunny’s flavor of " + (flags["DOCKMASTER_PREGNANT"] != undefined ? "pregnancy-enhanced":"") + "lubricant.");
+		output("\n\n");
+		if (pc.isBro() || pc.isBimbo() || pc.libido >= 66) output("Unbeatable pheromones - you’re going to smell like an orgy.");
+		else if (pc.libido() < 33) output("You like it. A lot.");
+		else output("Out of this world.");
+		output(" Every breath is thick with her scent, and each inhalation strengthens your urge to please her.");
+		output("\n\n<i>“Take all the time you want, [pc.raceCute]-[pc.boyGirl]. Passing out won’t get you a discount, though.”</i>");
+		// Go to 'the big merge', append that scene to this part.
+	}
+	// Repeat
+	else
+	{
+		//(Facesitting, discount is active)
+		if (hasDockRaskDiscount())
+		{
+			output("Without an ounce of shame, you offer the nameless dockmistress your face as the best seat on Novahome.");
+			output("\n\n<i>“You do realize that discount’s not a stacking offer, right?”</i> she trills. Her aug-tail’s swishing accelerates, and the aroused motions feed into her wobbling curves. <i>“But I’m not turning that down. C’mon, you know the score");
+			if (silly) output("- connect four");
+			output(".”</i>");
+		}
+		//(Facesitting, discount is inactive)
+		else
+		{
+			output("A discount for a sexy favor. There’s nothing wrong with eating some pussy for an hour or two to save some cash! After you tell the nameless dockmistress what you’re after, her expression turns lewd.");
+			output("\n\n<i>“Sure about that?”</i> she asks rhetorically. Her colossal body jitters, no doubt remembering how well you got her off before. <i>“I’m game. This way, " + (pc.mf("stud":"cutie") + ".”</i>");
+		}
+		// merge
+		output("\n\nFollowing the raskvel’s come-hither gesture, she leads you back to a familiar break spot and you wisely " + (pc.legCount == 1 ? "lower":"kneel") + " to her level and lean back, bracing for a thwomping. Two blue-violet dessert bowls float into view, carried by thick metal legs; the woman’s azure lips puff into a knowing ‘oh’. <i>“Don’t mind me,”</i> she purrs, filling her gloved hand with one massive, flawless cheek, <i>“I like a [pc.boyGirl] who knows what they’re doing.”</i>");
+		output("\n\nSmears of cunt-juice trickle down the meaty thickness of her impossibly-flared thighs. You only get a second to appreciate that detail before everything goes dark, and the soft, clenching enclosure of your shortstack dominant’s fat fucking ass swallows your head into the chasmic divide. Deep lavender butt-cheeks distort and squish all around your [pc.face]. Supple, scaly hindquarters tighten up, more weight urging you to the ground. Riding the oceanic currents, you find yourself planted on your back and firmly pinned by the augged rascal, fit like a rivet beneath a sprawling exterior far beyond the proportions of most races. Soft fingers scratch the miniscule amount of your scalp emerging from her crack, and a voice comes, <i>“Comfy, spacer? I bet. Hard to beat an ass like this, though I think I’ve got some competition.");
+		if (flags["BIANCA_PLANET"] == "tarkus") output(" There’s a doctor wandering around downstairs, see her come and go once in a while. Can tell that foxy momma’s lain a few.");
+		else output(" I’ve seen a foxy momma come wandering through here once in a while, only ass as eye-catching as mine. You can tell she’s a proud parent and looking for more.”</i>");
+		output("\n\nThe silken pressure of a torso-sized derriere smushes your cheeks together. Then she starts humping. Slickened by sweat and arousal, plump thighs ride your face, building a tingling, suffocating friction. <i>“Mmmm...”</i> she hums, rotating her pillowy posterior in magical ways, rolling elephantine dimensions across your [pc.face] until your [pc.lips] meet the cusp of her chubby vulva. Recognizing you don’t have much time before she starts moving again, you give both exposed clits a kiss and get down to business, breathing in, deeply, of her concentrated musk, worshipfully rubbing her buttery booty into your brain. Fuck, that’s wonderful.");
+		output("\n\n<i>“This might be the best part. Getting off your feet after a long, hard day is one thing, but getting a good rub and polishing down there too?”</i> Her teeth click. <i>“Can’t beat it.”</i> More swiveling, more gyrating - the erotic encouragement feels paralyzingly good. You suck up her errant juices, and all of her scent that you can, each submissive act readying you for what’s to be a tough job.”</i>");
+		output("\n\nNow, to get that thong...");
+	}
+	// append 'the big merge' here.
+	// the big merge - sexytimes follow!
+	output("\n\nA rain of delectable juices baptize your [pc.tongue] as it hooks into the front length of her inadequate lingerie. With a quick yank, you reveal the fullness of her moist trench and flatten your taste buds to the pleasure-pumped girth of her sloven folds. Overwhelming <b>heat</b> scorches your nervous system prior to her hips rocking again; dizzying pressure gradually intensifies. Hums of gratitude from above spur you into acting, and so you lap and you lick,");
+	if (pc.hasLongTongue()) output(" glad to have a long tongue perfect for slurping up a treat");
+	else output(" struggling not to spill any amount of her pearly cream");
+	output(". Her plump muff slides and glides over your mouth, copious ladyflesh owning your every movement. Enjoying herself too much, she shifts faster, and faster, pressing so hard that her winking gash opens and engulfs the length of your nose in a passionate embrace.");
+	output("\n\n<i>“Mmmm...! That’s the stuff,”</i> she sighs. <i>“");
+	if (flags["DOCKMASTER_FACESAT"] == undefined) output(" I bet you’re already drunk on me, off-worlder");
+	else output(" Bet you’re already in a pussy-haze");
+	output(".”</i> The rask’s azure clits grind across your hidden features, drawing lines through the puddles of slick goodness simmering between your [pc.skinFurScalesNoun] and the eclipse of her behemoth-sized bottom. <i>“");
+	if (flags["DOCKMASTER_FACESAT"] == undefined) output(" Can’t count the amount of eggs I’ve laid. Each one’s made me a little bit stronger, little more... potent. S’why you shouldn’t feel bad if you’re already out of it, I’m a needy woman.");
+	else output(" There’s something special about the way you use your tongue. You’re definitely not under me just because of a discount.");
+	output("”</i> There comes a cute laugh that you’re in no position to appreciate, not with a sensuous curtain of honey streaming past your [pc.lipsChaste]. <i>“");
+	if (rand(3) == 0) output("Get my upper clit, if you can hear me. That’s every rask’s favorite spot. The bottom is for catching ‘em off guard...");
+	else if (rand(2) == 0) output("Kiss my clits, if you’re still there. Suck on each of ‘em...");
+	else output("Wind your tongue around my clits, tug at ‘em, suck on ‘em...");
+	output(" I wanna see how persuasive you are... mmm...”</i>");
+	output("\n\nYou give one of the most charismatic answers of your life, doing exactly as she asks and reaping the rewards for it. She feels better, and you get more to drink. Thoughts evaporate one-by-one, tiny bubbles popping the more of <i>her</i> that you let inside. The [pc.raceShort]-framing burden of her ass thrusts backwards. The edge of your oral muscle swims through her labial line, opening the way, deflecting off her front pleasure-sensor and teasing the absolute hell out of her secondary button. <i>“You’re a talented one,”</i> she purrs. <i>“Talk dirty to me. I can take it.”</i>");
+	output("\n\nContact with the outside world diminishes. You don’t really hear anything anymore, wholly preoccupied with the task of licking alien cunt, swirling around the gemini jewels of her joy-hole, eyes rolling back from a serious case of pussy-brain. Inheritance? Whatever. Exploration? Is what you’re doing now any different? The discount all but forgotten, you follow the circular humps of her ass in a total fuck-me-fog, instinctually compliant to the pace it demands.");
+	output("\n\nWhen your [pc.tongue] slips inside the woman’s melonous muff, a furrow of rippling muscle contracts around your invasion, but not too tightly! Swimming upstream, you take in the exotic feast of raskvel vagina, sinking in without any force. The outside was satin-soft and pleasant beyond all description, yet being inside the fat ‘n fidgety quim is <b>the real</b> delight. Lapis wetness enmeshes your sex-taster in oral bliss. The constant spray of slickness and passion heightens your suckhole’s sensitivity to that of a full-fledged genitalia; each suck, lick, kiss, and slurp brings orgasmic whiteness to your dizzy mind. Meanwhile, the puffy hole gorges itself on your nose in the process.");
+	// pc Long Tongue
+	if (pc.hasLongTongue())
+	{
+		output("\n\nExtending your tongue with the power of science is paying off majorly. You widen your jaw and jam all that extra oral girth into the dockmistress’ impatient box, driving her wild. Aggressive motions slam your head into the rug, but you don’t care. You’ll happily fend off the headaches if it means milking her glistening core of more nectar. Exhilarating cunnilingus rapidly elevates into a full-on tonguefucking, the whole of her sizeable plumpness bouncing against your skewering trespass with a level of need to match ausars in heat.");
+		if (pc.isAusar() && pc.inHeat()) output(" Finally, a challenger!");
+	}
+	// pc non-Long Tongue
+	else output("\n\nYou flatten your tongue to side of her encompassing puss and circle the rask’s vulnerable core, curling around the inside of her sodden twat until all the slime overrides your senses of taste and smell. Powerful bucks flatten your features concave. Musky pussy burrows past your mouth and squirts down your throat. Within seconds, you’re being buffeted by the porcine tush of a woman driven wild, the vise of writhing velvet crushing all the feeling out of your maw. Broad, gargantuan asscheeks clap into your [pc.eyes], but you don’t care - it’s all worth it to feel the orgasmic trembles quivering through her wet, supple warmth.");
+	// pc Aphrospit
+	if (pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nHer quivering muff reacts splendidly to drug-enhanced bliss. Venomous saliva sparks a connection she could never be prepared for, soaking into the most sensitive parts of her lust-happy body. Soft moans turn into loud, euphoric screeches that nobody in Novahome will miss.");
+	// merge
+	// pc Herm or Cock
+	if (pc.hasCock())
+	{
+		output("\n\nAll this bouncing shakes a rush of [pc.cum] free; your [pc.cocks] detonate, spurting [pc.cumGem] torrents");
+		if (!pc.isCrotchExposed()) output(" into your clothing, filling your gear out into a spunky bubble");
+		else output(" into the air, ropes landing on your [pc.thighs]");
+		output(". Fervent relief rhythmically jets as you’re so assertively used. [pc.CumVisc] relief surges to the helpless lurch of your pinioned form, and, fuck, it only makes you wanna do more! Making her cum now is all that matters!");
+		if (pc.hasVagina()) output(" It’s not just your male side getting off, but your [pc.pussiesLight] as well: all glands dilate to handle a cascade of" + (pc.isSquirter() ? "squirting":"") + " bliss. Everything already felt empty and hollow, but now... it’s like you’ve been holding your breath for days...");
+	}
+	// pc Pussy
+	else if (pc.hasVagina())
+	{
+		output("\n\nAn onrush of passion");
+		if(!pc.isSquirter()) output(" explodes");
+		else if(pc.girlCumQ() < 500) output(" squirts");
+		else output(" sprays");
+		output(" from your [pc.pussies], all this slick thwumping and slapping and <b>pounding</b> knocking loose a muscle-locking orgasm. [pc.GirlCum] rushes, impulses of gummy-feeling ladyjizz");
+		if (!pc.isCrotchExposed()) output(" soaking the insides of your undies all the way through");
+		else output(" puddling on the floor between your trembling thighs");
+		output(". It doesn’t matter if you’re cumming as hard as her or not. The fact you get to cum at all is perhaps more reward than saving a little cash.");
+	}
+	// merge
+	output("\n\n<i>“F-Fuck, fuck yes!”</i> The firm sapphires of her double-nubs batter you senseless - she’s frenzied! Immersed in her gooey depths, you lose feeling in your [pc.arms] and go limp. A lack of oxygen takes its toll. <i>“Still hanging in there, hot-stuff?”</i> More juice than you can lick gushes from her snatch, and she slaps down hard enough to create an accurate render of your [pc.face] in the texture of her bubble-butt. A musical series of slaps and bounces stuff you into her nethers. More pressure than ever - she’s squeezing down on you with her entire body, each powerful impact making you tense and tighten. <i>“A little more... almost there! Slide in all the way, spacer, you’re about to get drenched reaaaal goood...!”</i>");
+	output("\n\nYou obey, of course, because doing what a lady says while you’re eating her out feels amazing. Everywhere you lick elicits an orgasm from the shuddering mechanic, driving all cognition from your brain. Endlessly flowing excitement drips down to your neck and [pc.chestNoun], small hands holding tight to your body. Smothered under substantial weight, the riding stops in a climactic flash, and bolts of squirting joy lance the back of your throat. Gagging and choking are silly afterthoughts. You just prolong the joy she feels: the ultimate satisfaction of venting her libido into a willing suckslut. Everything condenses down to the violent pulsing of femgasm, an organic fusillade of sweet torrents settling in your belly. Embracing your role as a receptacle for a raskvel’s lust, you mindlessly lick and clean and polish that pussy, giving the slick, wanton, gluttonous mound all the climaxes it deserves.");
+	output("\n\nShe’s a hard worker, and so are you. Cottony, fuzzy feelings caress you from the inside. The way she rubs her ass into your head, battening down on your sore jaw. You choose to believe it’s sort of like a grateful victory lap. With her spunk in your gut, spreading tender warmth all over, you feel a blanket of contentment bundle around your brain. This is fine. You don’t care when she’ll deign to stand up. It’s just more time to satisfy the cunt-obsessed thing living inside rent-free. You’ll give her a spit-shine so long as she wants to revel atop her favorite pussy-licker.");
+	//[Next]
+	// sceneTag: PC orgasms if they have genitals
+	// sceneTag: PC is 'Pussy Drenched'
+	// sceneTag: PC is made 'Sore'
+	// sceneTag: PC energy reduced 10-20%.
+	processTime(35);
+	if (pc.hasGenitals()) pc.orgasm();
+	pc.applyPussyDrenched();
+	soreChange(3);
+	var engy:Number = (10 + rand(11))/100;
+	pc.energy(pc.energyMax()*engy);
+	clearMenu();
+	addButton(0,"Next","keepBeingDockMastersSeat");
+}
+public function keepBeingDockMastersSeat():void
+{
+	clearOutput();
+	showDockmistress(true);
+	author("William");
+	output("It’s dark, but you’re still conscious. You can feel the aches in your jaw and the numbing heat tingly slowly across your [pc.face]. Experimentally, you feel your way out tongue-first. This sends a resuscitating spark to the raskvel dockmistress, and again you feel the hot, messy squirm. The hangar’s lights overhead are blinding when that battleship-class ass rises. A network of viscous strings connect your features to her underbutt, peeling away when she scoots forward with an epic sigh of content.");
+	output("\n\nSucking in air, you open your eyes to meet her looking down at you, stroking one indescribably buxom orb of her sapphire rear inches from your nose. <i>“You’ve more than earned that discount, spacer,”</i> she winks, bending back as it to smother you again. It makes your");
+	if (pc.hasCock()) output(" [pc.cocksLight] twitch");
+	else if (pc.hasVagina()) output(" [pc.pussiesLight] crease");
+	else output(" [pc.asshole] squeeze");
+	output(", and you lick your lips. <i>“Oh I’m quite satisfied, but I figured you’d want to see how wet you got me.”</i> Damn, she’s not wrong! Her crotch is an absolutely sopping-wet mess!");
+	output("\n\n...And so are you! Naturally, you’re caked in girlcum, humidified by the residual warmth of her sweet, syrupy excess.");
+	if (pc.libido() < 33) output(" Before she pulls away, you give her butt a small kiss. A little peck that makes the peanut gallery swoon.");
+	else output(" Quickly, before she goes, you roll your tongue up one mythical curve of her ass, tasting the azure vale one last time with a thankful smile.");
+	output(" It’s a little embarrassing, but it’s nice.");
+	output("\n\nWhat isn’t nice is that she does stand up, taking that ass with her. Aww. Speaking of, you swear you can see an imprint of your [pc.face] in the pudgy mould of her tush. <i>“Might wanna get a shower.");
+	if (hasDockRaskDiscount()) output(" I’ll refresh your discount for that. Good service deserves a good tip, and I don’t skimp.");
+	else output(" I’ll give you a discount <b>for a day</b>. Y’wanna refresh it or get it again, you know what to do for me.");
+	output("”</i> With that, she grabs her wrench and returns to duty.");
+	output("\n\nSitting up, you find that you’re surrounded by other raskvel, with fellow Rushers standing far in the back pretending not to look at you.");
+
+	var bonus:Array = [];
+	if (kiroIsCrew()) bonus.push("Kiro");
+	if (pennyIsCrew() && !penny.isBimbo()) bonus.push("Penny");
+	if (mitziIsCrew()) bonus.push("Mitzi");
+	if (leilaIsCrew()) bonus.push("Leila");
+	var bonus2:String = "";
+	if (bonus.length > 0) bonus2 = RandomInCollection(bonus);
+
+	if (bonus2 == "Penny") output(" Penny is there too, arms folded with a great big smug grin on her face. Now that the show’s over, she gives a friendly nod and heads on her way. Welp.");
+	if (bonus2 == "Kiro") output(" {Bimbo} Kiro is carrying a hefty pair of swollen cum-tanks, dark precum splotches staining the front of her clothing. Yeah, she enjoyed the hell out of seeing you get ridden.");
+	if (bonus2 == "Mitzi") output(" Unsubtle Mitzi, your goblin-shaped bimbo slut, is jilling herself off in open amusement. She looks really sad now that the sex has ended, but blows you a kiss before waddling back to the [pc.ship].");
+	if (bonus2 == "Leila") output(" Being so tall, Leila is impossible to miss towering over a field of horny raskvel. An obvious [leila.cockType] bulge swells her [leila.uniform] with obvious lust. <i>“Hey, invite me next time, fucker! Doing someone in the ass while they’re busy is always a treat!”</i> She laughs, meandering back to your ship.”</i>");
+
+	output("\n\nYou don’t jolt to your feet, because your neck is just a tad sore. Having a few hundred pounds of augmented broodmom jouncing your bones into a fine dust’ll do that. Nothing a bit of R&R won’t solve!");
+	output("\n\n...Should probably make use of that discount while it lasts before then.");
+
+	// sceneTag: processTime
+	processTime(45);
+	flags["DOCKMASTER_DISCOUNT"] == GetGameTimestamp();
+	pc.girlCumInMouth(new RaskvelFemale());
+	addButton(0,"Next",mainGameMenu);
+}
 
 //Extras
 //The Dockmaster’s Eggnancy
