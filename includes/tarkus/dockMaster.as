@@ -297,7 +297,7 @@ public function raskvelDockmasterMenu():void
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
 	addButton(2,"Flirt",flirtWivRaskDock,false,"Flirt","She does look like she could use a break from all the hard work...");
-	if(flags["DOCKMASTER_DISCOUNT_ASK"] == undefined) addButton(3,"Discount",dockmasterDiscountAsk,undefined,"Discount","Ask about a possible discount on purchases. Haggling is important.");
+	if(flags["DOCKMASTER_FACESAT"] == undefined) addButton(3,"Discount",dockmasterDiscountAsk,undefined,"Discount","Ask about a possible discount on purchases. Haggling is important.");
 	else if(hasDockRaskDiscount()) addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Discount","You've already got a discount, but that ass... it calls to you. Right? She wouldn’t mind taking a break, surely.");
 	else addButton(3,"Facesitting",dockmasterFacesitting,undefined,"Facesitting","The deal is this: Let the fat-ass rask sit on you, and you can enjoy a nice discount.");
 	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(4,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
