@@ -1543,7 +1543,7 @@ public function omegaLossToMiloMale(submit:Boolean = false):void
 	//Buttslut
 	if (pc.hasPerk("Buttslut")) output(" The Word flashes before your mind’s eye, radiant and true: Obey. That’s right, good, obedient buttsluts get fucked!");
 	output(" There’s the sound again, what seems like an avalanche but really it’s just the pleased snarl of the beast on top of you. Though, the possessive way his hands roam over your ass and sides, back and chest tell you he’s planning a flood of white cum just for you.");
-	if (!inCombat)
+	if (!inCombat())
 	{
 		setEnemy(new MilodanMale());
 	}
