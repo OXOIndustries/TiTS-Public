@@ -785,7 +785,7 @@ public function PKTSYLT(args:Array):void
 	output("\n\nKiro sighs wistfully, her eyes narrowing on Paige in adoration. <i>“That’s the Paige I remember.”</i> She pushes her lips to your ear, licking at its rim. <i>“Don’t you just love it when your partner knows what they want?”</i>");
 	output("\n\nYou don’t remember being asked what <i>you</i> want.");
 	output("\n\n<i>“You’ll want more in just a moment, angel,”</i> Kiro answers smugly.");
-	output("\n\nOn Paige’s command, Kiro thrusts into you, the blunt head of her dick penetrating you. You tense at first, expecting at least a bit of pain from having so wide inside you, but instead, you feel a delightful, wet tightness – the elasticizing oil is working its magic on your body, making you stretchy and making Kiro easier to take inside your [pc.vagOrAss]. Once she enters you, the strength leaves your lower body, and you sink, inadvertently shucking more and more of that Kui-Tan cock into you.");
+	output("\n\nOn Paige’s command, Kiro thrusts into you, the blunt head of her dick penetrating you. You tense at first, expecting at least a bit of pain from having something so wide inside you, but instead, you feel a delightful, wet tightness – the elasticizing oil is working its magic on your body, making you stretchy and making Kiro easier to take inside your [pc.vagOrAss]. Once she enters you, the strength leaves your lower body, and you sink, inadvertently shucking more and more of that Kui-Tan cock into you.");
 	output("\n\n<i>“Hold on,”</i> Paige asks; Kiro does as she’s told and does not thrust. You feel her twitch and leak inside you; her every heart beat pounds through your body like a drum while your flesh wraps around hers.");
 
 	// Continue here if the PC has a penis
