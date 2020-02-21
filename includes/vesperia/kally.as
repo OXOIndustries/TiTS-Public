@@ -1139,7 +1139,7 @@ public function askKallyAboutAusar():void
 //1- landing pad
 public function kiroKallyCanadiaLPBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	kiro.ballSizeRaw = 10;
 	if((flags["KIRO_MET_KALLY"] == undefined || flags["KIRO_MET_KALLY"] == 0) && MailManager.isEntryViewed("kirodatemeet"))
 	{
