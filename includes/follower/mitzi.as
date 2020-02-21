@@ -3910,6 +3910,7 @@ public function takeTheHitMitzi():void
 	output("\n\nLifting your hand, the pleased greenskin places atop one of her mounds, stunning you with the warmth and supple softness of it. You marvel at how your fingers sink in, at the faint thrumming of her heartbeat through a pair of tits big enough to smother a pornstar to death in. Of course, Mitzi isn’t bothered by your touch at all. She holds you by the wrist and leads you toward the bedroom, the spaded tip of her tail tickling your chin while she talks. <i>“Umm, it lasts a long time or something? And something about taint too. Mitzi remembers that, but she played with her taint when she took it, and like, nothing happened!”</i>");
 	processTime(30);
 	pc.changeLust(50);
+	pc.taint(3);
 	clearMenu();
 	addButton(0,"Next",mitziVDayFun2);
 }
@@ -3952,6 +3953,7 @@ public function mitziVDayFun2():void
 	output("\n\nMitzi squeaks and shivers, eyes rolling halfway back.");
 	output("\n\nYou know exactly how she feels.");
 	processTime(35);
+	pc.taint(2);
 	pc.orgasm();
 	pc.changeLust(25);
 	clearMenu();
@@ -3979,6 +3981,7 @@ public function mitziVDayFun4():void
 	processTime(45);
 	if(!pc.hasStatusEffect("Cupid’s Kiss")) pc.createStatusEffect("Cupid’s Kiss",1,0,0,0,false,"Icon_DrugVial","You’re feeling more affectionate that you otherwise would, no doubt the result of Mitzi’s drug.\n\nTake +30% more tease damage.\n+200% XP\n+300% rare drop chance.",false,0,0xB793C4);
 	pc.setStatusMinutes("Cupid’s Kiss",60*24*31);
+	pc.taint(1);
 	IncrementFlag("MITZI_VDAYS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
