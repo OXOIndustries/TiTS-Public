@@ -1173,7 +1173,7 @@ public function kiroKallyCanadiaLPBonus():void
 //2 - airlock
 public function kiroKallyCanadiaAirlockBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	if((flags["KIRO_MET_KALLY"] == 0 || flags["KIRO_MET_KALLY"] == 1) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1185,7 +1185,7 @@ public function kiroKallyCanadiaAirlockBonus():void
 //3 - Hallway
 public function kiroKallyCanadiaHallwayBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	if((flags["KIRO_MET_KALLY"] == 1 || flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1198,7 +1198,7 @@ public function kiroKallyCanadiaHallwayBonus():void
 //4 - Outside the bar
 public function kiroKallyCanadiaBarBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	if((flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
