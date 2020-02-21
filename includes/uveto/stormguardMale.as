@@ -95,7 +95,7 @@ public function stormguardIntro():void
 	author("Nonesuch");
 	if(!CodexManager.entryUnlocked("Cundarians")) CodexManager.unlockEntry("Cundarians");
 	//First
-	else if(flags["MET_STORMGUARD"] == undefined)
+	if(flags["MET_STORMGUARD"] == undefined)
 	{
 		//9999 check with weather code?
 		output("\n\nThe snow that ceaselessly whips and flurries down from the repressive skies above removes all features from the land around you, turning it into one vast, glaring reminder of the merciless winter that will never leave this place. The mounds and promontories that you travel past could be anything, really - relics of korgonne civilization, forgotten tech - and you’d never know. Why, that hulking shape to your right looks exactly like a statue fallen on its back...");
@@ -116,7 +116,7 @@ public function stormguardIntro():void
 		//Preg Encounter
 		//Must know you are pregnant with Cundarian to trigger
 		//Puts Gel Zon on CD for 24h
-		if(pc.hasPregnancyOfType("StormguardPregnancy") && flags["SG_PREG_PC_KNOWS"] != 1)
+		if(pc.hasPregnancyOfType("StormguardPregnancy") && flags["SG_PREG_PC_KNOWS"] == 1)
 		{
 			stormguardPregIntro();
 			return;
