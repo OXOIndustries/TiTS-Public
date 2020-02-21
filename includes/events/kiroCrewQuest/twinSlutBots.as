@@ -719,16 +719,16 @@ public function twinsNurseYouAfterEatingYourPuss():void
 			puffNotice = true;
 			pc.inflateVagina(0);
 		}
-		if(pc.vaginas[1].wetness() < 5)
+		if(pc.vaginas[0].wetness() < 5)
 		{
-			pc.vaginas[1].wetness(2);
+			pc.vaginas[0].wetness(2);
 			if(!puffNotice) output("\n\n<b>This would be easier if you weren't feeling discernably moister below the waist...</b>");
 			else output(" <b>You're wetter down there too, like, all the time.</b>");
 			wetNotice = true;
 		}	
 		if(pc.hasVaginas())
 		{
-			if(pc.vaginas[1].wetness() < 5)
+			if(pc.vaginas[0].wetness() < 5)
 			{
 				if(!wetNotice)
 				{
@@ -736,9 +736,9 @@ public function twinsNurseYouAfterEatingYourPuss():void
 					else output(" <b>You're wetter down there too, like, all the time.</b>");
 					wetNotice = true;
 				}
-				pc.vaginas[1].wetness(2);
+				pc.vaginas[0].wetness(2);
 			}
-			if(pc.vaginalPuffiness(1) < 3)
+			if(pc.vaginalPuffiness(0) < 3)
 			{
 				if(!puffNotice)
 				{
@@ -746,7 +746,7 @@ public function twinsNurseYouAfterEatingYourPuss():void
 					else output(" <b>And your feminine genitalia is puffier too!</b>");
 					puffNotice = true;
 				}
-				pc.inflateVagina(1);
+				pc.inflateVagina(0);
 			}
 		}
 		pc.boostGirlCum(10);
