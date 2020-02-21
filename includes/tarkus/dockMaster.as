@@ -56,34 +56,39 @@ public function raskvelDockmaster(back:Boolean = false):void
 		output("\n\nThis woman has a spectacular ass. From behind you can tell that she’s wearing nothing but her apron and a deep black thong, and with a frame of silver and gold there’s nothing to see but two shiny purple asscheeks larger than your torso. Silvery metal makes its way down her spine where a long segmented mechanical tail is mounted, and her large sweeping ears are similarly capped in chrome. There’s the occasional glowing light on her body, bleeping or chirping in response to some kind of feedback you can only guess the source of.");
 		output("\n\n<i>“Like what you see?”</i> she eventually asks with a smirk, leaning on her monstrous wrench. She hefts it without a hint of effort, which is surprising considering her arms seem to be the only parts of her body not modified. <i>“I should hope so! Limbs are easy, and when it comes to the craft, I’m an artisan...”</i>");
 		output("\n\nThe dockmaster slaps an open palm on the front-face of her wrench, as though to make a point.");
+		if(pc.tallness >= 6*12 && pc.biggestCockLength() >= 10) output("\n\nYou’re pretty certain she’s growling at you though, and grinding her plump thighs together. You would appear to be ‘her type’.");
+		flags["MET_DOCKMISTRESS"] = 1;
 		processTime(7);
 		//[Talk] //Get Educated [Ship] //Repair, Re-tool, Recycle [Flirt] //This. You want this.
-	}
-	//Repeat
-	else
-	{
-		output("Once you’re close enough to get the dockmaster’s attention, she looks you up and down with an easy smile before hopping to her metal feet with a soft clickedy-click. You take the chance to drink her imposing assets while she closes those last few steps.");
-		processTime(2);
-	}
-	//First Time
-	if(flags["MET_DOCKMISTRESS"] == undefined)
-	{
-		flags["MET_DOCKMISTRESS"] = 1;
-		output("\n\n<i>“How can I help you, Spacer?”</i> She asks, toes clicking on the ground like a musical beat. <i>“I’m the dockmaster here, and the best shipwright you’ll find in this rust-forsaken scrap-hole.”</i>");
-		if(pc.tallness >= 6*12 && pc.biggestCockLength() >= 10) output("\n\nYou’re pretty certain she’s growling at you though, and grinding her plump thighs together. You would appear to be ‘her type’.");
 	}
 	//Greeting Not Eggnant
 	else if(flags["DOCKMASTER_EGGOES"] == undefined)
 	{
-		output("\n\n<i>“Hey Spacer. Managed to keep your ass out of trouble?”</i> She asks, looking you up and down appraisingly. <i>“Or perhaps that’s why you’re here. A few holes need patching up?");
+		output("<i>“Hey Spacer. Managed to keep your ass out of trouble?”</i> She asks, looking you up and down appraisingly. <i>“Or perhaps that’s why you’re here. A few holes need patching up?");
 		if(pc.tallness >= 6*12 && pc.biggestCockLength() >= 10) output(" ...Or perhaps just one hole filled?”</i> She adds on with a lusty little growl.");
 		else output("”</i>");
 	}
 	//Was Eggnant
 	else
 	{
-		output("\n\n<i>“Just the spacer I was thinking of... or was earlier when I was busy pushing out some eggs.”</i> She chews on her lip for a few moments with a muted ‘mnf’, before focusing on you properly. <i>“Come for a repeat performance? Or have you managed to explode something, or press a shiny button you shouldn’t have?”</i>");
+		output("<i>“Just the spacer I was thinking of... or was earlier when I was busy pushing out some eggs.”</i> She chews on her lip for a few moments with a muted ‘mnf’, before focusing on you properly. <i>“Come for a repeat performance? Or have you managed to explode something, or press a shiny button you shouldn’t have?”</i>");
 	}
+	/* Weird dupe first time... cutting the shorter one. Also moved the growly tall comment up.
+	First Time
+	if(flags["MET_DOCKMISTRESS"] == undefined)
+	{
+		
+		output("\n\n<i>“How can I help you, Spacer?”</i> She asks, toes clicking on the ground like a musical beat. <i>“I’m the dockmaster here, and the best shipwright you’ll find in this rust-forsaken scrap-hole.”</i>");
+		
+	}*/
+	/* Cut this repeat since we had two of them.
+	//Repeat
+	else
+	{
+		output("Once you’re close enough to get the dockmaster’s attention, she looks you up and down with an easy smile before hopping to her metal feet with a soft clickedy-click. You take the chance to drink her imposing assets while she closes those last few steps.");
+		processTime(2);
+	}*/
+	
 	raskvelDockmasterMenu();
 }
 
