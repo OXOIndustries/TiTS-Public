@@ -8316,7 +8316,10 @@
 						case GLOBAL.TYPE_FROSTWYRM:
 						case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "draconic", "dragon-like", "reptilian"]; break;
 						case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "dragon-like", "dragon-like"]; break;
-						case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; break;
+						case GLOBAL.TYPE_LIZAN:
+							if(legCount < 6) adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; 
+							else adjectives = ["leithan", "leithan", "reptile-like", "reptilian"];
+							break;
 						case GLOBAL.TYPE_DEMONIC: adjectives = ["demonic", "demon-like", "demon-like"]; break;
 						case GLOBAL.TYPE_SUCCUBUS: adjectives = ["sensual", "alluring", "seductive", "sexy"]; break;
 						case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
@@ -8408,7 +8411,10 @@
 					case GLOBAL.TYPE_FROSTWYRM:
 					case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "clawed", "reptilian"]; break;
 					case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "clawed"]; break;
-					case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_LIZAN: 
+						if(legCount < 6) adjectives = ["lizan", "clawed", "reptilian"];
+						else adjectives = ["leithan", "clawed", "reptilian"];
+						break;
 					case GLOBAL.TYPE_DEMONIC: adjectives = ["corrupted-looking", "demonic", "clawed"]; break;
 					case GLOBAL.TYPE_SUCCUBUS: adjectives = ["spike-supported", "sexy"]; break;
 					case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
