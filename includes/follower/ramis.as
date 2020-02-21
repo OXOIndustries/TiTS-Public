@@ -3179,7 +3179,7 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 			var winRatio:int = ramisArmWrestleWinRatio(physique);
 			if(winRatio < 4 && rand(winRatio) == 0) result = "win";
 			
-			addButton(1, "Next", ramisPantiesEncounter, ("tops wrestle " + result));
+			addButton(0, "Next", ramisPantiesEncounter, ("tops wrestle " + result));
 			break;
 		case "tops wrestle lose":
 			output("Her claws prick your [pc.skin] and suddenly your hand is being yanked forcefully towards the tabletop. You grit your teeth, gather all your strength and heave back. For a time it’s an even contest - the knot of reddened fingers struggles in mid-air, the sight of Ramis, clenched up and shaking slightly, one to behold.");
@@ -3246,7 +3246,7 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 			output("\n\nThen she suddenly stops,");
 			if(pc.balls > 0) output(" reaching down to give your [pc.balls] a teasing little tweak.");
 			else output(" giving you another hard little squeeze.");
-			output("\n\n<i>“So you know what? Keep the knickers.”</i> She stands up abruptly, depositing you onto the floor. <i>“You owned up, and they clearly mean a lot to you. Also they’re what, 200 credits?”</i> She grins down at you and your fervent erection. <i>“But you carry around that stif" + (pc.cLength(cIdx) <= 4 ? "f little guy" : "y") + " for a bit, alright? Thinken about all the cute sissy stuff you just came out with. Then... when you’re really gaggen for it... come’n see me. I might just fancy given you some new memories.”</i>");
+			output("\n\n<i>“So you know what? Keep the knickers.”</i> She stands up abruptly, depositing you onto the floor. <i>“You owned up, and they clearly mean a lot to you. Also they’re what, 200 credits?”</i> She grins down at you and your fervent erection. <i>“But you carry around that stif" + (pc.cLength(cIdx) <= 4 ? "f little guy" : "fy") + " for a bit, alright? Thinken about all the cute sissy stuff you just came out with. Then... when you’re really gaggen for it... come’n see me. I might just fancy given you some new memories.”</i>");
 			output("\n\nWith that, she’s gone, tails flicking after her, leaving you to gaze mournfully down at your cruelly teased [pc.cock " + cIdx + "].");
 			output("\n\nWell... it’s not as if you don’t enjoy the delicious torment. And you got to keep the panties!");
 			output("\n\n(<b>+500 XP!</b>)");
