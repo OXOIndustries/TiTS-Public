@@ -378,8 +378,8 @@ public function cumAsZaikaIs():void
 // reminder to use penisRouter
 
 public function titsSmall():Boolean { return (enemy.breastRows[0].breastRating() == 2); }
-public function titsMed():Boolean { return (enemy.breastRows[0].breastRating() == 2); }
-public function titsBig():Boolean { return (enemy.breastRows[0].breastRating() == 2); }
+public function titsMed():Boolean { return (enemy.breastRows[0].breastRating() == 8); }
+public function titsBig():Boolean { return (enemy.breastRows[0].breastRating() == 33); }
 
 public function fuckHerTailBuddddeh(x:int):void
 {
@@ -1770,11 +1770,11 @@ public function faceFuckDatBitch2(x:int):void
 	{
 		var crewBlurbs:Array = [];
 		//Kiro Cameo Random :3
-		if(kiroIsCrew()) crewBlurbs.push("Kiro");
+		if(kiroIsCrew() && !kiro.isBimbo()) crewBlurbs.push("Kiro");
 		if(pennyIsCrew() && !penny.isBimbo()) crewBlurbs.push("Penny");
 		if(mitziIsCrew()) crewBlurbs.push("Mitzi");
 		var select2:String = "none";
-		if(crewBlurbs.length > 0) select = RandomInCollection(crewBlurbs);
+		if(crewBlurbs.length > 0) select2 = RandomInCollection(crewBlurbs);
 
 
 		if(select2 == "Kiro") output("\n\n<i>“Oh shit, Angel? Damn...”</i> The familiar, swaggering tones of your favorite law-breaking tanuki caress your ears as she casually barrels through the crowd" + (kiro.ballDiameter() > 14 ? ", nearly dragging her nuts behind":"") + ". Kiro’s bright red eyes fixate on the sight of your spit-slicked cock pounding away at the captive, and she wastes way no time in whipping out her own dick to stroke in unrestrained, hedonistic glory. She leans into the closest, bustiest zaika she can find and whispers something to her, and a second set of hands joins in servicing the kui-tan’s bestial pole. <i>“F-f-fuck her harder!”</i>");
@@ -1990,7 +1990,7 @@ public function cummiesInsideIsWhereCummiesBelongDonchaKnow(args:Array):void
 	output("\n\n<i>“Guess you xenos have it in you after all! Come by later and we’ll show you how real girls take it!”</i>");
 	output("\n\n<i>“Not bad off-worlder! Really showed that slut did ‘ya!?”</i>");
 	output("\n\n<i>“She’s faking it! Fuck her face again, she’s totally ready for another go!”</i>");
-	output("\n\n{highCum: <i>“Damn! Look how fat she got!! All these rushers are good for the same thing: making skanks fat on spunk! Hahaaa!”</i>");
+	if(cummies >= 3000) output("\n\n<i>“Damn! Look how fat she got!! All these rushers are good for the same thing: making skanks fat on spunk! Hahaaa!”</i>");
 	if(cummies >= 15000) output("\n\n<i>“Not just fat, that bitch won’t be walking for days! Look at the SIZE of that BELLY! I doubt a hydra could do any better!”</i>");
 	// Leila Approached
 	if(leilaHere)
