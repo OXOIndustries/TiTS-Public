@@ -1393,7 +1393,7 @@ public function getVRDemonAnal():void
 	}
 	output("\n\nA low grunt escapes your lips as Ithzan near-silently slams another orgasm out of your quivering asshole, her stiff cock penetrating to your very core and loosening the tension in your entire body. The puddle of mixed juices between your shaking legs continues to grow, your face flushed and sweaty while demoness dick fucks you silly. Your [pc.ass] shakes with every thrust, your skin rippling with the force of her.");
 	output("\n\nRight as you’re on the verge of whiting out, you close your eyes tight and let out a whorish moan - only to feel the most confusing sensation, driving you to open your eyes once more. You’re standing before Ithzan, her cock is in her hand - and she’s squeezing it, giving you a devious little grin.");
-	if(pc.isHerm()) output(" You blow a massive load all over the ground, your knees shaking as you empty out what feels like every last drop in your balls after getting it so hard. Strangely, it feels like you’re cumming <i>more</i> than you were while she was demonstrating her sexual prowess on you.");
+	if(pc.isHerm()) output(" You blow a massive load all over the ground, your knees shaking as you empty out what feels like every last drop in your " + (pc.balls > 1 ? "balls":"body") + " after getting it so hard. Strangely, it feels like you’re cumming <i>more</i> than you were while she was demonstrating her sexual prowess on you.");
 	else if(pc.hasCock()) 
 	{
 		output(" You blow a massive load all over the ground, your knees shaking as you empty out what feels like");
