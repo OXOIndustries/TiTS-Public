@@ -3210,8 +3210,9 @@ public function boredJumperPregNurserySceneBabies(arg:Array):void
 		output("\n\nYou reach for your Codex and take a quiet pic of the napping duo, firing it off to their missing parent’s provided address. Surprisingly, you get a near instant response from the laquine pirate:");
 		output(" <i>“" + RandomInCollection(["Ohhh maaan! That’s sooo cute! I was having such a shit day until you sent that, thank you so much!","Holy shit! That’s the best thing I’ve seen all day. Look at how small they are, it’s so cute! And their paws are interlocked omigod. THANK YOU!","Ooohhh, look at those ears, kinda shimmery from this angle! I’m glad they’ve got a soft looking bed, too. Nobody should have to grow up without one. Thanks, babe, you really brightened my day.","Wooah... that’s great! Sorry I can’t talk now, too many-","They’re growing so fast! They look so healthy. Thanks for the pics!"]) + "”</i>");
 	}
-	
-	processTime(10 + ((5 + rand(5)) * babyCnt));
+	var babyTime:Number = 10 + ((5 + rand(5)) * babyCnt);
+	if(babyTime > 300) babyTime = 300;
+	processTime(babyTime);
 	clearMenu();
 	addButton(0, "Next", nurseryVisitLaquine,undefined);
 }
