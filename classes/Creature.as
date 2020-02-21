@@ -6069,13 +6069,20 @@
 			temp += rangedWeapon.defense;
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
 			if (hasStatusEffect("Harden")) temp += 1;
-			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
+			//Gain defense for evasion, cap at level * 2.
+			if (hasPerk("Lucky Breaks"))
+			{
+				var evas:Number = evasion();
+				if(evas / 3 > level * 2) temp += level*2;
+				else temp += Math.round(evas/3);
+			}
 			if (hasStatusEffect("Crystal Coated")) temp += 4;
 			if (hasStatusEffect("Burning")) 
 			{
 				temp -= 5;
 				if(temp < 0) temp = 0;
 			}
+			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			//Sundered - -50% armor!
 			if (hasStatusEffect("Sundered")) 
 			{
