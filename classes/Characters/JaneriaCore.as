@@ -478,7 +478,7 @@ package classes.Characters
 			{
 				target.removeStatusEffect("Electric Flood Cover");
 				output("The light erupts outward as a massive, all-consuming storm of lightning bolts, rippling across the entire room. It sears at your flesh and leaves you spasming with agony. You can only imagine what it would be like if you had been out in the open!");
-				damage = new TypeCollection( { electric: 16 + (bon/5) });
+				damage = new TypeCollection( { electric: 20 + (bon/5) });
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 			}
