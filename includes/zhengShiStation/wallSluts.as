@@ -2576,7 +2576,7 @@ public function wallSlutsNoisyRodentsVIPServiceSex2(kok:int=0):void
 		}
 		else if (sel [rn] == 2) 
 		{
-			output("\n\nChestnut isn’t about to let Walnut have it all. That’s why she’s down in front and savouring the raw, primal taste of your [knotOrSheath " + kok + "]");
+			output("\n\nChestnut isn’t about to let Walnut have it all. That’s why she’s down in front and savouring the raw, primal taste of your [pc.knotOrSheath " + kok + "]");
 			if (pc.hasKnot(kok) && pc.hasSheath(kok)) output(", thick, pierced tongue drooling over the tumescent growth of your cunt - plugger and sliding over the slaver - glazed folds of your sheath");
 			else if (pc.hasKnot(kok)) output(" studded serpent of a tongue teasing, enticing, and inflaming your bulbous cunt - plug into fighting Walnut’s brain for space");
 			else if (pc.hasSheath(kok)) output(" lengthy, jeweled tongue smearing spit and lust into your musky sheathfolds, infringing on nerve-dense areas never meant to be explored");

@@ -343,6 +343,9 @@ public function configureMails():void
 	
 	//milodan futazons
 	MailManager.addMailEntry("joyco_uveto_hazmat_advisory", joycoUvetoHazmatAdvisoryEmail, "Urgent: Hazmat Advisory", "JoyCo HR", "HumanResources@JoyCo.corp", quickPCTo, quickPCToAddress);
+	//Lessau Frostwyrm tf
+	MailManager.addMailEntry("lessau_frostwyrm_tf", drLessauFrostwyrmTFEmail, "Research Complete", "Dr. Lessau", "edward_lessau@SteeleTech.corp", quickPCTo, quickPCToAddress);
+	
 }
 
 public function kallyKiroMilkvite():String

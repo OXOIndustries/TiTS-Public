@@ -4250,6 +4250,30 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;
 			}
+			//deepsea biomedical facility
+			if(flags["UVETO_DEEPSEALAB_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Steele Biomedical Deepsea Research Facility</u></b>");
+				output2("\n<b>* Status:</b> ");
+				if(flags["UVETO_DEEPSEALAB_QUEST"] == 0) output2("Read warning sign");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 1) output2("Got permission from Dr Lessau");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 2) output2("Entered Facility");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 3) output2("Cleared Facility");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 4) output2("Cleared Facility, Returned to surface, Waiting for reward");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 5) output2("Complete");
+				sideCount++;
+			}
+			//Frostwyrm TF quest
+			if(flags["LESSAU_FROSTWYRM_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Frostwyrm Sample Gathering</u></b>");
+				output2("\n<b>* Status:</b> ");
+				if(flags["LESSAU_FROSTWYRM_QUEST"] == 0) output2("Received Blood Extractor from Dr Lessau");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 1) output2("Gathered blood sample");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 2) output2("Gave blood sample to Dr Lessau, Waiting for results");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 3) output2("Complete");
+				sideCount++;
+			}
 		}
 
 		if(showID == "Canadia" || showID == "All")

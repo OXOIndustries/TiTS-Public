@@ -593,6 +593,14 @@
 		include "../includes/uveto/willow.as";
 		include "../includes/uveto/xotchiExpansion.as";
 		
+		//uveto steele biomedical deepsea research facility
+		include "../includes/uveto/steeleBiomedical/janeriaCore.as";
+		include "../includes/uveto/steeleBiomedical/janeriaSpawn.as";
+		include "../includes/uveto/steeleBiomedical/rooms.as";
+		include "../includes/uveto/steeleBiomedical/roomFunctions.as";
+		include "../includes/uveto/steeleBiomedical/steeleBioDeepseaLab.as";
+		include "../includes/uveto/steeleBiomedical/typhon.as";
+		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
 		include "../includes/SSTDs/furpies.as";

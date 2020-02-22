@@ -1389,7 +1389,18 @@ package classes.GameData
 				applyDamage(dmg, attacker, target, "minimal");
 			}
 		}
-		
+		//laser version of the basic drone
+		public static function SteeletechLaserSentryAttack(attacker:Creature, target:Creature):void
+		{
+			if (attacker is PlayerCharacter) output("Your");
+			else output(StringUtil.capitalize(possessive(attacker.getCombatName()), false));
+			output(" laser drone repeatedly zaps ");
+			if (target is PlayerCharacter) output("you");
+			else output(target.getCombatName());
+			output(".");
+			var dmg:TypeCollection = new TypeCollection( { burning: attacker.untypedDroneDamage() * 1.1 }, DamageFlag.LASER);
+			applyDamage(dmg, attacker, target, "minimal");
+		}
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output(kGAMECLASS.varmintPetName("Your pet") + " hoots and hisses at " + target.getCombatName() + ",");

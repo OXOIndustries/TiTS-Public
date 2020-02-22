@@ -83,6 +83,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Janeria", janeriaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Korgonne", korgonneCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Milodan", milodanCodexEntry);
@@ -2847,6 +2848,32 @@ public function frostwyrmCodexEntry():void
 	outputCodex("Unknown. Wyrms are believed to be solitary creatures with no culture to speak of.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Frostwyrm");
+}
+public function janeriaCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("JANERIA");
+	outputCodex(header("Janeria"));
+	outputCodex("<b>Name:</b> Janeria");
+	outputCodex("\n<b>Sexes:</b> None");
+	outputCodex("\n<b>Height:</b> Normal instances range from 1’-4’. Overcharged instances can rapidly exceed 40’ with no known growth cap.");
+	outputCodex("\n<b>Colors:</b> Luminous green and blue.");
+	outputCodex("\n<b>Eyes:</b> None");
+	outputCodex("\n<b>Tentacles:</b> Each janeria bears a minimum of six tentacles which hang from its underside and account for most of its height. These tentacles can elongate up to several dozen times their default length. The largest known instance bore upwards of twenty tentacles.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Combat"));
+	outputCodex("One of Uveto’s most bizarre creatures, janeria consist of a plastic cell colony which organizes into a form strongly resembling a Terran jellyfish. The organized instance increases in size and complexity as it gains additional biomass, though maintaining that complexity requires an increasing amount of electrical energy as it grows.");
+	outputCodex("\n\nJaneria normally feed on deepsea fish and electrical discharges from ionized savicite deposits. The biomass of the prey is quickly converted into more of itself, while the prey’s neural impulses are used to contribute to the growing mental gestalt. Since the prey are normally fish, and the janeria undergoes mitosis past a certain size, this gestalt rarely amounts to much beyond allowing it to more easily stalk further prey.");
+	outputCodex("\n\nWhen provided with a plentiful source of electricity, however, the colony’s lifecycle radically alters. The mass of the overcharged instance will expand to enormous size without conducting mitosis, gaining enough biomass to become not only sapient, but powerfully psionic and far more aggressive in its behavior. This is believed to have occurred naturally on rare occasion in the past, according to native legends, but has never been seen since colonization. In any event, being unable to sustain the large amount of electricity needed to maintain itself should force the instance to collapse within minutes to hours of formation unless it can continue to feed.");
+	outputCodex(blockHeader("Environs"));
+	outputCodex("Native to the snowy world of Uveto, janeria dwell within the deepest recesses of the ocean floor. They are rarely if ever seen above the seabed, driven away from the surface by the extreme temperatures.");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("New janeria are created via mitosis. When a colony grows too large to maintain cohesion, it splits into several chunks which then become their own individual colonies. Some amount of the original mental gestalt persists into the new instances, but the mitosis typically pushes the spawn back down well into sub-sapient levels of intellect even if the parent colony had become sapient.");
+	outputCodex("\n\nWhen a janeria has been overcharged by a powerful electrical source, it can perform mitosis in a much more controlled manner, and has been noted to possess continued mental control over its spawn. The main instance can opt to reintegrate its spawn back into itself should it require the biomass, with the memories and neural patterns of the smaller instance being added to the larger’s mental gestalt.");
+	outputCodex(blockHeader("Culture & Society"));
+	outputCodex("Prior to its encounter with coreworld technology at Steele Tech’s Deepsea Research Center, overcharged janeria instances are believed to have usually depleted their electrical stores within minutes to hours of reaching critical mass, resulting in the instance terminating.  As such, the creature has lacked any culture or societal structure to speak of.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Janeria");
 }
 public function korgonneCodexEntry():void
 {
