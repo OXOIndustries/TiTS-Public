@@ -811,7 +811,7 @@ public function keepBeingDockMastersSeat():void
 	if (bonus.length > 0) bonus2 = RandomInCollection(bonus);
 
 	if (bonus2 == "Penny") output(" Penny is there too, arms folded with a great big smug grin on her face. Now that the show’s over, she gives a friendly nod and heads on her way. Welp.");
-	if (bonus2 == "Kiro") output(" " + (kiro.isBimbo() ? "Bimbo":"") + " Kiro is carrying a hefty pair of swollen cum-tanks, dark precum splotches staining the front of her clothing. Yeah, she enjoyed the hell out of seeing you get ridden.");
+	if (bonus2 == "Kiro") output(" " + (kiro.isBimbo() ? "Bimbo ":"") + "Kiro is carrying a hefty pair of swollen cum-tanks, dark precum splotches staining the front of her clothing. Yeah, she enjoyed the hell out of seeing you get ridden.");
 	if (bonus2 == "Mitzi") output(" Unsubtle Mitzi, your goblin-shaped bimbo slut, is jilling herself off in open amusement. She looks really sad now that the sex has ended, but blows you a kiss before waddling back to the [pc.ship].");
 	if (bonus2 == "Leila") output(" Being so tall, Leila is impossible to miss towering over a field of horny raskvel. An obvious [leila.cockType] bulge swells her [leila.uniform] with obvious lust. <i>“Hey, invite me next time, fucker! Doing someone in the ass while they’re busy is always a treat!”</i> She laughs, meandering back to your ship.”</i>");
 
