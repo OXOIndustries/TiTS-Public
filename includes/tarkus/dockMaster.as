@@ -672,7 +672,7 @@ public function dockmasterFacesitting():void
 	if (flags["DOCKMASTER_FACESAT"] == undefined)
 	{
 		output("You’re in - you give a signaling nod that all but makes the sweat-slick rask-lady squirm on the spot. <i>“C’mere, let’s find a decent spot. Don’t wanna hold up the traffic.”</i>");
-		output("\n\nClearing the way with slow swings of her giant wrench (she looks hot as fuck doing it, too), you’re led over to a makeshift rest spot. Couple of oil-stained chairs and rugs. She motions you into position and turns around, humming as she surveys the hangar. Before you can ask what’s up, the many powerful inches of her titanium tail loop around your " + (pc.isTaur() ? "front legs":"[pc.legOrLegs]") + ", yanking hard. Arresting your fall to the deck is the deep lavender vale of her fat, cushiony ass. Pillowy mountains pull you into the fathomless fissure of her bottomless butt-cleavage before clenching down and taking control of your upper body.");
+		output("\n\nClearing the way with slow swings of her giant wrench (she looks hot as fuck doing it, too), you’re led over to a makeshift rest spot. Couple of oil-stained chairs and rugs. She motions you into position and turns around, humming as she surveys the hangar. Before you can ask what’s up, the many powerful inches of her titanium tail loop around your " + (pc.isTaur() ? "front legs":"[pc.legOrLegs]") + ", yanking hard. Arresting your face’s descent to the deck is the deep lavender vale of her fat, cushiony ass. Pillowy mountains pull you into the fathomless fissure of her bottomless butt-cleavage before clenching down and taking control of your upper body.");
 		output("\n\n<i>“Let’s get you fitted in there nice and tight, spacer,”</i> she giggles in a deep, chesty voice.");
 		output("\n\nInstinctively, you grab for her hips, but she’s already moving backwards, ushering you towards the ground " + (pc.isTaur() ? "on your side":"on your back") + ". The sweaty scent of a born broodmother registers with a triumphant thwack of mammoth assflesh to your [pc.skinFurScales] - <b>clench!</b> Lifting up by her augmented limbs, the shortstack goddess pulls her callipygian orbs apart, revealing the thin string of her devoured thong resting against her taint. There’s no time to wonder before she settles her heavy backside on your dazed head, engulfing you in smooth-scaled darkness. There’s so much malleable, forgiving <b>booty</b> that you can feel it <i>everywhere</i> - you really are buried in there, with no chance of escape!");
 		output("\n\n<i>“Ahhhh... now <b>that’s</b> how to take a break,”</i> she coos from her [pc.name]-shaped perch. Murmuring voices abound, you’re already being watched. Once or twice your " + (pc.legCount == 1 ? "leg jerks":"legs kick") + " while your [pc.hands] sink into the marshmallow curviness of her lower body, fondly groping, stroking blissful circles into queenly flesh. <i>“Gonna have to work around that thong while you’re down there.”</i> She pats what little of your head emerges from her sloping crack. <i>“But a resourceful spacer should know their way around a few obstacles, right? Here, let me get you on track.”</i>");
@@ -778,16 +778,7 @@ public function dockmasterTheSittening():void
 	output("\n\nYou obey, of course, because doing what a lady says while you’re eating her out feels amazing. Everywhere you lick elicits an orgasm from the shuddering mechanic, driving all cognition from your brain. Endlessly flowing excitement drips down to your neck and [pc.chestNoun], small hands holding tight to your body. Smothered under substantial weight, the riding stops in a climactic flash, and bolts of squirting joy lance the back of your throat. Gagging and choking are silly afterthoughts. You just prolong the joy she feels: the ultimate satisfaction of venting her libido into a willing suckslut. Everything condenses down to the violent pulsing of femgasm, an organic fusillade of sweet torrents settling in your belly. Embracing your role as a receptacle for a raskvel’s lust, you mindlessly lick and clean and polish that pussy, giving the slick, wanton, gluttonous mound all the climaxes it deserves.");
 	output("\n\nShe’s a hard worker, and so are you. Cottony, fuzzy feelings caress you from the inside. The way she rubs her ass into your head, battening down on your sore jaw. You choose to believe it’s sort of like a grateful victory lap. With her spunk in your gut, spreading tender warmth all over, you feel a blanket of contentment bundle around your brain. This is fine. You don’t care when she’ll deign to stand up. It’s just more time to satisfy the cunt-obsessed thing living inside rent-free. You’ll give her a spit-shine so long as she wants to revel atop her favorite pussy-licker.");
 	//[Next]
-	// sceneTag: PC orgasms if they have genitals
-	// sceneTag: PC is 'Pussy Drenched'
-	// sceneTag: PC is made 'Sore'
-	// sceneTag: PC energy reduced 10-20%.
 	processTime(35);
-	if (pc.hasGenitals()) pc.orgasm();
-	pc.applyPussyDrenched();
-	soreChange(3);
-	var engy:Number = (10 + rand(11))/100;
-	pc.energy(pc.energyMax()*engy);
 	clearMenu();
 	addButton(0,"Next",keepBeingDockMastersSeat);
 }
@@ -829,10 +820,19 @@ public function keepBeingDockMastersSeat():void
 	output("\n\n...Should probably make use of that discount while it lasts before then.");
 
 	// sceneTag: processTime
+	// sceneTag: PC orgasms if they have genitals
+	// sceneTag: PC is 'Pussy Drenched'
+	// sceneTag: PC is made 'Sore'
+	// sceneTag: PC energy reduced 10-20%.
 	processTime(45);
 	IncrementFlag("DOCKMASTER_FACESAT");
 	flags["DOCKMASTER_DISCOUNT"] = GetGameTimestamp();
 	pc.girlCumInMouth(new RaskvelFemale());
+	if (pc.hasGenitals()) pc.orgasm();
+	pc.applyPussyDrenched();
+	soreChange(3);
+	var engy:Number = (10 + rand(11))/100;
+	pc.energy(pc.energyMax()*engy);
 	addButton(0,"Next",mainGameMenu);
 }
 
