@@ -59,7 +59,7 @@ package classes.Characters
 			this.lustRaw = 0;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.electric.damageValue = -40.0;
+			baseHPResistances.electric.resistanceValue = 40.0;
 			
 			this.level = 8;
 			this.XPRaw = normalXP();

@@ -14,7 +14,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
-	import classes.Items.Protection.HammerShield;
+	import classes.Items.Protection.OzoneAegis;
 	
 	public class JaneriaSpawn extends Creature
 	{
@@ -60,17 +60,23 @@ package classes.Characters
 			this.lustRaw = 0;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.kinetic.damageValue = -20.0;
-			baseHPResistances.burning.damageValue = 50.0;
-			baseHPResistances.freezing.damageValue = 50.0;
-			//baseHPResistances.electric.damageValue = -100.0; We need the damage to get through so we can add it to shields in OnTakeDamage, so we will have to heal it there
+			baseHPResistances.kinetic.resistanceValue = 20.0;
+			baseHPResistances.burning.resistanceValue = -30.0;
+			baseHPResistances.freezing.resistanceValue = -30.0;
+			//baseHPResistances.electric.resistanceValue = -100.0; We need the damage to get through so we can add it to shields in OnTakeDamage, so we will have to heal it there
+			//this is just to balance out the shield to be same as hp
+			baseShieldResistances = new TypeCollection();
+			baseShieldResistances.kinetic.resistanceValue = 10.0;
+			baseShieldResistances.burning.resistanceValue = 35.0;
+			baseShieldResistances.freezing.resistanceValue = -30.0;
+			baseShieldResistances.electric.resistanceValue = -20.0;
 			
 			this.level = 6;
 			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
-			this.shield = new HammerShield;
+			this.shield = new OzoneAegis;
 			this.shield.shields = 100;
 			this.shieldsRaw = this.shieldsMax();
 			

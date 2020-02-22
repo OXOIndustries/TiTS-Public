@@ -14,7 +14,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
-	import classes.Items.Protection.HammerShield;
+	import classes.Items.Protection.OzoneAegis;
 	
 	public class JaneriaCore extends Creature
 	{
@@ -28,8 +28,8 @@ package classes.Characters
 			
 			this.short = "janeria core";
 			this.originalRace = "janeria";
-			this.a = "the ";
-			this.capitalA = "The ";
+			this.a = " ";
+			this.capitalA = " ";
 			this.tallness = 240;
 			this.long = "This aquatic monster looms over you, easily twenty feet wide and blazing like a star from all the energy it’s stolen. Several of its massive tentacles are wrapped around the facility’s power generator, while the rest prepare to lash out at you with the lightning it’s stolen. On top of that it seems to be getting smarter and more psionically powerful with each passing moment. This may be the last chance anyone has to stop it before nothing can.";
 			this.customDodge = "";
@@ -60,18 +60,24 @@ package classes.Characters
 			this.lustRaw = 0;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.kinetic.damageValue = -20.0;
-			baseHPResistances.burning.damageValue = 50.0;
-			baseHPResistances.freezing.damageValue = 50.0;
-			//baseHPResistances.electric.damageValue = -100.0; We need the damage to get through so we can add it to shields in OnTakeDamage, so we will have to heal it there
+			baseHPResistances.kinetic.resistanceValue = 20.0;
+			baseHPResistances.burning.resistanceValue = -30.0;
+			baseHPResistances.freezing.resistanceValue = -30.0;
+			//baseHPResistances.electric.resistanceValue = -100.0; We need the damage to get through so we can add it to shields in OnTakeDamage, so we will have to heal it there
+			//this is just to balance out the shield to be same as hp
+			baseShieldResistances = new TypeCollection();
+			baseShieldResistances.kinetic.resistanceValue = 10.0;
+			baseShieldResistances.burning.resistanceValue = 35.0;
+			baseShieldResistances.freezing.resistanceValue = -30.0;
+			baseShieldResistances.electric.resistanceValue = -20.0;
 			
 			this.level = 10;
 			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
-			this.shield = new HammerShield;
-			this.shield.shields = 200;
+			this.shield = new OzoneAegis;
+			this.shield.shields = 250;
 			this.shieldsRaw = this.shieldsMax();
 			
 			this.femininity = 50;
@@ -204,7 +210,7 @@ package classes.Characters
 				this.willpowerRaw += spawnLeft;
 				this.shield.shields += 25 * spawnLeft;
 				this.shieldsRaw = this.shieldsMax();
-				this.HPMod += 10 * spawnLeft;
+				this.HPMod += 15 * spawnLeft;
 				this.HPRaw = this.HPMax();
 				this.meleeWeapon.attack += 1 * spawnLeft;			
 				this.meleeWeapon.baseDamage.kinetic.damageValue += 5 * spawnLeft;
@@ -333,7 +339,7 @@ package classes.Characters
 			else
 			{
 				output(" You find yourself caught in the tendrils. A painful shock wracks your body, accompanied by a draining sensation. It's sucking out your energy! <b>You’ve been grappled!</b>");
-				var damage:TypeCollection = new TypeCollection( { electric: 25 + bon });
+				var damage:TypeCollection = new TypeCollection( { electric: 30 + bon });
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 				target.energy(-5);
@@ -346,7 +352,7 @@ package classes.Characters
 			if (flags["UVETO_DEEPSEALAB_SPAWN"] >= 0) bon += 3 * flags["UVETO_DEEPSEALAB_SPAWN"];
 			
 			output("Janeria continues to drain you of your energy even as it subjects you to further painful shocks.");
-			var damage:TypeCollection = new TypeCollection( { electric: 35 + bon });
+			var damage:TypeCollection = new TypeCollection( { electric: 40 + bon });
 			damageRand(damage, 15);
 			applyDamage(damage, this, target, "minimal");
 			target.energy(-5);
@@ -368,7 +374,7 @@ package classes.Characters
 				//crit failure!
 				output(" <b>Reflexes Save Critical Failure</b> The ice is insidiously chilling, but more importantly the slurry gets into your armor’s joints, locking them up and making it hard to move. <b>Your reflexes are slowed, and it’s hard to aim!</b>");
 				
-				damage = new TypeCollection( { freezing: 40 + (bon * 2) });
+				damage = new TypeCollection( { freezing: 60 + (bon * 2) });
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 				
@@ -389,7 +395,7 @@ package classes.Characters
 			{
 				output(" The ice is insidiously chilling, but more importantly the slurry gets into your armor’s joints, locking them up and making it hard to move. <b>Your reflexes are slowed, and it’s hard to aim!</b>");
 				
-				damage = new TypeCollection( { freezing: 20 + bon });
+				damage = new TypeCollection( { freezing: 30 + bon });
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 				
@@ -418,7 +424,7 @@ package classes.Characters
 			{
 				//crit failure!
 				output(" <b>Willpower Save Critical Failure</b> The assault leaves you groaning in agony, managing to push Janeria out only after it leaves you feeling like you haven’t slept in days.");
-				damage = new TypeCollection( { psionic: 40 + (bon * 2) });
+				damage = new TypeCollection( { kinetic: 60 + (bon * 2) }, DamageFlag.BYPASS_SHIELD);
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 				target.energy(-10);			
@@ -430,7 +436,7 @@ package classes.Characters
 			else
 			{
 				output(" The assault leaves you groaning in agony, managing to push Janeria out only after it leaves you feeling like you haven’t slept in days.");
-				damage = new TypeCollection( { psionic: 20 + bon }, DamageFlag.PSIONIC);
+				damage = new TypeCollection( { kinetic: 30 + bon }, DamageFlag.BYPASS_SHIELD);
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");	
 				target.energy(-5);			
@@ -455,13 +461,13 @@ package classes.Characters
 			{
 				output("The creature realizes its mistake a moment too late. The light erupts outward as a massive, all-consuming storm of lightning bolts, rippling across the entire room. It sears at your flesh and leaves you spasming with agony.");
 				//damage steele
-				damage = new TypeCollection( { electric: 80 + bon });
+				damage = new TypeCollection( { electric: 100 + bon });
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 				
 				output("\n\nAt least you’re given the satisfaction of seeing that Janeria’s actions have not been without consequence. The brilliance of its body has dimmed, and the sense of constant growth has stopped. Some of its tentacles have turned gray and cracked like old pavement, crumbling to dust as they fall off.");
 				//damage janeria
-				damage = new TypeCollection( { unresistablehp: 50 });
+				damage = new TypeCollection( { unresistablehp: 50 }, DamageFlag.BYPASS_SHIELD);
 				damageRand(damage, 15);
 				applyDamage(damage, target, this, "minimal");
 				
@@ -479,7 +485,7 @@ package classes.Characters
 			else
 			{
 				output("The light erupts outward as a massive, all-consuming storm of lightning bolts, rippling across the entire room. It sears at your flesh and leaves you spasming with agony.");
-				damage = new TypeCollection( { electric: 80 + bon });
+				damage = new TypeCollection( { electric: 100 + bon });
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 			}	

@@ -117,6 +117,9 @@ public function steeleBioElevatorBottomBonus():Boolean
 	author("Couch");
 	currentLocation = "SBRF LIFT";
 	var questStatus:int = flags["UVETO_DEEPSEALAB_QUEST"];
+	//added for rare case where player leaves the facility and then loads a save from earlier
+	rooms[currentLocation].outExit = "";
+	rooms[currentLocation].outText = "";
 	
 	if (questStatus >= 3)
 	{
