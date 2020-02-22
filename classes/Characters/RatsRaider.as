@@ -688,16 +688,20 @@ package classes.Characters
 					ally.createStatusEffect("Rat Revive Used");
 
 			target.alreadyDefeated = false;
-			target.HP(target.HPMax()*0.75);
 			target.createStatusEffect("NO AI");
 			kGAMECLASS.setTarget(target);
 			
 			output("Kneeling next to " + (ratCount(false) == 1 ? "a" : "the") + " knocked out rat, " + (ratCount(false) == 1 ? "the" : "a") + " mousey pirate flips [target.himHer] over, pinning [target.himHer] to stop the struggling.");
 
 			output("\n\n<i>“Hold still, hold still!”</i> beckons the mouse " + mf("boy", "girl") + " clambering over " + mf("his", "her") + " fallen friend. " + mf("He", "She") + " produces a large needle filled with orange liquid and jams it in the writhing outlaw’s neck. A loud gasp precedes a frantic pawing; the once fallen rat stands and gathers [target.hisHer] gear after a brief conniption fit, ready to face you down again!");
+			
+			/* OLD & JANKY:
 			var damageResult:DamageResult = new DamageResult();
 			damageResult.hpDamage = (-1 * Math.floor(target.HPMax()*0.75));
-			outputDamage(damageResult);
+			outputDamage(damageResult);*/
+
+			//New and Sexy:
+			target.changeHP(target.HPMax()*0.75);
 			
 			output("\n\nCrap!");
 		}

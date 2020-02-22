@@ -653,7 +653,7 @@ public function pcGooClone(attacker:Creature, target:Creature):void
 			defenseDown = (attacker.armor.defense - 1);
 		}
 		
-		target.lust(3 + rand(3));
+		target.changeLust(3 + rand(3));
 		
 		attacker.createStatusEffect("Reduced Goo", defenseDown, 0, 0, 0, false, "Icon_DefDown", chars["GOO"].short + " has split from your frame and is busy teasing your foes - but it’s reduced your defense!", true, 0);
 		attacker.armor.defense -= attacker.statusEffectv1("Reduced Goo");
@@ -1145,7 +1145,7 @@ public function gooArmorCrewOption(arg:Array):void
 				txt += "\n\n<i>“[pc.name]!”</i>";
 				
 				processTime(2);
-				pc.HP(-10);
+				pc.changeHP(-10);
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["healing 0", fromCrew, exitMain]);
 			}
@@ -1409,7 +1409,7 @@ public function gooArmorCrewOption(arg:Array):void
 			txt += "”</i>";
 			
 			processTime(3 + rand (2));
-			pc.HP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
+			pc.changeHP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
 			pc.createStatusEffect("Goo Armor Healed", 0, 0, 0, 0, true, "", "", false, 60, 0xFFFFFF);
 			
 			// Defense Debuff
@@ -1864,7 +1864,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			flags["GOO_ARMOR_HEAL_LEVEL"] = 1;
 			
 			pc.destroyItemByClass(GrayMicrobots, 10);
-			pc.HP(10);
+			pc.changeHP(10);
 			
 			if(exitMain) gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["leave", fromCrew, exitMain]);
 			else gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);

@@ -87,8 +87,7 @@ package classes.Items.Recovery
 			healing = Math.min(target.HPMax() - target.HP(), healing);
 			if (healing > 0)
 			{
-				target.HP(healing);
-				output(" (<b>H: +<span class='hp'>" + healing + "</span></b>)");
+				target.changeHP(healing);
 			}
 			return false;
 		}

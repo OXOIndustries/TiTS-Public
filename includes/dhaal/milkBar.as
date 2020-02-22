@@ -178,7 +178,7 @@ public function drinkieDrinkieRouter(drink:int):void
 		output("\n\n<i>“Really?”</i> you ask. That’s a little surprising, you thought for sure that’s where they’d be making their money.");
 		output("\n\n<i>“Oh yeah,”</i> she says, nodding. <i>“Some customers just want to drink and be alone, y’know! But to be honest,”</i> she continues, leaning in and lowering her voice, <i>“I really, <b>really</b> prefer it when they take it from the tap. So!”</i> she finishes, straightening up and flashing you a brilliant smile. <i>“What’ll it be?”</i>");
 		processTime(4);
-		pc.lust(3);
+		pc.changeLust(3);
 	}
 	else
 	{
@@ -257,7 +257,7 @@ public function drinkieDrinkieFromTheTappipoo(drink:int):void
 	output("\n\n<i>“Oohhhh, goooddd! Don’t stop!”</i> she begs you, trembling in your lap and grasping at your [pc.chest].");
 	output("\n\nYou’ve had about a glassful, but there’s no reason you couldn’t indulge a little...");
 	processTime(10);
-	pc.lust(8);
+	pc.changeLust(8);
 	var tempCow:Creature = new Creature();
 	tempCow.createPerk("Fixed MilkQ",500);
 	pc.milkInMouth(tempCow);
@@ -306,7 +306,7 @@ public function keepDrinkieDrinkingFromDatCow(drink:int):void
 	tempCow.createPerk("Fixed MilkQ",1500);
 	pc.milkInMouth(tempCow);
 	processTime(10);
-	pc.lust(33);
+	pc.changeLust(33);
 	//ramp up the status duration.
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -342,7 +342,7 @@ public function getSomeCream():void
 	output("\n\n<i>“Y-your cre- creeaaam,”</i> she announces breathlessly. <i>“Please, enjoy...”</i>");
 	output("\n\nYou nod to her and note her stealing furtive glances back at you as you take a sip from your glass - stars, this is some of the best <i>cream</i> you’ve ever tasted. It’s amazing what they’ve accomplished here, even if the serving girl is very obviously touching herself behind the bar while she stares in envy at you draining your glass, her lips parted in passion. Maybe you should ask her for more.");
 	processTime(5);
-	pc.lust(3);
+	pc.changeLust(3);
 	var tempCow:Creature = new Creature();
 	tempCow.createPerk("Fixed CumQ",50);
 	pc.loadInMouth(tempCow);
@@ -370,7 +370,7 @@ public function getMoreCreamFromYaBooooi():void
 	var tempCow:Creature = new Creature();
 	tempCow.createPerk("Fixed CumQ",300);
 	pc.loadInMouth(tempCow);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	addButton(1,"More Cream",moreCreamPleaseBartender,undefined,"More Cream","This isn’t nearly enough cream. You want to watch this girl fill your cup with it.");
@@ -406,7 +406,7 @@ public function moreCreamPleaseBartender():void
 	var tempCow:Creature = new Creature();
 	tempCow.createPerk("Fixed CumQ",500);
 	pc.loadInMouth(tempCow);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

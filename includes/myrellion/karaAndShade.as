@@ -364,7 +364,7 @@ public function flirtWithShade():void
 	output("\n\nShe smiles at that, a twinkle in her eyes. <i>“Steele, huh? Look, I don’t want to come off the wrong way here, but look: I’m a little drunk, I’m pretty sure I’ve lost the bitch I’ve been tracking, and you’ve been fun to talk to. My ship’s parked on the tarmac outside, and I could use some cheering up. What do you say we get out of here?”</i>");
 	output("\n\nThat was unexpected. Maybe you laid on the charm a little harder than you’d expected. Either way, looks like Shade here’s looking for a little fun.");
 	flags["DISTRACTED_SHADE"] = 1;
-	pc.lust(3);
+	pc.changeLust(3);
 	processTime(16);
 	//[Sure] [Sorry, No]
 	clearMenu();
@@ -405,7 +405,7 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 
 	output("\n\nIt’s a short trip to Shade’s bunk, but you’re buck naked by the time you reach it. The kaithrit huntress gives you a lascivious wink over her shoulder as she pops the door open and guides you through. Her quarters are cluttered, a random assortment of clothes, gun parts, and chunks of armor scattered across the floor beneath punk rock posters and kaithrit grav-balls. In one fluid motion, she faces you, slips her arms out of her jacket sleeves, and pulls her shirt off over her head, giving you an eyeful of big, E-cup tits barely restrained by a black sports bra. Shade takes a single step towards you, pressing herself tight against you, letting you feel those lush mounds compress against your [pc.chest]... before she gives you a rough shove onto the bed, sending you tumbling onto your back. Her pants hit the deck with an audible <i>thump</i> of a gunbelt clattering on steel before she hops in after you, straddling your [pc.hips] and slipping a hand under her bra to cup her breast, slipping the garment off to reveal the sun-kissed mounds beneath it.");
 	output("\n\n<i>“Now then... what to do with you...?”</i>");
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(15);
 	moveTo("602");
 	//Shade’s Scenes go Here
@@ -1829,7 +1829,7 @@ public function helpShadeLayHerEgg2():void
 	output("\n\n<i>“Oof. Never get used to that,”</i> she laughs, running a hand through her silver hair. You cover the egg up with some fluff and crawl into bed beside your lover, slipping an arm around her waist. She gives you a wan smile, and her juicy tail caresses your [pc.leg].");
 	
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",helpShadeLayHerEgg3, astraWAT);
 }
@@ -2232,7 +2232,7 @@ public function shadeComesBackForBoobystuff():void
 	output("\n\nShe grins, and licks her lips. You notice her tongue still has traces of [shade.milk] on it. <i>“So, back to my place? I know you’re dying to give my rack a little worship after that. Can barely wait to get your hands on ‘em, can you?”</i>");
 
 	processTime(5);
-	pc.lust(33);
+	pc.changeLust(33);
 
 	// [Shade Options Here]
 	shadeMenu();

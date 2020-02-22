@@ -61,9 +61,6 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			target.HP(target.HPMax() * 0.1);
-			target.energy(20);
-			
 			var heatEffect:StorageClass = target.getStatusEffect("Hot Meal");
 			if (heatEffect == null)
 			{
@@ -78,6 +75,8 @@
 			{
 				clearOutput();
 				output("You tear into the roast meat kebab, warmth oozing from your mouth with every bite. Juicy and tender, every mouthful is a delicious slice of heaven that sits warmly in your [pc.belly]. Yum!");
+				target.changeHP(target.HPMax() * 0.1);
+				target.changeEnergy(20);
 			}
 			else
 			{

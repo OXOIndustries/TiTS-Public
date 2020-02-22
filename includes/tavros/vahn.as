@@ -1410,7 +1410,7 @@ public function giveVahnAHandy():void
 	processTime(10+rand(10));
 	flags["SEXED_VAHN"] = 1;
 	flags["HANDIED_VAHN"] = 1;
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

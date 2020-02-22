@@ -58,7 +58,34 @@ public function canadiaGloryhole():Boolean
 		addButton(0,"Use Hole",mountGloryhole,undefined,"Use the gloryhole, and the person working inside.")
 	}
 	vendingMachineButton(1, "XXX");
+	if(flags["KALLY_POSTERED"] == undefined)
+	{
+		output("\n\nOccupying an otherwise bare wall next to the door, is a poster of the bar-tending Tanuki. Apparently she's looking for new hires! You could swipe it to decorate your own vessel with if you wished, though the double-sided stickytape holding it to the wall might make that a tricky proposition. How steady are your fingers?");
+		addButton(2,"Take Poster",takeKallyPoster,undefined,"Take Poster","Stealing this is going to require steady hands. Are you up to the challenge?");
+	}
 	return false;
+}
+public function takeKallyPoster():void
+{
+	clearOutput();
+	if(pc.aim()/2+rand(20)+1 > 30)
+	{
+		showName("\nYOINK!");
+		pc.addMischievous(2);
+		output("With hands steady enough to bullseye a swamp rat from 100 meters out with a G-17, you carefully separate the poster of the curvaceous bartender from the wall without any damage. Score!\n\nOh, and the back has information on the artists - Tsuda's lines and Tisinrei's colors!\n\n");
+		processTime(5);
+		quickLoot(new KallyPoster());
+		flags["KALLY_POSTERED"] = 1;
+	}
+	else
+	{
+		showName("\nDISASTER!");
+		output("No matter how careful you try to be, your hands are just too jittery! The poster rips in four different places before you give up and let it dangle from the wall like a cowboy's fringe.");
+		processTime(5);
+		flags["KALLY_POSTERED"] = -1;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 public function gloryholeGenerate():void
@@ -714,8 +741,10 @@ public function yesSuckSomeTruckerCawk():void
 	if(pc.isBimbo()) output(" Finger-licking good.");
 
 	processTime(20);
-	pc.lust(10+rand(10));
-	if(pc.isBimbo()) pc.lust(10+rand(10));
+	var lustBonus:Number = 0;
+	if(pc.isBimbo()) lustBonus += (10+rand(10));
+	pc.changeLust(10+rand(10)+lustBonus);
+
 	IncrementFlag("GLORYHOLE_SERVER");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -908,8 +937,9 @@ public function blowAThrobUser(user:int):void
 		output("\n\nYou almost tell her that the pleasure was all yours... but it would seem she was the winner in that regard.");
 	}
 	processTime(25);
-	pc.lust(10+rand(10));
-	if(pc.isBimbo()) pc.lust(5+rand(5));
+	var lustBonus:Number = 0;
+	if(pc.isBimbo()) lustBonus += 5+rand(5);
+	pc.changeLust(10+rand(10)+lustBonus);
 	pc.loadInMouth(pp);
 	IncrementFlag("GLORYHOLE_SERVER");
 	IncrementFlag("GLORYHOLE_THROBBS");
@@ -959,7 +989,7 @@ public function pupperSuckBeej():void
 	output("\n\nWhen you exit it’s finally possible to see the two of them; at least eight foot of horned (horny) bull boy and a not-much-shorter huskar woman with curves you could get lost in. She looks in your direction but the man behind her places a hand over her eyes. <i>“Now, now missy! Y’not supposed t’know what the pretty filly or fella on the other side’s s’posed t’look like!”</i> He gives you a wink before leaning into one of her ears, letting you leave with a dripping trail behind you. <i>“I bet I can make an even bigger mess.”</i> Are the last words you hear before closing the door behind you.");
 	//Become cum-covered, become aroused, trigger kui-tan balls
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.applyCumSoaked();
 	IncrementFlag("GLORYHOLE_SERVER");
 	clearMenu();
@@ -1019,7 +1049,7 @@ public function suckThatLatexProngodong():void
 	output("\n\n<i>“Oh you are just the sweetest thing! I didn’t expect you to swallow the whole lot!”</i> She giggles and wiggles, before there’s an audible <i>’snap’</i> accompanied by sloshing. <i>“Oooh, I can feel it in my suit sugar-dumplin’! Just movin’ all around. Mnf. Puts a shiver in me right down t’the toes. And look! All the fun, no mess.”</i>");
 	output("\n\nWell, that’s a somewhat fair point. Just about every visitor is expecting to paint you from head-to-toe or fill you up until you’re practically pregnant. Still, you could do without the choking hazard.");
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	IncrementFlag("GLORYHOLE_SERVER");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

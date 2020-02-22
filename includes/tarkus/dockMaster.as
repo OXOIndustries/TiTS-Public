@@ -56,34 +56,39 @@ public function raskvelDockmaster(back:Boolean = false):void
 		output("\n\nThis woman has a spectacular ass. From behind you can tell that she’s wearing nothing but her apron and a deep black thong, and with a frame of silver and gold there’s nothing to see but two shiny purple asscheeks larger than your torso. Silvery metal makes its way down her spine where a long segmented mechanical tail is mounted, and her large sweeping ears are similarly capped in chrome. There’s the occasional glowing light on her body, bleeping or chirping in response to some kind of feedback you can only guess the source of.");
 		output("\n\n<i>“Like what you see?”</i> she eventually asks with a smirk, leaning on her monstrous wrench. She hefts it without a hint of effort, which is surprising considering her arms seem to be the only parts of her body not modified. <i>“I should hope so! Limbs are easy, and when it comes to the craft, I’m an artisan...”</i>");
 		output("\n\nThe dockmaster slaps an open palm on the front-face of her wrench, as though to make a point.");
+		if(pc.tallness >= 6*12 && pc.biggestCockLength() >= 10) output("\n\nYou’re pretty certain she’s growling at you though, and grinding her plump thighs together. You would appear to be ‘her type’.");
+		flags["MET_DOCKMISTRESS"] = 1;
 		processTime(7);
 		//[Talk] //Get Educated [Ship] //Repair, Re-tool, Recycle [Flirt] //This. You want this.
-	}
-	//Repeat
-	else
-	{
-		output("Once you’re close enough to get the dockmaster’s attention, she looks you up and down with an easy smile before hopping to her metal feet with a soft clickedy-click. You take the chance to drink her imposing assets while she closes those last few steps.");
-		processTime(2);
-	}
-	//First Time
-	if(flags["MET_DOCKMISTRESS"] == undefined)
-	{
-		flags["MET_DOCKMISTRESS"] = 1;
-		output("\n\n<i>“How can I help you, Spacer?”</i> She asks, toes clicking on the ground like a musical beat. <i>“I’m the dockmaster here, and the best shipwright you’ll find in this rust-forsaken scrap-hole.”</i>");
-		if(pc.tallness >= 6*12 && pc.biggestCockLength() >= 10) output("\n\nYou’re pretty certain she’s growling at you though, and grinding her plump thighs together. You would appear to be ‘her type’.");
 	}
 	//Greeting Not Eggnant
 	else if(flags["DOCKMASTER_EGGOES"] == undefined)
 	{
-		output("\n\n<i>“Hey Spacer. Managed to keep your ass out of trouble?”</i> She asks, looking you up and down appraisingly. <i>“Or perhaps that’s why you’re here. A few holes need patching up?");
+		output("<i>“Hey Spacer. Managed to keep your ass out of trouble?”</i> She asks, looking you up and down appraisingly. <i>“Or perhaps that’s why you’re here. A few holes need patching up?");
 		if(pc.tallness >= 6*12 && pc.biggestCockLength() >= 10) output(" ...Or perhaps just one hole filled?”</i> She adds on with a lusty little growl.");
 		else output("”</i>");
 	}
 	//Was Eggnant
 	else
 	{
-		output("\n\n<i>“Just the spacer I was thinking of... or was earlier when I was busy pushing out some eggs.”</i> She chews on her lip for a few moments with a muted ‘mnf’, before focusing on you properly. <i>“Come for a repeat performance? Or have you managed to explode something, or press a shiny button you shouldn’t have?”</i>");
+		output("<i>“Just the spacer I was thinking of... or was earlier when I was busy pushing out some eggs.”</i> She chews on her lip for a few moments with a muted ‘mnf’, before focusing on you properly. <i>“Come for a repeat performance? Or have you managed to explode something, or press a shiny button you shouldn’t have?”</i>");
 	}
+	/* Weird dupe first time... cutting the shorter one. Also moved the growly tall comment up.
+	First Time
+	if(flags["MET_DOCKMISTRESS"] == undefined)
+	{
+		
+		output("\n\n<i>“How can I help you, Spacer?”</i> She asks, toes clicking on the ground like a musical beat. <i>“I’m the dockmaster here, and the best shipwright you’ll find in this rust-forsaken scrap-hole.”</i>");
+		
+	}*/
+	/* Cut this repeat since we had two of them.
+	//Repeat
+	else
+	{
+		output("Once you’re close enough to get the dockmaster’s attention, she looks you up and down with an easy smile before hopping to her metal feet with a soft clickedy-click. You take the chance to drink her imposing assets while she closes those last few steps.");
+		processTime(2);
+	}*/
+	
 	raskvelDockmasterMenu();
 }
 
@@ -430,13 +435,13 @@ public function matingPressAndPinfuckTheDockmastah():void
 	output("\n\nThere’s a dark black thong that’s doing little to hide her soaking twat, and your bedroom immediately smells like fertile breed-slut. When she shivers and flicks a little button, the dark fabric all but flies off towards you. You catch the sodden material and grind it against your cock until it’s the perfect blend of musk and pussy, stalking towards your shivering prize. <i>“Oh damn, Spacer. Look at you. You’re perfect. Bloody perfect...”</i> She gawps in open admiration, squeezing her own tits so hard you can actually see moisture beading on her nips.");
 	output("\n\nAs tempting as it would be to cram your [pc.cock " + x + "] into those quivering canyons, her juicy snatch is what you’re really after right now. You climb up onto the bed and cram the moist panties right into her mouth, earning a gurgle and a groan out of her before you slip your hands beneath her.");
 	output("\n\nHer gasp is muffled when you flip her over, but she quickly lifts her ass and reaches back to spread her cheeks wide for you. Gods it’s a lot of ass. There’s a nervous wink from her ring, but your true destination awaits just a little further down, framed by twin clits. Her tail clicks from side-to-side a few times before settling for going limp and hanging off of the bed out of the way, and your hands give her an experimental stroke from clit-to-clit. Her response is a whorish moan granted extra depth by a mouthful of smut-scented thong.");
-	output("\n\nOh, and a great big squirt of juices that actually manages to hit you in the abdomen. Apparently this Raskvel was made extra juicy – presumably down to all of the egg laying – and perfect for entry. You flop your beefy [pc.cockType " + x + "] prick right down into her monumental ass-cleavage before grinding your tip against her bottom – or top considering you’ve got this bitch on her front – clit until she’s gasping as the sensitive pleasure-sensors are set to sparking. Again you’re tempted to sink your whole fist into her, just because you’re sure she could take you without an issue... but that breeder-scent is so deep in your nostrils now that your brain’s become nothing but need and fuck.");
+	output("\n\nOh, and a great big squirt of juices that actually manages to hit you in the abdomen. Apparently this Raskvel was made extra juicy – presumably due to all of the egg laying – and perfect for entry. You flop your beefy [pc.cockType " + x + "] prick right down into her monumental ass-cleavage before grinding your tip against her bottom – or top considering you’ve got this bitch on her front – clit until she’s gasping as the sensitive pleasure-sensors are set to sparking. Again you’re tempted to sink your whole fist into her, just because you’re sure she could take you without an issue... but that breeder-scent is so deep in your nostrils now that your brain’s become nothing but need and fuck.");
 	output("\n\nThe dockmaster muffles something that sounds like ‘what are you waiting for?’... or perhaps ‘press me into the floor’. Maybe both, whatever. Indecision grips you for a moment before you decide to let your hormones take the wheel. You sink a hand into her slowly, grinning as she drenches you up to the wrist, bouncing her hips and squeezing hard enough to nearly crush you. Her grip on those titanic asscheeks slips, obscuring you from view and encasing you in heat while you fist-fuck her gushing cunt. Your other hand releases its grip on the base of your dick, instead dishing out a series of spanks that send her tail twitching and her ears flapping. Her epic rear jiggles wildly before she finally gets a grip on it again and spreads wide.");
 
-	output("\n\nWhen you retrieve your hand it’s perfectly covered in breeder-lube, and you lather your length from crown-to-base. The dockmaster is a shuddering, shivering wreck and you’re pretty sure she’s already riding out a wave of miniature orgasms. You throw yourself onto her and push her right down into the mattress, prick flush with the scalding depths of her egg-maker. She gurgles for you again at being savagely ridden down into the bed, humping against you in a desperate attempt to get you inside of her. Still, the moment isn’t <i>quite</i> perfect. Even after coating your cock in Rasky juices there’s plenty of lube left, and so you pluck out the spit-pre-and-cunt-soaked thong from her mouth and replace that empty space with your glazed digits. She sucks on you dutifully, long alien tongue wrapping around your fingers in order to explore her own taste.");
+	output("\n\nWhen you retrieve your hand it’s perfectly covered in breeder-lube, and you lather your length from crown-to-base. The dockmaster is a shuddering, shivering wreck and you’re pretty sure she’s already riding out a wave of miniature orgasms. You throw yourself onto her and push her right down into the mattress, prick flush with the scalding depths of her egg-maker. She gurgles for you again at being savagely ridden down into the bed, humping against you in a desperate attempt to get you inside of her. Still, the moment isn’t <i>quite</i> perfect. Even after coating your cock in Rasky juices there’s plenty of lube left, and so you pluck out the spit-pre-and-cunt-soaked thong from her mouth and replace that empty space with your glazed digits. She sucks on you dutifully, her long alien tongue wrapping around your fingers in order to explore her own taste.");
 	pc.cockChange();
 
-	output("\n\nHer groans vibrate right into you when you finally hilt yourself in her... well, you say finally; it’s probably only been a minute since you’ve thrown her to the bed, but that’s already a minute too long. It doesn’t matter <i>how</i> large you are; she swallows you to the hilt, gripping her asscheeks so hard that her knuckles turn pink. Her cheeks concave from sucking on your fingers while you immediately mash your length into not one, but two g-spots judging by the way it makes her moan and thrash.");
+	output("\n\nHer groans vibrate right into you when you finally hilt yourself in her... well, you say finally; it’s probably only been a minute since you’ve thrown her onto the bed, but that’s already a minute too long. It doesn’t matter <i>how</i> large you are; she swallows you to the hilt, gripping her asscheeks so hard that her knuckles turn pink. Her cheeks concave from sucking on your fingers while you immediately mash your length into not one, but two g-spots judging by the way it makes her moan and thrash.");
 	output("\n\nYour whole weight is thrown onto her in a brutal mating press, not stopping until you’re hilted hard enough to grind your flesh into her clits. You reach around with your other hand and roughly grip a tit hard enough to make her breasts squirt in time with her pussy, and she wrings your dick for dear life in return. Her great robotic tail slaps the side of the bed helplessly at the bliss washing over her mind...");
 	output("\n\nThen you start moving properly.");
 	output("\n\nHer gasps are choked off around a gobful of finger, and you hurriedly turn your hips into a brutal blur. Her ass jiggles and quakes as you clap down against her with enough force to make your reinforced bed creak and squeak dangerously. Her pussy has the perfect give, gushing and sticking to you with every backstroke in a desperate attempt to keep you buried in her, while turning into a voice on the downward hilt so that you’re being wrung and milked for your precious jizz.");

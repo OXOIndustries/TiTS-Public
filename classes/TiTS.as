@@ -129,6 +129,7 @@
 		//Holiday shit
 		include "../includes/holidayEvents/2018XmasEvents.as";
 		include "../includes/holidayEvents/2018Krissy.as";
+		include "../includes/holidayEvents/biancaVDay.as";
 		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
@@ -236,6 +237,7 @@
 		include "../includes/events/kiroCrewQuest/rooms.as";
 		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
 		include "../includes/events/kiroCrewQuest/taursuit.as";
+		include "../includes/events/kiroCrewQuest/twinSlutBots.as";
 		include "../includes/events/kiroCrewQuest/victoryEvent.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
@@ -715,7 +717,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.055";
+			version = "0.8.062";
 
 			//temporary nonsense variables.
 			temp = 0;

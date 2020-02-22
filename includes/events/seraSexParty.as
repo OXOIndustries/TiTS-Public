@@ -204,7 +204,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 				output(", and a white thong.</b>");
 				
 				processTime(15);
-				pc.lust(5);
+				pc.changeLust(5);
 				
 				// Logistics
 				// PC now wearing “Butler Costume”. Cannot take it off until night over.
@@ -313,7 +313,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 				pc.hairStyle = "pigtails";
 				
 				processTime(15);
-				pc.lust(5);
+				pc.changeLust(5);
 				
 				// Logistics
 				// PC now wearing “Schoolgirl Costume”. Cannot take it off until night over.
@@ -426,7 +426,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			// {merge}
 			
 			processTime(15);
-			pc.lust(5);
+			pc.changeLust(5);
 			
 			clearMenu();
 			addButton(0, "Next", seraSexPartyStage1, "arrive");
@@ -442,7 +442,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			output("\n\nYou are on the residential deck of Tavros. Unlike the rows of apartments and squashed-together shops found elsewhere, the dwellings here are large, separate buildings, mansions almost. Above it all a vast, transparent ceiling hangs, through which the glittering void of space gazes back. The price of places like these on a vessel like Tavros must be huge.");
 			
 			processTime(3);
-			pc.lust(5);
+			pc.changeLust(5);
 			
 			clearMenu();
 			addButton(0, "Next", seraSexPartyStage1, "estate");
@@ -620,7 +620,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			
 			processTime(12);
 			// + Lust
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			clearMenu();
 			addButton(0, "Next", seraSexPartyStage2, "hallway");
@@ -636,7 +636,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			processTime(25);
 			// In +10, + Lust
 			seraInfluence(10);
-			pc.lust(15);
+			pc.changeLust(15);
 			restHeal();
 			
 			clearMenu();
@@ -989,7 +989,7 @@ public function seraSexPartyStage3(response:String = "none"):void
 				processTime(25);
 				// Inf = +50, + Lust
 				seraInfluence(50);
-				pc.lust(15);
+				pc.changeLust(15);
 				pc.loadInMouth(sera);
 				pc.loadInMouth(sera);
 				sera.orgasm();
@@ -1308,7 +1308,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			output("\n\n<i>“Thank you for your company " + pc.mf("Master","Miss") + " Steele, it’s been a pleasure,”</i> murmurs Jarvis as finally you get up, preparing to take on the formidable task of waking Sera and convincing her it’s home time. <i>“I hope you can find your way to one of my little get-togethers again some time.”</i>");
 			
 			processTime(72);
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			// {merge}
 			clearMenu();
@@ -1384,7 +1384,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			seraInfluence(0);
 			flags["SERA_PARTY_STAGE4"] = response;
 			
-			pc.lust(150);
+			pc.changeLust(150);
 			pc.orgasm();
 			if(pc.hasCock()) pc.orgasm();
 			if(pc.hasVagina()) pc.orgasm();
@@ -1505,7 +1505,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			// Inf +30
 			seraInfluence(30);
 			
-			pc.lust(150);
+			pc.changeLust(150);
 			pc.orgasm();
 			pc.orgasm();
 			if(pc.hasCock()) pc.orgasm();

@@ -615,7 +615,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			
 			processTime(12);
 			//+ Lust
-			pc.lust(35);
+			pc.changeLust(35);
 			pc.credits -= 1000;
 			
 			// PC not 100% HP:
@@ -655,7 +655,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 				{
 					if(pc.tailCount == 1) output(" Estie seems utterly unfazed by the flagrantly sexual nature of it; she briskly cleans and oils it from tail to tip, making the thing thrum with arousal.");
 					else output(" Estie seems utterly unfazed by the flagrantly sexual nature of them; she briskly cleans and oils them from tail to tip, making them thrum with arousal.");
-					pc.lust(15);
+					pc.changeLust(15);
 				}
 				else
 				{
@@ -877,7 +877,7 @@ public function vavaGroomEroticTraining(response:String = ""):void
 			processTime(12);
 			
 			// ++Lust
-			pc.lust(35);
+			pc.changeLust(35);
 			
 			// [pb]
 			clearMenu();

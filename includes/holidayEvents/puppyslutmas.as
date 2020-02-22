@@ -1678,7 +1678,7 @@ public function annoChristmasSpecial():void
 		output("\n\nWhen she does finally come down, though, she does so with a beet-red face and a heaving chest. Anno's legs finally let up after that, allowing you pull your face from her sopping, puffy nether lips. She looks down at your girlcum-covered [pc.face] and reaches a fluffy white hand down to cup your cheek, and with a big grin on her face she urges you upward. You follow the ausar's lead and make your way up her body, " + (pc.hasBreasts() ? "mashing your [pc.breasts] against hers" : "pressing your [pc.chest] to hers") + " until you're pulled into a sloppy, tongue filled kiss. Her tongue plays across yours for a while before she starts to lick at your girlcum-slick cheeks, cleaning you of her own arousal.");
 		output("\n\nWhen she's done, she pulls back and licks her lips, reveling in her own flavor for a moment before smiling, <i>“Merry Christmas, boss.”</i>");
 		output("\n\nAnd, with that, Anno promptly collapses back onto the couch and takes you with her, holding you close so she has something to cuddle while she sleeps off her afterglow...");
-		pc.lust(50);
+		pc.changeLust(50);
 	}
 	output("\n\nMerry Christmas indeed.");
 	

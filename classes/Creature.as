@@ -5100,6 +5100,21 @@
 		{
 			return (HPMax() == 0 ? 0 : Math.round((HP() / HPMax()) * 100));
 		}
+		public function changeHP(arg:Number = 0,outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			var hpy:Number = HP();
+			var hpyMax:Number = HPMax();
+			if(arg > 0 && (arg + hpy > hpyMax)) arg = Math.ceil(hpyMax-hpy);
+
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "HP: " + (arg > 0 ? "+<span class='hpHeal'>" : "<span class='hp'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			this.HP(arg);
+		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
 			if(arg > 0)
@@ -5129,6 +5144,21 @@
 		public function energyQ():Number
 		{
 			return (energyMax() == 0 ? 0 : Math.round((energy() / energyMax()) * 100));
+		}
+		public function changeEnergy(arg:Number = 0,outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			var energyy:Number = energy();
+			var energyyMax:Number = energyMax();
+			if(arg > 0 && (arg + energyy > energyyMax)) arg = Math.ceil(energyyMax-energyy);
+
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "E: " + (arg > 0 ? "+<span class='energyHeal'>" : "<span class='energy'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			this.energy(arg);
 		}
 		//Lust
 		public function lust(arg:Number = 0, apply:Boolean = false): Number 
@@ -5176,7 +5206,41 @@
 		{
 			return (lustMax() == 0 ? 0 : Math.round((lust() / lustMax()) * 100));
 		}
-		
+		public function changeLust(arg:Number = 0,outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			if(arg > 0 && (arg + lust() > lustMax())) arg = Math.ceil(lustMax()-lust());
+			if(outputText && arg != 0)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			this.lust(arg);
+		}
+		public function changeLustTo(arg:Number = 0, outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			if(arg > lustMax()) arg = lustMax();
+			if(arg < lustMin()) arg = lustMin();
+			if(outputText)
+			{
+				//Track what lust was
+				var oldLust:Number = lust();
+				//Set new lust
+				lust(arg,true);
+				//Figure out the difference
+				oldLust = lust() - oldLust;
+				//Display it :3
+				if(oldLust != 0)
+				{
+					var healTxt:String = " (<b>";
+					healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(oldLust) + "</span></b>)";
+					kGAMECLASS.output(healTxt);
+				}
+			}
+			else lust(arg,true);
+		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
 		{
@@ -6005,13 +6069,20 @@
 			temp += rangedWeapon.defense;
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
 			if (hasStatusEffect("Harden")) temp += 1;
-			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
+			//Gain defense for evasion, cap at level * 2.
+			if (hasPerk("Lucky Breaks"))
+			{
+				var evas:Number = evasion();
+				if(evas / 3 > level * 2) temp += level*2;
+				else temp += Math.round(evas/3);
+			}
 			if (hasStatusEffect("Crystal Coated")) temp += 4;
 			if (hasStatusEffect("Burning")) 
 			{
 				temp -= 5;
 				if(temp < 0) temp = 0;
 			}
+			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			//Sundered - -50% armor!
 			if (hasStatusEffect("Sundered")) 
 			{
@@ -6059,6 +6130,20 @@
 		public function shieldsQ():Number
 		{
 			return (shieldsMax() == 0 ? 0 : Math.round((shields() / shieldsMax()) * 100));
+		}
+		public function changeShields(arg:Number = 0,outputText:Boolean = true):void
+		{
+			var shieldy:Number = shields();
+			var shieldyMax:Number = shieldsMax();
+			//Cap healing display for actual accuracy?
+			if(arg > 0 && (arg + shieldy > shieldyMax)) arg = Math.ceil(shieldyMax-shieldy);
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "S: " + (arg > 0 ? "+<span class='shieldHeal'>" : "<span class='shield'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			shields(arg);
 		}
 		public function sexiness(): Number {
 			var temp: int = 0;
@@ -8231,7 +8316,10 @@
 						case GLOBAL.TYPE_FROSTWYRM:
 						case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "draconic", "dragon-like", "reptilian"]; break;
 						case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "dragon-like", "dragon-like"]; break;
-						case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; break;
+						case GLOBAL.TYPE_LIZAN:
+							if(legCount < 6) adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; 
+							else adjectives = ["leithan", "leithan", "reptile-like", "reptilian"];
+							break;
 						case GLOBAL.TYPE_DEMONIC: adjectives = ["demonic", "demon-like", "demon-like"]; break;
 						case GLOBAL.TYPE_SUCCUBUS: adjectives = ["sensual", "alluring", "seductive", "sexy"]; break;
 						case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
@@ -8323,7 +8411,10 @@
 					case GLOBAL.TYPE_FROSTWYRM:
 					case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "clawed", "reptilian"]; break;
 					case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "clawed"]; break;
-					case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_LIZAN: 
+						if(legCount < 6) adjectives = ["lizan", "clawed", "reptilian"];
+						else adjectives = ["leithan", "clawed", "reptilian"];
+						break;
 					case GLOBAL.TYPE_DEMONIC: adjectives = ["corrupted-looking", "demonic", "clawed"]; break;
 					case GLOBAL.TYPE_SUCCUBUS: adjectives = ["spike-supported", "sexy"]; break;
 					case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
@@ -8803,6 +8894,16 @@
 						case "Toxic Trickery":
 							physiqueMod += 4;
 							aimMod += 4;
+							break;
+						case "Injected":
+							if (statusEffects[x].value3 == 0) {
+								physiqueMod += 5;
+								reflexesMod += 5;
+							}
+							else if (statusEffects[x].value3 == 1) {
+								intelligenceMod += 5;
+								willpowerMod += 5;
+							}
 							break;
 						case "Coolant Soaked":
 							reflexesMod += 10;
@@ -9651,6 +9752,10 @@
 				if (cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) return true;
 			}
 			return false;
+		}
+		public function hasKnots():Boolean
+		{
+			return (totalKnots() > 1);
 		}
 		public function totalKnots():Number
 		{

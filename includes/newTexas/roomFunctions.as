@@ -199,11 +199,11 @@ public function NTGiftShopBonusFunc():Boolean
 		applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
 		output("\n\n");
 	}
-	else pc.lust(5);
 	output("The gift shop looks like every other gift shop in the ‘verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There’s a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled “The Treatment.” ");
 	if(flags["MET_ELLIE"] != undefined) output("Ellie");
 	else output("A tauric woman with black scales on her lower body and a massive GG-cup rack, only barely restrained by a semi-translucent bra that’s stained with milky moisture");
 	output(" is overseeing the automated shopping terminals, occasionally distracted by a customer’s query or a particularly flirty bull wandering through.");
+	if(flags["SEEN_ELLIES_SHOP"] != undefined) pc.changeLust(5);
 	//Next, to room description. Add [Shopkeeper] button
 	ellieApproachButtonSetup();
 	return false;

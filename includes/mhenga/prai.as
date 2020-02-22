@@ -120,7 +120,7 @@
  	output("\n\nIt’s clear that she’s on the verge of climaxing. Do you continue teasing her breasts and let her cum, stop and untie her, or stop and walk off?");
  	
  	processTime(5);
- 	pc.lust(15);
+ 	pc.changeLust(15);
  	
  	addButton(0, "Continue", praiToyBoobFirst, undefined, "Continue To Completion", "Rather than untying her, help her in a different way.");
  	addButton(1, "Untie", praiToyUntieFirst, undefined, "Stop And Untie", "She looks like she’d appreciate it if you just got her down now.");
@@ -173,7 +173,7 @@
  	
  	pc.addMischievous(3);
  	processTime(10+rand(5));
- 	pc.lust(15);
+ 	pc.changeLust(15);
  	
  	addButton(0, "Untie", praiToyBoobUntieFirst, undefined, "Untie Her", "She looks like she’d appreciate it if you just got her down.");
  	addButton(1, "Leave", praiToyBoobLeaveFirst, undefined, "", "");
@@ -227,7 +227,7 @@
  	output("at you, and toys with the hem of her blouse, giving you a little bob. <i>“Thank you very much for saving me, " + (flags["PRAI_FIRST"] == undefined ? "albeit in such an unorthodox way" : "again") + ",”</i> she glances to the side, blushing. <i>“Um, is there anything I can do for you?”</i>");
  
  	processTime(15+rand(5));
- 	pc.lust(10);
+ 	pc.changeLust(10);
  
  	praiTalkMenuFirst(1); 
  }
@@ -269,7 +269,7 @@
  	output("She shifts back and forth from leg to leg, occasionally leaning forward to balance on her toes before rocking back.");
  	
  	processTime(1);
- 	pc.lust(5);
+ 	pc.changeLust(5);
  	
  	praiTalkMenuFirst(variation);
  	addDisabledButton(0, "Appearance");
@@ -647,7 +647,7 @@
  	
  	processTime(10+rand(3));
  	pc.addMischievous(3);
- 	pc.lust(20);
+ 	pc.changeLust(20);
  	
  	addButton(0, "JackHer", praiPlayJackSecond, undefined, "Jack Her Off", "Given the day she’s having it’d only be nice to give her some relief.");
  	if (!pc.isTaur() && pc.hasCock()) addButton(1, "Suspension", praiPlaySusSecond, undefined, "Suspension Fuck", "Some acrobatic mid-air sex is just the thing you both need.");
@@ -743,7 +743,7 @@
  	output("\n\nYou squeeze her tail tighter, drawing a yelp and a shiver from her. <i>“I want your cock so bad,”</i> she moans. <i>“I need it. I’ll do anything for it. Pleaaaassssse!”</i>");
  	output("\n\nYou suppose you could give her what she wants. On the other hand, she’s got quite a mouth on her when she’s not babbling non sequiturs; it might be more beneficial to leave her in this state.");
  	
- 	pc.lust(20);
+ 	pc.changeLust(20);
  	processTime(10+rand(3));
  	
  	addButton(0, "Fuck", praiPlaySusFuckSecond, undefined, "", "");
@@ -986,7 +986,7 @@
  	output("\n\nYou " + (pc.isTaur() ? "give her hair a sharp tug" : "squeeze her tail tighter") + ", drawing a yelp and a shiver from her. <i>“I want your cock so bad,”</i> she moans. <i>“I need it. I’ll do anything for it. Pleaaaassssse!”</i>");
  	output("\n\nYou suppose you could give her what she wants. On the other hand, she’s got quite a mouth on her when she’s not babbling non sequiturs; it might be more beneficial to leave her in this state.");
  	
- 	pc.lust(20);
+ 	pc.changeLust(20);
  	processTime(10+rand(3));
  	
  	addButton(0, "Fuck", praiPlayBegFuckSecond, undefined, "", "");
@@ -1149,7 +1149,7 @@
  	output("\n\nShe leans in closely, holding the container up against the floral woman’s arm, and brings her scalpel to the plant’s arm.");
  	output("\n\nYou know you should let Prai finish. Given her sudden focus on her work, it’s unlikely that you’ll be able to fool around with her afterwards. On the other hand, it’s extremely tempting to see what would happen if the plant woke up.");
  	
- 	pc.lust(10);
+ 	pc.changeLust(10);
  	processTime(10+rand(3));
  	
  	addButton(0, "Gather", praiHelpGatherSecond, undefined, "Gather", "Let Prai gather her sample.");
@@ -1225,7 +1225,7 @@
  	
  	processTime(20+rand(8));
  	if (!pc.isTaur()) pc.orgasm();
- 	else pc.lust(20);
+ 	else pc.changeLust(20);
  	pc.addHard(6);
  	flags["PRAI_MOOD"] = 2;
  	flags["PRAI_EMAIL_NUMBER"] = 9;

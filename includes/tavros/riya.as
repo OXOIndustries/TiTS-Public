@@ -624,7 +624,7 @@ public function yesSexWithRiya(inhuman:Boolean):void
 	output("\n\n<i>“That’s right, buttslut. Ten inches of fat human dick, just for you,”</i> she says, smearing a copious amount of lube onto her prick and stroking herself to half-mast, her fat brown cock pulsing visibly. <i>“You’re gonna be walking funny when I’m done with you, and you’re going to thank me for it.”</i>");
 
 	processTime(35);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",yesSexWithRiya2,inhuman);
 
@@ -994,7 +994,7 @@ public function riyaFellatioScene():void
 	// PC exhibition score +2
 	processTime(20);
 	pc.exhibitionism(2);
-	pc.lust(30);
+	pc.changeLust(30);
 	var pp:PregnancyPlaceholder = getRiyaPregContainer();
 	pc.loadInMouth(pp);
 	IncrementFlag("RIYA_GOT_BLOWN");
@@ -1450,7 +1450,7 @@ public function riyaSpawnPregnancyEnds():void
 		else output(" belongings");
 		output(", finding as safe and comfortable a spot as possible in the wild terrain. Despite your self-directed anger for not staying near professional medical care, you know there’s no help for it at this point. You’re going to have to give birth unassisted.");
 		// minor HP damage?
-		pc.HP(-5);
+		pc.changeHP(-5);
 	}
 	
 	// merge

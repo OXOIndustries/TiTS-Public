@@ -12,6 +12,7 @@
 	import classes.Items.Accessories.LightJetpack;
 	import classes.Items.Accessories.FlashGoggles;
 	import classes.Items.Transformatives.HuskarTreats;
+	import classes.Items.Tents.HLReaperTent;
 	import classes.kGAMECLASS;
 	
 	public class Nerrasa extends Creature
@@ -29,6 +30,7 @@
 			inventory = [];
 			inventory.push(new HeatBelt());
 			inventory.push(new ArcticWarfareBelt());
+			inventory.push(new HLReaperTent());
 			inventory.push(new HuskarTreats());
 			//inventory.push(new Frostfire());
 			//inventory.push(new AusarTreats());

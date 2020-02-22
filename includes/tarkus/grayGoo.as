@@ -66,7 +66,7 @@ public function dontDoAnythingFromHardenAttack():void
 		}
 	}
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	CombatManager.continueCombat();
 }
 
@@ -189,7 +189,7 @@ public function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	output("\n\n<i>“Yes, master,”</i> the goo says, stepping up to you and unceremoniously putting a finger in your mouth. You try to pull back, but too late - you can feel several drops of microbots already swimming down your throat. A moment later, a shudder works its way through your body as they do their job, your bruises and cuts from prior fighting quickly healing.");
 	output("\n\n<i>“Services rendered. Good day, master,”</i> the goo says before wandering off.");
 	output("\n\nThat’s one less rape-monster on this planet. You do good work!\n\n");
-	pc.HP(50);
+	pc.changeHP(50);
 	processTime(1);
 	CombatManager.genericVictory();
 }

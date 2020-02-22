@@ -550,7 +550,7 @@ public function khorganPregsturbate():void
 	output("\n\n<i>“Soon, Steele!”</i> she howls, making a biting gesture at the camera as the guards manhandle her off screen. The holovid ends soon after.");
 	
 	processTime(10 + rand(3));
-	pc.lust(60);
+	pc.changeLust(60);
 	
 	clearMenu();
 	addButton(0, "Next", smutFapMenu, true);

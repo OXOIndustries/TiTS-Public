@@ -120,7 +120,7 @@ public function fuckCherryYo():void
 		output("\n\n<i>“I’d call that a successful test,”</i> she pants with a warm laugh, practically putty in your hands. <i>“Feed the amorph, win a prize,”</i> she teases, running her palm across the puffy swell of her blushing pussy.");
 		output("\n\nIt seems as long as she’s got a few gallons of cum in her, the zel’rahn is safe to the touch. An important lesson to remember for the future!");
 		processTime(5);
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	flags["CHERRY_SEX_INTRO"] = 1;
 	clearMenu();
@@ -180,7 +180,7 @@ public function fuckCherryAnywayYo():void
 		else output(" She places one hand at her inner thighs and stretches the other up past her abdomen, over her chest, and up to her throat. She looks a bit intimidated, but her ponytail begins wagging like a bitch in heat.");
 		output(" <i>“Fuck it. Once a pirate, always a pirate.”</i>");
 		processTime(15);
-		pc.lust(50);
+		pc.changeLust(50);
 		clearMenu();
 		addButton(0,"Next",druggedSteeleGetSlurped2,x);
 	}
@@ -200,7 +200,7 @@ public function druggedSteeleGetSlurped2(x:int):void
 	pc.cockChange();
 	output("\n\nCherry " + (!pc.isTaur() ? "grabs hold of your upraised [pc.legsNoun]":"interlocks her fingers around your unresponsive digits") + " and holds fast as she bucks atop your cock with moaning relish. The tightness around you is so wet that sputtering streams of the gel’s nectar drench your loins and pool around your [pc.ass]. Every thigh-jiggling slam sends wobbling impact waves cascading up her body" + (!pc.isTaur() ? " and tidal shudders rippling down into her bed. Though unable to move, the bouncing rubber cushion under you propels your hips upward, driving your throbbing body along for the ride":"") + ".");
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",druggedSteeleGetSlurped3,x);
 }
@@ -474,7 +474,7 @@ public function rowFuckCherry():void
 	output(" Cherry’s breath is hot on your [pc.thighs], her juicy chest jiggling at the touch of your [pc.cockHead " + x + "]. The rahn’s ever helpful ponytail coils around your girth to aid your aim, pumping the thickening hardness in long, slow strokes that leave tingles dancing up your [pc.hips]. She folds her arms together under her breasts, squeezing the mounds together until they wobble precariously with every breath she takes.");
 
 	processTime(10);
-	pc.lust(150);
+	pc.changeLust(150);
 	clearMenu();
 	addButton(0,"Next",rowFuckCherry2,x);
 }
@@ -592,7 +592,7 @@ public function benchFuckCherry(x:int):void
 	}
 	//merge
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",benchFuckCherry2,x);
 }
@@ -721,7 +721,7 @@ public function feedCherryABubble():void
 		output("\n\n<i>“Don’t you know better than to speak with your mouth full?”</i> You wave a scolding finger back and forth in front of her. Placing the same finger on her forehead, you give the light-headed girl a little push. The rahn topples onto her back, the stubby half-thighs that comprise all she has for real legs wiggling uselessly.");
 		output("\n\nYou run your gloved hands down her thighs and across her semi-firm abdomen before perching both thumbs on the fat lips of her labia. <i>“Ah, that’ll do.”</i> You give her puss an appreciative plap with your palm before turning back to the condom belt. Cherry, cheeks stuffed like a squirrel, peaks up over the blockade of her hefty chest, looking more and more flushed with every passing minute.");
 		processTime(5);
-		pc.lust(8);
+		pc.changeLust(8);
 		clearMenu();
 		addButton(0,"Next",feedCherryMediumBubs2);
 	}
@@ -747,7 +747,7 @@ public function feedCherryABubble():void
 		output(", the girl plaintively mewling as you press your digit in to the second knuckle. Slowly, you pull back and push in, gradually acclimating her to the sensation.");
 		output("\n\nWhen you pull both hands away to take hold of the hefty, melon-sized bubble, the garnet-hued girl’s breathing has steadied. Despite her outward calm, Cherry’s sticky excitement has leaked into a small but growing puddle between her thighs. Scooping up a handful, you pour the warm girl-cum across the bubble’s rubber surface and into the vale of her ass cleavage. Using both hands to squeeze the condom into a bulging, phallic shape, you lower the fat pole and level it with the zel’rahn’s lust-lacquered hindquarters.");
 		processTime(5);
-		pc.lust(8);
+		pc.changeLust(8);
 		clearMenu();
 		addButton(0,"Next",feedCherryALargeBubble2);
 	}
@@ -783,7 +783,7 @@ public function feedCherryABubble():void
 		output("\n\nCarefully, the two of you insert the Bubble-tap into the huge condom. Sliding the slender tube embedded in device’s base through the rubbery bubble, both of you brace for a [pc.cumVisc] explosion. Luckily, the needle’s peculiar alloy breaches the orb without as much as a squeak of protest. Once the backside lies flush with the prophylactic, the surrounding latex thickens around the needle holding the spigot in place.");
 		output("\n\nThe jointed base of the plasticy dildo expands outward, inflating like a small knot. Cherry gives it a slight squeeze and a dribble of [pc.cumGem] goo oozes from the rounded tip like eager pre-cum. Both of you relax, the crimson girl letting out an anxious laugh. <i>“Thought I was going to have to put Molli on full-time bedroom cleaning duty for a second there,”</i> she grins, bouncing the bubble in her cradling embrace. <i>“So: how do we get this in me?”</i>");
 		processTime(10);
-		pc.lust(8);
+		pc.changeLust(8);
 		clearMenu();
 		if(pc.physique() >= 20) addButton(0,"Keg Stand",cherrykegStandLetsGOOOOOO,undefined,"Keg Stand","Hold Cherry over the bubble and have her drink right from the tap.");
 		else addDisabledButton(0,"Keg Stand","Keg Stand","You aren’t strong enough to hold her up for this.");
@@ -819,7 +819,7 @@ public function feedCherryMediumBubs2():void
 	//return to Cherry’s menu
 	//set Cherry to Cumflated for 24 hours
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -842,7 +842,7 @@ public function feedCherryALargeBubble2():void
 	output("\n\nThe second sound you hear, almost immediately afterwards, is a distinctive latex pop. Cherry’s eyes go wide, her irises crossing as much from the blow as from the unexpected deluge of cum rushing out of the burst bubble. No longer under the pressurized containment of the high tech TamaniCorp condom, gallons of your spunk surge through the rahn’s interior. Her ponytail plug keeps most of the [pc.cumVisc] spunk inside, but a few stray strands spurt in [pc.cumColor] jets across her still-wobbling ass. The flood of your goo reaches her stomach and fills out her gut with enough to leave her belly squishing out from her sides like one of her torso-sized condom pillows.");
 	output("\n\nWhen you flip the pirate onto her back, her tummy jiggles nearly as much as her jelly-firm breasts. She looks like she’s in the late stages of pregnancy. It takes a minute for her to recover herself and a minute further to extract her anal-loving ponytail from her hindquarters. <i>“Not... not the easiest way to get a meal,”</i> she pants, stroking her bloated belly. <i>“But I can’t complain about the portions.”</i>");
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	feedCherry(10000);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -865,7 +865,7 @@ public function cherrykegStandLetsGOOOOOO():void
 	output("\n\nYour massaging grip does not go unnoticed. Cherry wiggles in your grip, losing her focus and gargling on the spigot. Unsuckled, the load she was swallowing gushes right back down her throat and pours into her cheeks. The knot at her lips keeps more than a few dribbling drops from leaking out, but she shoots you an sharp glance past the obscuring bulk of her breasts. She’d almost look angry if it weren’t for the dark burgundy blush covering most of her face and the drooling line of [pc.cumColor] trickling down her forehead.");
 	output("\n\nDespite the reprimand, you keep up your kneading rub-down and note with some satisfaction that her gulps grow deeper and faster. Shameless, obscene swallowing noises gurgle from the seed-stuffed slime as her stomach keeps expanding. The girl’s narrow waist and slender abdomen are engulfed by the liquid weight of her ballooning torso. Her guzzling pace begins to visibly shrink the torso-sized condom, its oceanic abundance drawn ever upward into the greedy gel’s gullet.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",cherrykegStandLetsGOOOOOO2);
 }
@@ -883,7 +883,7 @@ public function cherrykegStandLetsGOOOOOO2():void
 	output("\n\nWhen your luxuriant excess has finally run its course and Cherry is as saturated inside as out with your creamy plenty, you haul her off the chair and back onto her bed with a grunt of effort. Even with a rahn’s exceedingly efficient digestion working overtime, Cherry’s cum-inflated figure is the stuff of fertility idols. Belly bloated to inhuman girth, it almost looks like she’s heavy enough to pop her waterbed. You pull the now knotless dildo from her mouth, a thick profusion of [pc.cum] spilling past her stuffed cheeks and flooding her cleavage.");
 	output("\n\nEyes rolled up in the back of her head, fingers twitching irregularly, Cherry is utterly incoherent. Even her normally playful ponytail just hangs limply on the rubber bedding. She’s going to need some time to recover, if you wanted to excuse yourself.");
 	processTime(15);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Stay",stayForCummyGoos);
 	addButton(1,"Leave",leaveCherryAfterSheKegStandsAHugeLineOfCum);
@@ -905,7 +905,7 @@ public function cherryAssPoundInflationGOOOO():void
 	output("\n\nA third and fourth spurt spread your seed across the pirate’s ass like the spatter of rain before a deluge. Glazed with thick globs of [pc.cumGem] and shivering from the dripping heat coating her bottom, Cherry puffs in exasperation. <i>“Alright, enough lube! Fuck. If you’re going to paint me [pc.cumColor], I’d rather you work inside-out. Just... just jam it in already.”</i> Folding her arms under her breasts, the rahn wiggles in place, arching her back to present herself.");
 	output("\n\nThe booty wants what it wants and who are you to deny so pressing a need? Pushing the smooth, slender peg against the rahn’s narrow pucker, you find far less initial resistance that you would’ve thought. She stifles a moan as you slide the plastic spigot into her nethers all the way up to the knot. You give a helping push, but her asshole remains obstinately taut. Squeezing the base a bit to send some lubrication inside her earns an outright whorish moan from the girl, but does nothing to relax her rump. Though the inflated knob is by no means an impossible girth, the girl’s rarely used asshole simply can’t seem to cash the cheques her stomach is writing.");
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",cherryAssPoundInflationGOOOO2);
 }
@@ -926,7 +926,7 @@ public function cherryAssPoundInflationGOOOO2():void
 	output("\n\nYour next thrust sends one wave of surplus semen too many into the satiated slime. A gout of jizz spills past her lips in a [pc.cumColor] fountain that splatters against her her rubber bedsheets. You fuck the condom’s load into her again, drawing an alarmed gulp. She swallows as hard as she can but yet another surge of seed bloats the pirate’s cheeks before spurting past her dripping pucker. She tries to speak, but every word is smothered by fresh nut spilling through her throat and across her tongue, so eventually Cherry gives up. Mouth hanging open shamelessly, the rahn unspools her long tongue to limply drape across her chin, like rolling out the red carpet. Each subsequent buffeting push sends more cream spilling out of her, curtains of [pc.cumVisc] goo running down her neck and washing over her breasts like a warm lacquer.");
 	output("\n\nWhen the bubble is finally empty, the prototype tap’s base deflates, allowing you to pull the device free. Replace it on her shelf amid pool of your mutual fluids, you turn back to find the zel’rahn girl completely passed out, face-down in the pool of your excess. Swollen past imagining and with your spunk drooling from both ends, you cannot imagine she’ll be digesting all that any time soon. If you like, though, you could stay here till she wakes up.");
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Stay",stayForCummyGoos);
 	addButton(1,"Leave",leaveCherryAfterSheKegStandsAHugeLineOfCum);
@@ -1005,7 +1005,7 @@ public function cherryBlowBubbleScene():void
 	}
 	//merge
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",cherryBlowBubbleScene2,x);
 }
@@ -1024,7 +1024,7 @@ public function cherryBlowBubbleScene2(x:int):void
 	output("\n\nHot strokes of sweet release belt through your [pc.groin] and tingle at the back of your spine. Breathlessly bucking into Cherry’s " + (!cherryCumflated() ? "already cum-bloated ":"") + "frame, your peak builds with gasping intensity. With rapid, shallow pumps, you ride the culminating orgasmic satisfaction into the rahn’s stuffed face again and again, rocking her hard one minute before slowing to enjoy the coiling embrace of her unseen tongue. The heat inside you flows like liquid passion, primed to gush into the scarlet girl with all the fervent need of a rutting animal.");
 	output("\n\nLike a cool breeze on a sweltering day, a thought floats across your lust-addled mind: should you fill the bubble while it’s still inside her gullet or pull back and inflate it on top of her face?");
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"In Her",bubbleBuddyInsideCherry,x);
 	addButton(1,"On Her",bubbleCummiesOnCherry,x);

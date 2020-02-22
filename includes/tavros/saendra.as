@@ -396,7 +396,7 @@ public function kissSaendraOnTheLipsAndEverystuff():void
 	output("\n\nYou can see a bright blush under her pale, freckled cheeks, and can’t help but smile.");
 	
 	processTime(2);
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	saendrasBarMenu();
 }
@@ -1082,7 +1082,7 @@ public function saenAndSeraWatch():void
 	output("\n\n<i>“Ugh,”</i> the demoness grimaces, wiping a few stray strands of spooge off her dick onto Saen’s upturned ass. <i>“I guess you earned your discount, slut. Though you better clean your damn mess up.”</i>");
 
 	//Go to Get the Drug
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(20 + rand(5));
 	pc.credits += 500;
 

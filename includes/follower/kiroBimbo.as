@@ -135,7 +135,7 @@ public function bimboKiroSexApproach():void
 	output("\n\n<i>“Oooh, I know that look!”</i> the bouncy happy-go-lucky fuck-pet cheers. <i>“You’re thinking about banging me, aren’t you?”</i> Stroking a suddenly rock-hard cock, [kiro.name] arches her back and hefts a tit with her free hand. <i>“Why don’t you take a moment and admire the total package? All of this,”</i> she strokes from the tip of her flaring dick all the way down her sheath, around the curvature of her swollen nutsack, and back to her pussy, <i>“is yours. All of it.”</i> She lifts her leg to better display the slick entrance, nearly losing her balance when her tits shift in an unexpected way.");
 	output("\n\nShe certainly is quite the sexual cornucopia. How will you take her?");
 	processTime(2);
-	pc.lust(5);
+	pc.changeLust(5);
 	kiroBimboCrewSexMenu();
 }
 public function kiroBimboCrewSexMenu():void
@@ -220,7 +220,7 @@ public function rideCowgirlBimboKiro(x:int):void
 	output("\n\n<i>“Haaaaa! Yes, " + kiroAngelOrMaster() + "! Fucking use me! All of me!”</i> the grinning doll begs, pushing up her other breast for you to abuse. <i>“Just touching you is happier than all the birthdays in the world, and I know on some level that squeezing like that ought to hurt my nipple, but it’s just like... more pleasure. Pointier pleasure. Pinch my other one!”</i> She bites her lip, aware that she’s in no position to demand anything. <i>“You could probably slap me, and I’d get too horny to think. Mmmf, just do whatever the fuck you want to me. Choke me out; I don’t care. Fucking-oh-my-stars, I love being your toy!”</i>");
 	output("\n\nNow there’s an idea - would you rather keep playing with her boobs or see how the tanuki would appreciate a firmer grip on her psyche?");
 	processTime(12);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Tits",pinchyPinchyKiroNippy,x,"Tits","Pinch and play with her big, milky tits.");
 	addButton(1,"Choke",chokeUrNuki,x,"Choke","Give her what she wants and get a little edgier.");
@@ -392,7 +392,7 @@ public function tittyFuckBimboKiroWithNormalDingus(x:int):void
 	output(" Pulling away seems to be a supreme act of will on her part, like the cock has a magnetic leash on her brain that won’t let her drift too far away, but somehow, she manages to hold herself at bay long enough to ask, <i>“Should I use milk... or my girljuices, or my cum" + (pc.cumQ() >= 10000 ? ", or just let you fountain pre like some kind of sex-god":"") + "?”</i>");
 	//[Pussyjuice] [Cum] [Your Pre][Milk]
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Milk",lubeBimboKiroTitsWivMilkies,x,"Milk","Use her milk for lube.");
 	addButton(1,"Pussy Juice",kiroBimboLubesTitsWithPussy,x,"Pussy Juice","Use vaginal juices for lube.");

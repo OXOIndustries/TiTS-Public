@@ -747,7 +747,7 @@ public function seraSexMenu(display:Boolean = false):void
 			else output(" other asscheek");
 			output(". <i>“You know the drill, if you want something, you need to beg for it...”</i>");
 			
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		// Default
 		else
@@ -1357,7 +1357,7 @@ public function seraCockvineScene():void
 	output("\n\n<i>“Aww yeah, that’s it,”</i> gloats Sera, reaching down to jerk her own twelve-inch dick furiously a few inches away from your nose, utterly drunk on her own dominance. <i>“Hurts so good, doesn’t it? Fuck, I wish I could paint that expression on you 24/7.”</i> Her pussy ripples around you, femcum dripping down your unbelievably pent-up tentacle cock, and your own cry combines with Sera’s squawk of joy. She rides the bulging, tender flesh inside her with violent pushes of her hips, hand thwipping down her erect cock with savage flicks of the wrist. <i>“Hold onto it for just a little longer, slut...”</i> she groans. <i>“Just a little more...”</i>");
 
 	// ++ Lust
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(10);
 	IncrementFlag("SERA_TAILED");
 	
@@ -1427,12 +1427,10 @@ public function releaseCuntTailOnSeraCleanup():void
 	//Time forward an hour
 	processTime(50 + rand(11));
 	pc.loadInMouth(chars["COCKVINE"]);
-	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
-	pc.HP(-5);
-	pc.energy(-30);
-
 	output("You lean against the wall outside the Dark Chrysalis a while later, gathering yourself. Your mouth is absolutely caked with the musky, slightly herbal tang of plant cum, and your [pc.ass] and back sting mightily from the whip welts that have been enthusiastically applied there. You can’t help but look venomously down at your [pc.cockTail], which is still throbbing with post-coital bliss. Next time, you swear to yourself. Next time, you’ll control it.");
-	
+	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
+	pc.changeHP(-5);
+	pc.changeEnergy(-30);
 	currentLocation = "9018";
 	
 	clearMenu();

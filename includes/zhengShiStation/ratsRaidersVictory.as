@@ -2161,8 +2161,6 @@ public function ratsOnRatsForVoraciousFucks():void
 	clearMenu();
 	clearOutput();
 	showRats(3, true);
-	processTime(5);
-	pc.lust(pc.libido()/10+5);
 
 	output("No way you’re going to miss this chance.");
 	if (pc.isBimbo() || pc.isBro()) output(" Think of how much you would have to pay to get this kind of service anywhere else! And why else did you grow all those dicks anyway!?");
@@ -2190,6 +2188,8 @@ public function ratsOnRatsForVoraciousFucks():void
 	output("\n\nStrained moans squeeze past dry lips, breathy whispers and murmurs follow. Held horizontally by each other’s cushioning bodies, the rats try to hold themselves steady. The crisp scent in the air finalizes your self-lubrication.");
 	output("\n\nThere’s no better time to start.");
 
+	processTime(5);
+	pc.changeLust(pc.libido()/10+5);
 	addButton(0, "Next", ratsRatsRatsStackedStackedStacked);
 }
 

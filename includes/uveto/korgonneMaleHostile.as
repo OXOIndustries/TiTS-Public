@@ -111,7 +111,7 @@ public function korgMaleEncounter():void
 			if(pc.shields() > 1) 
 			{
 				output(" Your shield flickers as they glance off and fall nearby.");
-				pc.shields(-3);
+				pc.changeShields(-3);
 			}
 			else
 			{
@@ -166,16 +166,16 @@ public function korgMaleEncounter():void
 		else if(pc.shields() > 3) 
 		{
 			output("They ping your shield harmlessly and fall to the ground.");
-			pc.shields(-3);
+			pc.changeShields(-3);
 		}
 		else
 		{
 			output("They ");
 			if(pc.shields() > 0)
 			{
-				pc.shields(-3);
 				output("penetrate your shield and ");
 				output("embed themselves, and an ill feeling twists your gut.");
+				pc.changeShields(-3);
 			}
 			//(if poisoned)
 			if(!pc.hasStatusEffect("Poisoned"))
@@ -1529,7 +1529,7 @@ public function korgForcedOral():void
 	//rejoin
 	//do a ‘Next’ or a ‘Time Passes’ or a ‘X hours later....’ here if you like
 	processTime(30);
-	pc.lust(11);
+	pc.changeLust(11);
 	if(pc.canMasturbate() && pc.hasGenitals() && (pc.blockedVaginas() == 0 || pc.hasCock()) && (!pc.isTaur() || pc.biggestCockLength() >= 48)) pc.orgasm();
 	pc.loadInMouth(enemy);
 	clearMenu();
@@ -1645,7 +1645,7 @@ public function tittyFuckBoiKorgs():void
 
 	output("\n\nHe forces your [pc.breasts] together around the knot, pushing against the valley of your cleavage, and you can quite literally see the small, pale-tinted urethra in his dick distend with a white dot. Milliseconds later, a lance of alien spunk launches from it, arcing out at your face as his knot compresses against your chest. His hips are ashiver, jerking back and pushing against your chest again and again to compress the knot and force out his painfully built-up load, and he fondles and re-fondles your breasts, choking up to keep them pressed to his sweltering, pulsing prick - you can only close your eyes and enjoy his touch as hot, sticky dog-jizz covers your face and drips down into your cleavage.");
 	//add lots of lust
-	pc.lust(20);
+	pc.changeLust(20);
 
 	//if lactating, or if added lust puts PC over max, PC cums from nipple stimulation (no PC orgasm otherwise)
 	if(pc.lust() >= pc.lustMax() || pc.canMilkSquirt())
@@ -1888,7 +1888,7 @@ public function worstKorgLoss():void
 	//end, pass time, loss penalties
 	//add lust, no pc orgasm
 	processTime(30);
-	pc.lust(15);
+	pc.changeLust(15);
 	output("\n\n");
 	CombatManager.genericLoss();
 }

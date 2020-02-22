@@ -733,11 +733,11 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 				output("<i>“Curious...”</i> the quadomme sussurates. You tense up in your bonds as it slides its hand up and down your groin. <i>“No sex? How... disappointing.”</i>");
 				output("\n\nYour lack of genitals seems to dissuade it from wanting to continue exploring you further.");
 				output("\n\nIt laughs softly to itself. <i>“A rare catch, I would say, but maybe I should let this grub go for now.”</i> With that, it unties you from its trap and lets you free, then quickly disappears into the darkness of the tunnels. Perhaps you should return when you have the sexual equipment to entertain it?");
+				pc.changeLust(15);
 				output("\n\n");
 				
 				processTime(4);
 				
-				pc.lust(15);
 				
 				bothriocQuadommeToMainMenu(false);
 				return;
@@ -790,7 +790,7 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 				output("\n\n<i>“Skinny rump,”</i> it sighs. <i>“You are not really built for what’s coming, farlander. Never fear, though... a few more incubations, a few more deep dreams in the oil, and all of that will change.”</i>");
 			}
 			processTime(3);
-			pc.lust(15);
+			pc.changeLust(15);
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommePCNeedFillLow, [2, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
@@ -814,7 +814,7 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 			if(vIdx >= 0) output(", and even it opening up your cervix and depositing itself roundly in your womb is a sensation that makes your pussy quiver and drip with delight, hungry for more.");
 			output("\n\n<i>“Ahh,”</i> breathes the quadomme, smiling down at you. <i>“The first of many. All of my harem are stuffed up, you know, so I’m afraid you’re going to have to take quite the load.”</i> Its four hands descend upon your helpless, spread-eagled form as another dense, oval weight pushes itself against your spread " + (vIdx >= 0 ? "pussy lips" : "ass cheeks") + ". <i>“Let’s see what makes farlanders shiver.”</i>");
 			processTime(3);
-			pc.lust(15);
+			pc.changeLust(15);
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommePCNeedFillLow, [3, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
@@ -1004,7 +1004,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 				
 				processTime(4);
 				
-				pc.lust(15);
+				pc.changeLust(15);
 				
 				bothriocQuadommeToMainMenu(false);
 				return;
@@ -1051,7 +1051,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			output(" " + ((pc.cocks.length + pc.vaginas.length) <= 1 ? "is" : "are") + " exposed, absolutely helpless, and you moan ecstatically to the thought. A black, long-fingered hand encloses your throat, tightening... then releasing. Tightening... then releasing.");
 			output("\n\n<i>“Already you feel the power our love has, don’t you?”</i> it murmurs in your ear. You feel the warm, wet tip of its ovipositor comes to rest upon " + (vIdx >= 0 ? "[pc.oneVagina]" : "your [pc.anus]") + ". A great welter of clear lubricant oozes out of it, drooling down the crack of your [pc.butt] and dripping down into the void below - as fat a load as any one creature might fuck into you, but clearly just the barest of arousal from the quadomme, its giant egg factory getting warmed up. <i>“Soon there shall be no limit to how far your limbs can be stretched. You shall be able to go without breathing for vast stretches of time. There will be no limits to which your imagination won’t go to amuse and enrich me. No limits, egg-bearer... once you have fully submitted.”</i>");
 			processTime(3);
-			pc.lust(15);
+			pc.changeLust(15);
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommePCNeedFillHigh, [2, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
@@ -1078,7 +1078,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			output(" The way your limbs are caught up only seems to make the orgasm more intense, trapped inside of you instead of thrashed outwards. Your hands clench up reactively to every brilliant pulse of sensation.");
 			output("\n\n<i>“Mmm,”</i> breathes the quadomme, as it withdraws its teeth from your [pc.skin]. <i>“I feel your willingness to be bettered. Very well. I shall continue to breed you. Be warned...”</i> its tone clouds with foreboding lust again. <i>“All of my harem are stuffed up, you know, so you’re going to have to take quite the load.”</i> Its four hands descend upon your helpless, spread-eagled form as another dense, oval weight pushes itself against your spread " + (vIdx >= 0 ? "pussy lips" : "ass cheeks") + ". <i>“Shiver for me, egg-bearer.”</i>");
 			processTime(3);
-			pc.lust(15);
+			pc.changeLust(15);
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommePCNeedFillHigh, [3, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
@@ -1325,7 +1325,7 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 				if(addiction >= 50) output(" If you didn’t feel bad about being occupied before, you definitely do now. You’ll never be so selfishly pregnant again!");
 				else output(" A certain grudging understanding of why it acts like it does dawns. You still don’t feel you should apologize for being preggers, but alright, you can see why it assaults passersby.");
 				processTime(8);
-				pc.lust(50);
+				pc.changeLust(50);
 				clearMenu();
 				addButton(0, "Next", bothriocQuadommePCAllFull, [1, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			}
@@ -1347,7 +1347,7 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 			if(addiction < 50) output(" You are unconsciously following its order well before any kind of self-awareness steals over you. But you feel a strong aversion to complaining or refusing. Why would you ruin the peaceful, sexy rhythm of this extremely well-oiled machine you’ve slotted into? Even if it does involve several hours of looking after bothrioc young, and then a couple more acting as a foot-rest for a pair of gleaming black stilettos.");
 			else output(" You follow its order instinctively. You actually allow the thought of refusing or complaining to form, just to imagine what that would be like... and it’s so bitter, so awful, you instinctively shudder, prompting a pidemme to slip a concerned arm around your shoulders. Why would you ever refuse such a sexy, righteous Master? You firmly drown that thought in the soft, wonderful haze, and slip into what your instincts tell you is right like a smooth, well-loved groove.");
 			processTime(4 * 56);
-			pc.lust(15);
+			pc.changeLust(15);
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommePCAllFull, [2, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
@@ -1803,7 +1803,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			else output("\n\nYou wait until you’re on the very cusp of orgasm, the need trembling through you... and then you relax your hands, drawing your [pc.cockNoun " + cIdx + "] out of its mouth, admiring the trails of saliva you bring with it.");
 			
 			processTime(12);
-			pc.lust(30);
+			pc.changeLust(30);
 			
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommeSexScenes, ["humiliate next", addiction, vIdx, vIdx2, cIdx, cIdx2, lottaLibido]);

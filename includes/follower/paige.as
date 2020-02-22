@@ -702,8 +702,8 @@ public function yogaHardEnding():void
 	// end scene (scene: Hard Mode); place PC one square outside of Paige’s Yoga Class; increase Physique by 2; increase Reflexes by 1; increase Tone by 10; deduct 20 credits; deduct 70 energy; if (scene: Hard Mode 2), increase Lust by 20; inflict Sore on PC
 	processTime(50);
 	//Fuck yo stat gains, B. -Fen
-	pc.energy(-70);
-	pc.lust(20);
+	pc.changeLust(20);
+	pc.changeEnergy(-70);
 	yogaToning(10);
 	clearMenu();
 	addButton(0,"Next",moveSouth);
@@ -1247,7 +1247,7 @@ public function paigeSexPrologue():void
 	//[=Next=]
 	// end scene (scene: Sex Prologue)
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",paigeSexPrologue2);
 }
@@ -1343,7 +1343,7 @@ public function paigeSexPrologue2():void
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");
 
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	// end scene (scene: Sex Prologue 2)
 	// refer to Sex With Paige document (scene: First Time) to proceed
 	clearMenu();
@@ -1433,7 +1433,7 @@ public function iddiCustomizationsTalk():void
 	// end scene (scene: Customizations)
 	// increase Lust by 1
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",aboutIddiTalk);
 }
@@ -1711,7 +1711,7 @@ public function apartmentYogaEndings():void
 	processTime(50);
 	yogaToning(10);
 	pc.energy(-70);
-	pc.lust(33);
+	pc.changeLust(33);
 	paigeMenu();
 }
 
@@ -1989,7 +1989,7 @@ public function herEyes3():void
 	output("\n\nWhen she pulls away, her familiar, confident smile spreads across her lips. <i>“So I’m worth exactly one million credits, am I, sweet thing?”</i> she asks playfully. <i>“If the surgery was one-million-and-one credits, is that the line?”</i>");
 	output("\n\n<i>“Oh, shut up,”</i> you chide.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",herEyes4);
 }

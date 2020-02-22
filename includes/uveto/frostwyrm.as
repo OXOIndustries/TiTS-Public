@@ -400,7 +400,7 @@ public function frostwyrmBadEnd():void
 
 	processTime(90);
 	pc.removeAll();
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	addButton(0,"Next",frostwyrmBadEndII);
 }
 
@@ -708,7 +708,7 @@ public function nameThatFrostwyrm1():void
 	output(" She doesn’t answer, but underneath you, you feel her lungs heaving in short bursts, crudely mimicking laughter. If this is a power Frostwyrms like herself have....");
 	output("\n\nYou brace yourself on her body, excited more than ever to get to work repopulating her species.");
 	processTime(65+rand(3));
-	pc.lust(50);
+	pc.changeLust(50);
 	
 	processTime(5);
 	clearMenu();
@@ -2894,7 +2894,7 @@ public function frostwyrmItsMineAllMine():void
 	if (flags["NYKKE_VERSION"] == 1) itsNykke = true;
 	
 	output("You’re cuddled warmly against [frostwyrm.name] and " + (flags["NYKKE_MET"] != undefined && itsNykke ? "Nykke" : "your eldest kip") + " spooning up against you, both of them sharing your body heat, as you stare out to the village of Frostwyrmlings you and [frostwyrm.name] have created. It’s been many years since your firstborn, and not only do you feel as young as ever, and not only do you not intend to stop breeding with your Qim, but you feel as though your adventure as the Qal to your race of hybrids is only beginning.");
-	output("\n\nYour Qim loves you with all her heart; you don’t need psionics to know that. And your kips are all highly devoted to you; although they take a rather mercenary position with you during their inner circle couplings, their love and devotion to their Qim and their Qal isn’t something you’d ever question. Your family in the icy lair would do absolutely anything for you, if you’d but ask.");
+	output("\n\nYour Qim loves you with all her heart; you don’t need psionics to know that. And your kips are all highly devoted to you; their love towards their Qim and their Qal isn’t something you’d ever question. Your family in the icy lair would do absolutely anything for you, if you’d but ask.");
 	output("\n\n[frostwyrm.name] is an enormous, icy dragon, capable of rending buildings and small armies asunder with her bulk. Each of your daughters are highly muscled; tall as a giant; and naturally equipped with scales as tough as shields. If you asked them to, and you were serious about it, you could easily take over Uveto; the only defense the planetoid has is its indigenous peoples and weather stations full of scientists, not fighters. It’d be a fairly simple, and possibly bloodless, operation.");
 	output("\n\nYou look out to the village of your daughters, each of them milling about the lair with their own thoughts, concerns, and activities, waiting for you to simply say a word, any word, and they’ll drop everything for you. It’s very tempting. But it would also mean abandoning your by-now years-long adventure to claim your inheritance from your late father and being a full-time Qal to the Frostwyrms.");
 	output("\n\nDo you stop your adventuring and claim Uveto as your kingdom?");
@@ -3411,7 +3411,7 @@ public function frostwyrmXMasEnding():void
 	output("\n\nYou lay one arm across her muzzle and give her a gentle kiss on the tip of her flaring nose. "+ (silly ? "<i>“Same.”</i>" :"You couldn’t have said it better."));
 
 	processTime(5);
-	pc.lust(50);
+	pc.changeLust(50);
 	
 	var currDate:Date = new Date();
 	flags["FROSTWYRM_XMAS"] = currDate.fullYear;

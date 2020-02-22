@@ -144,7 +144,7 @@ public function assistShellyLaying():void
 	output("\n\n");
 	processTime(40+rand(10));
 	IncrementFlag("ASSISTED_SHELLY_WITH_LAYING");
-	pc.lust(15+rand(3));
+	pc.changeLust(15+rand(3));
 	pc.milkInMouth(getShellyPregContainer());
 	pc.girlCumInMouth(getShellyPregContainer());
 	pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, (30 + rand(16)));
@@ -336,7 +336,7 @@ public function shellyIntenseEggLaying(pageNum:int = 1):void
 		processTime(10);
 		pc.milkInMouth(getShellyPregContainer());
 		pc.girlCumInMouth(getShellyPregContainer());
-		pc.lust(5);
+		pc.changeLust(5);
 		clearMenu();
 		addButton(0, "Next", shellyIntenseEggLaying, 2);
 		return;
@@ -373,7 +373,7 @@ public function shellyIntenseEggLaying(pageNum:int = 1):void
 		output("\n\nGradually her shock is overridden, and she sinks back to the warm, wet, cradle of the bed. Your thumb digs deeper, matching your [pc.tongue] in intensity once she no longer has the strength to stop it. A sugary haze covers your vision, and you pull away for a second to catch your breath, face dripping strands of syrupy fem-cum.");
 		output("\n\n<i>“Cum-cumming... Big egg cumming,”</i> the bunny girl manages between silent moans. It takes your hazy mind a second to remember what she’s talking about, but you duck back just in time for the bottom of a giant egg to bump you in the nose. You hear Shelly give a distressed vocalization as she pushes to no end. It would seem you’re mouth-fucking was so intense that she doesn’t have strength left to get the last egg out.");
 		
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.girlCumInMouth(getShellyPregContainer());
 		processTime(20);
 		clearMenu();
@@ -393,7 +393,7 @@ public function shellyIntenseEggLaying(pageNum:int = 1):void
 		IncrementFlag("ASSISTED_SHELLY_WITH_LAYING");
 		IncrementFlag("ASSISTED_SHELLY_WITH_INTENSE_LAYING");
 		pc.girlCumInMouth(getShellyPregContainer());
-		pc.lust(5 + rand(21));
+		pc.changeLust(5 + rand(21));
 		pc.shower();
 		pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, (30 + rand(16)));
 		restHeal();
@@ -479,7 +479,7 @@ public function dildoLayAssistForShellyBuns():void
 	output("\n\nShelly tries her best to be seductive, leaning in and letting her breasts dangle in sharp relief, but her eyes stare and her voice squeaks, betraying her excitement. <i>“Do... do you wanna have sex?”</i> she asks.");
 
 	processTime(24);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	//buttons: ‘No’, ‘Yes’, ‘Leave Egg’
 	//’No’

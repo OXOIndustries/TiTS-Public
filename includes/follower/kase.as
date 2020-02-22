@@ -350,7 +350,7 @@ public function kaseTailTouch(btnSlot:int = 0):void
 	output("\n\n<i>“And this,”</i> he says, blood rushing to his face, turning it bright red, <i>“Is a more... romantic gesture, and uhm... is usually reserved for the bedroom.”</i> He stutter with his words, <i>“but i-it can be used in public as a display of dominance.”</i> There’s an awkward silence after that as Kase’s tails linger in their position, right before he coughs and pulls the furry appendages back, <i>“A-anyway, I hope I’ve taught you what you were looking to learn.”</i> ");
 	output("\n\nYou smile at the blushing kaithrit and tell him he was very helpful.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5+rand(5));
 	
 	kaseCrewTalkMenu();
@@ -423,7 +423,7 @@ public function kaseSexGiveOral():void
 	output("\n\n<i>“Th-thank you, Captain,”</i> he stutters between deep breaths, untangling his tails from your head, <i>“I... I hope I can repay the favor sometime.”</i>");
 	output("\n\nHe probably will, but for now, you want to enjoy Kase’s cock while you have it. So, you return your lips to his still-twitching prick, kissing and licking away stray cum, getting him nice and clean and enjoying his flavour while the femboy whimpers and gasps at your touch. You’ll have to leave your place between your subordinate’s legs at some point, but until then, you’ve got a cock to spit-shine.");
 	
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(15+rand(10));
 	var ppKase:PregnancyPlaceholder = getKasePregContainer();
 	pc.loadInMouth(ppKase);
@@ -739,7 +739,7 @@ public function kaseCrewStressRelief():void
 	
 	flags["KASE_STRESS"] = 1;
 	IncrementFlag("KASE_SEXED");
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(15+rand(5));
 	
 	kaseCrewMenu();
@@ -759,7 +759,7 @@ public function kaseScritches():void
 	output("\n\nYou tell him you’re glad to help your employees feel better.");
 	
 	IncrementFlag("KASE_SCRITCH");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(15+rand(5));
 	
 	kaseCrewMenu();
@@ -912,7 +912,7 @@ public function kaseCrewWake():void
 				output("\n\nHe grunts quietly, gritting his teeth and arching his back while his hips buck forward against your hand. His nubby cock spasms in your grip, dispensing a night’s worth of thick, white kitty-cum all across your sheets and fingers until his plump balls have been all but emptied.");
 				output("\n\nThen, he’s still again, sleeping away happily, his face burning red and his chest heaving. Now all there is to do is get up, and get ready to start another day...");
 				processTime(10+rand(5));
-				pc.lust(33);
+				pc.changeLust(33);
 				break;
 				
 		default:output("<b>!KASE WAKE-UP SWITCH BROKEN!>/b>");
@@ -987,7 +987,7 @@ public function kaseVoyeurAnno():void
 	output("\n\n<i>“Y-yes,”</i> the catboy says shakily, barb-lined tool leaking onto the floor in the open, <i>“Th-thank you, ma’am... I’ll, uh, see you some other time.”</i> He then looks toward you and gives an awkward smile, blushing hard with his package still dangling in the open, legs all wobbly with the force of his climax, <i>“I- uhm, Captain...”</i>");
 	output("\n\nYou give him a little salute and a grin, then leave him alone to rest, all naked by himself. What a crew you run here.");
 	
-	pc.lust(33);
+	pc.changeLust(33);
 	pc.createStatusEffect("Kase-Anno Voyeur Cooldown",0,0,0,0,true,"","",false,60*24);
 	processTime(10+rand(5));
 	

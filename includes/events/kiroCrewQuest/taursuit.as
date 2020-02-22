@@ -251,7 +251,7 @@ public function getTFedByTheTaursuit():void
 
 	taursuitBaseTFs();
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",moreTaursuitTFFun);
 }
@@ -440,7 +440,7 @@ public function lostCombatTFStuff():void
 		output("\n\nFirst, though, you need to retrace your footsteps. Hoof-falls ringing out on the metal floor, you find what you were looking for - your codex, and the rest of your equipment. Re-equipping your gear with some difficulty and adjustment, you inspect yourself as best you can and turn back to your mission. Stars! You swear to yourself right then and there you’re going to crack Kiro’s hips like a walnut after you rescue her and get her to safety.");
 		output("\n\nYou walk on, leaving behind a lewd trail of droplets of salty pre-seed and female arousal.");
 		output("\n\n");
-		pc.lust(55);
+		pc.changeLust(55);
 		CombatManager.genericVictory();
 	}
 	else
@@ -473,7 +473,7 @@ public function lostCombatTFStuff():void
 		output("\n\n<i>“Hmm. Three hours should be enough, but make it four just to be safe,”</i> she muses. <i>“Make sure you rub against her prostate as hard as you can, slut. And you,”</i> she says, spanking your ass hard enough to make you let out a high-pitched squeal, <i>“don’t cum and I’ll give you a reward.”</i>");
 		output("\n\nFour hours... just four hours of having this she-stud gripping your hindquarters and pounding the living fuck out of your clenching asshole, grinding her cumvein into your oversized prostate and making your prick sputter translucent precum all over the floor. Just four hours of this until you can get a reward...");
 		processTime(65);
-		pc.lust(3000);//She loves you 3000!
+		pc.changeLust(3000);//She loves you 3000!
 		clearMenu();
 		addButton(0,"Next",toZeBadEndTaurButt);
 	}

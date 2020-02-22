@@ -206,7 +206,7 @@ public function fuckInfiltratorAss(x:int):void
 		output("\n\nHe cums twice more like that, unable to move or resist at all when the sensation of pleasure is forced upon him. You can feel your own orgasm approaching as you speed up, fucking him so hard the dull impact of your hips slamming against his cum-soaked fur echoes in the hold.");
 		output("\n\nHis face is so close, and he’s looking up at you with nothing less than utter adulation in those wide eyes of his.");
 		processTime(25);
-		pc.lust(25);
+		pc.changeLust(25);
 		enemy.lust(100);
 		clearMenu();
 		addButton(0,"Kiss",kissDatKittyCat,x);
@@ -316,7 +316,7 @@ public function rimJobInfiltrator():void
 	output(" while the milodan tonguefucks your asshole. Fuck, he’s doing pretty well... maybe you should give him a reward.");
 	output("\n\nYou can see the milodan is still outrageously hard, occasionally pumping his hips upward just out of instinct. His bright red doggy dick, as hard as ever, is dripping with slick precum.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Jerk Him",jerkDatKittykaaaat);
 	addButton(1,"Don’t",nojerkies4KittyBois);
@@ -482,7 +482,7 @@ public function dockingSeasonBiiiiyaaatch():void
 
 	output("\n\nGod, <i>fuck</i>! You throw your head back into the ground and grit your teeth in pleasure. He might not be the biggest boy around but god damn if he doesn’t cum like one. Sweat breaks out on your forehead with the effort of letting him do as he pleases, his voluminous ejaculations seemingly growing larger instead of smaller as time goes on. You’re going to have to make a decision whether to cum all of this thick, piping-hot jizz back out... or to keep it inside you, like a good little cockslut.");
 	processTime(25);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Cum",cumThatCumIntoThatKitty,x);
 	addButton(1,"Keep",keepTheKittiesCummies);
@@ -522,7 +522,7 @@ public function keepTheKittiesCummies():void
 	//Blue balls debuff for keeping the milodan’s cum
 	processTime(30);
 	pc.applyBlueBalls();
-	pc.lust(5);
+	pc.changeLust(5);
 	output("\n\n");
 	wargiiFightWinRouting();
 }

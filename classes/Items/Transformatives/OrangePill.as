@@ -304,7 +304,7 @@ package classes.Items.Transformatives
 							}
 							output("\n\nBy the time the growth begins to abate, you’re sure <b>you’re up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
 							changes++;
-							pc.lust(20+rand(10));
+							pc.changeLust(20+rand(10));
 						}
 						else output("\n\n" + pc.breastRatingLockedMessage());
 					}
@@ -413,7 +413,7 @@ package classes.Items.Transformatives
 						else output("you’ve got a literal honeypot now!");
 						output("</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
-						pc.lust(Math.round(pc.lustMax()/2));
+						pc.changeLust(Math.round(pc.lustMax()/2));
 						changes++;
 					}
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
@@ -469,7 +469,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou’re definitely starting to feel a little hornier now, with the familiar heat of arousal coursing through you. Man, what you wouldn’t give for a cute little myr girl between your legs about now...");
 					pc.slowStatGain("libido",5);
-					pc.lust(30);
+					pc.changeLust(30);
 					changes++;
 				}
 				//Honeypot Perk (Convert Thickness to Boob Size)
@@ -542,7 +542,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva dribbling from your canines. It’s actually quite nice, you find, sucking down the alien chemical that seems to be generating in your mouth.");
 
-					pc.lust(15);
+					pc.changeLust(15);
 					pc.libido(1);
 					output("\n\nA pinching, clenching sensation in your palate follows, cutting off the supply of drugged spit from your dripping canines. You flex muscles you didn’t even know you had, discovering that you can release more on a whim. Excellent.");
 					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You’ve gained a form of red myr venom!</b>");
@@ -576,7 +576,7 @@ package classes.Items.Transformatives
 							}
 							output("\n\nBy the time the growth begins to abate, you’re sure <b>you’re up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
 							changes++;
-							pc.lust(20+rand(10));
+							pc.changeLust(20+rand(10));
 						}
 						else output("\n\n" + pc.breastRatingLockedMessage());
 					}

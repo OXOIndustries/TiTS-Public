@@ -425,7 +425,7 @@
 					else if(pc.ballSizeRaw <= 9.5)
 					{
 						kGAMECLASS.output("\n\nA surge of arousal hits you, perfectly timed with almost instantaneous engorgement of your crotch - and not just from your [pc.cocks] either. Your [pc.balls] are swelling larger by the minute. Interestingly, they seem a little bit less sensitive. Gently kneading them feels kind of nice, actually. You whimper and force yourself to stop. If you kept it up, you’d probably wind up blowing your load.");
-						pc.lust(15);
+						pc.changeLust(15);
 						pc.libido(1);
 						pc.slowStatGain("libido",1);
 						//+2 libido, +15 lust
@@ -437,7 +437,7 @@
 						kGAMECLASS.output("\n\nThere’s no hiding the way your [pc.sack] is swelling out with newfound mass, the microscopic robots causing your testicular tissue to divide seemingly endlessly. It’s getting pretty heavy now, and you’ve got to be careful when sitting down not to crush them. At least they feel really nice to run your fingers across.");
 						//+1 libido
 						pc.slowStatGain("libido",1);
-						pc.lust(5);
+						pc.changeLust(5);
 						//+5 lust
 						pc.ballSizeRaw = 13;
 					}
@@ -449,7 +449,7 @@
 						kGAMECLASS.output(" [pc.cumNoun]-load, working on overtime to make your next orgasm hotter, wetter, and all around messier. The sense of need in your swollen cum-factories rises higher and higher, driving to look down and pant with lust. Pre-cum leaks from you like a sieve, and your balls are bigger than ever. You give them a familiar squeeze, kneading the growing boys until your body relaxes, the change finished.");
 						pc.ballFullness = 100;
 						//+25 lust
-						pc.lust(25);
+						pc.changeLust(25);
 						//+2 libido
 						pc.libido(1);
 						pc.slowStatGain("libido",1);
@@ -460,7 +460,7 @@
 					{
 						kGAMECLASS.output("\n\nYou break out in sweat all over, not from the heat but from your suddenly hammering heart. Your [pc.legOrLegs] wobble and dump you to the ground, which is for the best really. Your package visibly jiggles with each heartbeat, the orb-like sperm-producers expanding in almost imperceptible spurts. Ribbons of pre-cum roll out of your [pc.cocks] while you watch. followed shortly after by a few drops of [pc.cumNoun]. You feel fuller than you’ve ever been, made randy by overwhelming need.");
 						//+33 lust
-						pc.lust(33);
+						pc.changeLust(33);
 						//refil balls.
 						pc.ballFullness = 100;
 						pc.ballSizeRaw = 16;
@@ -513,7 +513,7 @@
 						}
 						kGAMECLASS.output(".</b> You’ll have to take it for a spin sometime.");
 						changes++;
-						pc.lust(30);
+						pc.changeLust(30);
 						pc.slowStatGain("libido",10);
 						pc.shiftCock(x,GLOBAL.TYPE_KUITAN);
 					}

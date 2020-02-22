@@ -253,7 +253,7 @@ public function pattonSexAttempt():void
 	showKattom();
 	output("As soon as you put on your best come-hither face, Kattom steps back, arms upraised in a panic. <i>“None of that please. My services are purely of the mercantile variety. Any sensual interactions would violate the terms of my latest marriages, you see.”</i> He holds up a hand, revealing three fingers with gemstones socketed into the very flesh. <i>“My wives would take me to the cleaners if I violated my vows.”</i> Kattom sighs heavily. <i>“I’m sure any of the locals would jump at the chance for fornication, if you truly need relief of that nature.”</i>");
 	processTime(1);
-	pc.lust(-5);
+	pc.changeLust(-5);
 	addDisabledButton(3,"Flirt","Flirt","You already tried this.");
 }
 

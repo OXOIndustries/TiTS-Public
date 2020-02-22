@@ -269,7 +269,7 @@ public function talkToViAboutPleasure():void
 		output("\n\nYou grin, remarking that she seems to <i>enjoy</i> you toying with her now-pocket pussy, pulling it out. As you stroke her lower lips, the nurse droid quivers on the spot. Her full lips part and she lets out a low, breathy moan.");
 		output("\n\n<i>“W-well, it is hard to provide sexual relief services without it! It’s hard to deliver proper treatment w-when, you’re, u-um, d-doing things like that!”</i> Vi pleads, rubbing her thighs together. Her slickness is already dribbling down your fingertips. A few more strokes, and you’re sure she’ll lose the ability to speak.");
 		output("\n\nStashing her synthetic snatch away, Vi squirms on the spot. She looks all worked up! That pleasure-reward device must be working overtime!");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	else 
 	{
@@ -352,7 +352,7 @@ public function getHealedByVi(cost:Number):void
 	}
 	//Else PC’s one of those fucking furry nudists like Tigger:
 	else output("\n\n<i>“All done, " + pc.mf("sir","ma’am") + "! Is there anything else you require?”</i>");
-	pc.HP(pc.HPMax());
+	pc.changeHP(pc.HPMax());
 	pc.credits -= cost;
 	processTime(23);
 	IncrementFlag("HEALED_BY_VI");
@@ -396,7 +396,7 @@ public function getExamanitedByVi():void
 			output("\n\nYou blushingly begin stripping off your things before you reach the curtain, unsure if you’re happy or sad that you don’t need to do it in front of an audience. Still, when the privacy screen closes with a loud <i>shhh</i>, Vi is standing there and giving what you swear is an appreciative glance at your ass.");
 			output("\n\n<i>“...Do you like what you see?”</i> you ask, simultaneously stripping off. The violet-haired nurse toys with the end of her side plait, a light smile on her snowy lips.");
 			output("\n\n<i>“Your posterior has an admirable amount of symmetry, " + pc.mf("sir","ma’am") + ". My medical database informs me symmetry is considered attractive amongst organics. In that sense, your backside is excellent.”</i>");
-			pc.lust(3);
+			pc.changeLust(3);
 		}
 		//else if high exhibition score && clothed:
 		else
@@ -405,7 +405,7 @@ public function getExamanitedByVi():void
 			output("\n\n<i>“Um, " + pc.mf("sir","ma’am") + ", there’s a privacy curtain?”</i> Vi pipes up. You notice she’s holding it back for you... apparently stripping was a bit premature. Chuckling a little, you stride butt-naked behind it. As you strut past, you swear you see the violet-haired nurse give your ass an appreciative glance.");
 			output("\n\n<i>“...Do you like what you see?”</i> you ask, feeling a little worked up from all the attention. Vi closes the screen with a loud <i>shhhh</i> behind you, a light smile on her snowy lips.");
 			output("\n\n<i>“Your posterior has an admirable amount of symmetry, " + pc.mf("sir","ma’am") + ". My medical database informs me symmetry is considered attractive amongst organics. In that sense, your backside is excellent.”</i>");
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 	}
 	//else unclothed:
@@ -1535,7 +1535,7 @@ public function useVisPussy():void
 	IncrementFlag("VI_OFFERED_PUSSY");
 	//[Use It] [Get Her] [Take It]
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 
 	clearMenu();
 	// tooltip.useIt: Order Vi to go back to her duties, while you stay with her pussy. PC must not be a taur.
@@ -1645,7 +1645,7 @@ public function useVisDisembodiedPussy():void
 	// Scene end, back to menu
 	IncrementFlag("VI_SEXED");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1721,7 +1721,7 @@ public function takeVisVagina():void
 	// Unlock talk topic ‘Pleasure’ if not unlocked already.
 	// Scene end, exit Vi’s character menu.
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 
 	IncrementFlag("VI_PUSSY_TAKEN");
 	pc.createKeyItem("Vi's Vagina",0,0,0,0);
@@ -2105,7 +2105,7 @@ public function inflateViBoobs():void
 		if(pc.hasCock())
 		{
 			output("\n\n[pc.EachCock] stiffens at her words. It’s hard not to imagine her warm milk-slickened nipples clamping around <i>something else</i> and extracting some fluids.");
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 	}
 	else
@@ -2130,11 +2130,11 @@ public function inflateViBoobs():void
 		if(!pc.isCrotchExposed()) output("whip out");
 		else output("grab your");
 		output(" [pc.oneCock] and smother it between her now mountainous cleavage. Her snowy skin is so soft and smooth that you’re slapping away against her hefty tits in no time, groaning and smacking against her constantly swelling cleavage. The nurse-droid is blushing as you forcibly fuck her billiowing bust, your [pc.cockHead] eager to fire another slick load all over her exterior as she’s pumped inside as well!");
-		pc.lust(500);
+		pc.changeLust(500);
 	}
 	output("\n\nStimulating you visually as well as with her involuntary moans, Vi dips a finger inside of her slick pussy and wiggles it about, her pinky pulled back and rubbing against her budding clit. If the bed wasn’t soaked before, it’s drenched down to the mattress now as the violet-haired VI humps the air, her butt-flesh quivering and flexing against an invisible lover plumbing her slit. Her shivering and shaking breasts continue to swell until you can barely see her actual chest at all now; it’s going to be hard for the nurse to take temperatures properly after this!");
 	output("\n\nThere’s an excited squeal, and she throws her head back, her ponytail whipping backwards and slapping against her back. Wracked with orgasmic pleasure, she splutters and shoots a second intermittent pussy-burst all over the ground and her nurse stockings, staining them with her lady cream.");
-	pc.lust(20);
+	pc.changeLust(20);
 	if(pc.hasCock()) 
 	{
 		output(" You cry out and unload your own [pc.cumNoun] all over her chest ");
@@ -2193,7 +2193,7 @@ public function shrinkViBreasts():void
 		output(" with your seed. She wrings it for every last drop you have, storing your seed deep up inside her sphincter, before you pull out with an unceremonious plop.");
 		pc.orgasm();
 	}
-	else pc.lust(20);
+	else pc.changeLust(20);
 	output("\n\nWhen the process is finally finished, you pull your shining finger out of her quim. The violet-haired nurse’s breasts are drastically reduced in size, though they’re really just back to how they were before.");
 	output("\n\n<i>“That input was very stimulating for my processors,”</i> Vi exclaims, her snowy-white cheeks flushed. <i>“If you need to do any more modifications, please feel free to do it at any time, " + pc.mf("sir","ma’am") +".”</i>");
 	output("\n\n<b>Vi now has D-cups again!</b>\n\n");

@@ -102,8 +102,11 @@
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
-			targetCreature.HP(healing);
-			if(healing > 0) kGAMECLASS.output(" You give a little shudder as they go to work, patching up any injuries they come across. (<b>+" + healing + " HP</b>)");
+			if(healing > 0) 
+			{
+				kGAMECLASS.output(" You give a little shudder as they go to work, patching up any injuries they come across.");
+				targetCreature.changeHP(healing);
+			}
 			else kGAMECLASS.output(" There is a slight gurgling in your belly but the item seems to have no effect.");
 			targetCreature.taint(1);
 		}

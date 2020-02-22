@@ -357,7 +357,7 @@
 					else if(target.armor.shortName != "") output("the front of your [pc.armor]");
 					else output("the front of your [pc.lowerUndergarment]");
 					output(", trying to get at [pc.oneCock]. Moist secretions stain your crotch as you find yourself becoming unintentionally aroused by the contact.");
-					target.lust(3+rand(3));
+					target.changeLust(3+rand(3));
 				}
 				// not defeated
 				output(" You roll aside and climb upright, feeling a little more sore");
@@ -380,7 +380,7 @@
 			else 
 			{
 				output("Two spears of hot lust slip through your defenses and straight into your vulnerable veins. In a second, genitalia-engorging chemicals are pumped throughout your body. More and more of them spread through you as the snake injects artificial ardor straight into you.");
-				target.lust(10+rand(5));
+				target.changeLust(10+rand(5));
 				if (target.lust() >= target.lustMax()) 
 				{
 					output("\n\nYou moan and lie back, ");

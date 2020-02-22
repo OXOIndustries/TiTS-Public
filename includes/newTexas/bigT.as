@@ -280,7 +280,7 @@ public function sexWithBigTMenu():void
 	else output("\n\nYour head is spinning, and you find yourself seriously entertaining the idea.");
 	output(" You, [pc.name] Steele, servicing the biggest bull on New Texas? And it looks like his cock is proportional to his body size....");
 
-	pc.lust(15);
+	pc.changeLust(15);
 	//[Desk BJ] [Drunken Cow{boy/girl}] [Pitch T] 
 	//Written:
 	// DeskBJ.tooltip: Blow Tee from under his desk just like all the other cowgirl sluts!

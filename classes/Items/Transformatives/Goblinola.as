@@ -214,7 +214,7 @@ package classes.Items.Transformatives
 						{
 							msg += ParseText("You double over as a sudden wave of pain passes through your [pc.face]. It feels like the bones are grinding against one another! Finally, the pain becomes dull enough that you can keep moving, but it’s still there.");
 							// [increase PC fatigue]
-							target.energy(-50);
+							target.changeEnergy(-20);
 							target.createStatusEffect("Gabilani Face Change", 0, 0, 0, 0, true, "", "", false, 30);
 						}
 					}
@@ -679,10 +679,10 @@ package classes.Items.Transformatives
 				output("You unwrap the Goblinola and munch on the stuff.");
 				if(!inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
 				output(" Your stomach is left a little unsettled.");
-				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
+				//OLD BUSTED: if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
 				
 				// Immediate effects: The player gains some health.
-				target.HP(healing);
+				target.changeHP(healing);
 				
 				// They then gain a hidden status effect for goblin transformations.
 				// These happen at random during the item's duration, but can only start happening an hour after the item was consumed.
@@ -712,9 +712,9 @@ package classes.Items.Transformatives
 				if(inCombat()) output("\n\n");
 				else clearOutput();
 				output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " unwraps and eats a Goblinola bar");
-				if (healing > 0) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
+				if (healing > 0) output(", revitalizing some of [target.hisHer] health!");
 				else output(" but to no effect.");
-				target.HP(healing);
+				target.changeHP(healing);
 			}
 			return false;
 		}

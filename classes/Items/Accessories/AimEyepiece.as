@@ -33,7 +33,7 @@
 			this.description = "an aim-assisting eyepiece";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A squat little thing, placed on your eye like half of a pair of glasses. It operates as a targeting assist, hooking up with the muzzle of a ranged weapon and giving you some flexibility of being able to aim without glaring down the sight of the weapon. The lack of depth perception means it’s only useful shooting across your living room, however.";
+			this.tooltip = "A squat little thing, placed on your eye like half of a pair of glasses. It operates as a targeting assist, hooking up with the muzzle of a ranged weapon and giving you some flexibility of being able to aim without glaring down the sight of the weapon.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

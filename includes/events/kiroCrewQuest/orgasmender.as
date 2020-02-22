@@ -390,7 +390,7 @@ public function orgasmenderScene2():void
 		output("\n\nIt’s perfect, a sense of constant relief that never gets old mixed with a hint of sensuous delight. You could cum from this alone in time you’re sure, but between this and what’s going on down south, you don’t know how long you can hold onto your sanity. Every caress, every squeeze - it’s all answered by more gushes of milk, drowning out your thoughts in horny yet contented bliss. If you could, you’d sign up to do this every day, just give milk and cum your brains out for the rest of eternity... Stars, you’re so close to cumming!");
 	}
 	processTime(30);
-	pc.lust(2000);
+	pc.changeLust(2000);
 	clearMenu();
 	addButton(0,"Next",orgasmenderScene3);
 }
@@ -499,8 +499,8 @@ public function orgasmenderScene4():void
 	{
 		pc.loadInNipples(pp);
 	}
-	pc.HP(pc.HPMax());
-	pc.energy(40);
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(40);
 	pc.taint(3);
 	IncrementFlag("ORGASMENDER");
 	clearMenu();

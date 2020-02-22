@@ -232,7 +232,7 @@ package classes.Items.Transformatives
 						else kGAMECLASS.output(" Just ahead of the base");
 						kGAMECLASS.output(", your member’s flesh engorges exponentially, swelling into a thick, cum-engorged knot. With a cry, you fall to the ground as the new doggy-cock discharges its heady load, shooting a thick rope of [pc.cum] through the swollen knot and onto the ground.");
 						kGAMECLASS.output("\n\nYou spend a few moments collecting yourself, cleaning the spunk off your new puppy pecker and adjusting to the heft and weight of the knot.");
-						pc.lust(20+rand(20));
+						pc.changeLust(20+rand(20));
 						pc.libido(2);
 						changes++;
 						pc.shiftCock(x, GLOBAL.TYPE_KORGONNE);
@@ -290,7 +290,7 @@ package classes.Items.Transformatives
 				{
 					kGAMECLASS.output("\n\nYou shudder violently as waves of pleasure suddenly shoot up through your loins. A flush of wetness pours down your [pc.legOrLegs] as your cunt contracts rhythmically, drooling a steady river of [pc.girlCum] - more than you’re used to producing. You shudder and sigh as your cunny nearly orgasms, just cresting the peaks of pleasure before the excess lube finally dissipates. Still, you feel a whole lot wetter than usual. You could definitely handle bigger cocks and toys now.");
 					pc.libido(1);
-					pc.lust(20+rand(20));
+					pc.changeLust(20+rand(20));
 					pc.vaginas[x].wetness(1);
 					changes++;
 				}

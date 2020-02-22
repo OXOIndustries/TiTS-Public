@@ -311,7 +311,7 @@ public function sellToDatDogslut():void
 public function annoShopSetup():void
 {
 	chars["ANNO"].inventory = [];
-	
+	chars["ANNO"].inventory.push(new HLSteeleTechTent());
 	chars["ANNO"].inventory.push(new AusarTreats());
 	chars["ANNO"].inventory.push(new HammerCarbine());
 	chars["ANNO"].inventory.push(new LaserCarbine());
@@ -321,6 +321,7 @@ public function annoShopSetup():void
 	chars["ANNO"].inventory.push(new ACock());
 	chars["ANNO"].inventory.push(new AHCock());
 	chars["ANNO"].inventory.push(new ADCock());
+	
 	
 	gooArmorOrphanedCheck(chars["ANNO"]);
 	
@@ -422,7 +423,7 @@ public function gropeAnnoShoots():void
 	output("\n\nShe pouts, looking back through the scope. <i>“Still a headshot, but... well, at least you’ve got a chance now, right boss?”</i>");
 	output("\n\nAnd, leering, she adds, <i>“Don’t worry, I’ll be sure to get you back for that!”</i>");
 	output("\n\nYou grab the rifle and peek through the scope, and see Anno’s scored a decent shot, though her aim clearly wandered while you were molesting her: she landed a hit right through the cheek. Still a hit, though you could plant a round right in the forehead if your aim is true....");
-	pc.lust(3);
+	pc.changeLust(3);
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",takeYourShot,true)
@@ -450,7 +451,7 @@ public function takeYourShot(easy:Boolean = false):void
 	output("\n\nYou suppress a moan as her fingertips brush your [pc.nipple], trying to bat her hands away and failing miserably. With a frustrated sigh, you press your cheek to the rest and try to concentrate as your finger squeezes down on the trigger. With a flash, your rifle kicks back in your hand as it sends a chunk of super-heated death down-range.");
 	flags["ANNO_SHOT_WITH"] = 1;
 	processTime(2);
-	pc.lust(3+rand(4));
+	pc.changeLust(3+rand(4));
 	clearMenu();
 	addButton(0,"Next",annoShootsResults,easy);
 }
@@ -465,7 +466,7 @@ public function annoShootsResults(easy:Boolean = false):void
 	{
 		output("<i>“Let’s see what we have here,”</i> Anno says, squinting down range. You adjust your sights, looking back down to your target, and smile. Even with Anno’s cheaty “distractions,” you landed a clean headshot, right to poor Bobbest’s forehead. You set the rifle down and smile at Anno, grinning lasciviously at your “prize.”");
 		output("\n\n<i>“Oh you’ve gotta be kidding...”</i> Anno moans, looking at the ruins of the dummy’s head. <i>“So, uh, how about... uh... best two out of three?”</i> she says sheepishly, trying to avoid your gaze as you decide what to do with the puppy-slut.");
-		pc.lust(10);
+		pc.changeLust(10);
 		processTime(1);
 		//[Petplay] [Anal] [Snuggle]
 		clearMenu();
@@ -541,7 +542,7 @@ public function annoShootsResults(easy:Boolean = false):void
 		output("\n\nYou leave Anno to get cleaned up, and return to the storefront.");
 		pc.girlCumInMouth(chars["ANNO"]);
 		processTime(30+rand(10));
-		pc.lust(23);
+		pc.changeLust(23);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -621,7 +622,7 @@ public function petPlayForAnnoAfterCheating():void
 
 	output("\n\nWell, the raskvel - and Anno - both seem to be getting awfully frisky. Maybe you could see if any of them will throw Anno a bone. She’s been such a good girl, after all. Or you could keep your pooch all to yourself back at the shop...");
 
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(10);
 	pc.exhibitionism(1);
 	clearMenu();
@@ -669,7 +670,7 @@ public function publicUsePuppyAnno():void
 
 	output("\n\n<i>“Woof,”</i> she finally says, rolling over and lazily spitting out a mouthful of cum. You chuckle and lean down to rub her belly, leaving the ausar slut with an affectionate pet for being such a good sport.");
 	pc.exhibitionism(2);
-	pc.lust(15+rand(10));
+	pc.changeLust(15+rand(10));
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -718,7 +719,7 @@ public function earScritchesForAnno():void
 	output(". Anno groans happily, eyes fluttering closed as you lavish her ears with affection, fingers slowly moving up and down the two prominent peaks. You switch around to the fleshy insides of her perky ears, thumb teasing the bushy tufts of hair at their bases, making the ausar girl visibly shudder with pleasure.");
 	output("\n\n<i>“Mmmm, right there...”</i> she moans, breath quickening as you tease her big, fluffy ears. Behind her, her bushy tail thuds against her chair, wagging uncontrollably as she melts in your grasp. <i>“Riiiight there....”</i>");
 	processTime(2);
-	pc.lust(3);
+	pc.changeLust(3);
 	//[Sex][Tease]
 	clearMenu();
 	if(pc.lust() >= 33 && (pc.hasCock() || pc.hasVagina())) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
@@ -756,7 +757,7 @@ public function teaseAnno():void
 	output("\n\nAnno murmurs happily, resting her head on the counter, tail still wagging happily. <i>“Mmm. Do that again and I might just make you use those fingers somewhere else, " + pc.mf("handsome","cutie") + "!”</i>");
 	output("\n\n... And some people wonder why ausars and humans get on so well.");
 	processTime(1);
-	pc.lust(4);
+	pc.changeLust(4);
 	annoMainMenu();
 }
 
@@ -951,7 +952,7 @@ public function syriTalksAboutAnno():void
 		else output("shoulders");
 		output(", slamming you back against the bar as she crawls into your lap, her heaving breasts pressing hard into your [pc.chest]. <i>“Take me back to your place before I bust a nut in my pants just thinking about it.”</i>");
 		output("\n\nHo boy!");
-		pc.lust(10);
+		pc.changeLust(10);
 		//[Sex Menu]
 		syriSexMenu(false);
 	}
@@ -1462,7 +1463,7 @@ public function putItInAnnosButtYouSloot():void
 
 	output("\n\nYou nod, and start to move again, pulling out and thrusting in again. You keep it slow at first, watching with marked interest while Anno’s face contorts as you hilt her, only for her tongue to roll out in a lusty pant once she’s left empty again. Another swat on the ass has her howling, at first a sharp cry of pain that quickly turns into a long, husky moan of sexual thrill. She clamps down on you again, but you’ve got her stretched out enough that even her crushing grip can’t stop you; indeed, you start to piston your hips faster, moving up to a brisk pace that soon has Anno locked in an endless moan of bliss, barely able to support herself under the overwhelming sensation of your assfucking. The desire to cum is almost too much to bear.");
 	processTime(15+rand(5));
-	pc.lust(100)
+	pc.changeLust(100)
 	clearMenu();
 	addButton(0,"Cum",cumInYerAusarShapedButtslot,undefined,"Cum","Go ahead and blow into Anno’s ass like this.");
 	addButton(1,"AnnoOnTop",cumWithAnnoOnTop,undefined,"Anno On Top","Suggest to Anno that she get on top until you blow in her ass.");
@@ -1661,7 +1662,7 @@ public function goozookaRaepsForAnnoButts():void
 
 	processTime(2);
 	
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -4047,7 +4048,7 @@ public function annoxKaedeWatchCombine():void
 	flags["KAEDE_FUCKED"]++;
 
 	processTime(20+rand(10));
-	pc.lust(20);
+	pc.changeLust(20);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

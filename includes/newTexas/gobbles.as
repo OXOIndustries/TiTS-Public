@@ -151,7 +151,7 @@ public function orderUpOneTurkeySlut():void
 	
 	output("\n\nShe blushes when you ask her and admits <i>“I’ve got a few mods down there, too. I’m really tasty now. Do you want to have a taste, eh?”</i>");
 	flags["GOBBLES_SEXYTIMES_STARTED"] = 1;
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.milkInMouth(getCanadaPregContainer());
 	processTime(10);
 
@@ -174,7 +174,7 @@ public function noThanksGobblesNoPie4Me():void
 	
 	output("\n\nYou smile at the turkey-themed cow and wave as she slips out of the stall, her bust considerably lighter looking.");
 
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(5);
 
 	clearMenu();
@@ -202,7 +202,7 @@ public function orderUpOneTurkeyCuntPie():void
 	
 	output("\n\nYou slowly pull yourself out from the cow’s backside, giving her a parting spank and watching appreciatively as her turkey-themed buttplug jiggles a little deeper into her. She coos, cupping one of her now-smaller breasts and wiggling her hips for you. That ass of hers is amazing... you could lose yourself in it if you aren’t careful. You’d like nothing more than to cuddle up with that butt, to say nothing of the huge boobs blatantly visible between the cow’s cum-splattered thighs.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.girlCumInMouth(getCanadaPregContainer());
 	processTime(10);
 
@@ -441,7 +441,7 @@ public function milkGobblesRepeat():void
 	if(pc.hasCock() || pc.hasHardLightEquipped()) output(" until she finally looks over her shoulder at you and murmurs: <i>“I-if you want to fuck me, you can.... Treated girls give the best milk - or, um, syrup I guess - when we’re happy. That’s what they say, anyway.”</i>");
 	else output(".");
 
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(10);
 	//if PC has a dick/strapon, option to [Fuck Her] or [No]. Else, continue with <i>“no”</i> for non-cockbags
 	if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckAmeriturkeyGobbleButt,undefined,"Fuck Her","I think we all know where this is going....");
@@ -529,7 +529,7 @@ public function noCockTurkeyBastingRoundIIYEehawAMURRICA():void
 	else output("If you have time, that is....");
 	output("”</i>");
 
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(5);
 	clearMenu();
 	//[Cuddle] [Finish]
@@ -591,7 +591,7 @@ public function cuddleWithCanadaWenchesWooWooWooWooWoo():void
 		else output("Your bovie friend murmurs something under her breath about showing her gratitude, lazily looking back at you and planting an affectionate kiss on your cheek");
 		output(".");
 	}
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(10);
 	//[Butt Baste] [Pussy Gobble] // [Just Snuggle]
 

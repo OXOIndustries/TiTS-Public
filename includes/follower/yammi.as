@@ -551,7 +551,7 @@ public function milkSalivaFromPexiga():void
 	output("\n\nThen you remember you have work to do. You bottle up the saliva you gathered and stick it in your pack, leaving the pexiga with a light pat on the head. She gurgles at you, tongue lolling listlessly from her mouth.\n\n");
 	//PC gains <i>“Pexiga Saliva”</i> item.
 	processTime(13);
-	pc.lust(3);
+	pc.changeLust(3);
 	quickLoot(new PexigaSaliva());
 	//Trick the game into immediately jumping back into Yammi's menu after item loots.
 	eventQueue.push(yammiInTheKitchen);
@@ -817,7 +817,7 @@ public function getYammiSmut():void
 	//Sex Options
 	//[Vaginal] [Anal] [Get Oral]
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	yammiFollowerSexMenu();
 }
 
@@ -840,7 +840,7 @@ public function flirtWithYammiBruh():void
 	output(" A hand delves between them, quickly brushing aside a silky layer of fabric and finding a damp slit to slide into.");
 	output("\n\nShe’s open and waiting for you...");
 	processTime(6);
-	pc.lust(10);
+	pc.changeLust(10);
 	yammiFollowerSexMenu();
 }
 

@@ -927,7 +927,7 @@ public function tessaCleverGirl2():void
 	IncrementFlag("TESSA_SENSEPLAY");
 	
 	tessaTrust(5);
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(60);
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1201,7 +1201,7 @@ public function tessaOralLuv ():void
 
 	addButton(0, "Next", mainGameMenu);
 	IncrementFlag("TESSA_GONEDOWN");
-	pc.lust(35);
+	pc.changeLust(35);
 	processTime(60);
 	tessaTrust(5);
 	pc.applyCumSoaked();

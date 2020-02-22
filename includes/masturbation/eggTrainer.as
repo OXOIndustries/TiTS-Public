@@ -422,7 +422,7 @@ public function eggTrainingMachineTime():void
 
 	//[Next]
 	//Update pc.belly until the end of the scene, with gravidity based on Egg Training/eggs rolled.
-	pc.lust(200);
+	pc.changeLust(200);
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",layingTrainingTwo);
@@ -626,7 +626,7 @@ public function carryTrainingWithEggMachine():void
 
 	output("\n\n<i>“Take good care of ‘em, sugar!”</i> the holo-screen tells you, and the tentacle gives you a resounding slap on the ass before wriggling back into its hole. You groan, running your hands across your lumpy belly as the machine shuts down, leaving you to recover - and to enjoy your wonderfully pregnant belly before you eventually get up and stagger towards the shower, slowly adjusting to your new weight.");
 
-	pc.lust(50+rand(10));
+	pc.changeLust(50+rand(10));
 	pc.shower();
 	processTime(25);
 

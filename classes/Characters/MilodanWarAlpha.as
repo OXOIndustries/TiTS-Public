@@ -392,9 +392,8 @@
 			this.energy(-35);
 			output("Tapping at a display on his bracer, the war-alpha’s shields shimmer violently. A split-second later, your own do as well. The grinning cat is literally siphoning your shields away! ");
 			var stolen:Number = Math.floor(target.shields()/2);
-			target.shields(-stolen);
-			this.shields(+stolen);
-			output("(<b>S: -<span class='shield'>" + stolen + "</span></b>)");
+			target.changeShields(-stolen);
+			this.changeShields(+stolen);
 			if(stolen > 50)
 			{
 				output(" A snapping, sizzling corona of energy forms around him from the sheer amount of energy he’s drawing in, exploding into a sunburst of blinding light.");
@@ -405,7 +404,6 @@
 					CombatAttacks.applyBlind(this, 1);
 				}
 			}
-			output("(<b>S: +<span class='shield'>" + stolen + "</span></b>)");
 		}
 		//Phase 1 ability: Fastball Claw - launched by henchman for one big hit. (disabled if hench down)
 		//Uses henchmen attack

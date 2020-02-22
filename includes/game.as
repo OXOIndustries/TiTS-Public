@@ -12,13 +12,16 @@ import classes.Items.Armor.Unique.Omnisuit;
 import classes.Items.Armor.AugmentWeaveArmor;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Tents.HLTent;
 import classes.Items.Transformatives.Cerespirin;
 import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
 import classes.Items.Decorations.ObediencePoster;
 import classes.Items.Decorations.MindfuckPoster;
+import classes.Items.Decorations.KallyPoster;
 import classes.RoomClass;
 import classes.StorageClass;
+import classes.Tent;
 import classes.UIComponents.ContentModules.MailModule;
 import classes.UIComponents.SquareButton;
 import flash.events.Event;
@@ -1514,6 +1517,33 @@ public function restMenu():void
 	addButton(6, "Wait 2 hr", wait, 120, "Wait 2 Hours", "Wait for 2 hours.");
 	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
 	
+	if(!(pc.tent is Tent)) addDisabledButton(8,"Tent Sleep","Tent Sleep","You have no tent equipped in your tent slot right now.");
+	else if((pc.tent as Tent).ready() && pc.tent.type == GLOBAL.TENT) addItemButton(8, pc.tent, (pc.tent as Tent).useTent, undefined);
+	else
+	{
+		//Too lazy to find the disabled item button vers...
+		var hours:Number = 0;
+		var minutes:Number = 0;
+		var days:Number = 0;
+		var timeLeft:Number = (pc.tent as Tent).timeLeft();
+
+		var TT:String = "Your " + pc.tent.longName + " will need <b>";
+		//Figure out number of days, them remove time from Timeleft
+		if(timeLeft >= 60*24) days = Math.floor(timeLeft / (60 * 24));
+		timeLeft -= days * 60 * 24;
+		//Display daycount, no punctuation needed.
+		if(days > 0) TT += days + " day" + (days > 1 ? "s":"");
+		//Figure out hours left, then remove time from TimeLeft
+		if(timeLeft >= 60) hours = Math.floor(timeLeft / 60);
+		timeLeft -= hours * 60;
+		//Display hourcount, punctuate if daycount
+		if(hours > 0) TT += (days > 0 ? ", ":"") + hours + " hour" + (hours > 1 ? "s":"");
+		//Add last minutes to display, add punctuation if anything preceded
+		TT += ((days > 0 || hours > 0) ? ", ":"") + timeLeft + " minute" + (timeLeft > 1 ? "s":"");
+		addDisabledButton(8,"Tent On CD","Tent on Cooldown",TT + "</b> to recharge before you can use it again.");
+	}
+
+	//else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	addButton(9, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
 	
 	addButton(14, "Back", mainGameMenu);
@@ -1567,8 +1597,8 @@ public function wait(minPass:int = 0):void
 		waitMult *= 1.1 + 0.05*pc.statusEffectv1("Using Doctor's Bag");
 		pc.removeStatusEffect("Using Doctor's Bag");
 	}
-	if(pc.HPRaw < pc.HPMax()) pc.HP(Math.round(pc.HPMax() * waitMult));
-	if(pc.energyRaw < pc.energyMax()) pc.energy(Math.round(pc.energyMax() * waitMult));
+	if(pc.HPRaw < pc.HPMax()) pc.changeHP(Math.round(pc.HPMax() * waitMult));
+	if(pc.energyRaw < pc.energyMax()) pc.changeEnergy(Math.round(pc.energyMax() * waitMult));
 
 	if(pc.HPRaw < pc.HPMax() || pc.energyRaw < pc.energyMax()) output(" While doing this doesn’t keep you well rested, it manages to pass the time.");
 	
@@ -1636,7 +1666,7 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minPass);
-	pc.lust(postRestLustBonus);
+	pc.changeLust(postRestLustBonus);
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
@@ -1669,11 +1699,11 @@ public function restHeal():void
 	if(bonusMult != 0)
 	{
 		if(pc.HPRaw < pc.HPMax()) {
-			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
-			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.changeHP(Math.round(pc.HPMax() * bonusMult));
+			else pc.changeHP(Math.round(pc.HPMax() * .33 * bonusMult));
 		}
 		if(pc.energyRaw < pc.energyMax()) {
-			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+			pc.changeEnergy(Math.round(pc.energyMax() * .33 * bonusMult));
 		}
 	}
 	
@@ -2185,6 +2215,7 @@ public function hasDecorations():Boolean
 {
 	if(flags["KQ_POSTER_HUNG"] != undefined) return true;
 	if(flags["KQ_POSTER_2_HUNG"] != undefined) return true;
+	if(flags["KALLY_POSTER_HUNG"] != undefined) return true;
 	return false;
 }
 public function displayAPoster():void
@@ -2192,6 +2223,7 @@ public function displayAPoster():void
 	var choices:Array = [];
 	if(flags["KQ_POSTER_HUNG"] != undefined) choices.push(0);
 	if(flags["KQ_POSTER_2_HUNG"] != undefined) choices.push(1);
+	if(flags["KALLY_POSTER_HUNG"] != undefined) choices.push(2);
 
 	if(choices.length == 0) return;
 	var select:int = choices[rand(choices.length)];
@@ -2208,13 +2240,19 @@ public function displayAPoster():void
 		showImage("MindfuckPoster");
 		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>");
 	}
+	else if(select == 2)
+	{
+		output("\n\n");
+		showImage("KallyPoster");
+		output("The poster you swiped from the Kui Country Bar and Grill hangs in your ship, proudly displaying the image of the buxom bartender for you to admire at any time of day or night." + (kiroIsCrew() ? " [kiro.Name] can often be seen glancing in its direction.":""));
+	}
 }
 public function decorationsMenu():void
 {
 	clearOutput();
 	showName("\nDECORATIONS");
 	clearMenu();
-	if(flags["KQ_POSTER_HUNG"] == undefined && flags["KQ_POSTER_2_HUNG"] == undefined)
+	if(!hasDecorations())
 	{
 		output("You don’t have any decorations.");
 	}
@@ -2230,7 +2268,12 @@ public function decorationsMenu():void
 		if(flags["KQ_POSTER_2_HUNG"] != undefined)
 		{
 			output("\nA mindfuck holo-poster.");
-			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck","Take down the mindfuck holo-poster.");
+			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck Poster","Take down the mindfuck holo-poster.");
+		}
+		if(flags["KALLY_POSTER_HUNG"] != undefined)
+		{
+			output("\nA poster of Kally.");
+			addButton(button++,"Postr:Kally",removeDecoration,"Kally Poster","Take down the kally poster.");
 		}
 	}
 	addButton(14,"Back",mainGameMenu);
@@ -2245,10 +2288,15 @@ public function removeDecoration(arg:String):void
 		quickLoot(new ObediencePoster());
 		flags["KQ_POSTER_HUNG"] = undefined;
 	}
-	else if(arg == "Mindfuck") 
+	else if(arg == "Mindfuck Poster") 
 	{
 		quickLoot(new MindfuckPoster());
 		flags["KQ_POSTER_2_HUNG"] = undefined;
+	}
+	else if(arg == "Kally Poster") 
+	{
+		quickLoot(new KallyPoster());
+		flags["KALLY_POSTER_HUNG"] = undefined;
 	}
 	else 
 	{
@@ -4453,6 +4501,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processRoxyPregEvents(deltaT, doOut, totalDays);
 		processBizzyCamgirlPayments(deltaT, doOut, totalDays);
 		processPerditaPayments(deltaT, doOut, totalDays);
+		processStormguardEggHatch(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);

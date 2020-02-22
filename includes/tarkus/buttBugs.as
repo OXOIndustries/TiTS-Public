@@ -2075,7 +2075,7 @@ public function expelButtBugEgg(eggs:int = 0):void
 	
 	processTime(14);
 	
-	pc.lust(40);
+	pc.changeLust(40);
 	
 	trackButtBugEggs(buttBugF, "infertile", eggs);
 	
@@ -2199,7 +2199,7 @@ public function birthButtBugType1(eggs:int = 0):void
 		processTime(9);
 		
 		// decrease lust by 10
-		pc.lust(-10);
+		pc.changeLust(-10);
 	}
 	else if(eggs < 25)
 	{
@@ -2213,7 +2213,7 @@ public function birthButtBugType1(eggs:int = 0):void
 		processTime(16);
 		
 		// increase lust by 20
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	else
 	{

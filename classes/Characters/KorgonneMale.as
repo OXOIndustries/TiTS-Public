@@ -445,7 +445,7 @@
 				if(target.shields() > 0)
 				{
 					output("It pings off your newly regenerated shields!");
-					target.shields(-3);
+					applyDamage(new TypeCollection ( { kinetic: 3 } ), this, target, "minimal");
 				}
 				else
 				{
@@ -513,7 +513,7 @@
 				else
 				{
 					//Else end combat and queue up win protocols.
-					this.HP(-1000);
+					this.changeHP(-1000);
 					output("The korgonne raider nods gravely.");
 					this.createStatusEffect("PEACEFUL_WIN");
 					if(rand(3) == 0) setStatusValue("PEACEFUL_WIN",1,2);

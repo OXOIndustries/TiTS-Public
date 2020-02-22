@@ -198,7 +198,7 @@ public function kirilasPastWork():void
 	output("\n\n<i>“Probably got sent off to some penal colony after that,”</i> you hazard a guess.");
 	output("\n\n<i>“Yeah, it was either that or just kill all of them. I mean, we didn’t have the food to keep them locked up on planet. I mean no food at all. All we had were the huge tanks of M-Jelly to eat and, you know, all the rock everywhere.”</i>");
 	processTime(15);
-	pc.lust(-50);
+	pc.changeLust(-50);
 	kirilaTalkMenu(kirilasPastWork);
 }
 

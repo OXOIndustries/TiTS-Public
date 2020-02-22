@@ -346,7 +346,7 @@ public function youDontHaveADickLossToFrogGirls():void
 
 	processTime(120+rand(60));
 	pc.orgasm();
-	pc.lust(33+rand(33));
+	pc.changeLust(33+rand(33));
 	output("\n\n");
 	if (!inCombat())
 	{

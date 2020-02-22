@@ -388,7 +388,7 @@ public function payVKoForHealing(cost:int):void
 	else output("as the horse that you so resemble");
 	output(".");
 	processTime(8+rand(5));
-	pc.HP(pc.HPMax());
+	pc.changeHP(pc.HPMax());
 	approachVKo(false);
 }
 //Negatory to healing:
@@ -1104,7 +1104,7 @@ public function agreeToVKoBoobSucks():void
 	output(", you roll your neck and shoulders, smiling in pleasure at the feeling of relief that comes from being drained of your heavy load - it feels so good to have lightened your burden. Gathering your things, you reapply your top and leave the clinic.");
 	StatTracking.track("joyco/milk milked", milkQ);
 	processTime(45+rand(10));
-	pc.lust(rand(10)+1);
+	pc.changeLust(rand(10)+1);
 	pc.milked(pc.milkFullness);
 	//(Possibly give the PC’s milk back, bottled and useable as an item?)
 	//(Only if you want Fen.)

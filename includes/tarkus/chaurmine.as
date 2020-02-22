@@ -146,7 +146,7 @@ public function helpChaurmine():void
 	output(" as he finally meets your eyes again. Apparently having had his fill, he continues to meet your gaze as his menacing armored visage remains quiet. You get to initiate, it would seem. His thick shaft reflexively jerks in open anticipation, looking even more solid than his scales.");
 
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	IncrementFlag("CHAURMINE_HELPED");
 	clearMenu();
 	//[Handjob]
@@ -182,7 +182,7 @@ public function handjobChaurminePaperTowells():void
 
 	output("\n\nHmm, he’s been rather belligerent, but given his condition it might be understandable. How do you treat him?");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	//[Gentle] Aww, he’s been having a bad day. Why not be a little sympathetic. // Go to Gentle // -10 Personality score
 	addButton(0,"Gentle",gentleChaurmineHJFinisher,undefined,"Gentle","Aww, he’s been having a bad day. Why not be a little sympathetic.");
@@ -204,7 +204,7 @@ public function gentleChaurmineHJFinisher():void
 	output("\n\nThe brute’s writhing and thrusting dissipate, though he remains tense, and occasionally twitches excitedly. With a solid grip kept on his fat cock, you focus on his cumslit with a smothering finger. Lubed by what can be little more than pre at this point, the beast practically whines as you wreathe his incredibly sensitive tip in torturous yet blissful friction, less ejaculate emerging with each contraction. Figuring you’ll be nice, you stop your movements. But don’t let go.");
 	output("\n\nYou let him ride out the last of his lengthy orgasm by his own movements; given that he hasn’t gotten too sensitive. After a few last thrusts, he seems to start to calm down, almost immediately going soft in your grip. Seems you nearly exhausted the titan. Certain that that’s the best you can do for him right now, you clear your face of what remains of his thick seed.");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.applyCumSoaked();
 	pc.addNice(1);
 
@@ -224,7 +224,7 @@ public function chaurmineHJRoughEnd():void
 	output("\n\nSeeing that he now appreciates who’s actually in control, you decide to be nice this time. Eyeing his still clenching shaft and practically vibrating sack, both obscenely swollen from your denial, you release your handle of his sheath so you can grip his over sensitive tip and stroke the hard, swollen mass as swiftly as you can. Just as the large lizard breathes in a gasp, you take your other hand and clench hard onto as much of a bloated nut as you can, forcing many loads of cum through one orgasm. Though you’re not sure if this actually hurts him, he seems to be enjoying your rough handling.");
 	output("\n\nAs his amber sack tenses intensely and seems to shrink, his ribbed shaft bulges even more. The metal behemoth’s hands claw at the air, and feet dig and tear into the ground in both incredible pain and sublime pleasure, forcing a hoarse growl from his maw as his bloated shaft fires rapid loads of thick seed onto his face and chest repeatedly, drenching him from horn to cock. As his release peaks in ferocity, you find yourself just as covered as he is, your chagrin almost causing you to miss his clenching spout of a shaft slow to a trickle.");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.applyCumSoaked();
 	pc.addHard(1);
 	//[Next] // Go to Handjob End
@@ -245,7 +245,7 @@ public function playfulChaurmineHJend():void
 	output("\n\nMomentarily stunned, you take the next few cock blasts to the face, drenching you in the behemoth’s musky seed before you manage to retreat out of the way. Returning your slippery grip onto his shaft, you milk the last large pulse onto his chest with a resounding <i>splort</i> that you can’t help but grin devilishly to.");
 	output("\n\nSatisfied, you straighten yourself as you release the brute’s cock, and caress his prostate one last time as your fingers exit his clenching depths. As the big lizard’s black dick thumps onto his torso, he groans tiredly and lets loose one last massive blast of his seed, coating himself in the musky glaze.");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.applyCumSoaked();
 	pc.addMischievous(1);
 	//[Next] // Go to Handjob End
@@ -344,7 +344,7 @@ public function titfuckChaurmineToiletPaper():void
 	output("\n\nShortly the shimmering heat all but disappears, seeming to mean he’s recovered, as he stands with a much less audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber northward. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if we meet again.”</i> He grunts dismissively, leaving you to continue gratefully breathe in cool and fresh air.");
 	processTime(35);
 	pc.applyCumSoaked();
-	pc.lust(10);
+	pc.changeLust(10);
 	if(pc.isLactating()) pc.milked(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -375,7 +375,7 @@ public function guardDatScaleDino():void
 	output("\n\nSlipping off of his softening shaft, the raskvel manages to land on her side with a pained grunt, panting hard from the exertion and heat. Both are quite disoriented, though the metal brute leans his head back to the chagrin of his scales, unpleasant scrapes and whines resounding until he aims his face upward and, limply opening his armored reptilian visage, seems to release a dangerous eruption of heat from his maw. Watching with more than a little fascination and apprehension, you see him relax as the tempest of searing air and steam dies down, and then he’s breathing normally once again. Having calmed his lust and, you’re willing to guess, at least some of his temper, you patiently wait as he lets out a few more heavy breaths before he looks to you with a slight smirk.");
 	output("\n\n<i>“Thanks for your protection, really helped there,”</i> he grunts in a much more calm, monotone voice. You can’t tell if his dry sarcasm is tinted with humor or bitterness. With a sniffle and a snort, the large lizard turns to leave, before offhandedly saying <i>“In fact, I could use you again someday,”</i> and summarily stomps away.");
 	IncrementFlag("CHAURMINE_GUARDED");
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -842,7 +842,7 @@ public function sexWithChaurmine():void
 		if(silly) output("Wah! What are we gonna do on the bed?”</i>");
 		else output("So [pc.name], what do you wanna do?”</i>");
 		processTime(20);
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//Repeating:
 	else
@@ -852,7 +852,7 @@ public function sexWithChaurmine():void
 		output("\n\nOnce again, Chaurmine moves out of the booth, stretching as he and his empty seat groan in relief, and motions towards the exit.");
 		output("\n\nBefore long, you see the familiar words ‘Vigilantus Gemma’ on a ship with a worn matte black finish. Chaurmine motions to the lowered ramp, and leads you into his ship. Once in his airy but cozy room, Chaurmine removes the few pieces of armor he has, letting them hit the floor with a hard thump. Since his crotch was basically the only thing covered, that’s where your eyes are drawn to, now that he’s fully bare; his large balls hang low, the thick but supple reptilian hide a rich amber, and his monstrous cock droops out if its sheath, half hard. The ribbed, onyx-black shaft pulses and grows in the fresh air, its blunt tip bobbing. The tin lizard crosses his arms over his muscular chest, heavy tail swaying excitedly behind him, <i>“So [pc.name], what do you wanna do this time?”</i>");
 		processTime(15);
-		pc.lust(3);
+		pc.changeLust(3);
 	}
 	//[Intimate Catch] Have him put that tool to use, without being <i>too</i> rough. // No taurs // Go to Intimate Catch
 	//[Taur Oral You got it, why not fuck it? // Requires centaur-like body // Go to Taur Oral
@@ -1511,7 +1511,7 @@ public function shipHandjob():void
 	output("\n\nIn the brief heartbeat before the artillery fires, you think back to your thoughts in the wastes, and how you might want to treat him again - on his own ship, too!");
 
 	processTime(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	//[Gentle] It <i>is</i> his ship you’re on. And you <i>are</i> here because of your insistence. // Go to Gentleship // -5 Personality score
 	//[Rough] Fuck it. It’s his ship, he’s safe. He’s a big guy. He might even appreciate a little rough handle from a familiar face. // Go to Roughship // +5 Personality score
@@ -1535,7 +1535,7 @@ public function gentleChaurmineHJFinisherOnShip():void
 	output("lips, Chaurmine’s tired cock twitching at the sight.");
 	pc.addNice(1);
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
@@ -1553,7 +1553,7 @@ public function roughChaurmineHJFinisherOnShip():void
 	output("\n\nFeeling his hot breath billow down onto you, you glance up to see him trying and failing to suppress every heave and jolt, with his eyes staring at you with a mixture of naked outrage and a drop of... arousal? As he opens his jaws as if to speak, you roughly smother his bulging urethra with a thumb, grinding the oversensitive flesh until his cock has one last powerful contraction. You grin to the feeling of his thick cum bursting around the impeding digit. His jaws reflexively slam shut at the sensation, resounding with an audible <i>snap</i> and a reverberant clang, before letting out a desperate whine.");
 	pc.addHard(1);
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
@@ -1573,7 +1573,7 @@ public function playfulChaurmineHJEndingOnShip():void
 	output("\n\nSatisfied, you straighten yourself as you release the brute’s cock, and caress his prostate one last time as your fingers exit his clenching depths. As the big lizard’s black dick thumps onto his torso, he groans tiredly and lets loose one last massive blast of his seed, coating himself in the musky glaze.");
 	pc.addMischievous(1);
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
@@ -1627,7 +1627,7 @@ public function chaurmineHJShipBeej():void
 	output(". The metal lizard holds you until you’re fully recovered - though it’s probably until he feels less guilty - and promptly makes sure things are in order before shepherding you off of his ship.");
 
 	processTime(25);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.loadInMouth(chars["CHAURMINE"]);
 	IncrementFlag("SEXED_CHAURMINE");
 	chaurmineRelationship(4);
@@ -1669,7 +1669,7 @@ public function chaurmineShippyShipTitfuckyDuckyHucky():void
 	pc.applyCumSoaked();
 	chaurmineRelationship(4);
 	IncrementFlag("SEXED_CHAURMINE");
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

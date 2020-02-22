@@ -222,7 +222,7 @@ public function genderlessLossToGooCrystals():void
 
 	output("\n\nYou sigh as the sensations fill you with a tingling bliss, and gasp when a sharp prick on your arm takes it all away. The [enemy.skinTone] knight gives you a sadistic grin, licking the blood that drips from the dagger. A small gash sits on your arm, not dangerous but still a bit painful. The warrior woman notices your bitter staring, and snickers at your discomfort.");
 	output("\n\n<i>“Maybe if you get some real parts I’ll let you feel the full experience instead of a taste,”</i> she says with a teasing tone. She reforms the damage she took during the fight, leaving you lying there as she returns to the caves. Eventually you recover enough to retrieve your [pc.gear] and return to exploring the caves, only missing a few shreds of dignity.\n\n");
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(35);
 	CombatManager.genericLoss();
 }
@@ -563,7 +563,7 @@ public function ganraelJail3():void
 	output("\n\n<i>“You can get some sleep if you want. I’ll wake you up if anything interesting happens,”</i> the dark haired woman assures you. You lie down on the spongy gel that makes up the jail floor, finding a comfortable spot to get a few hours of sleep. It’s not often you get that kind of opportunity away from your ship.");
 
 	processTime(34);
-	pc.lust(45);
+	pc.changeLust(45);
 	clearMenu();
 	addButton(0,"Next",ganJail4);
 }
@@ -715,7 +715,7 @@ public function fuckGooSexThatsForGays():void
 	output("\n\n<i>“Alright. Now if you come with me I’ll take you back to the village proper where you can be on your way. Unless there was something you wanted, then you can do that,”</i> she says, beckoning for you to join her. You stand and walk to the door with her, turning back before leaving to say goodbye to your recent friends.");
 	output("\n\n<i>“You know where to find me. I’ll probably be back down here after I make sure this one gets back to her city-folk life. My name is Issett by the way, since we were never properly introduced,”</i> she says as she waves goodbye. You give her your name as you leave, returning to the front of the cave.");
 	processTime(5);
-	pc.HP(-1);
+	pc.changeHP(-1);
 	clearMenu();
 	//not sure about resetting position.
 	addButton(0,"Next",mainGameMenu);

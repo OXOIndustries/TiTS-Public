@@ -1601,7 +1601,7 @@ public function applyUpbringing(arg:int = 0):void {
 		//Pampered
 		case GLOBAL.UPBRINGING_PAMPERED:
 			pc.willpowerRaw--;
-			pc.credits += 1000;
+			pc.credits += 2000;
 			break;
 		//Athletic
 		case GLOBAL.UPBRINGING_ATHLETIC:
@@ -2255,9 +2255,18 @@ public function ohShitGameStarts():void {
 	creationHeader("THE\nMESSAGE");
 	
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
-	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
-	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
-	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");
+	output("\n\n<i>“Message complete,”</i> the codex blithely states.\n\n<i>Fuck!</i>");
+	clearMenu();
+	addButton(0,"Next",gameStartOutro);
+}
+
+public function gameStartOutro():void
+{
+	clearOutput();
+	showName("TO\nSPACE!");
+	author("Fenoxo");
+	output("You hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
+	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)\n\nAfter [rival.name]'s headstart, there's no time to waste! You pull up the first set of coordinates - to a planet known as Mhen'ga, and blow through the undocking proceedures as fast as the local authorities will allow. Besides, <b>you can return to Tavros once you have the funds for a shopping spree!</b>");
 	minutes = 2;
 	hours = 6;
 	days = 1;
@@ -2269,11 +2278,11 @@ public function ohShitGameStarts():void {
 	shipLocation = "TAVROS HANGAR";
 	generateMap();
 
+	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (false)//if(demo) 
 		addButton(0,"Next",demoOver);
 	else 
-		addButton(0,"Next",mainGameMenu);
-	
+		addButton(0,"Next",flyTo,"Mhen'ga");
 }
 
 

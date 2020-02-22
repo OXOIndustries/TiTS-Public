@@ -187,7 +187,7 @@ public function getSumPleasureWhenYouWinVsLGBT():void
 		output("\n\n<i>“What... what do you want, you awful foreigner?!”</i> snaps the male at last, pugnaciousness at last beating out fear. <i>“Can’t you see we’re busy?”</i>");
 	}
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[Fuck Him] [Fuck Her] [Double Oral]
 	clearMenu();
 	if(pc.hasVagina()) addButton(0,"Ride Him: V",vaginaRouter,[getDatGobboDick,standInGabiCockVolume(),0,0],"Ride Him: Vaginal","That dick looks pretty inviting.");
@@ -393,7 +393,7 @@ public function doubleOralFunsiesBunsies():void
 	}
 	//[Big Dick] [Pussy Lick] [Double Dick]
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	if(pc.hasCock() && pc.biggestCockVolume() > gobboVagiCapacity()) addButton(0,"Big Dick",bigDickDoubleGabiScene,pc.biggestCockIndex(),"Big Dick","");
 	else addDisabledButton(0,"Big Dick","Big Dick","You need a big dick for this. Too big to stuff in the gabilani’s pussy.");
@@ -573,7 +573,7 @@ public function revengeForTheRevengeGod():void
 	output("\n\n<i>“Yeah.”</i> You turn and give " + (maleBitch ? "his thick, muscular frame":"her soft, Rubenesque frame") + " a thoughtful look. <i>“" + (maleBitch ? "You got some lube up here, right? I think I’ll fuck you in the ass whilst I watch.":"Get under the desk and lick me, ok?") + "”</i>");
 
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",gabilaniRevengePt2,maleBitch);
 }
@@ -791,7 +791,7 @@ public function bimboSubmitToGabbi():void
 	output("\n\n<i>“Power the weapons down!”</i> The female’s tone drips with lusty anticipation. <i>“I keep telling you I want a pet on these trips of ours, don’t I? That alien looks absolutely perfect, and she’s volunteering. She <b>wants</b> to be our slutty little carry-on toy. Come on up, cutie!”</i>");
 	output("\n\nThe LG-BT’s armaments shudder and then slump downwards with a disappointed hum. A line of rungs leading up its legs light up, and a hatch in the synth glass opens with a click. Yay! You bounce across to the leg, happily clamber up.");
 	// +Lust, move to random non-quest square on Tarkus
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",bimboSubmitToGabbi2);
@@ -808,7 +808,7 @@ public function bimboSubmitToGabbi2():void
 	output("\n\n<i>“Don’t I have the best ideas, dear?”</i> she inquires sweetly. <i>“You were going to blow the poor sweet thing up! Instead we now have an alien pet we can both enjoy, whilst we’re taking in the sights.”</i>");
 	output("\n\n<i>“Yes darling... oh words... this alien is... ungh! Ungh!”</i> You coo as the male’s hands grip into your hips hard, and you feel your [pc.vagina] being swollen out with a heavy, warm, oily load of cum, delivered with a jackhammer of rapturous thrusts. <i>“...is certainly enjoyable,”</i> he groans, coming loose from you in an oily slide and sinking blissfully into the writhing waters of the mini-sauna, reaching for a handy box of cigars. You turn and snuggle into his compact, meaty frame happily." + (pc.tallness > 5*12+9 ? " He’s like a little blue teddy bear to you. A little blue teddy bear with a lovely big cock!":"") + " A moment later the female releases her jiggling blue flesh from the repressive confines of her jumpsuit and squeezes in there with you. It’s pretty squashed in the mini-sauna with three of you, but that just makes it more cozy, more sexy, lots of nice, gabilani flesh for you to slide your [pc.butt] and [pc.chest] against, sink your hands into. Wet, hot, giggly, sighing, groping and happy - bimbo heaven.");
 	//Lust +70%, load in pussy
-	pc.lust(70);
+	pc.changeLust(70);
 	pc.loadInCunt(new LGBTPilots(),0);
 	clearMenu();
 	addButton(0,"Next",bimboSubmitToGabbi3);

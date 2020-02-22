@@ -97,7 +97,12 @@ package classes.Characters
 			this.cocks = new Array();
 			
 			this.createCock();
-			this.cocks[0].cLengthRaw = 15; //I dunno how to specify 'type: horse'
+			this.cocks[0].cType = GLOBAL.TYPE_EQUINE;
+			this.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
+			this.cocks[0].cockColor = "pink";
+			this.cocks[0].cLengthRaw = 14; //I dunno how to specify 'type: horse'
 			this.cocks[0].cThicknessRatioRaw = 1.4
 			this.balls = 2; 
 			this.cumMultiplierRaw = 20; 
@@ -116,7 +121,9 @@ package classes.Characters
 			this.cockVirgin = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
-			this.vaginas[0].bonusCapacity = 9000;
+			this.vaginas[0].bonusCapacity = 200;
+			this.vaginas[0].vaginaColor = "black";
+			this.vaginas[0].type = GLOBAL.TYPE_EQUINE;
 			this.elasticity = 1;
 			this.fertilityRaw = 1.05;
 			this.pregnancyMultiplierRaw = 1;

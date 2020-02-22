@@ -183,7 +183,7 @@ public function korgiLadyDickLossPart3(x:int):void
 	output(" The korgonne girl gently touches the swell of her midriff and her whole body tenses, shivering delight locking her onto you tighter and tighter.");
 
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",korgiLadyDickLossPart4,x);
 }
@@ -559,7 +559,7 @@ public function rideTheKorgiTongue():void
 
 	output("\n\nTeasing pokes of her lengthy tongue at the bare periphery of your slit turn to slight caresses, her lips rolling over your mound with warm pecks on your left side, then your right. Opening her mouth, she engulfs the whole length of your slit, hot breath against your lower lips with just the hint of her firm moisture to tantalize. Her hands cup your asscheeks while her thumbs stroke your inner thighs, squeezing your mons as her lips release your labia with a wet pop. Tightening your [pc.thighs], your fingers worrying the plush fuzz of her twitching ears, your hips roll, and you stroke your pelvis against her face, impatient for that warmly-anticipated tongue.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",korgiLicksPCPussPart2);
@@ -622,7 +622,7 @@ public function titfuckKorgonneWin():void
 	if(pc.cocks[x].cLength() < 12) output("You sink into the yielding curves easily, their pliant mass hugging you snugly. The mounds rock gently back and forth as your lubricated shaft slides into their sweet embrace. The barbarian presses her hands to either side of her titanic chest, fingers digging into her fur with restless eagerness. The girl’s added pressure squashes her fat tits tighter, and you pick up your pace to take advantage. Bucking back and forth, riding her fuzzy udders with wild abandon, the girl’s whole body shakes with tidal ripples. Her face curls into a toothy smile and she snakes her cobalt tongue past her sapphire lips to plunge into her cleavage from the top, meeting your prodding flesh within. Lapping up pre-cum, she coils around your [pc.cockHead " + x + "], drawing you deeper with every thrust. Before long, you’re practically bouncing atop the girl’s stout frame. The restrained bulk of her chest thwacks her chin while your organ is jerked off in the pillowy vice of her mammoth milkers.");
 	else output("You brace your monstrous member at the base of her constrained curves, pushing the well-lubricated tip into her cinched cleavage with a groan of effort. The pressure is incredible; the leather straps holding her breasts whine with the strain of your invading girth. Even with your ample lubrication, it’s slow going, her mammary vale at once pliant and firm. Her breasts bulge with every motion, setting off gasps from the girl, who caresses her tender, bound nipples. Your [pc.cockHead " + x + "] pushes through the chesty canyon, glistening inches pushing deeper until the precum-leaking slit emerges from the other side to bump against her little blue nose.");
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",titFuckKorgiWinPart2,x);
 }
@@ -682,7 +682,7 @@ public function pumpKorgiPuss():void
 	output(" thumbs sinking into her plush curves. And yet, under her jiggling exterior, you can feel the firm, corded muscles of the raider’s robust strength. Yielding and yet dense, the girl reminds you of some fruits: sweet, succulent flesh around a firm core.");
 	pc.cockChange();
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",korgiPussPump2,x);
 }

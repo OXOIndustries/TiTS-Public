@@ -10,6 +10,7 @@ package classes.Characters
 	import classes.Items.Transformatives.SheepTF;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Tents.HLTent;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
@@ -33,7 +34,7 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
-			
+			tent = new HLTent();
 			isUniqueInFight = true;
 		}
 		
@@ -41,6 +42,8 @@ package classes.Characters
 		public var unspentStatPoints:int = 0;
 		public var unclaimedClassPerks:int = 0;
 		public var unclaimedGenericPerks:int = 0;
+
+		public var tent:ItemSlotClass = new EmptySlot();
 		
 		public function levelUpAvailable():Boolean
 		{

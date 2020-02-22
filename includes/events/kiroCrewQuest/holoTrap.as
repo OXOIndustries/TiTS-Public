@@ -333,7 +333,7 @@ public function kqVRBlessingRequest():void
 	output("\n\n<i>“Do you need help?”</i> you chance.");
 	output("\n\n<i>“I, I have to cum to bless you,”</i> she pants, rubbing herself harder. <i>“P-please don’t distract me!”</i>");
 	processTime(3);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[LetHerCum] [FuckHer]
 	addButton(0,"LetHerCum",letTheSpriteCummies,undefined,"Let Her Cum","Stay silent and let the girl cum, giving you a blessing.");
 	addButton(1,"Fuck Her",fuckLlaerwyn,undefined,"Fuck Her","Fuck the girl to orgasm to earn your blessing.");
@@ -525,7 +525,7 @@ public function helpDisSurpriseWoman():void
 	output("\n\n<i>“Sure,”</i> you murmur, gently touching her back and unfastening the strap. It falls loose and you hear the swishing of fabric as she discards the bra entirely, throwing it onto the heap of clothes on the dusty, windswept ground. All she’s wearing now is a pair of flowery white panties along with her garterbelt and stockings, looking every bit like a bride ready to consummate her marriage.");
 	output("\n\n<i>“Oh, thank you!”</i> she exclaims, turning back to you with her breasts in plain view. Large and curvy, they <i>heavily</i> accentuate the hourglass figure of this extraordinarily beautiful woman - you find yourself thinking of her as an oasis in the desert of Aulandia, a cursed land if there ever was one. <i>“Hee hee... do you like my breasts, adventurer? Your gaze is making my cheeks hot.”</i>");
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Very Much",veryMuchVRLady,undefined,"Very Much","You love them, in fact. Would she mind if you touched them?");
 	addButton(1,"Yes",yesLadyTheyNiceBoobies,undefined,"Yes","They’re nice breasts.");
@@ -1012,7 +1012,7 @@ public function dontFightDatSalamander():void
 	output("\n\n<i>“Yup!”</i> Hylie says, nodding. <i>“Wouldn’t be much good otherwise. Setting fire to all my own belongings and all. Or using it in more, shall we say,”</i> she says, putting her hands on your shoulders with a grin, <i>“intimate encounters.”</i>");
 	processTime(30);
 	pc.orgasm();
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",fightDatVRSallyMandy2);
 }
@@ -1274,7 +1274,7 @@ public function servingTheDemonLady():void
 	//unlocks [Sex]
 	flags["KQ_VR_DEMONSERVING"] = 1;
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	//menu
 	vrDemonTalkMenu(4);
 }
@@ -1293,7 +1293,7 @@ public function whoCreatedThisBitch():void
 	output("\n\n<i>“Let’s change the subject,”</i> you suggest, and Ithzan nods, slowly resuming her previous cross-legged position.");
 	output("\n\n<i>“Thank you,”</i> she says quietly.");
 	processTime(7);
-	pc.lust(5);
+	pc.changeLust(5);
 	vrDemonTalkMenu(5);
 }
 
@@ -1316,7 +1316,7 @@ public function demonBangVR():void
 		output("\n\n<i>“Try me and find out,”</i> she says, smiling faintly. <i>“Anything you want.”</i>");
 	}
 	processTime(1);
-	pc.lust(10);
+	pc.changeLust(10);
 	kqVRDemonSexMenu();
 	//[GetAnal] [GetVaginal] [SuckCock]
 	//[GiveAnal] [GiveVaginal] [GetOral]
@@ -1393,7 +1393,7 @@ public function getVRDemonAnal():void
 	}
 	output("\n\nA low grunt escapes your lips as Ithzan near-silently slams another orgasm out of your quivering asshole, her stiff cock penetrating to your very core and loosening the tension in your entire body. The puddle of mixed juices between your shaking legs continues to grow, your face flushed and sweaty while demoness dick fucks you silly. Your [pc.ass] shakes with every thrust, your skin rippling with the force of her.");
 	output("\n\nRight as you’re on the verge of whiting out, you close your eyes tight and let out a whorish moan - only to feel the most confusing sensation, driving you to open your eyes once more. You’re standing before Ithzan, her cock is in her hand - and she’s squeezing it, giving you a devious little grin.");
-	if(pc.isHerm()) output(" You blow a massive load all over the ground, your knees shaking as you empty out what feels like every last drop in your balls after getting it so hard. Strangely, it feels like you’re cumming <i>more</i> than you were while she was demonstrating her sexual prowess on you.");
+	if(pc.isHerm()) output(" You blow a massive load all over the ground, your knees shaking as you empty out what feels like every last drop in your " + (pc.balls > 1 ? "balls":"body") + " after getting it so hard. Strangely, it feels like you’re cumming <i>more</i> than you were while she was demonstrating her sexual prowess on you.");
 	else if(pc.hasCock()) 
 	{
 		output(" You blow a massive load all over the ground, your knees shaking as you empty out what feels like");
@@ -1431,7 +1431,7 @@ public function getVRDemonAnal():void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1508,7 +1508,7 @@ public function getVaginalFromVRDemon():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1551,7 +1551,7 @@ public function suckDatVRDemonCock():void
 	processTime(25);
 	var templust:Number = pc.lust();
 	pc.lustRaw = templust;
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1606,7 +1606,7 @@ public function giveVRDemonAnal(x:int = 0):void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1677,7 +1677,7 @@ public function giveVaginalToDemonVR():void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1817,7 +1817,7 @@ public function getOralFromDatVRDemon():void
 	var templust:Number = pc.lust();
 	pc.orgasm();
 	pc.lustRaw = templust;
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Next] //takes you back to her talk menu
 	addButton(0,"Next",kqVRDemonBossBack);
@@ -1881,7 +1881,7 @@ public function askVRDemonAboutTime():void
 	output("\n\nIthzan’s eyes widen. <i>“One... I have never given it thought. I... Maybe... I- I don’t know. I think... there is a chance I might.”</i>");
 	output("\n\nHer tail begins to sway in the air behind her, her thoughts occupying her for the moment.");
 	processTime(8);
-	pc.lust(3);
+	pc.changeLust(3);
 	flags["KQ_VR_DEMONTIME"] = 1;
 	//unlocks [Escape]
 	//unlocks [StayForever]
@@ -1997,7 +1997,7 @@ public function outOfThatVRNightmare():void
 		if(pc.hasCock()) output(", your [pc.cocks] slowly springing upright as " + (!pc.hasCocks() ? "it hardens":"they harden") + ".");
 		output("\n\n<i>“Well done, whore,”</i> the floating text congratulates you as you’re returned to the bench, your restraints reappearing as if they had never left. <i>“Be sure to make <b>full</b> use of your new gifts. We’re sure you’ll enjoy them.”</i>");
 		processTime(15);
-		pc.lust(30);
+		pc.changeLust(30);
 		pc.taint(5);
 		pc.libido(5);
 		pc.createPerk("Whore-Stamped",0,0,0,0,"Marks you as the whore that you are.");

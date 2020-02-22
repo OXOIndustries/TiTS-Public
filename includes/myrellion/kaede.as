@@ -1032,7 +1032,7 @@ public function meetCassWithKaede():void
 	output(" until you finally manage to tear her catsuit away to reveal the puffy pink lips of an utterly sodden pussy, bridged by thick ropes of fragrant fem-slime and burning with a needy heat that draws your fingers in; you push into the kitty-cow’s slit, spreading her nice and wide, feeling the remnants of the lustful beauty’s many, many recent tumbles in the hay with your mutual lover. Cass moans, arching her back and slathering your probing digits with a thick coating of translucent moisture.");
 	output("\n\n<i>“Oooh, I think we’re gonna get along!”</i> Cass giggles, groping at her tits until a steady trickle of creamy white runs down her ample mounds.");
 	//New pg. Herms can choose scene; otherwise pick from below.
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(14);
 	clearMenu();
 	if(pc.isHerm())
@@ -1077,7 +1077,7 @@ public function cockVersionOfCaedeCassFuck():void
 	output("\n\nKaede shudders, stepping around the couch and out of Cass’s reach. As she does, her hand runs across your bare back, eventually caressing your [pc.butt] between womb-deep thrusts into the mother of her child. <i>“Sorry, Cass, I don’t think I can go another round,”</i> she sighs, vanishing out of sight behind you. <i>“You’ve got me drained dry!”</i>");
 	output("\n\nCass starts to laugh, but just ends up breaking down into a low, mooing moan. <i>“Ah, at least you brought me this hunk of meat!”</i> she grunts, smacking your ass. <i>“You were soooo right about [pc.himHer]! So good!”</i>");
 	output("\n\nYou grin, keenly aware of Kaede watching you fuck her friend - and you’re fairly certain you saw a prominent little package peeking out from the puppy-slut’s pants. Maybe she’s a little more willing to hop in than she lets on... then again, it wouldn’t be hard to just bust your nut in her girlfriend’s cooch here and now! If you’re any judge, Cass is just on the verge of another orgasm... getting a nice dose of cum right in her womb would definitely push her over!");
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(12);
 	clearMenu();
 	addButton(0,"Invite Kaede",inviteKaedeToCassFuck,undefined,"Invite Kaede","See if you can get both of your red-headed spacer babes in bed together...");
@@ -1118,7 +1118,7 @@ public function inviteKaedeToCassFuck():void
 	output("\n\nWith that kind of treatment - not to mention verbal stimulation - you know you don’t have long to last. With the canny instinct only a cum-hungry New Texan cow can manage, Cass gleefully rubs her feet against your [pc.butt] and croons, <i>“What’s it gonna be, [pc.name]. Do you wanna have your chance to breed me? Or would you rather make a great big mess of my girlfriend’s lil’ butt? I wouldn’t blame you... if I had a dick, you couldn’t pry me outta there!”</i>");
 	output("\n\nWhich two choice offers on the table, which of your lascivious lovers do you choose to grace with your climax?");
 	processTime(17);
-	pc.lust(100);
+	pc.changeLust(100);
 	IncrementFlag("KAEDE_FUCKED");
 	//[Kaede’s Ass] [Cass’s Cunt]
 	clearMenu();
@@ -1265,7 +1265,7 @@ public function vaginalCassKaedeThreesome():void
 	output("\n\nAll that’s left for you to do is keep your [pc.tongue] wriggling between her juicy walls, letting the cow-girl ride her way through the coming climax. And ride she does, bucking her hips and grinding her cooch against your face, reaching down to rub her clit and bellow her pleasure to the heavens. You’re treated to a miniature waterfall of fem-cum that splatters across your cheeks, bathing you in Cass’s alluring scent even as your tongue drinks in the sweetly bitter taste of her twat all through her orgasm, right until she’s collapsing on the couch and gasping for breath.");
 	output("\n\nOf course that doesn’t stop you or anything. You reckon Kaede’s gonna need plenty of time to recover...");
 	processTime(19);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	//[Next]
 	addButton(0,"Next",girlsCassMeetingEpilogue);

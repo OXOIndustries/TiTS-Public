@@ -253,17 +253,17 @@ public function gewinFruit(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(5);
+		pc.changeHP(5);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(15);
+		pc.changeHP(15);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(50);
+		pc.changeHP(50);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
@@ -306,20 +306,20 @@ public function getYokto(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(2);
-		pc.energy(2);
+		pc.changeHP(2);
+		pc.changeEnergy(2);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(7);
-		pc.energy(7);
+		pc.changeHP(7);
+		pc.changeEnergy(7);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(25);
-		pc.energy(25);
+		pc.changeHP(25);
+		pc.changeEnergy(25);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
@@ -415,20 +415,20 @@ public function strawberryIcedCream(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(2);
-		pc.energy(2);
+		pc.changeHP(2);
+		pc.changeEnergy(2);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(7);
-		pc.energy(7);
+		pc.changeHP(7);
+		pc.changeEnergy(7);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(25);
-		pc.energy(25);
+		pc.changeHP(25);
+		pc.changeEnergy(25);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, servingType));
 	clearMenu();
@@ -468,20 +468,20 @@ public function jumbiJumbiCream(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(1);
-		pc.energy(1);
+		pc.changeHP(1);
+		pc.changeEnergy(1);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(3);
-		pc.energy(3);
+		pc.changeHP(3);
+		pc.changeEnergy(3);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(9);
-		pc.energy(9);
+		pc.changeHP(9);
+		pc.changeEnergy(9);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
@@ -524,20 +524,20 @@ public function darginutIcedCream(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(5);
-		pc.energy(1);
+		pc.changeHP(5);
+		pc.changeEnergy(1);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(13);
-		pc.energy(5);
+		pc.changeHP(13);
+		pc.changeEnergy(5);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(40);
-		pc.energy(20);
+		pc.changeHP(40);
+		pc.changeEnergy(20);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
@@ -583,20 +583,20 @@ public function chocolateIcedCream(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(2);
-		pc.energy(2);
+		pc.changeHP(2);
+		pc.changeEnergy(2);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(7);
-		pc.energy(7);
+		pc.changeHP(7);
+		pc.changeEnergy(7);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(25);
-		pc.energy(25);
+		pc.changeHP(25);
+		pc.changeEnergy(25);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, servingType));
 	clearMenu();
@@ -642,20 +642,20 @@ public function flameberksIcedCream(servingType:String = "cone"):void
 	if(servingType == "cone") 
 	{
 		processTime(4);
-		pc.HP(1);
-		pc.energy(1);
+		pc.changeHP(1);
+		pc.changeEnergy(1);
 	}
 	else if(servingType == "bowl") 
 	{
 		processTime(8);
-		pc.HP(3);
-		pc.energy(3);
+		pc.changeHP(3);
+		pc.changeEnergy(3);
 	}
 	else 
 	{
 		processTime(12);
-		pc.HP(9);
-		pc.energy(9);
+		pc.changeHP(9);
+		pc.changeEnergy(9);
 	}
 	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();

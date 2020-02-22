@@ -119,7 +119,7 @@ public function approachAinaOnTheWalkway():void
 	output("\n\nWhat do you do?");
 	
 	processTime(2);
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	clearMenu();
 	addButton(0, "Help Her", helpAina);
@@ -201,7 +201,7 @@ public function helpAina():void
 	else output(", even though you’re not a taur!");
 	
 	processTime(10+rand(5));
-	pc.lust(25);
+	pc.changeLust(25);
 	
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0, "Offer Sex", helpAinaWithSex);
@@ -269,7 +269,7 @@ public function leaveAinaAlone():void
 	output("\n\nIt takes a few minutes to get back to normal, though you still feel a palpable tingling in your loins.");
 	
 	processTime(2);
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -386,7 +386,7 @@ public function ainaMenu():void
 			
 				output("\n\nYou can definitely smell it! Every time her equine tail flicks, you’re hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
 			
-				pc.lust(5);
+				pc.changeLust(5);
 			} 
 			else 
 			{
@@ -910,7 +910,7 @@ public function ainaSexedFisting():void
 	
 	ainaSexed(1);
 	processTime(20 + rand(15));
-	pc.lust(35);
+	pc.changeLust(35);
 	
 	flags["AINA_LAST_DAY_RELIEVED"] = days;
 	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
@@ -1093,7 +1093,7 @@ public function ainasDresser():void
 	if(silly) output(" It’s an adventurer’s privilege to rummage through civilian’s belongings!");
 	output("\n\nYou’re a little surprised to find out she has an underwear drawer with not just bras but panties in them, and they’re huuuge! You pull out a pair of striped green and white bikini briefs, though they’re wider than most people’s shoulders to fit over her massive equine rump. Not only does she have centaur underwear, the cotton crotch fabric is a bit damp. It’s heavy with her dizzying mare musk, making you horny just <i>holding</i> them...");
 	output("\n\n...What do you do?");
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(2);
 	//[AskToKeep] [Steal] [PutBack]
 	clearMenu();

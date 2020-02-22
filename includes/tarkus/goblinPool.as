@@ -705,7 +705,7 @@ public function arbetzSexScenes(response:String = ""):void
 		// + Lust
 		processTime(25);
 		pc.girlCumInMouth(pp);
-		pc.lust(35);
+		pc.changeLust(35);
 		IncrementFlag("ARBETZ_SEX_ORAL");
 		
 		addButton(0, "Next", mainGameMenu);
@@ -755,7 +755,7 @@ public function arbetzSexScenes(response:String = ""):void
 		// + Lust
 		processTime(25);
 		pc.girlCumInMouth(pp);
-		pc.lust(35);
+		pc.changeLust(35);
 		IncrementFlag("ARBETZ_SEX_ORAL");
 		
 		addButton(0, "Next", mainGameMenu);
@@ -1214,8 +1214,8 @@ public function arbetzSexScenes(response:String = ""):void
 		
 		// - 100% Lust, - 5% HP, - 10% Energy
 		processTime(35);
-		pc.HP(-5);
-		pc.energy(-10);
+		pc.changeHP(-5);
+		pc.changeEnergy(-10);
 		pc.orgasm();
 		pc.orgasm();
 		IncrementFlag("ARBETZ_SEX_HATE_FUCK");
@@ -1353,7 +1353,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		output(" with a mixture of pity and fondness. <i>“Talk to Petr. He’ll fix you up with some swim gear, if you don’t have any yourself. Then maybe we’ll try again.”</i>");
 		
 		processTime(2);
-		pc.lust(5);
+		pc.changeLust(5);
 		
 		//Unlocks Petr
 		flags["PETR_UNLOCKED"] = 1;
@@ -1422,11 +1422,12 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	
 	// + Lust, ++ Lust if Exhibitionist
 	processTime(25);
-	pc.lust(10);
-	if (pc.exhibitionism() >= 25) pc.lust(10);
-	if (pc.exhibitionism() >= 50) pc.lust(10);
-	if (pc.exhibitionism() >= 75) pc.lust(10);
-	if (pc.exhibitionism() >= 100) pc.lust(10);
+	var lustC:Number = 10;
+	if (pc.exhibitionism() >= 25) lustC += 10;
+	if (pc.exhibitionism() >= 50) lustC += 10;
+	if (pc.exhibitionism() >= 75) lustC += 10;
+	if (pc.exhibitionism() >= 100) lustC += 10;
+	pc.changeLust(lustC);
 	
 	addButton(0, "Next", mainGameMenu);
 }

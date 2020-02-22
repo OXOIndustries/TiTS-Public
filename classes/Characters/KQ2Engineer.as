@@ -297,7 +297,7 @@ package classes.Characters
 				output(" and takes a knee next to it, yanking off its back panel and starting to pull wires. After a moment's work, the drone's shields flicker with renewed strength.");
 			}
 			
-			target.shields(target.shieldsMax() * 0.3);
+			target.changeShields(target.shieldsMax() * 0.3);
 			createStatusEffect("Shield Regen Cooldown", 5);
 		}
 		

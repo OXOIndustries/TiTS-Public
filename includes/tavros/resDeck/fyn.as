@@ -1447,7 +1447,7 @@ public function deckMyHalls():void
 	output("\n\nWith a wave of his finger, he motions for you to put on your costume as well. <i>“Go on. I’ll be waiting,”</i> he smirks at you as you blush. You look down at the tiny garments and smile. This is going to be the most fun you’ve had in a long time.");
 
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",deckMyHalls2);
 }
@@ -1473,7 +1473,7 @@ public function deckMyHalls2():void
 
 	//[Lust: 30]
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",deckMyHalls3);
 }
@@ -1543,7 +1543,7 @@ public function eatMyCookieDuuuuude():void
 	output("\n\nWith a wave of his finger, he motions for you to put on your costume as well. <i>“Go on. I’ll be waiting,”</i> he smirks at you as you blush. You look down at the tiny garments and smile. This is going to be the most fun you’ve had in a long time.");
 	//[Lust: 15]
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",eatMyCookieDuuuuude2);
 }
@@ -1670,7 +1670,7 @@ public function showMeTheSouthPole():void
 	output("\n\nWith a wave of his finger, he motions for you to put on your costume as well. <i>“Go on. I’ll be waiting,”</i> he smirks at you as you blush. You look down at the tiny garments and smile. This is going to be the most fun you’ve had in a long time.");
 	//[Lust: 15]
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",showMeTheSouthPole2);
 }
@@ -1694,7 +1694,7 @@ public function showMeTheSouthPole2():void
 	output("\n\n<i>“Bad elves don’t decide where Santa puts his hands. On your knees, facing towards the headboard,”</i> he instructs, moving back so that you can turn around to kneel on the bed, your backside raised invitingly towards him. <i>“Move closer to the headboard,”</i> he tells you, and you immediately oblige, wanting nothing more than to please him.");
 	output("\n\nAs Fyn reaches over you, you realize with a start that he’s planning on putting those silk ropes you noticed earlier to good use. You close your eyes and shiver excitedly when he asks you to give him your hand, which you eagerly do.");
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",showMeTheSouthPole3);
 }

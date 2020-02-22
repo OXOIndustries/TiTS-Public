@@ -605,7 +605,7 @@ public function badEndToDatPo2():void
 	output("\n\nGroggy from sedation and potent orgasm, you blink your bleary eyes and try to think about something other than groping Illustria’s gorgeous titties. <i>“Uh, I guess... I could... wait... betters?”</i> You stare longingly at those swaying cyber-udders. What in the universe could be better than those? <i>“Maybe... I guess... like, for your tits, sure.”</i>");
 	output("\n\nYou miss Doctor Po’s cheshire grin, too busy with sweet pleasure of beholding two breasts that grow more attractive with each passing second. You could almost cum from watching them wobble...");
 	processTime(20);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.intelligence(-5);
 	pc.willpower(-5);
 	clearMenu();
@@ -717,7 +717,7 @@ public function badEndToDatPo3():void
 		pc.loadInCunt(kiro, 0);
 		pc.loadInMouth(enemy);
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.intelligence(-5);
 	pc.willpower(-5);
 	
@@ -794,7 +794,7 @@ public function badEndToDatPo4():void
 	{
 		pc.orgasm();
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.intelligence(0, true);
 	pc.willpower(0, true);
 	
@@ -814,7 +814,7 @@ public function badEndToDatPo5():void
 	output("\n\nAll that worry vanishes when your new Owner, Mistress Zo’dee, tells you to calm down and relax.");
 	output("\n\nOh course she’s right. You stand there, a contented smile slowly spreading on you and your sister-slave’s mouths at the command. Everything is going to be fine, and you have nothing to worry about. After all, Kiro’s right there, a few feet away, and you’re sure your new Mistress is going to give you plenty of chances to polish her pole.");
 	output("\n\nIllustria certainly loved it.");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",badEndToDatPo6);
 }
@@ -835,7 +835,7 @@ public function badEndToDatPo6():void
 	output("\n\nJust today, she told you she wanted you to spend the day sucking Kiro’s cock, ‘to really stretch out that slut jaw of yours,’ and it’s working fabulously.");
 	output("\n\nYou blink away the mask of cum covering your [pc.eyes] and twist the corners of your mouth into a smile. Kiro looks so happy when your nose brushes against her musky sheath. If you weren’t absolutely stuffed with dick and cum, you might even confess your love for the dolled-up kui-tan.");
 	output("\n\nYou can always communicate your love via sex anyhow. It’s almost as natural as breathing. Besides, <b>you and Kiro are crewmates now. Mission accomplished!</b>");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	//BAD END :3
 	badEnd();
 }
@@ -1694,10 +1694,10 @@ public function kirosDistressCall(destination:String):void
 	clearOutput();
 	showKiro();
 	author("Fenoxo");
-	output("The message cuts directly to poorly lit close-up of Kiro’s face. She looks like she’s hiding in a closet, her face uncomfortably close to whatever she broadcasted from. Splotches of oil and something... pink mat down ugly circles in her fur. <i>“[pc.name]!”</i> In the corner of the frame, her laser pistol shakes uncontrollably in her hand. <i>“I don’t even know if this’ll reach you, but Angel... I fucked up. I fucked up bad.”</i> Heavy footfalls sound from somewhere nearby. <i>“This freighter... it wasn’t abandoned. It was a trap. A trap for people like me.”</i> Kiro’s tail poofs out with fear as something electronic beeps. <i>“I’ve attached the coordinates. Please... help, Ang-”</i>");
+	output("The message cuts directly to a poorly lit close-up of Kiro’s face. She looks like she’s hiding in a closet, her face uncomfortably close to whatever she broadcasted from. Splotches of oil and something... pink mat down ugly circles in her fur. <i>“[pc.name]!”</i> In the corner of the frame, her laser pistol shakes uncontrollably in her hand. <i>“I don’t even know if this’ll reach you, but Angel... I fucked up. I fucked up bad.”</i> Heavy footfalls sound from somewhere nearby. <i>“This freighter... it wasn’t abandoned. It was a trap. A trap for people like me.”</i> Kiro’s tail poofs out with fear as something electronic beeps. <i>“I’ve attached the coordinates. Please... help, Ang-”</i>");
 	output("\n\nThe pneumatic hiss of a door swishing open seems to happen simultaneously with a metallic limb flying into frame, wrapping around Kiro’s mouth.");
 	output("\n\nThe feed cuts to empty static.");
-	output("\n\nYour computer received the coordinates before... whatever that was interfered, if you dare try to save her.");
+	output("\n\nYour computer received the coordinates before... whatever that was... interfered. Do you dare try to save her?");
 	processTime(1);
 	flags["KQ_START"] = GetGameTimestamp();
 	shipLocation = "SPACE";
@@ -1749,7 +1749,7 @@ public function kq12HourTF():void
 		output("\n\nAny reply is cut off by the call’s sudden end. The longer you wait, the more this madwoman is free to modify your friend’s body and mind. You’ve got to hurry!");
 	}
 	processTime(3);
-	pc.lust(2);
+	pc.changeLust(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1774,7 +1774,7 @@ public function kq18HourTF():void
 	kiro.refractoryRate++;
 	kiro.createPerk("MinCumQ",2000);
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1817,7 +1817,7 @@ public function kq24HourTF():void
 	}
 	kiro.createPerk("Ever-Milk",5000);
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1905,7 +1905,7 @@ public function kq36HourTF():void
 	kiro.vaginas[0].bonusCapacity += 100;
 	kiro.ass.bonusCapacity += 100;
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1926,14 +1926,14 @@ public function kq42HourTF():void
 	output("\n\nKiro blubbers through lips that look a bit bigger than you recall, <i>“Yuh-huh!”</i>");
 	output("\n\n<i>“What is your designation?”</i>");
 	output("\n\nThe kui-tan’s head lolls as her own milk rains down on her face. With her eyes rolled halfway back, she mumbles, <i>“Six... sixty... fiiiiive.”</i>");
-	output("\n\n<i>“Good toy.”</i> The machine-like hermaphrodite increases the tempo of the fuck, riding Kiro cow-girl faster than a human could ever hope to. Kiro’s flare appears in relief, its shape proudly displayed in the glossy latex skin that stretches around it. <i>“When 65 is a good toy, 65 feels good. Repeat.”</i>");
+	output("\n\n<i>“Good toy.”</i> The machine-like hermaphrodite increases the tempo of the fuck, riding Kiro cowgirl faster than a human could ever hope to. Kiro’s flare appears in relief, its shape proudly displayed in the glossy latex skin that stretches around it. <i>“When 65 is a good toy, 65 feels good. Repeat.”</i>");
 	output("\n\n<i>“When... 65... is... Stars, you’re a kinky slut!”</i> Kiro wears a sloppy grin until the fuck slows. <i>“Right, right... when 65 is a good toy, 65 feels good!”</i>");
 	output("\n\nThe fuck resumes, and Illustria flicks the feed off once more, her face floating back into frame. <i>“She’s almost ready, [pc.name]. Look at how <b>obedient</b> she’s getting, how willing to serve. She even thinks it’s me that she’s fucking right now. I told her I wanted to ride her in a different body before I walked out, and she doesn’t care. The next time you see her, 65 will be ready. A little work on her lips and tits, maybe an increase in the hedonary feed, and she’ll happily lick my feet while she waits to be used." + (onPosShip() ? " ...and once I finish with her, you’ll be able to receive my undivided attention...":"") + "”</i>");
 	output("\n\nThe message ends.");
 	kiro.lipMod++;
 	kiro.breastRows[0].breastRatingRaw += 16;
 	processTime(3);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1960,8 +1960,8 @@ public function kq48HourTF():void
 	output("\n\n<i>“65, do you want [pc.name] to be your new owner?”</i>");
 	output("\n\nKiro’s nose wrinkles, and she removes her finger with excessive slowness. <i>“Do I... want [pc.name] to own me?”</i> She chews her lip. <i>“I want everyone to own me, Mistress.”</i>");
 	output("\n\nThat makes Illustria Po laugh. <i>“I see you’re still full of rodenian chemicals. No, what I meant was, obedience aside, would you enjoy being owned by [pc.name]?”</i>");
-	output("\n\nKiro says, <i>“Oooooooooh,”</i> then taps her chin. <i>“Yeah probably. [pc.HeShe] saved my life, and [pc.heShe] helped me out so much that I’d trust [pc.himHer] to treat me right even if I wasn’t a fuckdoll, and now that I am, I can be pretty confident [pc.name] would take great care of me so I could serve [pc.himHer] for a long, long time.");
-	if(flags["KIRO_BF_TALK"] == 1) output(" [pc.HeShe] would have to break up with me, though, because I’m just a fucktoy.”</i>\n\n<i>“And if he told you to be [pc.hisHer] perfect wife?”</i>\n\n<i>“Then I’d be [pc.hisHer] fucktoy wife forever,”</i> Kiro smartly answers. <i>“That’s a silly question.");
+	output("\n\nKiro says, <i>“Oooooooooh,”</i> then taps her chin. <i>“Yeah, probably. [pc.HeShe] saved my life, and [pc.heShe] helped me out so much that I’d trust [pc.himHer] to treat me right even if I wasn’t a fuckdoll, and now that I am, I can be pretty confident [pc.name] would take great care of me so I could serve [pc.himHer] for a long, long time.");
+	if(flags["KIRO_BF_TALK"] == 1) output(" [pc.HeShe] would have to break up with me, though, because I’m just a fucktoy.”</i>\n\n<i>“And if [pc.heShe] told you to be [pc.hisHer] perfect wife?”</i>\n\n<i>“Then I’d be [pc.hisHer] fucktoy wife forever,”</i> Kiro smartly answers. <i>“That’s a silly question.");
 	output("”</i>");
 	output("\n\nIllustria says, <i>“Good girl. You heard the toy, [pc.name]. Come buy her if you want her. I think I’ll be keeping her around for a while.”</i>");
 	output("\n\nThe message ends.");

@@ -1612,7 +1612,7 @@ public function fazianQuestApproachBackWaitLeave():void
 
 	output("You unobtrusively head back to the street, the sound of enthusiastic macking following you all the way.");
 
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(20+rand(5));
 
 	clearMenu();
@@ -2156,7 +2156,7 @@ public function fazianQuestEhstraffeLoss():void
 		
 		pc.removeAll();
 		pc.createStatusEffect("Psi Slave Collar", 0.5, 0.5, 200, 0, false, "Radio", "This metal collar limits your intelligence capacity and willpower while worn, making you completely subservient to the will of the one who operates it.", false, 0, 0xFF0000);
-		pc.lust(75);
+		pc.changeLust(75);
 		
 		clearMenu();
 		addButton(0, "Next", function():void {

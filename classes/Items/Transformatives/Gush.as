@@ -380,7 +380,7 @@ package classes.Items.Transformatives
 					pc.milkFullnessAdd(100, false);
 				}
 				//Actually boost boobs 'n shit
-				pc.lust(pc.lustMax());
+				pc.changeLust(pc.lustMax());
 				//libido gains with next page.
 				for(x = 0; x < pc.bRows(); x++)
 				{
@@ -479,14 +479,14 @@ package classes.Items.Transformatives
 					output(" sympathetically, oozing [pc.girlCum].");
 				}
 				pc.milkRate += 5;
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 			//Increased ability to store milk (capacity multiplier). Maxes out at 3x normal.
 			else if(pc.milkStorageMultiplier < 3 && rand(2) == 0)
 			{
 				output("\n\nAfter a workout like that, you’re pretty confident <b>your [pc.chest] are going to be even better at holding milk</b>, something about more elastic mammary and duct tissue and fat deposit conversion. You remember reading it in your codex before, but it can’t compare to knowing you’re turning into a [pc.milkNoun]-squirting machine who could win milking competitions while cumming nonstop.");
 				pc.milkStorageMultiplier += 0.25;
-				pc.lust(10);
+				pc.changeLust(10);
 			}
 			//Extra nipple per boob
 			else if(rand(5) == 0 && pc.nipplesPerBreast < 4)
@@ -494,7 +494,7 @@ package classes.Items.Transformatives
 				output("\n\nWhoah, fuck! Your hand was just kind of idly tugging at one of your [pc.nipples] when your knuckle brushed another one... one that shouldn’t be there. You look down in shock and arousal, suddenly and totally aware that <b>your tips have doubled into multiple teats connected by enlarged areolae!</b> And with twice the milkspouts comes twice the pleasure. You can barely resist tugging on them at this very moment. It’d feel sooo good.");
 				pc.nipplesPerBreast *= 2;
 				//+33 lust.
-				pc.lust(33);
+				pc.changeLust(33);
 				//+1libido
 				pc.libido(1);
 			}

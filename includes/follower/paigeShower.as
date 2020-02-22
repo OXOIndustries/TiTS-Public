@@ -214,7 +214,7 @@ public function paigeTastesLikeSoap():void
 	output("\n\nThe shower’s water went cold some time ago. Paige, for the most part, just needed to clean her crotch, while you have most of your front to vigorously scrub. Like a sweetheart, though, she sticks around, innocently helping you wash herself off of you. With her help, you’re clean before you know it, and then you’re drying each other off. " + (pc.hasCock() ? "[pc.EachCock] has hardly gone unnoticed this whole while, still standing at attention and begging, absolutely pleading for some action." : "Your own [pc.vagina] stands out, puffy and needy against the cold air, and it’s certainly not gone unnoticed.") + " Paige offers to return the favor, more than once, but you decline each time, knowing that if she did, it’d be a cycle between you two that would last for hours. She understands, but promises you that she owes you one.");
 	output("\n\nYour drying goes by without incident, and before the end of the hour, your effects are back on and you’re out of the shower room.");
 	
-	pc.lust(25+pc.libido()/5);
+	pc.changeLust(25+pc.libido()/5);
 
 	paigeShowerDone(false, false);
 }

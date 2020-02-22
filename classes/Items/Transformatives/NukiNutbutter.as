@@ -118,7 +118,7 @@
 						}
 						
 						target.ballFullness += 100;
-						target.lust(50);
+						target.changeLust(50);
 					}
 				}
 				// On Use, PC has balls, no Nuki Nuts:
@@ -135,7 +135,7 @@
 					output("...");
 					
 					target.ballFullness += 100;
-					target.lust(50);
+					target.changeLust(50);
 					
 					output("\n\nFor the moment, though, your " + (target.balls == 1 ? "testicle just feels" : "balls just feel") + " weighty.");
 					if(target.hasCock()) output(" Your [pc.cock] throbs urgently, beading with pre-cum until you take it in hand and give it a stroke.");
@@ -165,7 +165,7 @@
 					output(" The sudden sensation of cold cream smearing across your sack sends a shiver up your spine, but makes you hard nonetheless. You give yourself a squeeze, massaging the thick brown paste over every inch of your gonads. Though you’ve already got the goods, so to speak, the paste still seems to do something as you spread it around: your balls feel weighty and full, more so than before, and fill out and stretch against the flesh of your sack.");
 					
 					target.ballFullness += 100;
-					target.lust(50);
+					target.changeLust(50);
 					
 					output("\n\n");
 					if(target.hasCock()) output("Your [pc.cock] throbs urgently, beading with pre-cum until you take it in hand and give it a stroke.");

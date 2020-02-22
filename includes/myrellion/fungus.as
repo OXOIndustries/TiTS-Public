@@ -118,7 +118,7 @@ public function watchInfectedMyrVictoryScene():void
 	output("\n\n<i>“T-thanks, I guess. I don’t think he will become like that again, and the constant horniness seems to be gone,”</i> she says with a contented grin. You aren’t sure what you did, but you nod and smile. The fungus attached to her looks at you, beaming with happiness, and tries to say something. No words come out, but it seems happy. After finishing, it gasps in a large breath and turns to kiss and hug its host, reveling in the touch it seems to have been denied for so long.");
 	output("\n\n<i>“He said you looked strong, and he didn’t want to stay a burden. I’ll probably stay here a little longer and then I guess I’ll head back to the city. I hope I didn’t get fired while I was away,”</i> she says before leaning back for what you assume is a short nap. You decide to go back to your former endeavors, but after a show like that you might need to take a detour.\n\n");
 	processTime(9);
-	pc.lust(20+rand(10));
+	pc.changeLust(20+rand(10));
 	//(lust+30)
 	CombatManager.genericVictory();
 }
@@ -226,7 +226,7 @@ public function infectedMyrFuckSlashLossSlashButtstuffNotReally(loss:Boolean = t
 	output("\n\nAfter it’s done you are compelled to pull her to your face and kiss her, feeling something leaving you as you do so. Perhaps the thing did infect you with something. When she pulls back from the kiss you see a renewed resolve in the amber shine of her eyes. The pale mushroom fades out until all that’s left is the shimmery form and glowing eyes.");
 
 	processTime(3);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	if(pc.hasCock() && pc.hasVagina())
 	{
@@ -676,9 +676,9 @@ public function queenFungusBoobsuck():void
 	ppFungusQueen.milkMultiplier = 100;
 	ppFungusQueen.milkFullness = 100;
 	pc.milkInMouth(ppFungusQueen);
-	pc.HP(50);
+	pc.changeHP(50);
+	pc.changeEnergy(200);
 	pc.orgasm();
-	pc.energy(200);
 	flags["SUCKED_FUNGUS"] = 1;
 	clearMenu();
 	addButton(0,"Accept",fuckYesPlantLadyIllSaveYou,undefined,"Accept","Defend this lady.");
@@ -817,9 +817,9 @@ public function fuckOffQueenAndDie():void
 	if(pc.shields() > 0)
 	{
 		output("s, your shield fizzling out");
-		pc.shields(-200);
 	}
 	output(" as the shockwave and thunderous noise batter your body. When you recover enough to stand you turn to see that the entrance to the cavern has been caved in completely, with scorch marks radiating outward from the former tunnel.");
+	if(pc.shields() > 0) pc.changeShields(-pc.shieldsMax());
 	output("\n\nYou continue on your way, steeling yourself against what happened.");
 	pc.addHard(5);
 	//(pc can’t go there no more.)

@@ -657,12 +657,12 @@ public function yomaSexGiveOral():void
 	if (!pc.isNude()) output("to redress, ")
 	output("and head back on your separate ways.");
 
-	if (pc.HPRaw <= pc.HPMax()) pc.HP(10);
+	if (pc.HPRaw <= pc.HPMax()) pc.changeHP(10);
 	processTime(30+rand(15));
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasVagina()) pp.createVagina();
 	pc.girlCumInMouth(pp);
-	pc.lust(10);
+	pc.changeLust(10);
 	if (flags["YOMA_SEEN_NAKED"] == undefined) flags["YOMA_SEEN_NAKED"] = 1
 	IncrementFlag("YOMA_TIMES_EATEN_OUT");
 	clearMenu();

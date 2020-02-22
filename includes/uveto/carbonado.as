@@ -457,7 +457,7 @@ public function uvetoCarbonadoHelpGwen():void
 	}
 
 	processTime(10+rand(3));
-	pc.lust(15);
+	pc.changeLust(15);
 
 	uvetoCarbonadoTalkMenu();
 }

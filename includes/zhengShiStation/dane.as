@@ -513,7 +513,7 @@ public function daneSexIntro():void
 		}
 		//[Next] - into Dane-selected scene. Maybe add a variant later where you can pick sometimes~!
 		processTime(2);
-		pc.lust(5);
+		pc.changeLust(5);
 		clearMenu();
 		addButton(0,"Next",repeatDaneFuckSceneRouter);
 	}

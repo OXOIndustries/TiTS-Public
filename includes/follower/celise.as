@@ -926,7 +926,7 @@ public function celiseSleezeLactation():void {
 	pc.milked(pc.milkFullness);
 	//reset lust, add lust
 	processTime(30+rand(10));
-	pc.lust(5+rand(5));
+	pc.changeLust(5+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

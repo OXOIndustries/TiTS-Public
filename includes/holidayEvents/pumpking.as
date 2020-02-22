@@ -206,7 +206,7 @@ public function loseToPumpking():void
 	output("\n\n<i>“That was excellent. Guards, take this one to my chambers,”</i> she says simply, motioning to the approaching zil, who hoist you up by the arms and drag you through a door directly behind the throne - her chambers, you can only assume. Inside is a roughly carved king-sized bed with a very comfortable looking mattress, which the bee-men swiftly throw you onto, one of them bringing up a collar and chain and securing the collar around your neck. Your arms are then similarly bound behind your back, ensuring that you can do nothing but wait until the Pump-king decides to go to bed.");
 	output("\n\nAnd wait...");
 	output("\n\nAnd wait...");
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",pumpkingBadEnd2);
 }

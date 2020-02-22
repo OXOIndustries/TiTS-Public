@@ -258,7 +258,7 @@ public function askDallyAboutNectarCauseYerADip():void
 	output("\n\nDally leans back against his swollen-looking abdomen and yanks the loincloth aside, revealing himself and a little more - a bead of amber rolling from the glans of his cocktip. <i>“When I offer my curious patron a drink from the tap.”</i> He curls his fingers around his length and gives himself a long, slow milking motion from his base all the way to his tip, squeezing out a thicker stream of what looks like honey. <i>“I assure you; it is quite delicious. There’s plenty there if you’re feeling peckish.”</i> Gathering the shining sample on a fingertip, he sucks it between his black-painted lips. <i>“Or I could get you that dance I offered. No pressure.”</i>");
 	flags["DALLY_NECTAR_SPIEL"] = 1;
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	dallyMenu();
 }
 
@@ -287,7 +287,7 @@ public function askDallyForADanceYaDunce():void
 	output("\n\nYour reply with a sigh of relief. You can let your inhibitions fall down around you like a house of cards in an earthquake, one the myr boy is all too happy to dance along to. There’s nothing to stop you from touching him if you want. You can enjoy his efforts as fully as you like, whether it’s exercising self-restraint and sitting on your hands or letting them flow along his length like steady, gentle waves.");
 	output("\n\nDally, now completely erect, grinds himself against you once more. Do you get handsy or let him continue to dance unmolested?");
 	processTime(10);
-	pc.lust(10+rand(4));
+	pc.changeLust(10+rand(4));
 	if(pc.hasCuntTail() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		output(" [pc.EachTail] twists out of hiding at the thought of an undrained dick. The hunger is overwhelming! You NEED to feed! The choice is out of your hands; you won’t be able to walk out of here without draining someone dry; it might as well be him.");
@@ -419,7 +419,7 @@ public function danceNoTouchDally():void
 	output("\n\nMaybe... you could try the local custom. A flashing hologram pops into existence beside you with a fizz of static, displaying the word ‘Tip’. Small print appears below with the credit address for anything you’d like to give Dally. For backwater creatures, the myr seemed to have figured out payment terminals well enough.");
 	output("\n\nDo you tip Dally?");
 	//output("\n\n[No Tip] [100 Creds] [250 Creds] [999 Creds]");
-	pc.lust(75);
+	pc.changeLust(75);
 	processTime(15);
 	dallyTipMenu();
 }
@@ -471,7 +471,7 @@ public function dallyDanceWithTheBadTouchYouAndMeBabyArentNothinButMammalsNoWait
 	output(" Now, will you let him go off in your mouth, on your face, make him cream all over the stage?");
 	flags["DALLY_FAVOR_OFFERED"] = 1;
 	//[Mouth] [Face] [Stage]
-	pc.lust(40+rand(10));
+	pc.changeLust(40+rand(10));
 	processTime(10);
 	clearMenu();
 	addButton(0,"Mouth",takeSomeDallySploogeInYerMouthYaSloooooot);
@@ -490,7 +490,7 @@ public function makeDallyCumOnStage():void
 	output("\n\nAnother voice calls, <i>“Get me some of that, girl!”</i>");
 	output("\n\nThe female myr crowd around you. The more brazen among them hold their hands beneath Dally’s quivering prick to catch a wad of his pearlescent issue. His antennae twitch as he cums, yet his virility doesn’t last more than thirty seconds or so. He sags back, leaning on the pole for support while his erection begins to flag. Less confident myr quietly ask if they can try his cum. Who are you to stop them?");
 	//No cum, +horniness
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(6);
 	dallyDanceHJEpilogue();
 }
@@ -520,7 +520,7 @@ public function makeDallyBlowALoadOnYerFaceYeSloot():void
 	output("\n\nA little later, the girls drift away with giggles and winks. You try to catch your breath, acutely aware that not a single drop of cum remains on your body. That was fun.");
 	pc.exhibitionism(1);
 	//No pc cums, +lotsa horniness
-	pc.lust(33);
+	pc.changeLust(33);
 	mimbraneFeed("face");
 	processTime(6);
 	dallyDanceHJEpilogue();
@@ -547,7 +547,7 @@ public function takeSomeDallySploogeInYerMouthYaSloooooot():void
 	pc.loadInMouth(ppDally);
 	//Doesnt get the unified epilogue
 	processTime(6);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -648,13 +648,13 @@ public function nectarSuckFromDallyProper():void
 	output("\n\nBy the time you rouse from your daze, Dally has gotten to his feet and moved down the stage. You’re about to stand up when a flashing hologram displaying the word ‘Tip’ appears alongside you. Small print appears below with the credit address for anything you’d like to give Dally. For backwater creatures, the myr seemed to have figured out payment terminals well enough.");
 	if(flags["DALLY_NECTAR_DRANK"] == undefined) flags["DALLY_NECTAR_DRANK"] = 0;
 	flags["DALLY_NECTAR_DRANK"]++;
+	//Gain some HP and energy whynot
+	pc.changeHP(Math.round(pc.HPMax()*.3333));
+	pc.changeEnergy(pc.energyMax());
+	pc.changeLust(15);
 	output("\n\nDo you tip Dally?");
-	pc.lust(15);
 	processTime(17);
 	pc.exhibitionism(1);
-	//Gain some HP and energy whynot
-	pc.energy(pc.energyMax());
-	pc.HP(Math.round(pc.HPMax()*.3333));
 	//output("\n\n[No Tip] [100 Creds] [250 Creds] [999 Creds]	");
 	dallyTipMenu();
 }

@@ -451,7 +451,7 @@
 			// 20 Lust Gain
 			else
 			{
-				target.lust(20);
+				target.changeLust(20);
 			}
 			
 			tfDone();
@@ -591,8 +591,8 @@
 			target.tailGenitalColor = newColor;
 			
 			// Non Parasitic Genitail: 20 Lust gain.
-			if(!isParasite) target.lust(20);
-			else target.lust(2);
+			if(!isParasite) target.changeLust(20);
+			else target.changeLust(2);
 			
 			tfDone();
 		}

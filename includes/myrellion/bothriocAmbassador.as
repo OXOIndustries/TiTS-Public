@@ -877,7 +877,7 @@ public function araKeiFlirt():void
 			output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realize that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
 
 			processTime(20+rand(10));
-			pc.lust(15);
+			pc.changeLust(15);
 			araKeiMenu(araKeiFlirt);
 		}
 		else
@@ -1237,7 +1237,7 @@ public function araKeiTheReameningIV():void
 	//PC gets double number usual bothrioc pregnancy in ass, regular bothrioc pregnancy in pussy if that happened
 
 	processTime((6 * 60) + rand(30));
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1293,7 +1293,7 @@ public function araKeiPolishBooties():void
 	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realize that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
 
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	araKeiMenu(araKeiFlirt);
 }
 

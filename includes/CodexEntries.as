@@ -80,6 +80,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
+
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_DHAAL, "Dhaal", "Zaika", zaikaCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
@@ -2602,6 +2604,84 @@ public function cockvinesCodexEntry():void
 	outputCodex("\n\nThe internecine warfare between both species of Myr, the Nyrea, and the subsequent movement of peoples, breakdown of infrastructure and land wastage has only increased cockvine’s spread. The plant is also recorded as being used by both sides of the Myr conflict as a form of sadistic punishment on prisoners of war; once a kept plant has finished with captives they are released deep in their home territory, with the explicit hope of their offspring spreading chaos there. This practice is expressly forbidden by international law.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Cockvines");
+}
+public function zaikaCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("MYSSAH");
+	outputCodex(header("Zaika"));
+	outputCodex("<i>Beneath their fae features lie keen minds and a keener thirst for milk.</i>");
+
+	outputCodex("\n<b>Sexes:</b> Hermaphrodites");
+	outputCodex("\n<b>Height:</b> 5’ to 6’ due to pollution and poor nutrition. 6’ to 7’ for the Peers.");
+	outputCodex("\n<b>Weight:</b> Between 80 and 200 terran pounds, depending on height and current cup size.");
+	outputCodex("\n<b>Eyes:</b> Their irises are typically blue, pink, or green, with sclera of a similar color but lighter tint.");
+	outputCodex("\n<b>Skin:</b> Shades of purple, which may range from pale lilac to deep wine-black. Many have white freckles scattered on cheeks, shoulders, or even all across their bodies");
+	outputCodex("\n<b>Hair:</b> White hair is their natural hue, though many use bright dyes for streaks, fringes, or total coverage.");
+	outputCodex("\n<b>Ears:</b> Long and elfin, their ears range from 6”</i> to 10”</i> and are often adorned with piercings or cybernetic augments.");
+	outputCodex("\n<b>Breasts:</b> None in the traditional sense. Instead, they have two breast-like organs on their chests which serve as repositories for sexual fluid.");
+	outputCodex("\n<b>Tails:</b> Their primary sex organ, these tend to be two inches thick and around three feet long, muscled and extremely flexible. Their bulb-like tips are bisected in two halves.");
+	outputCodex("\n<b>Lifespan:</b> 50 years, though cybernetic advances promise to increase this.\n\n");
+
+	outputCodex(blockHeader("Physiology"));
+	outputCodex("Excepting their tails, zaika are humanoid with largely terran-standard builds. Most of the zaika have lithe bodies. The common people are typically slimmer and shorter than their more indulgent Peers. Adapted to living in a low-light environment, they have universally dark skin tones, exceptionally long ears, and slightly luminescent eyes. Oriented primarily for night vision, modern zaika often struggle to see in the high-light environments most galactic races favor. For this reason, it’s not unusual to see them in glasses, shades, visors, or other screening eyewear.");
+
+	outputCodex("\n\nZaika have three fingers and a thumb on each hand but only two toes. Originally adapted for living in canyons and caves, their long legs and split-digit feet give them incredible forward speed, but limit their lateral maneuverability. To aid their balance, the tails of the zaika show a range of movement and dexterity equal to the tentacles of aquatic organisms. Modern living has largely relegated their tails to courting and reproductive activities, but some still employ the appendage as a sort of third arm.");
+
+	outputCodex("\n\nYoung zaika are bald, but their egg-laying reproduction and rapid rate of maturation means that they enjoy a relatively short period of immaturity. At puberty, they begin developing white freckles and growing similarly pale hair from their scalps at a rapid pace. If left untrimmed, this can easily reach down to their ankles. Maturity also brings the development of their faux breasts - specialized organs that serve the purpose of testes in most other races. Unlike the vulnerable gonads of other species, these pouches are cushioned by ample fatty layers, making them supple and durable against the travails of casual bumps or collisions. When full, however, the stretching pressure of their fluids leaves a zaika’s bosom extremely sensitive to even light touches.");
+
+	outputCodex("\n\nRarely, some mutations may develop in a zaika’s sexual organs. This typically takes the form of a bifurcated tail or a third breast. These individuals are marked as ‘hydras’ for their additional features and inevitably experience a significantly more intense sex drive. Hydras are no more likely to produce more hydra-offspring than any other coupling, but their wildly overabundant libido typically results in far larger families.");
+
+	outputCodex("\n\nOne curious fluke of the zaika biology is an intense reaction to breast milk. Recent contact with alien races has revealed that zaika who drink milk from other humanoids experience an intense, narcotic high as well as an inebriated giddiness. Lacking the organs to lactate, the demand for off-world milk has reached a fever pitch. This has led to the proliferation of Milk Bars for well to-do natives to enjoy freshly imported dairy - as well as milk gangs, who ambush lactating visitors and suckle the drug-like cream right from the teat.\n\n");
+
+	outputCodex(blockHeader("Reproduction"));
+
+	outputCodex("From their feminine characteristics, it is easy to mistake zaika for a race of all women. In fact, they are all hermaphrodites, equally able to fertilize as well as to birth. Their biology resembles a terran female on the surface, with two breast-like organs on their chest and a labia-lined opening between their legs. Unlike typical mammals, zaika do not produce milk and therefore do not have nipples. Their ‘breasts’ in fact serve a biological role similar to the kui-tan’s testes: producing and storing seminal fluid and sperm in a thickly padded cushion of highly elastic, fatty skin. These organs swell and ebb with arousal and release, giving sexually active zaika a highly variable cup size.");
+
+	outputCodex("\n\nThe primary sexual organ of the zaika is their tail. Heavily muscled, these appendages serve a purpose similar to the cloaca of avians or reptiles. The emotional state of the zaika determines whether their tip stiffens and contracts into a phallus or engorges and opens into a vaginal sheathe. The ‘male’ of a pairing will insert their tail into the slitted tip of the ‘female’ and eventually release their sperm. With the same supple, flexible skin as their vestigial breasts, the zaika’s tail is capable of stretching up to four times their natural diameter. Additionally, it is filled with all the sensitive nerves of normal reproductive organs, making the act of penetrating and being penetrated extremely pleasurable. The ovary contained in the base of the recipient’s tail releases a single egg on a monthly cycle and, if fertilized, this egg settles in the zaika’s oviduct to develop. A fully developed egg is typically 6”</i>-9”</i> in height, giving impregnated partners a considerably rounded appearance.");
+
+	outputCodex("\n\nDespite having a vagina-like slit between their legs, the zaika are an oviparous (egg laying) race. Their lower canal is used only for birthing fully formed eggs from their oviduct. Despite the womb-like function of this organ, any sexual activity with their egg-slit cannot result in a pregnancy. Eggs fertilized from their tails will typically develop for one month and are incubated internally for several months before finally being laid. Zaika eggs typically hatch within a month of being laid, with their offspring being considerably more developed at birth than typical mammals.\n\n");
+	outputCodex(blockHeader("Society"));
+
+	outputCodex("Even before the smog of their technological boom, the endless twilight of Dhaal’s livable equator has colored zaika culture. With no difference between day and night, they tended to flock towards group living, working round the clock in shifts unique to each pack. This tendency to stratify into cliques served them well in specializing for early social advances, but modern, urban living is fragmented between dozens of often antagonistic sub-cultures.");
+
+	outputCodex("\n\nThe biggest division on Dhaal is - as is so often the case - between the Haves (the Peers) and the Have Nots (everyone else). This dichotomy permeates just about every aspect of their culture, to the point that off-worlders may be forgiven thinking that the wealthy and the poor of Dhaal are two seperate races entirely. The Peers belong to the Zaibatsu, a triad of corporate monopolies that serve as the planet’s employers, police, and government. Though there is not an official caste system, those on top are rare to allow any social advancement or intermingling beyond the necessities of employment.");
+
+	outputCodex("\n\nThe cybernetic emphasis of their medical science is essential to the culture of the zaika. Nearly every native on Dhaal has an implant of some sort, with some of the very wealthy nearly completely augmented. Zaibatsu-sponsored augment clinics offer the widest, safest selection of procedures. For the destitute or criminals, plenty of backalley clinics exist in the Gyre, providing black market alternatives for a little extra risk. The biologically tailored particulars of their technology make it dangerous for alien races to enjoy similar treatment, though some very wealthy individuals have undergone auto-immune supplements for this very purpose.");
+
+	outputCodex("\n\nAs a sufficiently advanced culture, the zaika dress in a variety of fashions. The lower class tend toward utility and protection, while Peers tend to favor style over substance. In all cases, zaika prefer to go topless. With the curious demands of their expanding biology, properly fitting garments were rarely to be found. This is not to say that they do not have their own particular prudish hang-ups. The zaika have a unique sort of indecency: displaying bare tails in public. Due to the critical role their tails play in reproduction, all zaika are expected to wear a covering of some sort over at least the tip of their rear appendage. The styles of this stocking vary, with some making use of special socks while others favor elaborate hosiery. Additionally, nearly all zaika wear one or more rings on their tails to stop any accidental leakage when aroused. ");
+
+	outputCodex("\n\nThe hydra zaika are generally looked down on socially for their incredibly enhanced libidos. Even with ample tail rings, most hydra experience a regular flow of cum from their tails, leading to most substituting condoms for the more typical cock stockings. Their biology forces most hydras into sex-oriented professions as they are generally regarded as useless for anything else. Despite cultural discrimination, hydras typically find themselves at the head of extremely large families, often taking several mates to help soothe their unceasing passions.\n\n");
+
+	outputCodex(blockHeader("History"));
+
+	outputCodex("The history of Dhaal is also the history of the Zaibatsu. In their primitive days, small groups of several families worked in concert to achieve subsistence living for each other. Peaceful, but achieving little of lasting impact. The rapid spread of the zaika race, along the considerably narrow band of livable terrain on Dhaal eventually forced independent social units to compete with one another instead of cooperating. As traditional hunting grounds shrank, previously unknown strife acted as a crucible to quickly advance primitive technology.");
+
+	outputCodex("\n\nThe most successful groups saw the need for stability and allied to subdue their rivals and create a singular, expanding nation. To ensure that no one group gathered too much power, the Order of the Zaibatsu was laid down. In essence, it said that the three most powerful families would serve as checks to each other, allying should any one Zaibatsu grow too powerful. The dominant groups  shifted over time but the arrangement held, keeping the zaika safe from the worst excesses of tyrants and dynasties.");
+
+	outputCodex("\n\nThe natural growth of the zaika culture was upset around two hundred years ago. Though the particulars are a closely guarded secret by the Zaibatsu, it appears that a considerable cache of U.G.C. technology came to Dhaal well before the galactic rim reached out far enough to make a formal discovery of their world.  Dividing the xenotech amongst their foremost experts, the zaika were able to discern and disseminate the science behind each miraculous advancement with startling ease. A sudden infusion of exceedingly advanced tech ignited an industrial revolution the likes of which few cultures can survive.");
+
+	outputCodex("\n\nThe alien breakthroughs were divided in three sciences: Chemistry, Biology, and Psychology. Each of the Zaibatsu claimed a branch and oversaw all innovations that fell under their particular portfolio. Rather than share the fruits of their fields equally, however, the Zaibatsu found that spreading the riches internally and trickling only the barest of necessities to the others cemented their positions. Rather than policing one another as in olden times, the current Zaibatsu conspired to keep the others in power. In time, cultural groups became corporations, justifying their perpetual dominance with the variety of lifestyle improvements they offered to the masses. Informally, those belonging to the Zaibatsu and their subsidiaries became known as Peers.");
+
+	outputCodex("\n\nAs the urban sprawl has spread to every inch of habitable land, the quality of life for the poor has spiraled further and further down. Most labor-intensive jobs have been phased out with automation, while unchecked industry fills the sky with thick clouds of pollution. Eventually, the Peers established separate, private districts for themselves, taking the guards who had previously served as police. The absence of immediate authority has led to a proliferation of gangs, practically one for each city block. With the current Planet Rush underway, MegaCorps from all over the galaxy have flocked to Dhaal, and with them, rushers looking to indulge in any of the sin-centric vices that fill the dense, streets and alleys of the planet-spanning city.\n\n");
+
+	if(silly || pc.isBimbo() || pc.isCumSlut())
+	{
+		outputCodex(blockHeader("Typical Ejaculate Quantity"));
+		outputCodex("Analysis of user behavior indicates a strong desire to know about the ejaculate of other species. Since Dhaal is a developed world integrating into the UGC, data on typical reproductive loads is available in healthy supply. Zaika release enough semen during climax to reduce their cup size by one to two terran-standard letter grades. Detailed estimates below:\n\n");
+		outputCodex("\n\tA-cups: 50 mL (five times an unmodified terran standard ejaculation)");
+		outputCodex("\n\tB-cups: 250 mL");
+		outputCodex("\n\tC-cups: 1 L");
+		outputCodex("\n\tD-cups: 2.5 L (volume of terran stomach)");
+		outputCodex("\n\tDD-cups: 3 L");
+		outputCodex("\n\tE-cups: 4 L (a gallon of milk)");
+		outputCodex("\n\tF-cups: 5.5 L");
+		outputCodex("\n\tG-cups:  7 L (a basketball)");
+		outputCodex("\n\tH-cups: 9 L");
+		outputCodex("\n\tI-cups: 11 L (average backpack)");
+		outputCodex("\n\tJ-cups: 14 L (water cooler)\n\n");
+	}
+	CodexManager.viewedEntry("Zaika");
 }
 public function nyreaCodexEntry():void
 {

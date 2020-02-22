@@ -88,7 +88,7 @@ public function approachSynphia(back:Boolean = false):void
 		{
 			if(flags["FUCKED_SYNPHIA"] != undefined) output(", dick" + (pc.cockTotal() > 1 ? "s":"") + " needing drained again?”</i> She runs her tongue on a slow circuit around her lips while her tail slides up to rub against your [pc.hip]. <i>“It must be so hard to focus without that post-orgasm clarity. Good thing it’s one of the many services I can provide you... and this one’s free of charge.”</i>");
 			else output(", need some servicing?”</i> Her tail slides up your [pc.leg] to gently rub your [pc.hip]. <i>“Repairs... fitting new parts... draining excess fluids. I can do it all.”</i>");
-			pc.lust(2);
+			pc.changeLust(2);
 		}
 		else output(", need some work done on the old star-chariot?”</i> She looks over your ship with a professional gaze. <i>“Bet she’d be real fun to work on...”</i>");
 		processTime(1);
@@ -229,7 +229,7 @@ public function repairsWithSynphia():void
 	output("You ask Synphia about repairing the damages to your ship.");
 	output("\n\n<i>“I’ve already dispatched some techs to take care of it. Depending on the damages, it could take a while, so why not avail yourself of our station’s amenities?" + (pc.hasCock() ? " Or pass the time with me.”</i> Her tail cups your [pc.butt]. <i>“The time will fly right by.":"") + "”</i>");
 	processTime(1);
-	if(pc.hasCock()) pc.lust(1);
+	if(pc.hasCock()) pc.changeLust(1);
 	
 	synphiaMenu();
 	setButtonDisabled(4);
@@ -379,7 +379,7 @@ public function synphiaServiceOption():void
 		else output(" The real question is, should I start up here...”</i> Synphia blows a kiss at your [pc.cockHeadBiggest], <i>“or down here?”</i> She arches her back like the galaxy’s greatest limbo champion and drops down until your [pc.sack] could rest on her face. You’d just have to lower yourself a quarter of an inch down. <i>“Tell me where to start, [pc.name]. Tell me how I can make you cum.”</i>");
 	}
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	flags["SYNPHIA_DICKMEMORY"] = pc.cockTotal();
 	//Balls or cokk
 	clearMenu();
@@ -486,7 +486,7 @@ public function synphiaCockForeplay(x:int):void
 		output("\n\nSynphia loves it anyway. Her unbridled cocklust has her grabbing you with both hands, struggling to wrangle your python into a more suckable position. Her brows knit with effort, and the snake-woman grunts when she finally arranges your [pc.cockHead " + x + "] in front of her pursed lips, her gaze slightly vacant while her mind plots out exactly how she’s going to milk your colossal cock. The size should bother her, but it doesn’t. She wants every inch, even if doing so would put you all the way through her petite frame.");
 		output("\n\n<i>“I’m gonna have to use my hands,”</i> Synphia admits, kissing your cumslut. <i>“And maybe my tail, now that I think about it.”</i>");
 		processTime(5);
-		pc.lust(15);
+		pc.changeLust(15);
 		//[Next] -> Stroke & Headpolish
 		clearMenu();
 		addButton(0,"Next",synphiaVenomRouter,[x,false]);
@@ -533,7 +533,7 @@ public function synphiaVenomRouter(args:Array):void
 	}
 	//merge & display choices for venom or no venom.
 	processTime(2);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Venom",getVenomedUpSon,[x,deepthroat]);
 	addButton(1,"No Venom",noVenomSynphia,[x,deepthroat]);
@@ -585,7 +585,7 @@ public function noVenomSynphia(args:Array):void
 	output("\n\n<i>“Awww, really?”</i> the snake-slut whines, still stroking despite her apparent disappointment. <i>“I guess I’ll just have to make you squirt </i>au natural<i>, but that’s fine.”</i> She kisses your [pc.cockHead " + x + "], staring up into your eyes while her voice thrums inside your head, <i>“Slyveren mouths are better than the wettest pussy.”</i> You blink from the sudden pink-flaring brightness from her horns, stiff and hard for Synphia’s mouth and not entirely sure her blue horns ever changed color.");
 	output("\n\nYou forget about all that when Synphia starts to service you proper.");
 	processTime(1);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",synphiaDickSuckSceneRouter,[x,deepthroat,false]);
 }
@@ -969,7 +969,7 @@ public function longSucksWithSynphia(args:Array):void
 	output("\n\nSynphia looks up from above her mouthcunt and watches you for the signs of encroaching orgasm, not that she needs to. She can feel your pleasure in the way your [pc.cock " + x + "] twitches on her tongue. She can sense how close you are by the ever-increasing creaminess of your pre. Slyveren senses are so keen when it comes to cum, so keen that she must know exactly how you feel when she’s sucking you to the root, batting her eyelashes at you innocently and asking with pink-flashed words, <i>“Are you ready to cum?”</i>");
 	output("\n\nThe answer to a question like that doesn’t need spoken out loud, ");
 	processTime(15);
-	pc.lust(70);
+	pc.changeLust(70);
 	clearMenu();
 
 	if(!venomBool) 
@@ -1202,7 +1202,7 @@ public function synphiaBallForeplay():void
 	IncrementFlag("SYNPHIA_BALLSUCKS");
 	pc.ballFullness += 35;
 	if(pc.ballFullness > 100) pc.ballFullness = 100;
-	pc.lust(45);
+	pc.changeLust(45);
 	clearMenu();
 	addButton(0,"Cock",penisRouter,[synphiaCockForeplay,9000000,false,0],"Cock","Put her to work on your dick.");
 	if(!pc.hasStatusEffect("Synphia_Tired")) addButton(1,"Psi Aug",nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT,undefined,"Psi Aug","Get your [pc.sack] enlarged by psionic means.");

@@ -221,7 +221,7 @@ public function wallSlutPunkSecOpEnd():void
 	output("\n\nDid she orgasm from getting face-fucked?");
 	output("\n\nWill you?");
 	processTime(30);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",wallSlutLossPart2);
 }
@@ -325,7 +325,7 @@ public function slutSlutLossScene():void
 	output("\n\n<i>“I promised you’d like it! Since we don’t have all day to waste on training like those dopes over at KihaCorp, why don’t we start the programming?”</i> She snaps her fingers.");
 	output("\n\n<i>Static.</i>");
 	processTime(4);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",pussySlutV2);
 }
@@ -345,7 +345,7 @@ public function pussySlutV2():void
 	output(". Her scent is reaches your nose, mild and alien but desirable all the same. You thrust your [pc.tongue] out, straining to reach it, yet she’s not low enough yet. A single droplet forms on her clit when her silky, delectable slit drops a few inches lower. She’s almost there. Her ass is almost ready to sit down on the cushions and grant you access to that slippery treasure trove of feminine moisture and...");
 	output("\n\n<i>Static.</i> <i>“Very good. You’re a natural!”</i>");
 	processTime(4);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",pussySlutV3);
 }
@@ -362,7 +362,7 @@ public function pussySlutV3():void
 	output("\n\nWatching it descend is like unwrapping a christmas present; with each passing second, more glorious detail is revealed. The gentle slopes of aroused feminine lips resolve into a hypnotic wonderland of glittering lust. The clit pops out of the hood, hovering over tongue, promising to reward your tongue with more heavenly taste once you adequately serve it. Slowly yawning open, the bright pink interior at last reveals itself, flexing and squeezing in anticipation of taking your entire tongue to the root.");
 	output("\n\n<i>Static.</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV4);
 }
 
@@ -377,7 +377,7 @@ public function pussySlutV4():void
 	output("\n\n<i>“Oh my, you are <b>ravenous</b>! Let’s just verify that your dopamine responses stay stupidly high when dealing with a few of our more exotic clientele, and we can get you set up and ready to lick in no time!”</i> Anayill snaps her fingers.");
 	output("\n\n<i>Static.</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV5);
 }
 
@@ -397,7 +397,7 @@ public function pussySlutV5():void
 	output("\n\nEyes closed, you worship her on autopilot. Your tongue somehow <i>knows</i> exactly where to go and what spots to lick. It traverses the maze of rippling muscle with a native’s intimate knowledge, whipping up to caress clusters of nerves and flexing to slide across neglected channels. Your jaw hurts from opening so wide, but it’s the only way to satisfy the aching thirst for more girlcum. You’re dimly aware that you’ve become drenched in it from the top of your head all the way down to your chin, but you want more. You want to bathe in it. You want to drink her relief until your body is more pussy-juice than water.");
 	output("\n\n<i>Static!</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV6);
 }
 
@@ -412,7 +412,7 @@ public function pussySlutV6():void
 	output("\n\nUncaring for how loud it sounds, you suck with abandon. You make love to the juicy honeypot with your face and smile when her balls churn and rock against your chin. Daringly, you slide your tongue down to favor them with a lick, but just one! You’re right back into that pussy after, where you belong. That exploratory caress was only to take your slick-furred client’s attention somewhere else so that you could surprise her with a sudden, deep thrust.");
 	output("\n\n<i>Static.</i> <i>“Very good. Now keep licking! An orgasm ought to convince you that you made the right decision by coming to us!”</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV7);
 }
 
@@ -704,7 +704,7 @@ public function smotheringFemdomWivTittyKitty():void
 	output("\n\nA fuzzy, dreamlike feeling envelopes your entire being. The more you genuflect on the soothing wobble and sensual sway of her bosom, the more you realize that this isn’t a dream. For once you feel... calm... <i>It calms you to stare at her</i>, to worship her with your [pc.eyes]. The longer you focus on her and the sparkling droplets streaming from her divine tits, the deeper you sink into that feeling, that amazing feeling that eliminates all anxiety, obliterates stress, and makes you feel <i>so secure.</i>");
 	output("\n\nAnd the deeper she sinks into your consciousness.");
 	processTime(8+rand(9));
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",nextBoobsuckingKaithritMindwashing);
 }
@@ -982,7 +982,7 @@ public function slaveslutBadEnd(volunteered:Boolean = false):void
 	output("\n\nDarkness comes, and then there’s a glitchy whine.");
 	output("\n\n......");
 	processTime(60);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",slaveslutBadEnd2);
 }
@@ -1105,7 +1105,7 @@ public function luckyCatchBadEndWithFSecop(volunteered:Boolean = false):void
 	output("\n\n<i>“I’ll take care of you, protect you, because you’re my slave. Nobody’s going to hurt you. You’ll get to spend every day thinking about how your mistress will come back rich from a raid, wanting to sit back and relax.”</i> Her soft, sweet tones fade into heavy pants. <i>“It’ll be nice, having a reason like you to keep kicking ass. Life’ll be so damn-”</i> she winces, your incisor grazing her nipple <i>“...easy. So much more fun. Heh, you get to suck on boobs for the rest of yours while I have to work even harder. Good thing we found each other.”</i>");
 	output("\n\nShe presses forward, squirting a throat-clogging volume of serenity-inducing love into you. You’re so hot and horny that you can’t do anything but replay everything she said on repeat, cumming to the thought. You’re thrashing in her lap, shuddering and quivering as your belly swells and you suck and suck, breathlessly enchanted...");
 	processTime(50);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",luckyCatchBadEndWithFSecop2);
 }
@@ -1184,7 +1184,7 @@ public function mausBullyScene(tEnemy:Creature):void
 	output("\n\nHer demeanor shifts to something victorious. How presumptuous! But... she’s almost got you... and... maybe that wouldn’t be so bad if those tits kept getting closer? Right? They’re really big, and she’s squeezing the supple flesh so passionately. Maybe you’re looking at this all wrong?");
 	output("\n\nWhat do you do!?");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Fight",fightDatMausBullier,tEnemy,"Fight","You can’t cower here! Show her that a mouse is no cat’s prey!");
 	addButton(1,"Run",runFromFemSecShop,undefined,"Run","Make a break for it - <b>Hopefully!</b>");
@@ -1251,14 +1251,14 @@ public function runFromFemSecShop():void
 			output("\n\nHeart beating and lungs burning... you’ve shaken her. Whew.");
 			output("\n\nDammit. Speaking of shaking, <i>those tits...</i>");
 			pc.energy(-10);
-			pc.lust(5);
+			pc.changeLust(5);
 			processTime(8+rand(3));
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 			return;
 		}
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	// sceneTag: PC lust maximizes
 	clearMenu();
 	addButton(0,"Next",letHerSecOpBullyYou);
@@ -1276,7 +1276,7 @@ public function letHerSecOpBullyYou():void
 	output("\n\n<i>“See? No need to be on edge, cutie. I’m not some random merc who’ll fuck anything that moves, and we have to <i>try</i> not to kill each other around here. That said, what should I do with you...”</i>");
 	output("\n\nWhatever it is, you honestly can’t wait for it now.");
 	processTime(4);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",getBulliedByFemSecop);
 }
@@ -1733,7 +1733,7 @@ public function fuckTheSecopGirl(x:int):void
 	}
 	//[Drink] [Don’t Drink]
 	processTime(15);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Drink",drinkDatCatMilk,x,"Drink","What’s a little refreshment before the main course?");
 	addButton(1,"Don’t Drink",dontDrinkAtTheKittyWell,x,"Don’t Drink","Nah... Madam Titty Kitty’s milk would just get in the way of a good fuck.");
@@ -2374,7 +2374,7 @@ public function wsanTaurServicingLoss():void
 	output("\n\n<i>“Awww, but I can’t help it!”</i> Jenny whines before resuming her little tour, seemingly enjoying describing her friends to you. <i>“Then the quiet one with brown hair next to Prue is Coco. She’s a little shy, but she’s my best friend. We all met in highschool! So, that’s a start,”</i> she says, putting a hand on your shoulder with a grin. <i>“But you already know how to get better acquainted with us, right?”</i>");
 	output("\n\nYou do. Kay snorts with laughter as Jenny turns her body to the side, lifting her skirt with her tail and presenting her immaculate behind. You can see a slick, juicy black pussy between her hindlegs, gleaming with wetness.");
 	processTime(10);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss2);
 }
@@ -2403,7 +2403,7 @@ public function wsanTaurServicingLoss2():void
 	output("\n\n<i>“Oh! I- what did you say?”</i> Coco asks Prue, confused.");
 	output("\n\n<i>“I asked if you wanted to go next,”</i> Prue says, wiggling a finger at you. <i>“C’mere.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss3);
 }
@@ -2437,7 +2437,7 @@ public function wsanTaurServicingLoss3():void
 	output("\n\n<i>“P-Prue,”</i> Coco moans, knitting her hands together. <i>“I’m going to... to cum really soon...”</i>");
 	output("\n\n<i>“Mmm, that’s fine, I’ve still got time,”</i> Prue mutters, starting to fuck you a little more meaningfully. <i>“Damn, that’s good.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss4);
 }
@@ -2478,7 +2478,7 @@ public function wsanTaurServicingLoss4():void
 	output("\n\n<i>“Oh boy, here we go,”</i> Prue says wearily, recovering next to Jenny. <i>“All aboard the Kay-train.”</i>");
 	output("\n\n<i>“Gonna fill you up from the other end now,”</i> Kay says, grinning wolfishly. <i>“Maybe it’ll all come out your mouth.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss5);
 }
@@ -2986,7 +2986,7 @@ public function secOpMaleTitfuck(response:String = "intro"):void
 			
 			processTime(5);
 			// +50 lust
-			pc.lust(50);
+			pc.changeLust(50);
 			
 			CombatManager.genericVictory();
 			break;

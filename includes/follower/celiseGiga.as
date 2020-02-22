@@ -469,7 +469,7 @@ public function properKiroSceneTimeLetsGo():void
 	kiro.orgasm();
 	//(pass 3 hours)(lust raise +40)
 	processTime(160+rand(20));
-	pc.lust(40);
+	pc.changeLust(40);
 	//Lets keep count, whynot?
 	IncrementFlag("KIRO_CELISE_3SOME");
 	if(!kiroIsCrew()) currentLocation = shipLocation;

@@ -167,7 +167,7 @@ public function inessaAppearance():void
 	output("\n\nYou feel a little hornier " + (flags["INESSA_BELTED"] != 2 ? "for gazing at her. Given her burning cheeks, you’re not the only one" : "gazing at your wonderful sub, and seeing her so happy fills you with pride. Given her burning cheeks, you’re not the only one feeling worked up") + ".");
 	
 	// Raise lust by 5 for looking at nekkid girl.
-	pc.lust(4);
+	pc.changeLust(4);
 	// Head back to Inessa’s main menu.
 	inessaMenu();
 	addDisabledButton(0,"Appearance","Appearance","You’re looking at her right now.");
@@ -424,7 +424,7 @@ public function skinModsInessa():void
 		output("\n\nHer kissable lips are slightly parted, hovering very close to yours. You can feel her gentle breath warmly brushing over your own mouth, her breathing hurried and heated.");
 		output("\n\nThe sweet smell of flowers fill the air. The electricity is palpable. Do you kiss her?");
 		processTime(5);
-		pc.lust(15);
+		pc.changeLust(15);
 
 		//[Inch Closer] [Pull Back]
 		clearMenu();

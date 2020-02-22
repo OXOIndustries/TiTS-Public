@@ -210,7 +210,7 @@ public function ubrolgBadEndII():void
 	output("\n\nYou can’t stop yourself. Calling him ‘Master’ feels too nice.");
 	output("\n\n<i>“How’d ye feel ‘bout suckin’ it?”</i>");
 	processTime(15);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",ubrolgBadEndIII);
 }
@@ -467,7 +467,7 @@ public function payUrbolgFacial():void
 	pc.applyCumSoaked();
 	processTime(24);
 	if(pc.isBimbo()) pc.orgasm();
-	else pc.lust(20*pc.libido()/100+10);
+	else pc.changeLust(20*pc.libido()/100+10);
 	pc.loadInMouth(chars["URBOLG"]);
 	pc.accessory = new EmptySlot();
 	IncrementFlag("SEXED_URBOLG");
@@ -743,7 +743,7 @@ public function urbolgFlirtSex():void
 		output("\n\nThe mechanic’s tail thumps heavily into the side of a workbench. <i>“Oh? Yer climate control system’s on the fritz?”</i> He nods pointedly toward your ship. <i>“Guess I could do a few repairs for ye, so long as I can count on ye to handle a few pieces of sensitive equipment.”</i>");
 	}
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	urbolgSexMenu();
 }
 
@@ -1256,7 +1256,7 @@ public function urbolgToyMilkingPlayScene():void
 
 	output("\n\n<i>“Right,”</i> you softly moan, exploring Urbolg’s cock. It’s a proud canine dick by the feel of it. The shaft is nice and thick, tapering slightly toward an angular tip. When your fingers get too close to its animalistic crown, the whole thing jerks in your hand, and when you gently contact the knot, dribbles of sticky-slick cock-sap flow over your knuckles to grease your palm. A map of his rigidly erect features meticulously assembles itself in your mind, fed by your fingers’ eager fondling.");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",urbolgToysPartII,x);
 }
@@ -1290,7 +1290,7 @@ public function urbolgToysPartII(x:int):void
 	else output("your [pc.sheath " + x + "]");
 	output(". A thin rope of cum squeezes out of him to fall on your chest. No more follow, though from Urbolg’s smile, he’s loving the experience. <i>“Move those hips of yours if you want more.”</i>");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",urbolgToysPartIII,x);
 }
@@ -1492,7 +1492,7 @@ public function urbyPBCookie2():void
 	output("\n\n<i>“Not feelin’ so hungry?”</i> Urbolg asks through a mouthful of cookie, panting in exertion. You shake your head slightly, shaking the daze from your eyes, as you turn your face to his. You ask him to repeat the question. <i>“I’m sayin’ you haven’ had any, urrrnghh,”</i> he grunts, riding out another intense, sloppy orgasm, his hand rubbing and jerking at his meat, <i>“any cookies. You gonna have yers, or didja just wanna watch an old Korgonne cum himself silly?”</i>");
 	output("\n\nYou glance toward your cookies, and you lick your [pc.lipsChaste] once more. Watching the display has gotten you a bit hungry, you won’t deny it. But... are you hungry for <i>cookies</i>, exactly? Or, would you rather put yourself in the crossfire with an open mouth and sate yourself on Urbolg’s fountaining jizz?");
 	processTime(20);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Cookies",urbyCookiePCSnacks);
 	addButton(1,"Jizz",drinkYummyUrbolgCum);
@@ -1525,7 +1525,7 @@ public function urbyCookiePCSnacks():void
 		output("\n\n<i>“Better git to mopping this up before it dries and stains,”</i> he grunts as he reaches for his apron.");
 		output("\n\nYou stand and excuse yourself. You wouldn’t want to get in the way of Urbolg cleaning up his own mess.");
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1664,7 +1664,7 @@ public function drinkYummyUrbolgCum():void
 	pc.loadInMouth(chars["URBOLG"]);
 	pc.loadInMouth(chars["URBOLG"]);
 	pc.loadInMouth(chars["URBOLG"]);
-	pc.lust(25);
+	pc.changeLust(25);
 	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

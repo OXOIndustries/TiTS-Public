@@ -255,6 +255,7 @@
 		public static const TYPE_HYENA:int									= 89;
 		public static const TYPE_DZAAN:int									= 90;
 		public static const TYPE_ZAIKA:int 									= 91;
+		public static const TYPE_CUNDARIAN:int 								= 92;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -348,6 +349,8 @@
 			"Saurmorian",
 			"Hyena",
 			"Dzaan",
+			"Zaika",
+			"Cundarian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -1162,6 +1165,7 @@
 		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
 		public static const PIERCING:int 								= 18; // Used for piercings
 		public static const COCKWEAR:int 								= 19; // Used for cockwear
+		public static const TENT:int 									= 20; // Used for tents
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",

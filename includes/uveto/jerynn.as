@@ -231,11 +231,11 @@ public function approachJerynn():void
 
 		if (pc.isSubby())
 		{
-			pc.lust(pc.lustMax());
+			pc.changeLust(pc.lustMax());
 		}
 		else
 		{
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 
 		processTime(10);
@@ -300,11 +300,11 @@ public function approachJerynn():void
 
 		if (pc.isSubby())
 		{
-			pc.lust(pc.lustMax());
+			pc.changeLust(pc.lustMax());
 		}
 		else
 		{
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 
 		processTime(10);
@@ -611,8 +611,8 @@ public function jerynnAllowFucked():void
 
 	currentLocation = "UVI N30";
 
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	
 	IncrementFlag("JERYNN_FUCKED");
 
@@ -738,8 +738,8 @@ public function jerynnAllowRidden():void
 	pc.orgasm();
 
 	currentLocation = "UVI N30";
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 
 	IncrementFlag("JERYNN_FUCKED");
 
@@ -844,8 +844,8 @@ public function jerynnAllowPetstuff():void
 	pc.loadInMouth(jerynn);
 
 	currentLocation = "UVI N30";
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 
 	IncrementFlag("JERYNN_FUCKED");
 
@@ -1264,7 +1264,7 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 
 	processTime(40+rand(20));
 	pc.orgasm();
-	pc.lust(pc.lustMax() * 0.4);
+	pc.changeLust(pc.lustMax() * 0.4);
 
 	clearMenu();
 	addButton(0, "Next", jerynnUnderslungShareIV)
@@ -1297,7 +1297,7 @@ public function jerynnUnderslungShareIV():void
 	IncrementFlag("UVETO_JERYNN_RESCUES");
 	flags["UVETO_JERYNN_RESCUE_LAST"] = days;
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	if (hasVagina)
 	{
 		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume(), false);
@@ -1604,8 +1604,8 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 	processTime(15 + rand(15));
 
 	currentLocation = "UVI N30";
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	
 	if(lootHarness)
 	{
@@ -1941,8 +1941,8 @@ public function jerynnPetstuffWakeUp(responses:Object = null):void
 		processTime(10 + rand(10));
 
 		currentLocation = "UVI N30";
-		pc.HP(pc.HPMax());
-		pc.energy(pc.energyMax());
+		pc.changeHP(pc.HPMax());
+		pc.changeEnergy(pc.energyMax());
 	
 		//[Next]
 		clearMenu();
@@ -2169,8 +2169,8 @@ public function jerynnPetstuffNoOptIn():void
 	
 	//[Next] // Back outside
 	currentLocation = "UVI N30";
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2507,8 +2507,8 @@ public function jerynnPetstuffNightWithJeromeII():void
 	pc.orgasm();
 	processTime(180 + rand(60));
 
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	currentLocation = "UVI N30";
 	
 	clearMenu();

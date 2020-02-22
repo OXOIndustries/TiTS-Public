@@ -528,7 +528,7 @@ public function buskySexChestWorship(modelingItem:*):void {
 	output("”</i>");
 	
 	processTime(25 + rand(10));
-	pc.lust(33);
+	pc.changeLust(33);
 	
 	if (flags["BUSKY_CHEST_WORSHIPED"] == undefined) buskyAdjustAffection(1.5);
 	flags["BUSKY_CHEST_WORSHIPED"] = true;

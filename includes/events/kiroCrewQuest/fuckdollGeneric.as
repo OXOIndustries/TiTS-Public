@@ -262,7 +262,7 @@ public function fuckaDemEarcunts(x:int):void
 	output("\n\nYou rut the security slut’s head, pounding with abandon. She doesn’t mind from the sound of it, moaning stupidly when smack yourself home at force." + (pc.balls > 0 ? " The sweaty imprint of your [pc.sack] lingers on her cheek, a tempting target for you to strike on every downthrust.":"") + " Her lower jaw and tongue flap about, completely limp, passive. Spit flecks your [pc.thighs], but it just makes the whole act better, knowing that the target of your lusts has already been rendered insensate by pleasure. She gave herself over to you to be used without concern or mercy. She wanted this.");
 	output("\n\nLooking down at the fox’s narrow face, it’s clear just how much <i>loves</i> being properly abused. She looks like she’s riding the galaxy’s longest orgasm, like the feeling of your [pc.cockNounSimple " + x + "] plumbing the depths of her cranial cunt carried her all the way to cloud nine. Whenever you cum will be fine with her, you’re sure. She’ll moan for it, beg you for another, and maybe that’s what you should give her. Maybe you should shoot a load deep into this greedy, clutching, alien hole and spin her around for a shot at the second. Maybe you’re so worked up that you won’t be satisfied without a creampie in both of these seductively swollen slits.");
 	processTime(15);
-	pc.lust(5400);
+	pc.changeLust(5400);
 	clearMenu();
 	addButton(0,"Cum",cumOnceForFoxyEars,x,"Cum","One cumshot is plenty.");
 	addButton(1,"Cum+Finger",cumAndFingerFoxyEars,x,"Cum+Finger","A single cumshot is plenty, but a finger in the horny minx’s other ear might be a bit of fun...");
@@ -1139,7 +1139,7 @@ public function sixtyNineFuckdoll():void
 	output(" presented. Here with a thirsty succubus to serve your whim, you can let Kiro be for a time.");
 
 	processTime(20);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",wills69Part2,[x,y]);
 }
@@ -1728,12 +1728,12 @@ public function badEndToGenericDollsPart2():void
 	if(enemy.hasStatusEffect("VR"))
 	{
 		pc.taint(1);
-		pc.lust(50);
+		pc.changeLust(50);
 	}
 	else
 	{	pc.taint(100);
 		pc.libido(300);
-		pc.lust(50);
+		pc.changeLust(50);
 	}
 	clearMenu();
 	addButton(0,"Next",badEndToGenericDollsPart3);
@@ -1773,7 +1773,7 @@ public function badEndToGenericDollsPart3():void
 	days += 20;
 	processTime(50);
 	pc.orgasm();
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",badEndToGenericDollsPart4);
 }

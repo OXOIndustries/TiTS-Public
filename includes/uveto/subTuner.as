@@ -418,7 +418,7 @@ public function kennelSubTuner():void
 	output(" or your sorely-spanked bottom any relief.");
 
 	processTime(25);
-	pc.lust(75);
+	pc.changeLust(75);
 	clearMenu();
 	addButton(0,"Next",walkiesWithBelleButt);
 }
@@ -525,7 +525,7 @@ public function walkiesPart2():void
 	if(lover && pc.exhibitionism() >= 66) 
 	{
 		output("\n\nYou can only feel your lust grow after that encounter, being displayed in front of your lover all collar-bound and nude, already feeling blood rushing to your genitals.");
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	//Else: 
 	else output("\n\nYou feel a small pang of shame at the fact that you were caught in the act like that. Maybe that’ll teach you to not fiddle with weird collars you find on space stations.");
@@ -1466,7 +1466,7 @@ public function exhibitionismCollarWithBelle():void
 
 	output("\n\nRubbing your hands together nervously, you gulp and face the doorway. You’re a bit scared, but your master’s orders and the burning lust induced by your slowly shaking vibrators fill you with determination to make that first step out. So, you place one [pc.leg] in front of the other and take a step out of the lab, and then another, and another, continuing your nervous march out until you’re well into the wide open wabeship of Uveto station... horny and masterless.");
 	processTime(22);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[Next] //This button triggers one of the following variants based on the requirements for each. 
 	clearMenu();
 	addButton(0,"Next",subTunerExhibRouter);
@@ -2165,12 +2165,13 @@ public function labWalkInHypnoEvent():void
 
 	output("\n\nYou snap back to reality, only to feel the air on your skin, realizing that you’ve stripped yourself... or at least you think you stripped yourself. Your master still hasn’t noticed you, and Saec isn’t around, so you’re really the only person that could’ve... but you don’t remember it.");
 
-	output("\n\nWeird.\n\n");
+	output("\n\nWeird.");
 
 	processTime(5);
 	//purge hypno
 	pc.removeStatusEffect("Belle Hypno");
-	pc.lust(5);
+	pc.changeLust(5);
+	output("\n\n");
 	var loots:Array = [];
 	if(!(pc.armor is EmptySlot)) loots.push(pc.armor);
 	if(!(pc.lowerUndergarment is EmptySlot)) loots.push(pc.lowerUndergarment);
@@ -2205,7 +2206,7 @@ public function uvetoLandingHypno():void
 	output("\n\n<i><b>Fast.</b></i>");
 
 	//[Next] //Should add some lust and remove the hypnosis flag.
-	pc.lust(50);
+	pc.changeLust(50);
 	pc.removeStatusEffect("Belle Hypno");
 	clearMenu();
 	addButton(0,"Next",move,rooms["SUBSHIT"].northExit);
@@ -2391,7 +2392,7 @@ public function saecDate2():void
 
 	output("\n\nYou tell her that sounds like a great idea.");
 	processTime(70);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",saecDate3);
 }
@@ -2827,7 +2828,7 @@ public function peerReviewParty2():void
 	output("\n\n<i>“Alright then, [pc.boyGirl],”</i> Belle says with a smirk, <i>“Let’s go find somewhere comfortable to sit then, hmm?”</i>");
 
 	processTime(30);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",peerReviewParty3);
 }
@@ -3071,7 +3072,7 @@ public function subTunahDream():void
 	output("\n\nYou gasp as Belle pushes her hips forward, putting pressure on your supple holes");
 	if(pc.hasVagina()) output("s");
 	output(" until...");
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",subTunahDream2);
 }
@@ -3089,7 +3090,7 @@ public function subTunahDream2():void
 	output("\n\nYou pick yourself up from bed and go to get ready, hoping to wash away your lust with a shower, or maybe a lover... <i>actually, maybe you could take a trip to Uveto and visit Belle.</i>");
 
 	//[Next] //Should leave the PC at max lust.
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

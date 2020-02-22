@@ -40,7 +40,7 @@ public function isEquippableItem(item:ItemSlotClass, checkEquip:Boolean = false)
 	return	InCollection(item.type, 
 		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
 		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
-		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT
+		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT, GLOBAL.TENT
 		);
 }
 
@@ -1801,18 +1801,24 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(1, "Shield", "Shield Generator", "You do not have a shield generator equipped.");
 	
+	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
+	{
+		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
+	}
+	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
+	
+	if (pc.accessory.shortName != "")
+	{
+		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
+	}
+	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
+
 	if (pc.lowerUndergarment.shortName != "")
 	{
 		if(inCombat) addDisabledButton(5, "U.Wear Off", StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Cannot be unequipped in combat.");
 		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, pc.lowerUndergarment);
 	}
 	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
-	
-	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
-	{
-		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
-	}
-	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
 	
 	if (pc.armor.shortName != "")
 	{
@@ -1826,12 +1832,6 @@ public function unequipMenu(inCombat:Boolean = false):void
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, pc.rangedWeapon);
 	}
 	else addDisabledButton(7, "Ranged", "Ranged Weapon", "You do not have a ranged weapon equipped.");
-	
-	if (pc.accessory.shortName != "")
-	{
-		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
-	}
-	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
 	if(pc.hasPiercing())
 	{
@@ -1853,7 +1853,13 @@ public function unequipMenu(inCombat:Boolean = false):void
 	{
 		addButton(11,"Decorations",decorationsMenu,undefined,"Decorations","View your currently installed decorations");
 	}
-	else addDisabledButton(11,"Decorations","Decorations","You do not have decorations installed.")
+	else addDisabledButton(11,"Decorations","Decorations","You do not have decorations installed.");
+
+	if (!(pc.tent is EmptySlot))
+	{
+		addOverrideItemButton(12, pc.tent, "Tent Off", unequip, pc.tent);
+	}
+	else addDisabledButton(12, "Tent", "Tent", "You do not have a tent equipped in your quickslot.");
 	
 	//Set user and target.
 	itemUser = pc;
@@ -2289,7 +2295,8 @@ public function equipmentDisplay():void
 	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
 	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n");
+	output("<b>Tent:</b> " + StringUtil.toDisplayCase(pc.tent.longName) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
 	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
@@ -2325,7 +2332,8 @@ public function inventoryDisplay():void
 	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
 	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n");
+	output("<b>Tent:</b> " + StringUtil.toDisplayCase(pc.tent.longName) + "\n\n");
 	
 	output("<b><u>Inventory:</u></b> (" + pc.inventory.length + "/" + pc.inventorySlots() + " slots used.)");
 	if(pc.inventory.length > 0)
@@ -2611,6 +2619,10 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			unequippedItems.push(pc.upperUndergarment);
 			pc.upperUndergarment = new EmptySlot();
 			break;
+		case GLOBAL.TENT:
+			unequippedItems.push(pc.tent);
+			pc.tent = new EmptySlot();
+			break;
 	}
 	
 	var i:int = 0;
@@ -2681,6 +2693,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			output("You");
 			if(arg.type == GLOBAL.ARMOR) output(" don");
+			else if(arg.type == GLOBAL.TENT) output(" clip on");
 			else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
 			else output(" equip");
 			output(" your " + arg.longName + ".");
@@ -2754,6 +2767,11 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			removedItem = pc.upperUndergarment;
 			pc.upperUndergarment = arg;
+		}
+		else if(arg.type == GLOBAL.TENT)
+		{
+			removedItem = pc.tent;
+			pc.tent = arg;
 		}
 		else output("\n\n<b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 		
@@ -2892,6 +2910,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 				||	(loot.type == GLOBAL.ACCESSORY && !pc.hasAccessory())
 				||	(loot.type == GLOBAL.LOWER_UNDERGARMENT && !pc.hasLowerGarment())
 				||	(loot.type == GLOBAL.UPPER_UNDERGARMENT && !pc.hasUpperGarment())
+				||  (loot.type == GLOBAL.TENT && (pc.tent is EmptySlot))
 				) canEquip = true;
 			}
 			if(canEquip) addButton(2,"Use", useLoot, newLootList);

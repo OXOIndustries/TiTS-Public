@@ -171,7 +171,7 @@ package classes.Items.Transformatives
 						
 						kGAMECLASS.output(". <b>You have a pig penis!</b>");
 						
-						pc.lust(20 + rand(20));
+						pc.changeLust(20 + rand(20));
 						
 						changes++;
 						pc.shiftCock(x, GLOBAL.TYPE_SWINE);
@@ -204,7 +204,7 @@ package classes.Items.Transformatives
 					if(pc.hasPerk("Hung")) pc.cocks[x].cLength(Math.round(5 + rand(10))/10);
 					kGAMECLASS.output(Math.round(pc.cocks[x].cLength()*10)/10 + " inches. You take a moment to marvel at your new, larger member, ready for action.");
 					changes++;
-					pc.lust(10+rand(5));
+					pc.changeLust(10+rand(5));
 				}
 				
 				// Cock shrink thickness ratio (if pig penis)
@@ -248,7 +248,7 @@ package classes.Items.Transformatives
 					{
 						kGAMECLASS.output("\n\nYou feel your pussy getting tight and wet. The outer lips swell out dramatically with your rising lust. You stick a finger inside and feel corkscrew-patterned ridges forming along your vaginal walls. <b>Looks like you’ve got a pig pussy!</b>");
 						
-						pc.lust(20 + rand(20));
+						pc.changeLust(20 + rand(20));
 						
 						changes++;
 						pc.shiftVagina(x, GLOBAL.TYPE_SWINE);
