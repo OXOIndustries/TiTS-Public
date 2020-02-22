@@ -392,7 +392,7 @@ public function dockmasterDiscountAsk():void
 	else
 	{
 		output("Red-hot libido blazes across your [pc.face] before you even get the words out, asking if the offer for a discount is still available.");
-		output("\n\n<i>“Sure is, spacer,”</i> she winks. <i>“Thinkin’ of earning your keep around here? Been told I’ve got one of the nicest pussies on Tarkus before. Think they were being a little too kind, but you’d be in for a real treat.”</i> The orchid-hued woman pats her crotch, outlining the material around her sopping delta. <i>“Get your tongue to work convincing me, if you wanna make a deal. Oh yeah - it’s gonna happen right here. If you’re camera-shy I’d probably avoid accepting on principle.”</i>");
+		output("\n\n<i>“Sure is, spacer,”</i> she winks. <i>“Thinkin’ of earning your keep around here? Been told I’ve got one of the nicest pussies on Tarkus before. Think they were being a little too kind, but you’d be in for a real treat.”</i> The orchid-hued woman pats her crotch, outlining her sopping delta through her apron’s construction. <i>“Get your tongue to work convincing me, if you wanna make a deal. Oh yeah - it’s gonna happen right here. If you’re camera-shy I’d probably avoid accepting on principle.”</i>");
 		output("\n\nHer metal tail whips back and forth, excitedly batting the hangar’s floor. Will you get down and eat her out to save some dosh?	");
 		//[Accept] [Decline]
 	}
@@ -666,7 +666,7 @@ public function dicklessTakingTail():void
 public function dockmasterFacesitting():void
 {
 	clearOutput();
-	showDockmistress(true);
+	showDockmistress();
 	author("William");
 	// First Time (Accepted Facesitting)
 	if (flags["DOCKMASTER_FACESAT"] == undefined)
@@ -712,8 +712,18 @@ public function dockmasterFacesitting():void
 		output("\n\nNow, to get that thong...");
 	}
 	// append 'the big merge' here.
-	// the big merge - sexytimes follow!
-	output("\n\nA rain of delectable juices baptize your [pc.tongue] as it hooks into the front length of her inadequate lingerie. With a quick yank, you reveal the fullness of her moist trench and flatten your taste buds to the pleasure-pumped girth of her sloven folds. Overwhelming <b>heat</b> scorches your nervous system prior to her hips rocking again; dizzying pressure gradually intensifies. Hums of gratitude from above spur you into acting, and so you lap and you lick,");
+	processTime(10);
+	pc.maxOutLust();
+	clearMenu();
+	addButton(0,"Next",dockmasterTheSittening);
+}
+// the big merge - sexytimes follow!
+public function dockmasterTheSittening():void
+{
+	clearOutput();
+	showDockmistress(true);
+	author("William");
+	output("A rain of delectable juices baptize your [pc.tongue] as it hooks into the front length of her inadequate lingerie. With a quick yank, you reveal the fullness of her moist trench and flatten your taste buds to the pleasure-pumped girth of her sloven folds. Overwhelming <b>heat</b> scorches your nervous system prior to her hips rocking again; dizzying pressure gradually intensifies. Hums of gratitude from above spur you into acting, and so you lap and you lick,");
 	if (pc.hasLongTongue()) output(" glad to have a long tongue perfect for slurping up a treat");
 	else output(" struggling not to spill any amount of her pearly cream");
 	output(". Her plump muff slides and glides over your mouth, copious ladyflesh owning your every movement. Enjoying herself too much, she shifts faster, and faster, pressing so hard that her winking gash opens and engulfs the length of your nose in a passionate embrace.");
@@ -748,7 +758,7 @@ public function dockmasterFacesitting():void
 		output("\n\nAll this bouncing shakes a rush of [pc.cum] free; your [pc.cocks] detonate, spurting [pc.cumGem] torrents");
 		if (!pc.isCrotchExposed()) output(" into your clothing, filling your gear out into a spunky bubble");
 		else output(" into the air, ropes landing on your [pc.thighs]");
-		output(". Fervent relief rhythmically jets as you’re so assertively used. [pc.CumVisc] relief surges to the helpless lurch of your pinioned form, and, fuck, it only makes you wanna do more! Making her cum now is all that matters!");
+		output(". Fervent seed rhythmically jets as you’re so assertively used. [pc.CumVisc] relief surges to the helpless lurch of your pinioned form, and, fuck, it only makes you wanna do more! Making her cum now is all that matters!");
 		if (pc.hasVagina()) output(" It’s not just your male side getting off, but your [pc.pussiesLight] as well: all glands dilate to handle a cascade of" + (pc.isSquirter() ? "squirting":"") + " bliss. Everything already felt empty and hollow, but now... it’s like you’ve been holding your breath for days...");
 	}
 	// pc Pussy
@@ -786,7 +796,7 @@ public function keepBeingDockMastersSeat():void
 	clearOutput();
 	showDockmistress(true);
 	author("William");
-	output("It’s dark, but you’re still conscious. You can feel the aches in your jaw and the numbing heat tingly slowly across your [pc.face]. Experimentally, you feel your way out tongue-first. This sends a resuscitating spark to the raskvel dockmistress, and again you feel the hot, messy squirm. The hangar’s lights overhead are blinding when that battleship-class ass rises. A network of viscous strings connect your features to her underbutt, peeling away when she scoots forward with an epic sigh of content.");
+	output("It’s dark, but you’re still conscious. You can feel the aches in your jaw and the numbing heat tingle slowly across your [pc.face]. Experimentally, you feel your way out tongue-first. This sends a resuscitating spark to the raskvel dockmistress, and again you feel the hot, messy squirm. The hangar’s lights overhead are blinding when that battleship-class ass rises. A network of viscous strings connect your features to her underbutt, peeling away when she scoots forward with an epic sigh of content.");
 	output("\n\nSucking in air, you open your eyes to meet her looking down at you, stroking one indescribably buxom orb of her sapphire rear inches from your nose. <i>“You’ve more than earned that discount, spacer,”</i> she winks, bending back as it to smother you again. It makes your");
 	if (pc.hasCock()) output(" [pc.cocksLight] twitch");
 	else if (pc.hasVagina()) output(" [pc.pussiesLight] crease");
