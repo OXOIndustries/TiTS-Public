@@ -168,7 +168,8 @@ package classes.Characters
 			else if (HP() / HPMax() <= 0.5) turretsLeft = 2;
 			else if (HP() / HPMax() <= 0.75) turretsLeft = 3;
 			
-			output("There are " + num2Text(turretsLeft) + " laser turrets remaining.\n\n");
+			if (turretsLeft > 1) output("There are " + num2Text(turretsLeft) + " laser turrets remaining.\n\n");
+			else output("There is one laser turret remaining.\n\n");
 			
 			if (target.hasStatusEffect("Coolant Soaked"))
 			{
