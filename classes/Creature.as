@@ -7207,7 +7207,7 @@
 			// Special types:
 			if(wNoun && rand(3) == 0)
 			{
-				var beardNoun:String = beardNoun();
+				var beardNoun:String = this.beardNoun();
 				switch (beardType)
 				{
 					default: bStyle = beardNoun; break;
@@ -12497,7 +12497,7 @@
 			if(hasPerk("Mini")) cocks[arg].cLengthRaw -= 1+rand(2);
 			if(hasPerk("Hung")) cocks[arg].cLengthRaw += 2+rand(4);
 			
-			var race:String = race();
+			var race:String = this.race();
 			var raceSimple:String = stripRace(race);
 			
 			// Type changes
@@ -12591,7 +12591,7 @@
 		//General utility function for setting appropriate dick type with new-grown vaginas.
 		public function setNewVaginaValues(arg:int = 0):void
 		{
-			var race:String = race();
+			var race:String = this.race();
 			var raceSimple:String = stripRace(race);
 			
 			// Type changes
@@ -18335,9 +18335,9 @@
 				}
 			}
 			//Hornyness 1/2
-			else if (lust() > 75 && rand(2) == 0) {
-				var lust:Number = lust();
-				var cumQ:Number = cumQ();
+			else if (this.lust() > 75 && rand(2) == 0) {
+				var lust:Number = this.lust();
+				var cumQ:Number = this.cumQ();
 				//Uber horny like a baws!
 				if (lust > 90) {
 					//Weak as shit cum
@@ -18458,9 +18458,9 @@
 				}
 			}
 			//Hornyness 1/2
-			else if (lust() > 75 && rand(2) == 0) {
-				var lust:Number = lust();
-				var cumQ:Number = cumQ();
+			else if (this.lust() > 75 && rand(2) == 0) {
+				var lust:Number = this.lust();
+				var cumQ:Number = this.cumQ();
 				//Uber horny like a baws!
 				if (lust > 90) {
 					//Weak as shit cum
@@ -22432,7 +22432,7 @@
 					// we can treat chained mul/divs as adds/subs to the same factor, thus
 					// add up all the shit then operate once.
 					
-					var reducer:int = 0.25;
+					var reducer:int = 0;
 					
 					if (hasPerk("Ice Cold")) reducer -= 0.25;
 					if (hasPerk("Extra Ardor")) reducer += 0.25;

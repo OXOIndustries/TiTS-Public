@@ -107,7 +107,7 @@
 			var btnY:int = -149;
 			
 			var vPad:int = 8;
-			var hPad:int = 9.5;
+			var hPad:int = 9;
 			
 			for (var btn:int = 0; btn < 15; btn++)
 			{
