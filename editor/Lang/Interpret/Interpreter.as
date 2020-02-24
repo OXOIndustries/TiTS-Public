@@ -415,7 +415,7 @@ package editor.Lang.Interpret {
                 // condition ? [] : result2
                 else {
                     returnValue = '';
-                    returnRange = node.range;
+                    returnRange = new TextRange(node.range.end, node.range.end);
                 }
 
                 // To Code
