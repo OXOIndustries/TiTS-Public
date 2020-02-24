@@ -8,7 +8,7 @@ Any text between `[ ]` is a `parser`.
 
 `identity` is the name of a variable in memory.
 
-`arguments` is a list of `text` or `number` separated by a `space`, `tab` and/or `newline`.
+`arguments` is a list of `text` or `number` separated by at least one `space` or `tab`.
 
 `results` is a list of `text` separated by `|`. They can include `parsers`.
 
@@ -51,10 +51,27 @@ Newlines following the end of the `result` text are ignored.
 ```
 Silly mode is disabled.
 ```
+## Indentation
+The space between the start of a line and the first `|` determines the amount of indentation for all `results` of that parser. A tab counts as one space.
+
+Example: Two space indentation
+> ```
+> SILLY MODE
+> [silly
+>   |==========
+>    ENABLED
+>   |==========
+>    DISABLED
+> ]
+```
+SILLY MODE
+==========
+ ENABLED
+```
 
 ---
 ## Argument Grouping
-`arguments` can be grouped together using parentheses `( )`. When grouped, `space`, `tab`, and `newline` are included.
+`arguments` can be grouped together using parentheses `( )`. When grouped, `spaces` and `tabs` are included.
 
 > `[pc.hasPerk (Fecund Figure)|exceptionally wide] hips`
 ```
