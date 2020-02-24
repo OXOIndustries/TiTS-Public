@@ -230,7 +230,7 @@
 		
 		private function weaponToggle(toShield:Boolean = false):void
 		{
-			if (toShield = false)
+			if (toShield == false)
 			{
 				meleeWeapon.attackVerb = "slash";
 				meleeWeapon.attackNoun = "slash";
