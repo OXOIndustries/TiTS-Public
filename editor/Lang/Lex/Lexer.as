@@ -1,6 +1,4 @@
 package editor.Lang.Lex {
-    import editor.Lang.TextPosition;
-    import editor.Lang.TextRange;
     import editor.Lang.Tokens.*;
 
     public class Lexer {
