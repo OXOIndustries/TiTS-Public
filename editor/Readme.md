@@ -7,6 +7,7 @@ It is for testing "parsers" using the game.
 
 [Parser List](Documentation/Parsers.md)
 
+[List of names](Documentation/NameList.md)
 
 # Coders
 
