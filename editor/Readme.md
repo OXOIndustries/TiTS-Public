@@ -7,9 +7,7 @@ It is for testing "parsers" using the game.
 
 [Parser List](Documentation/Parsers.md)
 
-[List of body part flags](Documentation/FlagList.md)
-
-[List of body part types](Documentation/TypeList.md)
+[List of names](Documentation/NameList.md)
 
 # Coders
 

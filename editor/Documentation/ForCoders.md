@@ -6,7 +6,7 @@
 
 An `identifier` is a list of `identity` separated by `.` Each `identity` accesses a variable starting with the `Object` that was passed to the `interpreter` on creation.
 
-The `arguments` is a list of `String` or `Number`. They are separated by a `space`, `tab` and/or `newline`.
+The `arguments` is a list of `String` or `Number` separated by at least one `space` or `tab`.
 
 The `results` is a list of `String`. They are separated by `|`. They can include a parser.
 
@@ -47,6 +47,24 @@ Newlines following the end of the `result` text are ignored.
 > `].` 
 ```
 Silly mode is disabled.
+```
+---
+## Indentation
+The space between the start of a line and the first `|` determines the amount of indentation for all `results` of that parser. A tab counts as one space.
+
+Example: Two space indentation
+> ```
+> SILLY MODE
+> [silly
+>   |==========
+>    ENABLED
+>   |==========
+>    DISABLED
+> ]
+```
+SILLY MODE
+==========
+ ENABLED
 ```
 
 # Relation between the code and parsers

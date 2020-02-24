@@ -1,9 +1,7 @@
 package editor.Lang.Interpret {
-    import editor.Lang.FunctionInfo;
     import editor.Lang.Nodes.*;
     import editor.Lang.Errors.*;
     import editor.Lang.TextRange;
-    import flash.utils.describeType;
     
     public class Interpreter {
         public static const FUNC_INFO_STRING: String = '__info';
@@ -39,15 +37,10 @@ package editor.Lang.Interpret {
         }
 
         /**
-         * Processes a node's children and returns the results in an array
-         * @param node
-         * @return
+         * For mapping children
          */
-        private function processChildren(node: Node): Array {
-            var values: Array = [];
-            for each (var child: * in node.children)
-                values.push(this.processNode(child));
-            return values;
+        private function processChildren(node: Node, idx: Number, arr: Array): Product {
+            return this.processNode(node);
         }
 
         /**
@@ -106,7 +99,7 @@ package editor.Lang.Interpret {
                 case NodeType.Args: return this.evalArgsNode(node);
                 case NodeType.Results: return this.evalResultsNode(node);
             }
-            throw new Error();
+            throw new Error('NodeType ' + node.type + ' does not exist');
         }
 
         /**
@@ -146,28 +139,28 @@ package editor.Lang.Interpret {
          * @return 'Product.value = String'
          */
         private function evalConcatNode(node: ConcatNode): Product {
-            var values: * = this.processChildren(node);
+            var products: * = node.children.map(this.processChildren);
 
             // Squashes ranges
             var ranges: Array = [];
-            for each (var child: * in values)
+            for each (var child: * in products)
                 if (child.range is Array)
-                    for each (var subchild: * in child)
-                        ranges.push(subchild.range);
+                    for each (var childRange: * in child.range)
+                        ranges.push(childRange);
                 else
                     ranges.push(child.range);
 
             var valueStr: String = '';
             var codeStr: String = '';
-            for (var idx: int = 0; idx < values.length; idx++) {
-                valueStr += values[idx].value;
-                if (codeStr.charAt(codeStr.length - 1) == '"' && values[idx].code.charAt(0) == '"') {
-                    codeStr = codeStr.slice(0, codeStr.length - 1) + values[idx].code.slice(1);
+            for each (var product: * in products) {
+                valueStr += product.value;
+                if (codeStr.charAt(codeStr.length - 1) === '"' && product.code.charAt(0) === '"') {
+                    codeStr = codeStr.slice(0, codeStr.length - 1) + product.code.slice(1);
                 }
                 else {
                     if (codeStr.length > 0)
                         codeStr += ' + ';
-                    codeStr += values[idx].code;
+                    codeStr += product.code;
                 }
             }
 
@@ -179,19 +172,20 @@ package editor.Lang.Interpret {
         }
 
         /**
-         * @return 'Product.value = {} or { value: *, self: Object, caps: Boolean, info: FunctionInfo }'
+         * @return 'Product.value = {} or { value: *, parent: Object, caps: Boolean, info: FunctionInfo }'
          */
         private function evalRetrieveNode(node: RetrieveNode): Product {
-            var values: * = this.processChildren(node);
+            var values: Array = node.children.map(this.processChildren);
             var obj: * = this.globals;
             var name: String = '';
             var codeStr: String = '';
 
-            var infoObj: * = null;
+            var infoObj: *;
             var identity: String;
-            var selfObj: * = null;
+            var parentObj: *;
             var caps: Boolean = false;
             var lowerCaseIdentity: String;
+
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
                 // Determine if capitalization is needed
@@ -202,6 +196,7 @@ package editor.Lang.Interpret {
                         identity = lowerCaseIdentity;
                     }
                 }
+
                 // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
                     this.createError(
@@ -214,19 +209,20 @@ package editor.Lang.Interpret {
                         ''
                     );
                 }
+
                 // Check for <name>__info
                 if (idx === values.length - 1 && (identity + FUNC_INFO_STRING) in obj) {
                     infoObj = obj[identity + FUNC_INFO_STRING];
                 }
 
-                selfObj = obj;
+                parentObj = obj;
                 obj = obj[identity];
                 if (name.length > 0) {
                     name += '.';
                     codeStr += '.';
                 }
                 name += identity;
-                if (idx == values.length - 1 && infoObj && infoObj.identityOverride)
+                if (idx === values.length - 1 && infoObj && infoObj.identityOverride)
                     codeStr += infoObj.identityOverride;
                 else
                     codeStr += identity + (typeof obj === 'function' ? '()' : '');
@@ -236,7 +232,7 @@ package editor.Lang.Interpret {
                 node.range,
                 {
                     value: obj,
-                    self: selfObj,
+                    parent: parentObj,
                     caps: caps,
                     info: infoObj
                 },
@@ -250,7 +246,7 @@ package editor.Lang.Interpret {
         private function evalArgsNode(node: ArgsNode): Product {
             return new Product(
                 node.range,
-                this.processChildren(node),
+                node.children.map(this.processChildren),
                 ''
             );
         }
@@ -261,7 +257,7 @@ package editor.Lang.Interpret {
         private function evalResultsNode(node: ResultsNode): Product {
             return new Product(
                 node.range,
-                this.processChildren(node),
+                node.children.map(this.processChildren),
                 ''
             );
         }
@@ -296,7 +292,7 @@ package editor.Lang.Interpret {
             if (!('value' in retrieve.value))
                 return new Product(new TextRange(node.range.start, node.range.start), '', '');
 
-            const identifer: String = this.getName(node.children[0]);
+            const identifier: String = this.getName(node.children[0]);
 
             const argsValueArr: Array = new Array();
             var argsCodeArr: Array = new Array();
@@ -314,16 +310,16 @@ package editor.Lang.Interpret {
 
             var resultValue: * = retrieve.value.value;
 
-            if (typeof retrieve.value.value === 'function') {
+            if (typeof resultValue === 'function') {
                 // Error checking
                 errorStart = this.errors.length;
 
                 // Validate args and results
-                if (retrieve.value.info && retrieve.value.info.argResultValidator !== null) {
+                if (retrieve.value.info && retrieve.value.info.argResultValidator) {
                     for each (var validator: * in retrieve.value.info.argResultValidator) {
                         const validResult: * = validator(argsValueArr, resultsValueArr);
-                        if (validResult !== null) {
-                            this.createError(node.range, '"' + identifer + '" ' + validResult);
+                        if (validResult != null) {
+                            this.createError(node.range, '"' + identifier + '" ' + validResult);
                             break;
                         }
                     }
@@ -331,24 +327,23 @@ package editor.Lang.Interpret {
                 // No args or results if no validator
                 else {
                     if (argsValueArr.length > 0)
-                        this.createError(args.range, identifer + ' does not use arguments');
+                        this.createError(args.range, identifier + ' does not use arguments');
                     if (resultsValueArr.length > 0)
-                        this.createError(results.range, identifer + ' does not use results');
+                        this.createError(results.range, identifier + ' does not use results');
                 }
 
                 // Return on error
-                if (errorStart !== this.errors.length) {
+                if (errorStart !== this.errors.length)
                     return new Product(new TextRange(node.range.start, node.range.start), '', '');
-                }
 
                 // Evaluate
                 if (retrieve.value.info && retrieve.value.info.includeResults)
-                    resultValue = retrieve.value.value.call(retrieve.value.self, argsValueArr, resultsValueArr);
+                    resultValue = resultValue.call(retrieve.value.parent, argsValueArr, resultsValueArr);
                 else
-                    resultValue = retrieve.value.value.apply(retrieve.value.self, argsValueArr);
+                    resultValue = resultValue.apply(retrieve.value.parent, argsValueArr);
 
                 if (resultValue == null) {
-                    this.createError(node.range, identifer + ' is ' + resultValue);
+                    this.createError(node.range, identifier + ' is ' + resultValue);
                     return new Product(new TextRange(node.range.start, node.range.start), '', '');
                 }
             }
@@ -357,17 +352,17 @@ package editor.Lang.Interpret {
             errorStart = this.errors.length;
             switch (typeof resultValue) {
                 case 'boolean': {
-                    if (resultsValueArr.length == 0) {
-                        this.createError(node.range, identifer + ' needs at least 1 result');
+                    if (resultsValueArr.length === 0) {
+                        this.createError(node.range, identifier + ' needs at least 1 result');
                     }
                     else if (resultsValueArr.length > 2) {
-                        this.createError(node.range, identifer + ' has ' + (resultsValueArr.length - 2) + ' results than needed');
+                        this.createError(node.range, identifier + ' has ' + (resultsValueArr.length - 2) + ' results than needed');
                     }
                     break;
                 }
                 case 'xml':
                 case 'object': {
-                    this.createError(node.range, identifer + ' cannot be displayed');
+                    this.createError(node.range, identifier + ' cannot be displayed');
                     break;
                 }
             }
@@ -436,8 +431,8 @@ package editor.Lang.Interpret {
                 returnCode = retrieve.code;
             }
 
-            if (retrieve.value.info && retrieve.value.info.toCode !== null) {
-                if (retrieve.value.info.mapArgsCallbacks !== null)
+            if (retrieve.value.info && retrieve.value.info.toCode) {
+                if (retrieve.value.info.mapArgsCallbacks)
                     for each (var preprocessor: * in retrieve.value.info.mapArgsCallbacks)
                         argsCodeArr = argsCodeArr.map(preprocessor);
                 returnCode = retrieve.value.info.toCode(retrieve.code, argsCodeArr, resultsCodeArr);

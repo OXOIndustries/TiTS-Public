@@ -147,11 +147,7 @@ package editor.Lang.Parse {
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
-            this.whitespace();
-
             var argNodes: Node = this.args();
-
-            this.whitespace();
 
             var resultNodes: Node = this.results();
 
@@ -225,7 +221,8 @@ package editor.Lang.Parse {
             var valueNode: Node = this.getValue();
             if (valueNode) arr.push(valueNode);
             
-            while (this.whitespace()) {
+            while (this.lexer.peek() == TokenType.Space) {
+                this.lexer.advance();
                 valueNode = this.getValue();
                 if (!valueNode)
                     break;
@@ -248,12 +245,24 @@ package editor.Lang.Parse {
             var arr: Array = [];
             const start: TextPosition = this.createStartPostion();
 
+            // Indentation
+            var indent: int = 0;
+            while (this.lexer.peek() === TokenType.Newline) {
+                // In case of multiple newlines before pipe
+                indent = 0;
+                this.lexer.advance();
+                while (this.lexer.peek() === TokenType.Space) {
+                    indent += this.lexer.getText().length;
+                    this.lexer.advance();
+                }
+            }
+
             // Consume Pipe then ResultConcat
             var node: Node;
             while (this.lexer.peek() === TokenType.Pipe) {
                 this.lexer.advance();
 
-                node = this.resultConcat();
+                node = this.resultConcat(indent);
                 if (!node)
                     if (this.lexer.peek() === TokenType.Pipe || this.lexer.peek() === TokenType.RightBracket)
                         node = new StringNode(new TextRange(this.createStartPostion(), this.createStartPostion()), '');
@@ -274,14 +283,14 @@ package editor.Lang.Parse {
          * Handles concatenation inside a Results
          * @return StringNode or ConcatNode or EvalNode
          */
-        private function resultConcat(): Node {
+        private function resultConcat(indent: int): Node {
             var arr: Array = [];
             var newNode: Node;
 
             while (this.lexer.peek() !== TokenType.EOS) {
                 // Search until something is found
                 newNode = this.code(); // StringNode or ConcatNode or EvalNode or null
-                if (!newNode) newNode = this.resultText(); // StringNode or null
+                if (!newNode) newNode = this.resultText(indent); // StringNode or null
                 if (!newNode) break;
 
                 arr.push(newNode); // StringNode or ConcatNode or EvalNode
@@ -303,28 +312,42 @@ package editor.Lang.Parse {
          * Parsing for text
          * @return StringNode or null
          */
-        private function resultText(): Node {
+        private function resultText(indent: int): Node {
             var start: TextPosition = this.createStartPostion();
             var subText: String = '';
             var newlines: String = '';
             var type: int = this.lexer.peek();
-            while (
-                type !== TokenType.EOS &&
-                type !== TokenType.LeftBracket &&
-                type !== TokenType.RightBracket &&
-                type !== TokenType.Pipe
-            ) {
-                if (type === TokenType.Newline) {
-                    newlines += this.lexer.getText();
-                    type = this.lexer.advance();
-                }
-                else {
-                    if (newlines.length > 0) {
+
+            infiniteLoop: while (true) {
+                switch (type) {
+                    case TokenType.LeftBracket:
+                        // whitespace before [
                         subText += newlines;
+
+                    case TokenType.EOS:
+                    case TokenType.RightBracket:
+                    case TokenType.Pipe:
+                        break infiniteLoop;
+
+                    case TokenType.Newline:
+                        newlines += this.lexer.getText();
+                        type = this.lexer.advance();
+
+                        var indentText: String = '';
+                        while (this.lexer.peek() === TokenType.Space) {
+                            indentText += this.lexer.getText();
+                            type = this.lexer.advance();
+                        }
+
+                        if (indentText.length >= indent)
+                            newlines += indentText.substr(indent);
+                        break;
+
+                    default:
+                        subText += newlines + this.lexer.getText();
                         newlines = '';
-                    }
-                    subText += this.lexer.getText();
-                    type = this.lexer.advance();
+                        type = this.lexer.advance();
+                        break;
                 }
             }
 
@@ -362,7 +385,6 @@ package editor.Lang.Parse {
             infiniteLoop: while (true) {
                 switch (type) {
                     case TokenType.Space:
-                    case TokenType.Newline:
                         if (groupStart == null)
                             break infiniteLoop;
                     case TokenType.Text:
