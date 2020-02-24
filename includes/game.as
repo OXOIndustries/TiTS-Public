@@ -132,6 +132,8 @@ public function disableExploreEvents():Boolean
 	if (flags["WARGII_PROGRESS"] == 2) return true;
 	// Event Whorizon
 	if (isDoingEventWhorizon()) return true;
+	//deepsea biomedical quest
+	if (flags["UVETO_DEEPSEALAB_QUEST"] == 2 || flags["UVETO_DEEPSEALAB_QUEST"] == 3) return true;
 
 	return false;
 }
@@ -4466,6 +4468,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processMirrinPregnancy(deltaT, nextTimestamp);
 	processBianca(totalDays, nextTimestamp);
 	processKiroQuestEvents(deltaT, doOut);
+	steeleBioDeepSeaCheckToReceiveBacon(deltaT);
+	drLessauFrostWyrmCheckToReceiveEmail(deltaT, doOut, totalDays);
 	
 	// Per-day events
 	if (totalDays >= 1)

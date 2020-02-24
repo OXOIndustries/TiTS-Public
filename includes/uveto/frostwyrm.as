@@ -858,7 +858,7 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	addButton(4, "Bellyrub", whosAGoodFrostwyrm, undefined);
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) addButton(5, "Boop", frostwyrmTouchDaDragon, undefined);
 	
-	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
+	if (pc.hasKeyItem("Blood Extractor")) addButton(5, "Extract", frostwyrmQuestSample, undefined);
 	
 	if(flags["NYKKE_MET"] != undefined && flags["NYKKE_VERSION"] == 1) addButton(6, "Nykke", nykkeMainMenu, true, "Nykke","Spend some time with Nykke in her lair.");
 	
@@ -1111,7 +1111,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	if (flags["FROSTWYRM_GAVE_BATH"] != undefined) addButton(5, "Eat Her", frostwyrmLickTheMagicDragon, undefined);
 	addButton(14, "Back", frostwyrmMainMenu, undefined);
 }
-/*public function frostwyrmQuestSample():void
+public function frostwyrmQuestSample():void
 {
 	clearOutput();
 	frostWyrmHeader();
@@ -1140,11 +1140,12 @@ public function frostwyrmIWantToBangTheLizard():void
 	output("\n\nYou tell her that, as soon as the results come in, she’ll be the first to hear about it.");
 	
 	clearMenu();
+	flags["LESSAU_FROSTWYRM_QUEST"] = 1;
 	pc.removeKeyItem("Blood Extractor");
 	pc.createKeyItem("Vial of Frostwyrm Blood", 0, 0, 0, 0, "");
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", frostwyrmMainMenu);
 }
-*/
+
 // putting each sex scene separately, figure it'd be easier to keep track of variables that way
 public function frostwyrmItsAHotdogInAHallway():void
 {

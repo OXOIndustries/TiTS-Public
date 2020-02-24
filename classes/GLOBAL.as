@@ -1265,6 +1265,7 @@
 		public static const ITEM_FLAG_COCKRING:int 						= 50; //For cockring-type cockwear.
 		public static const ITEM_FLAG_ALCOHOLIC:int						= 51; //For hooch
 		public static const ITEM_FLAG_MEDICINE:int						= 52; //For things that can cure disease, NOT WOUNDS
+		public static const ITEM_FLAG_PRESSURIZED:int					= 53; //maintains internal pressure to protect vs high and low pressure environments
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1318,6 +1319,9 @@
 			"Hoop",
 			"Cocksock",
 			"Cockring",
+			"Alcoholic",
+			"Medicine",
+			"Pressurized",
 		];
 		
 		/**

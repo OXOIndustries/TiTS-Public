@@ -8905,6 +8905,13 @@
 								willpowerMod += 5;
 							}
 							break;
+						case "Coolant Soaked":
+							reflexesMod += 10;
+							break;
+						case "Density Shift":
+							reflexesMod += 10;
+							aimMod += 10;
+							break;
 					}
 					//trace("Removed: " + statusEffects[x].storageName + " at position " + x + ".");
 					statusEffects.splice(x,1);

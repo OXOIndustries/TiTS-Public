@@ -400,6 +400,15 @@ package classes.GameData
 				
 				if(!e.hasStatusEffect("Tranq'd") && pc.hasKeyItem("Myr Heavy Tranquilizer Dart")) addButton(10, "UseTranq", e.attemptTranq, undefined, "Use Tranquilizer", "See if the tranquilizer Lieve gave you will have any effect on the War Queen.");
 			}
+			if (hasEnemyOfClass(JaneriaCore))
+			{
+				var en:JaneriaCore = _hostiles[0];
+				if (en.hasStatusEffect("Electric Flood Chargeup"))
+				{					
+					kGAMECLASS.janeriaCoreChargeupBonusMenu();
+					return;
+				}
+			}
 		}
 		
 		/**
@@ -2269,6 +2278,7 @@ package classes.GameData
 			{
 				output("You send a burst of electricity back along the grappling line, right into the offending security bot.");
 			}
+			else if (hasEnemyOfClass(JaneriaSpawn) || hasEnemyOfClass(JaneriaCore)) output("You release a discharge of electricity which only seems to strengthen your foe.");
 			else
 			{
 				output("You release a discharge of electricity, momentarily weakening your ");
@@ -2288,10 +2298,17 @@ package classes.GameData
 			}
 			if(pc.hasStatusEffect("Grappled"))
 			{
-				pc.removeStatusEffect("Grappled");
-				if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot’s grasp.");
-				else if (hasEnemyOfClass(KQTwinA) && hasEnemyOfClass(KQTwinB)) output("\nDespite the two’s best efforts, they’re unable to keep you restrained. You break out of their grip and leap away, leaving the two horny sluts to frot uselessly with each-other until they finish and paint themselves white with copious seed. Instead of calming them down, orgasming only seems to drive them crazier as they redouble their focus on you.");
-				else output("\nYou slip free of the grapple.");
+				if (hasEnemyOfClass(JaneriaSpawn) || hasEnemyOfClass(JaneriaCore))
+				{
+					pc.createStatusEffect("Static Heal", 0, 0, 0, 0, false, "", "The static burst heals the janeria instead of breaking the grapple!", false, 0);					
+				}
+				else
+				{
+					pc.removeStatusEffect("Grappled");
+					if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot’s grasp.");
+					else if (hasEnemyOfClass(KQTwinA) && hasEnemyOfClass(KQTwinB)) output("\nDespite the two’s best efforts, they’re unable to keep you restrained. You break out of their grip and leap away, leaving the two horny sluts to frot uselessly with each-other until they finish and paint themselves white with copious seed. Instead of calming them down, orgasming only seems to drive them crazier as they redouble their focus on you.");
+					else output("\nYou slip free of the grapple.");
+				}
 			}
 			if (pc.hasStatusEffect("Cockvine Grip"))
 			{
