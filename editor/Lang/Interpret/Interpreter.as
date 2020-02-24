@@ -152,8 +152,8 @@ package editor.Lang.Interpret {
             var ranges: Array = [];
             for each (var child: * in values)
                 if (child.range is Array)
-                    for each (var subchild: * in child)
-                        ranges.push(subchild.range);
+                    for each (var childRange: * in child.range)
+                        ranges.push(childRange);
                 else
                     ranges.push(child.range);
 

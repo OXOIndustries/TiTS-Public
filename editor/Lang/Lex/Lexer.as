@@ -28,8 +28,11 @@ package editor.Lang.Lex {
          */
         private function eatWhile(...chars: Array): Boolean {
             const start: int = this.pos;
-            for (var idx: int = 0; idx < chars.length; idx++) {
-                if (this._text.charAt(this.pos) === chars[idx]) {
+            var idx: int = 0;
+            while (idx < chars.length) {
+                if (this._text.charAt(this.pos) !== chars[idx])
+                    idx++;
+                else {
                     this.pos++;
                     idx = 0;
                 }
