@@ -735,6 +735,19 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/miko_mai.png", mimeType = "image/png")]
 		public var Bust_MIKO_AND_MAI:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_small.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_SMALL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_small_nude.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_SMALL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_mid.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_MEDIUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_mid_nude.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_MEDIUM_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_big.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_LARGE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_big_nude.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_LARGE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/milly.png", mimeType = "image/png")]
 		public var Bust_MILLY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/milly_nude.png", mimeType = "image/png")]
@@ -2023,6 +2036,19 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/miko_mai.png", mimeType = "image/png")]
 			public var Full_MIKO_AND_MAI:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_small.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_SMALL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_small_nude.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_SMALL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_mid.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_MEDIUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_mid_nude.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_MEDIUM_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_big.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_LARGE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_big_nude.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_LARGE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milly.png", mimeType = "image/png")]
 			public var Full_MILLY:Class;

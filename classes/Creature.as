@@ -22594,7 +22594,7 @@
 					// we can treat chained mul/divs as adds/subs to the same factor, thus
 					// add up all the shit then operate once.
 					
-					var reducer:int = 0.25;
+					var reducer:int = 0.0;
 					
 					if (hasPerk("Ice Cold")) reducer -= 0.25;
 					if (hasPerk("Extra Ardor")) reducer += 0.25;
