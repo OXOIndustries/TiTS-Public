@@ -26,7 +26,7 @@ package classes.Items.Armor
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a stripped-down version of military power armor. It is used for underwater operations where extreme pressure is a concern.";
+			this.description = "a stripped-down version of military power armor. It is used for underwater operations where extreme pressure is a concern";
 			
 			this.tooltip = "This Akkadi-made depthsuit, effectively a stripped-down version of military power armor, is used for underwater operations where extreme pressure is a concern. Climate-controlled and electrically insulated, the suit provides up to eight hours of air as well as artificial musculature that dynamically adjusts to compensate for the difficulty of moving in deep water. While most of the military-grade combat software has been removed, the same plating that allows the suit to withstand the crushing pressure of the ocean depths makes it quite durable in combat. Modular components allow it to be adjusted for users with unusual body structures to ensure a proper environmental seal. It's not much of a looker, and painted in a rather unappealing orange, but you can't have everything.";
 			

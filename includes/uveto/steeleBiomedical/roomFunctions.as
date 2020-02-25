@@ -289,7 +289,7 @@ public function steeleBioJaneriaSpawnReport():Boolean
 	IncrementFlag("UVETO_DEEPSEALAB_STEPS");
 	
 	//min 3 steps per encounter and the more spawn there are the greater chance of meeting one after that (50%, 40%, 30%, 20%)
-	if (flags["UVETO_DEEPSEALAB_STEPS"] >= 3 && rand(10) < spawnLeft + 1)
+	if (flags["UVETO_DEEPSEALAB_STEPS"] >= 3 && spawnLeft > 0 && rand(10) < spawnLeft + 1)
 	{
 		flags["UVETO_DEEPSEALAB_STEPS"] = 0;
 		return encounterJaneriaSpawn();
@@ -303,4 +303,21 @@ public function steeleBioJaneriaSpawnReport():Boolean
 		else output("\n\nThe hallways are mercifully quiet. You think you’ve managed to kill all of the jellyfish roaming the facility.");
 	}
 	return false;
+}
+//outside text generation
+public function steeleBioOutsideTile3RoomBonus():Boolean
+{	
+	author("Couch");
+	if (flags["UVETO_DEEPSEALAB_JANERIACORE"] == undefined) output("Rounding the bend in the path you can see the invader, a giant glowing jellyfish wrapped around the generator room. Electricity crackles along its body in time with the rise and fall of its glow, coming in pulses from the generator up and into its main body. What the hell <i>is</i> this monster?");
+	else output("Rounding the bend in the path you can see the generator room where you fought the giant jellyfish.");
+	
+	return steeleBioOutsideBonus();
+}
+//outside text generation
+public function steeleBioOutsideTile4RoomBonus():Boolean
+{	
+	author("Couch");
+	if (flags["UVETO_DEEPSEALAB_JANERIACORE"] == undefined) output(" The giant jellyfish hasn’t noticed you yet, but you’re pretty sure it will as soon as you enter. This is your last chance to back out, <b>you’d better be ready to fight.</b>");
+	
+	return steeleBioOutsideBonus();
 }
