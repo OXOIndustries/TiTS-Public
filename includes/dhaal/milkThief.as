@@ -2543,9 +2543,12 @@ public function voluntaryMilkingByWilliamSan3(args:Array):void
 	//Boob bigger
 	if(growBoobs) 
 	{
-		for(var i:int = 0; i < pc.bRows(); i++) { pc.breastRows[i].breastRating(rand(4)+1); }
+		var growAmt:int = rand(4)+1;
+		for(var i:int = 0; i < pc.bRows(); i++)
+		{
+			pc.breastRows[i].breastRating(growAmt);
+		}
 		output("\n\nFrom the first step you take, your equilibrium screams in protest. Adjusting to newfound weight, you discover that whatever drugs the girl had cheeked you have <b>expanded your chesty assets into " + pc.breastCup(pc.biggestTitRow()) + " territory</b>. The smut-glazed mounds heave in a wider orbit, wonderfully sore from extra growth on top of a thorough draining. A cascade of prickling arousal pokes at you from behind their [pc.nippleColor] peaks. You... you almost can’t wait to do something with them now.");
-		
 	}
 	//lactationModIncreased
 	if(boostLactation) 
