@@ -288,13 +288,19 @@ public function dockmasterWeaponShop():void
 //She pauses and snatches a drink from a passing raskvel, grinning faintly at you before indicating the rest of the hangar. <i>“I’m still on shift for a little while if you change your mind and come back though.”</i>
 //[Leave]
 
+
+
 public function raskvelDockmasterMenu():void
 {
-	if(hasDockRaskDiscount()) chars["DOCKMASTER"].sellMarkup = 0.75;
+	if(hasDockRaskDiscount()) 
+	{
+		chars["DOCKMASTER"].sellMarkup = 0.75;
+		chars["DOCKMASTER"].buyMarkdown = 0.50;
+	}
 	else if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
 	{
 		chars["DOCKMASTER"].sellMarkup = 0.95;
-		chars["DOCKMASTER"].buyMarkdown = 0.70;
+		chars["DOCKMASTER"].buyMarkdown = 0.50;
 	}
 	else chars["DOCKMASTER"].sellMarkup = 1.0;
 	
@@ -836,8 +842,7 @@ public function keepBeingDockMastersSeat():void
 	if (pc.hasGenitals()) pc.orgasm();
 	pc.applyPussyDrenched();
 	soreChange(3);
-	var engy:Number = (10 + rand(11))/100;
-	pc.energy(pc.energyMax()*engy);
+	pc.changeEnergy(-(10+rand(11)));
 	addButton(0,"Next",mainGameMenu);
 }
 
