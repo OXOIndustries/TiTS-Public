@@ -12,6 +12,8 @@ package classes.GameData
 	import classes.Items.Accessories.ShoulderGrunchLeash;
 	import classes.Items.Accessories.GrunchLeash;
 	import classes.Items.Accessories.SignetOfBravery;
+	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.Items.Transformatives.ThiccNShake;
@@ -2974,8 +2976,9 @@ package classes.GameData
 			}
 	
 			clearOutput();
-			output("Which tease will you use?");
+			output("Which tease will you use? (Current teasing skill: " + pc.teaseSkill() + "%)");
 			
+			/*
 			var teases:Array = [
 				Math.min((flags["TIMES_BUTT_TEASED"] == undefined ? 0 : flags["TIMES_BUTT_TEASED"]), 100),
 				Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100),
@@ -2983,19 +2986,19 @@ package classes.GameData
 				Math.min((flags["TIMES_HIPS_TEASED"] == undefined ? 0 : flags["TIMES_HIPS_TEASED"]), 100),
 				Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100),
 			];
-			var i:int = 0;
+			
 			
 			output("\nAss tease skill: " + teases[0] + "/100");
 			output("\nChest tease skill: " + teases[1] + "/100");
 			output("\nCrotch tease skill: " + teases[2] + "/100");
 			output("\nHips tease skill: " + teases[3] + "/100");
-			output("\nOral tease skill: " + teases[4] + "/100");
+			output("\nOral tease skill: " + teases[4] + "/100");*/
 			
-			output("\n\nYour ability at a tease can increase both its success rate and total damage.");
-			
+			//output("\n\nYour ability at a tease can increase both its success rate and total damage.");
+			var i:int = 0;
 			var teaseList:Array = [];
 			var btnSlot:int = 0;
-			var backTooltip:String = "Back out. Recommended if you haven’t yet used “Sense” to determine your foe’s likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe’s preferences!";
+			var backTooltip:String = "Back out. Remember that “Sense” can be used to determine a foes likes and dislikes!";
 			
 			// Basic Teases
 			teaseList.push(["Ass", teaseButt, target, "Ass Tease", "Use your [pc.butt] to tease your enemy."]);
@@ -3047,16 +3050,6 @@ package classes.GameData
 		public function globalTeaseAdjustments(target:Creature):Array
 		{
 			var likeAdjustments:Array = new Array();
-			//Masc/Fem
-			if(pc.femininity > 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE) > 0)
-				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE);
-			if(pc.femininity <= 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE) > 0)
-				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE);
-			//Hair or lack thereof!
-			if(!pc.hasHair() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS) > 0)
-				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS);
-			if(pc.hasHair() && pc.hairLength >= 8 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR) > 0)
-				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR);
 			//Coatings:
 			if(pc.hasStatusEffect("Sweaty") && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT);
@@ -3071,6 +3064,11 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEATHERS);
 			if(pc.hasChitin() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN);
+
+			//Scaley enemies get a "Really Likes" on the PC for Geddanium
+			if (pc.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) likeAdjustments[likeAdjustments.length] = GLOBAL.REALLY_LIKES_SEXPREF;
+			//Furry enemies get a "Really Likes" on the PC for Urtanium
+			if (pc.hasPiercingOfClass(UrtaniumRingPiercing) && target.hasFur()) likeAdjustments[likeAdjustments.length] = GLOBAL.REALLY_LIKES_SEXPREF;
 			return likeAdjustments;
 		}
 		
@@ -3080,7 +3078,7 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_BUTT_TEASED"] == undefined ? 0 : flags["TIMES_BUTT_TEASED"]), 100);
+			teaseCount = pc.teaseSkill();
 			
 			if(pc.buttRating() >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS);
@@ -3097,9 +3095,16 @@ package classes.GameData
 			//Global adjustments for things like fur, sweat, cum-covered, etc.
 			likeAdjustments.concat(globalTeaseAdjustments(target));
 
+			var factor:Number = 1;
+			//Add up like factor.
+			if (likeAdjustments.length > 0) { 
+				for (var i:int = 0; i < likeAdjustments.length; i++) factor *= likeAdjustments[i];
+			}
+
+			//Fun outputs:
 			clearOutput();
-			
 			buttTeaseText(target);
+			//Hit/Miss?
 			applyTeaseDamage(pc, target, teaseCount, "BUTT", likeAdjustments);
 			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
@@ -3251,6 +3256,16 @@ package classes.GameData
 			//Get tease count updated
 			teaseCount = Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100);
 			
+			//Masc/Fem
+			if(pc.femininity > 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE);
+			if(pc.femininity <= 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE);
+			//Hair or lack thereof!
+			if(!pc.hasHair() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS);
+			if(pc.hasHair() && pc.hairLength >= 8 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR);
 			if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);
 			if(pc.biggestTitSize() < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BREASTS) > 0)
@@ -3524,6 +3539,16 @@ package classes.GameData
 			//Get tease count updated
 			teaseCount = Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100);
 			
+			//Masc/Fem
+			if(pc.femininity > 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE);
+			if(pc.femininity <= 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE);
+			//Hair or lack thereof!
+			if(!pc.hasHair() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS);
+			if(pc.hasHair() && pc.hairLength >= 8 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR);
 			if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
 			if(pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_PUSSIES) > 0)
