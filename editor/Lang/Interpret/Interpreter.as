@@ -293,7 +293,7 @@ package editor.Lang.Interpret {
                     resultValue = resultValue.apply(retrieve.value.parent, argsValueArr);
 
                 if (resultValue == null) {
-                    this.createError(node.range, identifier + ' is ' + resultValue);
+                    this.createError(node.range, '"' + identifier + '" is ' + resultValue);
                     return new Product(new TextRange(node.range.start, node.range.start), '');
                 }
             }
@@ -303,16 +303,16 @@ package editor.Lang.Interpret {
             switch (typeof resultValue) {
                 case 'boolean': {
                     if (resultsValueArr.length === 0) {
-                        this.createError(node.range, identifier + ' needs at least 1 result');
+                        this.createError(node.range, '"' + identifier + '" needs at least 1 result');
                     }
                     else if (resultsValueArr.length > 2) {
-                        this.createError(node.range, identifier + ' has ' + (resultsValueArr.length - 2) + ' results than needed');
+                        this.createError(node.range, '"' + identifier + '" has ' + (resultsValueArr.length - 2) + ' results than needed');
                     }
                     break;
                 }
                 case 'xml':
                 case 'object': {
-                    this.createError(node.range, identifier + ' cannot be displayed');
+                    this.createError(node.range, '"' + identifier + '" cannot be displayed');
                     break;
                 }
             }

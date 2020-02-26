@@ -201,7 +201,7 @@ package editor.Lang.Interpret {
             if (typeof obj !== 'function') {
                 this.createError(
                     node.range,
-                    '"' + identity + '" is missing a code generation function'
+                    'cannot generate code for "' + identity + '"'
                 );
                 return '';
             }
