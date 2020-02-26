@@ -47,6 +47,7 @@
 		public var shieldDefense:Number;
 		public var shields:Number;
 		public var sexiness:Number;
+		public var resolve:Number;
 		public var critBonus:Number;
 		public var evasion:Number;
 		public var fortification:Number;
@@ -106,6 +107,7 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+			this.resolve = 0;
 			
 			// We don't really need to keep two sets of properties around for additional resists/damage on items -- just repurpose the same thing!
 			resistances = new TypeCollection();
