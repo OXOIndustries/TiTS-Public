@@ -38,21 +38,21 @@ package classes.Characters
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon.longName = "laser gun";
 			this.rangedWeapon.attack = 2;
-			rangedWeapon.baseDamage.burning.damageValue = 30;
+			rangedWeapon.baseDamage.burning.damageValue = 50;
 			rangedWeapon.baseDamage.addFlag(DamageFlag.LASER);
 			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "burning blast";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "steel plates";
-			this.armor.defense = 3;
+			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 14;
-			this.reflexesRaw = 4;
-			this.aimRaw = 25;
-			this.intelligenceRaw = 1;
-			this.willpowerRaw = 20;
+			this.physiqueRaw = 30;
+			this.reflexesRaw = 25;
+			this.aimRaw = 35;
+			this.intelligenceRaw = 40;
+			this.willpowerRaw = 40;
 			this.libidoRaw = 0;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
@@ -62,9 +62,9 @@ package classes.Characters
 			baseHPResistances.electric.resistanceValue = 40.0;
 			
 			this.level = 8;
-			this.XPRaw = normalXP();
+			this.XPRaw = bossXP();
 			this.credits = 0;
-			this.HPMod = 80;
+			this.HPMod = 280;
 			this.HPRaw = this.HPMax();
 			
 			
@@ -230,11 +230,11 @@ package classes.Characters
 				//crit failure!
 				output(" The agony of the sonic blast drops you to your knees, clutching at your head even after the sound mercifully stops. <b>You’re stunned!</b>");
 				if (!target.hasStatusEffect("Stun Immune")) CombatAttacks.applyStun(target);
-				damage = new TypeCollection( { kinetic: 40 }, DamageFlag.BYPASS_SHIELD);
+				damage = new TypeCollection( { kinetic: 60 }, DamageFlag.BYPASS_SHIELD);
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");			
 			}
-			else if ((target.willpower() * 2) + bon > rn)
+			else if ((target.willpower() * 2) + bon - this.willpowerRaw > rn || rn < 5)
 			{
 				if (target.armor.hasFlag(GLOBAL.ITEM_FLAG_PRESSURIZED)) output(" Your pressurized armor protects you from ")
 				else if (target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" Your airtight armor protects you from ")
@@ -245,7 +245,7 @@ package classes.Characters
 			{
 				output(" The agony of the sonic blast drops you to your knees, clutching at your head even after the sound mercifully stops. <b>You’re stunned!</b>");
 				if (!target.hasStatusEffect("Stun Immune")) CombatAttacks.applyStun(target);
-				damage = new TypeCollection( { kinetic: 20 }, DamageFlag.BYPASS_SHIELD);
+				damage = new TypeCollection( { kinetic: 30 }, DamageFlag.BYPASS_SHIELD);
 				damageRand(damage, 15);		
 				applyDamage(damage, this, target, "minimal");		
 			}
@@ -267,7 +267,7 @@ package classes.Characters
 					if (target.hasStatusEffect("Coolant Soaked")) target.addStatusValue("Coolant Soaked",1,3);
 					else
 					{
-						target.createStatusEffect("Coolant Soaked", 3, 0, 0, 0, false, "Icon_Snowflake", "The coolant has you shivering. Reflex decreased!", true, 0);
+						target.createStatusEffect("Coolant Soaked", 3, 0, 0, 0, false, "Icon_Snowflake", "The coolant has you shivering. Reflexes decreased!", true, 0);
 						target.reflexesMod -= 10;
 					}
 				}

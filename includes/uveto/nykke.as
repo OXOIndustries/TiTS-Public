@@ -822,6 +822,6 @@ public function nykkeSexTakeHer(hole:int):void
 }
 public function nykkeFrostwyrmTF():Boolean
 {
-	//once frostwyrm tf is on the game, do the check here
+	if (pc.race() == "frostwyrm") return true;
 	return false;	
 }

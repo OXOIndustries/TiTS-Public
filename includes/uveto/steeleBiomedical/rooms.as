@@ -205,25 +205,25 @@ public function initSteeleBiomedicalRooms():void
 	
 	rooms["SBRF O3"] = new RoomClass(this);
 	rooms["SBRF O3"].roomName = "OUTSIDE\nSTATION";
-	rooms["SBRF O3"].description = "Rounding the bend in the path you can see the invader, a giant glowing jellyfish wrapped around the generator room. Electricity crackles along its body in time with the rise and fall of its glow, coming in pulses from the generator up and into its main body. What the hell <i>is</i> this monster?";
+	rooms["SBRF O3"].description = "";
 	rooms["SBRF O3"].planet = "PLANET: UVETO VII";
 	rooms["SBRF O3"].system = "SYSTEM: SIRETTA";
 	rooms["SBRF O3"].northExit = "SBRF O2";
 	rooms["SBRF O3"].eastExit = "SBRF O4";
 	rooms["SBRF O3"].moveMinutes = 5;
-	rooms["SBRF O3"].runOnEnter = steeleBioOutsideBonus;
+	rooms["SBRF O3"].runOnEnter = steeleBioOutsideTile3RoomBonus;
 	rooms["SBRF O3"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SBRF O3"].addFlag(GLOBAL.HAZARD);
 	
 	rooms["SBRF O4"] = new RoomClass(this);
 	rooms["SBRF O4"].roomName = "OUTSIDE\nSTATION";
-	rooms["SBRF O4"].description = "You’ve reached the airlock leading straight into the generator room. The giant jellyfish hasn’t noticed you yet, but you’re pretty sure it will as soon as you enter. This is your last chance to back out, <b>you’d better be ready to fight.</b>";
+	rooms["SBRF O4"].description = "You’ve reached the airlock leading straight into the generator room.";
 	rooms["SBRF O4"].planet = "PLANET: UVETO VII";
 	rooms["SBRF O4"].system = "SYSTEM: SIRETTA";
 	rooms["SBRF O4"].eastExit = "SBRF B4";
 	rooms["SBRF O4"].westExit = "SBRF O3";
 	rooms["SBRF O4"].moveMinutes = 5;
-	rooms["SBRF O4"].runOnEnter = steeleBioOutsideBonus;
+	rooms["SBRF O4"].runOnEnter = steeleBioOutsideTile4RoomBonus;
 	rooms["SBRF O4"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SBRF O4"].addFlag(GLOBAL.HAZARD);
 	
