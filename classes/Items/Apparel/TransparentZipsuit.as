@@ -36,9 +36,9 @@ package classes.Items.Apparel
 			
 			this.basePrice = 3700;
 			this.attack = 0;
-			this.defense = 3;
+			this.defense = 7;
 			this.shieldDefense = 0;
-			this.sexiness = 6;
+			this.sexiness = 5;
 			this.critBonus = 0;
 			this.evasion = 2;
 			this.fortification = 0;

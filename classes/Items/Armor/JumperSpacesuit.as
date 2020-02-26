@@ -42,13 +42,13 @@
 			this.defense = 5;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 7;
+			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 16;
+			this.evasion = 20;
 			this.fortification = 0;
 			
 			resistances.tease.resistanceValue = -10.0;
-			resistances.electric.resistanceValue = 15.0;
+			resistances.electric.resistanceValue = 40.0;
 			resistances.burning.resistanceValue = 10.0;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_AIRTIGHT];

@@ -38,14 +38,15 @@
 			
 			//Information
 			this.basePrice = 1000;
-			this.attack = -2;
-			this.defense = 8;
+			this.attack = -1;
+			this.defense = 7;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = -5;
+			this.sexiness = -2;
+			this.resolve = 5;
 			this.critBonus = 0;
-			this.evasion = 0;
-			this.fortification = 20;
+			this.evasion = -2;
+			this.fortification = 10;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_AIRTIGHT];
 			resistances.addFlag(DamageFlag.PLATED);

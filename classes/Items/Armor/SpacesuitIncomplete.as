@@ -35,11 +35,17 @@ package classes.Items.Armor
 			attack = 0;
 			defense = 2;
 			shieldDefense = 0;
-			shields = 0;
+			shields = 20;
 			sexiness = -3;
+			this.resolve = 5;
 			critBonus = 0;
 			evasion = 0;
-			fortification = 10;
+			fortification = 20;
+			//itemFlags = [GLOBAL.ITEM_FLAG_AIRTIGHT];
+			//itemFlags = [GLOBAL.ITEM_FLAG_PRESSURIZED];
+
+			//resistances.freezing.resistanceValue = 20.0;
+			//resistances.burning.resistanceValue = 19.0;
 			
 			version = _latestVersion;
 		}

@@ -37,12 +37,13 @@ package classes.Items.Apparel
 			attack = 0;
 			defense = 0;
 			shieldDefense = 0;
-			sexiness = 6;
+			sexiness = 5;
 			critBonus = 0;
 			evasion = 3;
 			fortification = 0;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
+			resistances.tease.resistanceValue = 24.0;
 			
 			version = _latestVersion;
 		}

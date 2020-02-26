@@ -36,11 +36,12 @@ package classes.Items.Armor
 			
 			this.basePrice = 11100;
 			this.attack = 0;
-			this.defense = 5;
+			this.defense = 6;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
+			this.resolve = 5;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 1;
 			this.fortification = 3;
 			
 			//this.resistances.kinetic.resistanceValue = 15;

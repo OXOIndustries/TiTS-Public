@@ -44,9 +44,10 @@
 			this.defense = 12;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = -2;
+			this.sexiness = -1;
+			this.resolve = 5;
 			this.critBonus = 0;
-			this.evasion = -2;
+			this.evasion = 0;
 			this.fortification = 25;
 			
 			//resistances.burning.resistanceValue = -13.0;

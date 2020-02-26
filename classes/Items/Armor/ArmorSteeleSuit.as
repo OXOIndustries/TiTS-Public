@@ -42,12 +42,13 @@ package classes.Items.Armor
 			//Information
 			this.basePrice = 20000;
 			this.attack = 0; 
-			this.defense = 3;
+			this.defense = 5;
 			this.shieldDefense = 0;
 			this.shields = 20;
-			this.sexiness = 2;
+			this.sexiness = 4;
+			this.resolve = 1;
 			this.critBonus = 0;
-			this.evasion = 2;
+			this.evasion = 3;
 			this.fortification = 0;
 			
 			

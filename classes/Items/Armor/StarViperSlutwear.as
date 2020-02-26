@@ -42,12 +42,12 @@
 			this.defense = 5;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 12;
-			this.critBonus = -10;
-			this.evasion = 15;
-			this.fortification = 0;
+			this.sexiness = 5;
+			this.critBonus = -5;
+			this.evasion = 17;
+			this.fortification = 20;
 			
-			resistances.drug.resistanceValue = 15.0;
+			resistances.drug.resistanceValue = 25.0;
 			//resistances.electric.resistanceValue = 15.0;
 			//resistances.burning.resistanceValue = 10.0;
 			
