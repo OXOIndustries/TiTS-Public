@@ -47,6 +47,7 @@ public function fightJaneriaCore():void
 //adds buttons to the combat menu so player can choose to take cover or turn off generator during the charge attack
 public function janeriaCoreChargeupBonusMenu():void
 {	
+	output("\n\nJaneria seems to be sucking power from the generator even harder. Energy is building up within the monster’s core, brighter and brighter. <b>You probably should take cover, but you could also try to turn off the generator.</b>");
 	addButton(10, "Take Cover", janeriaCoreElectricFloodChargingTakeCover,undefined,"Take Cover","Take cover to avoid the worst of the attack.");
 	addButton(11, "Generator", janeriaCoreElectricFloodChargingGenerator,undefined,"Generator","Rush up and hit the emergency off button to shut the generator down.  You will take the full brunt of Janeria's attack.");
 }

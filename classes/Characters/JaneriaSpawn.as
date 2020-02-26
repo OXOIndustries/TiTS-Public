@@ -49,11 +49,11 @@ package classes.Characters
 			this.armor.defense = 0;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 15;
+			this.physiqueRaw = 25;
 			this.reflexesRaw = 25;
 			this.aimRaw = 25;
-			this.intelligenceRaw = 10;
-			this.willpowerRaw = 10;
+			this.intelligenceRaw = 15;
+			this.willpowerRaw = 15;
 			this.libidoRaw = 0;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
@@ -77,6 +77,7 @@ package classes.Characters
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			this.shield = new OzoneAegis;
+			this.shield.defense = 5;
 			this.shield.shields = 100;
 			this.shieldsRaw = this.shieldsMax();
 			

@@ -841,8 +841,9 @@ public function roxyTalkHerself():void
 	}
 	else
 	{
-		output("\n\nNothing yet. You’re still on the trail to claiming it, and it’s going to be a long road. Fortunately, the journey is made a lot easier knowing you have a certain laquine to come back to any time!");
+		output("\n\nNothing yet. You’re still on the trail to claiming it, and it’s going to be a long road.");
 		if (flags["ROXY_SEX"] > 0 ) output(" Fortunately, that journey is made a lot easier knowing you have a certain laquine to come back to any time you need a little stress relief!");
+		else output(" Fortunately, the journey is made a lot easier knowing you have a certain laquine to come back to any time!");
 	}
 	
 	if (firstTime) output("\n\n<i>“Woah, you sure don’t look like a busybody executive. I’d know one, you should have seen my seventh agent.”</i>");

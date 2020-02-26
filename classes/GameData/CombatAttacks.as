@@ -7,6 +7,8 @@ package classes.GameData
 	import classes.Characters.CyberPunkSecOp;
 	import classes.Characters.GrayGoo;
 	import classes.Characters.DrCalnor;
+	import classes.Characters.JaneriaCore;
+	import classes.Characters.JaneriaSpawn;
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
 	import classes.Characters.KQTwinA;
@@ -1857,6 +1859,12 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " fire" + (attacker.isPlural ? "" : "s") + " a paralyzing shock at you!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " fire" + (attacker.isPlural ? "" : "s") + " a paralyzing shock at " + target.getCombatName() + "!");
 			
+			if (target is JaneriaSpawn || target is JaneriaCore)
+			{
+				output("\nHowever " + target.getCombatName() + " absorbs the electricity and it seems to strengthen it.");
+				target.shields(25);
+				return;
+			}
 			if (attacker.bimboIntelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10)
 			{
 				output("\nThe effect is immediate! ");
@@ -2118,6 +2126,13 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You attempt to wirelessly hack the shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "!");
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to wirelessly hack your shield!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempt" + (attacker.isPlural ? "" : "s") + " to wirelessly hack the shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "!");
+			
+			if (target is JaneriaSpawn || target is JaneriaCore)
+			{
+				output("\nHowever " + target.getCombatName() + " absorbs the electrical surge and it seems to strengthen it.");
+				target.shields(25);
+				return;
+			}
 			
 			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.bimboIntelligence() / 1.5) } ), 15);
 			d.addFlag(DamageFlag.ONLY_SHIELD);
