@@ -59,7 +59,6 @@ package editor.Descriptors {
         }
         public const i__info: FunctionInfo = new FunctionInfo()
             .addArgResultValidator(Validators.oneResult)
-            .setToCodeFunc(iToCode)
             .setIncludeResults();
         public function i(args: Array, results: Array): String {
             return htmlTagText('i', results[0]);
@@ -73,7 +72,6 @@ package editor.Descriptors {
         }
         public const b__info: FunctionInfo = new FunctionInfo()
             .addArgResultValidator(Validators.oneResult)
-            .setToCodeFunc(bToCode)
             .setIncludeResults();
         public function b(args: Array, results: Array): String {
             return htmlTagText('b', results[0]);
@@ -90,9 +88,7 @@ package editor.Descriptors {
             return identifier + '(' + results.join(', ') + ')';
         }
         public const rand__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('RandomInCollection')
             .addArgResultValidator(Validators.hasOneOptionalNumberArgManyResults)
-            .setToCodeFunc(randToCode)
             .setIncludeResults();
         public function rand(args: Array, results: Array): int {
             if (args.length === 1 && 0 < args[0] && args[0] <= results.length)
@@ -103,7 +99,6 @@ package editor.Descriptors {
 
         // From TiTS / Old Parsers
         public const silly__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('gameOptions.sillyMode')
             .setDesc('Is Silly Mode engaged');
         public function get silly(): Boolean {
             if (this.game.gameOptions)
@@ -111,7 +106,6 @@ package editor.Descriptors {
             return false;
         }
         public const easy__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('gameOptions.easyMode')
             .setDesc('Is Easy Mode engaged');
         public function get easy(): Boolean {
             if (this.game.gameOptions)
@@ -241,48 +235,36 @@ package editor.Descriptors {
 
         // New Parsers
         public const hourIs__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('hours')
-            .setToCodeFunc(ToCode.equals)
             .addArgResultValidator(Validators.range)
             .setDesc('Hour is equal to 1 or 2 or 3...');
         public function hourIs(... args): Number {
             return Eval.equals(this.game.hours, args);
         }
         public const hourRange__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('hours')
-            .setToCodeFunc(ToCode.range)
             .addArgResultValidator(Validators.range)
             .setDesc('Hour range');
         public function hourRange(... args): Number {
             return Eval.range(this.game.hours, args);
         }
         public const dayIs__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('days')
-            .setToCodeFunc(ToCode.equals)
             .addArgResultValidator(Validators.range)
             .setDesc('Day is equal to 1 or 2 or 3...');
         public function dayIs(... args): Number {
             return Eval.equals(this.game.days, args);
         }
         public const dayRange__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('days')
-            .setToCodeFunc(ToCode.range)
             .addArgResultValidator(Validators.range)
             .setDesc('Day range');
         public function dayRange(... args): Number {
             return Eval.range(this.game.days, args);
         }
         public const minuteIs__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('minutes')
-            .setToCodeFunc(ToCode.equals)
             .addArgResultValidator(Validators.range)
             .setDesc('Minute is equal to 1 or 2 or 3...');
         public function minuteIs(... args): Number {
             return Eval.equals(this.game.minutes, args);
         }
         public const minuteRange__info: FunctionInfo = new FunctionInfo()
-            .setIdentityOverride('minutes')
-            .setToCodeFunc(ToCode.range)
             .addArgResultValidator(Validators.range)
             .setDesc('Minute range');
         public function minuteRange(... args): Number {

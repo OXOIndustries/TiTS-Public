@@ -5,7 +5,6 @@ package editor.Lang.Interpret {
     
     public class Interpreter {
         public static const FUNC_INFO_STRING: String = '__info';
-        private const escapePairs: Array = [[/\n/g, '\\n'], [/'/g, '\\\''], [/"/g, '\\"']];
         private var errors: Vector.<LangError>;
         private var globals: Object;
 
@@ -21,19 +20,6 @@ package editor.Lang.Interpret {
                 name += node.children[idx].value;
             }
             return name;
-        }
-
-        /**
-         * Escapes newline and quotes
-         * @param text
-         * @return
-         */
-        private function escape(text: String): String {
-            var escapedText: String = text;
-            for each (var pair: Array in escapePairs) {
-                escapedText = escapedText.replace(pair[0], pair[1]);
-            }
-            return escapedText;
         }
 
         /**
@@ -71,14 +57,12 @@ package editor.Lang.Interpret {
                 return new InterpretResult(
                     '',
                     [node.range],
-                    '',
                     this.errors
                 );
             }
             return new InterpretResult(
                 output.value,
                 (output.range is Array ? output.range : [output.range]),
-                output.code,
                 this.errors
             );
         }
@@ -108,8 +92,7 @@ package editor.Lang.Interpret {
         private function evalStringNode(node: StringNode): Product {
             return new Product(
                 node.range,
-                node.value,
-                '"' + escape(node.value) + '"'
+                node.value
             );
         }
 
@@ -119,8 +102,7 @@ package editor.Lang.Interpret {
         private function evalNumberNode(node: NumberNode): Product {
             return new Product(
                 node.range,
-                node.value,
-                node.value + ''
+                node.value
             );
         }
 
@@ -130,8 +112,7 @@ package editor.Lang.Interpret {
         private function evalIdentityNode(node: IdentityNode): Product {
             return new Product(
                 node.range,
-                node.value,
-                node.value + ''
+                node.value
             );
         }
 
@@ -151,23 +132,13 @@ package editor.Lang.Interpret {
                     ranges.push(child.range);
 
             var valueStr: String = '';
-            var codeStr: String = '';
             for each (var product: * in products) {
                 valueStr += product.value;
-                if (codeStr.charAt(codeStr.length - 1) === '"' && product.code.charAt(0) === '"') {
-                    codeStr = codeStr.slice(0, codeStr.length - 1) + product.code.slice(1);
-                }
-                else {
-                    if (codeStr.length > 0)
-                        codeStr += ' + ';
-                    codeStr += product.code;
-                }
             }
 
             return new Product(
                 ranges,
-                valueStr,
-                codeStr
+                valueStr
             );
         }
 
@@ -178,7 +149,6 @@ package editor.Lang.Interpret {
             var values: Array = node.children.map(this.processChildren);
             var obj: * = this.globals;
             var name: String = '';
-            var codeStr: String = '';
 
             var infoObj: *;
             var identity: String;
@@ -205,8 +175,7 @@ package editor.Lang.Interpret {
                     );
                     return new Product(
                         node.range,
-                        {},
-                        ''
+                        {}
                     );
                 }
 
@@ -219,13 +188,8 @@ package editor.Lang.Interpret {
                 obj = obj[identity];
                 if (name.length > 0) {
                     name += '.';
-                    codeStr += '.';
                 }
                 name += identity;
-                if (idx === values.length - 1 && infoObj && infoObj.identityOverride)
-                    codeStr += infoObj.identityOverride;
-                else
-                    codeStr += identity + (typeof obj === 'function' ? '()' : '');
             }
 
             return new Product(
@@ -235,8 +199,7 @@ package editor.Lang.Interpret {
                     parent: parentObj,
                     caps: caps,
                     info: infoObj
-                },
-                codeStr
+                }
             );
         }
 
@@ -246,8 +209,7 @@ package editor.Lang.Interpret {
         private function evalArgsNode(node: ArgsNode): Product {
             return new Product(
                 node.range,
-                node.children.map(this.processChildren),
-                ''
+                node.children.map(this.processChildren)
             );
         }
 
@@ -257,8 +219,7 @@ package editor.Lang.Interpret {
         private function evalResultsNode(node: ResultsNode): Product {
             return new Product(
                 node.range,
-                node.children.map(this.processChildren),
-                ''
+                node.children.map(this.processChildren)
             );
         }
 
@@ -278,11 +239,11 @@ package editor.Lang.Interpret {
                 this.createError(node.range, 'EvalNode children[1] was not a ArgsNode');
             }
             else if (node.children[2].type !== NodeType.Results) {
-                this.createError(node.range, 'EvalNode children[1] was not a ResultsNode');
+                this.createError(node.range, 'EvalNode children[2] was not a ResultsNode');
             }
             
             if (errorStart !== this.errors.length) {
-                return new Product(new TextRange(node.range.start, node.range.start), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '');
             }
 
             const retrieve: Product = this.evalRetrieveNode(node.children[0]);
@@ -290,22 +251,18 @@ package editor.Lang.Interpret {
             const results: Product = this.evalResultsNode(node.children[2]);
 
             if (!('value' in retrieve.value))
-                return new Product(new TextRange(node.range.start, node.range.start), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '');
 
             const identifier: String = this.getName(node.children[0]);
 
             const argsValueArr: Array = new Array();
-            var argsCodeArr: Array = new Array();
             for each (var child: * in args.value) {
                 argsValueArr.push(child.value);
-                argsCodeArr.push(child.code);
             }
 
             const resultsValueArr: Array = new Array();
-            const resultsCodeArr: Array = new Array();
             for each (child in results.value) {
                 resultsValueArr.push(child.value);
-                resultsCodeArr.push(child.code);
             }
 
             var resultValue: * = retrieve.value.value;
@@ -315,7 +272,7 @@ package editor.Lang.Interpret {
                 errorStart = this.errors.length;
 
                 // Validate args and results
-                if (retrieve.value.info && retrieve.value.info.argResultValidator) {
+                if (retrieve.value.info && retrieve.value.info.argResultValidator && retrieve.value.info.argResultValidator.length > 0) {
                     for each (var validator: * in retrieve.value.info.argResultValidator) {
                         const validResult: * = validator(argsValueArr, resultsValueArr);
                         if (validResult != null) {
@@ -324,17 +281,10 @@ package editor.Lang.Interpret {
                         }
                     }
                 }
-                // No args or results if no validator
-                else {
-                    if (argsValueArr.length > 0)
-                        this.createError(args.range, identifier + ' does not use arguments');
-                    if (resultsValueArr.length > 0)
-                        this.createError(results.range, identifier + ' does not use results');
-                }
 
                 // Return on error
                 if (errorStart !== this.errors.length)
-                    return new Product(new TextRange(node.range.start, node.range.start), '', '');
+                    return new Product(new TextRange(node.range.start, node.range.start), '');
 
                 // Evaluate
                 if (retrieve.value.info && retrieve.value.info.includeResults)
@@ -344,7 +294,7 @@ package editor.Lang.Interpret {
 
                 if (resultValue == null) {
                     this.createError(node.range, identifier + ' is ' + resultValue);
-                    return new Product(new TextRange(node.range.start, node.range.start), '', '');
+                    return new Product(new TextRange(node.range.start, node.range.start), '');
                 }
             }
 
@@ -367,7 +317,7 @@ package editor.Lang.Interpret {
                 }
             }
             if (errorStart !== this.errors.length) {
-                return new Product(new TextRange(node.range.start, node.range.start), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '');
             }
 
             var returnValue: * = '';
@@ -384,20 +334,6 @@ package editor.Lang.Interpret {
                     returnValue = "";
                     returnRange = new TextRange(node.range.end, node.range.end);
                 }
-
-                // To Code
-                for (var idx: int = 0; idx < resultsCodeArr.length; idx++) {
-                    returnCode += '(' + retrieve.code + ' == ' + idx + ' ? ';
-                    if (idx < resultsCodeArr.length)
-                        returnCode += resultsCodeArr[idx];
-                    else
-                        returnCode += '""';
-                    returnCode += ' : ';
-                    if (idx + 1 === resultsCodeArr.length)
-                        returnCode += '""';
-                }
-                for (idx = 0; idx < resultsCodeArr.length; idx++)
-                    returnCode += ')';
             }
             else if (typeof resultValue === 'boolean') {
                 // Evaluate
@@ -417,32 +353,17 @@ package editor.Lang.Interpret {
                     returnValue = '';
                     returnRange = new TextRange(node.range.end, node.range.end);
                 }
-
-                // To Code
-                // type bool + results  -> identity ? result0 : (result1 or "")
-                if (resultsCodeArr.length === 1)
-                    returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : "")';
-                if (resultsCodeArr.length === 2)
-                    returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
             }
             else {
                 returnValue = resultValue + '';
                 returnRange = node.range;
-                returnCode = retrieve.code;
-            }
-
-            if (retrieve.value.info && retrieve.value.info.toCode) {
-                if (retrieve.value.info.mapArgsCallbacks)
-                    for each (var preprocessor: * in retrieve.value.info.mapArgsCallbacks)
-                        argsCodeArr = argsCodeArr.map(preprocessor);
-                returnCode = retrieve.value.info.toCode(retrieve.code, argsCodeArr, resultsCodeArr);
             }
 
             if (retrieve.value.caps && returnValue.length > 0) {
                 returnValue = returnValue.charAt(0).toLocaleUpperCase() + returnValue.slice(1);
             }
 
-            return new Product(returnRange, returnValue + '', returnCode);
+            return new Product(returnRange, returnValue + '');
         }
     }
 }

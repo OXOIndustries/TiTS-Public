@@ -2,6 +2,7 @@ package editor {
     import editor.Lang.Errors.LangError;
     import editor.Lang.Interpret.InterpretResult;
     import editor.Lang.Interpret.Interpreter;
+    import editor.Lang.Interpret.Codifier;
     import editor.Lang.Lex.Lexer;
     import editor.Lang.Nodes.Node;
     import editor.Lang.Nodes.NodeType;
@@ -14,25 +15,31 @@ package editor {
     public class Evaluator {
         private const parser: Parser = new Parser();
         private const interpreter: Interpreter = new Interpreter();
+        private const codifier: Codifier = new Codifier();
         private var parserResult: ParseResult;
         private var interpretResult: InterpretResult;
+        private var toCodeResult: InterpretResult;
         private var errors: Vector.<LangError>;
         private var debugStr: String;
         private var result: Object;
 
         private var globalObj: Object;
+        private var codeMapObj: Object;
 
-        public function Evaluator(globalObj: Object) {
+        public function Evaluator(globalObj: Object, codeMapObj: Object) {
             this.globalObj = globalObj;
+            this.codeMapObj = codeMapObj;
             this.eval('');
         }
 
         public function get global(): Object { return this.globalObj; }
+        public function get codeMap(): Object { return this.codeMapObj; }
 
         public function eval(text: String): void {
             parserResult = parser.parse(text);
             interpretResult = interpreter.interpret(parserResult.root, this.globalObj);
-            errors = parserResult.errors.concat(interpretResult.errors);
+            toCodeResult = codifier.interpret(parserResult.root, this.codeMapObj);
+            errors = parserResult.errors.concat(interpretResult.errors, toCodeResult.errors);
             debugStr = debugLexer(text) + debugParser() + debugRanges();
         }
 
@@ -45,7 +52,7 @@ package editor {
         }
 
         public function evalCode(): String {
-            return interpretResult.code;
+            return toCodeResult.result;
         }
         
         public function evalErrors(): Vector.<LangError> {
