@@ -8,7 +8,7 @@
 	 * ...
 	 * @author Gedan
 	 */
-	public function getPlanetName(sID:String = ""):String
+	public function getPlanetName(sID:String = "", stylize:Boolean = false):String
 	{
 		var pName:String = "NONE";
 		if (sID == "") sID = (InShipInterior() ? kGAMECLASS.shipLocation : kGAMECLASS.currentLocation);
@@ -23,7 +23,14 @@
 			case "UVETO VII": return "Uveto VII"; break;
 			case "REDACTED":
 			case "UNKNOWN":
-			case "NONE": return "<i>Unknown</i>"; break;
+			case "N/A":
+			case "NONE":
+				pName = "";
+				if(stylize) pName += "<i>";
+				pName += "Unknown";
+				if(stylize) pName += "</i>";
+				return pName;
+				break;
 		}
 		
 		pName = StringUtil.toTitleCase(pName.toLowerCase());

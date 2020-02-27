@@ -300,7 +300,7 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 		output("\n\nImpassioned deepthroating that speaks to a lifetime of hedonism (or to a biology naturally gifted) is being performed right before your eyes. You can scarcely believe your luck in being able to witness it, and you can’t help but register <i>how lucky that little mouse is.</i> She’s working hard to get every thick load of jism packed away in his balls because she wants it that bad. Unsurprisingly, even fearsome pirates can, at the end of the day, be cock-drunk sluts who’d look more at home in a public use wall.");
 	}
 
-	output("\n\nA microsecond of relief scours through you. There’s a needling pinch; it happens so quick. You don’t know what hit you or how, but you know the payload was lust. Pure lust that lurches your [pc.hips] forward. Complimenting the effect is a phantom press to your groin");
+	output("\n\nA microsecond of relief scours through you. There’s a needling pinch; it happens so quick. You don’t know what hit you or how, but you know the payload was lust. Pure lust that lurches your [pc.hips] forward. Complementing the effect is a phantom press to your groin");
 	if (pc.hasGenitals()) output(", but particularly to your " + (pc.hasCock() ? "[pc.cocksLight]" : "[pc.pussiesLight]"));
 	output(". You fall a little closer to the ground");
 	if (pc.hasGenitals() && !pc.isTaur()) output(", [pc.hands] moving faster");
@@ -892,7 +892,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 	if (pc.hasEmoteEars()) output(" between your [pc.ears]");
 	output(", scritching gestures of passive thankfulness into your scalp. All the while, you’re handling them with the fondest care. These slippery spheres thrumming in your hand with a near-boiling load are to be venerated. You knead, you squeeze, and you roll his doughy flesh between your [pc.fingers], intent on making this ripe sack the most loved on all of Zheng Shi -- at least, until you’re bumped off again.");
 	output("\n\nThis damn snake keeps getting in the way!");
-	if (pc.isBimbo()) output("\n\n<i>“Like, move over! We can’t work like this!”</i> you whine.”</i>");
+	if (pc.isBimbo()) output("\n\n<i>“Like, move over! We can’t work like this!”</i> you whine.");
 	else if (pc.isBro() || pc.isAss()) output("\n\n<i>“Get out of the way already,”</i> you bark, <i>“you’re making this harder than it needs to be!”</i>");
 	else output("\n\n<i>“Please move a little, we’re just getting in each other’s way...”</i> you murmur.");
 	output("\n\n<i>“Fine...”</i> ");
@@ -955,7 +955,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 			output(" you have for " + (cocktackles > 1 ? "dicks" : "a dick"));
 			if (!pc.isCrotchExposed()) output(" slithers out of your [pc.crotchCoverUnder] and");
 		}
-		output(" weaves through the air to knock at the egg-laying serpent’s cunt. Your prehensile infiltration was well lubed by sluttery in advance, and you’re pushing through fathomless {ebony/pink} depths to the alien’s reproductive systems, rhythmically pumping her cunt. <i>“Nnngwhaaat!?”</i>");
+		output(" weaves through the air to knock at the egg-laying serpent’s cunt. Your prehensile infiltration was well lubed by sluttery in advance, and you’re pushing through fathomless " + (snake.lipColor == "black" ? "ebony":"pink") + " depths to the alien’s reproductive systems, rhythmically pumping her cunt. <i>“Nnngwhaaat!?”</i>");
 		output("\n\nVoice crescendoing, you pump into her without a second thought, just glad to turn this into a real orgy. When you cum at the end of this, you’re going to hold on to the fantasy of fertilizing some slave catcher’s egg. Or eggs. Whatever’s in there, she’s going to remember how well other races breed for sure!");
 	}
 	output("\n\n<i>“I-I can’t hold it anymore!”</i> The mouse’s feet plant under your bodies and he lifts up, his two cum-dumps ready to receive his burgeoning desire. <i>“I’m going to- hiek!”</i>");
@@ -966,7 +966,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 	{
 		output("\n\nHyperfocusing on the cum spilling forth is all you can (and want) to do. You’re jockeying competitively with the slyveren, mouth wide open and tongue unfurled");
 		if (pc.hasLongTongue()) output(" to your crotch");
-		output(", eager to catch the most of his glistening squirts. The lewdness of your act nicely compliments the deep satisfaction you feel at finally getting a taste of jizz.");
+		output(", eager to catch the most of his glistening squirts. The lewdness of your act nicely complements the deep satisfaction you feel at finally getting a taste of jizz.");
 		output("\n\nShe catches some of the torrential spouts, you catch the thickest gouts, and both your faces are bukkake’d in his indelicate, endless flow of spunk. His muscles have locked him into that upright position, a perfect position, you think, for splattering two awesome sluts in a volume of pressure only describable as <i>gifted.</i> Bathing in it produces a unique kind of molten bliss you would never be able to reproduce or find anywhere else.");
 		if (pc.hasGenitals())
 		{

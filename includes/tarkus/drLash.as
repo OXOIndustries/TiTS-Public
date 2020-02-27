@@ -183,7 +183,7 @@ public function dontBeADumbShitAtGreetingPartDues():void
 		output("I can free you from your meddlesome genitalia ");
 		if(pc.biggestTitSize() >= 1) output("and distracting breasts ");
 		output("for a price.");
-		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll wave many of my standard fees.");
+		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll waive many of my standard fees.");
 	}
 	else output("I can free you from any meddlesome genitalia you manage to acquire in your travels.");
 	output(" What do you say?”</i>");
@@ -270,11 +270,11 @@ public function genitalRemovalShit():void
 	else if(pc.credits >= 5000) addButton(1,"Priaprism P.",lashTreatment,"priaprism purge","Priaprism Purge","5,000 credits. Removes all masculinity endowments, big and small.");
 	else addDisabledButton(1,"Priaprism P.","Priaprism Purge","You do not have the credits for this treatment.");
 
-	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Purge","You probably shouldn’t do this while under the effects of GaloMax.");
-	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You’re not losing your junk.");
-	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Purge","You don’t have a penis to lose.");
+	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Pruning","You probably shouldn’t do this while under the effects of GaloMax.");
+	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Pruning","No way! You’re not losing your junk.");
+	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Pruning","You don’t have a penis to lose.");
 	else if(pc.credits >= 10000) addButton(2,"Phallus P.",lashTreatment,"phallus pruning","Phallus Pruning","10,000 credits. Removes a single phallus of the doctor’s choice.");
-	else addDisabledButton(2,"Phallus P.","Phallus Purge","You cannot afford this treatment.");
+	else addDisabledButton(2,"Phallus P.","Phallus Pruning","You cannot afford this treatment.");
 
 	if(pc.balls > 0 && pc.hasStatusEffect("GaloMax")) addDisabledButton(3,"Neutering","Neutering","You probably shouldn’t do this while under the effects of GaloMax.");
 	else if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You’re not getting rid of your junk!");

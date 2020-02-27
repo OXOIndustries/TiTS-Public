@@ -352,7 +352,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	showNehzara(true);
 	if(fromMissionTalk)
 	{
-		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it </i>is<i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
+		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it <i>is</i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
 		output("\n\n");
 		if(pc.isNice()) output("<i>“Sure,”</i> you say with a shrug and a smile. It’s obvious that she could use a little release, and you wouldn’t mind getting a taste of some red-ant nectar.");
 		else if(pc.isMischievous()) output("<i>“Why not?”</i> you reply with a wink. <i>“Just promise to be this polite when my head’s between your legs.”</i>");

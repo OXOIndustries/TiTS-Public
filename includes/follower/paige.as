@@ -202,7 +202,7 @@ public function yogaIntro():Boolean
 				output("\n\nYou hear some voices coming from inside, along with the general noise of movement. You gingerly twist the knob and open the door, showing yourself uninvited into the classroom.");
 				output("\n\n<i>“Now, point your toes,”</i> you hear a woman say, <i>“as straight as you can, and keep your back straight at a perpendicular angle. Now, grip onto your knees without bending any part of your body. We call this pose the ‘Boat.’”</i>");
 				output("\n\nThe class consists of about twelve other patrons of all different shapes, species, body-types, and genders. Some of them are veteran yoga practitioners, flexing into the pose easily, while others are having some difficulty, struggling to maintain their position.");
-				output("\n\nA tall Ausar woman walks between her students silently. When she passes one of them that’s having difficulty, she kneels beside them, feeling her hand across the student’s legs, pausing where their knees bend. <i>“It’s alright,”</i> she says reassuringly, placing a hand beneath the bend leg and straightening it. <i>“It’s not the easiest pose. You’ll get it if you keep at it.”</i>");
+				output("\n\nA tall Ausar woman walks between her students silently. When she passes one of them that’s having difficulty, she kneels beside them, feeling her hand across the student’s legs, pausing where their knees bend. <i>“It’s alright,”</i> she says reassuringly, placing a hand beneath the bent leg and straightening it. <i>“It’s not the easiest pose. You’ll get it if you keep at it.”</i>");
 				output("\n\nYou clear your throat, still standing in the doorframe. The Ausar woman stands up and faces you. She has dirty brown hair with streaks of black through her mane, and she has perky, triangular, wolfish ears pointing straight up a whole twelve centimeters from her scalp. Attached to her right ear is an earpiece with a small antenna extending to her eyes – likely a microphone of some kind. She’s wearing a sleeveless, flexible jumper vest on her torso and a pair of yoga shorts covering her waist, then nothing down to her toes. Her fur is coloured brown, like her hair, and she has black and white splotches all throughout her body. Unlike a typical Ausar, her entire body is covered head-to-toe in fur, like some modded humans, and she has the appropriately elongated face to match. She has a long, bushy-but-not-fluffy tail, all black fur on top and all beige-brown on the bottom, reaching to just above her tendons. Even though she’s across the room, you can tell just how stunningly blue her eyes are when they meet yours.");
 				output("\n\nFloating around the room is a monitor, displaced in the air by a glowing, thrumming device. On the monitor is a disarming, cutesy picture of a face, drawn with cartoonish eyes and a tiny mouth. It’s silent as it goes between practitioners; it stops at one and whispers to them to straighten their knees and elbows, then displays an image of the position’s proper form. Maybe it’s some kind of assistant for the teacher? A literal, mechanical teacher’s pet?");
 				output("\n\nYou introduce yourself and say that you’re interested in giving the class a try. <i>“Of course!”</i> she says. <i>“");
@@ -561,8 +561,8 @@ public function yogaMediumMode():void
 	}
 	else
 	{
-		output("You’re not one to turn down the opportunity for some self-improvement. It’s one of the main reasons you keep coming back to Paige’s class in the first place. <i>“That’s the spirit,”</i> she says encouragingly. <i>“Alright then, I think I have just the pose for you to try.");
-		output("\n\nFirst, lay flat on your back.”</i> You shuffle forward so that your whole body remains on the mat, and gently set yourself onto your back, as per her instruction. <i>“Bend your left knee and put it over your right leg as far as you can, without moving your right leg and without lifting either of your shoulders from the mat.”</i>");
+		output("You’re not one to turn down the opportunity for some self-improvement. It’s one of the main reasons you keep coming back to Paige’s class in the first place. <i>“That’s the spirit,”</i> she says encouragingly. <i>“Alright then, I think I have just the pose for you to try.”</i>");
+		output("\n\n<i>“First, lay flat on your back.”</i> You shuffle forward so that your whole body remains on the mat, and gently set yourself onto your back, as per her instruction. <i>“Bend your left knee and put it over your right leg as far as you can, without moving your right leg and without lifting either of your shoulders from the mat.”</i>");
 		output("\n\nIt’s a surprisingly difficult instruction to follow! Your upper body wants to follow your lower body and tries to twist with it, but you maintain both your shoulders onto the mat. The stretch pulls hard on your left thigh and lower back, so much that you find it uncomfortable for a moment, but as with all yoga poses, you know it’ll pass.");
 		output("\n\n<i>“This pose is called the ‘supine twist,’”</i> she says as she runs both her hands over your body, particularly along your left, stretched leg, making sure it’s in the correct position. <i>“It’s one of yoga’s stricter poses; if you lift your knee too close to your chest, you risk pulling a gluteal muscle. Nobody likes damaged glutes!”</i> You laugh politely. <i>“Okay, now breathe in...”</i>");
 	}
@@ -702,8 +702,8 @@ public function yogaHardEnding():void
 	// end scene (scene: Hard Mode); place PC one square outside of Paige’s Yoga Class; increase Physique by 2; increase Reflexes by 1; increase Tone by 10; deduct 20 credits; deduct 70 energy; if (scene: Hard Mode 2), increase Lust by 20; inflict Sore on PC
 	processTime(50);
 	//Fuck yo stat gains, B. -Fen
-	pc.energy(-70);
-	pc.lust(20);
+	pc.changeLust(20);
+	pc.changeEnergy(-70);
 	yogaToning(10);
 	clearMenu();
 	addButton(0,"Next",moveSouth);
@@ -1247,7 +1247,7 @@ public function paigeSexPrologue():void
 	//[=Next=]
 	// end scene (scene: Sex Prologue)
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",paigeSexPrologue2);
 }
@@ -1343,7 +1343,7 @@ public function paigeSexPrologue2():void
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");
 
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	// end scene (scene: Sex Prologue 2)
 	// refer to Sex With Paige document (scene: First Time) to proceed
 	clearMenu();
@@ -1433,7 +1433,7 @@ public function iddiCustomizationsTalk():void
 	// end scene (scene: Customizations)
 	// increase Lust by 1
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",aboutIddiTalk);
 }
@@ -1711,7 +1711,7 @@ public function apartmentYogaEndings():void
 	processTime(50);
 	yogaToning(10);
 	pc.energy(-70);
-	pc.lust(33);
+	pc.changeLust(33);
 	paigeMenu();
 }
 
@@ -1989,7 +1989,7 @@ public function herEyes3():void
 	output("\n\nWhen she pulls away, her familiar, confident smile spreads across her lips. <i>“So I’m worth exactly one million credits, am I, sweet thing?”</i> she asks playfully. <i>“If the surgery was one-million-and-one credits, is that the line?”</i>");
 	output("\n\n<i>“Oh, shut up,”</i> you chide.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",herEyes4);
 }
@@ -2020,7 +2020,7 @@ public function herEyes4():void
 
 	output("\n\nYou hum as you consider it.");
 	
-	var time2Go:Number = 0;
+	var time2Go:int = 0;
 	if(hours < 8) time2Go = (8 - hours) * 60;
 	else if(hours > 8) time2Go = 8*60 + (24-hours)*60;
 	else time2Go = 50;
@@ -2031,7 +2031,7 @@ public function herEyes4():void
 	pc.createStatusEffect("PAIGE_COMA_CD");
 	pc.setStatusMinutes("PAIGE_COMA_CD",60*30);
 	clearMenu();
-	addButton(0,"Stay",paigeEyeholeEmailEvent);
+	addButton(0,"Stay",stayForPaigesEyeholes);
 	addButton(1,"Leave",leavePaigesEyeholes);
 }
 
@@ -2058,6 +2058,8 @@ public function paigeEyeholeEmailEvent():void
 {
 	clearOutput();
 	showName("SURGERY\nALERT!");
+	author("B");
+	
 	output("The familiar tone of receiving a new message rings through the air. You bring your codex off your hip, checking who it’s from – it’s from Tavros’ Infirmary!");
 	output("\n\n<i>“" + pc.mf("Mister","Miss") + " [pc.name],”</i> it reads, <i>“you’re receiving this message as Miss Paige’s partner and sponsor. We’re happy to report that her surgery to replace her damaged eyes with a synthetic, biologically identical set has been a success.”</i> That’s a relief. And that’s exciting! Paige will be able to see again! <i>“Miss Paige is currently in an induced coma; we request your presence within the next twelve hours to proceed.”</i>");
 	//if {PC is on Tavros}

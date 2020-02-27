@@ -80,6 +80,7 @@
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.*;
 	import classes.Util.IsOneOf;
+	import classes.Util.ShuffleArray;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
@@ -119,6 +120,7 @@
 		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/Pornos.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
@@ -149,14 +151,19 @@
 		//Followers
 		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
+		include "../includes/follower/ardia.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
 		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
+		include "../includes/follower/kiro.as";
+		include "../includes/follower/kiroBimbo.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/olympiaAndSidewinder.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeGropazoo.as";
@@ -201,6 +208,11 @@
 		// Misc Events
 		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
+		include "../includes/events/bianca/bianca.as";
+		include "../includes/events/bianca/biancaTalks.as";
+		include "../includes/events/bianca/biancaHealing.as";
+		include "../includes/events/bianca/biancaStories.as";
+		include "../includes/events/bianca/biancaSex.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
@@ -216,8 +228,15 @@
 		include "../includes/events/kimberQuest/roomFunctions.as";
 		include "../includes/events/kimberQuest/kimberQuest.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
+		include "../includes/events/kiroCrewQuest/fuckdollGeneric.as";
+		include "../includes/events/kiroCrewQuest/holoTrap.as";
+		include "../includes/events/kiroCrewQuest/illustriaPo.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/kiroCrewQuest/rooms.as";
+		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
+		include "../includes/events/kiroCrewQuest/taursuit.as";
+		include "../includes/events/kiroCrewQuest/victoryEvent.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
@@ -239,6 +258,7 @@
 		include "../includes/travelEvents/fallOfThePhoenix.as";
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
+		include "../includes/travelEvents/pirateSlyveren.as";
 		include "../includes/travelEvents/shizuya.as";
 		include "../includes/travelEvents/shizuyaGreatMajin.as";
 		include "../includes/travelEvents/shizuyaGreatMajinFunctions.as";
@@ -296,6 +316,7 @@
 		include "../includes/vesperia/luca.as";
 		include "../includes/vesperia/lucaSexAndStuff.as";
 		include "../includes/vesperia/mabbs.as";
+		include "../includes/vesperia/perdita.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
@@ -326,6 +347,7 @@
 		include "../includes/mhenga/syri.as";
 		include "../includes/mhenga/tanis.as";
 		include "../includes/mhenga/tharePlantation.as";
+		include "../includes/mhenga/thyvara.as";
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
@@ -333,6 +355,7 @@
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
 		include "../includes/mhenga/zilTwins.as";
+		include "../includes/mhenga/zilMaleTreated.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";
@@ -354,6 +377,7 @@
 		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
+		include "../includes/tarkus/lumi.as";
 		include "../includes/tarkus/mindwashVisor.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
 		include "../includes/tarkus/raskvelMaleFight.as";
@@ -475,15 +499,23 @@
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/sidewinderVictoryLap.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/snekAndMaus.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
+		include "../includes/zhengShiStation/vulriks.as";
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
+
+		// Dhaal
+		include "../includes/dhaal/capsuleHotel.as";
+		include "../includes/dhaal/milkBar.as";
+		include "../includes/dhaal/milkThief.as";
+		include "../includes/dhaal/rooms.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -515,12 +547,14 @@
 		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
+		include "../includes/uveto/eitan.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/heidrun.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
+		include "../includes/uveto/kiona.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";
@@ -529,12 +563,14 @@
 		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
+		include "../includes/uveto/milodanFutazon.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/nykke.as";
+		include "../includes/uveto/nykke2.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
@@ -601,10 +637,12 @@
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
+		public function get samePageLog():Boolean {return gameOptions.samePageLog; }
 		public function get debug():Boolean { return gameOptions.debugMode; }
 		
 		public function set silly(v:Boolean):void { gameOptions.sillyMode = v; }
 		public function set easy(v:Boolean):void { gameOptions.easyMode = v; }
+		public function set samePageToggle(v:Boolean):void {gameOptions.samePageLog = v; }
 		public function set debug(v:Boolean):void { gameOptions.debugMode = v; }
 		
 		public var inputManager:InputManager;
@@ -669,7 +707,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.003";
+			version = "0.8.057";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -721,6 +759,9 @@
 			
 			inputManager = new InputManager(stage, false);
 			setupInputControls();
+			
+			// Pre-load character/ship data
+			initializeNPCs();
 			
 			initStephEps();
 			
@@ -1083,6 +1124,11 @@
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
 			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
+		}
+		
+		public function addCompareButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		{
+			userInterface.addItemButton(slot, cap, 1, 1, func, arg, ttHeader, ttBody, ttCompare);
 		}
 		
 		public function removeButton(slot:int):void
@@ -1770,12 +1816,14 @@
 		{
 			return chars["LUCA"];
 		}
-	
 		public function get marion():Marion
 		{
 			return chars["MARION"];
 		}
-	
+		public function get olympia():Olympia
+		{
+			return chars["OLYMPIA"];
+		}
 		public function get lureling():Lureling
 		{
 			return chars["LURELING"];
@@ -1784,10 +1832,25 @@
 		{
 			return chars["ROXY"];
 		}
-		
 		public function get lorelei():Lorelei
 		{
 			return chars["LORELEI"];
+		}
+		public function get varmint():VarmintPet
+		{
+			return chars["VARMINTPET"];
+		}
+		public function get vahn():Vahn
+		{
+			return chars["VAHN"];
+		}
+		public function get bianca():Bianca
+		{
+			return chars["BIANCA"];
+		}
+		public function get synphia():Synphia
+		{
+			return chars["SYNPHIA"];
 		}
 
 		public function testShipCombat():void

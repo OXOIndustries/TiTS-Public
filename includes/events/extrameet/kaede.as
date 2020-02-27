@@ -8,6 +8,7 @@ public function extrameetKaedeDate():void
 	{
 		extrameetKaedeRepeat();
 	}
+	IncrementFlag("EM_KAEDE_DATE");
 }
 
 public function extrameetKaedeRepeat():void
@@ -201,7 +202,7 @@ public function extrameetKaedeRocketRide():void
 	if (pc.isHerm()) output(" and");
 	if (pc.hasVagina()) output(" drooling femcum down her crimson shaft");
 	if (!pc.hasGenitals()) output(" squeezing your ass for her as your sexless body climaxes");
-	output(". When you finish moaning through your orgasm, it all at once feels as thought all the breath has gone out of you - along with all the tension and stress of your long journey, all the worry of the day...");
+	output(". When you finish moaning through your orgasm, it all at once feels as though all the breath has gone out of you - along with all the tension and stress of your long journey, all the worry of the day...");
 	
 	output("\n\nYou slump down overtop Kaede, resting your cheek against one of her sinfully soft little breasts. There’s a thin, glistening sheen of sweat built up from her vigorous fucking, but her cleavage is still nice and cool for you. Kaede giggles when you nuzzle up, wrapping her big ginger tail around your [pc.butt] and pulling the sheets up over you both.");
 	
@@ -301,7 +302,7 @@ public function extrameetKaedeFuckHerAss():void
 	if(x >= 0) output(" Between your final thrusts, your mind races to make a choice.");
 
 	processTime(25);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	IncrementFlag("KAEDE_FUCKED");
 
@@ -316,6 +317,7 @@ public function extrameetKaedeFuckHerAss():void
 
 public function extrameetKaedeFirstTime():void
 {
+	clearOutput();
 	showKaede();
 	moveTo("BUNBAKERY");
 
@@ -504,18 +506,20 @@ public function extrameetKaedeSurprise(order:String):void
 	pc.credits -= getOrderPrice(order);
 	if (pc.credits < 0) pc.credits = 0;
 
+	var useCock:Boolean = pc.hasCock();
+	
 	clearMenu();
-	addButton(0, "Next", extrameetKaedeSurpriseII);
+	addButton(0, "Next", extrameetKaedeSurpriseII, useCock);
 }
 
-public function extrameetKaedeSurpriseII():void
+public function extrameetKaedeSurpriseII(useCock:Boolean):void
 {
 	clearOutput();
 	showName("KAEDE\n& ILARIA");
 	showBust("KAEDE_NUDE", "ILARIA_NUDE");
 	author("Savin");
 
-	output("Ilaria leaves out a small <i>“Out for Lunch”</i> sign before escorting you and Kaede through the little back door in the shop and up a short metal staircase to the second floor. You quickly realize that this must be her apartment, a little nook above her shop where Ilaria’s been living. It’s unremarkable aside from its pastel colors and alarming number of plushies lining the shelves and furniture. The middle of the one-room flat is dominated by a heart-shaped bed that quickly draws both girls over to its edge.");
+	output("Ilaria leaves out a small “Out for Lunch” sign before escorting you and Kaede through the little back door in the shop and up a short metal staircase to the second floor. You quickly realize that this must be her apartment, a little nook above her shop where Ilaria’s been living. It’s unremarkable aside from its pastel colors and alarming number of plushies lining the shelves and furniture. The middle of the one-room flat is dominated by a heart-shaped bed that quickly draws both girls over to its edge.");
 	
 	output("\n\n<i>“Never been here before,”</i> you remark, watching the bunny’s tail practically vibrate her skirt straight off. Kaede helps it the rest of the way, grabbing Ilaria’s ass in both hands as she does. You’re able to watch as the bunny’s fluffy balls and canid cock sway into view, no less stiff for the brief interlude. She grins at Kaede over her shoulder and wiggles her hips back into the half-ausar’s hands, letting the skinny girl feel just how much <i>meat</i> she’s got on her bones.");
 	
@@ -530,7 +534,7 @@ public function extrameetKaedeSurpriseII():void
 	output("\n\nYou watch over Ilaria’s shoulder as she fiddles with Kaede’s belt, eventually working it off and sliding the half-ausar’s jeans down, revealing a pair of paw-print panties and a prick peeking out of the band. Kaede’s pouch is spilling out of them too, enough to draw one of Ilaria’s hands to heft up her sack, and the other to guide Kaede’s cock to her lips. Ilaria swallows all eight-ish inches in one go, kissing Kaede’s bitch-breaker and giving her old friend the puppy-dog eyes from her base. Kaede can’t help but grin, biting her lip to stifle a moan while the bunny bobs her head up and down her rod.");
 	
 	output("\n\nWhile that’s going on, you get your hand back around Ilaria’s dick, stroking the red rocket off nice and slow. Ilaria moans around her mouthful of cock, eyes rolling closed as she starts really polishing it. As she leans in to work the knot, her ass wiggles in your lap,");
-	if (pc.hasCock()) output(" grinding against your cock");
+	if (useCock) output(" grinding against your cock");
 	else output(" rubbing her balls into your muff");
 	output(". It’s hard not to want to take the thick bunny-slut and get her on the bed under you, but you brought the girls up here for Kaede’s sake, not just yours... So for now, you content yourself to watch Ilaria get her nice and ready, using your hands to play with the bunny’s balls and cock, sometimes running them up her");
 	if (chars["ILARIA"].bellyRating() >= 20) output(" pregnant");
@@ -542,16 +546,18 @@ public function extrameetKaedeSurpriseII():void
 	output("\n\n<i>“Oooh, I think I’m about to get ravished, [pc.name]!”</i> Ilaria giggles. <i>“I better present my ass, huh?”</i>");
 	
 	output("\n\nShe’d better. You let her turn and push you down on the bed, straddling your [pc.hips] with her fluffy white balls resting on your thigh. She");
-	if (pc.hasCock()) output(" shifts up, planting her pussy on your rock-hard rod and slides down your length, leaning in against you as she takes your dick. She ends up with her tits pressed against your [pc.chest], moaning whorishly while your throb inside her soaked quim. Her dick smears pre across your [pc.belly], trapped between your bodies.");
+	if (useCock) output(" shifts up, planting her pussy on your rock-hard rod and slides down your length, leaning in against you as she takes your dick. She ends up with her tits pressed against your [pc.chest], moaning whorishly while your throb inside her soaked quim. Her dick smears pre across your [pc.belly], trapped between your bodies.");
 	else output(" slides two fingers into your cunt, stretching your lips open like she’s testing you, stirring you up with her digits for a second before shifting back on her hips and rubbing the tapered crown of her dick into her slit. She gives you a playful little wink and eases herself in, leaning in with her whole body until the knot of her dick is grinding against your [pc.clit] and her tits are pressed against your [pc.chest].");
-	pc.cuntChange(0,chars["ILARIA"].cockVolume(0));
+	
+	if (!useCock) pc.cuntChange(0,chars["ILARIA"].cockVolume(0));
+	else pc.cockChange();
 	
 	output("\n\nThe position leaves her ass wobbling, practically in Kaede’s face. The horny halfbreed chews her lip just long enough for the two of you two get settled in each other’s arms before she strides up, kicking her jacket and shirt aside, and grbs Ilaria’s big breeder’s hips.");
 	
 	output("\n\nThe bunny kisses you full on the lips, murmuring <i>“I’ve been waiting for this for a-aahhh!”</i>");
 	
 	output("\n\nHer whole body tenses as Kaede drives in, spearing Ilaria’s ass with spit-slicked cock. Her little tail buzzes gaily behind her, vibrating more vigorously with every inch of doggy-cock that slides through her sphincter. You feel Ilaria’s fingers squeeze your shoulders; feel her");
-	if (pc.hasVagina()) output(" cock throb in your pussy, leaking pre inside you");
+	if (!useCock) output(" cock throb in your pussy, leaking pre inside you");
 	else output(" pussy clench hard around your [pc.cock]. You can even feel Kaede’s member through the thin walls of Ilaria’s body, rubbing against the underside of your own dick.");
 	
 	output("\n\n<i>“Ah, you’re tight, Lari!”</i> Kaede moans, hilting herself with a clear grunt of effort. <i>“H-have you been saving this hole just for me?”</i>");
@@ -561,7 +567,7 @@ public function extrameetKaedeSurpriseII():void
 	else output(" squeezing hard enough to make the fuck-bunny moan.");
 	output(" Kaede starts really thrusting a moment after, making Ilaria’s whole body rock back and forth overtop you, sending ripples through her thick body every time Kaede’s slender hips crack against Ilaria’s fat behind.");
 
-	if (pc.hasCock())
+	if (useCock)
 	{
 		output("\n\nWith Ilaria rocking on top of you, you figure it’s time to start thrusting up to meet her. Your [pc.hips] lift off the bed when Kaede pushes her forward, slamming your [pc.cock] up into her eager puss. Every time she comes back down on the two cocks spearing her, the slutty bunny moans like a bitch in heat - like what she <i>is</i> deep down under all those mods of hers. You can feel her muscles hugging every inch you’ve slid inside her, riding it hard while her own uselessly drools onto your [pc.belly]. White streakers spill down your [pc.skinFurScales] onto the bed beside you.");
 	}
@@ -575,10 +581,10 @@ public function extrameetKaedeSurpriseII():void
 	processTime(15);
 
 	clearMenu();
-	addButton(0, "Next", extrameetKaedeSurpriseIII);
+	addButton(0, "Next", extrameetKaedeSurpriseIII, useCock);
 }
 
-public function extrameetKaedeSurpriseIII():void
+public function extrameetKaedeSurpriseIII(useCock:Boolean):void
 {
 	clearOutput();
 	showName("KAEDE\n& ILARIA");
@@ -592,26 +598,26 @@ public function extrameetKaedeSurpriseIII():void
 	output("\n\n<i>“I’m more of a bottom anyway,”</i> the slut-puppy sighs, grabbing her ass in both hands and spreading herself. Her own dick wobbles off the edge of the bed, thumping against the sheets with every beat of Kaede’s heart.");
 	
 	output("\n\nSuddenly, you’re feeling a little left out. You scoot up the bed and run your hand through Kaede’s shaggy red mane, hefting it up so that her face is planted straight between your [pc.legs]. She gets the cue and lolls her tongue out,");
-	if (pc.hasCock()) output(" wrapping it around the [pc.knot] of your [pc.cock].");
+	if (useCock) output(" wrapping it around the [pc.knot] of your [pc.cock].");
 	else output(" licking around the lips of your pussy, still agape from Ilaria’s deep thrusts.");
 	output(" She barely has time to get started before the bunny-girl gives her a good slap on the ass and drives her hips forward. Kaede gasps, mouth going wild on you for a moment as Ilaria’s tool drives into her tight little tailhole.");
 	
 	output("\n\n<i>“So good!”</i> Ilaria grins, groping Kaede’s ass in both hands. <i>“Oh, Kaede, your ass is amazing.”</i>");
 	
 	output("\n\n<i>“S-so’s your dick,”</i> the ginger answers back around her mouthful of");
-	if (pc.hasCock()) output(" [pc.cock]");
+	if (useCock) output(" [pc.cock]");
 	else output(" muff");
 	output(". <i>“And those balls feel so huge...”</i>");
 	
 	output("\n\nIlaria giggles, shaking her hips in such a way that her grapefruit-sized gonads slap heavily against Kaede’s little pouch. The ginger shemale moans into you, and you’re able to watch her own puppy-cock wobble beneath her, drooling pre as Ilaria drives right for her anal g-spot.");
 
 	output("\n\nYou tell Kaede she’s a good girl and stroke her hair, gently pushing her down");
-	if (pc.hasCock()) output(" on your cock");
+	if (useCock) output(" on your cock");
 	else output(" into your pussy");
 	output(". Her tongue goes to work sure enough, and she’s quick to kiss and lick her way all over your sex while Ilaria starts really fucking her ass, pounding hard away at the shemale’s tight hole. Kaede squeals and bucks her hips back against her, making her dick swing forward and back like a pendulum. A pendulum that’s leaking profusely now, turgid at the knot and ready to burst at the slightest provocation.");
 	
 	output("\n\nBefore Kaede can reach her orgasm, you");
-	if (pc.hasCock())
+	if (useCock)
 	{
 		output(" take hold of the back of her head and push her all the way down your shaft, making the ginger pup suck down every inch of [pc.cockType]-meat. She deftly keeps herself from gagging on the sudden thrust, even giving you a slutty little wink before she resumes ardently sucking. Now that she’s kissing your [pc.knot], you lean back in the heart-shaped bed and guide her bobbing head, keeping her impaled on your tool until her thrashing tongue has you feeling the rising tension in your [pc.balls].");
 
@@ -647,10 +653,10 @@ public function extrameetKaedeSurpriseIII():void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", extrameetKaedeSurpriseIV);
+	addButton(0, "Next", extrameetKaedeSurpriseIV, useCock);
 }
 
-public function extrameetKaedeSurpriseIV():void
+public function extrameetKaedeSurpriseIV(useCock:Boolean):void
 {
 	clearOutput();
 	showName("KAEDE\n& ILARIA");
@@ -680,10 +686,10 @@ public function extrameetKaedeSurpriseIV():void
 	processTime(5);
 
 	clearMenu();
-	addButton(0, "Next", extrameetKaedeSurpriseV);
+	addButton(0, "Next", extrameetKaedeSurpriseV, useCock);
 }
 
-public function extrameetKaedeSurpriseV():void
+public function extrameetKaedeSurpriseV(useCock:Boolean):void
 {
 	clearOutput();
 	showKaede();
@@ -700,6 +706,9 @@ public function extrameetKaedeSurpriseV():void
 
 	processTime(5);
 
+	IncrementFlag("KAEDE_FUCKED");
+	IncrementFlag("FUCKED_ILARIA");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -711,7 +720,7 @@ public function kaedeDataIlariaOrder(order:String):void
 
 	output("<i>“Ooh, that sounds good. Same for me.”</i>");
 	
-	output("\n\n<i>“’Kay!”</i> Ilaria grins, spinning on a heel. <i>“Be right up!”</i>");
+	output("\n\n<i>“‘Kay!”</i> Ilaria grins, spinning on a heel. <i>“Be right up!”</i>");
 	
 	output("\n\nAs soon as she’s gone, Kaede claps her hands to her burning cheeks. <i>“Ahh, I didn’t think Lari would make a fuss. I’m sorry!”</i>");
 	
@@ -819,7 +828,9 @@ public function extrameetKaedeBlowNBounce():void
 	else output(" in the ring of your ass");
 	output(", threatening to sink inside if you don’t raise yourself back on your [pc.knees] and start riding that dick.");
 	var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
-	pc.cuntChange(0, ppKaede.cockVolume(0));
+	
+	if (pc.hasVagina()) pc.cuntChange(0, ppKaede.cockVolume(0));
+	else pc.buttChange(ppKaede.cockVolume(0));
 	
 	output("\n\n<i>“A-aah,”</i> Kaede moans, grabbing at your hips. <i>“You’re such a bully!”</i>");
 	
@@ -843,7 +854,7 @@ public function extrameetKaedeBlowNBounce():void
 	else output(" gut");
 	output(".");
 	if (pc.hasCock()) output(" Your [pc.cock] gives her a shower in return, squirting all over her tits and face as you grind on her knot. She giggles as ropes of [pc.cumColor] slap her cheeks, licking it off her lips as it rains down on her.");
-	else output(" Your [pc.vagOrAss] hugs her throbbing erection tighter with ever spurt, letting the lightning-bolts of ecstacy plow through your body to the beat of her ejaculation.");
+	else output(" Your [pc.vagOrAss] hugs her throbbing erection tighter with ever spurt, letting the lightning-bolts of ecstasy plow through your body to the beat of her ejaculation.");
 	
 	output("\n\n<i>“O-oh fuck,”</i> Kaede groans,");
 	if (pc.biggestTitSize() >= 2) output(" hiding her face in your cleavage");
@@ -855,7 +866,8 @@ public function extrameetKaedeBlowNBounce():void
 	output("\n\nKaede taps the side of the couch and pulls you in against her. <i>“I’m out... just stay still, or I’m never gonna deflate...”</i>");
 
 	processTime(20+rand(10));
-	pc.loadInCunt(ppKaede, 0);
+	if (pc.hasVagina()) pc.loadInCunt(ppKaede, 0);
+	else pc.loadInAss(ppKaede);
 	pc.orgasm();
 	IncrementFlag("KAEDE_FUCKED");
 
@@ -893,11 +905,11 @@ public function extrameetKaedePoundHer():void
 	
 	output("\n\n<i>“You make me feel amazing,”</i> Kaede admits, grinning at you between kisses. <i>“Soooo good.”</i>");
 	
-	output("\n\nSame to her. While she’s all smiles and ecstacy, you take the opportunity to hook your arms around Kaede and flip her over, letting her finally plant her face in her pillows and wag her ass in the air for you. Her tail bats your cheeks until you pin it down over her back, giving you a peerless view of her cheeks spread around your [pc.cock]. Kaede grips her pillow in both hands, burying her face in its fluffy embrace while you resume pounding her ass.");
+	output("\n\nSame to her. While she’s all smiles and ecstasy, you take the opportunity to hook your arms around Kaede and flip her over, letting her finally plant her face in her pillows and wag her ass in the air for you. Her tail bats your cheeks until you pin it down over her back, giving you a peerless view of her cheeks spread around your [pc.cock]. Kaede grips her pillow in both hands, burying her face in its fluffy embrace while you resume pounding her ass.");
 	
 	output("\n\nHer hole accepts every thrust of your [pc.cock] with wet slurps and tight squeezes. Her dick bobs fore and back every time your [pc.hips] slap against her butt, dripping lube and pre down to the beat of your sodomy. Before long, you end up wrapping your arms around Kaede’s waist and lifting her up on her knees so you can kiss those sweet lips of hers again. She keeps hugging her pillow and moans whorishly until you get one hand around her dick and your [pc.lips] on hers.");
 	
-	output("\n\nHer body’s lean and light, and Kaede’s putty in your hands at the worst of times; while she’s in the throes of ecstacy you can man-handle her any which way you want. Whether it’s pile-driving her into the sheets, rolling her on her back and teething on those tits, or making her bounce in your lap, Kaede follows your lead without question. Her vigorous grip on your [pc.cock] ensures that by the time Kaede’s pressing herself against you and screaming that she’s cumming again, you’re finally ready to join her. You buck your [pc.hips] up into her taut rear, relishing in her screams of pleasure one last time");
+	output("\n\nHer body’s lean and light, and Kaede’s putty in your hands at the worst of times; while she’s in the throes of ecstasy you can man-handle her any which way you want. Whether it’s pile-driving her into the sheets, rolling her on her back and teething on those tits, or making her bounce in your lap, Kaede follows your lead without question. Her vigorous grip on your [pc.cock] ensures that by the time Kaede’s pressing herself against you and screaming that she’s cumming again, you’re finally ready to join her. You buck your [pc.hips] up into her taut rear, relishing in her screams of pleasure one last time");
 	if (pc.hasKnot()) output(" as your [pc.knot] breaches her");
 	output(".");
 	

@@ -73,8 +73,8 @@ package classes.Items.Transformatives
 				// Immediate effects: The player gains some energy.
 				if (healing > 0)
 				{
-					output(" (<b>+" + healing + " Energy</b>)");
-					target.energy(healing);
+					//output(" (<b>+" + healing + " Energy</b>)");
+					target.changeEnergy(healing);
 				}
 				
 				/*
@@ -119,9 +119,9 @@ package classes.Items.Transformatives
 				if(inCombat()) output("\n\n");
 				else clearOutput();
 				output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " squeezes out and applies the Thicc&Shake batter");
-				if (healing > 0) output(", replenishing some of [target.hisHer] energy! (<b>+" + healing + " Energy</b>)");
+				if (healing > 0) output(", replenishing some of [target.hisHer] energy!");
 				else output(" but to no effect.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			return false;
 		}
@@ -431,7 +431,7 @@ package classes.Items.Transformatives
 			else output(" your [pc.asshole] explodes with orgasmic contractions");
 			output(", bringing you to the ground. Despite your body feeling numb and limp, you continue to flex your [pc.ass] for that precious flesh. Your [pc.tongue] hangs out of your mouth and eyes clouded, but still you twerk.");
 			
-			target.energy(35);
+			target.changeEnergy(35);
 			target.hipRatingRaw += 1;
 			
 			output("\n\nPound after pound of flesh builds and builds. The pleasure of it all keeping you conscious. Then energy fills your body despite your fatigue. You brace your hands on the ground and begin assaulting the floor with your hips. Up and down, and up and down, your hips slam with such speed and force that even from a distance people could feel your efforts. Your hips ripen with each slam, gorgeous and delicious. Panting and gasping, nearly suffocating from the pleasure, but you can’t stop--<b>YOU WON’T STOP!</b>");

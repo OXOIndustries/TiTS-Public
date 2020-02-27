@@ -489,7 +489,7 @@ public function seraInchStealingIntro(response:String = ""):void
 		if(biggestLength >= 12) output("\n\n<i>“Ugh, look at that thing,”</i> she scoffs. <i>“Yes, I can do something about that, but it won’t be for you--it’ll be for </i>me<i>.”</i>");
 		else if(biggestLength <= 11.5 && biggestLength >= 7) output("\n\n<i>“I think it looks perfect,”</i> she compliments, but it is quickly reversed by, <i>“but if you think that makes you look too manly, I have a solution to make you better suited to be my sissy " + pc.mf("boy", "slut") + ".”</i>");
 		else if(biggestLength <= 6.5 && biggestLength >= 4.5) output("\n\n<i>“Aw, how adorable,”</i> she teases. <i>“What makes you want to change that puny pecker of yours?”</i>");
-		else output("\n\n<i>“Mmm, are you sure you want me to fiddle with your petite pretty?”</i> she sneers, <i>“It compliments your status quite well.”</i>");
+		else output("\n\n<i>“Mmm, are you sure you want me to fiddle with your petite pretty?”</i> she sneers, <i>“It complements your status quite well.”</i>");
 		output("\n\nShe gives you a loud slap on your [pc.ass] and grabs your cock, taking a moment to examine it some more.");
 		output("\n\n<i>“Since you sound so interested, I’ll show you what I’ve got in store for you, pet - but are you ready for it?”</i>");
 		
@@ -596,6 +596,11 @@ public function seraInchStealingIntro(response:String = ""):void
 		addButton(0, "Next", seraInchStealing, "standard");
 	}
 }
+
+public function crashDaddy():void
+{
+	output(pc.cocks[98].cLength());
+}
 public function seraInchStealing(response:String = ""):void
 {
 	clearOutput();
@@ -603,7 +608,8 @@ public function seraInchStealing(response:String = ""):void
 	showSera();
 	
 	var cockIndex:int = pc.biggestCockIndex();
-	var biggestLength:Number = pc.cocks[cockIndex].cLength();
+	var biggestLength:Number = 0;
+	if(cockIndex >= 0) biggestLength = pc.cocks[cockIndex].cLength();
 	
 	if(response == "back away")
 	{
@@ -1517,7 +1523,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			}
 			output("... Sera looks down at you with a knowing smile.");
 			output("\n\n<i>“Take another drag,”</i> she says lowly. <i>“This time hold it.”</i> You do so quite happily, drawing in the perfumed smoke, feeling intensely relaxed and happy to be here, near the warmth and power of your mistress. <i>“Now,”</i> she whispers. <i>“Go across and give it to her.”</i> ");
-			output("\n\nHolding your breath, you turn to where she’s gesturing, vaguely surprised to find Jardi is still here, sat on the edge of the bed and watching this display nervously. Why is she tense? There is nothing to be tense about here. Feeling an instinctive urge to touch her, you crawl across the duvet, your payload hot in your lungs, spread your hands around her gooey head and push your lips against hers tenderly. You wait until she reciprocates, opening her mouth to kiss you back before releasing, channeling the perfumed smoke into her. You slide your lips over hers for a while longer, enjoying the beautiful warm give of this creature, before gently parting.");
+			output("\n\nHolding your breath, you turn to where she’s gesturing, vaguely surprised to find Jardi is still here, sitting on the edge of the bed and watching this display nervously. Why is she tense? There is nothing to be tense about here. Feeling an instinctive urge to touch her, you crawl across the duvet, your payload hot in your lungs, spread your hands around her gooey head and push your lips against hers tenderly. You wait until she reciprocates, opening her mouth to kiss you back before releasing, channeling the perfumed smoke into her. You slide your lips over hers for a while longer, enjoying the beautiful warm give of this creature, before gently parting.");
 			output("\n\n<i>“Ooh,”</i> sighs Jardi, blinking a couple of times. Her pupils dilate and she smiles at you amorously. You do the same back, practically giggling together at how wonderful everything is.");
 			
 			processTime(25);
@@ -2507,7 +2513,7 @@ public function seraGiftCollar(page:int = 0):void
 			output("Sera sits cross-legged on her stool, lips pursed and face stony, as you deliver your report.");
 			output("\n\n<i>“Mm. Nice, watching your mouth move,”</i> she says at last. <i>“You aren’t getting your salary this week. I got you something instead. Take off your shit and come into the back.”</i>");
 			output("\n\nYou follow the pale blue hair, jouncing bum and coiling, beckoning spade a few moments after they’ve disappeared beyond the door, your [pc.skinFurScales] shiveringly bared for whatever it is the sadistic slave driver has got prepared.");
-			output("\n\nShe’s sat on her bed, swinging the end of her tail, leering with that trademark blend of menace and lust of hers, by the time you enter her room. There’s a small, red box on the floor on front of her, done up in black ribbon.");
+			output("\n\nShe’s seated on her bed, swinging the end of her tail, leering with that trademark blend of menace and lust of hers, by the time you enter her room. There’s a small, red box on the floor on front of her, done up in black ribbon.");
 			output("\n\n<i>“It’s great, you know, ordering someone to do whatever I want and them just doing it,”</i> she husks, reptilian eyes crawling over your naked body. <i>“Kneel.”</i> You comply,");
 			if(pc.isNaga()) output(" coils settling into the carpet");
 			else if(pc.isGoo()) output(" goo settling into the carpet");
@@ -3213,7 +3219,7 @@ public function seraMilkings(arg:Array):void
 					for(cums = 0; cums < 8; cums++) { pc.orgasm(); }
 					chars["SERA"].orgasm();
 					
-					output("\n\nJust because you’re no longer being actively milked doesn’t slow down your bountiful tits: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich, [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
+					output("\n\nJust because you’re no longer being actively milked doesn’t slow down your bountiful tits: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
 					if(pc.isTreatedCow()) output(" and slutty, muffled moos forced out of your throat");
 					output(" to the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly dripping thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
 					output("\n\n<i>“Alright. Wow. Fuck,”</i> she says at last, boobs rested on your back, staring over your shoulder at your own set of crowd-pleasers. They continue to drip and ooze freely, adding to the heavy [pc.milkColor] mess you’ve left all over the floor. Her hands shift around, stroking your [pc.boobs] wonderingly.");
@@ -3236,7 +3242,7 @@ public function seraMilkings(arg:Array):void
 				{
 					output("\n\nEven industrial equipment is no match for your herculean tits. Once again, the fluid backs up, the tank completely full, and [pc.milk] is still gushing out of your [pc.nipples]. The pods come loose in warm spurts of [pc.milkColor].");
 					output("\n\n<i>“Holy... holy shit,”</i> the succubus groans, staring at your wildly shaking tits spattering milk all over the floor. But she’s too into it to stop, too into emphatically pumping her cock into your " + (vIdx >= 0 ? "oozing, simmering cunt" : "abused asshole") + ", and so you continue with your [pc.boobs] hanging down and drooling like partially opened taps.");
-					output("\n\nJust because you’re no longer being actively milked doesn’t slow your boobs down: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich, [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
+					output("\n\nJust because you’re no longer being actively milked doesn’t slow your boobs down: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
 					if(pc.isTreatedCow()) output(" and slutty, muffled moos forced out of your throat");
 					output(" to the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly dripping thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
 					
@@ -3401,7 +3407,10 @@ public function seraPunishingFix(arg:Array):void
 			{
 				output("You’re expecting her to lead you into her bedroom, but she strides right past, to the door at the far end. ");
 				output("\n\nThis is a spacious storage space, of the sort you’d find in the rear of any space station commercial lot. Or, at least, it was; the grey, synthetic floors and walls are slowly being devoured by matte black panelings, and bits and pieces of equipment that look distinctly like they’re geared more towards Sera’s pleasures than her work have been set up, or standing waiting forbiddingly for assemblage.");
-				output("\n\n<i>“This is going to be my dungeon,”</i> she explains, gazing around her with a happy smile. <i>“I always intended to build one, once I had my own place. It’s coming along.{If party event succeeded: Mostly thanks to you.”</i> She turns and grazes her claws along the line of your jaw lovingly. / If else: ”</i>} She raps a knuckle against one of the black panels. <i>“Soundproof. Once I’m done, nobody’ll be able to hear you scream. I’ll be able to make it pitch black in here too, so the only thing you’ll be able to see is...”</i> Sera points at her eyes. She’s beaming, already picturing it. <i>“It’s gonna be so good. For now, though...”</i>");
+				output("\n\n<i>“This is going to be my dungeon,”</i> she explains, gazing around her with a happy smile. <i>“I always intended to build one, once I had my own place. It’s coming along.");
+				if(seraPartySuccess()) output(" Mostly thanks to you.”</i> She turns and grazes her claws along the line of your jaw lovingly.");
+				else output("”</i>");
+				output(" She raps a knuckle against one of the black panels. <i>“Soundproof. Once I’m done, nobody’ll be able to hear you scream. I’ll be able to make it pitch black in here too, so the only thing you’ll be able to see is...”</i> Sera points at her eyes. She’s beaming, already picturing it. <i>“It’s gonna be so good. For now, though...”</i>");
 			}
 			else
 			{

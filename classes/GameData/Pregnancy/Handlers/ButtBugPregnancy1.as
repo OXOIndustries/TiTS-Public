@@ -65,7 +65,7 @@ package classes.GameData.Pregnancy.Handlers
 			txt += "\n\nShe expands, her nubby surface scraping at your anal walls and";
 			if(mother.isHerm()) txt += " kickstarts a cascade of stimulative need. The parasite’s stimulation spreads from your anus to your labia, and all the way up to the tip of your cockhead" + ((mother.cocks.length == 1 && !mother.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + ". Your genitals throb and drip with newfound need while they make a mess of your groin";
 			else if(mother.hasCock()) txt += " stimulating your prostate and has your cock" + (mother.cocks.length == 1 ? "" : "s") + " jump to attention. [pc.CumColor] pre leaks from your cock tip" + ((mother.cocks.length == 1 && !mother.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + ", dripping down your shaft to really make a mess of your groin";
-			else if(mother.hasVagina()) txt += " has you rub your legs together at the sensation of it. [pc.girlCumColor] drips from your womanly folds as your anal tenant makes you crave more stimulation";
+			else if(mother.hasVagina()) txt += " has you rubbing your legs together at the sensation of it. [pc.GirlCumColor] drips from your womanly folds as your anal tenant makes you crave more stimulation";
 			else txt += " tickles you in a delightful way. A giggle escapes your [pc.lips] whenever the sensations get a little too intense";
 			txt += ".";
 			txt += "\n\nThe female expands more as her widest point shifts further inside you. Her orifice opens up to deposit what feels like a baseball sized rounded object into you. A small ‘ooh’ escapes your throat as a warm liquid is squirted up your gut to fill in the space around what you’ve surmised to be her egg. She uses one of her tentacles to make sure the egg is well situated, unintentionally stimulating you by rubbing your insides. Her tendrils disappear into her once more while she slows down her undulation until her activity grinds to a halt.";
@@ -83,7 +83,7 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			// Ends via time if cycle is not active or eggs have been fertilized
-			if(mother.statusEffectv1("Butt Bug Egg Cycle") == 0 || mother.statusEffectv2("Butt Bug (Female)") > 0)
+			if((mother.statusEffectv1("Butt Bug Egg Cycle") == 0 && pData.pregnancyQuantity >= 30) || mother.statusEffectv2("Butt Bug (Female)") > 0)
 			{
 				var tEventCall:Function = (function(c_mother:Creature, c_pregSlot:int, c_thisPtr:BasePregnancyHandler):Function
 				{
@@ -157,7 +157,7 @@ package classes.GameData.Pregnancy.Handlers
 				txt = ParseText(txt);
 				
 				if(inPublic) mother.exhibitionism(1);
-				mother.orgasm();
+				//mother.orgasm();
 				mother.lust(50);
 			}
 			// Repeat blurbs

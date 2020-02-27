@@ -2541,7 +2541,7 @@ public function roomOutsideShekkasBonus():Boolean
 	}
 	if(flags["TARKUS_DESTROYED"] == undefined) output("The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus’ surface. Before you can get to the windswept junkyards, you’ll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.");
 	else output("The section of deck upon which you now stand was undoubtedly the busiest place in all of Novahome back before the planet blew. Now, huge blast doors close off the way to the south, and while foot traffic is still high, the press of raskvel bodies is significantly abated. The massive, central corridor leads east and west from here.");
-	output(" A sign made of mismatched machine parts displays “Shekka’s Widget Warehouse” just above a cobbled-together, ware-house like building to the north.");
+	output(" A sign made of mismatched machine parts displays “Shekka’s Widget Warehouse” just above a cobbled-together, warehouse like building to the north.");
 	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined && flags["PLANET_3_UNLOCKED"] == undefined)
 	{
 		author("Fenoxo");
@@ -2551,6 +2551,7 @@ public function roomOutsideShekkasBonus():Boolean
 		else output("You’ve got a lot of balls showing up here,”</i> he growls before smiling. <i>“Boss said not to stop you, and after last time, I’m not sure I’d want to try. Just don’t start any trouble, all right?");
 		output("”</i> He gives you an unsubtle wink.</b>");
 	}
+	else biancaBoothBonus(0, "tarkus");
 	return false;
 }
 
@@ -2711,9 +2712,9 @@ public function youWonSomePodShit():void
 	flags["PLANET_3_UNLOCKED"] = 1;
 	//[SellShekka] [GiveShekka] [SellSteele]	
 	clearMenu();
-	addButton(0,"SellSteele",sellThePodToSteeleTech,undefined,"SellSteele","Dad probably set up the company to pay out for the pods if you sent them back.");
-	addButton(1,"ShekkaSell",sellDatPodToShekka,undefined,"ShekkaSell","The raskvel would probably buy it back for a portion of its value.")
-	addButton(2,"ShekkaGive",giveTheProbeToShekkaForNuttin,undefined,"ShekkaGive","You don’t need the pod itself. Why not just give it to the little raskvel? They could probably use the extra resources around this junk heap.");
+	addButton(0,"SellSteele",sellThePodToSteeleTech,undefined,"Sell to Steele Tech","Dad probably set up the company to pay out for the pods if you sent them back.");
+	addButton(1,"ShekkaSell",sellDatPodToShekka,undefined,"Sell to Shekka","The raskvel would probably buy it back for a portion of its value.")
+	addButton(2,"ShekkaGive",giveTheProbeToShekkaForNuttin,undefined,"Give to Shekka","You don’t need the pod itself. Why not just give it to the little raskvel? They could probably use the extra resources around this junk heap.");
 }
 
 //Sell to Shekka

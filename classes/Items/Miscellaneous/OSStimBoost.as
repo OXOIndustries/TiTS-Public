@@ -97,13 +97,17 @@ package classes.Items.Miscellaneous
 				}
 				
 				hpChange = gainHP(target);
+				/* OLD AND VERBOSE AN' BUSTED
 				if(hpChange > 0)
 				{
+					
 					if(usingCreature == target) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>");
 					else kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
-				}
-				target.HP(hpChange);
-				target.energyRaw = target.energyMax();
+					
+				}*/
+				// NEW HOTTIES:
+				target.changeHP(hpChange);
+				target.changeEnergy(target.energyMax());
 			}
 			else
 			{
@@ -120,10 +124,11 @@ package classes.Items.Miscellaneous
 					else kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out a stimbooster and jabs it against " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + "’s arm. In mere seconds " + target.mfn("he", "she", "it") + " looks far perkier, the microsurgeons working quickly to dull the pain and weariness from " + target.mfn("his", "her", "its") + " frame.");
 				}
 				
+				//OLD BUSTED: if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
+				//New hotties:
 				hpChange = gainHP(target);
-				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
-				target.HP(hpChange);
-				target.energyRaw = target.energyMax();
+				target.changeHP(hpChange);
+				target.changeEnergy(target.energyMax());
 			}
 
 			return false;

@@ -102,7 +102,7 @@ public function hardlightAGThongToggle(option:String = "none"):void
 				// +10 lust/vagina
 				// +2 mins
 				processTime(2);
-				pc.lust(10 * pc.vaginas.length);
+				pc.changeLust(10 * pc.vaginas.length);
 			}
 			else
 			{
@@ -124,7 +124,7 @@ public function hardlightAGThongToggle(option:String = "none"):void
 				// +10 lust
 				// +2 mins
 				processTime(2);
-				pc.lust(10);
+				pc.changeLust(10);
 			}
 			else
 			{
@@ -188,13 +188,13 @@ public function hardlightAGThongToggle(option:String = "none"):void
 				if(vagDildo && assDildo)
 				{
 					processTime(15);
-					pc.lust(30);
+					pc.changeLust(30);
 					pc.energy(-30);
 				}
 				else
 				{
 					processTime(7);
-					pc.lust(20);
+					pc.changeLust(20);
 				}
 			}
 			else
@@ -527,7 +527,7 @@ public function hardlightAGThongLust():void
 	// +15 lust
 	// +2 - 5 minutes
 	processTime(2 + rand(4));
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

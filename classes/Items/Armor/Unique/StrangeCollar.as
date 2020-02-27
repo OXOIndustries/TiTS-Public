@@ -4,6 +4,8 @@ package classes.Items.Armor.Unique
 	import classes.GLOBAL;
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
+	import classes.Creature;
+	import classes.Items.Armor.Unique.OmnisuitCollar;
 	
 	public class StrangeCollar extends ItemSlotClass
 	{
@@ -49,6 +51,16 @@ package classes.Items.Armor.Unique
 			//itemFlags.push(GLOBAL.ITEM_FLAG_AIRTIGHT);
 			
 			version = _latestVersion;
+		}
+		
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
+		{
+			return (new OmnisuitCollar()).onEquip(targetCreature, outputText);
+		}
+		
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
+		{
+			return (new OmnisuitCollar()).onRemove(targetCreature, outputText);
 		}
 	}
 }

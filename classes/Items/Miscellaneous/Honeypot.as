@@ -87,7 +87,7 @@
 					{
 						kGAMECLASS.output("\n\nYou only have to wait a few moments before a heat radiates from your loins. Eager to grant yourself some release, you let your fingers wander. They find their way to your labia and caress your [pc.clits], dipping back to rubbing your insides with great care. The heat fades away but your lust remains, so you continue with your play.");
 						kGAMECLASS.output("\n\nWhen your fluids begin to flow, your nostrils are greeted by a sweet scent, and your fingers can feel a sticky thick sap dripping from your [pc.vaginas]. Holding up an amber-stained digit, you tentatively lick it. <b>[pc.EachVagina] is secreting honey!</b>");
-						target.lust(20+rand(10));
+						target.changeLust(20+rand(10));
 						target.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 					}
 					//No Effect (your honeypot is already leaking honey)

@@ -230,18 +230,19 @@ public function millyBonusSex():void
 		output("\n\n<i>“Can I see- uh, what you’re... packing?”</i> Milly asks hesitantly. <i>“Sorry, I’ve never been very good with dirty talk.”</i>");
 		output("\n\n<i>“Sure,”</i> you say generously, lifting your hands off her perfect breasts. <i>“Get a good look.”</i>");
 		output("\n\nShedding your [pc.crotchCovers], Milly ");
-		if(!pc.isTaur()) 
-		{
-			output("puts her hands between your [pc.legs] and gets a nice handful of ");
-			if(cIdx >= 0 && pc.balls > 0) output("your [pc.balls]");
-			else if(cIdx >= 0) output("your [pc.cock " + cIdx + "]");
-			else output("your [pc.pussy]");
-			output(", her eyebrows raising before a grin crosses her face.");
-		}
 	}
-	if(pc.isTaur()) 
+	else output("\n\nShuffling between your legs, Milly ");
+
+	if(!pc.isTaur()) 
 	{
-		output("\n\nShuffling between your legs, Milly ");
+		output("puts her hands between your [pc.legs] and gets a nice handful of ");
+		if(cIdx >= 0 && pc.balls > 0) output("your [pc.balls]");
+		else if(cIdx >= 0) output("your [pc.cock " + cIdx + "]");
+		else output("your [pc.pussy]");
+		output(", her eyebrows raising before a grin crosses her face.");
+	}
+	else
+	{
 		if(cIdx >= 0) output("gets an immediate eyeful of your [pc.cock " + cIdx + "], a low whistle then a giggle issuing from underneath you");
 		else output("stretches her hand up your hindquarters and gets a couple of fingers inside your [pc.pussy]");
 		output(". You can hear the grin in her voice when she speaks.");
@@ -336,7 +337,7 @@ public function millyBonusSex():void
 		output("\n\n<i>“Wow, that might be the hottest thing anyone’s ever said to me,”</i> Milly says, eyebrows raised. <i>“Something to be said for pure, stark sexuality...”</i>");
 		output("\n\nShe slowly walks behind you, arm out and stroking your flank until she reaches your back half.");
 		output("\n\n<i>“I kinda wish I could kiss you when we do this,”</i> she admits, ");
-		if(pc.tailCount > 1 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("lightly tugging your [pc.tail] out of the way and ");
+		if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("lightly tugging your [pc.tails] out of the way, ");
 		output("placing both her hands on your [pc.ass] and sinking to her knees.");
 		output("\n\n<i>“I’ve got another set of lips you can kiss, cutie,”</i> you murmur, giving Milly a ‘wink’ that elicits a small gasp.");
 		output("\n\n<i>“Oh, wow...”</i> she says, sliding her hand down closer. <i>“Is that your clit?”</i>");

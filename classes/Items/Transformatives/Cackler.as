@@ -184,14 +184,19 @@ package classes.Items.Transformatives
 			if (!target.hasEmoteEars()) output(" move up to the top of your head, then");
 			output(" enlarge, eventually coming to pointed tips. As a thin layer of fur begins to settle in, you look into your reflection and realize <b>you’ve grown a pair of furred hyena ears!</b>");
 			target.earType = GLOBAL.TYPE_HYENA;
+			target.clearEarFlags();
+			target.addEarFlag(GLOBAL.FLAG_TAPERED);
+			target.addEarFlag(GLOBAL.FLAG_FURRED);
 		}
 
 		//Gain Black and Brown or Black and Gray striped fur
 		private function furMorph(target:Creature):void
 		{
 			output("\n\nYour [pc.skinFurScales] " + (InCollection(target.skinType, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) ? "start" : "starts") + " to itch as a prickly, burning sensation overcomes your dermis. Almost as if your pores themselves are on fire, you helplessly scratch yourself for relief!");
-			if (target.hasFur()) output(" Soon after, your [pc.furColor] coat becomes a layer of pure white.");
-			else output(" You feel the fur spread over your body, sprouting up over every inch.");
+			if (target.hasFur()) output(" Soon after, your [pc.furColor] coat becomes a layer of pure white");
+			else output(" You feel the fur spread over your body, sprouting up over every inch");
+			if (target.hasAccentMarkings()) output(", your [pc.accentMarkings] fading away");
+			output(".");
 			if (InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_CHITIN))
 			{
 				output(" Your");
@@ -203,10 +208,16 @@ package classes.Items.Transformatives
 				}
 				output(" fall from your body and land on the ground around you, only to be swiftly replaced by a layer of fur.");
 			}
-			if (!target.hasStatusEffect("Hyena Fur")) target.createStatusEffect("Hyena Fur");
-			target.setStatusTooltip("Hyena Fur", (rand(2) == 0 ? "brown striped" : "gray spotted"));
-			output(" The burning itch subsides and you’re left with <b>black and " + target.getStatusTooltip("Hyena Fur") + " fur!</b>");
+			target.clearAccentMarkings();
+			// 1: brown stripes 2: gray spots
+			var accentChoice:int = (1 + rand(2));
+			var newAccent:String = (accentChoice == 1 ? "brown" : "gray");
+			target.setStatusValue("Hyena Fur", 1, accentChoice);
+			target.createStatusEffect("Hyena Fur");
+			target.setStatusTooltip("Hyena Fur", newAccent);
+			output(" The burning itch subsides and you’re left with <b>black and " + newAccent + " " + (accentChoice == 1 ? "striped" : "spotted") + " fur!</b>");
 			target.skinType = GLOBAL.SKIN_TYPE_FUR;
+			target.skinAccent = newAccent;
 			target.clearSkinFlags();
 			target.furColor = "black";
 		}
@@ -406,7 +417,7 @@ package classes.Items.Transformatives
 			output(" Once the microsurgeons finish their changes, <b>you’re left with a sheathed and knotted black canine dick with a tapered head!</b>");
 			target.shiftCock(cockIdx, GLOBAL.TYPE_CANINE);
 			target.cocks[cockIdx].cockColor = "black";
-			target.lust(20+target.libido()/4);
+			target.changeLust(20+target.libido()/4);
 			target.slowStatGain("libido", 2);
 		}
 
@@ -434,7 +445,7 @@ package classes.Items.Transformatives
 			var growth:Number = (8 + rand(13))/10;
 			if (target.cockLengthUnlocked(cockIdx, target.cLength(cockIdx) + growth)) target.cocks[cockIdx].cLength(growth);
 			else target.cocks[cockIdx].cLength(1);
-			target.lust(5+target.libido()/10);
+			target.changeLust(5+target.libido()/10);
 		}
 
 		//if, and only if the pc has a pussy, and pc doesn't already have a black wet canine pussy; Change 1 Pussy to a black wet Canine Pussy, causes orgasm event, raise libido by 1 or 2 points
@@ -472,7 +483,7 @@ package classes.Items.Transformatives
 		private function clitGrowth(target:Creature):void
 		{
 			output("\n\nYou feel a rush of heat coursing through your body and into your [pc.clits]. The sudden burst of arousal doubles you over in shock, stopping you dead in your tracks. While you take a moment to make sure that your lady parts are still intact, you realize that your <b>" + (target.totalClits() > 1 ? "clits have" : "clit has") + " grown almost a half an inch!</b>");
-			target.lust(5+target.libido()/10);
+			target.changeLust(5+target.libido()/10);
 			target.clitLength += (2+rand(6))/10;
 			if (target.clitLength > 8) target.clitLength = 8;
 		}

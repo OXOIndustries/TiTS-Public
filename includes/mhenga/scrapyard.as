@@ -23,16 +23,19 @@ public function scrapyardMaintenance():void {
 		//Sell/Buy/Leave
 		output("Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.");
 	}
-	shopkeep = geoff;
-	this.addButton(0,"Buy",buyFromGeoff);
-	this.addButton(1,"Sell",sellToArtie);
+	addButton(0,"Buy",buyFromGeoff);
+	addButton(1,"Sell",sellToArtie);
 }
 
 public function sellToArtie():void {
 	author("Nonesuch");
-	userInterface.showBust("ARTIE");
-	userInterface.showName("\nARTIE");
+	shopkeep = geoff;
 	sellItem();
+}
+public function buyItemFromGeoff():void {
+	author("Nonesuch");
+	shopkeep = geoff;
+	buyItem();
 }
 public function buyFromGeoff():void {
 	clearOutput();
@@ -45,7 +48,7 @@ public function buyFromGeoff():void {
 	geoff.keeperBuy = "What would you like to buy?\n";
 	flags["MET_GEOFF"] = 1;
 	this.clearMenu();
-	this.addButton(0,"Buy",buyItem);
+	this.addButton(0,"Buy",buyItemFromGeoff);
 	this.addButton(1,"Talk",talkToGeoff);
 
 	if(flags["SEXED_GEOFF"] == 1) 
@@ -102,7 +105,7 @@ public function talkToGeoff():void {
 	else {
 		//Talk:
 		output("You say you’d just like to shoot the breeze with him. Shrugging amiably, the young mechanic points you to a shipping crate similar to the one his uncle is currently perched upon.");
-		output("\n\nYou spend a pleasant half an hour sat in the back of the scrap hut chatting with Geoff as he continues dismantling pieces of machinery. He’s heard of your father, and is eager to hear any story you can possibly tell him about Steele, hero of the frontier. In return he tells you his own experiences in Esbeth. He says both the proprietor of the Mead Hall and Officer Penny are quite nice once you get to know them, although you get the distinct impression he’s rather intimidated by them both. After you’re done kicking your heels back you let him get back to it and head out of the scrapyard’s clutter.");
+		output("\n\nYou spend a pleasant half an hour seated in the back of the scrap hut chatting with Geoff as he continues dismantling pieces of machinery. He’s heard of your father, and is eager to hear any story you can possibly tell him about Steele, hero of the frontier. In return he tells you his own experiences in Esbeth. He says both the proprietor of the Mead Hall and Officer Penny are quite nice once you get to know them, although you get the distinct impression he’s rather intimidated by them both. After you’re done kicking your heels back you let him get back to it and head out of the scrapyard’s clutter.");
 		processTime(30+rand(4));
 		this.clearMenu();
 		this.addButton(0,"Next",mainGameMenu);
@@ -259,7 +262,7 @@ public function GeoffRepeatFuck():void {
 		output(", working with greater intent now. You move your hands down from his face to do some exploring of your own, enjoying the pockets of softness to be found upon his frame here and there, ameliorating his firm, bony form. He groans softly as, grinning, your hand slides into his pants and finds his hardening, sturdy six inch prick. You move your hand over and around his length before focusing on his sternum, stroking it gently whilst he continues to frig you");
 		if(pc.hasClit()) output(", bending fingers into you as he flicks your [pc.eachClit] insistently with his thumb");
 		output(" until your juices are leaking down your [pc.butt].");
-		if(pc.hasCock()) output("[pc.EachCock] hardens and bulges to the sensations inundating your female sex.");
+		if(pc.hasCock()) output(" [pc.EachCock] hardens and bulges to the sensations inundating your female sex.");
 		
 		output("\n\nYou play at each other, each working the other into a more furious lather until at last Geoff can’t take it anymore. He unfastens his belt and lets his faded jeans fall as he pushes into you, using his tight mass to force you against the wall, and you can’t help but cry out as he penetrates you in one go, his head pushing you wide before surging into your wet tunnel. The humidity and your own arousal make the sex liquid, his dick encountering barely any resistance as he rubs and fills you, and he almost immediately begins to fuck you with a frenetic eagerness, pushing you firmly into the wall as he thrusts his unyielding, lean hips into your softness, the flat lake of his stomach batting into your own. You thrust back into him, squeezing him with your [pc.hips], the wetness and pleasure you feel urging you to try and make him pound you even harder. When he tenses up moments later, gasping to your movements and clutching your back, you then feel a sudden wish you hadn’t gotten him as excited as you have; he is only a kid fresh out of college, after all.");
 		pc.cuntChange(0,geoff.biggestCockVolume());

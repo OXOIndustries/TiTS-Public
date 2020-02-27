@@ -49,6 +49,11 @@ public function showZaalt(nude:Boolean = false):void
 	else showName("ICE\nQUEEN");
 }
 
+public function zaaltImprisoned():Boolean
+{
+	return (flags["ICEQUEEN COMPLETE"] == 2);
+}
+
 public function iceQueenMessageHelpII():void
 {
 	shipLocation = "SPACE";
@@ -187,7 +192,10 @@ public function iceQueenQuestionIceQueen():void
 	clearOutput();
 	showZaalt();
 
-	output("<i>“The </i>Ice Queen<i>?”</i> Zaalt says, leaning against a bulkhead. <i>“She’s the biggest gal on the Siretta-"+getSystemName()+" run. Might not be the fastest out here, but the </i>Queen<i>’s got a mighty cargo bay and great big engines,”</i> he adds, making a motion around his chest as if to mimic a set of big, weighty breasts. Way bigger than average.");
+	var pcLocation:String = getSystemName();
+	if(InCollection(pcLocation, ["Unknown", "Deep Space", "Siretta"])) pcLocation = "Kalas";
+	
+	output("<i>“The </i>Ice Queen<i>?”</i> Zaalt says, leaning against a bulkhead. <i>“She’s the biggest gal on the Siretta-"+pcLocation+" run. Might not be the fastest out here, but the </i>Queen<i>’s got a mighty cargo bay and great big engines,”</i> he adds, making a motion around his chest as if to mimic a set of big, weighty breasts. Way bigger than average.");
 	
 	output("\n\nHe laughs and cracks his knuckles. <i>“She’s a Pyrite-corp ship. Which I <b>thought</b> meant reliable as hell, until her LightDrive decided to throw us a curveball. First time she’s given us trouble, but considering she just got her side tore out by a meteor, I’ll give her a pass.”</i>");
 	
@@ -395,7 +403,7 @@ public function iceQueenLetsGoFlirt():void
 	output("\n\nZaalt gives you a wink and steps aboard, leaving you with an even hotter fire in your loins as you follow him.");
 	
 	processTime(2);
-	pc.lust(20);
+	pc.changeLust(20);
 
 	clearMenu();
 	addButton(0, "Next", iceQueenLetsActuallyGo);
@@ -974,7 +982,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	
 	output("\n\n<i>“Okay, all set,”</i> Kara says, giving you another playful wink. <i>“Thanks "+ pc.mf("boys", "you guys") + ", I’ll make sure this gets to the right place. And for you...”</i>");
 	
-	output("\n\nThe cobalt kaithrit fishes a credit chit from out of her skintight suit’s very generous cleavage, planting it on the table and sliding it across. <i>“Divvy it up however you want. As for me, I have an appointment to keep. It was good seeing you again, [pc.name]. till next time.”</i>");
+	output("\n\nThe cobalt kaithrit fishes a credit chit from out of her skintight suit’s very generous cleavage, planting it on the table and sliding it across. <i>“Divvy it up however you want. As for me, I have an appointment to keep. It was good seeing you again, [pc.name]. Till next time.”</i>");
 	
 	output("\n\nKara slips out of her seat and heads for the dock");
 	if (flags["SEXED_KARA"] != undefined) output(", pausing to plant a parting kiss on your brow");

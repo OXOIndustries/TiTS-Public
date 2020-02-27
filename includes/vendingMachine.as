@@ -137,6 +137,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
 			chars["VENDINGMACHINE"].inventory.push(new TauricoVenidae());
+			chars["VENDINGMACHINE"].inventory.push(new TauricoVenidaeLight());
 			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
 			chars["VENDINGMACHINE"].inventory.push(new Cackler());
 			
@@ -249,13 +250,13 @@ public function vendShopScreen(buy:Boolean = true):void
 	else sellItem();
 }
 
-public function jejuneMachineBuyGo(item:ItemSlotClass):void
+public function jejuneMachineBuyGo(item:ItemSlotClass, quantity:int):void
 {
 	showBust("");
 	showName("ITEM\nPURCHASED!");
 	author("Couch");
 	
-	output("The " + item.longName + " tumbles unceremoniously out of its spot behind the glass to land in the receptacle below, positioned just low enough to make bending over to fish it out an awkward experience. A new one has popped into its place by the time you stand back up, though you dare not examine it too long lest the infomercial start playing all over again.");
+	output(""+ (quantity > 1? "All the ":"The ") + item.longName + " tumbles unceremoniously out of " + (quantity > 1? "their":"its") + "spot behind the glass to land in the receptacle below, positioned just low enough to make bending over to fish it out an awkward experience. A new " + (quantity > 1? "set":"one") + " has popped into " + (quantity > 1? "their":"its") + "place by the time you stand back up, though you dare not examine "+ (quantity > 1? "them":"it") + " too long lest the infomercial start playing all over again.");
 	output("\n\n");
 }
 public function jejuneMachineBack():void
@@ -271,13 +272,13 @@ public function jejuneMachineBack():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function xxxMachineBuyGo(item:ItemSlotClass):void
+public function xxxMachineBuyGo(item:ItemSlotClass, quantity:int):void
 {
 	showBust("");
 	showName("ITEM\nPURCHASED!");
 	author("Shadefalcon");
 	
-	output("You select your desired item and swipe your Codex across the dispenser’s scanner. It voices a delighted beep as it charges your account, and soon after the black box begins to hum calmly, the replicator inside it hard at work. A moment later you hear an audible thump as the product falls into the bottom of the vending machine. You reach down and take the " + item.longName + " out of the dispenser, pocketing it away for later usage.");
+	output("You select your desired item and swipe your Codex across the dispenser’s scanner. It voices a delighted beep as it charges your account, and soon after the black box begins to hum calmly, the replicator inside it hard at work. " + (quantity > 1? "A moment later you hear a series of audible thumps as the products fall into the bottom of the vending machine":"A moment later you hear an audible thump as the product falls into the bottom of the vending machine.") +" You reach down and take " + (quantity > 1? "all ":"") + "the " + item.longName + " out of the dispenser, pocketing "+ (quantity> 1 ? "them":"it") + " away for later usage.");
 	output("\n\n");
 }
 
@@ -292,40 +293,40 @@ public function amazonaIcedTeaBonus():void
 	output("\n\nA small plaque is bolted onto the front of the machine has the message: <i>“Congratulations! If you are reading this, then your local JoyCo-brand vending machine has been selected for an early trial of our new line of ‘Amazona’ products!”</i>");
 	output("\n\nYou see another button on the machine labeled <i>Amazona Iced Tea</i>. A small holo-projection of a muscular woman appears over the button, and starts to speak. <i>“Are you tired of being little? Do you want to unleash the queen of the jungle inside you? Then have an Amazona! Our unique cocktails of mutagens will turn you into the woman you’ve always dreamt of!”</i> It sounds like some kind of transformative. It’s pretty expensive though, <b>3000 credits</b>, sheesh!");
 }
-public function amazonaIcedTeaList(item:ItemSlotClass):String
+public function amazonaIcedTeaList(item:ItemSlotClass, quantity:int):String
 {
-	var msg:String = "\\\[ " + item.shortName + " \\\]: ";
+	var msg:String = "\\\[ " + item.shortName + " \\\](x" + quantity + "): ";
 	
 	switch(item.shortName)
 	{
 		case "AmzIT.Clas":
-			msg += "A button labeled <i>Amazona Classic</i> with a picture of a large, muscular woman on it. It costs " + item.basePrice + " credits.";
+			msg += "A button labeled <i>Amazona Classic</i> with a picture of a large, muscular woman on it. It costs " + (item.basePrice * quantity) + " credits.";
 			break;
 		case "AmzIT.Lite":
-			msg += "A button labeled <i>Amazona Lite</i> with a picture of a tall, slender track star on it. It costs " + item.basePrice + " credits.";
+			msg += "A button labeled <i>Amazona Lite</i> with a picture of a tall, slender track star on it. It costs " + (item.basePrice * quantity) + " credits.";
 			break;
 		case "AmzIT.Plus":
-			msg += "A button labeled <i>Amazona Plus</i> with a picture of a ridiculously curvy, yet completely ripped woman on it. It costs " + item.basePrice + " credits.";
+			msg += "A button labeled <i>Amazona Plus</i> with a picture of a ridiculously curvy, yet completely ripped woman on it. It costs " + (item.basePrice * quantity) + " credits.";
 			break;
 		case "Futazona":
 			msg += "A button labeled <i>Futazona</i> with a picture of several large, muscular women with huge cocks, engaged in a small orgy.";
 			if(flags["MET_ZEPHYR"] != undefined) msg += " Wait, is that Zephyr? A disclaimer below the picture says that all of the women are paid actresses, and that not all are users of Futazona.";
-			msg += " It’s priced higher than the others, at " + item.basePrice + " credits.";
+			msg += " It’s priced higher than the others, at " + (item.basePrice * quantity) + " credits.";
 			break;
 	}
 	
 	return msg;
 }
-public function amazonaIcedTeaBuyGo(item:ItemSlotClass):void
+public function amazonaIcedTeaBuyGo(item:ItemSlotClass, quantity:int):void
 {
 	showBust("JOYCO_VENDING_MACHINE");
 	showName("ITEM\nPURCHASED!");
 	author("QuestyRobo");
 	
-	output("The machine hums for a second before letting out a loud clang, dispensing your selected drink.");
+	output("The machine hums for a second before letting out a loud clang, dispensing your selected " + (quantity > 1? "drinks":"drink") + ".");
 	if(flags["PURCHASED_AMAZONA"] == undefined)
 	{
-		output("\n\nYou reach to grab it, but not before a message pops up <i>JoyCo is not responsible for any injury, illness, unwanted mutation, loss of motor function, or spontaneous combustion that may be associated with this product. Please check ingredients list for any potentially allergenic material. JoyCo and associates cannot be held responsible for any damages caused as a result of overuse, please drink responsibly.</i>");
+		output("\n\nYou reach to grab " + (quantity > 1? "them":"it") + ", but not before a message pops up <i>JoyCo is not responsible for any injury, illness, unwanted mutation, loss of motor function, or spontaneous combustion that may be associated with this product. Please check ingredients list for any potentially allergenic material. JoyCo and associates cannot be held responsible for any damages caused as a result of overuse, please drink responsibly.</i>");
 		output("\n\n... Okay then.");
 		flags["PURCHASED_AMAZONA"] = 1;
 	}

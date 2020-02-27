@@ -552,7 +552,7 @@ package classes.Items.Transformatives
 					output(".");
 					if (target.isBiped()) output(" Your hands dart between your legs, as if to calm your frothing loins, but you only succeed in getting all the more hot and bothered as your fingers slide against your flushed cunt.");
 					output(" The lips of your quim feel particularly inflamed, swollen and full as more blood flows to your crotch.");
-					output("\n\nIt only grows more intense, as each pulse of ecstacy is followed by what feels like molten claws squeezing and massaging your insides. You groan, sides lurching in rhythm while you grind your thighs together. You don’t fully know what’s happening, but you can’t take it anymore; with a mind of its own, your hand slips");
+					output("\n\nIt only grows more intense, as each pulse of ecstasy is followed by what feels like molten claws squeezing and massaging your insides. You groan, sides lurching in rhythm while you grind your thighs together. You don’t fully know what’s happening, but you can’t take it anymore; with a mind of its own, your hand slips");
 					if (!target.isCrotchExposed()) output(" under your [pc.crotchCovers], and");
 					output(" into your pussy, lips parting like a juicy veil. Your other hand covers your mouth, stifling a cry of joy to the feeling of your [pc.hips] thrusting against your hand, grinding your palm into your [pc.clit].");
 					output("\n\nIt’s not until you’re left panting, cooling down from the breathtaking ordeal, that you dimly start to realize something is off.\n\nTaking a closer look, you notice your labia are still quite plump, even while your arousal recedes; they also look incredibly glossy and smooth. Upon stirring your fingers within your honeypot, you feel odd bulges lining it within - your cunt is ribbed!\n\nChecking in with your Codex confirms it; <b>you’ve got a saurmorian vagina!</b>");
@@ -588,14 +588,14 @@ package classes.Items.Transformatives
 
 			//Has vagina, incubation speed modifier<500%
 			//increase incubation speed modifier by 20 - 50%
-			var newSpeed:Number = target.pregnancyMultiplierRaw + ((2.0 + rand(4))/10);
+			var newSpeed:Number = target.pregnancyIncubationBonusMotherRaw + ((2.0 + rand(4))/10);
 			if (rand(100) >= 25) {}
-			else if (target.hasVagina() && target.pregnancyMultiplierRaw < 5)
+			else if (target.hasVagina() && target.pregnancyIncubationBonusMotherRaw < 5)
 			validChanges.push(function (target:Creature):void
 			{
 				output("There’s a brief spark of heat in your [pc.wombs] that almost gives you pause, but it swiftly shifts to a comforting warmth - not unlike the feeling of being hugged tight by a lover, idly admiring and praising your fertility. The thought brings a smile to your face, and you place your hands on your middle. After a few moments, you snap out of your daydreaming, but the warmth stays for a while longer.\n\nA notification from your Codex tells you that your pregnancies will be a bit faster from now on.");
 				
-				target.pregnancyMultiplierRaw = newSpeed;
+				target.pregnancyIncubationBonusMotherRaw = Math.min(newSpeed, 5);
 			});
 			
 			//Vagina count >1

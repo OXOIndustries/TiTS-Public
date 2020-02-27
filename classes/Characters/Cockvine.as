@@ -330,7 +330,7 @@
 				output("\n\nYou struggle the best you can, but you cannot stop it pushing its dense, bulbous head into your mouth, invading it with its humid, verdant smell. Your cries of disgust turn into a muffled gargle when it tenses up and ejaculates a thick load of its white semen down your throat. Finding extra reserves of energy in response to this foul development you rip your head away, but the taste of it – heavy, sweet citrus, inescapably sexual – stays with you.");
 				output("\n\nYou groan woozily as heat rises to your skin and your heart beats faster with each passing second, seeming to pulse in time with the movement of the vines, plant pheromones flowing into your bloodstream.");
 				target.loadInMouth(this);
-				target.lust(3 + rand(5));
+				target.changeLust(3 + rand(5));
 			}
 		}
 		

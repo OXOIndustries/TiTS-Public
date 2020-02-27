@@ -55,7 +55,7 @@ public function zhengShiHangerFloorBonus():Boolean
 		//Defeated Urbolg by lust or ever fucked him:
 		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
-		else output("\n\nUrbolg the korgonne mechanic busily toils over junked engine. The hunk of blast-ruined metal hangs from a lift as he works on it, fully absorbing his attention.");
+		else output("\n\nUrbolg the korgonne mechanic busily toils over a junked engine. The hunk of blast-ruined metal hangs from a lift as he works on it, fully absorbing his attention.");
 		addButton(0,"Urbolg",peacefulApproachUrbolg);
 	}
 	//Bonus shortcut!
@@ -1129,6 +1129,13 @@ public function buyFromUrbolg():void
 	shopkeep = chars["URBOLG"];
 	shopkeep.keeperBuy = "You indicate that you’d like to buy something from him.\n\nUrbolg raises an eyebrow. <i>“Ye ain’t pulling on my tail, are ye? Most of the stuff I have laying around fer sale isn’t exactly masterwork material, just standard gear some idiot broke and tossed my way. Lucky for you, it was me what fixed it up, so this second-hand junk’ll serve ye better than the brand new crap from JoyCo.”</i>\n";
 	shopkeep.inventory = [new HandCannon(),new JumperShield(),new RattyArmor(), new Vibrolass(), new TriBeamRifle(), new TrickBracer()];
+	if(flags["MAIKE_HELMET_TAKEN"] != undefined && flags["ZHENG_SPACESUIT_TAKEN"] != undefined)
+	{
+		var suitypants:ItemSlotClass = new SpacesuitComplete();
+		suitypants.basePrice = 30000;
+		shopkeep.inventory.push(suitypants);
+	}
+	if(flags["ZHENG_SHI_JUMPSUITED"] != undefined) shopkeep.inventory.push(new Slavesuit());
 	buyItem();
 }
 

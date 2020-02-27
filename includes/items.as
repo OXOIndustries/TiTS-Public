@@ -1,7 +1,11 @@
-﻿import classes.Characters.Lerris;
+import classes.Characters.Kiona;
+import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.Vahn;
 import classes.Creature;
+import classes.Items.Transformatives.GaloMax;
+import classes.Items.Transformatives.SumaCreamBlack;
+import classes.Items.Transformatives.SumaCreamWhite;
 import classes.ShittyShip;
 import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
@@ -22,12 +26,21 @@ public function multiButtonPageNote():String
 {
 	return "(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your selections.</b>)";
 }
-public function isEquippableItem(item:ItemSlotClass):Boolean
+public function isEquippableItem(item:ItemSlotClass, checkEquip:Boolean = false):Boolean
 {
+	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) return false;
+	
+	// Preventive measures
+	if(checkEquip)
+	{
+		if(!pc.itemSlotUnlocked(item.type)) return false;
+		if(pc.hasStatusEffect("Disarmed") && !pc.hasCombatStatusEffect("Disarmed") && InCollection(item.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON])) return false;
+	}
+	
 	return	InCollection(item.type, 
 		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
 		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
-		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT
+		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT, GLOBAL.TENT
 		);
 }
 
@@ -71,12 +84,18 @@ public function useItem(item:ItemSlotClass):Boolean
 		output("Unable to use " + item.description + " at present.");
 		return false;
 	}
+	if (item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT))
+	{
+		clearOutput();
+		output("Unable to use " + item.description + " because it is categorized as ship equipment.");
+		return false;
+	}
 	if (item.type == GLOBAL.PIERCING)
 	{
 		useAPiercing(item);	
 		return false;
 	}
-	if (item.type == GLOBAL.COCKSOCK)
+	if (item.type == GLOBAL.COCKWEAR)
 	{
 		useACocksock(item);
 		return false;
@@ -635,7 +654,10 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 						}
 					}
 					
-					addButton(14, "Back", combatInventoryMenu);
+					// Alt character rerouting
+					if(usingCreature.hasPerk("PCs")) addButton(14, "Back", CombatManager.showCombatMenu);
+					// Normal player character
+					else addButton(14, "Back", combatInventoryMenu);
 					return;
 				}
 			}
@@ -658,11 +680,18 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 
 public function backToCombatInventory(item:ItemSlotClass):void
 {
-	if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
+	// Ship gadget rerouting
+	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT))
+	{
+		CombatManager.processCombat();
+	}
+	// Quick draw never loses a turn for weapon items
+	else if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
 	{
 		clearMenu();
-		addButton(0,"Next",combatInventoryMenu);
+		addButton(0, "Next", combatInventoryMenu);
 	}
+	// Normal return
 	else
 	{
 		CombatManager.processCombat();
@@ -709,11 +738,12 @@ public function buyShipFitItem(newScreen:Boolean = false):void
 	output("Buying a module will result in it being immediately installed on your ship. They’re too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
 	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
 	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
-	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
-	output("<b><u>Modules For Sale & Fit:</u></b>");
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity());
 	var temp:Number = 0;
-	var canBuy:Boolean = (ship.shipCapacity()-ship.inventory.length > 0)
+	var canBuy:Boolean = (ship.shipCapacity() > ship.inventory.length);
 	var hasGunRoom:Boolean = (ship.shipWeaponCapacity() > ship.listShipWeapons().length);
+	if(!hasGunRoom) output("\n\n<b>Warning:</b> Your ship has no more hardpoints to equip weapons to.");
+	output("\n\n<b><u>Modules For Sale & Fit:</u></b>");
 	clearMenu();
 	for(var i:int = 0; i < shopkeep.inventory.length; i++)
 	{
@@ -721,6 +751,7 @@ public function buyShipFitItem(newScreen:Boolean = false):void
 		if(temp > pc.credits) output("\n<b>(Too Expensive)</b> ");
 		else if(!canBuy) output("\n<b>(No Room)</b> ");
 		else if(shopkeep.inventory[i].type == GLOBAL.RANGED_WEAPON && !hasGunRoom) output("\n<b>(Weapons Full)</b> ");
+		else if(shopkeep.inventory[i].shields > 0 && !ship.hasShieldGenerator(true)) output("\n<b>(Needs Shield Generator)</b> ");
 		else output("\n");
 		output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " - " + temp + " credits.");
 		if(temp <= pc.credits) 
@@ -782,8 +813,8 @@ public function unfitShipItem(newScreen:Boolean = false):void
 	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you’ll have to sell it.\n\n");
 	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
 	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
-	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
-	output("<b><u>Currently Fitted Modules:</u></b>");
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity());
+	output("\n\n<b><u>Currently Fitted Modules:</u></b>");
 	if(!(ship.rangedWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.rangedWeapon.longName));
 	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
 	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));
@@ -829,8 +860,14 @@ public function unfitShipItemForReal(i:Number):void
 	addButton(0,"Next",unfitShipItem,true);
 }
 
-public function buyItem():void {
+public function buyItem(quantity:int=1):void {
+	if(shopkeep is Geoff)
+	{
+		(shopkeep as Geoff).bustUpdate(false);
+	}
+	
 	clearOutput();
+	if(stage.contains(userInterface.textInput)) removeInput();
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	output(shopkeep.keeperBuy);
@@ -847,7 +884,32 @@ public function buyItem():void {
 		if (i % 10 == 0 && (i < shopkeep.inventory.length || !i))
 		{
 			btnSlot += 5;
-			addButton(btnSlot+14, "Back", shop, shopkeep);
+			addButton(btnSlot + 14, "Back", shop, shopkeep);
+			
+			//Quantity buttons
+			if (quantity == 1) {
+				addDisabledButton(btnSlot + 10, "x1", "x1", "You are already buying 1 item at a time.");
+			}
+			else {
+				addButton(btnSlot + 10, "x1", buyItem, 1, "x1", "Buy 1 item at a time.");
+			}
+			
+			if (quantity == 2) {
+				addDisabledButton(btnSlot + 11, "x2", "x2", "You are already buying 2 items at a time.");
+			}
+			else {
+				addButton(btnSlot + 11, "x2", buyItem, 2, "x2", "Buy 2 items at a time.");
+			}
+			
+			if (quantity == 5) {
+				addDisabledButton(btnSlot + 12, "x5", "x5", "You are already buying 5 items at a time.");
+			}
+			else {
+				addButton(btnSlot + 12, "x5", buyItem, 5, "x5", "Buy 5 items at a time.");
+			}
+
+			//Custom quantity
+			addButton(btnSlot + 13, "xCustom", buyItemMultiCustom, undefined, "Custom", "Choose a custom quantity.");
 		}
 		
 		if (i == shopkeep.inventory.length) break;
@@ -856,52 +918,67 @@ public function buyItem():void {
 		//If slot has something in it.
 		if(shopkeep.inventory[i].quantity > 0) {
 			output("\n");
-			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
+			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice*shopkeep.inventory[i].quantity);
 			
 			// Coupons (only affects buy price--not sell price.)
 			var couponName:String = "Coupon - " + shopkeep.inventory[i].shortName;
 			if(pc.hasKeyItem(couponName))
 			{
-				temp = Math.round(temp * pc.keyItemv1(couponName));
+				temp = Math.round(temp * pc.keyItemv1(couponName)) + temp * (quantity-1);
 			}
 			else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
 			{
-				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp"));
+				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp")) + temp * (quantity-1);
 			}
 			else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
 			{
-				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty"));
+				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty")) + temp * (quantity-1);
 			}
+			else if (shopkeep is Kiona && kionaCreditOwed() > 0)
+			{
+				temp = (temp * quantity) - kionaCreditOwed();
+				if (temp < 0) temp = 0;
+			}
+			else
+			{
+				temp = temp * quantity;
+			}
+
 			// Listing inventory exceptions
 			if(shopkeep is VendingMachine)
 			{
 				switch(shopkeep.originalRace)
 				{
-					case "Amazona": output(amazonaIcedTeaList(shopkeep.inventory[i])); break;
+					case "Amazona": output(amazonaIcedTeaList(shopkeep.inventory[i], quantity)); break;
 					default :
 						if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-						output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " - " + temp + " credits.");
+						output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " (x" + (quantity) + ") - " + temp + " credits.");
 					break;
 				}
 			}
 			// Default listing
 			else
 			{
-				if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-				output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " - " + temp + " credits.");
+				//Issue checking
+				if (temp > pc.credits) output("<b>(Too Expensive)</b> ");
+				if (shopkeepLimitedStock(shopkeep.inventory[i]) && quantity > shopkeepLimitedStockQuantity(shopkeep.inventory[i])) output("<b>(" + shopkeep.short + " only has " + shopkeepLimitedStockQuantity(shopkeep.inventory[i]) + " of these.)</b> ");
+				//Price listing
+				output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " (x" + (quantity) + ") - " + temp + " credits.");
 			}
 			trace("DISPLAYING SHIT");
-			if(temp <= pc.credits) {
+			//Add buttons if the player has enough credits and the shopkeep has enough stock
+			if(temp <= pc.credits && shopkeepLimitedStockQuantity(shopkeep.inventory[i]) >= quantity) {
 				trace("SHOWAN BUTANS: " + i);
 				if(buyOptions)
 				{
-					addItemButton(btnSlot, shopkeep.inventory[i], buyItemOK, shopkeep.inventory[i], null, null, shopkeep, pc);
+					addItemButton(btnSlot, shopkeep.inventory[i], buyItemOK, [shopkeep.inventory[i], quantity], null, null, shopkeep, pc);
 				}
 				else
 				{
-					addItemButton(btnSlot, shopkeep.inventory[i], buyItemGo, shopkeep.inventory[i], null, null, shopkeep, pc);
+					addItemButton(btnSlot, shopkeep.inventory[i], buyItemGo, [shopkeep.inventory[i], quantity], null, null, shopkeep, pc);
 				}
 			}
+			//Disabled button if one or both of the above criteria aren't met.
 			else {
 				trace("SHOWAN HIDE BUTTONS");
 				addItemDisabledButton(btnSlot, shopkeep.inventory[i], null, null, shopkeep, pc);
@@ -913,7 +990,88 @@ public function buyItem():void {
 	}
 }
 
-public function buyItemOK(arg:ItemSlotClass):void
+//Input a custom quantity
+public function buyItemMultiCustom():void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+	
+	output("How many items would you like to buy at once?");
+	output("\n");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", buyItemMultiCustomOK);
+	addButton(14, "Back", buyItem);
+}
+
+//Error check the custom quantity
+public function buyItemMultiCustomOK():void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		//buyItemMultiCustomOK(); - As per https://github.com/OXOIndustries/TiTS-Public/pull/229/files by Somebody-Else-Entirely
+		buyItemMultiCustom();
+		output("Choose a quantity that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		buyItemMultiCustom();
+		output("Choose a quantity that is 1 or more, please.");
+		return;
+	}
+	var buyNumber:int = Math.floor(Number(userInterface.textInput.text));
+	buyItem(buyNumber);
+}
+
+//Check to see if there are limited quantities of an item
+public function shopkeepLimitedStock(arg:ItemSlotClass):Boolean
+{
+	//Dummy code in case of future changes. Currently there are no items where one shopkeep has a limited quantity and a different one doesn't.
+	//if (shopkeep is [name]) { }
+
+	switch (true)
+	{
+		case arg is GaloMax:
+		case arg is GooArmor:
+		case arg is HorseCock:
+		case arg is MindwashVisor:
+		case arg is SiegwulfeItem:
+		case arg is TarkusJokeBook:
+			return true;
+			break;
+		default:
+			return false;
+			break;
+	}
+}
+
+//Check what the quantity is for limited items
+public function shopkeepLimitedStockQuantity(arg:ItemSlotClass):int
+{
+	//Dummy code in case of future changes. Currently there are no limited quantity items where anyone has more than 1.
+	//if (shopkeep is [name]) {}
+
+	switch (true)
+	{
+		case arg is GaloMax:
+		case arg is GooArmor:
+		case arg is HorseCock:
+		case arg is MindwashVisor:
+		case arg is SiegwulfeItem:
+		case arg is TarkusJokeBook:
+			return 1;
+			break;
+		default:
+			return 9999;
+			break;
+	}
+}
+
+//arg[0] ItemSlotClasss, arg[1] Quantity
+public function buyItemOK(arg:Array):void
 {
 	clearOutput();
 	clearMenu();
@@ -921,41 +1079,49 @@ public function buyItemOK(arg:ItemSlotClass):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	
-	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var price:Number = getBuyPrice(shopkeep, arg[0].basePrice);
+	
+	//Coupon stuff
 	var hasCoupon:Boolean = false;
-	var couponName:String = "Coupon - " + arg.shortName;
+	var couponName:String = "Coupon - " + arg[0].shortName;
 	if(pc.hasKeyItem(couponName))
 	{
-		price = Math.round(price * pc.keyItemv1(couponName));
+		price = Math.round(price * pc.keyItemv1(couponName)) + price * (arg[1]-1);
 		hasCoupon = true;
 	}
 	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
 	{
-		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
+		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp")) + price * (arg[1]-1);
 		hasCoupon = true;
 	}
 	else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
 	{
-		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
+		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty")) + price * (arg[1]-1);
 		hasCoupon = true;
 	}
+	//No coupon price
+	else
+	{
+		price = price * arg[1];
+	}
 	
-	output("Are you sure you want to buy " + arg.description + " for");
-	if(hasCoupon) output(" a discounted price of");
+	output("Are you sure you want to buy " + arg[0].description + " (x" + arg[1] +") for");
+	if (hasCoupon)	output(" a discounted price of");
 	output(" " + price + " credits?");
 	
-	addButton(0, "Yes", buyItemGo, arg);
+	addButton(0, "Yes", buyItemGo, [arg[0], arg[1]]);
 	addButton(1, "No", buyItem);
 }
 
-public function buyItemGo(arg:ItemSlotClass):void {
+//arg[0] ItemSlotClass, arg[1] Quantity
+public function buyItemGo(arg:Array):void {
 	clearOutput();
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
-	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var price:Number = getBuyPrice(shopkeep,arg[0].basePrice);
 	
 	//Special Vendor/Item Overrides
-	if(shopkeep is Colenso && arg is TarkusJokeBook)
+	if(shopkeep is Colenso && arg[0] is TarkusJokeBook)
 	{
 		pc.credits -= price;
 		output("Colenso hands you the card, which you scan into your codex. It beeps.\n\n<b>A new codex entry under Fiction is available!</b>");
@@ -967,16 +1133,16 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 	else if(shopkeep is Petr)
 	{
-		arbetzPetrBuyGo(arg);
+		arbetzPetrBuyGo(arg[0], arg[1]);
 		return;
 	}
 	else if(shopkeep is VendingMachine)
 	{
 		switch(shopkeep.originalRace)
 		{
-			case "J'ejune": jejuneMachineBuyGo(arg); break;
-			case "XXX": xxxMachineBuyGo(arg); break;
-			case "Amazona": amazonaIcedTeaBuyGo(arg); break;
+			case "J'ejune": jejuneMachineBuyGo(arg[0], arg[1]); break;
+			case "XXX": xxxMachineBuyGo(arg[0], arg[1]); break;
+			case "Amazona": amazonaIcedTeaBuyGo(arg[0], arg[1]); break;
 		}
 	}
 	//Emmy magic!
@@ -985,80 +1151,154 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	else if(shopkeep is Mabbs) flags["MABBS_PURCHASES"] = 1;
 	else if(shopkeep is Zea) shopkeep.sellMarkup = 1;
-	
-	//Suma swap
-	if(arg is SumaCream)
-	{
-		// Buying Suma Cream has a 1 in 20 chance of getting a “Black Cream” pearl instead, due to J’ejune’s lax oversight
-		if(rand(20) == 0) arg = new SumaCreamBlack();
-		else arg = new SumaCreamWhite();
-	}
+	else if(shopkeep is Bianca) pc.createStatusEffect("Bought From Bianca");
 	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;
-	var couponName:String = "Coupon - " + arg.shortName;
+	var couponName:String = "Coupon - " + arg[0].shortName;
 	if(pc.hasKeyItem(couponName))
 	{
-		price = Math.round(price * pc.keyItemv1(couponName));
+		price = Math.round(price * pc.keyItemv1(couponName)) + price * (arg[1]-1);
 		pc.removeKeyItem(couponName);
 		usedCoupon = true;
 	}
 	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
 	{
-		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
+		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp")) + price * (arg[1]-1);
 		pc.removeKeyItem("Coupon - TamaniCorp");
 		usedCoupon = true;
 	}
 	else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
 	{
-		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
+		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty")) + price * (arg[1]-1);
 		pc.removeKeyItem("Coupon - Shear Beauty");
 		usedCoupon = true;
 	}
+	else
+	{
+		price = price * arg[1];
+	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
-	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
-	pc.credits -= price;
+	if (shopkeep is Kiona) kionaBuyUsingStoreCredit(arg[0].description, price);
 	
+	else
+	{
+	  output("You purchase " + arg[0].description + " (x" + arg[1] + ") for " + num2Text(price) + " credits.");
+	  pc.credits -= price;
+	}
+
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
-	purchasedItems[purchasedItems.length] = arg.makeCopy();
+	var stackSize:Number = arg[0].stackSize;
+	var quantity:Number = arg[1];
+	var i:Number = 0;
+	
+	//Suma swap
+	if(arg[0] is SumaCream)
+	{		
+		var blackCream:int = 0;
+		for (i = arg[1]; i > 0; i--){
+			// Buying Suma Cream has a 1 in 20 chance of getting a “Black Cream” pearl instead, due to J’ejune’s lax oversight
+			if (rand(20) == 0) blackCream++;
+		}
+		quantity -= blackCream;
+
+		//White cream
+		while (quantity > 0)
+		{
+			if (quantity > stackSize)
+			{
+				purchasedItems[i] = new SumaCreamWhite();
+				purchasedItems[i].quantity += stackSize - 1;
+				quantity -= stackSize;
+				i++
+			}
+			else
+			{
+				purchasedItems[i] = new SumaCreamWhite();
+				purchasedItems[i].quantity += quantity - 1;
+				quantity = 0;
+				i++;
+			}
+		}
+		
+		//Black cream
+		while (blackCream > 0)
+		{
+			if (blackCream > stackSize)
+			{
+				purchasedItems[i] = new SumaCreamBlack();
+				purchasedItems[i].quantity += stackSize - 1;
+				blackCream -= stackSize;
+				i++
+			}
+			else
+			{
+				purchasedItems[i] = new SumaCreamBlack();
+				purchasedItems[i].quantity += blackCream - 1;
+				blackCream = 0;
+			}
+		}
+	}
+	
+	//Properly load up the array for looting
+	else
+	{
+		while (quantity > 0)
+		{
+			if (quantity > stackSize)
+			{
+				purchasedItems[i] = arg[0].makeCopy();
+				purchasedItems[i].quantity += stackSize - 1;
+				quantity -= stackSize;
+				i++
+			}
+			else
+			{
+				purchasedItems[i] = arg[0].makeCopy();
+				purchasedItems[i].quantity += quantity - 1;
+				quantity = 0;
+			}
+		}
+	}
+	
 	//Cheese shit for GaloMax
-	if(arg is GaloMax)
+	if(arg[0] is GaloMax)
 	{
 		if(shopkeep is Gene) flags["PURCHASED_GENES_GALO"] = 1;
 		if(shopkeep is Sera) flags["PURCHASED_SERAS_GALO"] = 1;
 		if(shopkeep is ChrysalisDrone) flags["PURCHASED_SERAS_GALO"] = 1;
-		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
 	}
 	// Siegwulfe Special
-	if(arg is SiegwulfeItem)
+	if(arg[0] is SiegwulfeItem)
 	{
 		purchasedItems.length = 0;
 		output("\n\nThe display model of the droid is much too big and lofty to carry around, especially unpowered. Instead, an order has been placed for a brand-new model and is currently being delivered straight to your ship. <b>Be sure to check your ship’s storage for it!</b>");
-		chars["WULFE"].accessory = arg;
-		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+		chars["WULFE"].accessory = arg[0];
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
 		flags["WULFE_ON_SHIP"] = false;
 		IncrementFlag("WULFE_PURCHASED");
 	}
 	// Goo Special
-	if(arg is GooArmor)
+	if(arg[0] is GooArmor)
 	{
-		output("\n\n" + gooArmorInventoryBlurb(arg, "buy"));
-		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+		output("\n\n" + gooArmorInventoryBlurb(arg[0], "buy"));
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
 	}
-	if(arg is HorseCock)
+	if(arg[0] is HorseCock)
 	{
 		//Gotta count these fuckers
 		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
-		if(!synthSheathAvailable(arg.quantity))
+		if(!synthSheathAvailable(arg[0].quantity))
 		{
-			if(shopkeep is Shekka) shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+			if(shopkeep is Shekka) shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
 		}
 	}
-	if(arg is MindwashVisor)
+	if(arg[0] is MindwashVisor)
 	{
-		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
 	}
 	output("\n\n");
 	//Set everything to take us back to buyItem!
@@ -1076,12 +1316,21 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 }
 
+public function buyShopkeepLimitedStock():void
+{
+	
+}
+
 public function sellItem():void
 {
 	// Inturruptions
 	if(shopkeep is Sera)
 	{
 		if(seraDebtCheck()) return;
+	}
+	if(shopkeep is Geoff)
+	{
+		(shopkeep as Geoff).bustUpdate(true);
 	}
 	
 	clearOutput();
@@ -1243,9 +1492,12 @@ public function sellItemMulti(arg:Array):void
 	
 	sellItemBonus(soldItem, soldPrice);
 	
-	pc.credits += soldPrice;
-	
-	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(soldItem.description,soldPrice,soldNumber);
+	else
+	{
+		pc.credits += soldPrice;	
+		output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	}
 	
 	// Special Events
 	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
@@ -1270,14 +1522,19 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	
 	sellItemBonus(arg, price);
 	
-	pc.credits += price;
-	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(arg.description, price);
+	else
+	{
+		pc.credits += price;
+		output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	}
 	
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
 	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
+	if(shopkeep is Vulriks) flags["VULRIKS_SOLD"] = (flags["VULRIKS_SOLD"] != undefined ? flags["VULRIKS_SOLD"] + price : price);
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1544,18 +1801,24 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(1, "Shield", "Shield Generator", "You do not have a shield generator equipped.");
 	
+	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
+	{
+		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
+	}
+	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
+	
+	if (pc.accessory.shortName != "")
+	{
+		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
+	}
+	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
+
 	if (pc.lowerUndergarment.shortName != "")
 	{
 		if(inCombat) addDisabledButton(5, "U.Wear Off", StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Cannot be unequipped in combat.");
 		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, pc.lowerUndergarment);
 	}
 	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
-	
-	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
-	{
-		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
-	}
-	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
 	
 	if (pc.armor.shortName != "")
 	{
@@ -1569,12 +1832,6 @@ public function unequipMenu(inCombat:Boolean = false):void
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, pc.rangedWeapon);
 	}
 	else addDisabledButton(7, "Ranged", "Ranged Weapon", "You do not have a ranged weapon equipped.");
-	
-	if (pc.accessory.shortName != "")
-	{
-		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
-	}
-	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
 	if(pc.hasPiercing())
 	{
@@ -1592,6 +1849,17 @@ public function unequipMenu(inCombat:Boolean = false):void
 		}
 		else addDisabledButton(10, "Cockwear", "Cockwear", "You are not wearing any cockwear.");
 	}
+	if(hasDecorations())
+	{
+		addButton(11,"Decorations",decorationsMenu,undefined,"Decorations","View your currently installed decorations");
+	}
+	else addDisabledButton(11,"Decorations","Decorations","You do not have decorations installed.");
+
+	if (!(pc.tent is EmptySlot))
+	{
+		addOverrideItemButton(12, pc.tent, "Tent Off", unequip, pc.tent);
+	}
+	else addDisabledButton(12, "Tent", "Tent", "You do not have a tent equipped in your quickslot.");
 	
 	//Set user and target.
 	itemUser = pc;
@@ -2027,7 +2295,8 @@ public function equipmentDisplay():void
 	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
 	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n");
+	output("<b>Tent:</b> " + StringUtil.toDisplayCase(pc.tent.longName) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
 	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
@@ -2063,7 +2332,8 @@ public function inventoryDisplay():void
 	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
 	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n");
+	output("<b>Tent:</b> " + StringUtil.toDisplayCase(pc.tent.longName) + "\n\n");
 	
 	output("<b><u>Inventory:</u></b> (" + pc.inventory.length + "/" + pc.inventorySlots() + " slots used.)");
 	if(pc.inventory.length > 0)
@@ -2313,12 +2583,11 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			if(pc.armor is GooArmor) gooArmorCheck();
 			if(pc.armor is Omnisuit) 
 			{
-				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.");
+				omnisuitUnequip();
 				output("\n\n");
-				unequippedItems.push(new OmnisuitCollar());
-				pc.removeStatusEffect("Rubber Wrapped");
+				pc.armor = new OmnisuitCollar();
 			}
-			else unequippedItems.push(pc.armor);
+			unequippedItems.push(pc.armor);
 			pc.armor = new EmptySlot();
 			break;
 		case GLOBAL.MELEE_WEAPON:
@@ -2349,6 +2618,10 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 		case GLOBAL.UPPER_UNDERGARMENT:
 			unequippedItems.push(pc.upperUndergarment);
 			pc.upperUndergarment = new EmptySlot();
+			break;
+		case GLOBAL.TENT:
+			unequippedItems.push(pc.tent);
+			pc.tent = new EmptySlot();
 			break;
 	}
 	
@@ -2383,27 +2656,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	}
 	else if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
 	{
-		if(flags["OMNISUITED"] == undefined)
-		{
-			output("Putting strange objects around your neck probably isn’t the best idea you’ve had, but then again, neither is running around the most dangerous parts of the galaxy trying to claim a fortune. Pressing a button on the shining band, you pop it open and line it up around your neck. It’s a little tight, but it should fit without crushing your throat. Sucking in a nervous breath, you snap the ends together, feeling a hidden mechanism make a satisfying ‘click’. It warms against your [pc.skinFurScales], pulling tighter and tighter until you fear it might start to choke you. It never does. Just when you’re starting to panic, it stops shrinking.");
-			output("\n\nProbing around the edge with a fingertip, you realize that it wasn’t just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn’t a single gap where your flesh isn’t kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.");
-			if(pc.isBro()) output(" You bet you look fuckin’ awesome - butch as hell.");
-			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there’s a ring to attach a leash to. The boys would love it.");
-			output("\n\n");
-			if(eventQueue.indexOf(firstTimeOmniSuitOn) == -1) eventQueue.push(firstTimeOmniSuitOn);
-			pc.lockItemSlot(GLOBAL.ARMOR, "You try to replace your new collar but it refuses to unlock. Something is preventing you from removing it...");
-		}
-		else
-		{
-			output("You close the Omnisuit’s collar around your neck once more, delighted to feel it molding itself to the shape of your body. After properly adjusting its shape, it hisses, and a wave of oily, latex-like material flows down your body, rapidly coating every inch of your form in clingy tightness. It feels wonderful, being wrapped up in ebony perfection once more, feeling it flowing back into position like the hands of a long lost lover.");
-			output("\n\nBest of all, everywhere it goes, sensation is heightened");
-			if(!pc.isNude()) output(", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mention clashing with the flawless visual aesthetic you’ve acquired.");
-			else output(", so much so that you can’t help but paw at yourself as you take on a sleek new aesthetic.");
-			output(" It’s a shame that the Omnisuit only pleasantly stimulates you as it envelops your body this time. There’s no full-body teasing of every neuron, just the lovely feel of something rubbery and warm cupping and gripping every part of your form.");
-			output("\n\n<i>“Thank you for using your Omnisuit! Remember, the Omnisuit is the only clothing that can pander to your every desire, on the streets or in the sheets!”</i> a perky female voice chirps from inside your collar as you inspect the finished product.\n\n");
-			if(eventQueue.indexOf(omniSuitRepeatFinisher) == -1) eventQueue.push(omniSuitRepeatFinisher);
-			pc.lockItemSlot(GLOBAL.ARMOR, "The Omnisuit collar has just been activated. Perhaps you should let it settle before removing it...");
-		}
+		output(omnisuitInventoryBlurb(arg));
 		arg = new Omnisuit();
 	}
 	else if(arg is SiegwulfeItem)
@@ -2428,7 +2681,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		if(pc.armor is Omnisuit && (arg.type == GLOBAL.LOWER_UNDERGARMENT || arg.type == GLOBAL.UPPER_UNDERGARMENT))
 		{
 			//Attempt to put something else on
-			output("The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It’s like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You’ll have to ditch the Omnisuit if you’re going to wear anything else with it. Strange that your backpack and other miscellaneous gear don’t generate the same reaction.");
+			output(omnisuitInventoryBlurb(arg));
 			//Take the arg off! Ha ha!
 			removedItem = arg;
 		}
@@ -2440,6 +2693,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			output("You");
 			if(arg.type == GLOBAL.ARMOR) output(" don");
+			else if(arg.type == GLOBAL.TENT) output(" clip on");
 			else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
 			else output(" equip");
 			output(" your " + arg.longName + ".");
@@ -2476,13 +2730,12 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			if(pc.armor is Omnisuit)
 			{
-				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.");
-				pc.removeStatusEffect("Rubber Wrapped");
+				output("\n\n" + omnisuitInventoryBlurb(arg));
+				pc.armor = new OmnisuitCollar();
 			}
 			if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "wear"));
 			
 			removedItem = pc.armor;
-			if(removedItem is Omnisuit) removedItem = new OmnisuitCollar();
 			pc.armor = arg;
 		}
 		else if(arg.type == GLOBAL.MELEE_WEAPON) 
@@ -2514,6 +2767,11 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			removedItem = pc.upperUndergarment;
 			pc.upperUndergarment = arg;
+		}
+		else if(arg.type == GLOBAL.TENT)
+		{
+			removedItem = pc.tent;
+			pc.tent = arg;
 		}
 		else output("\n\n<b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 		
@@ -2565,6 +2823,14 @@ public function isSameItem(itemA:ItemSlotClass, itemB:ItemSlotClass):Boolean
 	return false;
 }
 
+public function itemCollectMainMenu(newLootList:Array, clearScreen:Boolean = false):void
+{
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(newLootList, clearScreen);
+}
 public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void 
 {
 	if(clearScreen) clearOutput();
@@ -2584,7 +2850,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	//Failsafe: Give the PC a rock if you're somehow collecting nothing.
 	if(newLootList.length <= 0) newLootList.push(new Rock());
 
-	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
+	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");	
 	
 	var tItem:ItemSlotClass = newLootList[0];
 	
@@ -2621,6 +2887,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		tItem = null;
 	}
 	
+	var loot:ItemSlotClass = (newLootList[0] as ItemSlotClass);
 	// Fallback; offer an options menu to handle things.
 	if (tItem)
 	{
@@ -2629,20 +2896,41 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
 		addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
-		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
-		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT)) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
+		if (newLootList.length >= 2)
+		{
+			var canEquip:Boolean = false;
+			// Equippable items check
+			if(isEquippableItem(loot, true))
+			{
+				// Wearables only if empty slot--no swapping here!
+				if(	(InCollection(loot.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && !pc.hasArmor())
+				||	(loot.type == GLOBAL.MELEE_WEAPON && !pc.hasMeleeWeapon())
+				||	(loot.type == GLOBAL.RANGED_WEAPON && !pc.hasRangedWeapon())
+				||	(loot.type == GLOBAL.SHIELD && !pc.hasShieldGenerator())
+				||	(loot.type == GLOBAL.ACCESSORY && !pc.hasAccessory())
+				||	(loot.type == GLOBAL.LOWER_UNDERGARMENT && !pc.hasLowerGarment())
+				||	(loot.type == GLOBAL.UPPER_UNDERGARMENT && !pc.hasUpperGarment())
+				||  (loot.type == GLOBAL.TENT && (pc.tent is EmptySlot))
+				) canEquip = true;
+			}
+			if(canEquip) addButton(2,"Use", useLoot, newLootList);
+			else addDisabledButton(2,"Use","Use","You cannot use this item while there are more items in the loot queue.");
+			
+			addButton(7, "Skip", nextItem, newLootList, "Skip to Next Item", "Look at the next item instead.");
+		}
+		else if (loot.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT) || InCollection(loot.type, [GLOBAL.PIERCING, GLOBAL.COCKWEAR])) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
+		else if (loot.isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
 		else addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
 		output(". The new acquisition");
-		if(newLootList[0].quantity > 1) output("s stow");
+		if(loot.quantity > 1) output("s stow");
 		else output(" stows");
 		output(" away quite easily.");
 		
 		// Special Events
-		if(newLootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
+		if(loot is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
 		
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
@@ -2683,6 +2971,31 @@ public function discardItem(lootList:Array):void {
 	clearMenu();
 	if(lootList.length > 0) addButton(0,"Next",itemCollect, lootList);
 	else addButton(0,"Next",lootScreen);
+}
+
+public function nextItem(lootList:Array):void {
+	clearMenu();
+	
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to skip to!\n\n");
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
+	output("\n");
+	output("You take a look at the next item instead...");
+	
+	var loot:ItemSlotClass = lootList[0];
+	lootList.splice(0,1);
+	lootList.push(loot);
+	
+	output("\n\n");
+	
+	if(lootList.length > 0) itemCollect(lootList);
+	else lootScreen();
 }
 
 public function replaceItemPicker(lootList:Array):void {
@@ -2748,7 +3061,7 @@ public function useLoot(lootList:Array):void {
 	// useLoot returns true during an equip-call
 	if (useItem(loot))
 	{
-		if(isEquippableItem(loot)) lootList.splice(0, 1);
+		if(isEquippableItem(loot, true)) lootList.splice(0, 1);
 	}
 	if (loot.quantity <= 0)
 	{
@@ -2757,7 +3070,8 @@ public function useLoot(lootList:Array):void {
 	
 	if (lootList.length > 0)
 	{
-		output("Loot list looped!\n\n");
+		//output("Loot list looped!\n\n");
+		output("\nYou move to the next item...\n\n");
 		itemCollect(lootList);
 	}
 }
@@ -2891,11 +3205,14 @@ public function shipStorageMenuRoot():void
 	var btnSlot:int = 5;
 	var installedDevices:Array = [];
 	
+	if(sidewinderCargoholdExtras()) installedDevices.push(sidewinderCargoholdExtrasBonus);
 	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
 	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
 	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
 	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
+	if(flags["ORGASMENDER_INSTALLED"] == 1) installedDevices.push(shipOrgasmenderBonus);
+	if(flags["BUTTSLUTINATOR_INSTALLED"] == 1) installedDevices.push(buttslutinatorBonus);
 	
 	for(var d:int = 0; d < installedDevices.length; d++)
 	{
@@ -3023,7 +3340,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "TOYS":
-				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKSOCK))
+				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKWEAR))
 				{
 					items.push(item);
 				}

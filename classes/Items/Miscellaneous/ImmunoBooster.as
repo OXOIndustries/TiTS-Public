@@ -37,7 +37,7 @@ package classes.Items.Miscellaneous
 			this.description = "a medipen with Immuno-Booster";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Initially introduced as complimentary for the Foxfire transformative, it quickly become popular among rushers for its low cost and brutal efficiency against a wide range of alien parasites.";
+			this.tooltip = "Initially introduced as complementary for the Foxfire transformative, it quickly become popular among rushers for its low cost and brutal efficiency against a wide range of alien parasites.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -53,10 +53,12 @@ package classes.Items.Miscellaneous
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+
+			this.addFlag(GLOBAL.ITEM_FLAG_MEDICINE);
 			
 			this.version = _latestVersion;
 		}
-		
+
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{

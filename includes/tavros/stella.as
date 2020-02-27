@@ -66,6 +66,7 @@ public function approachBeachSurfNSurf():Boolean
 	else addButton(0,"Buy Pass",buyAPass);
 	if(flags["MET_ALEX_SURF"] != undefined) addButton(1,"You",tryToSeduceAlexSlooot);
 	addButton(2,"Swimwear",buySwimwear);
+	if (!ardiaInZhengShi() && !ardiaIsCrew()) addButton(4,"Ardia",getArdiaBackOnYourShip,undefined,"Ardia","Ardia's on the beach somewhere. Have the clerk put out a PA call for her.");
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass") || pc.hasStatusEffect("SURFPASS")) addButton(11,"To The Beach!",stepIntoChangingArea);
 	else addDisabledButton(11,"To The Beach!","To The Beach","You’ll need a pass to do this.");
 	
@@ -1442,7 +1443,7 @@ public function moreStellaPetPlayPostCollarShop():void
 	else output(" an explosive, moaning orgasm");
 	output(". Then you order her to get down, pulling her bottoms back into place and walking back into the crowd before things get too serious.");
 
-	output("\n\nYou’re not overly concerned about the two of you ending up on the extranet - SteeleTech is ostensibly a force for good, but its lawyers have no qualms about scouring ‘particular’ unsavory videos from existence. You expect you’ll get a call later. Still, though, it was worth it.");
+	output("\n\nYou’re not overly concerned about the two of you ending up on the extranet - Steele Tech is ostensibly a force for good, but its lawyers have no qualms about scouring ‘particular’ unsavory videos from existence. You expect you’ll get a call later. Still, though, it was worth it.");
 
 	output("\n\n<i>“That was fun, wasn’t it?”</i> you mutter to Stella, lightly pulling the leash. She barks in affirmative, her tail and butt wagging madly. <i>“Good girl.”</i>");
 
@@ -1659,8 +1660,8 @@ public function stellaKnockupCheck():void
 		pc.createStatusEffect("STELLA_PREGNANT",kids);
 		//3 month incubation!
 		pc.setStatusMinutes("STELLA_PREGNANT",60*24*30*3);
+		AddLogEvent("A text message from Stella pings your Codex. <b>She’s definitely pregnant!</b>");
 	}
-	AddLogEvent("A text message from Stella pings your Codex. <b>She’s definitely pregnant!</b>");
 }
 
 //After Delivery scene

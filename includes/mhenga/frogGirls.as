@@ -153,12 +153,15 @@ public function victoryAgainstTheFrogs():void
 		if(pc.hasCock()) addButton(0,"Footjob",frogGirlFootJoerb,undefined,"Footjob","Get a footjob from the frog.");
 		else addDisabledButton(0,"Footjob","Footjob","You need a dick in order to be on the receiving end of a footjob.")
 		if(pc.hasVagina()) addButton(1,"Face Sit",femaleVictoryFacesitting,undefined,"Face Sit","Sit on her face and have her put that tongue to work.");
-		else addDisabledButton(1,"Face Sit","Face Sit","You need a vagina to properly enjoy sitting on her face.");
+		else addDisabledButton(1, "Face Sit", "Face Sit", "You need a vagina to properly enjoy sitting on her face.");
+		if(pc.hasCock()) addButton(2,"Fuck Her",penisRouter, [frogGirlsFuckHer, 99999, false, 0],"Fuck Her","Stuff the frog alien. Vigorously.");
+		else addDisabledButton(2,"Fuck Her","Fuck Her","There'll be no good fuckin' <b>without a penis.</b>")
 	}
 	else 
 	{
 		addDisabledButton(0,"Footjob","Footjob","You aren't aroused enough to pursue any kind of sex.");
 		addDisabledButton(1,"Face Sit","Face Sit","You aren't aroused enough to pursue any kind of sex.");
+		addDisabledButton(2,"Fuck Her","Fuck Her","You aren't aroused enough to pursue any kind of sex.");
 	}
 	addButton(14,"Leave", CombatManager.genericVictory);
 }
@@ -302,7 +305,8 @@ public function hasCockLossForForgGirls():void
 		output(" jungle floor and slips into the water, kicking away on her back while you recover yourself.");
 	}
 	output("\n\nYou awaken a bit later, feeling a little sore, but otherwise somewhat rested. You get up and gather your [pc.gear] and return to your prior affairs.");
-	processTime(60+rand(30));
+	processTime(60 + rand(30));
+	frogGirlsSimplePreg();
 	pc.orgasm();
 	output("\n\n");
 	if (!inCombat())
@@ -793,6 +797,156 @@ public function femaleVictoryFacesitting():void
 
 	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the " + enemy.skinTone + " colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
 	processTime(100+rand(30));
+	pc.orgasm();
+	CombatManager.genericVictory();
+}
+//This returns your preg score on a scale of 0-99999, or 0%-99.999%
+public function frogGirlsKnockupChance():int
+{
+	var vir:Number;
+	var chance:Number = -.693; //base 50%
+	var cumQ:Number = pc.cumQ();
+	
+	if(pc.virility() == 0 || enemy.fertility() == 0 || chance == 0) return 0;
+	
+	vir = (pc.virility() + enemy.fertility());
+	
+	//increase base virility by cum volume up to a max of +2 (at a certain point the rest is just excess and will never get near the egg and is irrelevant for preg chance)
+	//plus this keeps player virility more important than volume for large preg change increases
+	if (cumQ >= 2000) vir += 2;
+	else if (cumQ > 0) vir += cumQ / 1000;
+	
+	vir = vir / 2;
+	
+	return (1 - Math.exp(chance * vir)) * 10000;
+}
+//simple preg function, steele will not ever know how many kids or met them, but they are out there...
+public function frogGirlsSimplePreg():void
+{
+	var chance:Number;
+		
+	if (pc.virility() == 0) chance = 0;
+	else chance = frogGirlsKnockupChance();
+	
+	//rand returns 0 to 9999, chance returns 0 to 9999, 0 chance will never result in pregnancy obviously
+	if(rand(10000) < chance)
+	{
+		//succesful impregnation
+		IncrementFlag("KEROKORAS_PREG");
+		pc.clearRut();
+	}
+}
+public function frogGirlsFuckHer(kok:int=0):void
+{
+	clearOutput();
+	author("William");
+	showFrogGirl();
+	
+	output("Gathering lust shunts in the direction of your [pc.cocks] the longer you stare down at the naked kerokoras. Her rubbery skin glistens under a coat of venomous, libido-inflaming sweat. Past her flat chest and between her spreading thighs is a tight, wet pussy, shining under layers of liquid submission. It has a slight sponginess. She knows what you want, and she demonstrates her willingness to be your sperm-sponge by deploying her long tongue to flick at the greased folds, opening her interior for further inspection. " + (pc.isCrotchExposed() ? "[pc.CocksLight] flapping in the open air, you step forward." : "Before your crotch-guard gets any more tight, you whip out your [pc.cocksLight] and step forward."));
+	output("\n\nLooming over the alien sexpot,");
+	if (pc.isBimbo()) output(" you flash a winning smile and tell her, <i>“Give " + (pc.cockTotal() > 1 ? "'em" : "it") + " a quick taste 'n I'll fuck you good!”</i>");
+	else if (pc.isBro()) output(" you grunt, <i>“Suck " + (pc.cockTotal() > 1 ? "'em" : "it") + ", then I'll fuck it.”</i>");
+	else if (pc.isNice()) output(" you smilingly order, <i>“Get me ready.”</i>");
+	else if (pc.isMischievous()) output(" you bop your [pc.cockHeads] to her bald head, slyly grinning. <i>“Don't take too long, or you might not get that big belly you want so bad.”</i>");
+	else output(" you bend your waist and swing back, slapping your [pc.cockType " + kok + "] shaft to the alien's face. <i>“Suck. Make it quick.”</i>");
+	
+	if (pc.cocks[kok].cLength() >= 16)  output("\n\nDemonstrating her biological elasticity, the toothless creature widens her jaw to an almost obscene degree, utilizing her predatory functions to inhale your gargantuan member’s many rigid inches, molding her exotic form to the shape of turgid [pc.cockType " + kok + "] meat.");
+	else output("\n\nWordlessly, the toothless creature’s jaw springs open and inhales " + (pc.cockTotal() > 1 ? "one" : "your") + " rigid tumescence, membranous cheek muscles kneading your insistent boner to maximum erection, every oral muscle devoting itself to the important task of pleasing a superior lifeform.");
+	
+	output("\n\nMind-melting pleasure follows, impossibly wet jaw-nerves slobbering on your pre-spurting meat, bobbing back and forth in obedient bliss");
+	if (pc.cockCanSting(kok)) output(" that compels your venomous cock-tendrils to sting the venomous creature with your own brand of chemical joy");
+	output(". Veins violently pulse, claiming the furthest depths of the kerokoras' cock-bloated esophagus, her succulent throat tighter than a BDSM queen's thigh-high boots.");
+	
+	output("\n\nThat tongue is staying busy too");
+	if (pc.balls > 0) output(", weaving itself around your [pc.sack] and soaking the [pc.skinFurScales] on your egg-stash lovingly");
+	if (pc.hasVagina()) output(", prodding at your [pc.pussies], slipping and sliding across the juicy terrain of your " + (pc.puffiestVaginalPuffiness() >= 2 ? "puffy " : "") + "nethers");
+	else
+	{
+		if (pc.cockTotal() > 2) output(", engloving your other phalli in clutching, coiling mawflesh");
+		else if (pc.cockTotal() > 1) output(", engloving your other phallus in clutching, coiling mawflesh");
+		else output(", engloving your exposed girth in clutching, coiling muscle");
+	}
+	if (pc.isTaur()) output(". Belly on her head, moaning with fervor, you put the ambushing slut’s slick, smooth throat through its paces, humping back and forth in a building frenzy, liquid friction generating obscene slurping sounds and rhythmic slaps. The camouflaged huntress looks dumbly in your direction, none-too-quiet <b>’thlocc’</b> deepthroats hanging in the damp air; she reaches over to cup your [pc.thighs], slitted eyes closing and soft lips curling in the expectation of having a fat wad blown down her neck.");
+	else output(". [pc.Hand] on her head, moaning with fervor, you put the ambushing slut’s slick, smooth throat through its paces, humping back and forth in a building frenzy, liquid friction generating obscene slurping sounds and rhythmic slaps. The camouflaged huntress looks dumbly in your direction, none-too-quiet <b>’thlocc’</b> deepthroats hanging in the damp air; she reaches over to cup your [pc.thighs], slitted eyes closing and soft lips curling in the expectation of having a fat wad blown down her neck.");
+	
+	output("\n\nYou drive towards her gullet, groaning at the latex-like creak of her body stretching to handle your lust-fattened pressure, fucking her sugar-seeking tongue back into its lair. Her legs squirm around on autopilot, twisting for sympathetic spurts of feminine musk. Springy lips stroke and caress your girth with each luscious pump, her oh-shaped aperture sealing down in that sinfully pleasant way the more strength you apply to her slavering fuck-gutter, gargling on overflowing volume.  [pc.CumVisc] prejizz bubbles out of her wide nostrils. Orgasmic juices soak your rigor on its distant explorations into rapidly-suckling depths, intensifying the satisfaction of treating a heavily breathing mouth like a mating hole.");
+	output("\n\nThis was just the start. Yanking the hairless amphibian from your loins is as easy a tugging off a tailored glove. Your persistent boner" + (pc.cockTotal() > 1 ? "s throb" : " throbs") + " angrily, large cords of spit dripping from the peak down your well-nursed undervein. Thick drooly slaver pours down the gasping girl’s chin, fresh [pc.cumColor] lacquer flexing from your [pc.cocksLight] to join the skin-smearing mess.");
+	if (pc.libido() >= 66) output(" Pure animal desire carries you down with a guttural grunt, roughly grabbing the girl by her shoulders and twisting her onto all fours.");
+	else if (pc.libido() >= 33) output(" Your sexual appetite is eager for a taste of Mhen’ga’s fauna, and by pushing her over on all fours, it soon gets what it wants.");
+	else output(" Pushing her over on all fours, your rising urges can no longer be denied.");
+	
+	output("\n\nMounting her is easy. If anything, she makes it trivial to assume the position, knowing on a very deep, primitive level that she’s little more than someone’s fuck-toy. Their incubator. Her sweet, cloying folds take the bumping impact of your [pc.hips] with a mighty shudder. The frog’s dripping-wet cooch winks open, painting a butterfly on your shaft. Wherever the stuff lands or cascades, you’re set alight with raw, pleasurable sensation, your column" + (pc.cockTotal() > 1 ? "s" : "") + " of phallic meat radiating such power that " + (pc.cockTotal() > 1 ? "they quiver" : "it quivers") + " with new, untapped potential.");
+	output("\n\nPotential that you waste no time ramming into a snug sheath.");
+	pc.cockChange();
+	pc.maxOutLust();
+	
+	processTime(5+rand(5));
+	clearMenu();
+	addButton(0,"Next",frogGirlsFuckHer2,kok);
+}
+public function frogGirlsFuckHer2(kok:int=0):void
+{
+	clearOutput();
+	author("William");
+	showFrogGirl();
+	var firstHyper:Boolean = true;
+	if (flags["KEROKORAS_HYPER"] == 1) firstHyper = false;
+	
+	output("It feels wrong to compare this alien’s vagina to any kind of fruit, yet there’s some inexpressible <b>sweetness</b> to the act of claiming her. As you’re feeling right now on your first pleasurable push, it’s a taut, cock-grappling canal more than capable of handling your size" + (pc.cocks[kok].cLength() >= 18 ? ", which is far in advance of what most known races could feasibly manage" : "") + ". The lusty girl voices a whorish, glottal croak, smooth inner walls squashing on your inexorable journey towards her sugary core. The fierce knead and squeeze of exotic twat teases, coaxes, entices... inflames. You feel as hard as a bar of iron and you’re still going, wearing this biological dick-sleeve the way she was seemingly born (hatched?) to be, oozing lubricants into the gape.");
+	if (pc.cockTotal() > 1) output("\n\nPenetrating her ass is an equally simple achievement, her gleaming sphincter languorously spreading to accommodate the gloriously endowed. The crush of penetrating two erogenous zones at once makes your head light up real nice, swaddling your breeder brain in cottony fuzz. Acute awareness of every blood-filled duct flashes before your eyes, your [pc.cocksLight] surrounded by acres of aching suppleness hungry for cum.");
+	output("\n\n[pc.KnotBallsHilt " + kok + "]-deep in addictive pussy" + (pc.cockTotal() > 1 ? " and rectum" : "") + ", you let out a sigh of accomplishment before hauling in reverse, stimulating your lust-sore shaft" + (pc.cockTotal() > 1 ? "s" : "") + " to orgasmic heights. Translucent goo flows from her in dribs and drabs, high impact sexual desire screwing the developing pockets into splattery puddles. Nearby bushes shake from the ravenous urge you drive into her fertile wetness, euphoric hums and moans preluding spurts of crystal-clear musk below the rhythmic slap of " + (pc.balls > 0 ? "your [pc.balls] to her ample derriere." : "your [pc.hips] to her wobbly rump."));
+	if (pc.cockTotal() > 1) output("\n\nWider and wider her entrances give around your tense boners. You fuck her in both tunnels, bending those colorful buttocks to your whims, a suffocating fever dream clamping down on your far-reaching erections.");
+	else output("\n\nWider and wider her entrance gives around your tense boner. You fuck her in the cunt, bending those colorful buttocks to your whims, a suffocating fever dream clamping down on your far-reaching erection.");
+	output("\n\nHer head sinks into the muddy soil, cheek pressed to the earth where it belongs, every part of her delightfully springy body designed for the pleasure of others. It’s no wonder these kerokoras seek others out. They’re built to be fucked. No matter how many cervix-battering thrusts you rail her thirsty quim with, no matter how many times your meat pleasantly tingles, her physiology entreats you with high-pitched squeals and panting need.");
+	
+	output("\n\nHer sweat has saturated your [pc.belly], washed across your crotch - her venom is affecting you.");
+	if (pc.inRut()) output(" Not much, given that you’re rutting and therefore pounding her belly into the most vulgar shapes imaginable, but that unmistakable edge is there. It amplifies a monstrous libido, encouraging it to work harder, beyond all reason.");
+	else output(" It’s obvious, isn’t it. Only someone in rut would be pounding a pussy this hard, intent on fertilizing another’s eggs with their DNA, the future of their dynasty. You briefly wonder if that’s so bad, but she’s the one who attacked you, and she’s getting off on being turned into a cum-dump!");
+	
+	output("\n\nCritical thinking is pushed out of your brain in short order, replaced by the need to break this hole in for all time. Her womb’s aching for your cum, that’s why she’s on all fours. Her clutching muff is a vessel that exists for you to dump your loads into, and anyone else who would deign to do so.");
+	if (pc.isTaur()) output(" Rearing back on the verge of withdrawal, you throw all your weight into a womb-shattering lunge, shocking every hyper-aware pussy-nerve into a state of constricting shock.");
+	else output(" Raising an open palm, you crack her on the ass with a firm slap, forcing every nerve inside into a state of tightening shock.");
+	output(" And then you fuck her even harder, barreling through flushed clenchness, lust-heat billowing from your lungs in a feral roar that has no understanding of exhaustion.");
+	
+	output("\n\nThis isn’t enough! One hilt later, you grab the wiggling creature’s birthing hips and twist flip her. Now she’s on her back and getting a face full of your [pc.chestNoun].");
+	if (pc.hasTits()) output(" Your [pc.breasts] smush into her neckline" + (pc.isLactating() ? ", leaking [pc.milk] in orgasmic gouts" : "") + ".");
+	output(" Finding release is getting tougher, as, paradoxically, the longer you fuck her, the more you start to feel like you haven’t been fucking her at all. There’s only throbbing-hard need at your groin, culminating in a tower of breed meat crackling with the urge to stuff this greedy slut’s insatiable cunt. The kerokoras rides her mindless climax, arms splayed out to her sides; you slam into those sweat haunches, prying her agape mouth open in an increasingly debauched expression of keening ecstasy.");
+	
+	output("\n\nYou can’t calm down at all, so you try the mating press, lifting her heels over her head, pinning them, and nailing her cushiony interior for dear life");
+	if (pc.cockTotal() > 1) output(", your extra cock" + (pc.cockTotal() > 2 ? "s" : "") + " flopping around useless around her mons");
+	output(". Convulsions wrack the boneless incubator-to-be. Her muscles have lost all their strength, fucked too powerfully by your length into a flickering state to be controlled, and thus have been reduced to a wild frenzy determined to milk the");
+	if (pc.isHerm()) output(" herm desperate to breed it.");
+	else output(pc.mf(" man", " woman") + " desperate to breed it.");
+	
+	output("\n\nIt. Still. Isn’t. Enough. Mhen’ga itself must be shaking from the tectonic ferocity you drive into her, banging that weeping cunny into a shape it’ll never recover from. All thought fades into lewd pictures and pornographic emotions, your capacity for anything that isn’t mindless seeding lost to the Void. Each wet plap against your prize provokes another womb-piercing splurt. Effluence flings from your conjoined crotches; you heave against her, reaming her into the grass and flattening her ass, fresh seed boiling up" + (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FLARED) ? " as your flare billows out into a uterus-sealing saucer." : "."));
+	output("\n\nIn those split seconds before you cum, you’re jolted back to reality long enough to be surprised at how loud you roar, body trembling with more effort and ecstasy than you know what to do with. Fortunately, you don’t need to think about that. Your hips swivel up and back before crashing down again" + (pc.hasKnot(kok) ? ", [pc.knot] splitting her cunt apart" : "") + " and unloading all you’ve got into that writhing swamp, the world whiting out whilst your [pc.cocks] bloat" + (pc.cockTotal() > 1 ? "" : "s") + " with fervor.");
+	
+	output("\n\nThe initial spurts of syrupy orgasm are heavenly" + (pc.balls > 0 ? ", and you know she can feel every clench in your churning nutsack, spooling out ropes of [pc.raceShort] DNA" : "") + ". [pc.Cum] weaves into the bred frog’s innards, fresh gouts of steaming-hot jism plastering her baby-maker in delicious climax, the sensations so overwhelming that she automatically curls up in bliss. You’re not gentle during this process: you’re ramming each passionate ejaculation into her womb, delivering all that [pc.cumVisc] [pc.cumColor] nut directly where it needs to go. Her ovaries must be tossing out egg after egg to meet demand. [pc.CumGem] breeding urge paints her corrugated nethers, spunk washing out everything that isn’t the all-consuming motivation to bear a conqueror’s children.");
+	if (pc.cumQ() >= 2500) output("\n\nYour mast pulses with a desperate onrush, climax elongating. The alien’s gut expands to house the surging thickness, [pc.cumNoun]-filled curves developing the lithe, petite ambush-predator into a pleasing fertility idol. As you kegel twitch another fat, gurgling wad out, the inner heat elevates to volcanic proportions. [pc.CumVisc] excess pushes out and fills the spaces around your [pc.cockNoun " + kok + "], encasing your girth in more [pc.cumColor] jism than her body can reasonably account for.");
+	if (pc.cumQ() >= 10000)
+	{
+		flags["KEROKORAS_HYPER"] = 1;
+		output("\n\nDespite the kerokoras’ incredible flexibility, you’re still cumming, and your" + (pc.balls > 0 ? " [pc.balls]" : " seed") + " will not be denied. The sheer liquid weight distending your phallus and destroying this alien’s future attempts at self-preservation is incomprehensible. She’s so full, and she’s still being pumped full of slick issue. Pure, frothy nut overflows, now splattering back into your groin" + (pc.hasKnot(kok) ? " past your [pc.knot]" : "") + ", absolutely nowhere left to hide, no nook left to fill - she cannot handle any more. Your eyes shut uselessly as the gushing gallons pour out, splashing everywhere, leaving no doubt in anyone or anything’s mind who this protein guzzling cock-warmer belongs to. She’ll remember, for all time, the [pc.raceShort] from the stars who made " + (firstHyper ? "her the first jizz bank of her species." : "her the newest jizz bank in her species."));
+	}
+	
+	output("\n\nOnce the bulk of your spunky saturation has been deposited, you finally let yourself fall on top of her, sweat dripping from your [pc.skinFurScales]. You’re spent and vulnerable, and she’s been fucked stupid, straight into dreamland. Your body still pushes to give the slut’s box every last drop it’s earned");
+	if (pc.hasKnot(kok)) output(", the rhythmic pulsations felt passing through the center of your inflated bitch-breaker");
+	output(".");
+	if (pc.cockTotal() > 1) output(" The rest of your load is found puddled around, or smeared across her lips. Having more than one cock always leads to such wonderful messes.");
+	
+	if (pc.hasKnot(kok))
+	{
+		output("\n\nIt takes longer than you’d like to calm down. It’s only after you’ve given up every ounce of spooge that your body reluctantly works to untie you from the gooey crevice. You tug backwards and drag her with you, before exhaling and applying gradual amounts of insistent pleasure, thinking up the most boring fuckin’ subjects you’ve ever had to endure in school or elsewhere. She’s clamping down in her dreams, probably still replaying the sordid act. Only when you consider the inanity of planes, trains, and plantains does it finally pop free, a deluge of cooling virility following it out.");
+		output("\n\nOnce everything’s in order, you don’t spare a second thought to the still-unconscious frog on your way forward.");
+		processTime(15+rand(10));
+	}
+	else
+	{
+		output("\n\nA flood of rapidly-cooling virility spills out of the kerokoras’ innards when you withdraw, sagging cords clinging to your softening manhood. You sit up to your knees before standing, getting yourself in order and turning back to whatever task is at hand.");
+		output("\n\nYou don’t spare a second thought to the still-unconscious frog on your way.");
+		processTime(5+rand(5));
+	}
+	frogGirlsSimplePreg();
 	pc.orgasm();
 	CombatManager.genericVictory();
 }

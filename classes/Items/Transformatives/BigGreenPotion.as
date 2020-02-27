@@ -63,12 +63,17 @@
 				var hasHradSkinColor:Boolean = InCollection(pc.skinTone, "green", "viridescent", "emerald");
 				if (changes < changeLimit && rand(2) == 0)
 				{
-					if (pc.hasFur() || pc.hasScales())
+					if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN)
 					{
 						if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 						{
-							if (pc.hasScales()) output("\n\nYour scaly epidermal layer begins to smoothen out as each scale recedes until they are freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of scales.");
-							if (pc.hasFur()) output("\n\nYour skin prickles all over as your body hair begins to recede. Slowly, the amount of hair on your body decreases until your [pc.skinColor] skin is revealed.");
+							output("\n\n");
+							if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output("Your skin prickles all over as your body hair begins to recede. Slowly, the amount of hair on your body decreases until your [pc.skinColor] skin is revealed.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("Your scaly epidermal layer begins to smoothen out as each scale recedes until they are freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of scales.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_CHITIN) output("Your chitinous surface begins to crackle and disintegrate as each plate dissolves into freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of chitin.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output("Your skin prickles all over as your plumage begins to ruffle and molt. Gradually, the feathers on your body drop off until the [pc.skinColor] skin underneath is revealed.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_BARK) output("Your arboreal surface begins to crack and shift as each bark plate recedes into freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of bark.");
+							else output("A prickling sensation runs across your [pc.skin] and you notice the surface of your body smoothing and shifting into something more normal.");
 							output(" <b>Your body is now covered in bare skin.</b>");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							pc.clearSkinFlags();
@@ -195,7 +200,7 @@
 						{
 							if (pc.breastRows[b].breastRating() < boobSizeLimit) pc.breastRows[b].breastRatingRaw += boobSizeIncrease;
 						}
-						pc.lust(20 + rand(10));
+						pc.changeLust(20 + rand(10));
 						changes++;
 					}
 					else output("\n\n" + pc.breastRatingLockedMessage());
@@ -213,7 +218,7 @@
 						}
 						output(" Feeling a wet spot you reach down and rub your [pc.nipples], getting a handful of yogurt in the process. <b>Looks like your tits leak yogurt now!</b>");
 						pc.milkType = GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT;
-						pc.lust(20 + rand(10));
+						pc.changeLust(20 + rand(10));
 						changes++;
 					}
 					else output("\n\n" + pc.milkTypeLockedMessage());
@@ -282,7 +287,7 @@
 						
 						if (pc.cockLengthUnlocked(x, newLength))
 						{
-							output("\n\nYour [pc.cock] suddenly becomes impossibly erect, which causes you to flinch in surprise. It only lasts for a moment, though, and once it passes you can’t help but notice that <b>your dick feels a bit heavier and more solid.</b>");
+							output("\n\nYour [pc.cock " + x + "] suddenly becomes impossibly erect, which causes you to flinch in surprise. It only lasts for a moment, though, and once it passes you can’t help but notice that <b>your dick feels a bit heavier and more solid.</b>");
 							pc.cocks[x].cLengthRaw = newLength;
 							if (pc.cocks[x].cThicknessRatioRaw < 1.5) pc.cocks[x].cThicknessRatioRaw = 1.5;
 							groinChanged = true;
@@ -330,10 +335,12 @@
 				{
 					// Select non-hrad cock
 					x = -1;
+					var nonHradCocks:Array = [];
 					for(b = 0; b < pc.cockTotal(); b++)
 					{
-						if (pc.cocks[b].cType != GLOBAL.TYPE_HRAD) x = b;
+						if (pc.cocks[b].cType != GLOBAL.TYPE_HRAD) nonHradCocks.push(b);
 					}
+					if (nonHradCocks.length > 0) x = nonHradCocks[rand(nonHradCocks.length)];
 					// 1 cock becomes hrad cock
 					if (x >= 0)
 					{
@@ -360,7 +367,7 @@
 							output(" The [pc.cockNoun " + x + "] is dripping profusely as it transforms. Its [pc.cockHead " + x + "] warps in shape, then swells and becomes an angry purple color as the skin shifts around it until the newly-formed, violet head is half covered in foreskin.");
 							pc.shiftCock(x, GLOBAL.TYPE_HRAD);
 							output(" You fall to your [pc.knees] and thrust forward as [pc.eachCock] shoots a deluge of [pc.cum]. It isn’t a true orgasm but damn does it feel good. <b>You now have a bullet-shaped cock!</b>");
-							pc.lust(50);
+							pc.changeLust(50);
 							groinChanged = true;
 							changes++;
 						}
@@ -408,7 +415,7 @@
 						}
 						output(" You can’t help but rub yourself a bit - but as you do, you find your hands covered in a creamy white substance. <b>You now have syrupy hradian girl cum!</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HRAD_CUM;
-						pc.lust(Math.round(pc.lustMax()/2));
+						pc.changeLust(Math.round(pc.lustMax()/2));
 						groinChanged = true;
 						changes++;
 					}

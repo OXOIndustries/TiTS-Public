@@ -123,7 +123,7 @@
 							if(y > 1) kGAMECLASS.output(", and it keeps going");
 							kGAMECLASS.output(", not stopping until you’re " + num2Text(Math.round((target.cocks[x].cLength() + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
 						}
-						target.lust(5+rand(10));
+						target.changeLust(5+rand(10));
 						target.cocks[x].cLengthRaw += y;
 						changes++;
 					}
@@ -141,7 +141,7 @@
 							target.cocks[x].cThicknessRatioRaw = 1.7;
 						}
 						changes++;
-						target.lust(3+rand(3));
+						target.changeLust(3+rand(3));
 					}
 					//Undoes trap pouch (req's fur coat)
 					if(target.hasStatusEffect("Uniball") && target.balls > 0)
@@ -266,7 +266,7 @@
 						target.clitLength -= y;
 						if(target.clitLength < .5) target.clitLength = .5;
 						changes++;
-						target.lust(10+rand(5));
+						target.changeLust(10+rand(5));
 					}
 				}
 				//All genders:
@@ -301,7 +301,7 @@
 					kGAMECLASS.output("\n\nYour [pc.tails] convulse uncontrollably, twisting together into one tangled knot. Then, lava-hot heat envelops the whole mass, dropping you to your [pc.knees] in agony. Underneath the pain, you can feel them fusing together into a single [pc.tail]. A growl slips escapes you as you recover, wondering why you decided to take this stuff.");
 					target.tailCount = 1;
 					changes++;
-					target.lust(-3);
+					target.changeLust(-3);
 				}
 				//Single tail becomes small panda tail
 				if ((target.tailCount == 0 && target.tailCountUnlocked(1)) || (target.tailCount == 1 && target.tailType != GLOBAL.TYPE_PANDA && target.tailTypeUnlocked(GLOBAL.TYPE_PANDA)))

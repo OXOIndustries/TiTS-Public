@@ -48,7 +48,7 @@ public function approachIlaria():void
 	//First Time
 	if(flags["MET_ILARIA"] == undefined)
 	{
-		output("You’ve barely sauntered up to the counter before the one and only employee bounces over to you, springing on long, digitigrade legs behind the counter. Now that she’s a little closer, you’re not so sure it’s a bunny costume so much as some high-quality mod work she’s had done: a pair of fluffy white-and-pink rabbit’s ears swivel towards you atop her head, and a poof-ball of a tail wiggles like an jubilant ausar’s.");
+		output("You’ve barely sauntered up to the counter before the one and only employee bounces over to you, springing on long, digitigrade legs behind the counter. Now that she’s a little closer, you’re not so sure it’s a bunny costume so much as some high-quality mod work she’s had done: a pair of fluffy white-and-pink rabbit’s ears swivel towards you atop her head, and a poof-ball of a tail wiggles like a jubilant ausar’s.");
 		output("\n\n<i>“Hey there, sweet stuff,”</i> the bunny-woman croons, leaning over the counter in a way that makes her ample chest wobble against the polished surface, barely constrained by her showy black corset. <i>“What can I getcha?”</i>");
 		output("\n\nYou notice a little name-tag is pinned to the stand-alone collar-and-bow-tie around her neck, reading on bubbly pink capitals: “ILARIA.”");
 		
@@ -63,6 +63,7 @@ public function approachIlaria():void
 		
 		flags["ILARIA_PREG_EMAIL1"] = 2;
 	}
+	else if (ilariaSteelePregTalkTrigger()) ilariaSteelePregTalk();
 	else
 	{
 		output("Ilaria bounds over to you with a smile. <i>“Welcome back!");
@@ -694,7 +695,7 @@ public function poundIlariaLikeMad():void
 
 	processTime(30);
 	chars["ILARIA"].loadInCunt(pc, 0);
-	tryKnockUpIlaria();
+	//tryKnockUpIlaria(); moved to Ilaria.loadInCunt override function
 	if(y >= 0) chars["ILARIA"].loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
@@ -872,7 +873,7 @@ public function ilariaPreg2EmailText():String
 {
 	var eText:String = "";
 	
-	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
+	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.isAusar(true) ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
 	eText+="\n\nCongratulations!";
 	eText+="\n\nNurse Carter";
 	eText+="\nTavros Residential Clinic, Deck 45";
@@ -956,3 +957,143 @@ output("\n\nA round of applause starts up through the place, until your lover is
 
 
 */
+//should the steele preg talk trigger (will trigger for each new preg after a talk)
+public function ilariaSteelePregTalkTrigger():Boolean
+{
+	if (flags["ILARIA_STEELE_PREG"] == undefined && pc.hasPregnancyOfType("IlariaPregnancy")) return true;
+	if (pc.totalPregnanciesOfType("IlariaPregnancy") > flags["ILARIA_STEELE_PREG"]) return true;
+	
+	return false;
+}
+public function ilariaSteelePregTalk():void
+{
+	var firstTime:Boolean = true;
+	if (StatTracking.getStat("pregnancy/ilaria births") > 0) firstTime = false;
+	if (flags["ILARIA_STEELE_PREG"] != undefined) firstTime = false;
+	flags["ILARIA_STEELE_PREG"] = pc.totalPregnanciesOfType("IlariaPregnancy");
+	
+	output("<i>“Hey, [pc.name],”</i> Ilaria grins, sashaying over to you with that familiar, sexy high-heeled gait of hers and stretching out over the counter to plant a kiss on your cheek. <i>“You’re looking positively radiant today. How’s things, sweetie?”</i>");
+	output("\n\nYou shuffle awkwardly " + (pc.isTaur() || pc.isNaga() ? "on your haunches" : "in your seat") + " and tell Ilaria she might want to sit down. You’ve got some news for her.");
+	
+	if (pc.hasStatusEffect("Bulky Belly"))
+	{
+		output("\n\n<i>“Don’t tell me!”</i> she gasps, looking between you and your [pc.belly]. <i>“That’s not... I didn’t knock you up, did I?”</i>");
+		output("\n\nWell, actually yeah, that’s pretty much exactly what she did.");
+	}
+	else
+	{
+		output("\n\nShe cranes her big bunny ears towards you. <i>“What’s up, babe?”</i>");
+		output("\n\nYou take her hand in yours and spill the beans: you’re pregnant. They’re hers.");
+	}
+	
+	output("\n\nIlaria blinks at you, then bursts out in a big, toothy smile. <i>“Really!? Ohmygod, [pc.name]!”</i> She tries to say something else, but it just devolves into an unintelligable, delighted squeal. She throws her arms around your neck and locks you in a death-grip of a hug, bouncing on her bunny-like feet.");
+	output("\n\n<i>“Ahhh! This is amazing! <b>AMAZING</b>!”</i>");
+	output("\n\nShe’s practically dancing, drawing every eye in the shop - as if her big ol’ jiggling tits didn’t serve that purpose already. Ilaria just grins at the voyeuristic patrons and announces, <i>“I’m gonna be a dad" + (firstTime ? "" : " again") + "!”</i>");
+	output("\n\nA round of applause starts up through the place, until your lover is beaming and you’re " + (pc.exhibitionism() < 10 ? "blushing" : "getting all hot and bothered") + " from the attention. When the crowd settles, Ilaria turns to you with another kiss. <i>“Now, how about we celebrate with some treats" + (firstTime ? " while you tell me all about this famous Steele Tech nursery upstairs..." : "") + ".”</i>");
+}
+//this is for Ilaria's kids and is similar to ausarPregnancyEnds but there are some minor differences due to being a named npc and not a generic parent
+public function ilariaPregnancyEnds():void
+{
+	clearOutput();
+	author("Nonesuch");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var se:StorageClass = pc.getStatusEffect("Ilaria Pregnancy Ends");
+	
+	if(se == null)
+	{
+		output("ERROR: Status effect “Ilaria Pregnancy Ends” does not exist!");
+		output("\n\nThis was an erroneouse pregnancy and the issue has been corrected.");
+		output("\n\n");
+		chars["ILARIA"].pregnancyData[0].reset();
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1);
+
+	pc.removeStatusEffect("Ilaria Pregnancy Ends");
+	
+	output("Pain in your gut bends you over and fluid spills");
+	if (pc.isCrotchExposed())
+	{
+		if (InShipInterior()) output(" onto the deck");
+		else output(" onto the ground");	
+	}
+	else output(" into your [pc.lowerUndergarment]");
+	output(". Alarm grips you as you feel your cervix dilate. With as much calm as you can muster, you consider the best course of action.");
+	
+	if (InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (pc.isCrotchExposed() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if (InRoomWithFlag(GLOBAL.HAZARD))	output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now - you’ll have to deliver on your own.");
+	else output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output("\n\n");
+	else output("\n\nThe medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	output("Spasms wrack your pregnant body for the next hour, and your mind almost shuts down from the pain, operating on biological autopilot. There’s no relief when the first baby finally emerges via one gigantic clench, wailing heartily, none at all - because you know, from the weight and wriggling in your womb, that that’s simply one of " + num2Text(numChildren) + ".");
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output(" You grit your teeth and bear down again.");
+	else output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
+	
+	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.isAusar(true) ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of Ilaria, who deserves an email after all this, you suppose.");
+	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.isAusar(true) ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
+	
+	processTime(60 + ((10 + rand(10)) * numChildren));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+//for AusarPregnancyHandler, this is generic ausar preg
+public function ausarPregnancyEnds():void
+{
+	clearOutput();
+	author("Nonesuch");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var se:StorageClass = pc.getStatusEffect("Ausar Pregnancy Ends");
+	
+	if(se == null)
+	{
+		output("ERROR: Status effect “Ausar Pregnancy Ends” does not exist!");
+		output("\n\n");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1);
+
+	pc.removeStatusEffect("Ausar Pregnancy Ends");
+	
+	output("Pain in your gut bends you over and fluid spills");
+	if (pc.isCrotchExposed())
+	{
+		if (InShipInterior()) output(" onto the deck");
+		else output(" onto the ground");	
+	}
+	else output(" into your [pc.lowerUndergarment]");
+	output(". Alarm grips you as you feel your cervix dilate. With as much calm as you can muster, you consider the best course of action.");
+	
+	if (InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (pc.isCrotchExposed() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if (InRoomWithFlag(GLOBAL.HAZARD))	output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now - you’ll have to deliver on your own.");
+	else output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output("\n\n");
+	else output("\n\nThe medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	output("Spasms wrack your pregnant body for the next hour, and your mind almost shuts down from the pain, operating on biological autopilot. There’s no relief when the first baby finally emerges via one gigantic clench, wailing heartily, none at all - because you know, from the weight and wriggling in your womb, that that’s simply one of " + num2Text(numChildren) + ".");
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output(" You grit your teeth and bear down again.");
+	else output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
+	
+	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.isAusar(true) ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of the father.");
+	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.isAusar(true) ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
+	
+	processTime(60 + ((10 + rand(10)) * numChildren));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}

@@ -105,8 +105,8 @@
 				}
 				if (healing > 0)
 				{
-					kGAMECLASS.output(" (<b>+" + healing + " Energy</b>)");
-					target.energy(healing);
+					//kGAMECLASS.output(" (<b>+" + healing + " Energy</b>)");
+					target.changeEnergy(healing);
 					hasEffect = true;
 				}
 				if (rand(sexyChance) == 0)
@@ -175,8 +175,8 @@
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " pulls out a Mhen’gan mango and bites into it");
 				if (healing > 0)
 				{
-					kGAMECLASS.output(", replinishing some of [target.hisHer] energy! (<b>+" + healing + " Energy</b>)");
-					target.energy(healing);
+					kGAMECLASS.output(", replinishing some of [target.hisHer] energy!");
+					target.changeEnergy(healing);
 					hasEffect = true;
 				}
 				if (rand(sexyChance) == 0)

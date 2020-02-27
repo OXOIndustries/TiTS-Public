@@ -148,12 +148,19 @@ public function korgiTranslateProgress():Number
 	if(flags["ULA_OTHER_TRIBES"] != undefined) qualifyingEvents++;
 	if(flags["ULAS_ROLE"] != undefined) qualifyingEvents++;
 	if(flags["ULA_MINING_TALKED"] != undefined) qualifyingEvents++;
-
+	// Lund
 	if(flags["LUND_FUCKED_OFF"] != undefined) qualifyingEvents++;
 	if(flags["LUND_GO_AWAY"] != undefined) qualifyingEvents++;
 	if(flags["LUND_LEFT_FOOLISH"] != undefined) qualifyingEvents++;
 	if(flags["LUND_LAST_SEX"] != undefined) qualifyingEvents++;
 	if(flags["WARGII_PROGRESS"] == 3) qualifyingEvents += 3;
+	//Kiona
+	if(flags["KIONA_TALK"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_KIONA"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_YOU"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_HUNTING"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_SHOP"] != undefined) qualifyingEvents++;
+	if(kionaLuciniteQuestStage() > 0) qualifyingEvents += kionaLuciniteQuestStage();
 
 	qualifyingEvents *= 4;
 	if(qualifyingEvents >= 100) qualifyingEvents = 100;
@@ -206,6 +213,12 @@ public function ulaRoomBonusFunc():Boolean
 	if(flags["WARGII_FIGHTS_RAN"] == undefined && flags["WARGII_NORAN_REWARD"] == undefined && ulaChief()) 
 	{
 		neverRanBonusUlaGift();
+		return true;
+	}
+	// Proc this scene as soon as the Warg’ii event is over for one week and the PC goes to Ula, but only if the PC suggested she be “Middle” with her punishment
+	if(flags["ULA_HELP_MILO_NOT_NOW"] == undefined && !pc.hasKeyItem("Token of Ula's Favor") && flags["WARGII_MILO_SOLUTION"] == 2 && (flags["WARGII_OVER_TIMESTAMP"] == undefined || GetGameTimestamp() - flags["WARGII_OVER_TIMESTAMP"] > 7*24*60))
+	{
+		ulaEitanBonus();
 		return true;
 	}
 	//20% chance and Ula has kids older than 7 days

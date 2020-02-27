@@ -41,6 +41,8 @@ public function buildRooms():void
 	eventWhorizonInitRooms();
 	initWargiiRooms();
 	initKimberRooms();
+	initKQRooms();
+	initDhaalRooms();
 	
 	mapper = new Mapper(rooms);
 }

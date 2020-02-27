@@ -43,12 +43,12 @@
 			valuablesSizeRaw = 50;
 			toysSizeRaw = 50;
 
-			shipCapacityRaw = 12;
+			shipCapacityRaw = 14;
 			shipGunCapacityRaw = 2;
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The Clydesdale K7 comes from an unlikely source: Steeletech. Victor’s company may not operate extensive ship foundries like KihaCorp or Aegis, but it has taken to producing in-house vessels to serve its own industrial interests. The Clydesdale, much like its namesake, is a heavy, plodding thing designed to shift cargo using its own bloated mass. In Rusher hands, it does all that and more. The copious interior space allows for near infinite customization via upgrades or the presence of a small army of support staff. Many foolhardy captains have made the mistake of underestimating the venerable K7, to their own detriment.";
+			this.long = "The Clydesdale K7 comes from an unlikely source: Steele Tech. Victor’s company may not operate extensive ship foundries like KihaCorp or Aegis, but it has taken to producing in-house vessels to serve its own industrial interests. The Clydesdale, much like its namesake, is a heavy, plodding thing designed to shift cargo using its own bloated mass. In Rusher hands, it does all that and more. The copious interior space allows for near infinite customization via upgrades or the presence of a small army of support staff. Many foolhardy captains have made the mistake of underestimating the venerable K7, to their own detriment.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It rolls aside!";
 			this.isPlural = false;
@@ -71,11 +71,11 @@
 			this.shield.hasRandomProperties = true;
 
 			//SPEED / THRUST
-			this.physiqueRaw = 15;
+			this.physiqueRaw = 40;
 			//AGILITY:
-			this.reflexesRaw = 15;
+			this.reflexesRaw = 10;
 			//SENSORS
-			this.aimRaw = 20;
+			this.aimRaw = 35;
 			//SYSTEMS
 			this.intelligenceRaw = 20;
 			//POWER GEN

@@ -90,7 +90,19 @@ public function pcReadyForPainsluttery():Boolean
 	if (flags["AKANE_FUN_VISITS"] == undefined || flags["AKANE_FUN_VISITS"] < 9) return false;
 	return true;
 }
- 
+
+public function hasAkaneEffects(includeHealed:Boolean = true):Boolean
+{
+	return hasAkanaEffects(includeHealed);
+}
+public function hasAkanaEffects(includeHealed:Boolean = true):Boolean
+{
+	if (pc.hasStatusEffect("Sore Tubes") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Tenderized") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Lash Marks") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	return false;
+}
+
 public function akanePainslutTrigger():void
 {
 	clearMenu();
@@ -152,7 +164,7 @@ public function akaneCeleritasVeritasAvailable():Boolean
 
 public function akaneLairAvailable():Boolean
 {
-	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24*60);
+	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > (flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + (24*60)));
 }
 
 public function akaneCeleritasVeritasTheLegitimateBusinessBonus():Boolean
@@ -192,7 +204,7 @@ public function akaneEmailMeeting():void
 	output(" you prep up for whatever’s to come next. You’ve experience with their tactics, methods and motives, the only thing to do is to not slip up.");
 	output("\n\nAs if it were any other shop or vendor, you stroll up to the display and eye over the various ‘wares’ on sale. Likely most of these are part of a front, you posit, although the presentation is very authentic...");
 	output("\n\n<i>“Anything I can help you with, " + pc.mf("sir", "madam") +"? Anything at all?”</i> comes a voice from your left, the diminutive man in the suit now suddenly within handshaking distance. Sneaky...");
-	output("\n\nYou turn to face him, his beaming salesman’s smile and clasped hands inviting you to speak. You have a quick lookover: no more than 5’7’’ at a guess, broad shoulders exacerbated by a pinstripe black suit. A trimmed, greying beard and short-sides haircut paint him as a veteran at this role.");
+	output("\n\nYou turn to face him, his beaming salesman’s smile and clasped hands inviting you to speak. You have a quick lookover: no more than 5\' 7\" at a guess, broad shoulders exacerbated by a pinstripe black suit. A trimmed, greying beard and short-sides haircut paint him as a veteran at this role.");
 	output("\n\nYou start by saying you’re interested in some wares but would like to know more about previous buyers.");
 	output("\n\n<i>“Anyone specific, " + pc.mf("sir", "madam") + "? A brand such as ours works on reputation alone,”</i> he replies, gesticulating in a rather delighted manner.");
 	output("\n\n<i>“Host Shukuchi. They must need <b>very</b> advanced equipment for what they do, all that on-the-fly invisibility...”</i> you say casually, palming a decommissioned display pistol. That namedrop should get his attention.");
@@ -482,7 +494,7 @@ public function akaneShockMeAlready():void
 	output("\n\nThe groggy dominatrix stumbles on her mechanical heels, the metallic <i>plink-plinks</i> erratic as she manages to stop herself from teetering over. You can see Akane hold herself up against the wall, her knees bent inward and all her limbs jittering with a palsy. Did she just...?");
 	output("\n\n<i>“Nngggmmm... I haven’t heard someone say it like that in... ahehe, I don’t even know!”</i> she pants, her voice dotted with feminine squeaks.");
 	output("\n\nEven in your compromised state, you can see a glistening <i>wetness</i> seep out between her pale thighs. Oh, she definitely did...");
-	output("\n\nYou try hauling yourself up but to no avail, the tight binding still a coarse reminder of your bondage. The slightest bit of extra effort cuts into your stamina and your [pc.skinFurScales] are sore and far too sensitive to try again.");
+	output("\n\nYou try hauling yourself up but to no avail, the tight binding still a coarse reminder of your bondage. The slightest bit of extra effort cuts into your stamina and your [pc.skinNoun] is sore and far too sensitive to try again.");
 	output("\n\nAkane also slumps to her knees, her fingertips causing sparks to flare against the wall as she drags them down with her.");
 	output("\n\n<i>“Oh how glad I am that you agreed... oh how fucking glad,”</i> she giggles, wiping her face with the backs of her wrists. Whatever thoughts you have to add fail to form in your mouth: the cool air filling your lungs is too good to pass up right now.");
 	output("\n\nYour eyelids flutter to a close as that same air works its magic. Your lungs relax, your heart slows and your limbs loosen in short order, the comforting afterglow of expending so much energy making things numb and....sleepy...and....");
@@ -588,7 +600,7 @@ public function akaneDoneShockingMe():void
 	output("\n\n<i>“Do I even have a choice?”</i> you say back in a low tone.");
 	output("\n\n<i>“Well said,”</i> she grins, tapping her fingertips against both armrests in arpeggiated patterns. <i>“Did we um... did we ever find the relevant information, Cheo?”</i>");
 	output("\n\nCheo nods and produces a small datapad from his pocket, holding it in front of the mob boss. She lazily trails her fingers along its surface, talking out loud as she goes.");
-	output("\n\n<i>“Let’s see, Steele, Steele... SteeleTech, Victor, Maximilian, dead, blah blah, heir or heiress... oh,”</i> she says at first, abruptly stopping and squinting when some detail catches her eye. <i>“So young, [pc.name]. Oh my, I had no idea...”</i> she exclaims, her grin gaining a devilish hint as she stares you down.");
+	output("\n\n<i>“Let’s see, Steele, Steele... Steele Tech, Victor, Maximilian, dead, blah blah, heir or heiress... oh,”</i> she says at first, abruptly stopping and squinting when some detail catches her eye. <i>“So young, [pc.name]. Oh my, I had no idea...”</i> she exclaims, her grin gaining a devilish hint as she stares you down.");
 	output("\n\nYou turn your head away, both to avoid her predatory stare and to hide the mild blush you feel welling in your cheeks. It’s not like she’s your mother, she can’t just... say that kind of thing... Akane simply laughs, holding her palm up to cover her mouth.");
 	output("\n\n<i>“Look at you, all grown up and playing spacer. How about that, how about that indeed...”</i> she says to you, her grin turning into a smile. She cocks her head to the left as if to examine you once more.");
 	output("\n\n<i>“As to the deal: consider it as something as informal as it could be. An open invitation, that’s all. An invitation for my audience in a very... intimate setting,”</i> says Akane, tapping a knee with her fingers. <i>“If you’ve a need for... pain, love, joy, or maybe to brighten a bored old woman’s day, just say so at our representative’s stall. You know the one. No knockouts this time, I promise.”</i>");
@@ -681,7 +693,7 @@ public function akaneAkaneMain():void
 	output("\n\n<i>“Mmhmm, you know how to shame this old bag of bones and bolts, you monster. Care to entertain me, then?”</i>");
 	
 	addButton(0, "Appearance", akaneLookAtMafiaBoss, undefined, "Appearance", "Take in the full grace and majesty of this augmented crime boss. Respectfully of course. <i>She’s watching</i>.");
-	if (pc.isPregnant()) addDisabledButton(1, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
+	if (pc.isPregnant()) addDisabledButton(1, "Sex", "You are unable to participate in this while pregnant!");
 	else addButton(1, "Sex", akaneSexOptions, undefined, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
 	addButton(2, "Leave", akaneNevermind, true, "Leave", "You just wanna get out of here.");
 	
@@ -725,7 +737,7 @@ public function akaneLookAtMafiaBoss():void
 	output("\n\nHer jet black hair is silky smooth, wavy and glossy and cut sharply to about chin length on her left side. Where you would expect hair follicles on the right side, there is a web of scar tissue consistent with cuts and lacerations going from her right ear down to her right collarbone. All of the healed-over marks are made of erratic, angular and deep looking patterns. Said ear seems surprisingly undamaged and appears to be modded into an elvish, pointed shape. Instead of one prong, there are three and they all have a slight upward flick towards the tips, making her right ear look ‘wing-like’.");
 	output("\n\nHer eyes dart around you from time to time, as if sizing you up every few minutes. They’re colored a plain shade of black and give little away.");
 	output("\n\nAside a light application of crimson lipstick, she wears no makeup.");
-	output("\n\nWhat draws your eyes more and more are her cybernetic augmentations. From elbow to fingertip and from knee to toe, sleek and seamless black replacements make up the rest of her limbs. They almost seem realistic, aside from the obvious joints and pivots. Instead of typical human feet and legs, her robo-limbs form pseudo-boots with angular arched heels about 4’’ high, giving her a stylish edge on top of pinpoint footing balance. When traversing, she moves with grace and precision; the added effect of the heels pushing her hips out with each step is just a small bonus.");
+	output("\n\nWhat draws your eyes more and more are her cybernetic augmentations. From elbow to fingertip and from knee to toe, sleek and seamless black replacements make up the rest of her limbs. They almost seem realistic, aside from the obvious joints and pivots. Instead of typical human feet and legs, her robo-limbs form pseudo-boots with angular arched heels about 4\" high, giving her a stylish edge on top of pinpoint footing balance. When traversing, she moves with grace and precision; the added effect of the heels pushing her hips out with each step is just a small bonus.");
 	output("\n\nIn terms of outfit, Akane wears a short, sleeveless dress much like an ancient qipao. It’s made of thin silver fabric and patterned with pink and red draconic designs. On top of that is a short, black leather jacket cut at the diaphragm, the sleeves only extending to her prosthetic elbows. The end effect would normally make one believe she was wearing long gloves.");
 	output("\n\nUnderneath all this, her body is slender but not slim, detailed with muscle but built more like a gymnast or acrobat. A mild amount of ab detail shines through her thin dress, although little else does.");
 	output("\n\nHer chest barely seems to reach a B-cup and her jacket adds modesty. Although <i>some</i> natural curve exists on her, she is on the lanky side of things.");
@@ -1251,7 +1263,7 @@ public function akanePleaseComeAgain():void
 	if (pc.hasCock() && pc.hasVagina()) output("[pc.eachCock] throb and harden then [pc.eachVagina] to moisten and puff up in seconds!");
 	else if (pc.hasCock()) output("[pc.eachCock] to bounce and throb, coming to hardness in seconds!");
 	else if (pc.hasVagina()) output("[pc.eachVagina] to moisten and puff up in seconds!");
-	output("\n\nYou can’t help but inhale sharply as virulent arousal takes over your flesh, counteracting the growing aches in your bound limbs. You whimper as somewhere deep down, your body realises you’re at a loss when you can become so aroused on mere command.");
+	output("\n\nYou can’t help but inhale sharply as virulent arousal takes over your flesh, counteracting the growing aches in your bound limbs. You whimper as somewhere deep down, your body realizes you’re at a loss when you can become so aroused on mere command.");
 	
 	output("\n\n<i>“Theeere we go. Now hold still for me, precious,”</i> coos Akane, just out of sight. Your fists make it difficult to tell what she’s about to do but then-\n\n");
 	if (pc.hasCock())
@@ -1397,7 +1409,7 @@ public function akaneMoarMoarMoar():void
 
 	if (flags["AKANE_TIMES_FORCED"] == undefined)
 	{
-		output("\n\nYou whine again when it makes contact, making you instinctively realise that all forms of nerve are extremely sensitive.");
+		output("\n\nYou whine again when it makes contact, making you instinctively realize that all forms of nerve are extremely sensitive.");
 		output("\n\n<i>“Oh don’t fret, my dear [pc.name]. If you’ll hang on and allow me to do a bit of this... and this,”</i> she says casually, as if ticking off a to-do list but with a box of wires instead.");
 	}
 	else if (pcIsPainslut())
@@ -1696,7 +1708,7 @@ public function akaneBabySrslyTho(firstTime:Boolean):void
 	output("\n\n<i>“Guh... gonna...! Ahhh...!”</i> are all she can say before her body locks up. You see her face contort in frozen bliss as a silent orgasm rocks her world, your mouth filling with the gentle flash of feminine juices. Her abs tense and contract through her skin, fighting against her lungs need to scream.");
 	output("\n\nA vibrant heat gets blurred into the frozen moment, one shattered by Akane thrusting you away and collapsing against the bed. You’re able to stay on your knees and your woozy view is now that of the orgasming domme jerking and quivering against the plush bedding. You slobber and gulp down as much of Akane’s ‘gift’ as you can so the flavour stays fresh in your mouth.");
 	output("\n\n<i>“Cheh... Cheo, put ‘em... up here,”</i> she forces in between breaths, her voice strained and high in pitch. You try to take stock of what she’s ordered, only to have a pair of fluffy arms hoist you from your armpits and guides onto the bed.");
-	if (pc.isTaur()) output(" It’s a little bit of a struggle but with some effort, you’re comfortably sat on top.");
+	if (pc.isTaur()) output(" It’s a little bit of a struggle but with some effort, you’re comfortably seated on top.");
 	output(" You shuffle across your side to the gasping Akane and, with a fiddle, your wrist bonds come undone with help from her ausar attendant.");
 	output("\n\nYou place a hand on top of Akane’s heaving abs, massaging her pale skin with your palm. She turns her head to the side, her glassy, weary gaze meeting yours. You can make out her whispering something to you.");
 	output("\n\n<i>“Oh... h-hey... stay with me, would you...?”</i>");
@@ -1721,7 +1733,7 @@ public function akanePostSexOptions(activity:String = "TALKED"):void
 	IncrementFlag("AKANE_TIMES_" + activity);
 	if (silenceOnly) IncrementFlag("AKANE_TIMES_TALKED");
 	else flags["AKANE_LAST_FUN_VISIT_TIMESTAMP"] = GetGameTimestamp();
-		
+	
 	if (!silenceOnly) addButton(0, "Pillow Talk", akanePillowTalk, undefined, "Pillow Talk", "Communicate, be healthy with your relationships. Might be a good time to uh, get to know her...");
 	addButton((silenceOnly ? 0 : 1), "Enjoy Silence", akaneEnjoySilence, undefined, "Enjoy Silence", "Just enjoy each other on an instinctual level.");
 }
@@ -1785,7 +1797,7 @@ public function akaneTalkYou():void
 	clearOutput();
 	showAkane(true, true);
 	
-	output("<i>“So what do you actually know about me...?”</i> you ask plainly, the sneaking suspicion about her knowing of SteeleTech tickling bits of your curiosity.\n\n<i>“");
+	output("<i>“So what do you actually know about me...?”</i> you ask plainly, the sneaking suspicion about her knowing of Steele Tech tickling bits of your curiosity.\n\n<i>“");
 	if (flags["AKANE_TALKED_YOU"] != undefined) output("No more than I’ve already said back to you. ");
 	output("I know what you look like naked, ”</i> she giggles, brushing her hair to the side as it flops over her face. <i>“And that you’re very receptive... very receptive indeed.”</i>");
 	output("\n\nIn that small moment, her eyes turn from calm to predatory as if she was still in control of your physical body.");
@@ -2069,7 +2081,7 @@ public function akaneEpilogue():void
 		if (flags["YAMMI_HELPED"] >= 2) output("With her pexiga pet in tow, she already begins preparing for her newly minted business schemes.");
 	}
 
-	output("\n\nAnd that’s that. Despite having such love to go around, you know that your commitment to Akane now comes first. The spontaneity of it all, giving up your spacer life and all your friends, the promise of something new that you <i>need</i>... a pure, cathartic rush. A week after the declaration, you’re already at a shipyard with your ancient Casstech cleared of all personal belongings. It’s old enough and <i>just</i> about famous enough that it’s sequestered into an ‘artefacts’ category, presumably for some sort of Rushers museum. There’s an intense pang of guilt as you hand the command codes over... but by turning around, the guilt wafts away in a sea of new ideas and aspiration.");
+	output("\n\nAnd that’s that. Despite having such love to go around, you know that your commitment to Akane now comes first. The spontaneity of it all, giving up your spacer life and all your friends, the promise of something new that you <i>need</i>... a pure, cathartic rush. A week after the declaration, you’re already at a shipyard with your " + (PCShipIsCasstech() ? "ancient Casstech" : "ship") + " cleared of all personal belongings. It’s old enough and <i>just</i> about famous enough that it’s sequestered into an ‘artefacts’ category, presumably for some sort of Rushers museum. There’s an intense pang of guilt as you hand the command codes over... but by turning around, the guilt wafts away in a sea of new ideas and aspiration.");
 	output("\n\nYou spend the next week adjusting to life in the Host. Akane’s room becomes the most central part of your new home, something you get used to very quickly. The soft covers become the perfect balm for the nightly sessions you and her play out, and Akane is more than willing to wrap you up and tuck you in whenever there’s a particularly brutal one.");
 	output("\n\nEvery night feels like a new experience as she finds more intense and disturbing ways to bring you to your knees. During the day, you become familiar with the other inhabitants: the agents who have their own dorms and temporary sleeping places; training rooms and meditation spaces; comms rooms and actions rooms for planning and staging... with all your new free time, you dedicate yourself to knowing your surroundings in as complete a way as possible.");
 	output("\n\nAkane lets you roam free, letting you interact with the agents on their off hours. Despite their universally ‘professional’ attitudes, they lead surprisingly sane lives within the context of the Host. In turn, they all ask about how you plan to live in the organization, a question you leave open. Even if you don’t make friends immediately, you make good foundations.");

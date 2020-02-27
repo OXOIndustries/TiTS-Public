@@ -105,8 +105,8 @@
 					else if(kGAMECLASS.silly) kGAMECLASS.output(" a parabolic curve of stars and rainbows");
 					kGAMECLASS.output("... You shake your head and wipe the sweat from your [pc.face]. Your microsurgeons work in overtime to fight the foreign substance as you take on a light fever momentarily.");
 					
-					target.HP(-5);
-					target.energy(-20);
+					target.changeHP(-5);
+					target.changeEnergy(-20);
 					
 					kGAMECLASS.output("\n\nAfter your stomach settles and your fever subsides, your codex gives a few affirming beeps. You tap the screen and find that your body has rejected the drug due to your pending motherhood. Maybe it isn’t such a good idea to take this stuff when you’re already pregnant...");
 					

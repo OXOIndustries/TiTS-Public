@@ -136,7 +136,7 @@ public function acceptYammiBunsInShip():void
 	moveTo("507");
 	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 //[Decline]
@@ -198,7 +198,7 @@ public function yammiShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):St
 			else if(rand(2) == 0)
 			{
 				buffer += "For once, Yammi isn’t in the kitchen. Instead, she’s parked herself in your common room and is sprawled out in front of the holoscreen, watching what you surmise to be a ";
-				if(rand(4) == 0) buffer += "very old sparadat romance flick";
+				if(rand(4) == 0) buffer += "very old sparadat romance flick.";
 				else if(rand(3) == 0) buffer += "hot and heavy ausar chick flick. Either that or a fairly tame porno, judging by the amount of bouncy cleavage and red rocket on display.";
 				else if(rand(2) == 0) buffer += "thraggen mystery movie. Considering they’re a race of giant green brutes, the fact that there’s a slow-paced, thoughtful crime drama from their homeworld is a little shocking. At least, until the detective pulls out a plasma caster and melts a human gangster’s face off.";
 				else buffer += "melodrama set during the brief but tense Human-Ausar cold war of ‘68. You can’t remember much of the history around it, but the way that the ausar Star-Queen and the human Supreme Commander are eyeing each other in the negotiation chambers, you think this might just be a space-age <i>Romeo and Juliet</i> knockoff. Especially when they start speaking in iambic pentameter for some reason.";
@@ -551,7 +551,7 @@ public function milkSalivaFromPexiga():void
 	output("\n\nThen you remember you have work to do. You bottle up the saliva you gathered and stick it in your pack, leaving the pexiga with a light pat on the head. She gurgles at you, tongue lolling listlessly from her mouth.\n\n");
 	//PC gains <i>“Pexiga Saliva”</i> item.
 	processTime(13);
-	pc.lust(3);
+	pc.changeLust(3);
 	quickLoot(new PexigaSaliva());
 	//Trick the game into immediately jumping back into Yammi's menu after item loots.
 	eventQueue.push(yammiInTheKitchen);
@@ -817,7 +817,7 @@ public function getYammiSmut():void
 	//Sex Options
 	//[Vaginal] [Anal] [Get Oral]
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	yammiFollowerSexMenu();
 }
 
@@ -840,7 +840,7 @@ public function flirtWithYammiBruh():void
 	output(" A hand delves between them, quickly brushing aside a silky layer of fabric and finding a damp slit to slide into.");
 	output("\n\nShe’s open and waiting for you...");
 	processTime(6);
-	pc.lust(10);
+	pc.changeLust(10);
 	yammiFollowerSexMenu();
 }
 

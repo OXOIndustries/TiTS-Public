@@ -8,6 +8,7 @@
 	import classes.Items.Accessories.JungleRepel;
 	import classes.Items.Miscellaneous.MagicMilker;
 	import classes.Items.Miscellaneous.ShieldBooster;
+	import classes.Items.Tents.HLTent;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -59,10 +60,12 @@
 			this.inventory.push(new JungleRepel());
 			this.inventory.push(new MagicMilker());
 			this.inventory.push(new ImmunoBooster());
+			this.inventory.push(new HLTent());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
 			this.typesBought[this.typesBought.length] = GLOBAL.SHIELD;
+			this.typesBought[this.typesBought.length] = GLOBAL.TENT;
 			this.sellMarkup = 1.15;
 			this.buyMarkdown = .5;
 			this.keeperBuy = "You ask what items she has to sell.\n\n<i>\"JoyCo has provided the latest and greatest in affordable medical technology for the adventurer in need. You won't find treatments this good for this price anywhere else!\"</i> V-Ko efficiently rattles off the full list of her wares, their effects, and their prices without pause.\n";

@@ -158,7 +158,12 @@
 
 			var nipColor:String = "pink";
 			var cuntColor:String = "pink";
-			if(pc.skinTone == "white") color = "silver";
+			
+			if(pc.skinTone == "white")
+			{
+				nipColor = "silver";
+				cuntColor = "silver";
+			}
 			else if(pc.skinTone == "fair" || pc.skinTone == "tanned" || pc.skinTone == "pale") 
 			{
 				nipColor = "pink";

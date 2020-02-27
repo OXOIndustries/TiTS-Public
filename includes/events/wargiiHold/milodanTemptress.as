@@ -349,7 +349,7 @@ public function sitOnTemptingKittyFace():void
 	else output("You’re going to be my chair for a while. It’s up to you if anyone else can sit here later, though.");
 	output("”</i>");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",sitOnTemptingKittyFace2);
 }
@@ -451,7 +451,7 @@ public function sitOnTemptingKittyFace2():void
 			{
 				output(" The tendrils lining your alien mast ");
 				if(pc.hasVagina() && (pc.vaginas[0].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.vaginas[0].type == GLOBAL.TYPE_SUULA)) output("further ");
-				output("drain her mind of coherency, lashing at pretty nerves and and stinging her palate with liquid lust, making your swampy trip even easier.");
+				output("drain her mind of coherency, lashing at pretty nerves and stinging her palate with liquid lust, making your swampy trip even easier.");
 			}
 			output("\n\nWhen you slide into her neck now, your [pc.cockHead " + dick + "] brushes her tonsil before replacing her adam’s apple with its perverse shape. That’s the spot you aim for on every descent. Convulsing neck-muscles arrest your thick phallus when you take too much from her, but you can hardly be blamed for that. The frictious massage against your urethral lips spreads them a bit wider, enabling you to vent more masculine pressure into her subservient suck-hole.");
 			output("\n\nYour prey strokes your [pc.thighs] tenderly while you hump away at her jaw with slow, tentative gyrations, brushing her teeth, jerking left and right between her cheeks. You’re spurting so much pre that it’s coming back up on her strained gurgles, rinsing her taste buds and turning her flipped mouth into a slippery waterpark that very few dicks will have a problem participating in.");
@@ -990,9 +990,9 @@ public function chooChooPussyPlowing(x:int):void
 		output("”</i>");
 		output("\n\nYou try and ignore both her and how horny her proposal makes you as you " + (!pc.isCrotchExposed() ? "re-cover and ":"") + "get ready to move." + (!pc.isCrotchExposed() ? " Your [pc.crotchCovers] feel noticeably tighter as you look back and see the milodan minx wave sensually at you.":" Your [pc.cock] stiffens noticeably as you look back at the milodan minx. Her eyes are glued to your shaft as it involuntarily expands under her scrutiny.") + " You turn and start moving away quicker, before you’re tempted into another round!");
 	}
-	output("\n\n");
 	processTime(45);
 	pc.lust(150);
+	output("\n\n");
 	enemy.loadInCunt(pc,x);
 	if(y >= 0) enemy.loadInAss(pc);
 	pc.orgasm();

@@ -1,37 +1,35 @@
 package classes.Characters
 {
 	import classes.Creature;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.GLOBAL;
-	import classes.Items.Melee.Fists;
-	import classes.Items.Miscellaneous.*
-	import classes.Items.Protection.JoyCoPremiumShield;
-	import classes.TITSSaveEdit.Data.CoCVaginaClass;
 	import classes.VaginaClass;
 	import classes.CockClass;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
-	import classes.Engine.Utility.weightedRand;
-	import classes.Engine.Utility.rand;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.weightedRand;
+	import classes.Items.Melee.Fists;
+	import classes.Items.Miscellaneous.*;
+	import classes.Items.Protection.JoyCoPremiumShield;
 
 	public class Frostwyrm extends Creature
 	{
 		//constructor
 		public function Frostwyrm()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
 			//Bunch of cosmetic items are placeholders
 			this.short = "Frostwyrm";
-			this.originalRace = "Frostwyrm";
+			this.originalRace = "frostwyrm";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "The creature before you is a reptilian behemoth of monumental size, nearly the size of your Dad’s old Casstech at the shoulders. It is covered in interlocking white scales, each as large and hard as a shield. Spear-like talons grow from the ends of its six legs, digging gashes into the snow as it circles you. Your eyes are constantly drawn to its bestial maw, a lizard-like muzzle loaded with three rows of teeth, each as long as a sword. Four small red eyes regard you with malevolence, two on either side of its face. Behind it stretches a pair of leathery wings, somehow powerful enough to give the monster enough lift to fly, and a tail covered with brutal spikes. This is a creature made for violence, honed over millions of years into the perfect killing machine. \n\n\If you lose here, you don’t think you’re going to walk away alive. ";
@@ -142,25 +140,11 @@ package classes.Characters
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 20;
 			
-			this.vaginas = new Array();
-			this.createVagina();
-			this.shiftVagina(0, GLOBAL.TYPE_FROSTWYRM);
-			this.vaginas[0].hymen = false;
-			this.vaginas[0].wetnessRaw = 5;
-			this.vaginas[0].loosenessRaw = 3;
-			this.vaginas[0].vaginaColor = "blue";
+			updateGenitals();
 			
-			this.cocks = new Array();
-			this.createCock();
-			this.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
-			this.cocks[0].cLengthRaw = 36;
-			this.cocks[0].cThicknessRatioRaw = 5.5;
-			
-			this.balls = 2;
 			this.cumMultiplierRaw = 3500;
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 100;
 			this.ballFullness = 100;
 			this.ballEfficiency = 200;
 			this.refractoryRate = 50;
@@ -175,7 +159,6 @@ package classes.Characters
 			
 			this.elasticity = 1;
 			this.fertilityRaw = 10;
-			this.clitLength = 3;
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.ass.wetnessRaw = 0;
@@ -201,6 +184,18 @@ package classes.Characters
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			//dataObject._neverSerialize = false;
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			/*
+			dataObject.cocks[0].cLengthRaw = 36;
+			dataObject.cocks[0].cThicknessRatioRaw = 1.75;
+			*/
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.vaginas = new Array();
+			dataObject.cocks = new Array();
 		}
 		
 		override public function get bustDisplay():String
@@ -240,6 +235,25 @@ package classes.Characters
 		override public function isPregnant(x:int = 0):Boolean
 		{
 			return (kGAMECLASS.flags["FROSTWYRM_INCUBATION_TIMER"] != undefined);
+		}
+		
+		public function updateGenitals():void
+		{
+			vaginas = new Array();
+			createVagina();
+			shiftVagina(0, GLOBAL.TYPE_FROSTWYRM);
+			vaginas[0].hymen = false;
+			vaginas[0].wetnessRaw = 5;
+			vaginas[0].loosenessRaw = 3;
+			clitLength = 3;
+			
+			cocks = new Array();
+			createCock();
+			shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
+			cocks[0].cLengthRaw = 36;
+			cocks[0].cThicknessRatioRaw = 1.75;
+			balls = 2;
+			ballSizeRaw = 100;
 		}
 		
 		private function wyrmPsiScream(target:Creature):void

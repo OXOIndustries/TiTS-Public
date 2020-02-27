@@ -93,6 +93,8 @@
 			this.addChild(_backgroundElem);
 		}
 		
+		private var maxButtonPage:int = 8;
+		
 		/**
 		 * Create all of the main interface buttons present in the Button Tray
 		 */
@@ -133,7 +135,9 @@
 				newBtn.addEventListener(MouseEvent.CLICK, _buttonHandlerFunc);
 			}
 			
-			for (var btnD:int = 0; btnD < 60; btnD++)
+			var btnD:int = 0;
+			var btnLim:int = (15 * maxButtonPage);
+			for (btnD = 0; btnD < btnLim; btnD++)
 			{
 				_buttonData.push(new ButtonData());
 			}
@@ -184,24 +188,16 @@
 		 */
 		private function ButtonPageClickHandler(e:Event = null):void
 		{
-			if (!(e.currentTarget as SquareButton).isActive) return;
 			var forward:Boolean = ((e.currentTarget as SquareButton).name == "buttonPageNext");
 			
 			if (forward)
 			{
-				buttonPage++;
+				execButtonPageNext();
 			}
 			else
 			{
-				buttonPage--;
+				execButtonPagePrevious();
 			}
-			
-			if (buttonPage < 1) buttonPage = 1;
-			if (buttonPage > 4) buttonPage = 4;
-			
-			resetButtons();
-			
-			CheckPages();
 		}
 		
 		private function CheckPages():void
@@ -219,7 +215,7 @@
 					{
 						var newButtonPage:int = Math.ceil((lastButtonIndex + 1) / 15);
 						if (newButtonPage < 1) newButtonPage = 1;
-						if (newButtonPage > 4) newButtonPage = 4;
+						if (newButtonPage > maxButtonPage) newButtonPage = maxButtonPage;
 						if (_buttonPage > lastButtonPage && newButtonPage < lastButtonPage) _buttonPage = newButtonPage;
 					}
 					i = -1;
@@ -245,6 +241,26 @@
 			}
 		}
 		
+		public function execButtonPageNext():void
+		{
+			if (_buttonPageNext.isActive == false || buttonPage >= maxButtonPage) return;
+			
+			buttonPage++;
+			
+			resetButtons();
+			CheckPages();
+		}
+		
+		public function execButtonPagePrevious():void
+		{
+			if (_buttonPagePrev.isActive == false || buttonPage <= 1) return;
+			
+			buttonPage--;
+			
+			resetButtons();
+			CheckPages();
+		}
+		
 		/**
 		 * Reset the display state of the buttons to correspond to the backing _buttonsData field
 		 */
@@ -265,7 +281,14 @@
 					// Disabled buttons have no function
 					if (bd.func == null)
 					{
-						_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
+						if (bd.itemQuantity != 0 || (bd.tooltipComparison != null && bd.tooltipComparison.length > 0))
+						{
+							_buttons[i].setItemDisabledData(bd.buttonName, bd.itemQuantity, bd.stackSize, bd.tooltipHeader, bd.tooltipBody, bd.tooltipComparison);
+						}
+						else
+						{
+							_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
+						}
 					}
 					else
 					{
@@ -299,6 +322,9 @@
 			resetButtonColours();
 			clearButtonData();
 			clearGhostButtons();
+			
+			buttonPage = 1;
+			
 			CheckPages();
 		}
 		
@@ -439,6 +465,7 @@
 			_buttonData[slot].itemQuantity = quantity;
 			_buttonData[slot].stackSize = stackSize;
 			_buttonData[slot].tooltipComparison = ttComparison;
+			//CheckPages();
 		}
 		
 		/**

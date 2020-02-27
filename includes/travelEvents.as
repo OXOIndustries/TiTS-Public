@@ -14,6 +14,7 @@ public function incomingMessage(travelEvent:Function, originalDestination:String
 // Wrap the normal flyTo function so we can avoid triggering another travel event this time round.
 public function flyToWrapper(destination:String = "TAVROS HANGAR"):void
 {
+	pc.removeStatusEffect("Ship Repair Paused");
 	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (flags["STORED SHIP DESTINATION"] != undefined) flags["STORED SHIP DESTINATION"] = undefined;
 	switch(destination)
@@ -37,6 +38,7 @@ public function tryProcTravelEvent(destination:String):Function
 	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
 	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage);
+	if (roamingKiroAvailable() && flags["KIRO_RECRUITED"] == undefined && kiroTrust() >= 100 && flags["KQ_START"] == undefined && pc.level >= 9) possibleMessages.push(kirosDistressCall);
 
 	// Should only be available a week either side of hallowiener
 	if (isHalloweenish() || debug || rand(100) == 0)
@@ -176,7 +178,7 @@ public function iceQueenMessage(destination:String):void
 	
 	output("\n\n<i>“Ah! About time!”</i> the man says, stifling a cough. <i>“Listen, this is Captain Kandar of the </i>Ice Queen<i>. We’ve got a serious situation aboard. Our LightDrive went critical, and it’s venting smoke and gas into the crew deck. We’re pretty much dead in the water out here. Any assistance would be much appreciated.”</i>");
 	
-	output("\n\nHeck of a gamble, saying that sight unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
+	output("\n\nHeck of a gamble, saying that while you remain unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
 	
 	output("\n\nThe man on the screen grunts and runs a hand through his hair. <i>“Uh, at this point, we’re probably going to have to bail out. Unless you’ve got an industrial atmo-scrubber in your hold, anyway. You don’t happen to, eh?”</i>");
 	

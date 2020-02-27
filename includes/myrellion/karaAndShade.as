@@ -1099,16 +1099,16 @@ public function shadePostCoitusHangouts():void
 		output("\n\nYou nod, and watch Shade");
 		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome()) output(" leave the bedroom");
 		else output(" on her way out");
-		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your");
+		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your gear in order and let yourself out");
 		if(flags["SHADE_ON_UVETO"] == undefined)
 		{
-			output(" gear in order and let yourself out. Shade’s ships seals tight behind you.");
+			output(". Shade’s ships seals tight behind you.");
 			//PC is left in the far north of the airfield.
 			moveTo("602");
 		}
 		else
 		{
-			output(" kit in order and let yourself out shortly after. Shade’s house seals tight behind you, leaving you to quickly make your way back to the bar to get out of the searing cold.");
+			output(" shortly after. Shade’s house seals tight behind you, leaving you to quickly make your way back to the bar to get out of the searing cold.");
 			currentLocation = "UVI P32";
 		}
 		
@@ -1577,6 +1577,8 @@ public function talkToShadeAboutHerFamily():void
 	}
 	else
 	{
+		var metSaendra:Boolean = flags["SAEN MET AT THE BAR"] != undefined;
+		
 		output("<i>“So, you have any family, Shade?”</i>");
 		output("\n\n<i>“Everybody’s got family,”</i> she chuckles. <i>“I didn’t just grow out of a pod, you know.”</i>");
 		output("\n\nYou ");
@@ -1592,19 +1594,19 @@ public function talkToShadeAboutHerFamily():void
 		output("\n\nYou cock an eyebrow, and Shade chuckles. <i>“I was getting to that, but yeah, I’ve got a girl of my own. She’s about your age, I’d guess, maybe a little younger. Had her real early, barely past eighteen - probably the only time </i>my<i> mom threatened to kill me. And I got plenty shit bringing her up, too, since she was half-ausar to boot.”</i>");
 
 		output("\n\n<i>“Her father was an ausar?”</i> you ask");
-		if(flags["MET_SAENDRA"] != undefined) output(", thinking back to Saendra and suddenly hoping you haven’t accidentally fucked both Shade and her daughter");
+		if(metSaendra) output(", thinking back to Saendra and suddenly hoping you haven’t accidentally fucked both Shade and her daughter");
 		output(".");
 
 		output("\n\nShade flashes you a grin. <i>“Her </i>other mother<i> was, yeah. Met her when I was just starting out in the hunter business; she was leading a crew of construction drones on a kaithrit colony, and they’d turned up my next lead while excavating: a body, buried in the jungle. Nasty business. She was older than me, and bigger, but just enough to take the lead and buy me a drink the next time I talked to her. One thing led to another, as they say, and by the time I’d brought in my quarry I was starting to show. One night, one time, without protection and look what happens. Still, I wouldn’t change a thing... I love my little girl and, I’ll be honest, I see her sire from time to time. We stay close, though she was too much of a play-girl to commit more than that. Has a trail of bastards behind her other than mine, I hear.”</i>");
 
 		output("\n\n<i>“This daughter of yours have a name, by the way?”</i>");
-		if(flags["MET_SAENDRA"] != undefined) output(" you press, crossing your fingers under the table.");
+		if(metSaendra) output(" you press, crossing your fingers under the table.");
 
 		output("\n\n<i>“Astra. Astra Irons. I’d say I hope you get to meet her sometime, ");
 		if(flags["SEXED_SHADE"] != undefined) output("but knowing you, I’d have to kill you afterwards");
 		else output("but I’d rather not have to kill you down the line");
 		output(",”</i> Shade laughs, though there’s a noticeable edge in her voice.");
-		if(flags["MET_SAENDRA"] != undefined) output(" Well, at least it’s not Saendra....");
+		if(metSaendra) output(" Well, at least it’s not Saendra....");
 	}
 	
 	processTime(6);
@@ -1646,11 +1648,10 @@ public function runesYouTurdShade():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output(" a god-forsaken ice ball of a moon called Uveto VII, owned by those little bastards.”</i> She points to ");
-		if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig");
-		else output("a tiny, stuffed-animal-like creature sitting in the bar");
+		if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig.");
+		else output("a tiny, stuffed-animal-like creature sitting in the bar.");
 	}
-	else output(" this frozen iceball here");
-	output(".”</i>");
+	else output(" this frozen iceball here.”</i>");
 	output("\n\n<i>“I woke up in a church, laid up beside a fire and covered in blankets. Apparently I lost consciousness in the cold, sitting in a warehouse out in the open for half a day. Nearly died before somebody heard me shivering in a crate and crowbarred it. I was lucky I didn’t lose my baby, not to mention a few extremities.");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" A human religious sect on-world took me in after the docs were finished with me. Uveto was");
 	else output(" The temple took me in after the docs were finished with me. Uveto is");

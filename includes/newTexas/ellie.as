@@ -338,7 +338,10 @@ public function buildEllieTalkMenu():void
 	//Lots of shit for this button for preg stuff
 	if(flags["ELLIE_OPERATION"] == 1) addDisabledButton(4, "Operation", "Operation", "Ellie’s already had the fertility operation.");
 	else if(flags["ELLIE_OPERATION"] == 2) addButton(4, "Pregnancy", talkToEllieAboutPregnancyButShesActuallyPregnantThisTime, undefined, "Pregnancy", "See how Ellie is fairing with her pregnancy.");
-	else if(flags["ELLIE_OPERATION"] == 3) addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "Visit Nursery", "See if Ellie wants to go visit the eggs.");
+	else if(flags["ELLIE_OPERATION"] == 3) {
+		if(shipLocation != "TAVROS HANGAR" && (disableExploreEvents() || !leavePlanetOK())) addDisabledButton(4, "VisitNursery", "Visit Nursery", "You are unable to leave with your ship at the moment.");
+		else addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "Visit Nursery", "See if Ellie wants to go visit the eggs.");
+	}
 	else if(flags["ELLIE_OPERATION"] == 4) addButton(4, "Kids", askEllieAboutTheKiddos, undefined, "Kids", "Ask Ellie how she and the kids are fairing.");
 	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation, undefined, "Operation", "Discuss the fertility operation with Ellie.");
 	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy, undefined, "Pregnancy", "Discuss pregnancy with Ellie.");

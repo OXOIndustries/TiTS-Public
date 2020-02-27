@@ -433,10 +433,16 @@ public function talkToShekkaAboutRaskvel():void
 	output(". Over there ");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("we’re ");
 	else output("we were ");
-	output("as thick as fermites in a ruined girder,”</i> Shekka explains while climbing her way out of the bin and searching around for another, still working on something. <i>“Not just us either. The Lapinara ");
-	if(flags["TARKUS_DESTROYED"] == undefined) output("are");
-	else output("were");
-	output(" the same way. Maybe we both came from the same ancestor, I don’t know. There’s enough similarities to make you wonder, right?”</i>");
+	output("as thick as fermites in a ruined girder,”</i> Shekka explains while climbing her way out of the bin and searching around for another, still working on something. <i>“Not just us either.");
+	if(flags["LAPLOVE"] != undefined)
+	{
+		output(" The Lapinara ");
+		if(flags["TARKUS_DESTROYED"] == undefined) output("are");
+		else output("were");
+		output(" the same way. Maybe we both came from the same ancestor, I don’t know. There’s enough similarities to make you wonder, right?");
+	}
+	else output(" Seems like every species on planet’s wired up for junking. Makes you wonder, right?");
+	output("”</i>");
 	output("\n\nYou find yourself nodding, though Shekka is too busy examining serial numbers on power converters to see.");
 	output("\n\n<i>“Anyhow, like I was saying, I think we’re the way we are because of the way Tarkus ");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("is. It’s");
@@ -581,7 +587,7 @@ public function talkToShekkaAboutNovahome():void
 	output("You ask about Novahome.");
 	output("\n\n<i>“Oh isn’t it just the best!”</i> Shekka throws her arms up in the air and practically dances in place, revealing the flighty side that most of her race seem to spend all their time exposing. <i>“It’s way better than living in some smoky hole in the ground, fighting the sydians or rogue bots every rotation. ");
 	if(flags["TARKUS_DESTROYED"] != undefined) output("It even saved us from the death of our planet. ");
-	else output("Hell, it’s hard enough to keep the parasitic lapinara from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!");
+	else output("Hell, it’s hard enough to keep the parasit" + (flags["LAPLOVE"] != undefined ? "ic lapinara":"es") + " from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!");
 	output("”</i> She puffs her chest out in pride, clearly outlining the curves of her small bosom for all to see. Her nipples stick out like tiny, sore thumbs, begging to be tweaked or touched. You restrain yourself for now, wanting to hear the rest of her words.");
 	output("\n\nShekka explains, <i>“I was pretty young when my tribe moved in. I can still remember huddling in a leaky old cave around the warmth of a dozen half-repaired generators at night. Luckily, one of our neighboring tribes, the Gyss, found the Nova while foraging. They wanted to make it their home, but there were too many sydians inside for them to take on their own, not to mention all the aquiara inside.”</i>");
 	output("\n\n<i>“Aquiara?”</i> you wonder.");
@@ -625,7 +631,7 @@ public function talkToShekkaAboutTheWastes():void
 	userInterface.showName("\nSHEKKA");
 	output("<i>“Could you tell me about the wastes?”</i> you ask.");
 	output("\n\nShekka takes off her welding mask, a somber look on her pink-topped visage. <i>“Yeah, though there isn’t much to tell");
-	if(flags["TARKUS_DESTROYED"] == undefined) output(", I think. It’s hot in the sun and cold in the night. Actual food is scarce - finding healthy plants is like discovering buried treasure, and seeds are guarded with our lives. We can usually rig up small underground fields to feed ourselves, but once there’s enough of us in a tribe, we wind up either leaving eggs in the wilds or kicking a few unlucky souls.”</i> She shudders. <i>“It’s a pretty horrible life, to be honest.”</i>");
+	if(flags["TARKUS_DESTROYED"] == undefined) output(", I think. It’s hot in the sun and cold in the night. Actual food is scarce - finding healthy plants is like discovering buried treasure, and seeds are guarded with our lives. We can usually rig up small underground fields to feed ourselves, but once there’s enough of us in a tribe, we wind up either leaving eggs in the wilds or kicking out a few unlucky souls.”</i> She shudders. <i>“It’s a pretty horrible life, to be honest.”</i>");
 	else output(" since Tarkus died. It was hot in the sun and cold at night. Actual food was scarce. Finding healthy plants was like discovering buried treasures, and seeds were guarded with our lives. We managed to rig up small, underground fields to feed ourselves, but once enough of us were born, we’d wind up leaving eggs in the wilds or kicking out a few unlucky souls.”</i> She shudders. <i>“It was a pretty horrible life to be honest. I pray we can overcome our instincts before we wind up overpopulating Novahome.”</i>")
 	output("\n\n<i>“It sounds awful.”</i>");
 
@@ -639,8 +645,8 @@ public function talkToShekkaAboutTheWastes():void
 	else output("<i>“There were other areas like the wastes that were just about as bad if not worse. For one, there was the scything glades. Trees grew there, metallic, predatory trees that lashed out at anything that came to close with razor-sharp blades. There were usually a few safe paths through them, but you had to keep your wits about you if you didn’t want to wind up cut to ribbons with your blood used for fertilizer.”</i>");
 	output("\n\n<i>“That’s terrifying!”</i>");
 	output("\n\nShekka ticks off her fingers, counting in her head. ");
-	if(flags["TARKUS_DESTROYED"] == undefined) output("<i>“Then there’s the Oil Sea. It isn’t really just oil either. It’s full of liquid metals, pollutants, corrosives, and the like. The place has been swarming with the goos since we kicked them out of Novahome. I guess the lubricants and moisture there have helped them reproduce.”</i> She moves on to the next finger. <i>“Watch out around the iron ridges too. All these metal plates make it the perfect place for ambushes. Our tribe never really went there - there’s lapinara and worse aplenty.”</i>");
-	else output("<i>“Then there was the Oil Sea. It wasn’t just oil either. It was full of liquid metals, pollutants, corrosives, and the like. That place swarmed with gray goos once we kicked them out of Novahome. I guess the lubricants and moisture helped them to reproduce.”</i> She moves on to the next finger. <i>“The iron ridges were tricky too: all metal plates and perfect places to ambush. Our tribe never really went there - there were lapinara and worse aplenty.”</i>");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("<i>“Then there’s the Oil Sea. It isn’t really just oil either. It’s full of liquid metals, pollutants, corrosives, and the like. The place has been swarming with the goos since we kicked them out of Novahome. I guess the lubricants and moisture there have helped them reproduce.”</i> She moves on to the next finger. <i>“Watch out around the iron ridges too. All these metal plates make it the perfect place for ambushes. Our tribe never really went there" + (flags["LAPLOVE"] != undefined ? " - there’s lapinara and worse aplenty.":"") + "”</i>");
+	else output("<i>“Then there was the Oil Sea. It wasn’t just oil either. It was full of liquid metals, pollutants, corrosives, and the like. That place swarmed with gray goos once we kicked them out of Novahome. I guess the lubricants and moisture helped them to reproduce.”</i> She moves on to the next finger. <i>“The iron ridges were tricky too: all metal plates and perfect places to ambush. Our tribe never really went there" + (flags["LAPLOVE"] != undefined ? " - there were lapinara and worse aplenty":"") + ".”</i>");
 	output("\n\nYou make a mental note about that and thank her for the intel.");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("\n\n<i>“Just don’t get caught in a storm, and you’ll be fine. They don’t happen often, but the metal flakes will cut you to ribbons in minutes if you’re out in the open,”</i> Shekka warns. <i>“Make sure you’ve always got an eye on a potential bolt-hole. You’ll do fine, [pc.name]. You’ve got a good head on you");
 	else output("\n\n<i>“You didn’t want to get caught in a storm either. They didn’t happen often, but the metal flakes would cut you to ribbons in minutes if you were out in the open,”</i> Shekka warns. <i>“You had to always keep an eye out for a bolt-hole. You would’ve done fine, [pc.name]. You’ve got a good head on you");
@@ -1230,8 +1236,22 @@ public function shekkaGrindsFinish():void
 
 public function fuckedShekka():void
 {
-	if(flags["TIMES_SEXED_SHEKKA"] == undefined) flags["TIMES_SEXED_SHEKKA"] = 0;
-	flags["TIMES_SEXED_SHEKKA"]++;
+	IncrementFlag("TIMES_SEXED_SHEKKA");
+}
+public function timesSexedShekka():int
+{
+	var timesSexed:int = 0;
+	if(flags["TIMES_SEXED_SHEKKA"] !== undefined) timesSexed += flags["TIMES_SEXED_SHEKKA"];
+	if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] !== undefined) timesSexed += flags["TIMES_TAILVIBED_WITH_SHEKKA"];
+	if(flags["SHEKKA_ONAHOLED"] !== undefined) timesSexed += flags["SHEKKA_ONAHOLED"];
+	if(flags["SHEKKA_GYMMED"] !== undefined) timesSexed += flags["SHEKKA_GYMMED"];
+	if(flags["SHEKKA_OVIED"] !== undefined) timesSexed += flags["SHEKKA_OVIED"];
+	if(flags["SHEKKA_TRIED_2_BREED_U"] !== undefined) timesSexed += flags["SHEKKA_TRIED_2_BREED_U"];
+	if(flags["SHEKKA_BUTTFUCKED_U"] !== undefined) timesSexed += flags["SHEKKA_BUTTFUCKED_U"];
+	if(flags["SHEKKA_BLOWN"] !== undefined) timesSexed += flags["SHEKKA_BLOWN"];
+	if(flags["SHEKKA_RIDDEN"] !== undefined) timesSexed += flags["SHEKKA_RIDDEN"];
+	
+	return timesSexed;
 }
 
 //Big Dick Ear Shenanigans
@@ -2451,7 +2471,7 @@ public function raskvelCureQuestShekkaTalk():void
 	{
 		output("<i>“Hey! There you are!”</i> Shekka all but bounces up to you. There is a peakiness to her eyes that speaks of far too much moving compared to what you would guess is far too little sleep.");
 		output("\n\nConsidering the fact that her usually scrap-covered desk is buried beneath an entire V-Machine’s worth of empty cans, that estimate seems to be a rather safe one. You greet her with a wave and she guides you to a couple of stools. Once you’re sat down, Shekka follows suit, wiggling her massive hips and setting her great big ears to jangling musically.");
-		output("\n\nAnd then there’s silence. Shekka holds up her hand, mouth half open... and you could swear her brain just shut down. When you snap a finger in front of her face she scowls and pushes it away. <i>“Sorry. I’m just trying to find a good way to put this to words.”</i> She speaks softly, pulling out a thin, beaten-up data pad She taps through it a little, before swiping over to a series of graphs. She hands it over to you with a concerned frown.");
+		output("\n\nAnd then there’s silence. Shekka holds up her hand, mouth half open... and you could swear her brain just shut down. When you snap a finger in front of her face she scowls and pushes it away. <i>“Sorry. I’m just trying to find a good way to put this to words.”</i> She speaks softly, pulling out a thin, beaten-up data pad. She taps through it a little, before swiping over to a series of graphs. She hands it over to you with a concerned frown.");
 
 		if(pc.isBimbo()) output("\n\nIt’s kind of disappointing; you thought she was going to show you something a little more special! No naked men or women, nobody’s fucking... It does look important though. Bigger is probably better, and not many bars are big.");
 		//Bro
@@ -2479,7 +2499,7 @@ public function raskvelCureQuestShekkaTalk():void
 		//if Anno’s on your crew
 		if(annoIsCrew())
 		{
-			output("\n\nHuh, maybe your resident puppy-slut Anno might be able to score Shekka the details of a few legitimate Steeletech scientists...");
+			output("\n\nHuh, maybe your resident puppy-slut Anno might be able to score Shekka the details of a few legitimate Steele Tech scientists...");
 		}
 		//cont
 		output("\n\nYou rock on your heels for a moment, soaking in Shekka’s excitement a little yourself. Hopefully she isn’t getting too far ahead of herself. At the very least it seems promising news. <i>“Of course, while I’m waiting for a few call-backs, how about you and me do something to pass the time?”</i>");
@@ -2848,7 +2868,7 @@ public function cureRewardUseDick():void
 	//Merge
 	output("\n\nIt takes at least a few more minutes for the both of you to come crashing down from the sexual high, although Shekka still occasionally twitches in the aftershocks of pleasure. <i>“Sweet fucking stars... I’m not sure what even came over me...”</i> she nuzzles your chest and wipes a little sweat from her brow.");
 	output("\n\nAfter you’ve both cooled down properly, and wiped yourselves off, the little Raskvel tiptoes and pulls you down for a quick kiss. <i>“Thank you again, [pc.name]. I’ll uh... I’ll let you know how distribution goes. Okay?”</i> You give her an affirmative nod, a ruffle of her quilly-hair, and return to your adventure.");
-	IncrementFlag("TIMES_SEXED_SHEKKA");
+	fuckedShekka();
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
@@ -2916,7 +2936,7 @@ public function vaginaSexWithShekkaOnCureThing():void
 
 	output("\n\nAfter you’ve both cooled down properly, and wiped yourselves off, the little Raskvel tiptoes and pulls you down for a quick kiss. <i>“Thank you again, [pc.name]. I’ll uh... I’ll let you know how distribution goes. Okay?”</i> You give her an affirmative nod, a ruffle of her quilly-hair, and return to your adventure.");
 	processTime(30);
-	IncrementFlag("TIMES_SEXED_SHEKKA");
+	fuckedShekka();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2937,7 +2957,7 @@ public function cureProgress1Email():String
 //A week after message one
 public function spellingAndReadingTestsMailText():String
 {
-	return ParseText("Hi [pc.name]. Hopefully not bothering you right now, but look! I’m super fucking proud.\n\n<i>What follows next in the email is a few screencaps of IQ test results. They seem... decidedly average except for one or two.</i>\n\nI know what you’re thinking; except for kid four and eight, that’s pretty average right? Well, most of our IQs look like that. The important part is how we do in practical spelling and reading tests.\n\nDirectly after that statement are a few more screengrabs, one appears to be a former examination block... it’s all surprisingly low. Half of it isn’t even completed. Below that though are a section of properly completed, reasonably well scored exams.\n\nWithout having a big old “time to fuck” button smashed into our thinking meats, it’s pretty hard to get anything done past the biological need to keep our species from getting squashed. These new kids aren’t so attention deficit. They’re <i>concentrating</i>, [pc.name]. How amazing is that?!\n\nSorry, I got carried away. It’s really exciting seeing the future of your people. I mean, eventually the children get to be our future. But, you know, for real.\n\nAnyway, I’ll leave you to whatever you’re balls-deep in. Take care Steele.\n\nLove’n’hugs\n\tShekka\n\n(<i>Another tasty little photo seems to have been thrown on the end of her message. She’s sat on her work-bench, legs spread wide as she cums around a vibrator as thick as your arm. Mnf.</i>)");
+	return ParseText("Hi [pc.name]. Hopefully not bothering you right now, but look! I’m super fucking proud.\n\n<i>What follows next in the email is a few screencaps of IQ test results. They seem... decidedly average except for one or two.</i>\n\nI know what you’re thinking; except for kid four and eight, that’s pretty average right? Well, most of our IQs look like that. The important part is how we do in practical spelling and reading tests.\n\nDirectly after that statement are a few more screengrabs, one appears to be a former examination block... it’s all surprisingly low. Half of it isn’t even completed. Below that though are a section of properly completed, reasonably well scored exams.\n\nWithout having a big old “time to fuck” button smashed into our thinking meats, it’s pretty hard to get anything done past the biological need to keep our species from getting squashed. These new kids aren’t so attention deficit. They’re <i>concentrating</i>, [pc.name]. How amazing is that?!\n\nSorry, I got carried away. It’s really exciting seeing the future of your people. I mean, eventually the children get to be our future. But, you know, for real.\n\nAnyway, I’ll leave you to whatever you’re balls-deep in. Take care Steele.\n\nLove’n’hugs\n\tShekka\n\n(<i>Another tasty little photo seems to have been thrown on the end of her message. She’s seated on her work-bench, legs spread wide as she cums around a vibrator as thick as your arm. Mnf.</i>)");
 }
 
 //Hey...
@@ -3004,7 +3024,7 @@ public function welcomeShekkaToTheTeam2():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	author("SomeKindofWizard");
-	output("<i>“Your ship is so, so neat. Look at the style of it! Your father had great taste.”</i> Shekka says, looking around with no small amount of awe. She rests her hands on her exceptional hips, gears turning behind her eyes.<i>“What happens next? I realize now I don’t really get the whole... entirety of your mission then. Or is it really just one great big sexy party? I’m cool with either.”</i>");
+	output("<i>“Your ship is so, so neat. Look at the style of it! You" + (PCShipIsCasstech() ? "r father had" : " have") + " great taste.”</i> Shekka says, looking around with no small amount of awe. She rests her hands on her exceptional hips, gears turning behind her eyes.<i>“What happens next? I realize now I don’t really get the whole... entirety of your mission then. Or is it really just one great big sexy party? I’m cool with either.”</i>");
 	//You have Anno:
 	if(annoIsCrew())
 	{

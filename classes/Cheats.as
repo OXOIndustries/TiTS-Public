@@ -4,6 +4,9 @@
 	import classes.Items.Miscellaneous.ZilRation;
 	import classes.Resources.StatusIcons;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Map.InRoomWithFlag;
+	import classes.Engine.Utility.getPlanetName;
+	
 	
 	/**
 	 * ...
@@ -67,6 +70,23 @@
 			kGAMECLASS.flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 0;
 			kGAMECLASS.flags["SHUKUCHI_EMAIL_TIMER"] = (kGAMECLASS.GetGameTimestamp() - (60 * 24 * 7));
 		}
+		public static function BringMeAFox():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			if (kGAMECLASS.flags["BIANCA_LOCATION"] != undefined) return;
+			if (!InRoomWithFlag(GLOBAL.HAZARD) || kGAMECLASS.biancaPlanetPool().indexOf(getPlanetName().toLowerCase()) < 0)
+			{
+				kGAMECLASS.output("\n<b>Bianca can’t spawn here.</b>");
+				return;
+			}
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Spawning Fox</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.biancaRandomEncounter);
+		}
 		public static function BoobSiliconePlease():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
@@ -74,16 +94,10 @@
 				return;
 			}
 			Cheats.OutputStuff(true);
-			if(!kGAMECLASS.pc.hasStatusEffect("Boob Silicone Please"))
-			{
-				kGAMECLASS.pc.createStatusEffect("Boob Silicone Please");
-				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will now be the target</b>!");
-			}
-			else
-			{
-				kGAMECLASS.pc.removeStatusEffect("Boob Silicone Please");
-				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will no longer be the target</b>!");
-			}
+			
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Doctor Badger cheat menu activated!</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.drBadgerCheatMenu);
 		}
 		public static function XPToLevel():void
 		{
@@ -96,6 +110,73 @@
 			kGAMECLASS.output("\n\nGiving XP to next level!");
 			(kGAMECLASS.pc as PlayerCharacter).XPRaw = (kGAMECLASS.pc as PlayerCharacter).XPMax();
 		}
+		public static function ClassicLapinara():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["LAPLOVE"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>You can now encounter the classic Lapinara on Tarkus.</b>");
+				kGAMECLASS.flags["LAPLOVE"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Classic Lapinara encounters are disabled.</b>");
+				kGAMECLASS.flags["LAPLOVE"] = undefined;
+			}
+		}
+		public static function SexdollEncounter():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n<b>You will now be transported to a location to test the sexdolls in Kiro’s recruitment quest. A teleport out can be found to the northeast of the map...</b>");
+			//kGAMECLASS.shipLocation = "KQ N32";
+			kGAMECLASS.currentLocation = "KQ N32";
+			//kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
+		}
+		public static function SJWMode():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["SJW"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>‘Shemale’ will now be converted to dick-girl.</b>");
+				kGAMECLASS.flags["SJW"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Text will appear in unaltered form.</b>");
+				kGAMECLASS.flags["SJW"] = undefined;
+			}
+		}
+		public static function ArdiaLetsYouChoose():void
+		{
+			if (kGAMECLASS.pc.short == "undefined" || kGAMECLASS.pc.short.length == 0) return;
+			Cheats.OutputStuff();
+			if (kGAMECLASS.flags["ARDIA_CHOICE"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>Ardia will still display her sex menu at high DM.</b>");
+				kGAMECLASS.flags["ARDIA_CHOICE"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Ardia will pick sex scenes as normal.</b>");
+				kGAMECLASS.flags["ARDIA_CHOICE"] = undefined;
+			}
+		}
+
 		public static function infiniteCrewSpace():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
@@ -149,6 +230,8 @@
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
 			// Zheng Shi
 			kGAMECLASS.flags["KING_NYREA"] = 1; kGAMECLASS.flags["BEAT_TAIVRA_TIMESTAMP"] = kGAMECLASS.GetGameTimestamp();
+			// Dhaal
+			kGAMECLASS.flags["CHEAT_UNLOCK_DHAAL"] = 1;
 			// New Texas
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 			// Poe A
@@ -267,7 +350,7 @@
 			}
 			
 			OutputStuff(true);
-			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments \"like so\".\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
+			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments “like so”.\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
 			kGAMECLASS.removeInput();
 			kGAMECLASS.displayInput();
 			kGAMECLASS.userInterface.textInput.text = "";

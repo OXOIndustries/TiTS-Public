@@ -189,7 +189,7 @@ public function riyaMenu():void
 		if(flags["RIYA_SUSPICION"] != undefined) addButton(2,"Racism",riyaRacismTalk);
 	}
 	//[Sex]
-	if(pc.isFullyWombPregnant() && pc.hasStatusEffect("Riya Breed No Sex")) addDisabledButton(3,"Sex","Sex","You are too pregnant with Riya’s child to do this!");
+	if(pc.hasVagina() && pc.isFullyWombPregnant() && pc.hasStatusEffect("Riya Breed No Sex")) addDisabledButton(3,"Sex","Sex","You are too pregnant with Riya’s child to do this!");
 	else if((!pc.hasVagina() || pc.isTaur() || pc.femininity <= 40 || pc.hasCock()) && flags["RIYA_BLOCKED"] != undefined) addDisabledButton(3,"Sex","Sex","You need to a normal female to pique her interest - with less than four legs.");
 	else addButton(3,"Sex",sexRiyaCauseYerDumbAndDeserveToBePunished);
 	addButton(14,"Leave",mainGameMenu);
@@ -886,7 +886,7 @@ public function riyaFellatioScene():void
 	output("”</i>");
 
 	output("\n\nShe sends her cock swinging into your face again - and again, and again, the rod of mocha flesh getting harder and harder with every impact until it actually starts to hurt a bit, rather than sting. Once she’s at half-mast, Riya pumps her hand up and down her shaft a few times until the veiny thing is almost fully erect, pulsing visibly in front of your face. She wastes no time inching her hips forward and bumping her pre-leaking tip into your [pc.lips], the powerful, salty taste assaulting your mouth. <i>“Well, Steele? It ain’t gonna blow itself,”</i> she says as she pushes forward another inch, your nostrils the next to come under attack. Her smell permeates your olfactory senses, strong and intoxicating, your mouth seeming to open of it’s own accord to welcome this exemplary specimen in.");
-	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the SteeleTech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
+	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the Steele Tech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
 	if(pc.horns > 1) output("[pc.horns]");
 	else if(!pc.hasHair()) output("scalp");
 	else output("[pc.hair]");
@@ -1450,7 +1450,7 @@ public function riyaSpawnPregnancyEnds():void
 		else output(" belongings");
 		output(", finding as safe and comfortable a spot as possible in the wild terrain. Despite your self-directed anger for not staying near professional medical care, you know there’s no help for it at this point. You’re going to have to give birth unassisted.");
 		// minor HP damage?
-		pc.HP(-5);
+		pc.changeHP(-5);
 	}
 	
 	// merge

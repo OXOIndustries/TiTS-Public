@@ -301,7 +301,9 @@ package classes.Items.Transformatives
 					if(!pc.hasCock() && !pc.hasVagina()) output(" Your [pc.asshole] clenches in a sudden, full-body orgasm, but the pleasure of the climax pales next to the bliss you get from expressing even a single droplet of [pc.milk].");
 					//New PG
 					output("\n\nYou need to find someone to fuck you and suckle the [pc.milk] that’s pouring out in streams!");
-					pc.milkMultiplier = 100;
+					pc.boostLactation(90, false);
+					if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
+					pc.milkFullnessAdd(100, false);
 					pc.orgasm();
 				}
 				//2. Lactating? Lactate harder
@@ -373,10 +375,12 @@ package classes.Items.Transformatives
 					output(". There’s so much!");
 					if(pc.lactationQ() < 100) output(" You were so empty before, but somehow, Gush has made you... well, gush.");
 					output(" Rivers of it wash down the sides of your growing tits, coating your hands until you might as well be wearing [pc.milkColor] gloves.");
-					if(pc.milkMultiplier < 125) pc.milkMultiplier = 125;
+					//if(pc.milkMultiplier < 125) pc.milkMultiplier = 125;
+					pc.boostLactation(15, false);
+					pc.milkFullnessAdd(100, false);
 				}
 				//Actually boost boobs 'n shit
-				pc.lust(pc.lustMax());
+				pc.changeLust(pc.lustMax());
 				//libido gains with next page.
 				for(x = 0; x < pc.bRows(); x++)
 				{
@@ -475,14 +479,14 @@ package classes.Items.Transformatives
 					output(" sympathetically, oozing [pc.girlCum].");
 				}
 				pc.milkRate += 5;
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 			//Increased ability to store milk (capacity multiplier). Maxes out at 3x normal.
 			else if(pc.milkStorageMultiplier < 3 && rand(2) == 0)
 			{
 				output("\n\nAfter a workout like that, you’re pretty confident <b>your [pc.chest] are going to be even better at holding milk</b>, something about more elastic mammary and duct tissue and fat deposit conversion. You remember reading it in your codex before, but it can’t compare to knowing you’re turning into a [pc.milkNoun]-squirting machine who could win milking competitions while cumming nonstop.");
 				pc.milkStorageMultiplier += 0.25;
-				pc.lust(10);
+				pc.changeLust(10);
 			}
 			//Extra nipple per boob
 			else if(rand(5) == 0 && pc.nipplesPerBreast < 4)
@@ -490,7 +494,7 @@ package classes.Items.Transformatives
 				output("\n\nWhoah, fuck! Your hand was just kind of idly tugging at one of your [pc.nipples] when your knuckle brushed another one... one that shouldn’t be there. You look down in shock and arousal, suddenly and totally aware that <b>your tips have doubled into multiple teats connected by enlarged areolae!</b> And with twice the milkspouts comes twice the pleasure. You can barely resist tugging on them at this very moment. It’d feel sooo good.");
 				pc.nipplesPerBreast *= 2;
 				//+33 lust.
-				pc.lust(33);
+				pc.changeLust(33);
 				//+1libido
 				pc.libido(1);
 			}

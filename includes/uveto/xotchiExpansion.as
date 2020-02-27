@@ -306,7 +306,7 @@ public function xotchiContractGoII():void
 	
 	output("\n\nKRACK!");
 	
-	output("\n\n<i>“Louder,”</i> she orders, her words coupled with the strike of her flogger across your [Pc.butt]. You squeal at the sudden burst of pain, white hot on your cheeks, then radiating up through the rest of your body like lines of fire.");
+	output("\n\n<i>“Louder,”</i> she orders, her words coupled with the strike of her flogger across your [pc.butt]. You squeal at the sudden burst of pain, white hot on your cheeks, then radiating up through the rest of your body like lines of fire.");
 	
 	output("\n\n<i>“Please, Mistress!”</i> you moan, arching your back down and thrusting your rear back as far as your manacles will let you. You’re already drooling, wanting more of Mistress’ punishment.");
 	
@@ -430,13 +430,13 @@ public function xotchiContractGoIV():void
 	
 	output("\n\nYour cousin is sprawled across the couch, dwarfed by the hulking form of a black-furred kaithrit male next to [rival.himHer]. [rival.name] leers at you, eyes afire with sadistic delight. The kaithrit’s expression is no better, as the predatory glare from his scarred face matches the throbbing bulge in his pants.");
 	
-	output("\n\n<i>“You know, I had heard the stories, but I really, really needed to see it for myself,”</i> [rival.heShe] guffaws. <i>“Holy shit! You honest-to-goodness have given up, haven’t you [Pc.name]? You know, I’m actually embarrassed </i>for<i> you. This is just sad!”</i>");
+	output("\n\n<i>“You know, I had heard the stories, but I really, really needed to see it for myself,”</i> [rival.heShe] guffaws. <i>“Holy shit! You honest-to-goodness have given up, haven’t you [pc.name]? You know, I’m actually embarrassed </i>for<i> you. This is just sad!”</i>");
 	
 	output("\n\n<i>“I’ll thank you to not address my submissive without my permission, [rival.name],”</i> says Mistress coldly. <i>“Painslut,”</i> she nods to you, <i>“the tea, please.”</i>");
 	
 	output("\n\nCheeks burning, you clumsily pour the tea as your cousin sniggers behind you. For the first time in months, you wish you had some clothes on to shield you from [rival.hisHer] view.");
 	
-	output("\n\n<i>“I’m assuming you didn’t invite me over just to show off how easily you’ve broken my cousin,”</i> [rival.name] snarks. <i>“And if you’re hoping to do the same to me, I have to warn you that I’m not interested. Plus,”</i> he/she] adds jerking [rival.hisHer] thumb to the kaithrit, <i>“I’ve got a little bit of backup in case of any funny business.”</i>");
+	output("\n\n<i>“I’m assuming you didn’t invite me over just to show off how easily you’ve broken my cousin,”</i> [rival.name] snarks. <i>“And if you’re hoping to do the same to me, I have to warn you that I’m not interested. Plus,”</i> [rival.heShe] adds jerking [rival.hisHer] thumb to the kaithrit, <i>“I’ve got a little bit of backup in case of any funny business.”</i>");
 	
 	output("\n\n<i>“So I’ve noticed. What happened to your last bodyguard, Steele? You seem to go through them at an alarming rate these days,”</i> sniffs Mistress, holding a teacup delicately in her talons. You move to leave, but she pats the edge of her seat and after a moment’s hesitation, you kneel down on the floor at her feet. One of her talons runs across your");
 	if (pc.hasHair()) output(" [pc.hair]");
@@ -478,7 +478,7 @@ public function xotchiContractGoV():void
 
 	output("\n\nYou leap to your feet, not sure of what exactly you plan to do, but ready to jam those words back down your cousin’s throat. You’re so incensed that it takes Mistress’ firm touch on your back to make you realize that, smoothly and silently, Koriss-the hulking kaithrit-is holding five, razor-edged claws under your chin. You take a deep breath, and slowly sink back to the floor as the Kaithrit draws his arm back.");
 
-	output("\n\n<i>“Thank you, dear,”</i> says Mistress, once you’re settled again. <i>“And now, the short answer to that is,”</i> she says, turning to [Rival.name], <i>“no, you don’t.”</i>");
+	output("\n\n<i>“Thank you, dear,”</i> says Mistress, once you’re settled again. <i>“And now, the short answer to that is,”</i> she says, turning to [rival.name], <i>“no, you don’t.”</i>");
 
 	output("\n\n<i>“Maybe </i>you<i> don’t-”</i> [rival.HeShe] starts, before Mistress cuts [rival.himHer] off.");
 
@@ -540,7 +540,7 @@ public function xotchiContractGoV():void
 
 	output("\n\nYour cousin gapes at the two of you, running a hand through [rival.hisHer] hair. <i>“The fuck?”</i> [rival.heShe] finally manages to croak.");
 
-	output("\n\n[riva.HeShe] blusters for a bit more, but the fight seems to have gone out of [rival.himHer]. After a half hour more of dire threats and exasperation, [rival.heShe] finally consents to the original terms. Koriss and your Mistress review the contract, arguing over the finer points, before [rival.name] signs it and Mistress hands [rival.himHer] the credit chip.");
+	output("\n\n[rival.HeShe] blusters for a bit more, but the fight seems to have gone out of [rival.himHer]. After a half hour more of dire threats and exasperation, [rival.heShe] finally consents to the original terms. Koriss and your Mistress review the contract, arguing over the finer points, before [rival.name] signs it and Mistress hands [rival.himHer] the credit chip.");
 
 	output("\n\nWhen [rival.name] finally storms out of the room, [rival.heShe] stops to shoot you the most malignant glare [rival.heShe] can muster before he leaves. But it doesn’t really matter.");
 

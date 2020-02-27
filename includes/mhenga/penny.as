@@ -86,9 +86,9 @@ public function pennyIsCrew():Boolean
 public function pennyBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "PENNY";
-	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut() || nude)
+	if(penny.isBimbo() || pennyIsCumSlut() || nude)
 	{
-		if(flags["PENNY_BADGER_BIMBO"] != undefined) sBust += "_BIMBO";
+		if(penny.isBimbo()) sBust += "_BIMBO";
 		else sBust += "_NUDE";
 		if(penny.hasCock(GLOBAL.TYPE_VULPINE))
 		{
@@ -110,7 +110,7 @@ public function pennyBustDisplay(nude:Boolean = false):String
 }
 public function showPennyBust(nude:Boolean = false):void
 {
-	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
+	if(penny.isBimbo() || pennyIsCumSlut())
 	{
 		if(pennyIsCrew()) showBust(pennyBustDisplay(true));
 		else if(hungryFlahneWithBimboPenny()) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
@@ -133,11 +133,13 @@ public function moveOutsidePennysOffice():void
 //First Encounter
 //Appended to room description!
 public function pennyRoomDesc():Boolean {
+	// Penny in office
 	if(!pennyRecruited())
 	{
 		showPennyBust();
 		
-		if((flags["PUMPKING_COMPLETION"] != undefined || isHalloweenish()) && MailManager.isEntryViewed("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] != 3)
+		// Pump King Special
+		if((flags["PUMPKING_COMPLETION"] == undefined || flags["PUMPKING_COMPLETION"] < 3) && MailManager.isEntryViewed("pumpking_alert"))
 		{
 			showName("PEACEKEEPER\nOFFICE");
 			showBust("");
@@ -146,9 +148,10 @@ public function pennyRoomDesc():Boolean {
 				pumpkinStartingQuest();
 				return true;
 			}
-			else addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""));
+			addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""));
+			return false;
 		}
-		else if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
+		if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
 			if(flags["MET_PENNY"] == undefined) {
 				flags["MET_PENNY"] = 1;
 				output("\n\nBehind the desk, sits a female... fox-girl? She’s definitely a girl, or at least very feminine, judging by the DD-cup bosom, barely constrained by her white wrap and loose, open black vest. An armband stamped with the words “U.G.C. Peacekeeper” adorns her right arm, marking her as a source of law on this backwater planet. The frown she’s giving you is spread across a vulpine muzzle, her blue eyes narrowed as she sizes you up. Two pointed ears swivel like radar dishes, each almost as large as her head. A quarter of the way up those ears, a close-cropped, auburn mohawk sweeps back towards the nape of her neck. With ears like that, her species seems closer to the fennec foxes of earth, almost perfectly so.");
@@ -171,6 +174,13 @@ public function pennyRoomDesc():Boolean {
 			else {
 				output("\n\nPenny is sitting behind her desk as usual. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 			}
+			// Zil codex unlock
+			if(!CodexManager.entryUnlocked("Zil"))
+			{
+				output("\n\nYour codex beeps, informing you about some details on the Zil.");
+				CodexManager.unlockEntry("Zil");
+			}
+			
 			this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 		}
 
@@ -181,7 +191,7 @@ public function pennyRoomDesc():Boolean {
 			addButton(0,"Penny",turnTheTablesOnBadger);
 		}
 		//Shortcut friend penny if bimboed.
-		else if(flags["PENNY_BADGER_BIMBO"] != undefined)
+		else if(penny.isBimbo())
 		{
 			if(flags["SEEN_BIMBO_PENNY"] == undefined) output("\n\nPenny is sitting up straight in her chair, looking fairly perky and attentive, considering her recent transformation into a hyper-sexed, hermaphroditic bimbo.");
 			else if(hours >= 8 && hours < 17) output("\n\nPenny is at her desk looking a little pent-up - and drinking something suspiciously white from her coffee cup.");
@@ -196,7 +206,7 @@ public function pennyRoomDesc():Boolean {
 			this.addButton(0,"Approach",approachFriendPenny);
 		}
 		//Cumslut penny
-		else if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
+		else if(pennyIsCumSlut())
 		{
 			if(flags["PENNY_HIDING_CUMSLUTTERY"] != undefined)
 			{
@@ -232,16 +242,30 @@ public function pennyRoomDesc():Boolean {
 			this.addButton(0,"Approach",approachGirlfriendPenny);
 		}
 	}
+	// Replaced officer
 	else
 	{
+		// Pump King Special Hotfix
+		if(!pennyIsCrew() && (flags["PUMPKING_COMPLETION"] == undefined || (flags["PUMPKING_COMPLETION"] != -1 && flags["PUMPKING_COMPLETION"] < 3)) && MailManager.isEntryViewed("pumpking_alert"))
+		{
+			if(flags["PUMPKING_COMPLETION"] == undefined) 
+			{
+				pumpkinStartingQuest();
+				return true;
+			}
+			addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over.");
+			return false;
+		}
 		output("\n\nA new officer has taken over for Penny, but they regard you with an air of business-like disinterest.");
-		if(flags["DR_BADGER_TURNED_IN"] == undefined)
+		if(!drBadgerImprisioned())
 		{
 			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(0,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
 			else if(flags["MET_DR_BADGER"] != undefined) addButton(0,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 			else addDisabledButton(0,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 		}
 		else addDisabledButton(0,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
+		// IQ B-Gone
+		if(pc.hasItemByClass(IQBGone)) addButton(1,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 	}
 	return false;
 }
@@ -690,37 +714,38 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	addButton(0,"Talk",friendPennyTalkMenu);
 	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",pennySexFirstTime);
 	else addDisabledButton(1,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
-	//Go Whine to Penny that a Mustelide was Mean to You
-	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
-	//Add [Badger Help] to Penny’s talk menu
-	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	if(!drBadgerImprisioned())
 	{
-		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
-		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
-		
+		if(!pennyRecruited())
+		{
+			// Go Whine to Penny that a Mustelide was Mean to You
+			// PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+			// Add [Badger Help] to Penny’s talk menu
+			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
+			else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+			else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+			// Penny has the doc's raygun
+			if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
+			{
+				addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+			}
+			// Mission complete
+			if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
+		}
 		if(flags["BADGER_QUEST"] == 1)
 		{
-			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 			if(flags["NO_ZAP_PENNY"] == undefined) 
 			{
 				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
 				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
 			}
 			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		}
 	}
 	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
-	//Penny has the doc's raygun
-	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
-	{
-		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
-	}
-	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
-
-	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	// IQ B-Gone
+	if(!pennyRecruited() && pc.hasItemByClass(IQBGone)) addButton(4,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 }
 public function friendPennyTalkMenu(func:Function = null):void
 {
@@ -1224,7 +1249,7 @@ public function talkToPennyAboutSpecies():void {
 	output(". <i>“I’ll admit, I may have seen some racier footage out there on the extranet that gave me the extra push to do this. I mean, what young single girl doesn’t want to be unique and sexy, to literally embody an animal associated with pleasing female forms?”</i> Penny smiles and stretches, arching her back for good measure. <i>“I never really took it seriously until I was in the academy though...”</i>");
 	output("\n\n<i>“What happened in the academy?”</i> you ask.");
 	output("\n\nPenny answers, <i>“I met someone that was doing it already, and... she loved it. She even changed her name to Kit after her cat ears grew in. I wound up being pretty good friends with her... great friends actually, and I decided I was going to go for it.”</i> The way she talks, it sounds like her and this cat-girl might have been a little more than friends, but you don’t push the issue. <i>“Unfortunately, I didn’t have a nice inheritance from a rich aunt to pay for my changes. Instead, I took the toughest, best paying posts I could.”</i> Penny growls low in her throat. <i>“It was hell, but I stuck it out. I knew what I wanted, and bit by bit, I saved up the cash for some splices.”</i>");
-	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i>Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to elongate, and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
+	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i> Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to elongate, and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
 	
 	output("\n\nYou’re a little stunned by the information she’s piled onto you, but it seems to have lifted the big-eared vixen’s attitude a bit. <i>“" + (!pennyIsCrew() ? "I better get this report filed, [pc.name]. ":"") + "Thanks for listening. It’s nice to get things off your chest every once and a while.”</i> She chuckles at her inadvertant pun" + (!pennyIsCrew() ? " as she turns back to her computer":"") + ".");
 	
@@ -1298,13 +1323,13 @@ public function talkToPennyAboutYourself():void {
 public function approachGirlfriendPenny():void {
 	clearOutput();
 	showPenny();
-	if(flags["PENNY_BIMBO"] != undefined)
+	if(penny.isBimbo())
 	{
 		approachBimboPenny();
 		return;
 	}
 	//Cumslut approaches
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) 
+	if(pennyIsCumSlut()) 
 	{
 		//REPEAT GREETINGS:
 		//IF TOLD TO KEEP IT SECRET:
@@ -1433,38 +1458,40 @@ public function pennyGirlfriendMenu():void
 	this.addButton(0,"Talk",talkToGirfriendPenny);
 	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
 	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
-	//Go Whine to Penny that a Mustelide was Mean to You
-	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
-	//Add [Badger Help] to Penny’s talk menu
-	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	
+	if(!drBadgerImprisioned())
 	{
-		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
-		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
-		
+		if(!pennyRecruited())
+		{
+			// Go Whine to Penny that a Mustelide was Mean to You
+			// PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+			// Add [Badger Help] to Penny’s talk menu
+			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
+			else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+			else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+			// Penny has the doc's raygun
+			if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
+			{
+				addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+			}
+			// Mission complete
+			if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
+		}
 		if(flags["BADGER_QUEST"] == 1)
 		{
-			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 			if(flags["NO_ZAP_PENNY"] == undefined) 
 			{
 				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
 				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
 			}
 			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		}
 	}
 	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
-	//Penny has the doc's raygun
-	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
-	{
-		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
-	}
-	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
-
-	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
-
+	// IQ B-Gone
+	if(!pennyRecruited() && pc.hasItemByClass(IQBGone)) addButton(4,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	
 	if(pennyRecruited()) addButton(5, "Join Crew", pennyRejoinCrew, undefined, "Join Crew", "Ask Penny to rejoin your crew and move back into your ship.");
 	else
 	{
@@ -1504,7 +1531,7 @@ public function talkToGirfriendPenny():void {
 	else addDisabledButton(4,"Futanari");
 	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) this.addButton(5,"Buy Throbb",buySomeThrobbFrompenny);
 	else addDisabledButton(5,"Buy Throbb","Buy Throbb","You need to talk to Penny about futanarification before you can buy this from her.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
+	if(pennyIsCumSlut()) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
 	else addDisabledButton(6,"Cumsluttery");
 
 	if(flags["PENNY_CREW_ASKED"] != undefined && flags["PENNY_CREW_ASKED"] > 1) addDisabledButton(7,"Recruit Her","Recruit Her","You’ve already had this talk. Having it again won’t do anything.")
@@ -1742,7 +1769,7 @@ public function pennyFutanariTalk():void {
 				this.addButton(14,"Back",approachGirlfriendPenny);
 			}
 			//Hyper Pre-cumslut Penny
-			else if (flags["PENNY_IS_A_CUMSLUT"] == undefined) {
+			else if (!pennyIsCumSlut()) {
 				author("Abe E. Seedy");
 				output("<i>“MMmoooore?”</i> Penny moans as she starts to masturbate in front of you. Her hand can’t even close around her girth at this point, and the tip is so tall that it smacks her in the chin whenever she gets careless. She grabs hold of it with both hands, one sliding over the half facing you while the other ");
 				if(penny.balls > 0) output("cradles her balls");
@@ -2090,11 +2117,11 @@ public function pennySexMenu(outputT:Boolean = true):void {
 	if(penny.hasCock()) this.addButton(8,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
 	else addDisabledButton(8,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
+	if(pennyIsCumSlut()) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
 	else addDisabledButton(9,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
+	if(pennyIsCumSlut() && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
 	else addDisabledButton(10,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
-	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
+	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut()) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
 	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
@@ -3835,7 +3862,7 @@ public function whineToPennyCauseYerABitch():void
 		{
 			author("Savin & Fenoxo");
 			//Throbb penny (non cumslut)
-			if(flags["PENNY_IS_A_CUMSLUT"] == undefined)
+			if(!pennyIsCumSlut())
 			{
 				//Big penny
 				if(penny.longestCockLength() >= 10)
@@ -3851,7 +3878,7 @@ public function whineToPennyCauseYerABitch():void
 				output("\n\n<i>“Come on, Penny! This is serious!”</i> you chide through your embiggened lips. Maybe you can help her take care of that after the report.");
 				output("\n\n<i>“Fine,”</i> the shameless prick-vixen says with a sigh, pulling her hand out from under her desk to lick clean. Her entire palm is glistening with pre-cum, you note. The flavor appears quite enjoyable.");
 			}
-			//Throbb Penny (Cumslut
+			//Throbb Penny (Cumslut)
 			else
 			{
 				output("\n\nThe more you talk, the harder Penny’s cock becomes, rising in fits and starts, eventually lurching so powerfully that it slaps in between the cop-herm’s mammaries hard enough to make them bounce. The over-sexed cumslut has no hope of resisting such a delicious-looking spunk-spout and leans down to lick mid story, shamelessly tonguing dollops of pre from her distended slit to every sordid detail.");
@@ -3869,7 +3896,7 @@ public function whineToPennyCauseYerABitch():void
 		}
 		//Merge
 		output("\n\nAs you recount your misadventure, Penny’s ");
-		if(penny.hasCock() && flags["PENNY_IS_A_CUMSLUT"] == undefined) output("still-moist ");
+		if(penny.hasCock() && !pennyIsCumSlut()) output("still-moist ");
 		output("fingers fly across her keyboard, filling out the police report for you. She grunts and shakes her head from time to time, especially when you mention the badgerfication ray, and she asks you a few questions about the doctor’s weapons and the way she grabbed you. When you’ve answered her questions to her satisfaction, Penny hits a submit button on her screen and puts a reassuring hand on yours.");
 		output("\n\n<i>“Alright, I’ve forwarded your report to the Tarkus Peacekeeper. They’ll make sure this ‘doctor’ is taken care of,”</i> ");
 		if(flags["SEXED_PENNY"] != undefined) output("your lover growls. If you didn’t know better, you’d say it might have been protectively");
@@ -3882,7 +3909,7 @@ public function whineToPennyCauseYerABitch():void
 		output(", though I gotta admit, I would’ve killed for one of those rays a few years ago.”</i> Penny muses. <i>“Is there anything else you’d like to take care of while you’re here?");
 		if(flags["SEXED_PENNY"] != undefined)
 		{
-			if(flags["PENNY_IS_A_CUMSLUT"] != undefined) output(" Maybe help a horny vixen blow off some steam?");
+			if(pennyIsCumSlut()) output(" Maybe help a horny vixen blow off some steam?");
 			else output(" Maybe I can make you feel safer in my arms...");
 		}
 		output("”</i>");
@@ -3932,7 +3959,7 @@ public function whineToPennyCauseYerABitch():void
 public function needPennyPanties():Boolean
 {
 	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) return false;
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) return true;
+	if(pennyIsCumSlut()) return true;
 	return false;
 }
 
@@ -5480,7 +5507,7 @@ public function defeatMiningBotsWithPenpen():void
 		else if(pc.isMischievous()) output("flashy");
 		else output("hard");
 		output(" smile. <i>“All good.”</i>");
-		output("\n\n<i>“Great.”</i> Penny pants, trying to catch her breath. <i>“Then let’s file this claim before some other monster reveals itself. You’ve got an inside line with SteeleTech to get a good rate on it, right?”</i>");
+		output("\n\n<i>“Great.”</i> Penny pants, trying to catch her breath. <i>“Then let’s file this claim before some other monster reveals itself. You’ve got an inside line with Steele Tech to get a good rate on it, right?”</i>");
 		output("\n\nYou nod.");
 		output("\n\n<i>“Then let’s get the paperwork rolling. A 50/50 split on all this Oxonium is going to take a pretty solid chunk out of my debt.”</i>");
 		output("\n\nYou pull out your Codex and go to work. Not long after, you and Penny are the proud recipients of <b>30,000 credits</b> - each.");

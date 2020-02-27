@@ -329,7 +329,7 @@ public function breedwellPremiumPresentationText(dohrahn:Boolean=false):void
 	output("\n\nStill standing, Nihn shoves her skirt down and, facing the camera, cranes her gently quivering butt backwards; with a happy beam, Tess grips the rahn’s thighs and dives in face first.");	
 	output("\n\n<i>“Ooh my,”</i> Nihn coos, dark red eyes crossing slightly. <i>“Aren’t you eager! That’s... uh... some piercing you’ve got...”</i>");	
 	output("\n\n<i>“Upgrade today,”</i> says the second rahn, stepping in front of the conjoined pair with a sultry smile. <i>“We have an ever growing number of Premium Breeders across many frontier and outer worlds waiting to satiate your urges today. Support the Great Effort! Have way more sex than any of your colleagues! Visit the BIC site and click on the banner to learn more.”</i>");	
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(15);
 }
 
@@ -772,7 +772,7 @@ public function breedwellPremiumSanction(quotaPun:Boolean=false):void
 	output("You sigh, steel yourself, and say you’ll take the sanction.");
 	if (dohrahn) output("\n\nThe do’rahn");
 	else output("\n\nQuaelle");
-	output(" leads you to a room off the incubator pods. It’s a changing area, sterile white like the rest of the station. Hanging from a rack is a skintight bodysuit: White, except for green and purple touches around the arms and thighs. <b>Tamani Public Service Operative</b> is written across the shoulders. Sat on the bench next to the suit is a round, bulky helmet, with a slim, purple visor across the eyes.");
+	output(" leads you to a room off the incubator pods. It’s a changing area, sterile white like the rest of the station. Hanging from a rack is a skintight bodysuit: White, except for green and purple touches around the arms and thighs. <b>Tamani Public Service Operative</b> is written across the shoulders. Seated on the bench next to the suit is a round, bulky helmet, with a slim, purple visor across the eyes.");
 	if (dohrahn) output("\n\n<i>“The helmet will explain everything,”</i> says the do’rahn. <i>“Have a nice time getting fucked.”</i> She strides out.");
 	else output("\n\n<i>“The helmet will explain everything,”</i> says Quaelle, laying a soothing, slimy hand on your shoulder. <i>“Good luck, mellificent Steele. I’ll make some tea for you afterwards, if you like.”</i> She slithers out.");
 	output("\n\nYou climb out of your [pc.gear], store it in a locker, and pull on the suit. It clings to your [pc.skinFurScales] tightly, but it’s very elastic: you experimentally pull the material over your [pc.belly] and find you can easily stretch it out by several feet before it snaps right back. It’s also very thin, and shifts over your flesh with each movement you make, a constant source of tactile stimulation. You’d put it down to the fine, glossy material... but it also feels like it has a mind of its own, and it’s touching your form with interest.");
@@ -835,7 +835,7 @@ public function breedwellPremiumSanction(quotaPun:Boolean=false):void
 	output("\n\n<i>“Oop! But I’m a big softie really. So I’m gonna let you choose which groups you’ll be assigned to. Which first, eager breeder?”</i>");
 	output("\n\nWhen you direct the visor downwards, you see three virtually generated box options near your fingertips.");
 
-	pc.lust(60);
+	pc.changeLust(60);
 	//double libido here	
 	clearMenu();
 	addButton(0, "Visitors", breedwellPremiumSanctionVisitors,undefined);
@@ -855,7 +855,7 @@ public function breedwellPremiumSanctionVisitors():void
 	if (flags["BREEDWELL_PREM_PUN_VISITORS"] != undefined) firstTime = false;
 	flags["BREEDWELL_PREM_PUN_VISITORS"] = 0;
 	
-	output("<i>“Ooh, the complimentary alleviation orifice,”</i> Tamani croons. <i>“You lucky [pc.boy]!”</i> A virtual yellow line appears on the floor in front of you. A sharp buzz on your [pc.ass] makes you jump. Quickly, you get up and follow the line, through employee-only corridors towards the loading bay where your own ship is docked. The rahn employees you pass smirk at your uniform, but none stop you. ");
+	output("<i>“Ooh, the complementary alleviation orifice,”</i> Tamani croons. <i>“You lucky [pc.boy]!”</i> A virtual yellow line appears on the floor in front of you. A sharp buzz on your [pc.ass] makes you jump. Quickly, you get up and follow the line, through employee-only corridors towards the loading bay where your own ship is docked. The rahn employees you pass smirk at your uniform, but none stop you. ");
 	output("\n\nThe yellow line leads into an unmarked door: It hisses open as you approach, revealing a featureless cubicle. The door clicks shut behind you, and a sultry, purple light bathes your body.");
 	output("\n\nThe room isn’t quite featureless, it turns out. There’s a hole on the opposite wall about 3 feet up, surrounded by glossy padding. Similarly glossy padding cushions the floor directly beneath.");
 	output("\n\n<i>“It’s important that our breeders know how to orally satisfy our sperm donors,”</i> Tamani’s bubbly voice sounds in your ear, <i>“not just because it will encourage them to return - but so you can get all the nutrition a heavily pregnant mother needs. And there’s no better nutrition than cum!”</i>");
@@ -865,7 +865,7 @@ public function breedwellPremiumSanctionVisitors():void
 	}
 	output("\n\nYou put your [pc.knees] on the padded floor and push your [pc.lips] through the plush, supple hole. The relief is instant and overwhelming, like a warm cloth spreading over your body.");
 	output("\n\nA panorama view of a room appears on the visor: It’s that of a large, unisex public bathroom, utilitarian and clean. On the wall opposite the exit is a round hole about three feet off the ground, in the centre of which are a pair of lips. Instinctively you wet your [pc.lips], and a funny, vicarious thrill runs down your spine as you watch the mouth mimic the action. It looks... inviting. ");
-	output("\n\nThere’s a hand-wipe dispenser beside it and a brass plaque above. COMPLIMENTARY ALLEVIATION ORIFICE, you read. GIVE GENEROUSLY.");
+	output("\n\nThere’s a hand-wipe dispenser beside it and a brass plaque above. COMPLEMENTARY ALLEVIATION ORIFICE, you read. GIVE GENEROUSLY.");
 	output("\n\nYou jump slightly as a gryvain spacer strides in. You should really lick your lips again. Present yourself. You blink and shake your head, muddled. The gryvain quickly uses a urinal and leaves. You feel that aching, fretful feeling again as she does. You <i>really</i> need to do better, make sure the public knows that sweet relief is on hand. You <i>thirst</i> to do better. ");
 	output("\n\nThe entrance bumps open again, and this time you lick your [pc.lips] and extend your [pc.tongue], glossy and inviting. The burly saurmorian who’s just walked in pauses, green reptilian eyes on the hole. He slowly slopes off to the stalls... but when he comes back, and you repeat the action, he grunts with lusty amusement and approaches, unzipping his trousers and allowing his sturdy, ridged member to flop outwards.");
 	output("\n\nThat soothing balm you felt earlier enfolds you, only this time it’s even stronger, happy warmth running slowly down your body, concentrating itself finally over [pc.eachVagina]; you sigh with bliss, puffing over the big reptile’s dick as he hefts it and bumps its blunt, musky head against your [pc.lips].");
@@ -877,7 +877,7 @@ public function breedwellPremiumSanctionVisitors():void
 	if(pc.hasCock()) output(" Your [pc.cock] is rock-hard, straining against the shifting material.");
 	output(" [pc.eachVagina] floods with [pc.femcum], soaking your uniform.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRandom);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	
@@ -906,13 +906,13 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	if (pc.vaginaTotal() > 1) output(" pussies");
 	else output(" pussy");
 	output(" shivering and guttering [pc.femcum] as the suit fingers you sumptuously.");
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRandom);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	for(var y:int = 0; y < rn; y++)
 	{
 		ppRandom = breedwellPremiumGetRandomCock(-1);
-		pc.lust(30);
+		pc.changeLust(30);
 		pc.loadInMouth(ppRandom);
 		if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	}
@@ -921,7 +921,7 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	output("\n\n<i>“Oh my,”</i> says a deep, calm, feminine voice.");
 	if (flags["LANDED_ON_TEXAS"] == 1) output(" You recognise the drawl of a New Texan Cowmazon.");
 	else output(" It’s the drawl of a working country lady.");
-	output(" <i>“A complimentary gloryhole. And here’s me that’s just spent the last few hours lookin’ at rahn fillin’ out their clothes in that mighty fine way of theirs.”</i>");
+	output(" <i>“A complementary gloryhole. And here’s me that’s just spent the last few hours lookin’ at rahn fillin’ out their clothes in that mighty fine way of theirs.”</i>");
 	output("\n\nThere’s a rustle and unbuttoning, and you can’t help but gulp as you feel a flat, oozing tip a good three inches wide butt against your opened, waiting lips.");
 	output("\n\n<i>“Hope you’re ready for this, whoever you may be,”</i> she rumbles. <i>“I ain’t gonna be gentle, and I ain’t gonna be quick.”</i>");
 	output("\n\nSoothing calmness brushes its way down you as the massive, light pink horse shaft is fed into your face, your jaw cracking, holding your [pc.lips] open as far as they will go. She grunts as she bumps against your tonsils. Void, it’s so big... and the swarming, bestial <i>smell</i>... and the sinful taste, dripping down your throat... you orgasm with a muffled moan, a wet explosion in [pc.eachVagina], and you shudder mightily around the massive, unyielding beast-cock packing out your maw.");
@@ -1073,7 +1073,7 @@ public function breedwellPremiumSanctionGuestsNext2(firstTime:Boolean=false):voi
 		ppRahn = getBreedwellRahnPregContainer(rand(8));
 		if (rand(3) == 0)
 		{
-			pc.lust(30);
+			pc.changeLust(30);
 			pc.loadInMouth(ppRahn);
 			if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 		}
@@ -1133,7 +1133,7 @@ public function breedwellPremiumSanctionStaff():void
 	output("\n\n<i>“Oh wow!”</i> You gasp as a hand lands sharply on your [pc.ass]. <i>“What an ass they got in for us today! Mmm...”</i> They’ve drawn away, and a moment later you feel why - of its own volition, your suit is peeling away, exposing the [pc.skinFurScales] on your backside to the cool air, and the lustful gaze of the unseen rahn. <i>“...oh, I’m going to go <i>nuts</i> on you, you naughty [pc.boy]!”</i>");
 
 	clearMenu();	
-	pc.lust(60);
+	pc.changeLust(60);
 	flags["BREEDWELL_PREM_PUN_STAFF"] += 60;
 	processTime(60);
 	clearMenu();	
@@ -1232,7 +1232,7 @@ public function breedwellPremiumSanctionStaffNext2(firstTime:Boolean=false):void
 		rn2 = rand(4);
 		if (rn2 == 0)
 		{
-			pc.lust(30);
+			pc.changeLust(30);
 			pc.loadInMouth(ppRahn);
 			if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 		}
@@ -1275,7 +1275,7 @@ public function breedwellPremiumSanctionStaffNext3(firstTime:Boolean=false):void
 	output(". Good work!”</i>");
 	output("\n\nThe zel’rahn scientist moans sweetly, boobs heaving as she unloads another torrent of sexual fluids down your gullet.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRahn);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	
@@ -1847,8 +1847,8 @@ public function breedwellPremiumBadEndCowmazonNext():void
 	author("Nonesuch");	
 	
 	moveTo("TAVROS HANGAR");
-		
-	output("You shoot back into your [PCShipName] and head out of Wistral as fast as you can. An official communication from Breedwell tells you that you are unauthorized to use the warp gate and to turn back immediately just as you’re approaching it. It’s co-signed by the local U.G.C. authority.");
+	
+	output("You shoot back into your [pc.ship] and head out of Wistral as fast as you can. An official communication from Breedwell tells you that you are unauthorized to use the warp gate and to turn back immediately just as you’re approaching it. It’s co-signed by the local U.G.C. authority.");
 	output("\n\nYou’re in a panic by the time you land in Tavros docking bay. You’re certain you see uniformed peacekeepers approaching your ship as you head up the escalator; you’ll have to ditch it.");
 	if (crew(true, false) > 0) output(" You duck into Anon’s and compose a hurried email to your crew, telling them that you’ve had to scarper, that they are not to look for you, and the ship is theirs to do with as they choose.");
 	output("\n\nIt’s only then, huddled in a dark corner of a bar, that you look at the message the cowmazon left you. PATRONELLA. COME FIND ME, K SUGARLIPS? I CAN LOOK AFTER YOU. XXX. There’s some coordinates, which punched into your codex reveals a virtually uninhabited moon in a virtually uninhabited system, as far out in the current planet rush as it’s possible to be.");

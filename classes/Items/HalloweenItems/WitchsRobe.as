@@ -22,11 +22,11 @@ package classes.Items.HalloweenItems
 			
 			shortName = "Witch.R";
 			
-			longName = "witch's robe";
+			longName = "witch’s robe";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a witch's robe";
+			description = "a witch’s robe";
 			
 			tooltip = "Equal parts fantasy and fetish, this witch costume is equally suited for a mythos convention or a stripper pole. The bulk of the outfit consists of a pointed witch’s hat and a black velvet robe, and comes with an array of burnished leather accessories beneath its lavish exterior. This outfit makes no attempt to cover the chest or groin, allowing for a more sinful appearance if you forgo the companion pieces.";
 			

@@ -297,7 +297,7 @@
 			target.willpowerMod -= .5;
 			target.reflexesMod -= .5;
 			target.addStatusValue("Naleen Venom",1,.5);
-			target.lust(10+rand(10));
+			target.changeLust(10+rand(10));
 			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
 		}
 		

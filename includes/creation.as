@@ -34,15 +34,20 @@ public function hasCheatInput(sText:String = ""):Boolean
 	{
 		// Gameplay/Debug
 		case "clowncar": cheatFunc = Cheats.infiniteCrewSpace; break;
-		case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
+		case "urta": cheatFunc = Cheats.infiniteItemUse; break;
 		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
 		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
 		case "motherlode": cheatFunc = Cheats.XPToLevel; break;
+		case "poison": cheatFunc = Cheats.SJWMode; break;
 		case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
 		case "88mph": cheatFunc = Cheats.TimeSkip; break;
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 		case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
+		case "healthdelivery": cheatFunc = Cheats.BringMeAFox; break;
 		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
+		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
+		case "doll": cheatFunc = Cheats.SexdollEncounter; break;
+		case "ardiaschoice": cheatFunc = Cheats.ArdiaLetsYouChoose; break;
 		
 		// Treatment
 		case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;
@@ -151,18 +156,47 @@ public function startCharacterCreation(e:Event = null):void
 	userInterface.hidePCStats();
 	userInterface.hideNPCStats();
 	clearMenu();
-	addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor’s child will be born a full-blooded human.");
-	addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor’s child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
-	addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor’s child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
-	addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor’s child would have a leithan mother, though that race’s unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
-	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor’s child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
-	addButton(5,"Gryvain", confirmRaceChoice, "gryvain", "Gryvain Mother", "Victor’s child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.");
 	
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	{
+		var race:String = pcMotherRaces[i];
+		var raceName:String = StringUtil.toDisplayCase(race);
+		var momDesc:String = "";
+		
+		switch(race)
+		{
+			case "human":
+				momDesc = "Victor’s child will be born a full-blooded human.";
+				break;
+			case "ausar":
+				momDesc = "Victor’s child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.";
+				break;
+			case "gryvain":
+				momDesc = "Victor’s child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.";
+				break;
+			case "kaithrit":
+				momDesc = "Victor’s child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).";
+				break;
+			case "kui-tan":
+				momDesc = "Victor’s child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.";
+				break;
+			case "leithan":
+				momDesc = "Victor’s child would have a leithan mother, though that race’s unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.";
+				break;
+			case "suula":
+				momDesc = "Victor’s child would have a suula mother. Suula are a race of large, winged aliens with a distinctly shark-like appearance. A halfbreed child would have a partially-scaled body, feathery hair, and a powerful shark’s tail. Suula are a colorful race and, regardless of sex, tend to be fairly feminine and voluptuous in figure. Half-suula can be male or female.";
+				break;
+		}
+		addButton(btnSlot, raceName, confirmRaceChoice, race, (raceName + " Mother"), momDesc);
+		btnSlot++;
+	}
 	if (GENERATED_CHARACTER["disabled"] == undefined)
 	{
-		addButton(6, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
+		addButton(btnSlot, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
 	}
 }
+public var pcMotherRaces:Array = ["human", "ausar", "kaithrit", "leithan", "kui-tan", "gryvain", "suula"];
 
 public function testCharGenSelection():void
 {
@@ -174,7 +208,6 @@ public function testCharGenSelection():void
 		output("\n\n<b>" + prop + ":</b> " + GENERATED_CHARACTER[prop]);
 	}
 }
-
 
 public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
@@ -197,6 +230,9 @@ public function confirmRaceChoice(race:String = "human"):void {
 			break;
 		case "gryvain":
 			output("Gryvain are a highly advanced race of winged hermaphrodites, blending mammalian and reptilian biology. They have darkly scaled limbs, fleshy upper bodies, prehensile tails, curling horns, and frilled ears. Their eyes are dark gold and vertically slitted. All gryvain are feminine in appearance, and most have voluptuous figures: broad egg-laying hips and large breasts. They have bulbous, reptilian phalluses with internal testes, mounted over vaginas that have rings of internal, nub-like secondary clitorises inside, which makes birth and sex extraordinarily pleasurable.");
+			break;
+		case "suula":
+			output("The suula are large, predatory humanoid sharks. They’re considered a race of beautiful amazons, standing taller and more powerfully-built than humans, with sharp teeth and muscular wings and tails. They have shark-like scales over their body, colorfully-feathered wings and arms, and muzzles full of sharp teeth. Though anyone can see the average suula is quite voluptuous, more intimate encounters reveal that their sexual organs are full of venomous stingers that impart powerful aphrodisiacs to themselves and their partners.\n\nSuula-human hybrids typically favor their human parent, appearing as amazonian individuals with feathery hair and smoothly-scaled forelimbs. Males tend to be smaller than females, but quite well endowed.");
 			break;
 	}
 
@@ -289,6 +325,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.earLength = 3;
 			//>Reptilian, forked tongues
 			pc.tongueType = GLOBAL.TYPE_LEITHAN;
+			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 			pc.tailType = GLOBAL.TYPE_LIZAN;
@@ -297,6 +334,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_SCALED);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			pc.clearSkinFlags();
 			pc.scaleColor = "black";
 			CodexManager.unlockEntry("Leithans");
 			addButton(0,"Male",setStartingSex,1);
@@ -312,11 +350,13 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
 			pc.faceType = GLOBAL.TYPE_HUMANMASKED;
+			pc.clearFaceFlags();
 			pc.armType = GLOBAL.TYPE_KUITAN;
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			CodexManager.unlockEntry("Kui-Tan");
 			addButton(0,"Male",setStartingSex,1);
-			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
+			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.");
 			addButton(2,"Herm",setStartingSex,2);
 			break;
 		case "half-gryvain":
@@ -335,8 +375,36 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.wingType = GLOBAL.TYPE_GRYVAIN;
 			pc.wingCount = 2;
 			pc.eyeType = GLOBAL.TYPE_GRYVAIN;
+			CodexManager.unlockEntry("Gryvain");
 			addButton(0, "Female", setStartingSex, 3);
 			addButton(1, "Herm", setStartingSex, 2);
+			break;
+		case "half-suula":
+			pc.faceType = GLOBAL.TYPE_SIREN;
+			pc.clearFaceFlags();
+			pc.earType = GLOBAL.TYPE_SIREN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
+			pc.earLength = 4;
+			pc.hairType = GLOBAL.HAIR_TYPE_FEATHERS;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_SIREN;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_SCALED);
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.lipColor = "black";
+			pc.eyeType = GLOBAL.TYPE_SIREN;
+			pc.armType = GLOBAL.TYPE_SIREN;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_FEATHERED);
+			pc.legType = GLOBAL.TYPE_SIREN;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			CodexManager.unlockEntry("Suulas");
+			addButton(0,"Male",setStartingSex,1);
+			addButton(1,"Female",setStartingSex,3);
 			break;
 	}
 
@@ -377,35 +445,36 @@ public function setStartingSex(sex:int = 1):void {
 		pc.createCock();
 		pc.balls = 2;
 		pc.ballSizeRaw = 1.5;
-
-		if(pc.originalRace == "half-leithan")
+		switch(pc.originalRace)
 		{
-			pc.shiftCock(0,GLOBAL.TYPE_NAGA);
-			pc.ballSizeRaw = 3;
-		}
-		if (pc.originalRace == "half-ausar") {
-			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
-			//Get rid of sheath for reasons
-			pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
-		}
-		if (pc.originalRace == "half-kaithrit") {
-			pc.shiftCock(0,GLOBAL.TYPE_FELINE);
-			pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause kaithrits are not cool enough to have real kitty peckers
-			pc.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
-		}
-		if (pc.originalRace == "half kui-tan")
-		{
-			pc.shiftCock(0,GLOBAL.TYPE_KUITAN);
-			pc.ballSizeRaw = 5;
-			pc.createPerk("'Nuki Drunk",0,0,0,0,"Get drunk twice as slow and sober up four times slower.");
-			pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
-		}
-		if (pc.originalRace == "half-gryvain")
-		{
-			pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_RIBBED);
-			pc.ballSizeRaw = 5;
+			case "half-ausar":
+				pc.shiftCock(0,GLOBAL.TYPE_CANINE);
+				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // Get rid of sheath for reasons
+				break;
+			case "half-kaithrit":
+				pc.shiftCock(0,GLOBAL.TYPE_FELINE);
+				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause kaithrits are not cool enough to have real kitty peckers
+				pc.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
+				break;
+			case "half-leithan":
+				pc.shiftCock(0,GLOBAL.TYPE_NAGA);
+				pc.ballSizeRaw = 3;
+				break;
+			case "half kui-tan":
+				pc.shiftCock(0,GLOBAL.TYPE_KUITAN);
+				pc.ballSizeRaw = 5;
+				pc.createPerk("'Nuki Drunk",0,0,0,0,"Get drunk twice as slow and sober up four times slower.");
+				pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
+				break;
+			case "half-gryvain":
+				pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
+				pc.ballSizeRaw = 5;
+				break;
+			case "half-suula":
+				//pc.shiftCock(0,GLOBAL.TYPE_SIREN);
+				//pc.cocks[0].cockColor = "blue";
+				pc.ballSizeRaw = 6;
+				break;
 		}
 		//MALE!
 		if(sex == 1)
@@ -415,10 +484,17 @@ public function setStartingSex(sex:int = 1):void {
 			pc.buttRatingRaw = 2;
 			pc.tone = 65;
 			pc.hairLength = 1;
-			if (pc.originalRace == "half-kaithrit")
+			switch(pc.originalRace)
 			{
-				pc.femininity = 50;
-				pc.hipRatingRaw = 6;
+				case "half-kaithrit":
+					pc.femininity = 50;
+					pc.hipRatingRaw = 6;
+					break;
+				case "half-suula":
+					pc.femininity = 49;
+					pc.hipRatingRaw = 6;
+					pc.buttRatingRaw = 6;
+					break;
 			}
 		}
 		//HERM!
@@ -430,41 +506,50 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 6;
-			if (pc.originalRace == "half-kaithrit" || pc.originalRace == "half-gryvain")
+			switch(pc.originalRace)
 			{
-				pc.femininity = 75;
-				pc.hipRatingRaw = 7;
-				pc.buttRatingRaw = 5;
+				case "half-kaithrit":
+				case "half-gryvain":
+					pc.femininity = 75;
+					pc.hipRatingRaw = 7;
+					pc.buttRatingRaw = 5;
+					break;
 			}
 		}
 	}
 	//Girls or herms? Cunt stuff
 	if (sex >= 2) {
 		pc.createVagina();
-		if(pc.originalRace == "half-leithan")
+		switch(pc.originalRace)
 		{
-			pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity += 20;
-		}
-		if(pc.originalRace == "half-ausar") {
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity = 20;
-			pc.elasticity = 1.25;
-		}
-		if(pc.originalRace == "half kui-tan")
-		{
-			pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
-			//pc.vaginas[0].wetnessRaw = 1;
-		}
-		if (pc.originalRace == "half-gryvain")
-		{
-			pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.elasticity = 1.25;
-			pc.vaginas[0].bonusCapacity += 30;
-			pc.vaginas[0].addFlag(GLOBAL.FLAG_NUBBY);
-			pc.vaginas[0].clits = 6;
+			case "half-ausar":
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.vaginas[0].bonusCapacity = 20;
+				pc.elasticity = 1.25;
+				break;
+			case "half-leithan":
+				pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.vaginas[0].bonusCapacity += 20;
+				break;
+			case "half kui-tan":
+				pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
+				//pc.vaginas[0].wetnessRaw = 1;
+				break;
+			case "half-gryvain":
+				pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.elasticity = 1.25;
+				pc.vaginas[0].bonusCapacity += 30;
+				pc.vaginas[0].clits = 6;
+				break;
+			case "half-suula":
+				//pc.shiftVagina(0,GLOBAL.TYPE_SIREN);
+				//pc.vaginas[0].vaginaColor = "blue";
+				pc.femininity = 85;
+				pc.hipRatingRaw = 5;
+				pc.buttRatingRaw = 10;
+				break;
 		}
 		if(sex == 3)
 		{
@@ -474,10 +559,13 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 10;
-			if (pc.originalRace == "half-kaithrit") {
-				pc.femininity = 85;
-				pc.hipRatingRaw = 7;
-				pc.buttRatingRaw = 5;
+			switch(pc.originalRace)
+			{
+				case "half-kaithrit":
+					pc.femininity = 85;
+					pc.hipRatingRaw = 7;
+					pc.buttRatingRaw = 5;
+					break;
 			}
 		}
 	}
@@ -532,35 +620,69 @@ public function chooseHeight():void {
 
 public function averageHeight():Number
 {
-	var heightResult:Number = 68;
-	if(pc.originalRace == "half-leithan") heightResult += 14;
+	var heightMin:Number = raceHeightMin(pc.originalRace);
+	var heightMax:Number = raceHeightMax(pc.originalRace);
+	var heightResult:Number = (((heightMin + heightMax)/2) + 2);
 	if(pc.originalRace == "half-kaithrit") heightResult -= 6;
+	if(pc.originalRace == "half-leithan") heightResult += 4;
 	if(pc.originalRace == "half kui-tan") heightResult -= 2;
 	if(pc.originalRace == "half-gryvain") heightResult += 4;
 	if(pc.hasCock()) heightResult += 5;
 	//Add a little randomness:
 	heightResult -= rand(3);
 	heightResult += rand(3);
+	// Clamp to limits
+	if(heightResult < heightMin) heightResult = heightMin;
+	if(heightResult > heightMax) heightResult = heightMax;
 	return Math.round(heightResult);
 }
+public function raceHeightMin(race:String):Number
+{
+	var nHeight:Number = 48;
+	
+	switch(race)
+	{
+		case "half-suula":
+			nHeight = ((5*12) + 10);
+			if(pc.hasVagina()) nHeight += 2;
+			break;
+	}
+	
+	return nHeight;
+}
+public function raceHeightMax(race:String):Number
+{
+	var nHeight:Number = 84;
+	
+	switch(race)
+	{
+		case "half-leithan": nHeight = 108; break;
+		case "half-suula":
+			nHeight = (7*12);
+			if(pc.hasVagina()) nHeight += 2;
+			break;
+	}
+	
+	return nHeight;
+}
 
-public function applyHeight():void {
+public function applyHeight(confirm:Boolean = false):void {
 	clearOutput();
 	var fail:Boolean = false;
+	var heightMin:Number = raceHeightMin(pc.originalRace);
+	var heightMax:Number = raceHeightMax(pc.originalRace);
+	
+	// Non-number and over-limit fails
 	if(isNaN(Number(userInterface.textInput.text))) {
 		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
 		fail = true;
 	}
-	else if(Number(userInterface.textInput.text) < 48) {
-		output("Choose a height at or above 48 inches tall, please.");
+	else if(Number(userInterface.textInput.text) < heightMin) {
+		output("Choose a height at or above " + heightMin + " inches tall, please.");
 		fail = true;
 	}
-	else if(Number(userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
-		output("Choose a height at or below 84 inches tall, please.");
-		fail = true;
-	}
-	else if(Number(userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
-		output("Choose a height at or below 108 inches tall, please.");
+	else if(Number(userInterface.textInput.text) > heightMax) {
+		output("Choose a height at or below " + heightMax + " inches tall, please.");
 		fail = true;
 	}
 	if(fail) {
@@ -570,6 +692,14 @@ public function applyHeight():void {
 		clearMenu();
 		addButton(0,"Next",applyHeight);
 		addButton(14,"Back",startCharacterCreation);
+		return;
+	}
+	
+	if(confirm) {
+		pc.tallness = Number(userInterface.textInput.text);
+		if(stage.contains(userInterface.textInput)) 
+			removeInput();
+		chooseThickness();
 		return;
 	}
 	
@@ -606,14 +736,8 @@ public function applyHeight():void {
 	userInterface.textInput.text = stringInput;
 	output("\n\n\n");
 	clearMenu();
-	addButton(0,"Confirm",applyHeightConfirm);
+	addButton(0,"Confirm",applyHeight,true);
 	addButton(1,"Retry",applyHeight);
-}
-public function applyHeightConfirm():void {
-	pc.tallness = Number(userInterface.textInput.text);
-	if(stage.contains(userInterface.textInput)) 
-		removeInput();
-	chooseThickness();
 }
 
 public function chooseThickness():void {
@@ -670,45 +794,60 @@ public function chooseHairColor():void {
 	output("<i>“Great,”</i> he says absently, entering the information with his stylus. <i>“I thought of asking for " + pc.mf("his","her") + " adult weight in pounds, but knowing you, you would have taken me seriously. Obviously, your kitchen staff will be the ones who control that.”</i> He clears his throat, sombering slightly. <i>“How about hair color? We could do black, like yours was, or any of the other natural colors pretty easily.”</i>");
 	*/
 	
-	//NEW
-	author("Fenoxo & JimThermic");
-	// More neatening and spacing.
-	output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for the child’s adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
-	output("\n\n<i>“Okaaay... what about hair color? We can do black, like yours was, or any other natural colors pretty easily.”</i>");
-	output("\n\n<b>What color is your character’s hair?</b>");
-	
-	//[CoC-like choices with bonus options for certain half-races].
-	clearMenu();
-	if(pc.originalRace == "half-leithan")
+	if(pc.originalRace == "half-suula")
 	{
-		addButton(0,"Black",applyHairColor,"black");
-		addButton(1,"Gray",applyHairColor,"gray");
-		addButton(2,"Silver",applyHairColor,"silver");
-		addButton(3,"Dark Gold",applyHairColor,"dark gold");
-	}
-	else if(pc.originalRace == "half kui-tan")
-	{
-		addButton(0,"Brown",applyHairColor,"brown");
-		addButton(1,"Chocolate",applyHairColor,"chocolate");
-		addButton(2,"D.Brown",applyHairColor,"dark brown","Dark Brown","Dark brown hair. Pardon the abbreviation.");
-		addButton(3,"Black",applyHairColor,"black");
+		author("Savin");
+		output("<i>“Next up is coloration,”</i> the doctor says, tapping on a holographic screen. <i>“Suula of course have incredibly vibrant colors across the feathers on their heads and, vestigially, on their forearms as well. What color were you thinking of?”</i>");
+		clearMenu();
+		//Blue, Red, Green, Purple, Gold, Silver
+		addButton(0,"Blue",applyHairColor,"blue");
+		addButton(1,"Red",applyHairColor,"red");
+		addButton(2,"Green",applyHairColor,"green");
+		addButton(3,"Purple",applyHairColor,"purple");
+		addButton(4,"Gold",applyHairColor,"gold");
+		addButton(5,"Silver",applyHairColor,"silver");
 	}
 	else
 	{
-		addButton(0,"Black",applyHairColor,"black");
-		addButton(1,"Brown",applyHairColor,"brown");
-		addButton(2,"Dirty Blonde",applyHairColor,"dirty blonde");
-		addButton(3,"Blonde",applyHairColor,"blonde");
-		addButton(4,"Auburn",applyHairColor,"auburn");
-		addButton(5,"Red",applyHairColor,"red");
-		addButton(6,"Gray",applyHairColor,"gray");
-		if (pc.originalRace == "half-kaithrit") {
-			addButton(7,"Blue",applyHairColor,"blue");
-			addButton(8,"Green",applyHairColor,"green");
-			addButton(9,"Purple",applyHairColor,"purple");
+		author("Fenoxo & JimThermic");
+		// More neatening and spacing.
+		output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for the child’s adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
+		output("\n\n<i>“Okaaay... what about hair color? We can do black, like yours was, or any other natural colors pretty easily.”</i>");
+		output("\n\n<b>What color is your character’s hair?</b>");
+		
+		//[CoC-like choices with bonus options for certain half-races].
+		clearMenu();
+		if(pc.originalRace == "half-leithan")
+		{
+			addButton(0,"Black",applyHairColor,"black");
+			addButton(1,"Gray",applyHairColor,"gray");
+			addButton(2,"Silver",applyHairColor,"silver");
+			addButton(3,"Dark Gold",applyHairColor,"dark gold");
 		}
-		if(pc.originalRace == "half-ausar") {
-			addButton(7,"White",applyHairColor,"white");
+		else if(pc.originalRace == "half kui-tan")
+		{
+			addButton(0,"Brown",applyHairColor,"brown");
+			addButton(1,"Chocolate",applyHairColor,"chocolate");
+			addButton(2,"D.Brown",applyHairColor,"dark brown","Dark Brown","Dark brown hair. Pardon the abbreviation.");
+			addButton(3,"Black",applyHairColor,"black");
+		}
+		else
+		{
+			addButton(0,"Black",applyHairColor,"black");
+			addButton(1,"Brown",applyHairColor,"brown");
+			addButton(2,"Dirty Blonde",applyHairColor,"dirty blonde");
+			addButton(3,"Blonde",applyHairColor,"blonde");
+			addButton(4,"Auburn",applyHairColor,"auburn");
+			addButton(5,"Red",applyHairColor,"red");
+			addButton(6,"Gray",applyHairColor,"gray");
+			if (pc.originalRace == "half-kaithrit") {
+				addButton(7,"Blue",applyHairColor,"blue");
+				addButton(8,"Green",applyHairColor,"green");
+				addButton(9,"Purple",applyHairColor,"purple");
+			}
+			if(pc.originalRace == "half-ausar") {
+				addButton(7,"White",applyHairColor,"white");
+			}
 		}
 	}
 	addButton(14,"Back",chooseThickness);
@@ -780,6 +919,13 @@ public function chooseEyeColor():void {
 		addButton(4,"Gold",applyeEyeColor,"gold");
 		addButton(5,"Copper",applyeEyeColor,"copper");
 	}
+	else if(pc.originalRace == "half-suula")
+	{
+		addButton(0,"Gold",applyeEyeColor,"gold");
+		addButton(1,"Blue",applyeEyeColor,"blue");
+		addButton(2,"Red",applyeEyeColor,"red");
+		addButton(3,"Purple",applyeEyeColor,"purple");
+	}
 	else
 	{
 		addButton(0,"Blue",applyeEyeColor,"blue");
@@ -821,7 +967,7 @@ public function chooseSkinTone():void
 		addButton(2, "Pink", applySkinTone, "pink");
 		addButton(3, "DarkRed", applySkinTone, "dark red");
 		addButton(4, "DarkGreen", applySkinTone, "dark green");
-		addButton(14, "Back", chooseGryvainColor)
+		addButton(14, "Back", chooseGryvainColor);
 	}
 	else
 	{
@@ -857,6 +1003,86 @@ public function applySkinTone(skinTone:String = "pale"):void {
 			else pc.cocks[0].cockColor = "pink";
 		}
 	}
+	if(pc.originalRace == "half-suula")
+	{
+		if(pc.hasVagina()) 
+		{
+			if(InCollection(pc.skinTone,["pale","fair","tan"])) 
+			{
+				pc.vaginas[0].vaginaColor = "amber";
+				pc.nippleColor = "amber";
+			}
+			else if(pc.skinTone == "ebony") 
+			{
+				pc.vaginas[0].vaginaColor = "sable";
+				pc.nippleColor = "sable";
+			}
+			else 
+			{
+				pc.vaginas[0].vaginaColor = "blue";
+				pc.nippleColor = "blue";
+			}
+		}
+		else
+		{
+			if(InCollection(pc.skinTone,["pale","fair","tan"])) 
+			{
+				pc.cocks[0].cockColor = "amber";
+				pc.nippleColor = "amber";
+			}
+			else if(pc.skinTone == "ebony") 
+			{
+				pc.cocks[0].cockColor = "sable";
+				pc.nippleColor = "sable";
+			}
+			else 
+			{
+				pc.cocks[0].cockColor = "blue";
+				pc.nippleColor = "blue";
+			}
+		}
+	}
+	if(InCollection(pc.originalRace, ["half-suula"])) chooseScaleColor();
+	else chooseBreastSize();
+}
+
+public function chooseScaleColor():void
+{
+	clearOutput();
+	showBust("CREATION_DOCTOR");
+	creationHeader("SELECTING\nSCALE PIGMENT");
+	
+	output("<i>“Nice. Now how about the scale color?”</i>");
+	output("\n\n<b>What will your character’s scale color be?</b>");
+	
+	var colorList:Array = [];
+	
+	switch(pc.originalRace)
+	{
+		case "half-suula":
+			colorList.push(["Blue", "blue"]);
+			colorList.push(["Red", "red"]);
+			colorList.push(["Green", "green"]);
+			colorList.push(["Purple", "purple"]);
+			colorList.push(["Gold", "gold"]);
+			colorList.push(["Silver", "silver"]);
+			break;
+		default:
+			colorList.push(["Blue", "blue"]);
+			break;
+	}
+	
+	clearMenu();
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < colorList.length; i++)
+	{
+		addButton(btnSlot, colorList[i][0], applyScaleColor, colorList[i][1]);
+		btnSlot++;
+	}
+	addButton(14, "Back", chooseSkinTone);
+}
+public function applyScaleColor(newColor:String = "blue"):void {
+	pc.scaleColor = newColor;
 	chooseBreastSize();
 }
 
@@ -892,7 +1118,29 @@ public function chooseBreastSize():void {
 	output("\n\n<b>What size would you like your character’s breasts to be?</b>");
 	
 	clearMenu();
-	if (pc.originalRace != "half-gryvain")
+	if(pc.originalRace == "half-suula")
+	{
+		if(pc.hasVagina())
+		{
+			addButton(0, "DD", applyBreastSize, 5);
+			addButton(1, "E", applyBreastSize, 7);
+			addButton(2, "Big EE", applyBreastSize, 10);
+			addButton(3, "F", applyBreastSize, 11);
+			addButton(4, "Big FF", applyBreastSize, 14);
+			addButton(5, "G", applyBreastSize, 15);
+			addButton(6, "Big GG", applyBreastSize, 18);
+			addButton(13,"Whatever",applyBreastSize,5+rand(14));
+		}
+		else
+		{
+			addButton(0,"Flat",applyBreastSize,0);
+			addButton(1,"A",applyBreastSize,1);
+			addButton(2,"B",applyBreastSize,2);
+			addButton(3,"C",applyBreastSize,3);
+			addButton(13,"Whatever",applyBreastSize,rand(4));
+		}
+	}
+	else if (pc.originalRace != "half-gryvain")
 	{
 		addButton(0,"Flat",applyBreastSize,0);
 		addButton(1,"A",applyBreastSize,1);
@@ -960,60 +1208,28 @@ public function chooseYourJunkSize():void {
 	
 	clearMenu();
 	
+	var i:uint = 0;
+	var cLengths:Array = [4, 5, 6, 7, 8];
+	
 	switch (pc.originalRace)
 	{
-		case "half-leithan":
-			output("thirteen to twenty ");
-			
-			for (var i:uint = 0; i <= 7; i++)
-			{
-				addButton(i, String(13 + i) + "”", applyJunkSize, 13 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,13+rand(8));
-			break;
-			
-		case "half kui-tan":
-			output("five to ten ");
-			
-			for (i = 0; i <= 5; i++)
-			{
-				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,5+rand(10));
-			break;
-		
-		case "half-kaithrit":
-			output("four to six ");
-			
-			for (i = 0; i <= 2; i++)
-			{
-				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,4+rand(3));
-			break;
-			
-		case "half-gryvain":
-			output("five to twelve ");
-
-			for (i = 0; i <= 7; i++)
-			{
-				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
-			}
-			addButton(13, "Whatever", applyJunkSize, 5 + rand(8));
-			break;
-
-		default:
-			output("four to eight ");
-			
-			for (i = 0; i <= 4; i++)
-			{
-				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,4+rand(5));
-			break;
+		case "half-kaithrit": cLengths = [4, 5, 6]; break;
+		case "half kui-tan": cLengths = [5, 6, 7, 8, 9, 10]; break;
+		case "half-leithan": cLengths = [13, 14, 15, 16, 17, 18, 19, 20]; break;
+		case "half-gryvain": cLengths = [5, 6, 7, 8, 9, 10, 11, 12]; break;
+		case "half-suula": cLengths = [10, 11, 12, 13, 14]; break;
 	}
-
-	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
+	
+	output(num2Text(cLengths[0]) + " to " + num2Text(cLengths[cLengths.length - 1]));
+	
+	for (i = 0; i < cLengths.length; i++)
+	{
+		addButton(i, (String(cLengths[i]) + "\""), applyJunkSize, cLengths[i]);
+	}
+	addButton(13,"Whatever",applyJunkSize,cLengths[rand(cLengths.length)]);
+	
+	output(" inches. How long do you want it?”</i>");
+	if(cLengths[cLengths.length - 1] >= 9) output(" He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	
 	//NEW (cont.)
 	output("\n\n<b>How long do you want your character’s penis to be?</b>");
@@ -1021,7 +1237,7 @@ public function chooseYourJunkSize():void {
 	addButton(14,"Back",chooseBreastSize);
 }
 
-public function applyJunkSize(arg:int = 0):void {
+public function applyJunkSize(arg:Number = 0):void {
 	pc.cocks[0].cLengthRaw = arg;
 	pc.cocks[0].cThicknessRatioRaw = 1;
 	if (pc.originalRace == "half-kaithrit") {
@@ -2039,9 +2255,18 @@ public function ohShitGameStarts():void {
 	creationHeader("THE\nMESSAGE");
 	
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
-	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
-	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
-	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");
+	output("\n\n<i>“Message complete,”</i> the codex blithely states.\n\n<i>Fuck!</i>");
+	clearMenu();
+	addButton(0,"Next",gameStartOutro);
+}
+
+public function gameStartOutro():void
+{
+	clearOutput();
+	showName("TO\nSPACE!");
+	author("Fenoxo");
+	output("You hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
+	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)\n\nAfter [rival.name]'s headstart, there's no time to waste! You pull up the first set of coordinates - to a planet known as Mhen'ga, and blow through the undocking proceedures as fast as the local authorities will allow. Besides, <b>you can return to Tavros once you have the funds for a shopping spree!</b>");
 	minutes = 2;
 	hours = 6;
 	days = 1;
@@ -2056,15 +2281,13 @@ public function ohShitGameStarts():void {
 	if (false)//if(demo) 
 		addButton(0,"Next",demoOver);
 	else 
-		addButton(0,"Next",mainGameMenu);
-	
+		addButton(0,"Next",flyTo,"Mhen'ga");
 }
 
 
 /* ORIGINAL RACE CORRECTION */
 
-public var pcMotherRaces:Array = ["human", "ausar", "kaithrit", "leithan", "kui-tan", "gryvain"];
-public function raceToOriginalRace(race:String = "human"):String
+public function raceToOriginalRace(race:String):String
 {
 	var originalRace:String = race;
 	
@@ -2108,7 +2331,7 @@ public function fixOriginalRaceAlert():void
 	
 	fixOriginalRaceMenu();
 }
-public function fixOriginalRaceSelect(race:String = "human"):void
+public function fixOriginalRaceSelect(race:String):void
 {
 	clearOutput();
 	creationHeader("CODEX\nALERT");

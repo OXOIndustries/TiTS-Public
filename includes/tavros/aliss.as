@@ -66,7 +66,7 @@ public function miAmoreBonusShit():Boolean
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
 	addButton(1,"Lower Body",lowerBodyAlice,undefined,"Lower Body","See what bottoms Aliss has for sale.");
 	//addButton(2,"Cocksocks",cocksocksAlice,undefined,"Cocksocks","See what Aliss’s “Handmade Cocksocks” are all about.");
-	addButton(5,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
+	addButton(5,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Talk with the shopkeeper herself.");
 	if(flags["ALISS_FIXED_HL"] == -1)
 	{
 		if(pc.hasHardLightEquipped()) addButton(2,"Repair HL",alissRepairTalk,undefined,"Repair HL","Show Aliss the malfunctioning mod on your hardlight and see if she can fix it.");
@@ -608,7 +608,7 @@ public function tryOnTheThong():void
 		return;
 	}
 	output("You ask if Aliss would be so kind as to model this thong for you. A sly look crosses her face and she nods, <i>“Oh absolutely. You just hang out right here and I’ll be back in two shakes.”</i> She turns and sashays her way to the changing rooms, her tail and ass swaying sensuously behind her.");
-	output("\n\nWithin a minute she returns, sporting the simple thong. She strikes a pose and then turns all the way around, letting you see how it fits from every angle. The little strip of fabric in the front does only the bare minimum at concealing Aliss’s sex. Despite the fact that that the thong she took with her was clearly intended for tailless individuals, the one she’s wearing has seamlessly adapted to her rather thick tail. <i>“Like our other products, this thong is made primarily of chameleon silk, which means you can download an app to your datapad and customize the color as you see fit. Not only that, but it’s completely hydrophobic, so it’s actually popular as a swimsuit.”</i>");
+	output("\n\nWithin a minute she returns, sporting the simple thong. She strikes a pose and then turns all the way around, letting you see how it fits from every angle. The little strip of fabric in the front does only the bare minimum at concealing Aliss’s sex. Despite the fact that the thong she took with her was clearly intended for tailless individuals, the one she’s wearing has seamlessly adapted to her rather thick tail. <i>“Like our other products, this thong is made primarily of chameleon silk, which means you can download an app to your datapad and customize the color as you see fit. Not only that, but it’s completely hydrophobic, so it’s actually popular as a swimsuit.”</i>");
 	output("\n\n<i>“So, what do you think?”</i>");
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Thong())) addButton(0,"Buy", purchaseSomethingFromAliss, new Thong());
@@ -1472,10 +1472,12 @@ public function takeALoadInDaFaceFromAliss():void
 	output("\n\nAll at once, her cumvein thickens, and then a burst of white, gooey cum erupts from the alien cock before you. The first jet of cum splatters against your face. The rest are less precise, landing on your outstretched tongue, chin, chest... really an available space. Pretty soon you’re practically covered in the warm substance. You greedily gulp down whatever lands in your mouth.");
 	output("\n\nWhen Aliss slumps backward on the bench, completely spent, you lean back as well, taking a moment to appreciate the feeling of the seed on your [pc.skinFurScales]. Then, using two fingers, you collect some of the cum and swallow it. You lick your cum-stained lips, and then lean forwards, giving Aliss a sloppy, wet kiss that tastes of strawberry and jizz. She giggles and returns it, even going so far as to lick some of her own seed off your face.");
 	output("\n\nAfter a minute or so, Aliss sits up and retrieves a few moist wipes. <i>“Let’s get you washed up, shall we?”</i> You clean yourself as best you can, get dressed, and the two of you head back out into the store.");
+	pc.applyCumSoaked();
 	pc.lust(10);
 	chars["ALISS"].orgasm();
 	fuckedAliss();
 	processTime(5);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1494,6 +1496,7 @@ public function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
 	chars["ALISS"].orgasm();
 	fuckedAliss();
 	processTime(5);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

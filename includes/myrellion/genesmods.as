@@ -184,7 +184,7 @@ public function genesModsInterior():void
 			if (pc.lust() == pc.lustMax()) output(" You smirk lazily back at the fanfir and think about what it is you want.");
 		}
 
-		if (pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
+		if (!isGeneSubmissionDisabled() && pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
 			// Goto sex
@@ -1177,7 +1177,7 @@ public function genesModsBellyrubRelease():void
 	processTime(3);
 	pc.lust(10+rand(5));
 	geneSubmissionLevel(-3);
-
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1226,7 +1226,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
 	processTime(1);
-	if (pc.tallness < 112 || !pc.hasVagina())
+	if (pc.tallness >= 112 || !pc.hasVagina())
 	{
 		output(" Desist, and we’ll do something we both know will be mutually satisfying instead.”</i> Disappointed, you step away, knowing you have no choice but to proffer a different form of fucking now.");
 
@@ -1358,7 +1358,7 @@ public function genesModsLickedOut():void
 	
 	output("\n\n<i>“That was good for a start to our little massaging session,”</i> purrs Gene, all mocking, casual menace. He taps your throbbing [pc.clit] with his long, purple tongue, laughing softly as it makes you twitch. <i>“Time to get a bit more serious.”</i>");
 
-	if (pc.vaginas.length > 0)
+	if (pc.vaginas.length > 1)
 	{
 		output("\n\nYou moan woozily as he trails that devilishly long, prehensile muscle of his further back, trailing over the lips of your [pc.vagina 1], pushing inside to swab at its sensitive entrance.");
 		

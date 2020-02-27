@@ -767,8 +767,8 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	//pc dick has double head flag:
 	if(!hardlighted && pc.cocks[x].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) output("sinking in, enveloping your topmost cockhead, and then doing it all over again for the second.");
 	else output("shoving the rest of it into his mouth.");
-	if(pc.cockTotal() > 1) output(" His free hand gives your [pc.cockSmallest] a slow, mechanical handjob, and he’s obviously more passionate about using his mouth.");
 	if(pc.cockTotal() > 2) output(" His free hand jumps between your other cocks, keeping them hard with idle handjobs, but he’s obviously more passionate about using his mouth.");
+	else if(pc.cockTotal() > 1) output(" His free hand gives your [pc.cockSmallest] a slow, mechanical handjob, and he’s obviously more passionate about using his mouth.");
 
 	output("\n\nHis snout continues to slide across your shaft, while his tongue ");
 	if(pc.balls > 1) output("reaches forward and licks your balls when he bottoms out, giving your [pc.sack] another spit-coating.");
@@ -991,12 +991,12 @@ public function doggyStyleWithGil():void
 	{
 		output("\n\nYou grab his ass with both hands and easily pull him up to your [pc.chest], while he wraps his legs around your waist and holds himself up by your shoulder. You’re so huge that, despite the aid, he is still staring straight at your chest, and he can’t help but bury his face into your");
 		//pc is flat:
-		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) output("[pc.skinFurScales]-covered");
-		else if(pc.femininity <= 10 && pc.biggestTitSize() < 1) output("hairy");
-		else output("hairless");
-		if(pc.biggestTitSize() >= 1) output("bosoms");
-		else if(pc.tone >= 70) output("pecs");
-		else output("chest");
+		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) output(" [pc.skinFurScales]-covered");
+		else if(pc.femininity <= 10 && pc.biggestTitSize() < 1) output(" hairy");
+		else output(" hairless");
+		if(pc.biggestTitSize() >= 1) output(" bosoms");
+		else if(pc.tone >= 70) output(" pecs");
+		else output(" chest");
 		output(". He looks up and tries to pull himself closer, failing until you help him by pushing his soft furry buttocks upwards, followed by planting a passionate kiss onto his lips. Both of you spend a while there, just enjoying each other’s embrace, before you throw him onto your bed and settle down on top of him.");
 	}
 	//if more than 7 feet:
@@ -1212,7 +1212,7 @@ public function doggyStyleWithGil():void
 	{
 		output(" You feel your own vaginal orgasm ");
 		if(hardlighted) output("drench your [pc.lowerUndergarment] with [pc.girlCum]");
-		else if(pc.isSquirter()) output("burst forth from your cunt and drench Gil’s tail in [pc.girlCum]");
+		else if(pc.isSquirter()) output("burst forth from your cunt and drench Gil’s thighs in [pc.girlCum]");
 		else 
 		{
 			output("drip down your ");

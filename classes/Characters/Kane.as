@@ -383,7 +383,7 @@ package classes.Characters
 			var damage:TypeCollection = meleeDamage();
 			damageRand(damage, 15);
 			applyDamage(damage, this, target);
-			target.energy(-50);
+			target.changeEnergy(-50);
 		}
 	}
 }

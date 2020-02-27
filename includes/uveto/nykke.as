@@ -1,16 +1,17 @@
-	/**
-	 * Nykke, xpac for oldest frostwym daughter
-	 * 
-	 * @author DrunkZombie
-	 *
-	 */
-	//["NYKKE_BORN"] undefined = no kips reach mature young stage yet, timestamp = date of first kips to mature
-	//["NYKKE_MET"] undefined or 0 = intro not done, 1 = intro complete
-	//["FROSTWYRM_PSIONICS_TALK"] undefined or 0 = not talked to frostwyrm about psionics, 1 = talked, set in frostwyrmPsionicsTalk() frostwyrm.as
-	//["NYKKE_FUCK_HER_CUNT"] times you fucked her cunt
-	//["NYKKE_FUCK_HER_ASS"] times you fucked her ass
-	//["NYKKE_FUCK_YOUR_CUNT"] times she fucked your cunt
-	//["NYKKE_FUCK_YOUR_ASS"] times she fucked her ass
+/**
+ * Nykke, xpac for oldest frostwym daughter
+ * 
+ * @author DrunkZombie
+ *
+ */
+//[NYKKE_VERSION] 1 = original (nykke.as), 2 or anything else = new 2.0 version (nykke2.as)
+//["NYKKE_BORN"] undefined = no kips reach mature young stage yet, timestamp = date of first kips to mature
+//["NYKKE_MET"] undefined or 0 = intro not done, 1 = intro complete
+//["FROSTWYRM_PSIONICS_TALK"] undefined or 0 = not talked to frostwyrm about psionics, 1 = talked, set in frostwyrmPsionicsTalk() frostwyrm.as
+//["NYKKE_FUCK_HER_CUNT"] times you fucked her cunt
+//["NYKKE_FUCK_HER_ASS"] times you fucked her ass
+//["NYKKE_FUCK_YOUR_CUNT"] times she fucked your cunt
+//["NYKKE_FUCK_YOUR_ASS"] times she fucked her ass
 
 //check if one year has passed since first kips reached mature young age
 public function nykkeIsMature():Boolean
@@ -167,10 +168,7 @@ public function nykkeMainMenu(noskip:Boolean = true ):void
 	clearOutput();
 	nykkeHeader();
 	clearMenu();	
-	
-	//permanently disable sex with nykke
-	flags["FROSTWYRM_INCEST_OPTION"] = 0;
-	
+		
 	if (noskip)
 	{
 		output("You excuse yourself from [frostwyrm.name]’s warm embrace and say to Nykke that you’d like to join her privately in the personal dwelling she’s made for herself.");
@@ -188,8 +186,8 @@ public function nykkeMainMenu(noskip:Boolean = true ):void
 	output(" while you’re here. Now that you two have some privacy, what would you like to do?");
 	
 	addButton(0,"Talk",nykkeTalkMenu, undefined,"Talk","Nykke’s proven to be a rather forward-thinking and driven kip. If you were to ask for her opinions on some topics, surely she’d provide some unique insight.");
-	//if (flags["FROSTWYRM_INCEST_OPTION"] == 1) addButton(1, "Sex", nykkeSexMenu, undefined, "Sex", "Fulfill your role as Qal and spend some personal, quality time with your Frostwyrmling daughter during a celebratory ‘inner circle coupling’ session.");
-	//else addDisabledButton(1,"Sex","Sex","You’ve currently elected to not celebrate the Frostwyrm tradition of ‘inner circle coupling.’ You should Talk with Nykke if you want to change that.");
+	if (flags["FROSTWYRM_INCEST_OPTION"] == 1) addButton(1, "Sex", nykkeSexMenu, undefined, "Sex", "Fulfill your role as Qal and spend some personal, quality time with your Frostwyrmling daughter during a celebratory ‘inner circle coupling’ session.");
+	else addDisabledButton(1,"Sex","Sex","You’ve currently elected to not celebrate the Frostwyrm tradition of ‘inner circle coupling.’ You should Talk with Nykke if you want to change that.");
 	addButton(14, "Leave", frostwyrmMainMenu, true);
 }
 //[Talk]
@@ -207,8 +205,8 @@ public function nykkeTalkMenu():void
 	else addDisabledButton(1,"Psionics","Psionics","You’re far less educated about psionics than Nykke would be, and you probably shouldn’t go into this discussion without at least a little bit of forethought from [frostwyrm.name] first.");
 	
 	addButton(2,"Adventuring",nykkeAdventuringTalk, undefined,"Adventuring","You have a life outside of [frostwyrm.name]’s lair – one that’s rather adventurous, especially compared to the domestic life that Nykke has. Maybe she’d like to hear a few stories about your travels.");
-	//addButton(3, "Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
-	addButton(3,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
+	addButton(3,"Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
+	addButton(4,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
 	
 	addButton(14, "Back", nykkeMainMenu, false);
 }
@@ -457,7 +455,7 @@ public function nykkeBlackScalesTalk():void
 
 	processTime(10);
 
-	addDisabledButton(3,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
+	addDisabledButton(4,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
 }
 //[Sex]
 public function nykkeSexMenu():void

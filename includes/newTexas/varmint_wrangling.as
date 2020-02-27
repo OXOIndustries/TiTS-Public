@@ -826,8 +826,14 @@ public function getAPetVarmintResponse(response:String = "none"):void
 		pc.createStatusEffect("Varmint Leashed");
 		pc.credits -= 50;
 		quickLoot(new VarmintLeash());
+		
+		varmintDisappearsCancel();
+		
 		return;
 	}
+	
+	varmintDisappearsCancel();
+	
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -898,7 +904,7 @@ public function nameTheVarmint():void
 	varmintPetHeader();
 	clearMenu();
 
-	output("Now that the varmint is used to living with you on your " + PCShipModel() + ", it might be a good time to finally decide upon a name for it. After all, you can't keep calling it just 'varmint' forever, that's just rude!");
+	output("Now that the varmint is used to living with you on your [pc.ship], it might be a good time to finally decide upon a name for it. After all, you can’t keep calling it just ‘varmint’ forever, that’s just rude!");
 	output("\n\nWhat do you want to call your New Texan pet from now on?");
 	
 	if(stage.contains(this.userInterface.textInput)) 
@@ -941,8 +947,8 @@ public function varmintNamingConventions(retFunc:Function = null):void
 	author("Stygs");
 
 	output("<i>“I think I am going to call you " + varmintPetName() + " from now on, what do you think about that?”</i> you say, smiling at the big blue varmint next to you.");
-	output("\n\nYour alien puppy stares at you for a moment before suddenly emitting a soft hooting sound, thumping its hefty tail on the ground. Looks like it's happy with the name you selected.");
-	output("\n\n<i>“Well, I guess it's settled then.”</i>");
+	output("\n\nYour alien puppy stares at you for a moment before suddenly emitting a soft hooting sound, thumping its hefty tail on the ground. Looks like it’s happy with the name you selected.");
+	output("\n\n<i>“Well, I guess it’s settled then.”</i>");
 	output("\n\n<b>Your varmint is now named " + varmintPetName() + "!</b>");
 
 	if(stage.contains(this.userInterface.textInput)) 
@@ -1011,6 +1017,8 @@ public function doVarmintPlayTime(response:String = "none"):void
 	{
 		output("You give " + varmintPetName("the") + " a pat on the head and leave it to its own devices for a bit.");
 		processTime(1);
+		
+		varmintDisappearsCancel();
 	}
 	addButton(0, "Next", crew);
 }
@@ -1035,6 +1043,11 @@ public function varmintDisappearChance(deltaT:uint, doOut:Boolean):void
 	{
 		eventQueue.push(varmintDisappears);
 	}
+}
+public function varmintDisappearsCancel():void
+{
+	var idx:int = eventQueue.indexOf(varmintDisappears);
+	if(idx != -1) eventQueue.splice(idx, 1);
 }
 public function varmintDisappears():void
 {

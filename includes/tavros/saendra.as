@@ -194,8 +194,8 @@ public function saenAtTheBarFirstTimeEvent():void
 
 	clearMenu();
 	//[Let’s do it!] [Not right now]
-	addButton(0, "Let’s do it!", takeTheRewardYouSlut, undefined, "Take the reward", "Accept Saen’s reward.");
-	addButton(1, "Not Right Now", dontTakeTheRewardWhaddaYouGayOrSomething, undefined, "Not right now", "Turn the reward down.")
+	addButton(0, "Let’s do it!", takeTheRewardYouSlut, undefined, "Take the Reward", "Accept Saen’s reward.");
+	addButton(1, "Not Now", dontTakeTheRewardWhaddaYouGayOrSomething, undefined, "Not Right Now", "Turn the reward down.")
 }
 
 public function dontTakeTheRewardWhaddaYouGayOrSomething():void
@@ -559,7 +559,7 @@ public function saendraParents():void
 
 	output("<i>“Tell me a little bit more about your folks.”</i>");
 	
-	output("\n\nSaen sighs. <i>“There was a hint back there, you know. Ugh, fine. My mom’ still around, yeah. Not a pirate anymore, but still an asskicker of the highest order. She does private security work now, I think, out on the rim. We actually bumped into each other a few months ago, working. That was pretty neat.”</i>");
+	output("\n\nSaen sighs. <i>“There was a hint back there, you know. Ugh, fine. My mom’s still around, yeah. Not a pirate anymore, but still an asskicker of the highest order. She does private security work now, I think, out on the rim. We actually bumped into each other a few months ago, working. That was pretty neat.”</i>");
 	
 	output("\n\n<i>“But, uh, dad passed a couple of years back. Got in a fight he couldn’t win, I guess.”</i>");
 	
@@ -1910,7 +1910,7 @@ public function newFutaSaendraScenes():void
 	output("\n\nSaen slides in to the hilt, grunting in your [pc.ear] as she pounds your ");
 	if(pc.hasVagina()) output("cunt");
 	else output("ass");
-	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstacy - God <i>damn</i> you love her cock!");
+	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstasy - God <i>damn</i> you love her cock!");
 	if(pc.IQ() > 75) output(" Definitely one of your best investments yet.");
 	else if(pc.isBimbo()) output(" Everything’s better with dicks - especially your girlfriends!");
 

@@ -2033,7 +2033,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 	output("\n\n<i>“What? You think just because I like a bit of casualness in life I’m completely unsophisticated?”</i> she giggles, then moves to pull out her own chair, stopping before actually seating herself. <i>“Ah, guests first?”</i> she suggests with a smile, indicating your seat with her hand. <i>“That’s what my mom always said.”</i>");
 	output("\n\nSeeing no reason to refuse her invitation, you take your seat, place your serving in front of you, and patiently wait for her to take hers. Happily she flops down into her seat and pulls herself in to the table. <i>“Alright! I’m so hungry... I was starting to wonder just how long this stupid ham was gonna take to cook,”</i> she pouts, her belly grumbling as if in emphasis.");
 
-	output("\n\nYou exchange smiles and promptly dig in. The ham is delicious; you compliment Kelly on her recipe.");
+	output("\n\nYou exchange smiles and promptly dig in. The ham is delicious; you praise Kelly on her recipe.");
 
 	output("\n\n<i>“Thank you!”</i> she beams, already forking up a big piece for herself. <i>“I’m quite proud of my cooking - I didn’t go to home economics class for nothing, I’ll have you know,”</i> she jokes, then gobbles down her forkful.");
 
@@ -2603,7 +2603,7 @@ public function kellyHyperBlowDoubleYiss():void
 	output("\n\nYou hand her the vial and watch her carefully inject just enough to counteract her medicine, depressing the needle into her thick black equine cock, a shudder of pleasure working its way up her spine until she’s shaking her head to clear it. Moaning, she lets the syringe fall by her side as she leans back into the couch, her half-erect cock engorging before your very eyes.");
 	output("\n\n<i>“Ooohhh, stars,”</i> Kelly groans, the couch creaking beneath her fingers as she grips it tight. <i>“Nnnngh...”</i>");
 	output("\n\nHer flesh shifts and expands, the added weight of her cocks forcing them to sag to your eye-level as her erections fight against gravity. It’s only when she feels the pleasure, the sensation of uninhibited growth and virility, that her mammoth pricks begin to perk up once more, throbbing fiercely as inch after inch pours itself on. They rise to stand proud before you, thick, black, leathery, and with cumveins so immense and bulging you can only imagine the sheer volume of honeyed sperm she must be able to pump out of them.");
-	if (pc.hasGenitals()) output("\n\n" + StringUtil.capitalize(pc.cockAndVagina("your " + (pc.hasCocks() ? "cocks are" : "cock is") + " so hard", "your " + (pc.hasVagina() ? "pussies are" : "pussy is") + "so wet", " and ")) + " you think you might cum on the spot.");
+	if (pc.hasGenitals()) output("\n\n" + StringUtil.capitalize(pc.cockAndVagina("your " + (pc.hasCocks() ? "cocks are" : "cock is") + " so hard", "your " + (pc.hasVaginas() ? "pussies are" : "pussy is") + " so wet", " and ")) + " you think you might cum on the spot.");
 	else output("\n\nWere you to possess genitals you’re sure you’d be a lesser mirror of her arousal right now but as it is, all you can do is gape in awe.");
 	output(" You’re not sure you’ve ever seen such an amazing - <i>mouthwatering</i> - sight. Kelly looks down at you, flipping her hair out of her sweaty face with a casual grin, and places one hand on the underside of her bottom-most horsecock.");
 	output("\n\n<i>“Get a taste,”</i> she purrs.");
@@ -2644,7 +2644,7 @@ public function blowThatHyperKellyDick():void
 	else if (pc.hasCock()) output(" with your [pc.cocks] so hard and dripping");
 	else if (pc.hasVagina()) output(" with your [pc.pussies] so wet and dripping");
 	else output(" and feeling like");
-	output(" you might cum any second, you at last get to feel the wet <i>>smack<</i> of Kelly’s fat, seed-filled balls against your saliva-coated chin. It feels <i>good</i>.");
+	output(" you might cum any second, you at last get to feel the wet <i>smack</i> of Kelly’s fat, seed-filled balls against your saliva-coated chin. It feels <i>good</i>.");
 	output("\n\n<i>“Hhhuuunnh, fuck,”</i> Kelly moans under her breath, rutting your face as hard as she possibly can. You’re hardly able to keep your sweaty hands on her second cock, though the slippery massage of your underside might be appreciated anyway. <i>“Fuck, fuck, fuck, fuck...”</i>");
 	output("\n\nThe increase in her pace is gradual but feels like anything but. Each thrust of her powerful laquine hips sends spit running down your chin as it’s squeezed from your overtaxed mouth, only to have it splattered by the impact of her heavy swinging nuts as she desperately buries her flaring cockhead in your stomach. You can feel it getting bigger by the second, stretching taut as more and more precum starts to bubble and spurt from her nozzle, pooling in your stomach.");
 	output("\n\nWith a wild moan, Kelly suddenly puts her other leg over your back and forces your head to crane backwards just to accommodate her, burying herself balls-deep in your face. Now all you can see while she facefucks you into next week is the shiny black skin of her upper cock as her cumvein pulses and throbs with life and suddenly, you realize that when one of them cums so does the other.");
@@ -2685,7 +2685,7 @@ public function inForKellysHyperCockInForBoth():void
 	output("\n\n<i>“F-fuh,”</i> Kelly pants, her grip on your " + (pc.hasHair() ? "hair" : "head") + " tightening. <i>“Ungh! God!”</i>");
 	output("\n\nShe hardly seems capable of speech right now, slow and steady exploration tossed out the window in favor of hard, neck-bulging thrusts as two enormous cocks jostle for position in your absurdly swollen throat. You’re a perfect fit around her, stroking her cumveins with your flexible insides while she plows your oral fuckhole in a manner more suited to someone a quarter her size. Such is the force of her wild, frenzied fucking that you find yourself borne to the floor with her sitting over you, shaking her hips.");
 	output("\n\n<i>“Rrrfuck,”</i> she gasps, busily shifting above you, trying to find the best angle to go balls-deep in your little throat. <i>“Yesyesyes-”</i>");
-	output("\n\nShe’s momentarily lost to the world, pressing and pushing at you with her unimaginably large cocks until they slide their swollen flares right into your stomach and set about fucking you from the inside. Though you can’t see it thanks to the fat, musky bunnyballs swinging tantalizingly in front of your face, you can certainly <i>feel</i> the way the [pc.skinFurScales] of your [pc.stomach] are being thrust outwards by a pair of rampaging stallions. It feels like you’ve been turned into a sex toy for hyper pornstars.");
+	output("\n\nShe’s momentarily lost to the world, pressing and pushing at you with her unimaginably large cocks until they slide their swollen flares right into your stomach and set about fucking you from the inside. Though you can’t see it thanks to the fat, musky bunnyballs swinging tantalizingly in front of your face, you can certainly <i>feel</i> the way the [pc.skinFurScalesNoun] of your [pc.stomach] " + (pc.hasScales() || pc.hasFeathers() ? "are" : "is") + " being thrust outwards by a pair of rampaging stallions. It feels like you’ve been turned into a sex toy for hyper pornstars.");
 	output("\n\nLying flat on the ground, your [pc.ass] thumping on Kelly’s floor while she slides more and more of her slick, turgid shafts into your stretched-wide throat, you can hardly help yourself. Reaching upwards, you fiercely sink your fingers right into the springy flesh of her womanly ass and pull her closer, a deep, lusty groan tearing its way past her lips. You’ve all but forced her inside, her heavy, seed-filled and sweat-coated balls parked on your chin before she starts to hump and grind at your face in earnest.");
 	output("\n\n<i>“Oh- oh, god,”</i> Kelly pants, a sweaty hand weaving between her legs to hold your head in place. <i>“[pc.name]!”</i>");
 	output("\n\nThe sheer ferocity and intensity with which she begins to pound you " + (flags["KELLY_DOUBLEHYPERBJ"] == undefined ? "catches you completely off-guard" : "is impossible to get used to") + ", your vision blurring as Kelly starts jackhammering your throat so hard you can feel her equine flares crudely pushing right up against your abs. The only noises in her house are the slapping of skin, the rhythmic thumping of your bodies against the floor, and her hot, labored breath from above you as sweat droplets land on your face and [pc.chest].");
@@ -3581,19 +3581,12 @@ public function goToKellysHouse():void
 	currentLocation = "KELLY'S HOUSE";
 	rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	generateMap();
+	rooms["NORTH ESBETH 1"].northExit = "";
 }
 public function leaveKellyNext(fromOffice:Boolean = false):void
 {
 	if(pc.hasStatusEffect("Temporary Nudity Cheat")) tempNudeOff();
-	if(fromOffice)
-	{
-		move("SOUTH ESBETH 2");
-	}
-	else
-	{
-		rooms["NORTH ESBETH 1"].northExit = "";
-		move("NORTH ESBETH 1");
-	}
+	move(fromOffice ? "SOUTH ESBETH 2" : "NORTH ESBETH 1");
 }
 
 //Kelly's Cunny

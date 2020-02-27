@@ -108,7 +108,7 @@
 				{
 					output("\n\nA fresh coating of Rubber-Made gum spreads over your shiny body, adding a little extra to the latex second skin. Your body feels warm as the goo settles over your glistening skin, thickening the sheath almost imperceptibly. Drawing a palm down your throat, over your [pc.chest] and across your [pc.hips] pulls a shuddering moan from your lips that leaves you feeling cheap and easy. Given that your body is increasingly looking like a sex doll, it’s no wonder you’re feeling a little vulgar. You take a deep breath to calm yourself, but it doesn’t work.");
 					// Player’s lust increases by 5-10 points and they gain a rank in Latex Skin
-					pc.lust(5+rand(6));
+					pc.changeLust(5+rand(6));
 					pc.addStatusValue("Latex Skin",1,1);
 				}
 				//3+ ranks in Latex Skin

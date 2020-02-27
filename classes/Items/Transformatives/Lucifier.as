@@ -293,6 +293,10 @@ package classes.Items.Transformatives
 					}
 					else if(target.tailTypeUnlocked(GLOBAL.TYPE_DEMONIC))
 					{
+						var isTailCock:Boolean = false;
+						var isTailCunt:Boolean = false;
+						var tailGenitalFlags:Array = [];
+						var i:int = 0;
 						if(target.tailCount <= 0)
 						{
 							output("Pressure builds at the base of your spine, before releasing gratifyingly as a tail bursts into existence behind you. Clenching new muscle groups, you flick it around to examine it; it’s long, thin and smooth, with a fleshy spade tip. Looks fun!");
@@ -307,15 +311,43 @@ package classes.Items.Transformatives
 							if(target.tailCount == 1) output(" it");
 							else output(" they");
 							output(" warp");
-							if(target.tailCount != 1) output(" and meld");
+							if(target.tailCount == 1) output("s and morphs");
+							else output(" and meld");
 							output(" into a long, narrow tail tipped in a spade, the rest of the tail a single uniform length that you find to be completely prehensile. <b>You have a demon tail!</b>");
+							if(target.hasTailCock())
+							{
+								output(" The tip opens up to reveal that its [pc.cockTail] has been left unchanged.");
+								for(i = 0; i < target.tailFlags.length; i++)
+								{
+									if(InCollection(target.tailFlags[i], GLOBAL.VALID_COCK_FLAGS)) tailGenitalFlags.push(target.tailFlags[i]);
+								}
+								isTailCock = true;
+							}
+							if(target.hasTailCunt())
+							{
+								output(" The tip opens up to reveal that its [pc.cuntTail] has been left unchanged.");
+								for(i = 0; i < target.tailFlags.length; i++)
+								{
+									if(InCollection(target.tailFlags[i], GLOBAL.VALID_VAGINA_FLAGS)) tailGenitalFlags.push(target.tailFlags[i]);
+								}
+								isTailCunt = true;
+							}
 						}
-						target.removeTails();
+						if(!isTailCock && !isTailCunt) target.removeTails();
 						target.tailCount = 1;
 						target.tailType = GLOBAL.TYPE_DEMONIC;
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_LONG);
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+						if(isTailCock || isTailCunt)
+						{
+							for(i = 0; i < tailGenitalFlags.length; i++)
+							{
+								target.addTailFlag(tailGenitalFlags[i]);
+							}
+							if(isTailCock) target.addTailFlag(GLOBAL.FLAG_TAILCOCK);
+							if(isTailCunt) target.addTailFlag(GLOBAL.FLAG_TAILCUNT);
+						}
 					}
 					else output(target.tailTypeLockedMessage());
 				}

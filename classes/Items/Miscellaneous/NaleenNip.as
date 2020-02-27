@@ -284,8 +284,7 @@
 				//Loop through and set 'em all, baby!
 				for(x = 0; x < target.totalVaginas(); x++)
 				{
-					target.vaginas[x].clits = 1;
-					target.vaginas[x].type = GLOBAL.TYPE_NAGA;
+					target.shiftVagina(x, GLOBAL.TYPE_NAGA);
 				}
 				changes++;
 			}
@@ -304,7 +303,7 @@
 				kGAMECLASS.output(". It fades after five or ten seconds of discomfort, but you just have to figure out what changed inside you! You pry yourself open and guide your fingers inside, finding that you can fit a little bit more inside than ever before. If you contort around and hold your lips apart, you can even tell that you’ve gotten a good bit deeper. <b>You can handle slightly bigger insertions without worry.</b>");
 				target.vaginas[x].bonusCapacity += 25;
 				if(target.vaginas[x].bonusCapacity > 100) target.vaginas[x].bonusCapacity = 100;
-				target.lust(3);
+				target.changeLust(3);
 				changes++;
 			}
 			//Grow Breasts to DD then rarely up to F (rare version requires naleen tail and cunt)
@@ -375,7 +374,7 @@
 					target.cocks[1].cThicknessRatioRaw = target.cocks[0].cThicknessRatioRaw;
 					target.cocks[1].knotMultiplier = target.cocks[0].knotMultiplier;
 					target.shiftCock(1,GLOBAL.TYPE_NAGA);
-					target.lust(5);
+					target.changeLust(5);
 					target.slowStatGain("libido",2);
 					changes++;
 				}
@@ -457,7 +456,7 @@
 				if(target.cockTotal() > 1) kGAMECLASS.output("they’re");
 				else kGAMECLASS.output("it’s");
 				kGAMECLASS.output(" just hiding inside the warm, wet channel. Oh... it feels kind of nice, and [pc.eachCock] starts to emerge. You stop before you wind up masturbating with <b>the new, snake-like slit that holds your [pc.cocks] when unaroused.</b>");
-				target.lust(5)
+				target.changeLust(5)
 				changes++;
 				target.createStatusEffect("Genital Slit",0,0,0,0);
 			}

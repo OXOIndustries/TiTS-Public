@@ -515,7 +515,7 @@ public function hopperLossBadEndCombinedNewLifeShit():void
 	output("\n\nA holo-screen flashes into nothingness with a faint, crackly <i>wisp.</i>");
 	output("\n\n<i>“Arrogant son of a...”</i> the tall woman scoffs and mutters, hopping back to her giant bed.");
 	output("\n\n<i>“Don’t get in such a huff, beautiful.”</i>");
-	output("\n\nA black and blue furred laquine share a quick kiss, barely avoiding an escalation into wanton excess. <i>“Hmph,”</i> the laquine in an orange suit cracks her neck. <i>“So much trouble over one person, this close to finally getting shit done. Guess it’s nothing if not exciting.”</i> She laughs with the smaller rabbit beside her, finally looking down. <i>“’Sides, all that hassle was worth it for this...”</i>");
+	output("\n\nA black and blue furred laquine share a quick kiss, barely avoiding an escalation into wanton excess. <i>“Hmph,”</i> the laquine in an orange suit cracks her neck. <i>“So much trouble over one person, this close to finally getting shit done. Guess it’s nothing if not exciting.”</i> She laughs with the smaller rabbit beside her, finally looking down. <i>“‘Sides, all that hassle was worth it for this...”</i>");
 	output("\n\nA gloved hand rests on your head, stirring you from her cozy lap. It’s only by her touch that you react. You look up to your neon-styled mistress in all her floppy-eared glory, heart warmed and fluttering from the reassuring smile on her muzzle. You nuzzle into that affectionate palm before moving back to the outline of her pillowy testicles, planting a fat, lipsticked kiss on one of its spherical contents, being rewarded with a gentle ");
 	if(pc.hasEmoteEars()) output("scritch behind the [pc.ears]");
 	else if(pc.hasHair()) output("ruffle to your [pc.hair]");
@@ -2018,7 +2018,7 @@ public function drainBunnies2(x:int):void
 		{
 			var z:int = 0;
 			while(z == x || z == y) { z++; }
-			output("\n\n...And she’s stuffing your third [pc.pussyNoun " + z + "] with that spunk-stained rod, writhing and howling, her muscular breeder’s thighs <i>whapping</i> into you with hostile and totally reckless abandon. Your [pc.tongue] falls from your mouth as you let the domme-rabbit take control, impregnating your third womb with another ecstatic and spite-rushed orgasm. <i>“I don’t use sterilex,”</i> she grunts into your neck" + (pc.hasHair() ? ", tugging on your [pc.hair]":"") + ". <i>“When you have my kids, I’ll come and find them, make them part of my crew...! Maybe next time I’ll make you my personal breeder...!”</i> Another brawny load shatters your coherency.");
+			output("\n\n...And she’s stuffing your third [pc.pussyNoun " + z + "] with that spunk-stained rod, writhing and howling, her muscular breeder thighs <i>whapping</i> into you with hostile and totally reckless abandon. Your [pc.tongue] falls from your mouth as you let the domme-rabbit take control, impregnating your third womb with another ecstatic and spite-rushed orgasm. <i>“I don’t use sterilex,”</i> she grunts into your neck" + (pc.hasHair() ? ", tugging on your [pc.hair]":"") + ". <i>“When you have my kids, I’ll come and find them, make them part of my crew...! Maybe next time I’ll make you my personal breeder...!”</i> Another brawny load shatters your coherency.");
 			pc.cuntChange(z,enemy.cockVolume(0));	
 			flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
 			pc.loadInCunt(enemy,z);

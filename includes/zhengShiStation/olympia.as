@@ -15,12 +15,6 @@ Chief Teyaal's personal assistant, found in the personal chambers outside the ch
 She's hostile to you if you fuck with the ship; if you promise to leave it alone and let her work on it, she's fine with you. If you're smart / Tech Spec it up, she'll get so turned on by your intelligence and interest in her ship that she goes down on you.
 */
 
-public function showOlympia(nude:Boolean = false):void
-{
-	showName("\nOLYMPIA");
-	showBust("OLYMPIA" + (nude ? "_NUDE":""));
-}
-
 public function olympiaCreatureStats():PregnancyPlaceholder
 {
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
@@ -36,7 +30,7 @@ public function olympiaCreatureStats():PregnancyPlaceholder
 
 public function pirateResearchVesselStolen():Boolean
 {
-	return (9999 == 0);
+	return (flags["SIDEWINDER_TAKEN"] != undefined);
 }
 //Room Descriptions
 //AB 20: Research & Development Lab
@@ -306,7 +300,7 @@ public function buttfuckTheSexyRobo(x:int):void
 	output("\n\nOlympia’s breath quickens, even as she’s trying to keep working, walking you through problem after problem she’s been chewing over. They’re all complex, of course, the kind of thing that would take a team of engineers years to work through... and she’s so close already, just on the edge of a breakthrough across a dozen technical hurdles. You choose one of them to tackle for right now - one specific issue to focus your attentions on to the same degree that your fingers are fixated on Olympia’s asshole. With a little effort, you push your two digits in, sliding them into the tight channel of the sexbot’s anal sleeve. She grimaces a moment, then moans and arches her back against you, letting those big tits of her strain the button of her labcoat until it pops. The sundered garment slides down her shoulders, letting her breasts spill into your waiting grasp.");
 	output("\n\n<i>“You’re... quite talented!”</i> Olympia gasps, clenching rhythmically down from your fingertips to your knuckles. She quite laboriously expands one of the diagrams on her holoboard, trying to draw your attention to the specific mechanical devices she’s working with... though you’re getting rather entranced by her own clenching exhaust port. You follow along with her explanation, asking a few questions and pointing out some possible improvements while Olympia’s tail wiggles its way into wrapping around your [pc.cock " + x + "], guiding it to her rump with an involuntary need.");
 	pc.cockChange();
-	output("\n\nAtta girl. You slip your hand out of her ass and onto her hip, holding it steady while you push her coat and and line your [pc.cock " + x + "] up with her dark star. Her rim kisses your [pc.cockHead " + x + "], holding you there a moment before her hips push back and swallow you up.");
+	output("\n\nAtta girl. You slip your hand out of her ass and onto her hip, holding it steady while you push her coat and line your [pc.cock " + x + "] up with her dark star. Her rim kisses your [pc.cockHead " + x + "], holding you there a moment before her hips push back and swallow you up.");
 	output("\n\n<i>“And the <b>fuel rods</b> are inserted... like so,”</i> Olympia groans, sliding down your cock’s shaft until her cheeks are grinding against your pelvis.");
 	output("\n\nSlowly, the sexbot starts leaning forward, drawing your dick back out so she can take it again. <i>“Ahhh, now it’s the heat sinks I’ve really be struggling with... how to vent all that plasma out of the engines.”</i> Olympia’s hips start rocking back and forth, teasing the bottom few inches of your cock while you’re busy suggesting new ways to deal with the engines’ heat output.");
 	output("\n\nThe longer it takes you, the hotter Olympia’s ass seems to get. It’s definitely not friction - sliding into this sexbot’s ass is as easy as an onahole, like it’s secreting its own lube all around you... but the temperature’s still picking up, bathing you in soothing warmth. No way she’s not doing that on purpose... and damn if it doesn’t feel good.");
@@ -319,7 +313,7 @@ public function buttfuckTheSexyRobo(x:int):void
 	output("\n\n<i>“Oh! Yes, give me your all, [pc.name],”</i> Olympia moans, abandoning all pretense of her labors. Her draconic tail tightens around your waist, holding you tight until you’ve finish inseminating her robotic bowels. The last aftershot you give her is accompanied by an audible sigh from your gynoid lover, and her body slowly relaxes around you, though her tail and hole don’t let you go quite yet.");
 	output("\n\nAfter a moment, the gynoid casts a glance over her shoulder with a flare of her glowing eyes. <i>“I thought you weren’t going to be a distraction, [pc.name]...”</i>");
 	output("\n\nYou lean over her, cupping a succulent breast in one hand and finishing off an equation for her with the other. <i>“But it was a good distraction?”</i>");
-	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gain some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
+	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gained some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
 	output("\n\nYou give her your answer in the form of a firm squeeze as you finally divest yourself of her tight little asshole, letting the last vestiges of your orgasm leak down Olympia’s thigh. By the time you’ve found your [pc.weapon], she’s already back at work... though still obviously marked by your seed.");
 	processTime(30);
 	var ppOlympia:PregnancyPlaceholder = olympiaCreatureStats();

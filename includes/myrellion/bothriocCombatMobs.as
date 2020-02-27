@@ -672,7 +672,7 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		if (totalOtherVagPregs >= 1) output("s");
 		output(" you’re already carrying, utterly bloating with dense alien pregnancy.");
 		
-		if (pc.buttRating() >= 1)
+		if (pc.buttRating() >= 10)
 		{
 			output("\n\n<i>“Such a perfect ass you have for breeding, farlander,”</i> groans the bothrioc, their supple hips and backside bounce energetically on your [pc.ass]. <i>“Would that I could sit on a cushion like this and give you eggs all day long...”</i>");
 		}
@@ -734,7 +734,7 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		
 		output("\n\nYou find yourself blushing from the kindness of the egg-giver, and the warmth you can feel throbbing between you.");
 		
-		output("\n\n<i>“Would you really mind - ?”</i> The bothrioc shifts themselves upwards, deliberately dragging the heavy weight of their abdomen up your spine, and arranges themselves in front of you so they are sat on top of that black, shiny teardrop, The distended, violet hole winks at you wetly, the tip of their pent-up ovipositor clear to see.");
+		output("\n\n<i>“Would you really mind - ?”</i> The bothrioc shifts themselves upwards, deliberately dragging the heavy weight of their abdomen up your spine, and arranges themselves in front of you so they are sitting on top of that black, shiny teardrop, The distended, violet hole winks at you wetly, the tip of their pent-up ovipositor clear to see.");
 		
 		output("\n\n<i>“Of course not, precious,”</i> they smile. <i>“Open wide.”</i> The purple tip presses insistently against your [pc.lips], and with a sigh of pure pleasure you do exactly what they say.");
 		

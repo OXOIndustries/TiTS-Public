@@ -146,7 +146,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 			
 			output("Aside from a few short tingles along your [pc.cockNoun " + i + "], nothing really happens... what a waste.");
-			target.lust(100);
+			target.changeLust(4);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -193,7 +193,7 @@ package classes.Items.Transformatives
 			output(" <b>Your [pc.cock " + i + "] now has a [pc.skinFurScales]-covered sheath!</b>");
 			
 			target.cocks[i].addFlag(GLOBAL.FLAG_SHEATHED);
-			target.lust(30);
+			target.changeLust(30);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -209,7 +209,7 @@ package classes.Items.Transformatives
 			
 			target.cocks[i].cLengthRaw += 0.1;
 			if(target.hasPerk("Hung")) target.cocks[i].cLengthRaw += 0.1;
-			target.lust(15);
+			target.changeLust(15);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -224,7 +224,7 @@ package classes.Items.Transformatives
 			output("As soon as the gray machines start moving, they begin to fall off your prick. Seems like you won’t be getting any extra skin this time. You grab your boner and play with it a bit until you notice <b>your [pc.cock " + i + "] has grown a little thicker within your grasp.</b>"); 
 			
 			target.cocks[i].cThicknessRatioRaw += 0.1;
-			target.lust(15);
+			target.changeLust(15);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);

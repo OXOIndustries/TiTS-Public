@@ -358,7 +358,9 @@ public function repeatMirrinApproach():void
 		processTime(2);
 		clearMenu();
 		addButton(0,"Yes...",mirrinFindsOutYoureACrappyBreeder,undefined,"Yes...","Ohhh, well... hmmm.");
-		if (pc.fertility() > 0 && !pc.hasSSTD()) addButton(1,"No",wereGoodToMakeBabbysDragonLady,undefined,"No","You’re all clean and raring to uhhh... well, presumably do some breeding...???");
+		if(pc.hasSSTD()) addDisabledButton(1,"No","No","You need to take care of your SSTD first!");
+		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(1,"No","No","You need to have a fertile vagina or virile penis in order to do this!");
+		else addButton(1,"No",wereGoodToMakeBabbysDragonLady,undefined,"No","You’re all clean and raring to uhhh... well, presumably do some breeding...???");
 	}
 	else if (flags["MIRRIN_PREGSTAGE"] == 3 || flags["MIRRIN_PREGSTAGE"] == 4)
 	{
@@ -372,7 +374,9 @@ public function repeatMirrinApproach():void
 
 		processTime(1);
 		clearMenu();
-		if (!pc.hasVagina() && pc.cockThatFits(mirrinMaxSize) < 0) addDisabledButton(0,"Yeah","Yeah","Can’t make babies without proper equipment, m8.");
+		if(pc.hasSSTD()) addDisabledButton(0,"Yeah","Yeah","You need to take care of your SSTD first!");
+		else if((!pc.hasVagina() || pc.fertility() <= 0 || pc.isFullyWombPregnant()) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(0,"Yeah","Yeah","You need to have an available fertile vagina or a virile penis in order to do this!");
+		else if((!pc.hasVagina() || pc.fertility() <= 0 || pc.isFullyWombPregnant()) && pc.cockThatFits(mirrinMaxSize) < 0) addDisabledButton(0,"Yeah","Yeah","Can’t make babies without proper equipment, m8.");
 		else addButton(0,"Yeah",finallyMakeMirrinBabusForRealThisTimeTotally,undefined,"Yeah","Time to make babies!");
 		addButton(1,"No",function ():void
 		{
@@ -620,7 +624,7 @@ public function repeatableMirrinTraining():void
 		//PC gains +50 lust.
 		output("<i>“Hey Mirrin, can we do some training?”</i>");
 		output("\n\n<i>“Of course, Steele. I just need to go change a sec,”</i> she says in a chipper manner. She’s even got something of a genuine smile on her face. What could it be for...");
-		output("\n\nYou spot that the gym floor is a little more crowded than usual. Did Quenton organise something...?");
+		output("\n\nYou spot that the gym floor is a little more crowded than usual. Did Quenton organize something...?");
 		output("\n\nMirrin returns and immediately most of the heads in the room turn to her. She’s not looking at them but her face is prideful all the same. She’s wearing a thin latex bikini, almost completely transparent. You don’t even <i>need</i> your imagination anymore! Although, a second look suggests the bikini bottoms might not be too adept at holding back the monsters beneath...");
 		output("\n\nIt’s only just dawned on you that you’ve been staring her up and down at point blank range for almost a minute. The she-dragon casually clears her throat.");
 		output("\n\n<i>“Eyes up here, Steele,”</i> she says with a knowing smirk. ");
@@ -1284,7 +1288,7 @@ public function talkToMirrinAbootYuuuu():void
 	author("SoAndSo");
 	output("You go with her original question.");
 	output("\n\n<i>“Well...”</i> you begin, starting with your parents, childhood and so on. You talk about your career as [pc.aStartingCareer] and the early exploits you’ve gone through, the planets you’ve seen, the locals you’ve... become <i>very</i> familiar with. Mirrin laughs with her hand over her mouth at some of those tales.");
-	output("\n\nThe talk quickly shifts to the mess surrounding your inheritance of SteeleTech, the mention of which makes the attentive Mirrin raise an eyebrow.");
+	output("\n\nThe talk quickly shifts to the mess surrounding your inheritance of Steele Tech, the mention of which makes the attentive Mirrin raise an eyebrow.");
 	output("\n\n<i>“That’s you?? I thought Steele was just a common name. But holy <i>shit</i>, that’s actually pretty baller,”</i> she exclaims, inching ever so slightly closer to you. <i>“So what, you’ve got your ship here and just do anything anywhere being the baddest ass?”</i>");
 	output("\n\nMy ass isn’t <i>that</i> bad, you think to yourself. Oh wait.");
 	output("\n\n<i>“Uh, yes! At the minute, I’m trying to out-do my cousin,”</i> you say, ‘cousin’ said through gritted teeth, <i>“and we’ve got this whole ace space-race...? Going on.”</i>");
@@ -1373,7 +1377,7 @@ public function mirrinModsTalk():void
 	author("SoAndSo");
 	output("You jump off the bridge she built. <i>“So, horse mods? What else did you use?”</i> you inquire.");
 	output("\n\nMirrin straightens herself up, dusts herself down and clears her throat. It reminds you of a particularly proud museum curator.");
-	output("\n\n<i>“Right, so... Skin. And by extension, scales,”</i> she begins, putting her right hand on her left forearm. <i>“An offshoot of Rainbowtox. A contact in pharmaceuticals narrowed it down to uuuh, a washed out color palette. Happy with red, would’ve preferred slate-blue. Hair,”</i> she grabs a hold of her ponytail and actual pony tail with a smug grin. <i>“Au natural. Only change is some parts are a bit green.”</i>");
+	output("\n\n<i>“Right, so... Skin. And by extension, scales,”</i> she begins, putting her right hand on her left forearm. <i>“An offshoot of Rainbotox. A contact in pharmaceuticals narrowed it down to uuuh, a washed out color palette. Happy with red, would’ve preferred slate-blue. Hair,”</i> she grabs a hold of her ponytail and actual pony tail with a smug grin. <i>“Au natural. Only change is some parts are a bit green.”</i>");
 	output("\n\nShe holds one of her legs up, bending it so it rests on the opposite knee. She points to one of her slightly over-sized hooves. <i>“These were hard. So like... When I was describing how I wanted it to work to the pharmacy guy, he explained what he was going to use and it was such a complex chemical name. Beta-xenophylenophena-something-or-other. Worked it real good but fucking. Expensive. Same with these beauts,”</i> she’s holding one of her horns again. <i>“Took a while to grow but they’re just perfect.”</i>");
 	output("\n\nLooking at both horn and hoof properly, the detail is staggering. Almost translucent, you could imagine that a particularly strong light would irradiate her crown of horns with a green glow.");
 	output("\n\n<i>“How about the horse, er, bits?”</i> You say, idly fidgeting with your [pc.hair].");
@@ -1559,7 +1563,7 @@ public function ohJeezRickMirranIsGonnaFuckYa():void
 	showMirrin(true);
 	pc.lust(100);
 	author("SoAndSo");
-	output("Without any other words, the domineering qilin thrusts her hips toward your face. The largest of her two members - a 16’’ python of a horsedick - pushes aggresively against your [pc.lips].");
+	output("Without any other words, the domineering qilin thrusts her hips toward your face. The largest of her two members - a 16\" python of a horsedick - pushes aggresively against your [pc.lips].");
 	output("\n\n<i>“<b>Suck.</b>”</i>");
 	output("\n\nYou’re in no position to refuse... you open your mouth as wide as you feel you can, enough for her pulsing cockhead to sit in it comfortably. At least it only gets thicker the further down you go! Both of her cocks sit perfectly in the middle of your [pc.fullChest], using your flesh and [pc.skinFurScales] as an extra layer of friction. They’re not even hard yet...");
 	output("\n\nShe pushes just a little bit more aaand it’s in, filling up most of your mouth in an instant. Using your [pc.tongue], you eagerly try to find her cumslit. A stifled squeal from your dragon lover confirms your skill at finding it. You look up with your eyes and she’s looking back, biting hard on her bottom lip.");
@@ -1610,7 +1614,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 
 		output("\n\nYou nod weakly, looking down to the floor. It’s about 5 feet to the ground...");
 
-		output("\n\nShe holds up her biggest horsemember in her other hand, its tip covered in an extra smear of EasyFit. She guides it to your floor-facing, exposed [pc.asshole] and presses <i>you</i> down on to it. Oh shit, it’s <b>huge</b>. Your tensed up [pc.asshole] gives way all the more easily thanks to the smear of cream, stretching painfully around the 4’’ wide horsecock.");
+		output("\n\nShe holds up her biggest horsemember in her other hand, its tip covered in an extra smear of EasyFit. She guides it to your floor-facing, exposed [pc.asshole] and presses <i>you</i> down on to it. Oh shit, it’s <b>huge</b>. Your tensed up [pc.asshole] gives way all the more easily thanks to the smear of cream, stretching painfully around the 4\" wide horsecock.");
 		output("\n\nAs you sink lower, that thickness grows and grows, stopping once you’re speared halfway down her rock-solid tool. Some nubbly sensation tortures your slick [pc.asshole]");
 		if(pc.hasCock()) output(" and tender prostate");
 		output(". You look to see that the bottom of her cock is covered in coil-like ridges that extend down from tip to bottom. <i>Ow</i>.");
@@ -1717,7 +1721,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 		output("\n\nBut then your vision... dims and... it’s dificult to...");
 		pc.loadInMouth(mirrin);
 		processTime(20);
-		pc.HP(-5);
+		pc.changeHP(-5);
 		clearMenu();
 		addButton(0,"Next",mirrinFirstTimev3Part2);
 	}
@@ -1832,9 +1836,9 @@ public function mirrinYerConfidenceBaaaaaeby():void
 //Scene concepts and requirements:
 //Oil Worship into Double Handjob: All PC’s. Very messy.
 //Deep DP: PC has vagina, height 80<.
-//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
+//Sparr Fight into Oral for the winner: PC has cock at 18" < and/or vagina. High PC stats = wins.
 //Humiliating Pork: (aside sounding like a bad chinese translation of something with bacon in it) REWORKED: All PC’s. Pure humiliation anal sex. Special things happen when PC thickness >65. That’s what ya get for being a fatty fat person, fatty. YEAH, YOU GET HOT BUTTSEX MY BRO.
-//Dommy Oral: PC has cock at 18’’< and/or vagina. A merging of ‘TongueFun’ for ease. Written into Sparr Fight because it essentially ends up the same anyway if you win.
+//Dommy Oral: PC has cock at 18" < and/or vagina. A merging of ‘TongueFun’ for ease. Written into Sparr Fight because it essentially ends up the same anyway if you win.
 
 //Her Place
 //tooltip: Into the dragon’s lair...
@@ -2469,7 +2473,7 @@ public function uhOhButtmiliation():void
 	if(pc.isHerm()) output("With a tongue-blocked scream of pained pleasure, your [pc.cocks] and [pc.pussies] can’t hold back, unleashing a steamy, simultaneous burst of [pc.cum] and [pc.girlCum] all over your [pc.legs] and the bed!");
 	else if(pc.hasCock()) output("With a tongue-blocked scream of pained pleasure, your [pc.cocks] has all the [pc.cum] you could muster unleashed against your [pc.belly]! It forms a gooey splatterzone on your underside and the bed.");
 	//PC has vagina:
-	else if(pc.hasVagina()) output("With a tongue-blocked scream of pained pleasure, your [pc.pussies] has all the [pc.girlCum] you could muster unleashed! It all spurts out uselessly against your [pc.legs] in a warm glaze.");
+	else if(pc.hasVagina()) output("With a tongue-blocked scream of pained pleasure, your [pc.pussies] has all the [pc.girlCum] you could muster unleashed! It all spurts out uselessly against your [pc.legOrLegs] in a warm glaze.");
 	
 	output("\n\nNot to be outdone, you feel your qilin lover extract her massive meat when you’re mid orgasm, the emptiness you feel as it leaves your gaping [pc.asshole] adding catharsis to pleasure and pain. She very quickly moves off of the bed, jerking both her horsecocks with her free hand. Damn, those massive fingers! The familiar sight of her urethra pointed right at your face is enough warning for what’s to cum...");
 	output("\n\nWith her dataslate pointed between her cocks and your face and a rising crescendo in her restrained wails, a thick, superhot double load of smoky dragoness babybatter splatters right into your [pc.face]! Keeping her grip stable even with the wild pumping she’s got going on, the qilin keeps virile shot after virile shot focused on your scrunched up face. You just about close your eyelids in time before you’re blinded!");

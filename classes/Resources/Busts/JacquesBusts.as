@@ -502,7 +502,8 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
-			public var Full_SAENDRA_FUTA:Class;
+			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
+			//public var Full_SAENDRA_FUTA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/saendra_nude.png", mimeType = "image/png")]
 			public var Full_SAENDRA_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/saendra_futa_nude.png", mimeType = "image/png")]
@@ -564,8 +565,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_GALACTIC_HUNTRESS_1:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/gilden.png", mimeType = "image/png")]
 		public var Bust_LOGO_GILDEN_REP:Class;
-		[Embed(source = "../../../assets/images/logos/jacques00/humphard.png", mimeType = "image/png")]
-		public var Bust_LOGO_HUMPHARD:Class;
+		//[Embed(source = "../../../assets/images/logos/jacques00/humphard.png", mimeType = "image/png")]
+		//public var Bust_LOGO_HUMPHARD:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/jejune.png", mimeType = "image/png")]
 		public var Bust_LOGO_JEJUNE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/joyco.png", mimeType = "image/png")]
@@ -613,8 +614,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_GALACTIC_HUNTRESS_1:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/gilden.png", mimeType = "image/png")]
 			public var Full_LOGO_GILDEN_REP:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/HR/humphard.png", mimeType = "image/png")]
-			public var Full_LOGO_HUMPHARD:Class;
+			//[Embed(source = "../../../assets/images/logos/jacques00/HR/humphard.png", mimeType = "image/png")]
+			//public var Full_LOGO_HUMPHARD:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/jejune.png", mimeType = "image/png")]
 			public var Full_LOGO_JEJUNE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/joyco.png", mimeType = "image/png")]

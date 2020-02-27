@@ -317,7 +317,7 @@ public function breedwellPremiumBootyCallsMyrellionQuickie():void
 	output("\n\n<i>“Th- thank you,”</i> she mutters, sagged against the wall and withdrawing her sagging balloon animal back into her. <i>“That was necessary. Uh... ignore everything that I said. And don’t tell anyone about this. Thanks again.”</i>");
 	output("\n\nOf course. You’re a professional, after all.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(10 + rand(10));
 	breedwellPremiumRecordSex();
 	clearMenu();
@@ -513,7 +513,7 @@ public function breedwellPremiumBootyCallsTavrosAusar():void
 	
 	processTime(10 + rand(10));
 	pc.loadInMouth(ppRandom);
-	pc.lust(30);
+	pc.changeLust(30);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();	
 	pc.exhibitionism(2);
 	breedwellPremiumRecordSex();
@@ -613,7 +613,7 @@ public function breedwellPremiumBootyCallsZhengShiTwofer():void
 	output(" utterly packed out and stretched with fertile goop. He lets go and slowly slithers out of you, gushes of it following him outwards and down your splayed [pc.thighs].");
 	output("\n\n<i>“Here,”</i> he says lowly, soothing, soft hands travelling down your back and hips. <i>“Let me have a look.”</i>");
 	output("\n\nYou shift over on the bed and lie on your side, allow him to gaze at his handiwork - your [pc.belly] utterly swollen with his nascent eggs");
-	if (pc.hasTits()) output(", your [pc.boobs] sat on top of it");
+	if (pc.hasTits()) output(", your [pc.boobs] sitting on top of it");
 	output(". You look at least 8 months gone. The ripped, masculine rahn beams at the sight. There’s a certain sad wistfulness in that smile.");
 	output("\n\n<i>“Use the shower, if you like,”</i> he says. <i>“And... you get out Zheng Shi right away, ok?”</i> he goes on, as you crab-walk your throbbing way towards the bathroom. <i>“I can tell my guys to leave you alone. But this isn’t a place for a pregnant " + pc.mf("person","lady") + " to be hanging around. It would sure suck a lot if I found you in the slave pens later on.”</i>");
 
@@ -723,7 +723,7 @@ public function breedwellPremiumBootyCallsTavrosDomme():void
 	flags["BREEDWELL_PREM_BADEND_LAVLEV"] = 1;
 	
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0, "Next", breedwellPremiumBootyCallsTavrosDommeNext);	
 } 
@@ -753,7 +753,7 @@ public function breedwellPremiumBootyCallsTavrosDommeNext():void
 		rn2 = rand(4);
 		if (rn2 == 0)
 		{
-			pc.lust(30);
+			pc.changeLust(30);
 			pc.loadInMouth(ppRahn);
 			if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 		}
@@ -804,7 +804,7 @@ public function breedwellPremiumBootyCallsTavrosDommeNext2():void
 
 	pc.exhibitionism(1);
 	processTime(15 + rand(15));
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(ppRahn);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();	
 	clearMenu();

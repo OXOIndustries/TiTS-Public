@@ -84,6 +84,10 @@
 		public static const FLAG_SHORT:int									= 49;
 		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
 		public static const FLAG_HYPER_PUMPED:int 							= 51;
+		public static const FLAG_HEART_SHAPED:int							= 52;
+		public static const FLAG_STAR_SHAPED:int							= 53;
+		public static const FLAG_FLOWER_SHAPED:int							= 54;
+
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -138,6 +142,9 @@
 			"Short",
 			"Floppy",
 			"Hyper Pumped",
+			"Heart-Shaped",
+			"Star-Shaped",
+			"Flower-Shaped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -246,6 +253,8 @@
 		public static const TYPE_XHELARFOG:int								= 87;
 		public static const TYPE_SAURMORIAN:int								= 88;
 		public static const TYPE_HYENA:int									= 89;
+		public static const TYPE_DZAAN:int									= 90;
+		public static const TYPE_ZAIKA:int 									= 91;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -338,6 +347,7 @@
 			"Xhelarfog",
 			"Saurmorian",
 			"Hyena",
+			"Dzaan",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -372,6 +382,7 @@
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
 			TYPE_HYENA,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -403,6 +414,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -785,7 +797,13 @@
 			NIPPLE_TYPE_INVERTED,
 			NIPPLE_TYPE_TENTACLED,
 		];
-				
+		
+		public static const VALID_AREOLA_FLAGS:Array = [
+			FLAG_PUMPED,
+			FLAG_HEART_SHAPED,
+			FLAG_STAR_SHAPED,
+		];
+		
 		//CUM & MILK TYPES
 		public static const FLUID_TYPE_MILK:int                                 = 0;
 		public static const FLUID_TYPE_HONEY:int                                = 1;
@@ -1009,6 +1027,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_JANERIA,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -1064,7 +1083,8 @@
 		public static const VALID_VAGINA_FLAGS:Array = [
 			FLAG_LUBRICATED,
 			FLAG_APHRODISIAC_LACED,
-			FLAG_TENDRIL,
+			FLAG_STINGER_BASED,
+			FLAG_STINGER_TIPPED,
 			FLAG_NUBBY,
 			FLAG_OVIPOSITOR,
 			FLAG_GOOEY,
@@ -1111,6 +1131,7 @@
 		public static const LOW_GRAVITY:int								= 31;
 		public static const NURSERY:int									= 32; //used to mark all rooms in tavros nursery
 		public static const LOW_TECH:int								= 33; //used to mark rooms where the inhabitants wouldn't own regular space tech (see InRoomWithPhones)
+		public static const FIRST_AID:int								= 34;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1140,7 +1161,8 @@
 		public static const GEM:int 									= 16; // Used for very valuable items.
 		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
 		public static const PIERCING:int 								= 18; // Used for piercings
-		public static const COCKSOCK:int 								= 19; // Used for cockwear
+		public static const COCKWEAR:int 								= 19; // Used for cockwear
+		public static const TENT:int 									= 20; // Used for tents
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",
@@ -1220,7 +1242,7 @@
 		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
 		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
-		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
+		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cockwear can only be equipped by smol
 		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
 		public static const ITEM_FLAG_STRETCHY:int						= 35; // Increases sexiness buff if related body part is big. Doubles as Transparent flag at 20+;
 		public static const ITEM_FLAG_RIFLE_WEAPON:int					= 36; //For outputing that a gun is a rifle
@@ -1230,10 +1252,16 @@
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
 		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
 		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
-		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_BURSTSHOT:int 					= 43; //For weapons that fire thrice.
 		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
 		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
+		public static const ITEM_FLAG_PIERCING_BAR:int 					= 47; //Piercings of the "bar" type.
+		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
+		public static const ITEM_FLAG_COCKSOCK:int 						= 49; //For cocksock-type cockwear.
+		public static const ITEM_FLAG_COCKRING:int 						= 50; //For cockring-type cockwear.
+		public static const ITEM_FLAG_ALCOHOLIC:int						= 51; //For hooch
+		public static const ITEM_FLAG_MEDICINE:int						= 52; //For things that can cure disease, NOT WOUNDS
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1282,7 +1310,11 @@
 			"Burst Fire",
 			"Full-Auto Fire",
 			"Ship Equipment",
-			"Crewed Turret"
+			"Crewed Turret",
+			"Bar",
+			"Hoop",
+			"Cocksock",
+			"Cockring",
 		];
 		
 		/**
@@ -1435,6 +1467,8 @@
 			"LILIRURU",
 			"MANIACPAINT",
 			"MISSBEHAVIOR",
+			"MOIRA",
+			"NOLIMIT",
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
@@ -1446,6 +1480,8 @@
 			"FUBMISTRESS",
 			"JAYFIREGROWLITHE",
 			"YOHSL",
+			"R4",
+			"DEIMACOS",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1476,6 +1512,8 @@
 			"LiliRuru",
 			"ManiacPaint",
 			"MissBehavior",
+			"Moira",
+			"No Limit",
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
@@ -1487,6 +1525,8 @@
 			"FubMistress",
 			"JayfireGrowlithe",
 			"YohSL",
+			"R4",
+			"Deimacos",
 		];
 		
 		// These are what show up in the options menu combo boxes

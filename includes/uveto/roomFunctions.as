@@ -4,6 +4,7 @@ import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
 import classes.RoomClass;
+import classes.Items.Treasures.Lucinite;
 
 public function TundraEncounterBonus():Boolean
 {
@@ -90,11 +91,21 @@ public function GlacialRiftEncounterBonus():Boolean
 			}
 			choices.push(chaurmineChasmShit);
 		}		
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
+		if(flags["UVGR_SAVICITE_IDOL"] != undefined)
 		{
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
+		}
+		if(MailManager.isEntryViewed("joyco_uveto_hazmat_advisory"))
+		{
+			choices.push(encounterMilodanFutazon);
+			choices.push(encounterMilodanFutazon);
+		}
+		if(pc.level >= 10 && flags["MET_MILODAN_FUTAZON"] != undefined)
+		{
+			choices.push(encounterMilodanBruiser);
+			choices.push(encounterMilodanBruiser);
 		}
 		//Run the event
 		choices[rand(choices.length)]();
@@ -112,6 +123,7 @@ public function GlacialRiftEncounterBonus():Boolean
 	if (tuuvaExpeditionRescueChance()) return true;
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
+	if (tryEncounterLucinite(flags["TUNDRA_STEP"],false)) return true;
 	return false;
 }
 
@@ -776,8 +788,8 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	output(" and make for your gear....");
 
 	removeUvetoCold();
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	moveTo("UVI H32");
 
 	processTime(30);
@@ -1021,10 +1033,10 @@ public function uvetoIrson3():void
 	output("\n\n<i>“What are you - aahh! I can’t... So good!”</i>");
 	output("\n\nThe way she’s babbling, you feel like somehow you’re only getting half the conversation. Is the microphone busted?");
 	output("\n\n<i>“Okay! Okay!”</i> Steph gasps, flopping back. She gives a nervous look between the feral beast overtop her and the camera drone. Biting her lip, Steph hooks her hands under her legs and curls herself up at the monster, presenting her still-stuffed pussy to it like an eager whore. The drake growls, shifting its massive weight to reveal a dick every bit as massive and reptilian as you’d expect from such a monster, peeking out of a deep-seated slit in its hide quarters. It grows and grows, from a tapered tip already as big as your fist to a tree-trunk shaft that throbs with bestial desire.");
-	output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 	//First time only!:
 	if(flags["STEPH_DARGONED"] == undefined)
 	{
+		output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 		output("\n\n<i>“S-should we cut the feed?”</i> a man asks. <i>“That thing-”</i>");
 		output("\n\nA woman answers coldly, <i>“No! Keep the drone online!”</i>");
 		output("\n\nHuh? Are you getting some sort of interference... or is chatter from the studio bleeding onto the video?");
@@ -1599,7 +1611,69 @@ public function encounterSavicite(choice:String = "encounter"):void
 		addButton(0, "Next", mainGameMenu);
 	}
 }
+// Lucinite Chunk
+public function tryEncounterLucinite(nStep:int = 0,frostwyrm:Boolean=false):Boolean
+{
+	var getChance:int = 225;
+	if (pc.accessory is NogwichLeash && frostwyrm) getChance = 65;
+	else if (pc.accessory is NogwichLeash || frostwyrm) getChance = 120;
 
+	if (nStep != 0 && rand(getChance) <= 1)
+	{
+		encounterLucinite();
+		return true;
+	}
+	return false;
+}
+public function encounterLucinite(choice:String = "encounter"):void
+{
+	if(choice == "encounter")
+	{
+		clearOutput();
+		showName("A CHUNK OF\nLUCINITE!");
+		
+		if(pc.accessory is NogwichLeash) output("Your nog’wich suddenly rears back and mewls softly, ruffling its round ears. It looks like it found a small, oddly-colored protrusion sticking out from the ground.");
+		else output("You notice a small, oddly-colored protrusion sticking out from the ground out of the corner of your eye.");
+		output(" Curiosity getting the better of you, you stop in your tracks and");
+		if (pc.isRidingMount()) output(" hop off from your mount");
+		else output(" carefully walk over to it");
+		output(" to investigate.");
+		if (flags["FOUND_LUCINITE"] == 1)
+		{
+			output("\n\nAnother piece of teal rock lays in the snow by your footprints. Your codex chirps, confirming what you already know: the rock is a piece of lucinite, a psionically charged material capable of heat absorption. Keeping it in your inventory would leave you to be more vulnerable to the harsh environs of the Uvetian moon, though this will still fetch a pretty credit because of how rare it is.");
+		}
+		else
+		{
+			output("\n\nA teal-colored rock the size of your hand sticks up slightly just about the start of the skidmark. When you bend down to pick it up, a dreadful chill surges through your fingers. It is somehow much colder to the touch than the already frigid surroundings. Before your fingers wind up frostbitten, you hurriedly drop the metallic rock back onto the snow.");
+			output("\n\nYour codex chirps immediately afterwards, identifying the strange ore as lucinite, one of several known psionically-charged materials. It also warns that it has heat siphoning powers, and that without proper handling and protection, prolonged exposure with this ore will run the risk of hypothermia. Great. As if the already freezing conditions weren't enough to worry about! On the plus side, this is also a very valuable material considering how rare it is.");
+		}
+
+		output("\n\nDo you want to risk taking it with you?");
+		
+		processTime(1);
+		flags["FOUND_LUCINITE"] = 1;
+		
+		clearMenu();
+		addButton(0, "Take It", encounterLucinite, "take it");
+		addButton(1, "Nope", encounterLucinite, "leave it");
+	}
+	else if(choice == "take it")
+	{
+		clearOutput();
+		output("Gingerly, you pick the lucinite ore up and throw it hurriedly into your inventory before it can affect you too much. You can still feel its heat-siphoning effects through your bag...");
+		output("\n\n");
+		
+		quickLoot(new Lucinite());
+	}
+	else if(choice == "leave it")
+	{
+		clearOutput();
+		output("You decide to leave the ore where it is. After few more moments, the Uvetian winds completely cover it in a thin layer of snow.");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+}
 public function korgiiHoldExteriorBonus():Boolean
 {
 	//If been to irestead since turning down, RIP Korgii
@@ -1766,7 +1840,7 @@ public function chiefBedroomBonus():Boolean
 	}
 	else
 	{
-		//OLD: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
+		//OLD: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the Steele Tech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
 		output("The Chieftain’s bedroom may have once been a spartan, traditional affair, but since Ula’s sudden promotion to unquestioned leader of her tribe, much has changed. The comfortable but primitive bed has gained a set of flannel sheets decorated with snowflakes and cartoonish seals, obviously purchased from somewhere in Irestead. The furniture from Ula’s old room joins it in sprucing up the place and lending it an air befitting of a more civilized people.");
 	}
 	return false;
@@ -1779,5 +1853,11 @@ public function korgiiThroneRoomBonus():Boolean
 		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula’s rise to power, and she’s even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there’s paperwork to be done.");
 		return ulaRoomBonusFunc();
 	}
+	return false;
+}
+
+public function korgiiMineGuardsBonus():Boolean
+{
+	prisonerEitanBonus();
 	return false;
 }

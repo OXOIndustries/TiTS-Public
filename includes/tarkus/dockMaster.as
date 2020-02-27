@@ -10,7 +10,7 @@ public function dockmasterBonus():Boolean
 {
 	if(flags["MET_DOCKMISTRESS"] == undefined)
 	{
-		output("\n\nIt’s hard to tell who’s in charge among the dozens of Raskvel scampering around the hangar bay - at least until you see the gigantic glowing techno-wrench ominously swaying around. In its wake a couple of the mechanical shorties sprawl away with a yelp, and you can just about make out the call if <i>“Fuck off, you scrappy bastards! This is fer sale! Not fixin’!”</i>");
+		output("\n\nIt’s hard to tell who’s in charge among the dozens of Raskvel scampering around the hangar bay - at least until you see the gigantic glowing techno-wrench ominously swaying around. In its wake a couple of the mechanical shorties sprawl away with a yelp, and you can just about make out the call of: <i>“Fuck off, you scrappy bastards! This is fer sale! Not fixin’!”</i>");
 	}
 	else
 	{
@@ -25,7 +25,7 @@ public function raskvelDockmaster(back:Boolean = false):void
 	clearOutput();
 	showDockmistress();
 	author("SomeKindofWizard");
-
+	
 	//Been 5+ days since impregnated her?
 	if(flags["DOCKMASTER_PREGNANT"] != undefined && flags["DOCKMASTER_PREGNANT"] + (60*24*5) < GetGameTimestamp())
 	{
@@ -117,7 +117,7 @@ public function shipTalkWithDockmaster():void
 	//Repeat
 	else
 	{
-		output("\n\nThe dockmaster quirks a brow at you, tapping a foot. <i>“You been drinking, Spacer? I may not like putting names to faces, but I know I’ve told you this all before. I fix broken ships, I fit parts if you bring them to me or buy some basics of of us, and I will remove and scrap crap if you don’t want it anymore... and of course you get the junk money.”</i>");
+		output("\n\nThe dockmaster quirks a brow at you, tapping a foot. <i>“You been drinking, Spacer? I may not like putting names to faces, but I know I’ve told you this all before. I fix broken ships, I fit parts if you bring them to me or buy some basics of us, and I will remove and scrap crap if you don’t want it anymore... and of course you get the junk money.”</i>");
 		if(pc.isDrunk() || pc.isSmashed() || pc.isBuzzed()) output("\n\nWell, okay you <i>have</i> been drinking, but that’s hardly fair.");
 		//[Ship] //Acquire her services [Flirt] //Acquire her *services*
 	}
@@ -238,7 +238,8 @@ public function dockmasterAddonsShop():void
 {
 	clearOutput();
 	showDockmistress();
-	shopkeep = new Dockmaster();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
 	shopkeep.inventory.push(new CapacitorBank());
 	shopkeep.inventory.push(new ShieldUpgrade());
@@ -258,7 +259,8 @@ public function dockmasterWeaponShop():void
 {
 	clearOutput();
 	showDockmistress();
-	shopkeep = new Dockmaster();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
 	shopkeep.inventory.push(new CoilCannon());
 	shopkeep.inventory.push(new EMTurret());
@@ -279,6 +281,12 @@ public function dockmasterWeaponShop():void
 
 public function raskvelDockmasterMenu():void
 {
+	if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
+	{
+		chars["DOCKMASTER"].sellMarkup = 0.95;
+		chars["DOCKMASTER"].buyMarkdown = 0.70;
+	}
+	
 	clearMenu();
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
@@ -288,7 +296,7 @@ public function raskvelDockmasterMenu():void
 	else addDisabledButton(4,"Repair","Repair","Your ship is not damaged.");
 	addButton(5,"Ship Weapons",dockmasterWeaponShop,undefined,"Ship Weapons","Purchase weapons for your ship.");
 	addButton(6,"Ship Upgrades",dockmasterAddonsShop,undefined,"Ship Upgrades","Purchase upgrade modules for your ship.");
-	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you longer wish to keep.");
+	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you no longer wish to keep.");
 	addButton(10,"Buy A Ship",buyAShipFromTrashRat,undefined,"Buy A Ship","See what the raskvel have for sale.");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -299,29 +307,42 @@ public function uninstallRaskStyle():void
 	clearOutput();
 	showDockmistress();
 	author("SomeKindofWizard");
-	shopkeep = new Dockmaster();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	output("<i>“I do enjoy taking stuff out. I get to use my big girl here.”</i> She fondly strokes her wrench, looking over your ship. <i>“What do you need?”</i>\n\n");
 	//Ship part removal menu
 	unfitShipItem();
 }
 
-public function buyAShipFromTrashRat():void
+public function buyAShipFromTrashRat(back:Boolean = false):void
 {
 	clearOutput();
 	showDockmistress();
 	author("Fenoxo");
-	output("You ask her if they have any ships for sale... speficially ships you would actually want. Anything as rusty as the <b>Nova</b> itself is bound to be a hard no.");
-	output("\n\nThe dockmaster brushes a sweep of cyan hair aside in annoyance. <i>“’Course we got the goods. Though you’ll have to trade in whatever you’re flying for it. This hangar’s too tight for anybody to use it as a glorified garage, I don’t care how shiny their scales.”</i>");
-	processTime(2);
+	if(!back)
+	{
+		output("You ask her if they have any ships for sale... specifically ships you would actually want. Anything as rusty as the <b>Nova</b> itself is bound to be a hard no.");
+		output("\n\nThe dockmaster brushes a sweep of cyan hair aside in annoyance. <i>“‘Course we got the goods. Though you’ll have to trade in whatever you’re flying for it. This hangar’s too tight for anybody to use it as a glorified garage, I don’t care how shiny their scales.”</i>");
+		processTime(2);
+	}
+	else
+	{
+		output("What ship are you looking to trade for?");
+	}
 	clearMenu();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	//Initialize all ships, pass to tooltip generating func.
-	var moon:ShittyShip = new MoondastGruss();
-	shopkeep = new Dockmaster();
-	addButton(0,"M.Gruss",shipBuyScreen,moon,"M.Gruss",shipCompareString(moon));
-	//addButton(1,"Colt XLR",shipBuyScreen,coltXLR,"Colt XLR",shipCompareString(coltXLR));
-	//addButton(2,"Spearhead SS",shipBuyScreen,spearhead,"Spearhead SS",shipCompareString(spearhead));
+	var ships:Array = [];
+	ships.push(["M.Gruss", "Moondast Gruss", new MoondastGruss()]);
+	for(var i:int = 0; i < ships.length; i++)
+	{
+		addShipCompareButton(i,shits["SHIP"],ships[i][2],ships[i][0],shipBuyScreen,ships[i][2],ships[i][1]);
+	}
+	addButton(13,"Current Ship",shipStatistics,buyAShipFromTrashRatBack,"Current Ship Stats","Look over your ship and its equipped modules.");
 	addButton(14,"Back",raskvelDockmaster,true);
 }
+public function buyAShipFromTrashRatBack():void { return buyAShipFromTrashRat(true); }
 
 //Flirt
 public function flirtWivRaskDock(repaired:Boolean = false):void
@@ -420,7 +441,7 @@ public function matingPressAndPinfuckTheDockmastah():void
 	output("\n\nThen you start moving properly.");
 	output("\n\nHer gasps are choked off around a gobful of finger, and you hurriedly turn your hips into a brutal blur. Her ass jiggles and quakes as you clap down against her with enough force to make your reinforced bed creak and squeak dangerously. Her pussy has the perfect give, gushing and sticking to you with every backstroke in a desperate attempt to keep you buried in her, while turning into a voice on the downward hilt so that you’re being wrung and milked for your precious jizz.");
 	output("\n\nIt isn’t long before your [pc.cumFlavor] cum is starting to mix with your pre, turned to a thick foamy ring around your [pc.sheath " + x + "] that’s thoroughly mixed in salty-sweet rask-juice. She slaps her hand down on the mattress, releasing her ass for a moment when you pinch her nipple and give it a rough twist.");
-	output("\n\nShe doesn’t let go for long though once it becomes apparent that her callipygean bootie is stealing precious inches of penetration away, alerted by " + (silly ? "the clap of her ass cheeks":"a sudden lack of womb-crushing depth") + ". You only wait for the barest seconds your frayed will can afford, far too devoted to filling this bitch with seed until she’s swollen and pregnant. At some point she’s managed to such your fingers clean, but all that means is that you’ve got an extra limb to milk her tits with. There’s nowhere for the rask-milk to go but into the mattress, but it doesn’t bother you when you’re treated to the sounds of an un-muffled mouth.");
+	output("\n\nShe doesn’t let go for long though once it becomes apparent that her callipygean bootie is stealing precious inches of penetration away, alerted by " + (silly ? "the clap of her ass cheeks":"a sudden lack of womb-crushing depth") + ". You only wait for the barest seconds your frayed will can afford, far too devoted to filling this bitch with seed until she’s swollen and pregnant. At some point she’s managed to suck your fingers clean, but all that means is that you’ve got an extra limb to milk her tits with. There’s nowhere for the rask-milk to go but into the mattress, but it doesn’t bother you when you’re treated to the sounds of an un-muffled mouth.");
 	output("\n\n<i>“Oh stars and rust, Spacer! Fuck! You’re an animal, a bloody brutal beast! Fill me! Take me! Milk me!”</i> She cries, bucking against you as hard as she can... which considering she’s trapped, isn’t especially hard. Luckily the dockmaster bends well at the waist, giving you enough space to wrap the entirety of her breasts up in your hands and knead them hard enough to squirt out thick gouts of milk. <i>“Cumming! Oh yes! Cumming so...”</i>");
 	output("\n\nThe dockmaster trails off, eyes rolling back into her head and tongue lolling out far enough to taste her own pool of milk. Her orgasming cunt assaults your length with squeezes and teases completely out of rhythm with your thrusts, adding a boobgasm to her list of bacchanal delights. You’re treating her like a breedslut, crushing her into the bed and wringing every drop of milk and girl-cum out of her that you can. She only rides out the rough treatment harder, practically blossoming around your dick in anticipation of a womb full of baby-batter.");
 	output("\n\nFurther adding to your domination of this curvaceous breed-slut, you bite down on the base of one flapping ear and give her one final brutal thrust. Her whole body goes stiff – but for the lashing of her mechanical tail – before turning limp. Your prostate feels like a thick weight full of molten iron, tightening up in you while every muscle works in tandem to fire away.");

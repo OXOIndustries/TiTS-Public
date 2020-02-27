@@ -163,6 +163,8 @@ package classes.Resources
 
 		[Embed(source = "../../assets/icons/statuseffects/vagina.svg", mimeType = "image/svg")]
 		public static var Icon_Vagina:Class;
+		[Embed(source = "../../assets/icons/statuseffects/vagina_2.svg", mimeType = "image/svg")]
+		public static var Icon_Vagina_2:Class;
 
 		[Embed(source = "../../assets/icons/statuseffects/water_drop.svg", mimeType = "image/svg")]
 		public static var Icon_Water_Drop:Class;

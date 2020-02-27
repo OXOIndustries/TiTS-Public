@@ -403,7 +403,7 @@ public function gropeVerusha():void
 	output("\n\nHaving gotten what she wants, she turns around and throws you to the direction of the door. You stumble, almost falling on your face. You turn, thinking about giving her a piece of your mind, but she’s already sitting down, her back to you.");
 	output("\n\nYou realize that it’s best for you to back down. Even if you could stand against her in a fight, who knows what kind of aftermath it could cause. So you pick up your pride and walk away.");
 	processTime(8);
-	pc.HP(-1);
+	pc.changeHP(-1);
 	flags["VERUSHA_GROPED"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

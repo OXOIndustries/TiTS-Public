@@ -69,18 +69,18 @@
 				kGAMECLASS.clearOutput();
 				//Consume:
 				kGAMECLASS.output("You flip up the top of the thermos and bring the container up to your mouth. The substance inside is almost painfully sweet, burning your nose until your [pc.lips] wrap around the tip and you start sucking the contents down. When you’ve finished the thermos off, you suck in a sharp breath as the sweet nectar drools down your throat like syrup.");
-				if(healing > 0) kGAMECLASS.output(" You feel thoroughly refreshed, energized by the delicious alien nectar. (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output(" You feel thoroughly refreshed, energized by the delicious alien nectar.");
 				else kGAMECLASS.output(" You feel a bit refreshed, though nothing else happens.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			else
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens a thermos of nectar and drinks it");
-				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost.");
 				else kGAMECLASS.output(" to no effect.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			return false;
 		}

@@ -175,6 +175,20 @@
 			return function():void { inThis.prevOutputPage(); };
 		}(this));
 		
+	inputManager.AddBindableControl(
+		"Previous Button Page",
+		"Go to the previous page of buttons",
+		function(inThis:*):Function {
+			return function():void { inThis.userInterface.buttonTray.execButtonPagePrevious(); };
+		}(this));
+		
+	inputManager.AddBindableControl(
+		"Next Button Page",
+		"Go to the next page of buttons",
+		function(inThis:*):Function {
+			return function():void { inThis.userInterface.buttonTray.execButtonPageNext(); };
+		}(this));
+		
 	import classes.Cheats;
 	
 	inputManager.AddBindableControl(
@@ -334,10 +348,45 @@
 		},
 		true);
 	inputManager.AddBindableControl(
+		"Bianca Spawn",
+		"Places Bianca wherever player is, if in compatible tile.",
+		function():void {
+			Cheats.BringMeAFox();
+		},
+		true);
+	inputManager.AddBindableControl(
 		"Nym-Foe Targets TiTS",
 		"Toggle whether or not Nym-Foe will target the breasts when she injects silicone.",
 		function():void {
 			Cheats.BoobSiliconePlease();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Classic Lapinara",
+		"Toggle whether the classic Lapinara on Tarkus will encounter you.",
+		function():void {
+			Cheats.ClassicLapinara();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Sexdoll Encounter",
+		"Trigger an encounter with a WIP enemy from Kiro's Recruitment quest.",
+		function():void {
+			Cheats.SexdollEncounter();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Politically Correct Mode",
+		"Toggle whether certain offensive words are used.",
+		function():void {
+			Cheats.SJWMode();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Ardia DM7+ Sex Choice",
+		"Toggle whether Ardia chooses sex scenes at high dominance. May result in unintended behaviour.",
+		function():void {
+			Cheats.ArdiaLetsYouChoose();
 		},
 		true);
 		
@@ -345,8 +394,9 @@
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
+	inputManager.BindCheatSequence("Politically Correct Mode","poison");
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
-	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
+	inputManager.BindCheatSequence("Infinte Item Use", "urta");
 	inputManager.BindCheatSequence("Infinite Crew Space", "clowncar");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
 	inputManager.BindCheatSequence("Force Default Treatment", "treatment");
@@ -361,7 +411,11 @@
 	inputManager.BindCheatSequence("Toggle Seasons", "tistheseason");
 	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	inputManager.BindCheatSequence("Space Yakuza Skip", "anofferyoucantrefuse");
+	inputManager.BindCheatSequence("Bianca Spawn", "healthdelivery");
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
+	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
+	inputManager.BindCheatSequence("Sexdoll Encounter", "doll");
+	inputManager.BindCheatSequence("Ardia DM7+ Sex Choice", "ardiaschoice");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
@@ -391,6 +445,8 @@
 	inputManager.BindKeyToControl(35, "Scroll To End");        // case 35: this.endButtonScroll()
 	inputManager.BindKeyToControl(54, "Next Page");            // case 54: this.pageNextButtonKeyEvt()
 	inputManager.BindKeyToControl(89, "Previous Page");        // case 89: this.pagePrevButtonKeyEvt()
+	inputManager.BindKeyToControl(90 , "Previous Button Page");
+	inputManager.BindKeyToControl(88 , "Next Button Page");
 	inputManager.BindKeyToControl(80, "Debug Menu");           // case 80: this.userInterface.debugmm();
 
 

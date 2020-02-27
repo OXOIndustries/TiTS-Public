@@ -29,9 +29,9 @@
 			this.originalRace = "robot";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You are fighting the <b>Luxury Gabilani Bipedal Transport</b>. From the waist down, the eighteen foot tall walker is a fearsome, looming war machine, dusty and pitted by long exposure to the unforgiving Tarkus wastelands. Above its two padded feet and armored, stork-like digitigrade legs, its underside bristles with bulky, lethal-looking weaponry: A twinned laser cannon, a boxy missile pod and a pronged energy weapon are all pointed in your general direction. Crude perhaps to your 32nd Century eyes, but it’s easily the most advanced and dangerous looking thing you’ve seen any native pack on this planet, and you’ve seen lesser vehicles tear apart cities in old war vids.\n\nThe head of the LG-BT, though, belongs on an entirely different vehicle - on an entirely different planet, perhaps. It’s a pristine, heavily reinforced synth-glass bubble, arrayed with camera modules, within which you can catch glimpses of its two gabilani occupants.";
-			this.customDodge = "The lumbering mech's unpredictable movements carry it out of the way!";
-			this.customBlock = "That armor's too thicc for blasters!";
+			this.long = "You are fighting the <b>Luxury Gabilani Bipedal Transport</b>. From the waist down, the eighteen foot tall walker is a fearsome, looming war machine, dusty and pitted by long exposure to the unforgiving Tarkus wastelands. Above its two padded feet and armored, stork-like digitigrade legs, its underside bristles with bulky, lethal-looking weaponry: a twinned laser cannon, a boxy missile pod and a pronged energy weapon are all pointed in your general direction. Crude perhaps to your 32nd Century eyes, but it’s easily the most advanced and dangerous looking thing you’ve seen any native pack on this planet, and you’ve seen lesser vehicles tear apart cities in old war vids.\n\nThe head of the LG-BT, though, belongs on an entirely different vehicle - on an entirely different planet, perhaps. It’s a pristine, heavily reinforced synth-glass bubble, arrayed with camera modules, within which you can catch glimpses of its two gabilani occupants.";
+			this.customDodge = "The lumbering mech’s unpredictable movements carry it out of the way!";
+			this.customBlock = "That armor’s too thicc for blasters!";
 			this.isPlural = false;
 			
 			isLustImmune = true;
@@ -289,9 +289,9 @@
 		public function rechargyBoi(target:Creature,newL:Boolean = false):void
 		{
 			if(newL) output("\n\n");
-			output("The LG-BT pauses, as if thinking about you carefully. You can hear its internals clicking, turning and whirring, energy redirected from some deep source towards recharging... and microfacturing. Its shield snaps back into place a moment later, its weapons throbbing with refreshed mercilessness. (+<b>" + Math.round(20) + "</b> Shields)");
-			this.energy(100);
-			this.shields(Math.round(20));
+			output("The LG-BT pauses, as if thinking about you carefully. You can hear its internals clicking, turning and whirring, energy redirected from some deep source towards recharging... and microfacturing. Its shield snaps back into place a moment later, its weapons throbbing with refreshed mercilessness.");
+			this.changeShields(Math.round(20));
+			this.changeEnergy(100);
 		}
 
 		//Gabilani Blurbs

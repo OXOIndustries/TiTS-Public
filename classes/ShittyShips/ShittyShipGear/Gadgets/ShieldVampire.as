@@ -103,8 +103,8 @@
 					if (dr.shieldDamage > 0) 
 					{
 						var shieldHeal:Number = Math.ceil(dr.shieldDamage);
-						output(" (<b>S:</b> +<b><span class='shield'>" + shieldHeal + "</span></b>)");
-						usingCreature.shields(shieldHeal);
+						//output(" (<b>S:</b> +<b><span class='shield'>" + shieldHeal + "</span></b>)");
+						usingCreature.changeShields(shieldHeal);
 					}
 				}
 				//Fail!
@@ -115,8 +115,8 @@
 						clearOutput();
 						output("Despite your best efforts, the shield vampire can’t seem to leach " + possessive(targetCreature.getCombatName()) + " shields.");
 					}
-					else if(targetCreature.hasPerk("PCs")) output("Despite " + possessive(usingCreature.getCombatName()) + " best efforts, your shields are too robust to be siphoned by a shield disruptor.");
-					else output("Despite " + possessive(usingCreature.getCombatName()) + " best efforts, " + possessive(targetCreature.getCombatName()) + " shields are too robust to be siphoned by a shield disruptor.");
+					else if(targetCreature.hasPerk("PCs")) output("Despite " + possessive(usingCreature.getCombatName()) + " best efforts, your shields are too robust to be siphoned by a shield vampire.");
+					else output("Despite " + possessive(usingCreature.getCombatName()) + " best efforts, " + possessive(targetCreature.getCombatName()) + " shields are too robust to be siphoned by a shield vampire.");
 				}
 			}
 			return false;

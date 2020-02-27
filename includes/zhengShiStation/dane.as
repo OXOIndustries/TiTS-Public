@@ -9,8 +9,12 @@
 //Dane Plans/Ideas
 //Dane only fucks feminine-presenting PCs with C+ cups.
 
-//Placeholder func. Move to ardia when she's in.
-public function ardiaIsCrew():Boolean { return false; }
+public function daneAtZhengShi():Boolean
+{
+	if(daneIsCrew()) return false;
+	if(!zhengCoordinatesUnlocked()) return false;
+	return true;
+}
 
 public function daneCockVolume():Number
 {
@@ -187,7 +191,7 @@ public function daneTalkMenu():void
 	addButton(2,"Other Jobs",askDaneAboutOtherJobs,undefined,"Other Jobs","Go digging to see if he’s got any stories to share.");
 	if(flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_JOBS_TALK"] == 1) addButton(3,"Harem",danesHaremTalk,undefined,"Harem","Dane has made mention of having a harem in the past. You don’t see any girls here. Where are they?");
 	else addDisabledButton(3,"Locked","Locked","You’ll need to ask Dane about his previous jobs to unlock this topic.");
-	addButton(4,"His Start",daneStartTalk,undefined,"His Start","How does a guy like Dane gets his start in the merc game?");
+	addButton(4,"His Start",daneStartTalk,undefined,"His Start","How does a guy like Dane get his start in the merc game?");
 	if(pc.hasItemByClass(ShockBlade)) addButton(5,"ReturnBlade",giveDaneShockblade,undefined,"Return Blade","Give Dane back the shock blade you took from him after defeating him on Mhen’ga.");
 	else addDisabledButton(5,"ReturnBlade","Return Blade","You cannot give Dane back one of his swords if you do not have that sword to give.");
 	addButton(14,"Back",approachDane,true);
@@ -401,7 +405,7 @@ public function daneStartTalk():void
 	output("\n\nHis smile was rather... unnerving.");
 	output("\n\n<i>“The great thing about violence is that it doesn’t really matter all that much as long as you don’t get too stupid with it. Broken bones and bullet holes? Neither takes that long to patch up. Hell, losing a limb is more of a financial penalty than a genuine life-ruiner. A few injections, maybe a little cloning, and you’re back on your feet and good as new.”</i> Dane nods. <i>“So the way I see it, there’s absolutely nothing wrong with smashing somebody’s face black and blue for being a shitdick. And getting paid to do it? Well, that’s a wet dream in the making right there.”</i> Dane chortles, <i>“And I’m living it.”</i>");
 	output("\n\nRather than making an argument about his take on his baser urges, you try to dial the conversation back toward his start.");
-	output("\n\n<i>“Right, right...”</i> Dane drawls, <i>“I guess I did get a little off topic there, but only because there’s not much to tell. Most mercenary work is done through independent contracts and extranet job boards. All I did was sign myself up for rating with the Mercenary Consortium and Reaper Industries, then start accepting contracts that seemed on the level.”</i> Say what you want about our dystopian corporate overlords - no offense - but the ones that set up merc regulations did a pretty swell job of it.”</i> Dane puffs out his chest as he explains, <i>“Up until your cousin tanked my ratings, I was one of the highest rated contractors in the quadrant.”</i> He seems to visibly deflate in the wake of that statement. <i>“Fucking cuntrag.”</i>");
+	output("\n\n<i>“Right, right...”</i> Dane drawls, <i>“I guess I did get a little off topic there, but only because there’s not much to tell. Most mercenary work is done through independent contracts and extranet job boards. All I did was sign myself up for rating with the Mercenary Consortium and Reaper Industries, then start accepting contracts that seemed ‘on the level.’ Say what you want about our dystopian corporate overlords - no offense - but the ones that set up merc regulations did a pretty swell job of it.”</i> Dane puffs out his chest as he explains, <i>“Up until your cousin tanked my ratings, I was one of the highest rated contractors in the quadrant.”</i> He seems to visibly deflate in the wake of that statement. <i>“Fucking cuntrag.”</i>");
 	output("\n\nYou can’t quite suppress your chuckle.");
 	output("\n\n<i>“Yeah... tell you what. I don’t really do the whole bounty hunting-slash-hitman thing, but " + (!daneRecruited() ? "if you ever need a hand taking down your cousin down a few pegs, I promise I won’t charge too much for the effort.":"I can’t wait till we get a chance to knock that shit-eating grin off that twat-waffle’s face.") + "”</i>");
 	//Unlocks bodyguard hire!
@@ -1149,14 +1153,14 @@ public function daneTaurfukky(volunteered:Boolean = false):void
 	{
 		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while [pc.girlCum] " + (pc.isSquirter() ? "squirts":"drips") + " down your shaking hindlegs. Dane doesn’t let up at all, slamming into your convulsing cunt and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the ");
 		//Nonfollower:
-		if(9999 == 9999) output("base");
+		if(!daneIsCrew()) output("base");
 		else output("ship");
 		output(" can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
 		output("\n\nHe’s stimulating your oversensitive pussy so violently you can’t seem to escape cumming - crying out like the most depraved of whores, you clench up and clamp down on Dane while he grunts and growls, slamming you full of enormous equine cock. You can hardly believe how <i>wild</i> he is with you, rutting you with the intensity of a stallion and the stamina of a god. The sheer ecstasy coursing through your body tells you to stay, to be good, and to let him fuck you however he wants. You’re only too happy to sluttily comply.");
 	}
 	else
 	{
-		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while your hindlegs violently shake. Dane doesn’t let up at all, slamming into your slippery ass and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the " + (9999 == 9999 ? "base":"ship") + " can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
+		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while your hindlegs violently shake. Dane doesn’t let up at all, slamming into your slippery ass and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the " + (!daneIsCrew() ? "base":"ship") + " can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
 		output("\n\nHe’s stimulating your oversensitive insides so violently you can’t seem to escape cumming - crying out like the most depraved of whores, you clench up and clamp down on Dane while he grunts and growls, slamming you full of enormous equine cock. You can hardly believe how <i>wild</i> he is with you, rutting you with the intensity of a stallion and the stamina of a god. The sheer ecstasy coursing through your body tells you to stay, to be good, and to let him fuck you however he wants. You’re only too happy to sluttily comply.");
 	}
 	output("\n\nYou’re slammed into the wall again and again, your " + (pc.biggestTitSize() >= 1 ? "[pc.breasts] squished up":"cheek pressed") + " against it while you scream in lust, begging him to cum inside you. Instead he swats you across the ass hard, your forelegs crumpling while he grunts and holds your rear half in the air to fuck. You’re too busy marvelling at his strength to notice the way his giant cock is throbbing until you feel his growing knot pressing at your " + (x >= 0 ? "swollen pussylips.":"gaped fuckhole."));

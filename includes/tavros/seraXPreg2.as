@@ -369,11 +369,11 @@ public function seraBitchImpregnateRideEnd(vIdx:int = 0):void
 	output("\n\nA long, husky moan escapes her cerulean lips, and you’re driven to start fucking her with energetic bounces of your [pc.ass] again.");
 	output("\n\nYou slow down, you speed up, you tease every protrusion of Sera’s luscious body you can reach with your cusping, pinching fingers.");
 	if(pc.isLactating()) output(" [pc.Milk] continues to course down from your engorged nipples, warm pleasure spreading within your [pc.boobs] as you continue to ride her big, juicy cock, and you don’t deny it - you caress" + (pc.hasFuckableNipples() ? ", finger" : "") + " and tug at your [pc.nipples] until with a delighted squeal your breasts tremble in squishy boobgasm, spraying Sera’s chest and face with [pc.milkVisc] fluid.");
-	output("\n\nThe pleasure builds into one, final, pulsing orgasm, which you ride out with " + pc.mf("roaring", "squealing") + " ecstasy, clutching the succubus’s [Sera.skincolor]’s plump breasts and bending her cock for all it is worth, " + (!pc.isSquirter(vIdx) ? "oozing" : "squirting") + " [pc.femcum] all around it.");
+	output("\n\nThe pleasure builds into one, final, pulsing orgasm, which you ride out with " + pc.mf("roaring", "squealing") + " ecstasy, clutching the succubus’s [sera.skinColor]’s plump breasts and bending her cock for all it is worth, " + (!pc.isSquirter(vIdx) ? "oozing" : "squirting") + " [pc.femcum] all around it.");
 	output("\n\n<i>“Do it!”</i> you cry out, howling caution to the wind. <i>“Give me what I want, you fucking cum pump!”</i>");
 	output("\n\nInstantly Sera reacts, huffing and moaning with feral joy as she seizes this moment with both hands, thrusting her thick prick into you with everything she’s got, intensifying your own orgasm lividly as she finds her own release, splurging one warm, thick load of spunk into your womb after another. You open your mouth to the rich, filthy sensation of it, cascading down your tunnel and pooling out from your stretched, tingling pussy.");
 	output("\n\nYou work her stringently, impatiently thrusting your [pc.hips] on top of her and working that deliciously thick wick until her mouth is open and her eyes glazed, white slime drooling plentifully down her curvy flanks, utterly spent. Only then do you slow down, lift your [pc.ass] to allow her dick to slide out of you and land with a comical splat in the gooey mess you’ve left on her groin and thighs.");
-	output("\n\nYou lie down, undo her cuffs and gently pull her into your [chest], enjoying the warmth of the afterglow with her.");
+	output("\n\nYou lie down, undo her cuffs and gently pull her onto your [pc.chest], enjoying the warmth of the afterglow with her.");
 	output("\n\n<i>“Did you like that, [pc.master]?”</i> she murmurs, eyes unfocused and unabashed grin on her lips. <i>“" + ((!pc.isPregnant(vIdx) || pc.bellyRating() < 10) ? "Me stuffing you full of my kids?" : "A nice cream pie for mommy cakes?") + "”</i> You let your hands roam over her warm, soft, curvy body without saying anything, luxuriating in her lack of resistance to being treated as your in-house cum pump, and she practically purrs when you slide your hand over her horns.");
 	output("\n\nAfter you’ve cuddled her a bit longer you get up, redress and get back to it, taking a glow of deep self-satisfaction with you.");
 	
@@ -836,7 +836,7 @@ public function seraPregMoveToTavros(response:String = "intro"):void
 		case "intro":
 			showSera();
 			
-			output("<i>“Hey.”</i> Sera is in your room, sat on the bed. Her usual vampy smile is nowhere to be seen; she looks rather sullen and vulnerable as she flicks her eyes up at you and then to the corners of the room, cradling her great, round baby bump. <i>“I want to go to " + (shipLocation != "TAVROS HANGAR" ? "Tavros" : "the Nursery") + ", ok? Like, now.”</i>");
+			output("<i>“Hey.”</i> Sera is in your room, sitting on the bed. Her usual vampy smile is nowhere to be seen; she looks rather sullen and vulnerable as she flicks her eyes up at you and then to the corners of the room, cradling her great, round baby bump. <i>“I want to go to " + (shipLocation != "TAVROS HANGAR" ? "Tavros" : "the Nursery") + ", ok? Like, now.”</i>");
 			output("\n\nYou");
 			if(shipLocation != "TAVROS HANGAR") output(" head to the nearest warpgate and are soon joining the crowded ship lanes that surround the vast space station");
 			else output(" nod and arrange a few things while she vanishes from your view");

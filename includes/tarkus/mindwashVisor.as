@@ -89,7 +89,9 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		addButton(2,"Female",startMindwashSceneLucas, "female");
 		addButton(3,"Futa",startMindwashSceneLucas, "futa");
 		addButton(4,"Game: CoC",startMindwashSceneLucas,"CoC");
-		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it's worth checking out? From what you can see, you'll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn't give you some kind of brain virus.");
+		var button:Number = 5;
+		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"Sexdoll",genericSexdollEncounter,true);
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -345,7 +347,9 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		addButton(2,"Female",mindwashVisorScenes, "female");
 		addButton(3,"Futa",mindwashVisorScenes, "futa");
 		addButton(4,"Game: CoC",mindwashVisorScenes,"CoC");
-		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it's worth checking out? From what you can see, you'll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn't give you some kind of brain virus.");
+		var button:Number = 5;
+		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"Sexdoll",genericSexdollEncounter,true);
 		return;
 	}
 	
@@ -3119,7 +3123,7 @@ public function shekkaMindwashFirstTime3(touch:Boolean):void
 	}
 	else 
 	{
-		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complimented by another thick gout of her cum decorating the floor some distance from her chair.");
+		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complemented by another thick gout of her cum decorating the floor some distance from her chair.");
 		if(touch) output(" You stroke her through it all: your hand rubs along her thick, steely length again and again, coaxing more of her cum from her body.");
 		output(" Her meat is beet-red and her every vein pulses with blood");
 	}
@@ -3276,7 +3280,7 @@ public function shekkaRepeatMindwashVarI(touch:Boolean):void
 	}
 	else
 	{
-		output("\n\nYou have to admit, it’s kind of hot to see Shekka take on such a different, domineering role. You love Shekka, of course, but hearing her take such an authorizing tone and feeling her be so insistent in pressing you against her genitals is a different trip all together. You can help but submerse yourself in the role of her rookie and eagerly ");
+		output("\n\nYou have to admit, it’s kind of hot to see Shekka take on such a different, domineering role. You love Shekka, of course, but hearing her take such an authorizing tone and feeling her be so insistent in pressing you against her genitals is a different trip all together. You can’t help but submerse yourself in the role of her rookie and eagerly ");
 		if(!shekka.hasCock()) output("service her dripping gash, driving your [pc.tongue] into her body to lap at all the delicious juices she’s dripping in her arousal");
 		else output("extend your [pc.tongue] to draw long, wanton licks at her heavy, heaving testicles; you bury your nose into her wrinkly sack as you worship her nuts, feeling their heat against your mouth and her cock rise to full erect stiffness above you");
 		output(".");
@@ -3285,9 +3289,9 @@ public function shekkaRepeatMindwashVarI(touch:Boolean):void
 	if(!shekka.hasCock()) output("eat me out");
 	else output("kiss my dick");
 	output("?”</i> she asks. Her breasts heave in excitement as ");
-	if(!touch) output("her rookie");
-	else output("you");
-	output(" goes to work on her, her wide grin remaining the whole time as she revels in the power-play between her and ");
+	if(!touch) output("her rookie goes");
+	else output("you go");
+	output(" to work on her, her wide grin remaining the whole time as she revels in the power-play between her and ");
 	if(!touch) output("whoever’s going down on her");
 	else output("you, playing as the role of her subordinate");
 	output(". <i>“Would you rather scrub the halls with a toothbrush, or would you rather be on your knees, between my legs, ");

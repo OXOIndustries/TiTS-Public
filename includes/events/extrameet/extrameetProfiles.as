@@ -20,6 +20,7 @@ public function extrameetKaedeProfile():void
 
 public function extrameetKaedeCheckMatch():Boolean
 {
+	if(flags["ANNOxKAEDE_INTRODUCED"] == undefined || flags["ANNOxKAEDE_INTRODUCED"] <= 0) return false;
 	return (pc.hasCock() || pc.hasVagina());
 }
 
@@ -606,7 +607,7 @@ public function extrameetLethalLadyProfile():void
 {
 	output("The profile picture on your screen is a headshot of a very beautiful Gryvain. While she doesnt look old by any means, you can tell she is far from young just by the way she carries herself.");
 	output("\n\nUsername: LethalLady");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 150 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tavros");
@@ -664,7 +665,7 @@ public function extrameetFrankMollyProfile():void
 {
 	output("The profile picture on your screen is of a pair of New Texans, a man and a woman. Both of them seem to be of standard New Texan stock, with horns, muscles, and curves.");
 	output("\n\nUsername: Frank&Molly");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 38 Years");
 	output("\nRace: Human+");
 	output("\nPlanet: New Texas");
@@ -802,7 +803,7 @@ public function extrameetMissyMayDate():void
 	//showName("0MissyMay0");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
-	output("You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn’t seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table");
+	output("You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn’t seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table.");
 	output("\n\n<i>“Hey. [pc.name] Steele? I’m May.”</i> She smiles at you while you size her up. Based on her chest and lips, she must be the woman in the picture. While her figure is a bit less voluptuous than most women on the planet, her bust is still remarkable, sticking out a foot off her chest. Her hair is mud brown, but you notice she isn’t sporting typical New Texan horns. Or any horns for that matter. You introduce yourself and she takes a seat across from you, smiling politely. <i>“So, been on the planet long?”</i>");
 	output("\n\nYou tell her you’re just passing through, searching for any typical New Texan markers while you speak. As far as you can tell she’s pure human, with a little added on the chest.");
 	output("\n\nShe notices your stare and rolls her eyes. <i>“Don’t tell me you were hoping for a Treated bimbo cow.”</i> When you don’t answer right away she giggles. <i>“Yeah, I figured that would be the case. I’m on planet for a work contract, and let me tell you the locals are exhausting. In more ways than one.”</i>");
@@ -871,7 +872,6 @@ public function extrameetVKODate():void
 	showName("\nV-KO#1221341");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
-	
 	output("You enter The Bucking Bronco and spot your date sticking out like a sore thumb. She’s seated near the back of the bar, sitting very still and with perfect posture. You make your way over, noting she doesn’t even turn to regard you as you make your approach. When you finally reach the nursedroid she just stares off into space. After a moment, you clear your throat and speak to her. <i>“Hello?”</i>");
 	output("\n\nIn a quick jerking motion her head turns to you, taking you by surprise and making you jump. <i>“Hello! I am V-KO#1221341. You may call me V-KO. Please take a seat.”</i> She lifts an arm and motions towards a chair across from her");
 	output("\n\nSlowly you take your seat, keeping a close eye on the nursedroid. You can tell she is properly looking at you now, and seems to be sizing you up. In an attempt to break up the awkward silence, you introduce yourself.");
@@ -925,8 +925,8 @@ public function extrameetVKOSex():void
 	if (pc.balls > 0) 	output(" You throw your head back and groan as your [pc.balls] start to churn.");
 	
 	output(" Sensing your orgasm, you feel your date’s cunt clamp down tight on you, squeezing your dick so hard she almost crushes it. You try to cry out, but only groan louder as your cock pulses in the iron tight snatch, your thick load exploding from your [pc.cockHead " + kok + "]. Deep inside the synthetic cunt you feel an odd sucking, seemingly pulling the cum right out of you. The sucking only makes your orgasm more intense, and you feel your body shake uncontrollably. A minute later you feel the pressure on your dick release, and you stagger backwards, pulling yourself free.");
-	output("\n\n<i>“That was most impressive.”</i> You hear the droid shift in the darkness. <i>“You vitality is 10% higher than I anticipated. However, I detect lower than normal protein in your ejaculate. Might I suggest a supplement?”</i>");
-	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyse your spunk?");
+	output("\n\n<i>“That was most impressive.”</i> You hear the droid shift in the darkness. <i>“Your virility is 10% higher than I anticipated. However, I detect lower than normal protein in your ejaculate. Might I suggest a supplement?”</i>");
+	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyze your spunk?");
 	output("\n\n<i>“Very well. You should leave first as to not arouse suspicion. I will remain here for a few moments. It was a splendid date, and above average sex. Thank you, and please cum again!”</i> You hear the nurse give out an odd electronic chuckle, and it takes you a moment to get what she’s laughing about.");
 	output("\n\n<i>“Right...”</i> You turn around and fumble around for the door knob. Light assaults your eyes as you open the door and step out into the bar. You glance back at your date, who smiles at you and waves. <i>“Bye...”</i> You exit the closet and close the door, leaving the weird droid in the closet.");
 	
@@ -1005,7 +1005,7 @@ public function extrameetSexyyDaddyySex():void
 	output("\n\nYou can’t help but struggle, the monster clearly too much for you. In your mind you can’t help but feel like you bit off more than you can chew, but that seems far too ironic a thought. You breathe through your nose while the massive dong in your mouth throbs, each pulse pressing it harder against your teeth, and with each press Orren moans louder. Your hands keep working the shaft, stroking up and down the whole of his length more on their own than anything. You’re operating on autopilot now, barely aware of your actions. A few moments later something changes. Something is coming. Your eyes open wide in fear. He’s cumming.");
 	output("\n\nYou feel it with your hands first, a surge of something right under the surface. A massive load firing out of the chamber. When it hits the top you feel it. You gag and choke as an impossible about of cum blasts into your mouth, the cockhead far too large to spit out. Hot spunk fills your throat, exploding out of Orren with such force you feel it come out of your nose. You squeeze his cock hard, more on reflex than anything, the fight part of a fight or flight response. That only makes Orren moan louder, the pain making his orgasm all the better. Pulling with both your hands, you yank the monster out of your mouth with all your strength, teeth marks scratching into Orren as you pull. The Thraggen groans so lewdly you think he might cum again after that.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.exhibitionism(2);
 	processTime(10 + rand(15));
 	pc.loadInMouth(chars["SEXYYDADDYY"]);
@@ -1125,7 +1125,7 @@ public function extrameetLaughingDragonProfile():void
 {
 	output("The profile picture on your screen is of a very drunk Gryvain. You can tell she’s plastered out of her mind not only by her expression, but by the pile of empty bottles next to her in the picture.");
 	output("\n\nUsername: LaughingDragon");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 67 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: New Texas");
@@ -1608,7 +1608,7 @@ public function extrameetNympho69Profile():void
 {
 	output("The profile picture on your screen is of a semi erect cock being held and shown off. Even half hard it seems fairly large.");
 	output("\n\nUsername: Nympho69");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 65 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Mhen’ga");
@@ -1692,7 +1692,7 @@ public function extrameetLooking4a3rdProfile():void
 {
 	output("The profile picture on your screen is of an ausar couple. They are holding each other close, while staring at the camera. He looks serious, while she looks playful.");
 	output("\n\nUsername: Looking4a3rd");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 27 Years");
 	output("\nRace: Ausar");
 	output("\nPlanet: Mhen’ga");
@@ -2063,7 +2063,7 @@ public function extrameetTruePower69Profile():void
 {
 	output("The profile picture on your screen is of a very large cock. Although you can’t get a good sense of scale, you can tell it’s at least a foot long. The only other information you can tell is whomever it is connected to seems quite muscular and large.");
 	output("\n\nUsername: True_Power69");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 40 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Tarkus");
@@ -2202,11 +2202,11 @@ public function extrameetShekkaDate():void
 	if (pc.isNice()) output(" I think I’ve got my match right here,");
 	else if (pc.isMischievous()) output(" I always prefered name brand over generic ‘corporate heirs’,");
 	else output(" I’m pretty confident in my ability to surpass your dreams,");	
-	output("</i> you croon, thumbing around her jumpsuit covered nipples in soft circles. The peppy mechanic melts in your arms, her project forgotten as she lets you spin her around till she faces you. You " + (pc.hasKnees() ? "fall to your knees" : "lower yourself") + " in front of the amorous raskvel, parting her thighs and taking the suits zipper between your thumb and forefinger. Her scaly skin is hot on your lips as you trail from her neck to her chest alongside the peeling garment, smooching each inch of bared flesh as it appears." + (pc.hasStatusEffect("Red Myr Venom") ? " A deep purple flush follows swiftly behind, and you hear the rapid beat of her heart as her breaths quicken." : ""));
+	output("”</i> you croon, thumbing around her jumpsuit covered nipples in soft circles. The peppy mechanic melts in your arms, her project forgotten as she lets you spin her around till she faces you. You " + (pc.hasKnees() ? "fall to your knees" : "lower yourself") + " in front of the amorous raskvel, parting her thighs and taking the suits zipper between your thumb and forefinger. Her scaly skin is hot on your lips as you trail from her neck to her chest alongside the peeling garment, smooching each inch of bared flesh as it appears." + (pc.hasStatusEffect("Red Myr Venom") ? " A deep purple flush follows swiftly behind, and you hear the rapid beat of her heart as her breaths quicken." : ""));
 	output("\n\nShekka pulls you against her chest as you continue unzipping all the way down to her crotch. You don’t get to leave the transient prison of reptilian cleavage for a few moments, enough time for a few kisses to be planted on <i>your</i> head. Working in the engine room leaves a slippery sheen of sweat on the tinkerer’s body, but she still smells wonderfully appetizing. Even moreso when a final tug draws the opening of her jumpsuit over " + (shekka.hasCock() ? "her musky horsecock." : "dripping dual-clitted pussy."));
 	output("\n\nYou’re giving a front row seat to her skyrocketing heartbeat as you transition to " + (shekka.hasCock() ? "fondling her hefty horseballs." : "teasing the first of her feminine love buzzers.") + " A squeak of surprise escapes her lips, followed by a brief moan as you fight against her confining cleavage, nibbling and kissing her smooth scales with practiced care. Slipping free of her grasping hands, you kiss down her belly in an inexorable march to her waiting sex.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	if (shekka.hasCock())
 	{
 		output("\n\nIn the sweltering heat of the engine room, the musky scent of shekka’s equine member permeates your every sense. It was still mostly soft when you slid the zipper open, but with each passing second it grows larger and harder. The choice between the first kiss going to her head or her balls is an agonizing decision, one the weighty testes lose. You plant a kiss directly on the tip of her bulbous flare, still small and puffy for now.");
@@ -2316,7 +2316,7 @@ public function extrameetPowerLovers2Profile():void
 {
 	output("The profile picture on your screen is of two gabilani, one male and one female. By the looks of them, they are an item, the male having his arm draped over the female.");
 	output("\n\nUsername: PowerLovers2");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 32 Years");
 	output("\nRace: Gabilani");
 	output("\nPlanet: Tarkus");
@@ -2344,7 +2344,7 @@ public function extrameetAvarice56Profile():void
 {
 	output("The profile picture on your screen is of a naked Gryvain woman with a massive cock in her mouth. She is fairly attractive, and it staring right at the camera while deepthroating the huge dong.");
 	output("\n\nUsername: Avarice56");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 80 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tarkus");
@@ -2386,7 +2386,7 @@ public function extrameetHawtShotProfile():void
 {
 	output("The profile picture on your screen is of a massive dick. Seriously. It’s just a huge dick.");
 	output("\n\nUsername: HawtShot");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 54 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tarkus");
@@ -2660,7 +2660,7 @@ public function extrameetMistressVenomSex():void
 	output("\n\nYou look around at the dust floor. <i>“Is there a mattress or something?”</i> You contemplate pulling a sheet off one of the crates, but suspect they are not any less dusty than the floor would be.");
 	output("\n\nTassius gives you a stern look. <i>“On. Your. Back.”</i> Her voice makes it clear she isn’t asking. The woman has a way with authority, and knows how to exercise that power.");
 	output("\n\nDoing as you’re told, you gently lower yourself down, the floor feeling cold against your back. You take a moment to silently lament the dust that now coats your [pc.skinFurScales].");
-	output("\n\nThe Red Woman pulls herself to her feet once more, bushing off her backside with a few firm pats. She stalks over to you, her chitinous boots clicking on the ground as she walks. She stands over top of you, blocking out what little light there is and and appearing like a shadow overhead. <i>“You are not at attention.”</i> She nods her head towards your still soft [pc.cock " + kok + "]. <i>“This won’t do.”</i>");
+	output("\n\nThe Red Woman pulls herself to her feet once more, bushing off her backside with a few firm pats. She stalks over to you, her chitinous boots clicking on the ground as she walks. She stands over top of you, blocking out what little light there is and appearing like a shadow overhead. <i>“You are not at attention.”</i> She nods her head towards your still soft [pc.cock " + kok + "]. <i>“This won’t do.”</i>");
 	output("\n\nShe takes another step forward, her feet on either side of your head now and offering you a very informative look up her skirt. The Sergeant isn’t wearing any panties, which doesn’t strictly surprise you, but does seem slightly odd for how you perceived her. Despite the poor lighting, you can vaguely make out her twat, the sight of it causing your crotch to stir.");
 	output("\n\nTassius scoffs. <i>“Men. You’re almost too easy.”</i> She takes another few steps forward, carefully stepping over your shoulders and widening her stance. The red woman comes to a stop over your [pc.hips], her womanhood looming over your rising member. Slowly, she reaches down and hikes up her skirt, offering you a very nice view of her perfectly formed ass. You feel your cock twitch, stiffening up to full mast, and in no small part due to the very red and round scenery. Tassius drops her hand between her thighs, caressing her cunt with her fingers slowly.");
 	output("\n\nThe Sergeant warms herself up for a few short moments, her touching becoming more intense. You hear her softly gasp a few times, but nothing too loud or lewd seems to escape her lips. Your current angle gives you a view of the action, and watching her red pussy come alive and slick with sticky juices makes your cock throb with excitement. After another minute, Tassius stops teasing her now ready pussy and starts to lower herself down, right over your hard and eager pole.");
@@ -2846,7 +2846,7 @@ public function extrameetSirenSongProfile():void
 {
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Siren_Song");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 102 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Myrellion");
@@ -2888,7 +2888,7 @@ public function extrameetPurpleBowtieProfile():void
 {
 	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 32 Years");
 	output("\nRace: Kui-tan");
 	output("\nPlanet: Myrellion");
@@ -3200,7 +3200,7 @@ public function extrameetStormDragonProfile():void
 {
 	output("The profile picture on your screen is a headshot of a rather striking Gryvain woman. The give away as to her species is the pair of dark horns sprouting out from her head. Her hair is bright blue, and along her hairline you notice curious runic tattoos.");
 	output("\n\nUsername: Storm_Dragon");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 102 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Uveto");
@@ -3296,6 +3296,64 @@ public function extrameetStormDragonSex():void
 	IncrementFlag("EXTRAMEET_ORAL_GIVE");
 	addButton(0,"Next",mainGameMenu);
 }
+
+//ProSnuggler23
+//[EXTRAMEET_PROSNUGGLER23]
+public function extrameetProSnuggler23Profile():void
+{
+	output("The profile picture is of a slender looking androgenous naga, lounging on a couch to the light of a simulated fireplace and sipping a mug full of a steaming hot beverage. The snake person's skin looks remarkably soft, marred only by the occasional patch of scales.");
+	output("\n\nUsername: ProSnuggler23");
+	output("\nSex: Male");
+	output("\nAge: 23 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Uveto");
+	output("\n\nBio:");
+	output("\nLooking for a big strong man (or herm, I don't mind) to come help a chilly snake warm up. Oh also to tell me what a naughty little bitch slut I am! Will have hot drinks for afterwords. Looking for something quick and rough, just for today.");
+}
+public function extrameetProSnuggler23CheckMatch():Boolean
+{
+	//requires pc taller than 6' and has a dick, biped or naga
+	if ((pc.isBiped() || pc.isNaga()) && pc.hasCock() && pc.tallness > 72) return true;
+	else return false;
+}
+public function extrameetProSnuggler23Date():void
+{
+	showName("\nPROSNUGGLER23");
+	author("Gardeford");
+	moveTo("UVI N32");
+	output("You log off, making the trek down to uveto city proper. You pass by residential areas till you come to the address given on the meet-up confirmation, a cozy looking apartment complex set up right near The Freezer. Sounds of hasty preparation breach the door as you ring the buzzer, followed swiftly by a soft click as the door opens, revealing a now slightly more disheveled version of the face you saw on the extrameet profile. He straightens his hair and wipes a line of sweat from his brow, appraising you in a way that sets your lust ablaze.");
+	output("\n\n<i>“Ahhh I can't believe someone actually came! You wouldn't believe how many people have swiped me and then just not realized how cold it is here. They always underestimate Uvetan heating,”</i> Now that he mentions it, the heat is certainly working in his apartment, and working wonders on his body. A thin sheen of sweat glistens in the dim light, drawing your eyes to every curve and shapely angle of his completely naked form. A thin slit just below his waist assumedly hides his genitalia, whatever he's packing. His voice draws you back to reality, and you realize you haven't been hearing him talk.");
+	output("\n\n<i>“I was thinking you could take me on the couch! Oh oh, or by the counter!”</i>");
+	output("\n\nWait, already? Shouldn't there be some kind of foreplay?");
+	output("\n\n<i>“I don't know about you, but I've been fantasizing about you pushing me up against... literally anything in this house and railing me till my tail doesn't work right. It's all I can do to keep my dicks in my slit, so hurry up!”</i> His hips give a little jiggle as he begs you. You recall he did ask for it rough. Maybe you can give him what he wants. Without another word, you bring your hands up under his arms, hoisting the fussy naga up to level with your face. You can't fully bring him off the ground because of his long tail, but he's surprisingly light. He goes quiet when you get him at eye level, and quivers with excitement when you walk him back into the foyer wall.");
+	output("\n\n<i>“");
+	if (pc.isNice()) output("Then maybe I'll take you up on that offer");
+	else if (pc.isMischievous()) output("Maybe those other people wouldn't have run away if they'd known how hot it is in here");
+	else output("Up against anything in the house eh? I think I'll prefer pressing you down into those couch cushions");
+	output(",”</i> you croon into his ear, pulling him toward the couch. He nods, making a half noise of compliance as he vibrates excitedly. You press him onto the couch, running your hands over the smooth combination of flesh and scales that cover his body. You lean in for a kiss, and he throws his arms around your neck to make it deeper. Without breaking contact, you "+(pc.isCrotchExposed() ? "take your [pc.cockBiggest] in your hands and line it up with his genital slit." : "hike your [pc.lowerGarments] down over your thighs and line your [pc.cockBiggest] up with his genital slit."));
+	output("\n\nA sigh of utter bliss escapes his lips as your length slides deep into his genital slit, and you feel the twin shafts of his hemipenis as your [pc.cockhead] pushes them aside. Now that your inside, you begin a steady rhythm of pumping your hips, grinding your tip between his rods with brief strokes. His hands fly into action, at first attempting to push you away to give himself a breather, and then clenching tightly around your shoulders as his double penis throbs powerfully, spurting a full load of hot cum into his own tight passage.");
+	output("\n\n<i>“Really? Is that all it takes? Just a few good thrusts and your creaming yourself like a slut!”</i> you laugh kissing his neck while he struggles to respond. He manages to bite his lip and give you a thoughtful glance before his eyes roll back and a few more spurts of warm jizz work their way out of his system.");
+	output("\n\n<i>“Hehe, yeah,”</i> he admits, stretching himself to curl his snake-like tail around "+(pc.isNaga() ? "your own" : "your legs")+". With him seemingly recovered, you start to move your hips again, steadily increasing your pace and the depth of your thrusts. Girlish moans and outright blissful cries issue from your serpentine lover, punctuated by muffled sounds of pleasure as you share deep kisses. He can't seem to find the best way to hold you, arms flying over your back like a lost explorer searching a map. You pull back and thrust deep, surprised for a moment to find a lack of dick.");
+	output("\n\n<i>“Hnngghh, thats! Asssss!”</i> he slurs, and you feel his twinned cocks shoot out of their hiding space, pressing against your belly and releasing a fresh, although a little thin, spurt of cream. Ass? You feel around his rear end, finding nothing but the round bumps of his hips and smooth scales that knead nicely beneath your fingertips. It appears he went all out on his mods, with a cloaca and everything.");
+	output("\n\nHis ass is tight, but the generous coating of natural lube he's applied makes it slick and easy to thrust deep into the constricting passage. Your thrusts are accompanied by sticky wet slaps as your hips bounce on his slender thighs. His spent cocks throb uselessly between you, still hot and hard against your stomach. Your kiss breaks, breath coming in heaving gasps as you feel your own orgasm approaching.");
+	output("\n\n<i>“Yuhh, " + (silly ? "impregnate my boi pussy!" : "make me warm inside!") + "”</i> he mumbles, clamping tighter around your length with instinctive force. Well, since he asked nicely. You give one more monumental thrust, hilting in the cumblasted naga's asshole before the thundering pressure of backed up pleasure bursts from your loins. ");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ < 100) output("[pc.Cum] spurts into the depths of his ass, leaving you feeling as drained as he looks.");
+	else if (cumQ < 1000) output("[pc.Cum] fills his ass as you fill his mouth with your [pc.tongue], massaging his wrists as you hold them against the couch.");
+	else if (cumQ < 5000) output("[pc.Cum] fills his ass and then spills in thick gobs back out around your length, mixing with his own as you slow grind the rest into his faux cunt.");
+	else output("[pc.Cum] erupts completely fills his ass on the first spurt, pouring out around your length as his faux cunt overflows. His own inferior seed is washed away, replaced completely by [pc.cumColor] cream.");
+	output("\n\nYou lie together for a few more minutes before you push yourself up. The serpentine slut lies on his back, a dazed grin on his face as he rubs his cum slicked belly.");
+	output("\n\n<i>“Are you gonna be ok?”</i> you ask, raising an eyebrow. He gives a long, slow nod, accompanied by a giggle. His twincock still juts out of his cloaca, shining like a pair of rubies in the hearthlight. You gather your things and get him a cup of cocoa from the pot near his sink, one that he accepts warmly and sips as he watches you prepare to leave.");
+	output("\n\n<i>“Stay warm,”</i> he mumbles, smiling as you pull the door open, heading back out into uveto proper.");
+
+	processTime(30 + rand(15));
+	pc.orgasm();
+
+	IncrementFlag("EXTRAMEET_SEX");
+	IncrementFlag("EXTRAMEET_ASS_GIVE");
+	addButton(0,"Next",mainGameMenu);
+}
+
 //uveto flavor
 
 //LoveBelow0
@@ -3416,7 +3474,7 @@ public function extrameetDomme90Profile():void
 {
 	output("The profile picture on your screen is of a very angry looking Dzaan. She’s beautiful, but her expression reads more as hostile rather than sexy. Like, really hostile.");
 	output("\n\nUsername: Domme_90");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 82 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Uveto");
@@ -3436,4 +3494,4 @@ public function extrameetBigDickRickProfile():void
 	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nThis can be all yours if you swipe right. No dudes, no exceptions. I don’t care how cute you are.");
-}
+}

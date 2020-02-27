@@ -42,7 +42,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA3"] = new RoomClass(this);
 	rooms["CANADA3"].roomName = "ACCESS\nCORRIDOR BETA";
-	rooms["CANADA3"].description = "Wooden accents and light-hued walls lend this passage a warmer, homier feel than most stations. Vibrant plants decorate recessed points in the wall, complimenting glossy, varnished transport belts that shuttle many of the denizens of Canadia Station between their ships and their onboard destinations.";
+	rooms["CANADA3"].description = "Wooden accents and light-hued walls lend this passage a warmer, homier feel than most stations. Vibrant plants decorate recessed points in the wall, complementing glossy, varnished transport belts that shuttle many of the denizens of Canadia Station between their ships and their onboard destinations.";
 	rooms["CANADA3"].planet = "CANADIA STATION";
 	rooms["CANADA3"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA3"].northExit = "CANADA2";

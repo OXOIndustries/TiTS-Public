@@ -235,14 +235,19 @@ public function bribeTaivrasGateGuards():void
 		addButton(14,"Back",mainGameMenu);
 	}
 	var gems:int = 0;
+	var offworldGems:int = 0;
 	//Check if PC has any "GEM" type items.
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
-		if(pc.inventory[x].type == GLOBAL.GEM) gems++;
+		if(pc.inventory[x] is Picardine || pc.inventory[x] is Kirkite || pc.inventory[x] is Satyrite || pc.inventory[x] is GemSatchel) gems++;
+		else if(pc.inventory[x].type == GLOBAL.GEM) offworldGems++;
 	}
 	if(gems == 0) addDisabledButton(1,"Gems","Gems","You don’t have any gems.");
 	else if(gems == 1) addButton(1,"Gem",giveDemAGem,gems,"Gem","Offer the gem you’re carrying.");
-	else addButton(2,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
+	else addButton(1,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
+	if(offworldGems == 0) addDisabledButton(1,"ExoticGems","ExoticGems","You don’t have any exotic gems.");
+	else if(offworldGems == 1) addButton(1,"Exotic Gem",giveDemAnExoticGem,gems,"Exotic Gem","Offer the exotic gem you’re carrying.");
+	else addButton(1,"ExoticGems",giveDemAGem,gems,"ExoticGems","Maybe they’d be interested in one of the exotic gems you’re carrying...");
 }
 
 public function giveDemAGem(gems:int):void
@@ -260,6 +265,22 @@ public function giveDemAGem(gems:int):void
 	clearMenu();
 	addButton(14,"Back",bribeTaivrasGateGuards);
 }
+public function giveDemAnExoticGem(gems:int):void
+{
+	clearOutput();
+	showPraetorians();
+	output("You take out a pouch ");
+	if(gems > 1) output("laden with gemstones");
+	else if(pc.hasItemByClass(GemSatchel)) output("laden with gemstones");
+	else output("with a gemstone");
+	output(" and offer them to the guards, hoping to appeal to their avarice. The guards approach, their dark eyes glinting with greed as you reveal your briberous payload. When they get a good look at the stones, though, their lips curl, and the lead guard plants her hands on her hips.");
+	output("\n\n<i>“Is that it?”</i> she scowls, squinting at your offering. <i>“No, no, I’m not going to risk Queen Taivra’s wrath for </i>that<i>,”</i> she scoffs, shoving your hand back.");
+	output("\n\n<i>“We can get gemstones anywhere,”</i> the other nyrea says. <i>“Come on, if you want to buy your way in, cough up something really </i>unique<i>. Something special!”</i>");
+	output("\n\nSomething special, huh? Maybe a truly precious metal would suit them better...");
+	clearMenu();
+	addButton(14,"Back",bribeTaivrasGateGuards);
+}
+
 
 //[Plat190]
 //Offer your chunk of Platinum 190. Surely these ladies can appreciate the rare beauty of precious metals!
@@ -1276,7 +1297,7 @@ public function explainRivalnessToTaivra(plat190:Boolean = false):void
 	pc.addMischievous(4);
 	author("Savin");
 	output("<i>“Wait, wait,”</i> you say, putting your hands up in a disarming gesture. <i>“Look, you’ve got it all wrong. Me and this " + chars["RIVAL"].mf("bastard","bitch") + " are enemies! We’re on the same side here, Queen Taivra.”</i>");
-	output("\n\nThe queen’s eyes cock upwards at that, and she reclines in her chair with a hearty chuckle. <i>“Is that so? And why should I beleive you, [pc.name]? Your cousin came to me under a promise of peace, only to try and make off with my throne like a common thief. [rival.HeShe] came very close to killing several of my guards before we could subdue [rival.himHer] and [rival.hisHer] bodyguard. If you are truly enemies, simply leave. I will keep your cousin out of your hair... forever.”</i>");
+	output("\n\nThe queen’s eyes cock upwards at that, and she reclines in her chair with a hearty chuckle. <i>“Is that so? And why should I believe you, [pc.name]? Your cousin came to me under a promise of peace, only to try and make off with my throne like a common thief. [rival.HeShe] came very close to killing several of my guards before we could subdue [rival.himHer] and [rival.hisHer] bodyguard. If you are truly enemies, simply leave. I will keep your cousin out of your hair... forever.”</i>");
 	output("\n\n<i>“Way to throw us under the bus, you jerk!”</i> your cousin whines from [rival.hisHer] cage.");
 	output("\n\nDane actually laughs, turning to the queen and saying <i>“[pc.HeShe] wants the probe too, you know. ");
 	//if didn’t beat Dane:
@@ -2697,6 +2718,13 @@ public function taivraFertilize():void
 	if(pc.virility() <= 0) return;
 	
 	flags["TAIVRA_FERTILE"] = GetGameTimestamp();
+	// PC fertilized egg count
+	if(flags["TAIVRA_FERTILE_EGGS"] == undefined)
+	{
+		var nEggs:int = 6 + rand(5);
+		if(pc.virility() > 1) nEggs += Math.round((1 + rand(2)) * (pc.virility() - 1));
+		flags["TAIVRA_FERTILE_EGGS"] = nEggs;
+	}
 }
 public function taivraHasFertileEggs():Boolean
 {
@@ -2833,7 +2861,7 @@ public function queenTaivraAskThrone():void
 	output("\n\nShe seems to be mollified by your quick explanation, though you can tell that she’s not particularly fond of speaking of this here. <i>“You have a point, but what do you suggest we do about it? I am the strongest here, and showing that is important, even if most don’t realize it. The throne serves as a reminder of the bruises I left when I claimed them, to soften it is to soften my claim,”</i> she finishes, but the look of challenge in her eyes means that this might be a hard sell.");
 	output("\n\nYou start off by reminding her of your partnership. How your power <b>is</b> her power, how altering and upgrading her throne serves not to diminish her image, but enhance it. You continue on in this vein for a bit, seeing her ire start to waver, before pulling out your codex and showing her how they can create furniture with upgrades for invisible cushions, heat, and targeted ultrasonic massage without even the slightest hint that they’re there.");
 	output("\n\nShe rolls her eyes, fighting to conceal her interest in your technology. <i>“Well then. I suppose that it would only make sense for me to try and become familiar with the ‘marvelous’ advances you star-walkers have come up with, my mate. Don’t disappoint me, hmm?”</i>");
-	output("\n\nYou agree and lean in to claim your wife’s lips in a kiss before she moves forward in her throne, summoning some of her soldiers to start disassembling it as you place the call in to SteeleTech to have a far more comfortable version made.");
+	output("\n\nYou agree and lean in to claim your wife’s lips in a kiss before she moves forward in her throne, summoning some of her soldiers to start disassembling it as you place the call in to Steele Tech to have a far more comfortable version made.");
 	
 	processTime(69);
 	pc.lust(15);
@@ -3599,6 +3627,17 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			output("\n\nYour queenly mate gives you a playful smile and pulls you up onto her throne’s dais beside her, leaning up to plant a kiss on your lips. When she breaks it, Taivra brushes her lips from yours up to your ear, just long enough to whisper, <i>“My heart’s racing, thinking about you doing that to me...”</i>");
 			output("\n\nShe gives you a little nip on the ear and reclines into her throne, crossing her legs in a way that might make her look positively regal... if it weren’t for the soft breeder resting on her slickened thighs. <i>“I’ll make sure our brood’s bearer is well taken care of, [pc.name]. Why don’t you go and catch your breath, and we can see about making sure your mate is, too.”</i>");
 			output("\n\nThis private, flirtatious side of your royal mate fades as the throne room doors open again and her guards return, doubtless drawn by the climactic cries from within. You gather your gear and step back, giving your queen a knowing wink.");
+			
+			// Taivra laid her eggs!
+			var nEggs:int = 0;
+			if(flags["TAIVRA_FERTILE_EGGS"] != undefined)
+			{
+				nEggs = flags["TAIVRA_FERTILE_EGGS"];
+				flags["TAIVRA_FERTILE_EGGS"] = undefined;
+			}
+			if(nEggs <= 0) nEggs = 6 + rand(5);
+			StatTracking.track("pregnancy/royal nyrea eggs sired", nEggs);
+			StatTracking.track("pregnancy/total sired", nEggs);
 			
 			// Reset Taivra's preg timer.
 			flags["TAIVRA_FERTILE"] = 0;

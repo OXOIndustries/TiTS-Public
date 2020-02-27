@@ -671,7 +671,7 @@ public function syriMorningMenu():void
 	//On Uveto? Go back to Syri's Uveto menu instead.
 	if(currentLocation == "UVI R32" && syriAtFreeezer()) 
 	{
-		syriFreezerMenu();
+		syriFreezerMenu(false);
 		return;
 	}
 	clearMenu();
@@ -884,8 +884,7 @@ public function syriBookTalkEpilogue():void {
 	//[Tiny INT increase?]
 	pc.slowStatGain("intelligence",1);
 	clearMenu();
-	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
-	else addButton(0,"Next",approachSyriIntheMorning);
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 4
@@ -1294,6 +1293,7 @@ public function catchAnalFromSyriIfYouDontUseACondom():void {
 //Blow Her
 public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 	if (postScene == null) clearOutput();
+	else output("\n\n");
 	showSyri(true);
 	author("Savin");
 	output("Grinning up at your hung alien lover, you ask her if she’d like some good old fashioned oral attention. Syri grins and rolls off you, cock rising skyward as you crawl downward, slipping between her spread legs to give yourself a good view of her eager member. The ausar’s veiny puppy pecker is nice and stiff, swaying slightly as it stands erect for your inspection. Syri gives a little whine and shifts her legs, and her shaft waggles comedically at you, nearly brushing up against your nose; you take the opportunity to let your [pc.tongue] play out, lapping at her sensitive underside. The taste is bitter, but the sound of Syri’s breath catching in her throat is exquisite, and with the look of wanton pleasure etched on her face to motivate you, you slip down toward her base, tongue probing at the red, pulsing prick down and down to its very roots, your fingers rubbing aside the downy fuzz around her stem to plant a kiss on her most sensitive flesh.");
@@ -1476,6 +1476,7 @@ public function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 		output(" Your own steps are a little off-kilter after getting reamed that hard!");
 	}
 	processTime(15+rand(10));
+	pc.shower();
 	//Return PC to bar
 	if (syriQuestComplete()) currentLocation = "UVI R32";
 	else currentLocation = "BURT'S MAIN HALL";
@@ -1552,6 +1553,7 @@ public function syriShowerAdventures2():void
 	output("\n\nBy the time you’re both done, Syri’s giving you a grin and offering you a hand up, <i>“Buy you a drink?”</i>");
 	//[Next] //Should take the PC back to purt’s padbass pead ball.
 	processTime(15+rand(10));
+	pc.shower();
 	//Return PC to bar
 	if (syriQuestComplete()) currentLocation = "UVI R32";
 	else currentLocation = "BURT'S MAIN HALL";
@@ -1571,8 +1573,7 @@ public function syriAppearance():void {
 
 	output("\n\nA thick eight-inch knotty dog-cock rests between Syri’s legs where her cunt ought to be, hanging over a pair of cum-filled testicles, surrounded by a nicely trimmed bush of downy pubes. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 	clearMenu();
-	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
-	else addButton(0,"Next",approachSyriIntheMorning);
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 
@@ -2092,7 +2093,9 @@ public function gettingSyrisPanties():void
 
 	output("\n\nYou reach up and caress your lover’s cheek, turning her canid smell-session into a long, drawn-out kiss. She moans into your mouth, and you feel her arms falling away from her coat, wrapping around your shoulders. Your head buries into her bust instinctively, nestling into the big, soft mounds of ausar titflesh girded by a mesh of silky fishnets.");
 
-	output("\n\nSyri breaks the kiss a moment later, stepping forward and shrugging off her coat. The heavy, faded military blues flop to the deck, revealing a body of smooth flesh, dark hair, and sexy blue lingerie covering her legs, arms, tits... and even the half-hard rod of throbbing dogflesh, its tapered tip peeking out of her baby-blue panties.");
+	output("\n\n");
+	showImage("SyriLingerie");
+	output("Syri breaks the kiss a moment later, stepping forward and shrugging off her coat. The heavy, faded military blues flop to the deck, revealing a body of smooth flesh, dark hair, and sexy blue lingerie covering her legs, arms, tits... and even the half-hard rod of throbbing dogflesh, its tapered tip peeking out of her baby-blue panties.");
 	output("\n\n<i>“Like what you see, Steele?”</i> she asks, not needing an answer as she slips a hand down her thigh, drawing the tip of a pointed claw around her crotch. You nod eagerly, leaning back in the couch and letting Syri approach you. She takes one long-legged stride forward and grabs the back of the sofa, pushing you against the cushion and kissing you fiercely, both hands grabbing at your cheeks... then your chest, and your [pc.crotch].");
 	output("\n\n<i>“I missed you,”</i> she breathes between kisses. <i>“It’s so fuckin’ lonely here without my best friend.”</i>");
 	//if Silly & Anno Companion:

@@ -112,7 +112,7 @@ public function kaseAppearance():void
 	output("\n\nEven though Kase can easily be classified as a femboy, he doesn’t seem to accentuate his femininity beyond its natural bounds.");
 	output("\n\nThe last hallmark of his race visible to you is his two prehensile tails, covered in soft, pine-coloured fur and swishing and swaying subconsciously.");
 	if (flags["KASE_OUTFIT"] == 0) output("\n\nRight now, Kase is wearing a Pyrite field-suit. It hugs his frame tightly, despite the lighty-armoured plating laden across gold and maroon latex, surely put in place to protect employees on rush planets like Mhen’ga.");
-	else output("\n\nKase is now dressed in a standard-issue SteeleTech jumpsuit. The black latex hugs at his frame tightly, showing off all his curves (and his bulge) as light shines across the yellow and black of his outfit.");
+	else output("\n\nKase is now dressed in a standard-issue Steele Tech jumpsuit. The black latex hugs at his frame tightly, showing off all his curves (and his bulge) as light shines across the yellow and black of his outfit.");
 	output("\n\nUnderneath his clothes, however, rests a thick and sizable nine-inch kitty cock, covered in sinfully soft barbs, perfect for scratching a guy’s or girl’s very specific itch, along with a plump pair of balls. Opposite that rests a tight tailhole right between his big, squeezable butt. ");
 	output("\n\nA cute kitty if you’ve ever seen one.");
 	
@@ -275,8 +275,8 @@ public function kaseJoinCrew():void
 	
 	if (pc.credits >= 5000) addButton(0, "BuyContract", kaseBuyContract, undefined, "Buy Contract", "Offer to buy his contract. It’ll probably cost you about 5000 credits.");
 	else addDisabledButton(0, "BuyContract", "Buy Contract", "You don’t have the 5000 credits needed for the buy out.");
-	if (annoIsCrew()) addButton(1, "SteeleTech", kaseHireSteeleTech, undefined, "SteeleTech", "Ask him if he’s up for joining SteeleTech. Anno can probably help with all the paperwork and bureaucratic aspects.");
-	else addDisabledButton(1, "SteeleTech", "SteeleTech", "You probably don’t have the authority to hire for your dad’s company on your own.");
+	if (annoIsCrew()) addButton(1, "SteeleTech", kaseHireSteeleTech, undefined, "Steele Tech", "Ask him if he’s up for joining Steele Tech. Anno can probably help with all the paperwork and bureaucratic aspects.");
+	else addDisabledButton(1, "SteeleTech", "Steele Tech", "You probably don’t have the authority to hire for your dad’s company on your own.");
 	addButton(2, "Never Mind", kaseNevermind, undefined, "", "");
 }
 
@@ -311,9 +311,9 @@ public function kaseHireSteeleTech():void
 	showKase();
 	clearMenu();
 	
-	output("You lean forward and ask him if he’d like to work for SteeleTech on your ship. ");
-	output("\n\n<i>“SteeleTech?”</i> he says, slitted pupils wide, looking almost bewildered, <i>“You could get me a job with SteeleTech? I mean their health policy alone makes them a better employer than Pyrite...”</i>");
-	output("\n\nGrinning, you tell him you have quite the in with SteeleTech, and one of their employees on your ship.");
+	output("You lean forward and ask him if he’d like to work for Steele Tech on your ship. ");
+	output("\n\n<i>“Steele Tech?”</i> he says, slitted pupils wide, looking almost bewildered, <i>“You could get me a job with Steele Tech? I mean their health policy alone makes them a better employer than Pyrite...”</i>");
+	output("\n\nGrinning, you tell him you have quite the in with Steele Tech, and one of their employees on your ship.");
 	output("\n\n<i>“You’re... You’re being serious aren’t you?”</i> he asks, fluffy green ears perking up.");
 	output("\n\nYou tell him that if he’s interested he should head to your ship at the docks and talk to the white-haired ausar aboard your craft, Anno Dorna.");
 	output("\n\nThe kaithrit hurriedly stands out of his seat, <i>“Yes, I’ll gather my things and head there right now! I thank you from the depths of my heart for this opportunity, " + pc.mf("sir", "ma’am") + ".”</i>");

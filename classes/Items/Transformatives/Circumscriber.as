@@ -146,7 +146,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 			
 			output("Aside from a few short tingles along your [pc.cockNoun " + i + "], nothing really happens... what a waste.");
-			target.lust(100);
+			target.changeLust(100);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -205,7 +205,7 @@ package classes.Items.Transformatives
 			output(". There must have been a weird anaphrodisiac somewhere in there because you’re rapidly losing your erection, but unlike before it now hangs completely flaccid against your [pc.sack]. <b>Your [pc.cock " + i + "] has lost its sheath!</b>");
 			
 			target.cocks[i].delFlag(GLOBAL.FLAG_SHEATHED);
-			target.lust(-10);
+			target.changeLust(-10);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -221,7 +221,7 @@ package classes.Items.Transformatives
 			
 			target.cocks[i].cLengthRaw -= 0.1;
 			if(target.hasPerk("Mini")) target.cocks[i].cLengthRaw -= 0.1;
-			target.lust(15);
+			target.changeLust(15);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -236,7 +236,7 @@ package classes.Items.Transformatives
 			output("The goo slithers around your [pc.cock " + i + "], falling off it drop by drop as its programming fails. Not wanting to let a good boner go to waste, you decide to play with yourself for a bit. You only stop when you notice <b>that your [pc.cock " + i + "] has become a little thinner within your grasp.</b>"); 
 			
 			target.cocks[i].cThicknessRatioRaw -= 0.1;
-			target.lust(15);
+			target.changeLust(15);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);

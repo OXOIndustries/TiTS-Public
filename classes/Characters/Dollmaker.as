@@ -78,6 +78,7 @@
 			this.femininity = 100;
 			this.eyeType = 0;
 			this.eyeColor = "red";
+			this.tallness = 132;
 			this.thickness = 40;
 			this.tone = 29;
 			this.hairColor = "red";
@@ -226,6 +227,7 @@
 			else if (rand(3) == 0) inventory.push(new NyreanCandy());
 			*/
 			this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Planted", 0, 0, 0, 0, false, "Icon_Constricted", "Firmly attached to the environment prevents being tripped or staggered.", true, 0);
 			this._isLoading = false;
 		}
 		
@@ -241,14 +243,20 @@
 			
 			var attacks:Array = [];
 
-			if(target.physique() > 1) attacks.push(bimboleumEmitter);
-			if(target.reflexes() > 1) attacks.push(latexSprayed);
-			if(target.willpower() > 1) attacks.push(mindwashVisorAttack);
-			if(target.aim() > 1) attacks.push(brainmeltLamps);
-			if(target.intelligence() > 1) attacks.push(iqBGoneInjector);
-			attacks.push(biomagneticVibes);
-			if(statusEffectv1("musked") != 1) attacks.push(muskSprayAttack);
-			if(!target.hasStatusEffect("Grappled")) attacks.push(restrainingCuffs);
+			if(flags["DOLLMAKER_ATTACK_PATTERN"] == undefined || flags["DOLLMAKER_ATTACK_PATTERN"] == 1)
+			{
+				if(target.physique() > 1) attacks.push(bimboleumEmitter);
+				if(target.reflexes() > 1) attacks.push(latexSprayed);
+				if(target.willpower() > 1) attacks.push(mindwashVisorAttack);
+				if(target.aim() > 1) attacks.push(brainmeltLamps);
+				if(target.intelligence() > 1) attacks.push(iqBGoneInjector);
+			}
+			if(flags["DOLLMAKER_ATTACK_PATTERN"] == undefined)
+			{
+				if(statusEffectv1("musked") != 1) attacks.push(muskSprayAttack);
+				if(!target.hasStatusEffect("Grappled")) attacks.push(restrainingCuffs);
+			}
+			if(flags["DOLLMAKER_ATTACK_PATTERN"] == undefined || flags["DOLLMAKER_ATTACK_PATTERN"] == 2 || attacks.length <= 0) attacks.push(biomagneticVibes);
 
 			attacks[rand(attacks.length)](target);
 		}
@@ -272,16 +280,17 @@
 		public function restrainingCuffs(target:Creature):void
 		{
 			//First Time
-			if(hasStatusEffect("cuffs"))
+			if(!hasStatusEffect("cuffs"))
 			{
 				output("Arms descend from the rig overhead, each equipped with a large, circular clamp. <i>“You know, Twat Throat, this whole thing would be a lot easier if you weren’t squirming all over the place,”</i> the Doll Maker complains. The cuffs lunge for you!");
+				createStatusEffect("cuffs");
 			}
 			//Repeat
 			else output("<i>“I promise I’ll be gentle,”</i> the machine urges, interrupting itself with a harsh <i>“ERROR! ‘Gentle’ sub-routine not found!”</i> More padded cuffs descend, trying to make an obedient little victim out of you!");
 			//Miss
-			if (combatMiss(this, target)) output("\n\nYou manage to evade the binding restraints, much to the robot’s disappointment. <i>“Oh come on. Won’t even let me cop a feel?”</i>");
+			if (combatMiss(this, target) && kGAMECLASS.flags["DOLLMAKER_FORCE_CUFFS"] == undefined) output("\n\nYou manage to evade the binding restraints, much to the robot’s disappointment. <i>“Oh come on. Won’t even let me cop a feel?”</i>");
 			//First Hit - Lower Body
-			if(!target.hasStatusEffect("Restrained"))
+			else if(!target.hasStatusEffect("Restrained"))
 			{
 				if(target.isGoo()) output("\n\nThe padded cuffs pull aside to make way for a golden ring that snaps around your gooey lower body. Intense cold radiates from the binding, freezing your normally amorphous form into a brittle, stationary lump. You’ve been locked in place like a statue! There’ll be no running from this!");
 				else if(target.isNaga()) output("\n\nAn especially large ring snaps around your midsection, while a slightly smaller one nabs your [pc.tail]. Despite your writhing attempts to slither out, the arms seem to have caught your lower body with inescapable tension. There’ll be no running from this!");
@@ -390,7 +399,7 @@
 				}
 				target.intelligenceMod -= 5;
 				*/
-				kGAMECLASS.createDollMakerStatusEffect(target, "IQ B-Gone", 5);
+				kGAMECLASS.createDollMakerStatusEffect(target, "IQ B-Gone", (flags["DOLLMAKER_TOOL_INT"] == undefined ? 5 : flags["DOLLMAKER_TOOL_INT"]));
 			}
 		}
 		//Brainmelt Lamps
@@ -423,7 +432,7 @@
 				}
 				target.willpowerMod -= 5;
 				*/
-				kGAMECLASS.createDollMakerStatusEffect(target, "Brainmelt Lamps", 5);
+				kGAMECLASS.createDollMakerStatusEffect(target, "Brainmelt Lamps", (flags["DOLLMAKER_TOOL_WIL"] == undefined ? 5 : flags["DOLLMAKER_TOOL_WIL"]));
 			}
 		}
 		//Mindwash Visor
@@ -458,7 +467,7 @@
 				}
 				target.aimMod -= 5;
 				*/
-				kGAMECLASS.createDollMakerStatusEffect(target, "Mindwashed", 5);
+				kGAMECLASS.createDollMakerStatusEffect(target, "Mindwashed", (flags["DOLLMAKER_TOOL_AIM"] == undefined ? 5 : flags["DOLLMAKER_TOOL_AIM"]));
 				var damage:TypeCollection = new TypeCollection( { tease: 10 } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}
@@ -499,7 +508,7 @@
 				}
 				target.reflexesMod -= 5;
 				*/
-				kGAMECLASS.createDollMakerStatusEffect(target, "Latex Sprayed", 5);
+				kGAMECLASS.createDollMakerStatusEffect(target, "Latex Sprayed", (flags["DOLLMAKER_TOOL_REF"] == undefined ? 5 : flags["DOLLMAKER_TOOL_REF"]));
 				var damage:TypeCollection = new TypeCollection( { tease: 3 } );
 				if(!target.hasAirtightSuit()) applyDamage(damageRand(damage, 15), this, target);
 			}
@@ -532,7 +541,7 @@
 				}
 				target.physiqueMod -= 5;
 				*/
-				kGAMECLASS.createDollMakerStatusEffect(target, "Bimboleum", 5);
+				kGAMECLASS.createDollMakerStatusEffect(target, "Bimboleum", (flags["DOLLMAKER_TOOL_PHY"] == undefined ? 5 : flags["DOLLMAKER_TOOL_PHY"]));
 				var damage:TypeCollection = new TypeCollection( { tease: 4 } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}

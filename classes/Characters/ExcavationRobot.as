@@ -270,8 +270,8 @@
 				if(target.intelligence()/2 + rand(20) + 1 > 20) output("\n\nYou manage to keep your wits about you and direct the suit’s auto-repair to full bore on your faceplate, preventing too much oxygen from bleeding out. It doesn’t make your injuries hurt any less!");
 				else 
 				{
-					output("\n\nYou panic, trying to keep the suit together; luckily there’s an automated repair function, otherwise you’d be breathing space and sucking sawblades - but before it can seal up, a great deal of air hisses out into the aether, leaving you gasping for breath and feeling painfully light-headed. (-25 energy)");
-					target.energy(-40);
+					output("\n\nYou panic, trying to keep the suit together; luckily there’s an automated repair function, otherwise you’d be breathing space and sucking sawblades - but before it can seal up, a great deal of air hisses out into the aether, leaving you gasping for breath and feeling painfully light-headed.");
+					target.changeEnergy(-40);
 				}
 			}
 		}

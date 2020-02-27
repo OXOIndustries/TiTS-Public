@@ -286,7 +286,7 @@ package classes.Items.Transformatives
 					// If pc skin does not have the lubricated flag, gain the lubricated flag. Increase Libido by 1 to 5. Decrease energy by 10.
 					target.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 					if(libidoGain) target.libido(1 + rand(5));
-					target.energy(-10);
+					target.changeEnergy(-10);
 					break;
 				// Tongue
 				case 1:
@@ -333,7 +333,7 @@ package classes.Items.Transformatives
 						output(", acutely aware that from now on your privates are going to be constantly dripping.");
 						
 						// Decrease energy by 10.
-						target.energy(-10);
+						target.changeEnergy(-10);
 					}
 					// if brute:
 					else
@@ -356,7 +356,7 @@ package classes.Items.Transformatives
 						output(" You’re still a mean fuck-machine, no doubt about that.");
 						
 						// Decrease energy by 20.
-						target.energy(-20);
+						target.changeEnergy(-20);
 					}
 					
 					// If pc cock{s} {doesn’t/don’t} have the lubricated flag, gain the lubricated flag. Increase Libido by 1 to 5. Reset Lust to 0.
@@ -386,13 +386,13 @@ package classes.Items.Transformatives
 						if(libidoGain) output(" Seems the lotion’s not done with you yet. Probably a good idea to find a spot to take care of your increased sex drive before you set off again.");
 						
 						// Increase lust by 10.
-						target.lust(10);
+						target.changeLust(10);
 					}
 					// if bimbo:
 					else
 					{
 						output("There’s a familiar sensation as your " + (uniVag ? "cunny begins" : "cunnies begin") + " to drool hungrily. You giggle, " + (!target.isCrotchExposed() ? "stripping off your [pc.gear]" : "adjusting yourself") + " so you can get at " + (uniVag ? "your dripping twat" : "one of your dripping twats") + ". Ooh, it’s positively gushing in anticipation as you stick a finger inside, feeling your [pc.vagina " + vagIdx + "] clench around the intruder. Fishing the digit out, you pop it into your mouth, intending to savor the flavor of your [pc.girlCum]. Instead, you get a mouthful of peaches. With cream. Oh, right, that weird liquid you drank. You totally forgot about that. As you suck on the finger, wondering just why your girl juice tastes like the strange not-drink, you notice that your [pc.vagina " + vagIdx + "] is still gushing. Odd.");
-						output("\n\nToo weirded out by your dribbling lower mouth" + (uniVag ? "" : "s") + " to continue playing with yourself, you settle down to watch as what looks like a gallon of liquid seep out of you. The cream must be doing something inside of your tummy, since it doesn’t feel icky despite losing so much liquid. In fact, you begin to enjoy the feeling, slapping your hand against the " + (target.hasPlumpPussy(vagIdx) ? "puffy pussy" : "dainty nether") + " lips and watching as thick streams of clear, gooey liquid stretch from your fingers to the surface of your twat. However, the deluge only lasts for a little while, and soon it all but stops. You pout, watching as your soaked pussy lets out a few half hearted dribbles, before patting it gingerly.");
+						output("\n\nToo weirded out by your dribbling lower mouth" + (uniVag ? "" : "s") + " to continue playing with yourself, you settle down to watch what looks like a gallon of liquid seep out of you. The cream must be doing something inside of your tummy, since it doesn’t feel icky despite losing so much liquid. In fact, you begin to enjoy the feeling, slapping your hand against the " + (target.hasPlumpPussy(vagIdx) ? "puffy pussy" : "dainty nether") + " lips and watching as thick streams of clear, gooey liquid stretch from your fingers to the surface of your twat. However, the deluge only lasts for a little while, and soon it all but stops. You pout, watching as your soaked pussy lets out a few half hearted dribbles, before patting it gingerly.");
 						if(libidoGain) output(" While your were playing around, the lotion jacked up your sensitivity down there, making it feel so much better when you...");
 						output("\n\nYou moan unintentionally, having snuck a finger or two back into your [pc.vagina " + vagIdx + "]");
 						if(libidoGain) output(", enjoying the increased sensitivity more than you should");
@@ -401,7 +401,7 @@ package classes.Items.Transformatives
 						output(" You need to find a nice, hard dick to fill you right up, forcing all the gooey juice out as he - or she - pumps a hot steaming load into your hungry cunt" + (uniVag ? "" : "s") + ". Mmmh. Just thinking about it has you soaked again, your vagina" + (uniVag ? "" : "s") + " slobbering over the thought of such a dick. You lick your [pc.lips] as well, " + (!target.isCrotchExposedByArmor() ? "pulling your [pc.armor] on" : "adjusting your gear") + " as you set off, juicy snatch" + (uniVag ? "" : "es") + " now constantly dripping and ready to be fucked.");
 						
 						// Increase lust by 20.
-						target.lust(20);
+						target.changeLust(20);
 					}
 					
 					// If pc vagina doesn’t have the lubricated flag, gain the lubricated flag. Increase Libido by 1 to 5.
@@ -433,7 +433,7 @@ package classes.Items.Transformatives
 					if(kGAMECLASS.silly) output(" Great, now your butt smells lovely.");
 					output(" You dust yourself off and rub your backside tenderly. Your cheeks and hips tingle as your asshole throbs in response, making sure the trail of lube continues to flow down your [pc.thigh]... well, now you have something new to get used to!");
 					
-					target.lust(30);
+					target.changeLust(30);
 					target.ass.addFlag(GLOBAL.FLAG_LUBRICATED);
 					if(libidoGain) target.libido(1 + rand(5));
 					break;
@@ -636,7 +636,7 @@ package classes.Items.Transformatives
 					target.cockChange();
 					
 					kGAMECLASS.processTime(35 + rand(5));
-					target.lust(100);
+					target.changeLust(100);
 					break;
 				case 6:
 					kGAMECLASS.showName("MUST\nASSIMILATE...");

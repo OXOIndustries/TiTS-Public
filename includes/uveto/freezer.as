@@ -633,9 +633,9 @@ public function hanaFiresideRecovery():void
 
 	flags["UVETO_FROZEN_RESCUE_TO_BAR"] = 1;
 	removeUvetoCold();
-	pc.lust(33);
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeLust(33);
+	pc.changeEnergy(pc.energyMax());
 	processTime((4 * 60) + rand(30));
 
 	moveTo("UVI R32");

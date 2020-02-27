@@ -57,6 +57,7 @@ public function barBonusFunction():Boolean
 	tessaBonus(5);
 	if((flags["CHAURMINE_GUARDED"] != undefined || flags["CHAURMINE_HELPED"] != undefined) && flags["ABANDONED_CHAURMINE"] != 3) chaurmineBonus(4);
 	if(flags["MET_CARVER"] != undefined) addButton(5,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
+	if (biancaAtBar("tarkus") && biancaBarBonus(7)) return true;
 	
 	return false;
 }
