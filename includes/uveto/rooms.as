@@ -144,7 +144,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS B7"] = new RoomClass(this);
 	rooms["UVS B7"].roomName = "SPACERS\nLOUNGE";
-	rooms["UVS B7"].description = "A small lounge has been set up here, centered around an Apollo’s Coffee shop and several holoscreens lining the walls. There’s even a massage parlour set up here. An access door to the station’s mighty space elevator is just to the east of you, and the shops are a few steps south. All around, a very convenient place to be.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don’t need anything there anyway.";
+	rooms["UVS B7"].description = "A small lounge has been set up here, centered around an Apollo’s Coffee shop and several holoscreens lining the walls. There’s even a massage parlor set up here. An access door to the station’s mighty space elevator is just to the east of you, and the shops are a few steps south. All around, a very convenient place to be.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don’t need anything there anyway.";
 	rooms["UVS B7"].planet = "UVETO STATION";
 	rooms["UVS B7"].system = "SYSTEM: SIRETTA";
 	//rooms["UVS B7"].northExit = "UVS B5";

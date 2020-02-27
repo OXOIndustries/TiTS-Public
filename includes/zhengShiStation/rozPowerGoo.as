@@ -392,7 +392,7 @@ public function wearRozLikeAnEdgarSuit():void
 		output("\n\nWhile your [pc.vagOrAss] is being violated, Roz wraps a great deal of herself around your [pc.cocks], forming a massive bulge in the suit’s crotch that ripples with Roz’s chaotic movements. She doesn’t squeeze your dick or even stroke it, so much as she runs her body all along your length from [pc.knot] to [pc.cockHead], bathing it in warm lube that rubs every inch at once.");
 		if(pc.totalCocks() > 1) 
 		{
-			output(" Your other cock" + (pc.totalCocks() > 2 ? "s recieve":" receives") + " the same treatment, engulfed in slippery galotian goo and masturbated with gleeful abandon.");
+			output(" Your other cock" + (pc.totalCocks() > 2 ? "s receive":" receives") + " the same treatment, engulfed in slippery galotian goo and masturbated with gleeful abandon.");
 		}
 	}
 	//PC has a donut ass or highly loose asshole:

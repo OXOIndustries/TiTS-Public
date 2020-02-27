@@ -30,7 +30,7 @@ public function paigeHalloweenerIntro():void
 	else output("This is the first time it’s happened since I’ve gotten my eyesight back, and I’ve just been</i> itching <i>for whoever is doing it to show up again");
 	output(".”</i>");
 
-	output("\n\nPaige is clearly taking whatever this is seriously, so you decide to humour her and take a spot next to her, one ear pressed against the wall, listening for any noise. You two sit in silence for a while, the minutes ticking by slowly, your combined breathing as the only ambience–");
+	output("\n\nPaige is clearly taking whatever this is seriously, so you decide to humor her and take a spot next to her, one ear pressed against the wall, listening for any noise. You two sit in silence for a while, the minutes ticking by slowly, your combined breathing as the only ambience–");
 
 	output("\n\nThen, you hear it.");
 

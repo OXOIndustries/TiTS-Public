@@ -88,7 +88,7 @@ public function tellDrLashYoullFuckHisLabUp():void
 	clearOutput();
 	showDrLash();
 	output("<i>“Loosen up. Sometimes it’s fun to get messy!”</i>");
-	output("\n\nThe six-armed alien scowls and withdraws a half-dozen glowing plasma weapons from his sleeves. <i>“As the neural impulses from the brain cease, the muscle tissue can become quite ‘loose’ before rigor mortis sets in. I suppose you’ll manage to make a mess of my lab once, should you persist down this route, but it will be a mistake you’ll be comically incapable of duplicating.”</i> Sickly green light lends the room’s ambiance a disturbing tint. <i>“Now, are you going to make a mess of my lab?”</i>");
+	output("\n\nThe six-armed alien scowls and withdraws a half-dozen glowing plasma weapons from his sleeves. <i>“As the neural impulses from the brain cease, the muscle tissue can become quite ‘loose’ before rigor mortis sets in. I suppose you’ll manage to make a mess of my lab once, should you persist down this route, but it will be a mistake you’ll be comically incapable of duplicating.”</i> Sickly green light lends the room’s ambience a disturbing tint. <i>“Now, are you going to make a mess of my lab?”</i>");
 	processTime(1);
 	clearMenu();
 	//[Fuck Yes][No]

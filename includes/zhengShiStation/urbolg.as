@@ -11,7 +11,7 @@ import classes.Items.Melee.TrickBracer;
 /* By Fenoxo Fenbutte:
 Teenage runaway who got mauled by a Kordiiak Bear.
 Big game hunting pirate killed the bear, saved him, and adopted him. Name/Rank TBD, but probably one of the bosses.
-Speaks decent english, but a bit of an oddity. Considers technology to be magic and himself an artificer.
+Speaks decent English, but a bit of an oddity. Considers technology to be magic and himself an artificer.
 “Affably Gruff” personality.
 Other young pirates took him out for an “initiation” when he came of age, resulting in his more interesting sexual attributes and heightened libido.
 

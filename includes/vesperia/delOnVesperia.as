@@ -403,7 +403,7 @@ public function delTalksAboutHerself():void
 	output("\n\n<i>“So that’s how you and Carver got involved.”</i>");
 	output("\n\nShe nods sadly. <i>“Yeah. I figured I could pay off a loan right after I got outta college. Sell a few pieces, or start taking commissions, but things didn’t really work out. Maybe I was a little naive thinking I could afford a place on Librim, and my studies, and... yeah. It didn’t take long to run up way more debt than I could pay off. But hey, at least I had someone like you to help me learn to work off my debt with my asshole. Way better tips for takin’ dicks than serving drinks.”</i>");
 	output("\n\nAlright, well, <i>“Enough about slavery, then. Tell me more about <b>you</b>.”</i>");
-	output("\n\n<i>“What more is there to say? I, um, I like painting and I’m a pretty decent bartender - and a pretty decent lay, thanks to you. I’ve got an older brother out in the Rush, a sensor technician on a little independant scout ship. Umm... my folks run a computer shop back on Sorrexia! I dunno, what else did you wanna hear?”</i>");
+	output("\n\n<i>“What more is there to say? I, um, I like painting and I’m a pretty decent bartender - and a pretty decent lay, thanks to you. I’ve got an older brother out in the Rush, a sensor technician on a little independent scout ship. Umm... my folks run a computer shop back on Sorrexia! I dunno, what else did you wanna hear?”</i>");
 	output("\n\nThat’ll do for now. You guess Del doesn’t have much to say when it doesn’t involve suckin’ or fuckin’.");
 	processTime(8);
 	delVesperiaTalkMenu(2);

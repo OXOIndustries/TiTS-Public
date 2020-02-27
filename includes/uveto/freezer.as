@@ -282,7 +282,7 @@ public function hanaTalkIrestead():void
 	
 	output("\n\n<i>“Before Rhenworld got involved this was all just a lackluster research station, really. Once someone found out there was money under the ice, well. Things changed. Suddenly there’s a reason to make sure we’re all cozy, happy and wanting to invite friends. Living conditions got better, the streets got heaters so it wasn’t just ice slabs all the time. It got... well, comfortable isn’t really </i>right<i>, but certainly hospitable. You can actually go outside. Heh, most colonies are just a big, parked freighter loaded with crap and a prayer that it can take off ten years later.”</i>");
 	
-	output("\n\n<i>“Despite that, it’s... listen, I’m pretty cushy with this bar. I could sell it - or get someone else to run it, anyway - and live in a resort in the core worlds if I really wanted to. Most of the people here are just manual labourers, roped into a job out of some trade school or other. Laborers working beside the machines - or technicians, if they actually came from higher education - trying to make a decent pay cheque. It could be better, sure, this is a </i>rush<i> after all. But it could be a lot worse, too.”</i>");
+	output("\n\n<i>“Despite that, it’s... listen, I’m pretty cushy with this bar. I could sell it - or get someone else to run it, anyway - and live in a resort in the core worlds if I really wanted to. Most of the people here are just manual laborers, roped into a job out of some trade school or other. Laborers working beside the machines - or technicians, if they actually came from higher education - trying to make a decent paycheck. It could be better, sure, this is a </i>rush<i> after all. But it could be a lot worse, too.”</i>");
 	
 	output("\n\n<i>“Although I could </i>really<i> do without the Stormguards.”</i> Hana grunts, finally finishing and, unceremoniously, going back to her mug cleaning. It doesn’t look like she intends to embellish anymore, particularly about anyone specific.");
 
@@ -319,7 +319,7 @@ public function hanaTalkRescue():void
 	clearOutput();
 	showHana();
 
-	output("Come to think of it, who - or what - brought you back to the meadhall in the first place? You’re rather thankful to avoid the whole, you know, freezing to death on some random snowball of a world schtick. And the recuperation, but never mind that.");
+	output("Come to think of it, who - or what - brought you back to the meadhall in the first place? You’re rather thankful to avoid the whole, you know, freezing to death on some random snowball of a world shtick. And the recuperation, but never mind that.");
 	
 	output("\n\nHana’s prickly demeanor shatters with your follow up quip as she barks a laugh, lips turning upwards in a wry smile that just <i>screams</i> “you cheeky git.” Still, she doesn’t respond immediately, leaning back to glance around the rather voluminous bar, ostentatiously to point someone out to you - and coming up empty, it seems. Oh well.");
 	

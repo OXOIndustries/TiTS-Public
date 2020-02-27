@@ -187,7 +187,7 @@ public function waltSex(arg:Array = null):void
 		case "intro":
 			output("A naughty thought occurs to you and you indulge it, reaching out to scratch Walt behind the ears. The wolf reacts with a surprised whine, shuddering as you tease him with your fingertips.");
 			output("\n\n<i>“Oh, even more sensitive than most ausar, are you?”</i> you ask with a playful grin, scratching a bit harder. Walt can only give a groaning growl, helpless to stop you from letting your other hand roam over his well-toned chest. Soon enough that hand dips lower, and your grin broadens as your fingers brush over a growing tent in his pants.");
-			output("\n\n<i>“Ooh, you naughty boy.”</i> You glance around, seeing if anyone’s paying attention to the two of you. So far Walt’s growls haven’t been audible over the ambiance of the bar; you can definitely get away with more than this. Now, how to take advantage?");
+			output("\n\n<i>“Ooh, you naughty boy.”</i> You glance around, seeing if anyone’s paying attention to the two of you. So far Walt’s growls haven’t been audible over the ambience of the bar; you can definitely get away with more than this. Now, how to take advantage?");
 			
 			processTime(1);
 			

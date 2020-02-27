@@ -1761,7 +1761,7 @@ public function subTunerAnnoExhib2():void
 	if(pc.race().indexOf("ausar") != -1 && pc.tailCount > 0) output(" and set your [pc.tail] wagging");
 	output(", <i>because knowing you pleased your mistress is all the reward you could ever need</i>.");
 
-	output("\n\n<i>“Hey... uh,”</i> Anno says between laboured breaths, <i>“Why don’t you head out... and I’ll catch up with you, think I need a breather after that.”</i>");
+	output("\n\n<i>“Hey... uh,”</i> Anno says between labored breaths, <i>“Why don’t you head out... and I’ll catch up with you, think I need a breather after that.”</i>");
 	output("\n\n<i>If that’s what she thinks is best, of course you’ll head out... Belle’s probably expecting you back by now anyways.</i> You nod at the ausar girl’s suggestion and pick yourself up off your knees, though your legs are still a bit wobbly from orgasm. Anno falls backwards onto the crate again, wiping some sweat from her forehead and releasing a long, happy sigh.");
 	output("\n\nYou make your way out of the storage depot with a smile, catching a glimpse of Anno’s lazily swinging, white-furred leg. Pride that only a good pet can feel swells in your chest, leaving the SteeleTech building well fulfilled, and with a <i>very</i> happy mistr- er... employee, but for now, it’s time to get back to Belle.");
 
