@@ -2,7 +2,7 @@ package editor.Descriptors {
     public class Validators {
         public static function hasOneOptionalNumberArgUpToTwoResults(args: Array, results: Array): String {
             if (args.length > 1) return "has too many arguments";
-            if (typeof args[0] !== 'number') return "needs one number argument";
+            if (args.length == 1 && typeof args[0] !== 'number') return "needs one number argument";
             if (results.length > 2) return "has too many results";
             return null;
         }
