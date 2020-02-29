@@ -1,4 +1,4 @@
-package editor.Descriptors {
+package editor.Game.Wrapper {
     public class Validators {
         public static function hasOneOptionalNumberArgUpToTwoResults(args: Array, results: Array): String {
             if (args.length > 1) return "has too many arguments";

@@ -1,4 +1,4 @@
-package editor.CodeMap {
+package editor.Game.CodeMap {
     public class ToCode {
         public static function oldParser(identifier: String, args: Array, results: Array): String {
             var text: String = '"[' + identifier;

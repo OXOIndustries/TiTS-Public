@@ -15,7 +15,7 @@ It is for testing "parsers" using the game.
 
 # Coders
 
-The `Object` that the interpreter uses is TiTSDescriptor.
+The `Object` that the interpreter uses is TiTSWrapper.
 Build using TiTSFDEditor.as3proj
 
 [More info on code](Documentation/ForCoders.md)

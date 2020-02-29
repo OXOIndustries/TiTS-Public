@@ -1,4 +1,4 @@
-package editor.Descriptors {
+package editor.Game.Wrapper {
     /**
      * Stores Object and key in case Object[key] gets changed
      */

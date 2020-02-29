@@ -1,4 +1,4 @@
-package editor.CodeMap {
+package editor.Game.CodeMap {
     import classes.GLOBAL;
 
     /**

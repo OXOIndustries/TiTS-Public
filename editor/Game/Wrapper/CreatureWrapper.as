@@ -1,5 +1,4 @@
-package editor.Descriptors {
-    import classes.CockClass;
+package editor.Game.Wrapper {
     import classes.Creature;
     import classes.Engine.Utility.*;
     import classes.GLOBAL;
@@ -11,10 +10,10 @@ package editor.Descriptors {
      * This is used to limit the interpreter's access
      * Mainly taken from getDesc in Creature
      */
-    public class CreatureDescriptor {
+    public class CreatureWrapper {
         private var ownerObj: ObjectAccessor;
 
-        public function CreatureDescriptor(ownerObj: ObjectAccessor) {
+        public function CreatureWrapper(ownerObj: ObjectAccessor) {
             this.ownerObj = ownerObj;
         }
 

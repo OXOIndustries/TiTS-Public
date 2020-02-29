@@ -85,30 +85,18 @@ package editor.Lang.Interpret {
             throw new Error('NodeType ' + node.type + ' does not exist');
         }
 
-        /**
-         * @return 'Product.value = String'
-         */
         private function codifyStringNode(node: StringNode): String {
             return '"' + escape(node.value) + '"';
         }
 
-        /**
-         * @return 'Product.value = Number'
-         */
         private function codifyNumberNode(node: NumberNode): String {
             return node.value + '';
         }
 
-        /**
-         * @return 'Product.value = String'
-         */
         private function codifyIdentityNode(node: IdentityNode): String {
             return node.value + '';
         }
 
-        /**
-         * @return 'Product.value = String'
-         */
         private function codifyConcatNode(node: ConcatNode): String {
             var products: * = node.children.map(this.processChildren);
 
@@ -127,30 +115,18 @@ package editor.Lang.Interpret {
             return codeStr;
         }
 
-        /**
-         * @return 'Product.value = {} or { value: *, parent: Object, caps: Boolean, info: FunctionInfo }'
-         */
         private function codifyRetrieveNode(node: RetrieveNode): Array {
             return node.children.map(this.processChildren);
         }
 
-        /**
-         * @return 'Product.value = Array of (Product.value = String or Number)'
-         */
         private function codifyArgsNode(node: ArgsNode): Array {
             return node.children.map(this.processChildren);
         }
 
-        /**
-         * @return 'Product.value = Array of (Product.value = String)'
-         */
         private function codifyResultsNode(node: ResultsNode): Array {
             return node.children.map(this.processChildren);
         }
 
-        /**
-         * @return 'Product.value = String'
-         */
         private function codifyEvalNode(node: EvalNode): String {
             // Error checking
             var errorStart: int = this.errors.length;
@@ -184,10 +160,8 @@ package editor.Lang.Interpret {
 
                 // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
-                    this.createError(
-                        node.range,
-                        '"' + identity + '" does not exist' + (name ? ' in "' + name + '"' : '')
-                    );
+                    // Do not need to report error here
+                    // This check already exists in the Interpreter
                     return '';
                 }
 

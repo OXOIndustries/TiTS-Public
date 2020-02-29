@@ -111,7 +111,7 @@ package editor.Display.Panes {
                     arr.push(name);
             }
 
-            for (var key: String in obj)
+            for (key in obj)
                 arr.push(key);
 
             arr = arr.sort();
