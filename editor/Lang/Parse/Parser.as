@@ -223,9 +223,10 @@ package editor.Lang.Parse {
             
             while (this.lexer.peek() == TokenType.Space) {
                 this.lexer.advance();
-                valueNode = this.getValue();
-                if (!valueNode)
-                    break;
+
+                valueNode = this.code();
+                if (!valueNode) valueNode = this.getValue();
+                if (!valueNode) break;
 
                 arr.push(valueNode);
             }
@@ -242,9 +243,6 @@ package editor.Lang.Parse {
          * @return ResultsNode
          */
         private function results(): Node {
-            var arr: Array = [];
-            const start: TextPosition = this.createStartPostion();
-
             // Indentation
             var indent: int = 0;
             while (this.lexer.peek() === TokenType.Newline) {
@@ -256,6 +254,9 @@ package editor.Lang.Parse {
                     this.lexer.advance();
                 }
             }
+
+            var arr: Array = [];
+            const start: TextPosition = this.createStartPostion();
 
             // Consume Pipe then ResultConcat
             var node: Node;
