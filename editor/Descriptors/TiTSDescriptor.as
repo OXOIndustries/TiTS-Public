@@ -113,7 +113,16 @@ package editor.Descriptors {
             return false;
         }
 
-        public function get flags(): Dictionary { return this.game.flags; }
+        public function flagIsArgResultValidator(args: Array, results: Array): String {
+            if (args.length === 0) return 'needs a flag';
+            return Validators.range(args.slice(1), results);
+        }
+        public const flagIs__info: FunctionInfo = new FunctionInfo()
+            .addArgResultValidator(flagIsArgResultValidator)
+            .setDesc('Flag is equal to 1 or 2 or 3...');
+        public function flagIs(name: String, ... args): Number {
+            return Eval.equals(this.game.flags[name], args);
+        }
 
         public function get target(): CreatureDescriptor {
             if (this.game.target == null) return null;

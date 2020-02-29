@@ -891,8 +891,52 @@ package editor.CodeMap {
         }
 
         // Cock
-        public function hasCockType(identifier: String, args: Array, results: Array): String {
+        public function hasCock(identifier: String, args: Array, results: Array): String {
+            return ToCode.boolean(ToCode.replaceIdentity(identifier, 1, 'hasCock()'), results);
+        }
+
+        public function hasCocks(identifier: String, args: Array, results: Array): String {
+            return ToCode.boolean(ToCode.replaceIdentity(identifier, 1, 'hasCocks()'), results);
+        }
+
+        public function hasACockWithType(identifier: String, args: Array, results: Array): String {
             return ToCode.callRange(ToCode.replaceIdentity(identifier, 1, 'hasCock'), args.map(mapNameToIndex(('TYPE_NAMES'))), results);
+        }
+
+        public function cockCountIs(identifier: String, args: Array, results: Array): String {
+            return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'cocks.length'), args.map(mapNameToIndex(('TYPE_NAMES'))), results);
+        }
+
+        public function cockTypeIs(identifier: String, args: Array, results: Array): String {
+            return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'cocks[' + args[0] + '].type'), args.slice(1), results);
+        }
+
+        public function cockThatFits(identifier: String, args: Array, results: Array): String {
+            return ToCode.funcCall(identifier, args);
+        }
+
+        public function biggestCockIndex(identifier: String, args: Array, results: Array): String {
+            return identifier + '()';
+        }
+
+        public function smallestCockIndex(identifier: String, args: Array, results: Array): String {
+            return identifier + '()';
+        }
+
+        public function thickestCockIndex(identifier: String, args: Array, results: Array): String {
+            return identifier + '()';
+        }
+
+        public function thinnestCockIndex(identifier: String, args: Array, results: Array): String {
+            return identifier + '()';
+        }
+
+        public function longestCockIndex(identifier: String, args: Array, results: Array): String {
+            return identifier + '()';
+        }
+
+        public function shortestCockIndex(identifier: String, args: Array, results: Array): String {
+            return identifier + '()';
         }
 
         // Balls

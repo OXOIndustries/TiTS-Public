@@ -28,6 +28,14 @@ package editor.Descriptors {
             return null;
         }
 
+        public static function hasOneNumberArgNoResults(args: Array, results: Array): String {
+            if (args.length === 0) return "needs one argument";
+            if (args.length > 1) return "has too many arguments";
+            if (args.length === 1 && typeof args[0] !== 'number') return "first argument is need to be a number";
+            if (results.length > 0) return "has too many results";
+            return null;
+        }
+
         public static function oneResult(args: Array, results: Array): String {
             if (results.length > 1) return "has too many results";
             if (results.length === 0) return "needs one result";

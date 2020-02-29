@@ -3235,16 +3235,96 @@ package editor.Descriptors {
         }
 
         // Cock
-        public const hasCockType__info: FunctionInfo = new FunctionInfo()
+        public function hasCock(): Boolean {
+            return this.owner.hasCock();
+        }
+
+        public function hasCocks(): Boolean {
+            return this.owner.hasCocks();
+        }
+
+        public const hasACockWithType__info: FunctionInfo = new FunctionInfo()
             .addArgResultValidator(Validators.range)
             .addArgResultValidator(nameToIndexInGroupValidator('TYPE_NAMES', 'VALID_COCK_TYPES'))
             .setDesc('Has cock type 1 and 2 and 3...');
-        public function hasCockType(... args): int {
+        public function hasACockWithType(... args): int {
             for (var idx: int = 0; idx < args.length; idx++) {
                 if (this.owner.hasCock(nameToIndex('TYPE_NAMES', args[idx])))
                     return idx;
             }
             return args.length;
+        }
+
+        public const cockCountIs__info: FunctionInfo = new FunctionInfo()
+            .addArgResultValidator(Validators.range);
+        public function cockCountIs(... args): int {
+            return Eval.equals(this.owner.cocks.length, args);
+        }
+
+        private function skipFirstArgMapCodeToNameToIndex(key: String): Function {
+            return function (name: *, idx: int, arr: Array): int {
+                if (idx === 0) trace(name);
+                if (idx === 0) return name;
+                return codeToNameToIndex(key, name);
+            }
+        }
+
+        private function skipFirstArgRange(args: Array, results: Array): String {
+            return Validators.range(args.slice(1), results);
+        }
+
+        private function skipFirstArgNameToIndexInGroupValidator(key: String, group: String): Function {
+            return function (args: Array, results: Array): String {
+                for (var idx: int = 1; idx < args.length; idx++) {
+                    if (GLOBAL[group].indexOf(nameToIndex(key, args[idx])) === -1)
+                        return '"' + args[idx] + '" is not in ' + key;
+                }
+                return null;
+            }
+        }
+
+        public const cockTypeIs__info: FunctionInfo = new FunctionInfo()
+            .addArgResultValidator(skipFirstArgRange)
+            .addArgResultValidator(skipFirstArgNameToIndexInGroupValidator('TYPE_NAMES', 'VALID_COCK_TYPES'))
+            .setDesc('Has cock type 1 and 2 and 3...');
+        public function cockTypeIs(cockIdx: int, ... args): int {
+            if (cockIdx < this.owner.cocks.length)
+                for (var idx: int = 0; idx < args.length; idx++) {
+                    if (this.owner.cocks[cockIdx].cType === nameToIndex('TYPE_NAMES', args[idx]))
+                        return idx;
+                }
+            return args.length;
+        }
+
+        public const cockThatFits__info: FunctionInfo = new FunctionInfo()
+            .addArgResultValidator(Validators.hasOneNumberArgNoResults)
+            .setDesc('Index of cock that fits');
+        public function cockThatFits(fits:Number = 0): int {
+            return this.owner.cockThatFits(fits);
+        }
+
+        public function biggestCockIndex(): int {
+            return this.owner.biggestCockIndex();
+        }
+
+        public function smallestCockIndex(): int {
+            return this.owner.smallestCockIndex();
+        }
+
+        public function thickestCockIndex(): int {
+            return this.owner.thinnestCockIndex();
+        }
+
+        public function thinnestCockIndex(): int {
+            return this.owner.thinnestCockIndex();
+        }
+
+        public function longestCockIndex(): int {
+            return this.owner.longestCockIndex();
+        }
+
+        public function shortestCockIndex(): int {
+            return this.owner.shortestCockIndex();
         }
 
         // Balls
@@ -3287,13 +3367,6 @@ package editor.Descriptors {
             return Eval.equals(this.owner.cumType, args.map(mapNameToIndex('FLUID_TYPE_NAMES')));
         }
 
-        public const cumQIs__info: FunctionInfo = new FunctionInfo()
-            .addArgResultValidator(Validators.range)
-            .setDesc('Cum quantity is equal to 1 or 2 or 3...');
-        public function cumQIs(... args): int {
-            return Eval.equals(this.owner.cumQ(), args);
-        }
-
         public const cumQRange__info: FunctionInfo = new FunctionInfo()
             .addArgResultValidator(Validators.range)
             .setDesc('Cum quantity range');
@@ -3308,13 +3381,6 @@ package editor.Descriptors {
             .setDesc('Girl cum type is equal to 1 or 2 or 3...');
         public function girlCumTypeIs(... args): int {
             return Eval.equals(this.owner.girlCumType, args.map(mapNameToIndex('FLUID_TYPE_NAMES')));
-        }
-
-        public const girlCumQIs__info: FunctionInfo = new FunctionInfo()
-            .addArgResultValidator(Validators.range)
-            .setDesc('Girl cum quantity is equal to 1 or 2 or 3...');
-        public function girlCumQIs(... args): int {
-            return Eval.equals(this.owner.girlCumQ(), args);
         }
 
         public const girlCumQRange__info: FunctionInfo = new FunctionInfo()
