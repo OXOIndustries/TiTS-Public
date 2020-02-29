@@ -114,13 +114,13 @@ package editor.Lang.Interpret {
 
             var codeStr: String = '';
             for each (var product: * in products) {
-                if (codeStr.charAt(codeStr.length - 1) === '"' && product.code.charAt(0) === '"') {
-                    codeStr = codeStr.slice(0, codeStr.length - 1) + product.code.slice(1);
+                if (codeStr.charAt(codeStr.length - 1) === '"' && product.charAt(0) === '"') {
+                    codeStr = codeStr.slice(0, codeStr.length - 1) + product.slice(1);
                 }
                 else {
                     if (codeStr.length > 0)
                         codeStr += ' + ';
-                    codeStr += product.code;
+                    codeStr += product;
                 }
             }
 
