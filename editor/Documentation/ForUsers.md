@@ -6,9 +6,9 @@ Any text between `[ ]` is a `parser`.
 
 `identifier` is a list of `identity` separated by `"."`.
 
-`identity` is the name of a variable in memory.
+`identity` is the name of a value. Starting `identity` list is [here](Parsers.md).
 
-`arguments` is a list of `text` or `number` separated by at least one `space` or `tab`.
+`arguments` is a list of `text` or `number` separated by at least one `space` or `tab`. They can include `parsers`.
 
 `results` is a list of `text` separated by `|`. They can include `parsers`.
 
@@ -36,6 +36,20 @@ results: ("enabled", "disabled")
 identifier: ("pc", "cumQRange")
 arguments: (0, 100, 1000, 5000)
 results: ("0~100", "100~1000", "1000~5000", "5000+")
+```
+> `[syri.cockTypeIs [syri.cockThatFits 43] human canine|a|b|c]`
+```
+identifier: ("syri", "cockTypeIs")
+arguments: (
+    (
+        identifier: ("syri", "cockThatFits")
+        arguments: (43)
+        results: ()
+    ),
+    human,
+    canine
+)
+results: ("a", "b", "c")
 ```
 
 ---

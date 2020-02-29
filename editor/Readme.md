@@ -7,7 +7,11 @@ It is for testing "parsers" using the game.
 
 [Parser List](Documentation/Parsers.md)
 
-[List of names](Documentation/NameList.md)
+[List of types and names](Documentation/NameList.md)
+[List of status effects](Documentation/StatusEffectList.md)
+[List of perks](Documentation/PerkList.md)
+[List of key items](Documentation/KeyItemList.md)
+[List of flags](Documentation/FlagList.md)
 
 # Coders
 
