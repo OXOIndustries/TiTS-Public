@@ -49,7 +49,19 @@ walk('classes').forEach(fileAnalyze);
 
 console.log(`Effects: ${effectSet.size} Perks: ${perkSet.size} KeyItems: ${keyItemSet.size} Flags: ${flagSet.size}`);
 
-fs.writeFile('editor/Documentation/StatusEffectList.md', `# Status Effect List\n\`${Array.from(effectSet.values()).join('`, `')}\`\n'`, err => console.log(err));
-fs.writeFile('editor/Documentation/PerkList.md', `# Perk List\n\`${Array.from(perkSet.values()).join('`, `')}\`\n'`, err => console.log(err));
-fs.writeFile('editor/Documentation/KeyItemList.md', `# Key Item List\n\`${Array.from(keyItemSet.values()).join('`, `')}\`\n'`, err => console.log(err));
-fs.writeFile('editor/Documentation/FlagList.md', `# Flag List\n\`${Array.from(flagSet.values()).join('`, `')}\`\n'`, err => console.log(err));
+fs.writeFile('editor/Documentation/StatusEffectList.md', `# Status Effect List
+|Name|
+|----|
+|${Array.from(effectSet.values()).sort().join('|\n|')}|`, err => { if (err) console.log(err); });
+fs.writeFile('editor/Documentation/PerkList.md', `# Perk List
+|Name|
+|----|
+|${Array.from(perkSet.values()).sort().join('|\n|')}|`, err => { if (err) console.log(err); });
+fs.writeFile('editor/Documentation/KeyItemList.md', `# Key Item List
+|Name|
+|----|
+|${Array.from(keyItemSet.values()).sort().join('|\n|')}|`, err => { if (err) console.log(err); });
+fs.writeFile('editor/Documentation/FlagList.md', `# Flag List
+|Name|
+|----|
+|${Array.from(flagSet.values()).sort().join('|\n|')}|`, err => { if (err) console.log(err); });

@@ -1,15 +1,125 @@
 |Identity | Args | Results | Description|
 |---------|------|---------|------------|
-|i || 1 | Italicizes first `result`|
-|b || 1 | Bolds first `result`|
-|cap || 1 | Capitalizes first `result`|
-|rand | One optional number | Infinite | Selects a random `result`. Optional `arg` selects `result`.|
+|i || One | Italicizes `result`|
+|b || One | Bolds `result`|
+|cap || One | Capitalizes `result`|
+|rand | One optional `number` | Infinite | Selects a random `result`. Optional `arg` selects `result`.|
 |silly || Up to 2 | Silly mode enabled or disabled|
-|flagIs | Flag Name + Infinite | Up to `args` + 1 excluding first `arg` | `Is` operation on first `arg` |
-|target, attacker, enemy, pc, baby, celise, rival, geoff, flahne, zilpack, zil, penny, renvra, embry, shekka, burt, zilFemale, cuntsnake, reaha, dane, mimbrane, anno, kiro, saendra, sera, syri, vanae, anaeMaiden, vanaeHuntress, gianna, brynn, lane, anarrie, goo, nevrie, queenOfTheDeep, shade, bess, ben, taivra, gene, petr, docLash, goocubator, kara, fyn, semith, emmy, liriel, lerris, nerrasa, jerome, inessa, edan, ilaria, wulfe, busky, kally, pexiga, ara, gwen, bea, kazra, pippa, jerynn, del, yammi, mirrin, fisianna, azra, zil9tails, krymhilde, paige, ciaran, ellie, sam, khorgan, tamtam, erika, lieve, tuuva, mitzi, frostwyrm, lah, ardia, emmrfox, emredd, emponyluver, emsexyydaddyy, embountifulbotany, emsneakysnek, emripped4yourpleasure, emstormdragon, aina, amber, zea, luca, marion, olympia, lureling, roxy, lorelei, varmint, vahn, bianca, synphia ||| Accessor. Continue the `identifier` with any `identity` list [here](CharParsers.md).|
-|hourIs | Infinite | Up to `args` + 1 | `Is` operation on `hour`|
-|hourRange | Infinite | Up to `args` + 1 | `Range` operation on `hour`|
-|dayIs | Infinite | Up to `args` + 1 | `Is` operation on `day`|
-|dayRange | Infinite | Up to `args` + 1 | `Range` operation on `day`|
-|minuteIs | Infinite | Up to `args` + 1 | `Is` operation on `minute`|
-|minuteRange | Infinite | Up to `args` + 1 | `Range` operation on `minute`|
+|flagIs | One [flag name](FlagList.md), Infinite `number` or `text` | Up to `args` except [flag name](FlagList.md) + 1 | Flag with name is equal to `arg` |
+|hourIs | Infinite `number` | Up to `args` + 1 | Hour is equal to `arg` |
+|hourRange | Infinite `number` | Up to `args` + 1 | `Range` operation on `hour`|
+|dayIs | Infinite `number` | Up to `args` + 1 | Day is equal to `arg` |
+|dayRange | Infinite `number` | Up to `args` + 1 | `Range` operation on `day`|
+|minuteIs | Infinite `number` | Up to `args` + 1 | Minute is equal to `arg` |
+|minuteRange | Infinite `number` | Up to `args` + 1 | `Range` operation on `minute`|
+
+---
+This is a list of characters. Continue the `identifier` with a `"."` followed by any `identity` in the list [here](CharParsers.md).
+|Character (Identity)|
+|--------|
+|target|
+|attacker|
+|enemy|
+|pc|
+|baby|
+|aina|
+|amber|
+|anaeMaiden|
+|anarrie|
+|anno|
+|ara|
+|ardia|
+|azra|
+|bea|
+|ben|
+|bess|
+|bianca|
+|brynn|
+|burt|
+|busky|
+|celise|
+|ciaran|
+|cuntsnake|
+|dane|
+|del|
+|docLash|
+|edan|
+|ellie|
+|embountifulbotany|
+|embry|
+|emmrfox|
+|emmy|
+|emponyluver|
+|emredd|
+|emripped4yourpleasure|
+|emsexyydaddyy|
+|emsneakysnek|
+|emstormdragon|
+|erika|
+|fisianna|
+|flahne|
+|frostwyrm|
+|fyn|
+|gene|
+|geoff|
+|gianna|
+|goo|
+|goocubator|
+|gwen|
+|ilaria|
+|inessa|
+|jerome|
+|jerynn|
+|kally|
+|kara|
+|kazra|
+|khorgan|
+|kiro|
+|krymhilde|
+|lah|
+|lane|
+|lerris|
+|lieve|
+|liriel|
+|lorelei|
+|luca|
+|lureling|
+|marion|
+|mimbrane|
+|mirrin|
+|mitzi|
+|nerrasa|
+|nevrie|
+|olympia|
+|paige|
+|penny|
+|petr|
+|pexiga|
+|pippa|
+|queenOfTheDeep|
+|reaha|
+|renvra|
+|rival|
+|roxy|
+|saendra|
+|sam|
+|semith|
+|sera|
+|shade|
+|shekka|
+|synphia|
+|syri|
+|taivra|
+|tamtam|
+|tuuva|
+|vahn|
+|vanae|
+|vanaeHuntress|
+|varmint|
+|wulfe|
+|yammi|
+|zea|
+|zil|
+|zil9tails|
+|zilFemale|
+|zilpack|

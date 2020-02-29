@@ -1,3 +1,12 @@
 # Key Item List
-`Parasite Cure`, `Myr Heavy Tranquilizer Dart`, `Lasso`, `Hardlight Strap-on Upgrades`, `Goozooka`, `RK Lah - Captured`, `Brandy's Letter`, `Video - Zil Nigh the Science Bi`, `Sexdoll Virtual Reality Program`
-'
+|Name|
+|----|
+|Brandy's Letter|
+|Goozooka|
+|Hardlight Strap-on Upgrades|
+|Lasso|
+|Myr Heavy Tranquilizer Dart|
+|Parasite Cure|
+|RK Lah - Captured|
+|Sexdoll Virtual Reality Program|
+|Video - Zil Nigh the Science Bi|

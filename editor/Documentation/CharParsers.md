@@ -389,45 +389,45 @@
 |hipRatingRange| Infinite `number` | Up to `args` + 1 | `Range` operation on `hipRating`|
 |buttRatingIs| Infinite `number` | Up to `args` + 1 | `Is` operation on `buttRating`|
 |buttRatingRange| Infinite `number` | Up to `args` + 1 | `Range` operation on `buttRating`|
-|skinTypeIs| Infinite `VALID_SKIN_TYPE` | Up to `args` + 1 | Skin type is equal to `arg` |
+|skinTypeIs| Infinite [VALID_SKIN_TYPE](NameList.md) | Up to `args` + 1 | Skin type is equal to `arg` |
 |hasAccentMarkings||Up to 2||
-|eyeTypeIs| Infinite `VALID_EYE_TYPE` | Up to `args` + 1 | Eye type is equal to `arg` |
-|hairTypeIs| Infinite `VALID_HAIR_TYPE` | Up to `args` + 1 | Hair type is equal to `arg` |
-|beardTypeIs| Infinite `VALID_HAIR_TYPE` | Up to `args` + 1 | Beard type is equal to `arg` |
-|faceTypeIs| Infinite `VALID_FACE_TYPE` | Up to `args` + 1 | Face type is equal to `arg` |
-|hasFaceFlag| Infinite `VALID_FACE_FLAG` | Up to `args` + 1 | Face flag list has `arg` |
-|hasFaceFlags| Infinite `VALID_FACE_FLAG` | Up to 2 | Face flag list has all `args` |
-|tongueTypeIs| Infinite `VALID_TONGUE_TYPE` | Up to `args` + 1 | Tongue type is equal to `arg` |
-|hasTongueFlag| Infinite `VALID_TONGUE_FLAG` | Up to `args` + 1 | Tongue flag list has `arg` |
-|hasTongueFlags| Infinite `VALID_TONGUE_FLAG` | Up to 2 | Tongue flag list has all `args` |
-|earTypeIs| Infinite `VALID_EAR_TYPE` | Up to `args` + 1 | Ear type is equal to `arg` |
-|hasEarFlag| Infinite `VALID_EAR_FLAG` | Up to `args` + 1 | Ear flag list has `arg` |
-|hasEarFlags| Infinite `VALID_EAR_FLAG` | Up to 2 | Ear flag list has all `args` |
-|antennaeTypeIs| Infinite `VALID_ANTENNAE_TYPE` | Up to `args` + 1 | Antennae type is equal to `arg` |
-|hornTypeIs| Infinite `VALID_HORN_TYPE` | Up to `args` + 1 | Horn type is equal to `arg` |
-|armTypeIs| Infinite `VALID_ARM_TYPE` | Up to `args` + 1 | Arm type is equal to `arg` |
-|hasArmFlag| Infinite `VALID_ARM_FLAG` | Up to `args` + 1 | Arm flag list has `arg` |
-|hasArmFlags| Infinite `VALID_ARM_FLAG` | Up to 2 | Arm flag list has all `args` |
-|wingTypeIs| Infinite `VALID_WING_TYPE` | Up to `args` + 1 | Wing type is equal to `arg` |
-|legTypeIs| Infinite `VALID_LEG_TYPE` | Up to `args` + 1 | Leg type is equal to `arg` |
-|hasLegFlag| Infinite `VALID_LEG_FLAG` | Up to `args` + 1 | Leg flag list has `arg` |
-|hasLegFlags| Infinite `VALID_LEG_FLAG` | Up to 2 | Leg flag list has all `args` |
+|eyeTypeIs| Infinite [VALID_EYE_TYPE](NameList.md) | Up to `args` + 1 | Eye type is equal to `arg` |
+|hairTypeIs| Infinite [VALID_HAIR_TYPE](NameList.md) | Up to `args` + 1 | Hair type is equal to `arg` |
+|beardTypeIs| Infinite [VALID_HAIR_TYPE](NameList.md) | Up to `args` + 1 | Beard type is equal to `arg` |
+|faceTypeIs| Infinite [VALID_FACE_TYPE](NameList.md) | Up to `args` + 1 | Face type is equal to `arg` |
+|hasFaceFlag| Infinite [VALID_FACE_FLAG](NameList.md) | Up to `args` + 1 | Face flag list has `arg` |
+|hasFaceFlags| Infinite [VALID_FACE_FLAG](NameList.md) | Up to 2 | Face flag list has all `args` |
+|tongueTypeIs| Infinite [VALID_TONGUE_TYPE](NameList.md) | Up to `args` + 1 | Tongue type is equal to `arg` |
+|hasTongueFlag| Infinite [VALID_TONGUE_FLAG](NameList.md) | Up to `args` + 1 | Tongue flag list has `arg` |
+|hasTongueFlags| Infinite [VALID_TONGUE_FLAG](NameList.md) | Up to 2 | Tongue flag list has all `args` |
+|earTypeIs| Infinite [VALID_EAR_TYPE](NameList.md) | Up to `args` + 1 | Ear type is equal to `arg` |
+|hasEarFlag| Infinite [VALID_EAR_FLAG](NameList.md) | Up to `args` + 1 | Ear flag list has `arg` |
+|hasEarFlags| Infinite [VALID_EAR_FLAG](NameList.md) | Up to 2 | Ear flag list has all `args` |
+|antennaeTypeIs| Infinite [VALID_ANTENNAE_TYPE](NameList.md) | Up to `args` + 1 | Antennae type is equal to `arg` |
+|hornTypeIs| Infinite [VALID_HORN_TYPE](NameList.md) | Up to `args` + 1 | Horn type is equal to `arg` |
+|armTypeIs| Infinite [VALID_ARM_TYPE](NameList.md) | Up to `args` + 1 | Arm type is equal to `arg` |
+|hasArmFlag| Infinite [VALID_ARM_FLAG](NameList.md) | Up to `args` + 1 | Arm flag list has `arg` |
+|hasArmFlags| Infinite [VALID_ARM_FLAG](NameList.md) | Up to 2 | Arm flag list has all `args` |
+|wingTypeIs| Infinite [VALID_WING_TYPE](NameList.md) | Up to `args` + 1 | Wing type is equal to `arg` |
+|legTypeIs| Infinite [VALID_LEG_TYPE](NameList.md) | Up to `args` + 1 | Leg type is equal to `arg` |
+|hasLegFlag| Infinite [VALID_LEG_FLAG](NameList.md) | Up to `args` + 1 | Leg flag list has `arg` |
+|hasLegFlags| Infinite [VALID_LEG_FLAG](NameList.md) | Up to 2 | Leg flag list has all `args` |
 |isBiped|| Up to 2 | Lower body is biped|
 |isNaga|| Up to 2 | Lower body is naga|
 |isTaur|| Up to 2 | Lower body is taur|
 |isCentaur|| Up to 2 | Lower body is centaur|
 |isDrider|| Up to 2 | Lower body is drider|
 |isGoo|| Up to 2 | Lower body is goo|
-|tailTypeIs| Infinite `VALID_TAIL_TYPE` | Up to `args` + 1 | Tail type is equal to `arg` |
-|hasTailFlag| Infinite `VALID_TAIL_FLAG` | Up to `args` + 1 | Tail flag list has `arg` |
-|hasTailFlags| Infinite `VALID_TAIL_FLAG` | Up to 2 | Tail flag list has all `args` |
+|tailTypeIs| Infinite [VALID_TAIL_TYPE](NameList.md) | Up to `args` + 1 | Tail type is equal to `arg` |
+|hasTailFlag| Infinite [VALID_TAIL_FLAG](NameList.md) | Up to `args` + 1 | Tail flag list has `arg` |
+|hasTailFlags| Infinite [VALID_TAIL_FLAG](NameList.md) | Up to 2 | Tail flag list has all `args` |
 |tailCountIs| Infinite `number` | Up to `args` + 1 | Tail count is equal to `arg` |
 |tailCountRange| Infinite `number` | Up to `args` + 1 | `Range` operation on `tailCount`|
 |hasCock|| Up to 2 | Has a cock |
 |hasCocks|| Up to 2 | Has multiple cocks |
-|hasACockWithType| Infinite `VALID_COCK_TYPE` | Up to `args` + 1 | A cock's type is equal to `arg` |
+|hasACockWithType| Infinite [VALID_COCK_TYPE](NameList.md) | Up to `args` + 1 | A cock's type is equal to `arg` |
 |cockCountIs| Infinite `number` | Up to `args` + 1 | Cock count is equal to `arg` |
-|cockTypeIs| One `number` (Cock index, starts at 0), Infinite `VALID_COCK_TYPE` | Up to `args` except `number` + 1 | Type of cock at `number` is equal to `arg` |
+|cockTypeIs| One `number` (Cock index, starts at 0), Infinite [VALID_COCK_TYPE](NameList.md) | Up to `args` except `number` + 1 | Type of cock at `number` is equal to `arg` |
 |cockThatFits| One `number` || Index # of first cock that fits `arg`. Use as `arg` in anything that requires cock position. |
 |biggestCockIndex||| Index # of biggest cock. Use as `arg` in anything that requires cock position. |
 |smallestCockIndex||| Index # of smallest cock. Use as `arg` in anything that requires cock position. |
@@ -437,15 +437,15 @@
 |shortestCockIndex||| Index # of shortest cock. Use as `arg` in anything that requires cock position. |
 |ballCountIs| Infinite `number` | Up to `args` + 1 | Balls count is equal to `arg` |
 |ballSizeIs| Infinite `number` | Up to `args` + 1 | Ball size is equal to `arg` |
-|milkTypeIs| Infinite `VALID_MILK_TYPE` | Up to `args` + 1 | Milk type is equal to `arg` |
 |hasBreasts|| Up to 2 ||
 |breastCountIs| Infinite `number` | Up to `args` + 1 | Breast count is equal to `arg` |
 |breastCupSizeIs| One `number` (Breast index, starts at 0), Infinite [BreastCupSize](BreastCupSize.md) | Up to `args` except `number` + 1 | Cup size of breast at `number` is equal to `arg` |
 |hasVagina|| Up to 2 ||
+|milkTypeIs| Infinite [VALID_MILK_TYPE](NameList.md) | Up to `args` + 1 | Milk type is equal to `arg` |
 |milkQRange| Infinite `number` | Up to `args` + 1 | Milk quantity `range` |
-|cumTypeIs| Infinite `VALID_CUM_TYPE` | Up to `args` + 1 | Cum type is equal to `arg` |
+|cumTypeIs| Infinite [VALID_CUM_TYPE](NameList.md) | Up to `args` + 1 | Cum type is equal to `arg` |
 |cumQRange| Infinite `number` | Up to `args` + 1 | Cum quantity `range` |
-|girlCumTypeIs| Infinite `VALID_GIRL_CUM_TYPE` | Up to `args` + 1 | Girl cum type is equal to `arg` |
+|girlCumTypeIs| Infinite [VALID_GIRL_CUM_TYPE](NameList.md) | Up to `args` + 1 | Girl cum type is equal to `arg` |
 |girlCumQRange| Infinite `number` | Up to `args` + 1 | Girl cum quantity `range` |
 |isNice|| Up to 2 | Personality is nice |
 |isMisch|| Up to 2 | Personality is mischievous |
@@ -499,8 +499,8 @@
 |isCumSlut|| Up to 2 ||
 |isFauxCow|| Up to 2 ||
 |hasPheromones|| Up to 2 ||
-|hasPerk| Infinite `Perk` | Up to `args` + 1 | Perk list has `arg` |
-|hasStatusEffect| Infinite `Status Effect` | Up to `args` + 1 | Status effect list has `arg` |
+|hasPerk| Infinite [Perk](PerkList.md) | Up to `args` + 1 | Perk list has `arg` |
+|hasStatusEffect| Infinite [Status Effect](StatusEffectList.md) | Up to `args` + 1 | Status effect list has `arg` |
 |hasPiercing|| Up to 2 ||
 |hasEarPiercing|| Up to 2 ||
 |hasEyebrowPiercing|| Up to 2 ||
@@ -513,4 +513,4 @@
 |hasPiercedVaginas| Up to 1 `number` | Up to 2 ||
 |hasClitPiercing| Up to 1 `number` | Up to 2 ||
 |hasCocksock| Up to 1 `number` | Up to 2 ||
-|hasKeyItem| Infinite `Key Item` | Up to `args` + 1 | Key item list has `arg` |
+|hasKeyItem| Infinite [Key Item](KeyItemList.md) | Up to `args` + 1 | Key item list has `arg` |

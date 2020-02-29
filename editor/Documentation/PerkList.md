@@ -1,3 +1,177 @@
 # Perk List
-`Appearance Enabled`, `Multiple Attacks`, `Combat Drone`, `Attack Drone`, `SHIP VENDOR`, `Flee Disabled`, `Juggernaut`, `Evermilk`, `Riposte`, `Iron Will`, `Custom Appearance`, `Ranged Immune`, `Cum Highs`, `Lusty Afterglow`, `Buttslut`, `Honeypot`, `Dumb4Cum`, `Treated Milk`, `Autofellatio Queen`, `Mane`, `Wooly`, `Hips Don't Lie`, `Fecund Figure`, `Implant-tastic`, `True Doll`, `Ultra-Exhibitionist`, `Venom Slut`, `Fertility`, `Omega Fever`, `Black Latex`, `'Nuki Nuts`, `Cum Cascade`, `Nyrea Eggs`, `Slut Stamp`, `Androgyny`, `Icy Veins`, `Resin`, `Flower Power`, `Snu-Snu Queen`, `Energizing Libido`, `Myr Venom`, `Firing Blanks`, `Sterile`, `Shield Tweaks`, `Shield Booster`, `Enhanced Dampeners`, `Shield Regen`, `Rapid Recharge`, `Ditz Speech`, `Mega Milk`, `Deadly Shock`, `Penny Targetting`, `Penny Quest AI`, `Breed Hungry`, `Primorditatts`, `Enlightened Nine-tails`, `Nine-tails`, `Corrupted Nine-tails`, `Bubble Butt`, `Hidden Loot`, `Amazonian Endurance`, `Bigger Guns`, `Brute Speech`, `Pheromone Cloud`, `Musky Pheromones`, `Alpha Scent`, `Jungle Queen Scent`, `Pheromone Sweat`, `Cum Guzzler`, `Heroic Reserves`, `Fuck Sense`, `Drug Fucked`, `Weak Mind`, `Single Minded`, `Barcoded`, `Corrupted`, `Amazonian Needs`, `Face Fucker`, `Peace of Mind`, `Treated Readiness`, `Cybernetic Synchronization`, `Fight Smarter`, `Rage Aim`, `Calm Aim`, `Low Tech Solutions`, `Weapon Tweaks`, `Heavy Weapons`, `Gun Tweaks`, `Armor Tweaks`, `Heavily Armored`, `Advanced Shielding`, `Innocent Allure`, `Sexy Thinking`, `Linked Emitters`, `Critical Blows`, `Desperation`, `Agility`, `Improved Agility`, `Perma-cute`, `PCs`, `Big Cock`, `Phallic Potential`, `Phallic Restraint`, `Milk Fountain`, `Milky`, `Fixed MilkQ`, `Potent`, `Fixed CumQ`, `Amazonian Virility`, `Fixed GirlCumQ`, `Flexibility`, `Hung`, `Mini`, `Dragonfire`, `Oviposition`, `Buns of Steel`, `Infertile`, `Incubator`, `Hollow Bones`, `Bulgy`, `Drone Control`, `No Cum Leakage`, `Extra Ardor`, `Ice Cold`, `'Nuki Drunk`, `STD Immune`, `Can Opener`, `Nyrean Royal`, `Giant Slayer`, `Can Crit`, `Alpha Strike`, `Sneak Attack`, `Aimed Shot`, `Get Down!`, `Chupacabro Slayer`, `Armor Piercing`, `Akane's Painslut`, `Easy`, `Lucky Breaks`, `Melee Immune`, `Concentrate Fire`, `Cloak and Dagger`, `Lunge`, `Shoot First`, `Multiple Shots`, `Second Shot`, `Second Attack`, `Cleave`, `Bloodthirsty`, `Rending Attacks`, `Boosted Charges`, `Survival Instincts`, `Leap Up`, `Sharp Eyes`, `Smoke Grenade`, `Static Burst`, `Panic Ejaculation`, `Escape Artist`, `Limber`, `Keen Eyes`, `Rahn Super Incubator`, `Butt Bug Symbiosis`, `Elasticity`, `Hypermilky`, `Regal Mane`, `Auto-Autofellatio`, `Virile`, `Supply And Demand`, `AGGRESSIVE_AI`, `TACTICAL_AI`, `RANDOM_AI`, `DEFENSIVE_AI`, `PIRATE_GUN`, `PIRATE`
-'
+|Name|
+|----|
+|'Nuki Drunk|
+|'Nuki Nuts|
+|AGGRESSIVE_AI|
+|Advanced Shielding|
+|Agility|
+|Aimed Shot|
+|Akane's Painslut|
+|Alpha Scent|
+|Alpha Strike|
+|Amazonian Endurance|
+|Amazonian Needs|
+|Amazonian Virility|
+|Androgyny|
+|Appearance Enabled|
+|Armor Piercing|
+|Armor Tweaks|
+|Attack Drone|
+|Auto-Autofellatio|
+|Autofellatio Queen|
+|Barcoded|
+|Big Cock|
+|Bigger Guns|
+|Black Latex|
+|Bloodthirsty|
+|Boosted Charges|
+|Breed Hungry|
+|Brute Speech|
+|Bubble Butt|
+|Bulgy|
+|Buns of Steel|
+|Butt Bug Symbiosis|
+|Buttslut|
+|Calm Aim|
+|Can Crit|
+|Can Opener|
+|Chupacabro Slayer|
+|Cleave|
+|Cloak and Dagger|
+|Combat Drone|
+|Concentrate Fire|
+|Corrupted|
+|Corrupted Nine-tails|
+|Critical Blows|
+|Cum Cascade|
+|Cum Guzzler|
+|Cum Highs|
+|Custom Appearance|
+|Cybernetic Synchronization|
+|DEFENSIVE_AI|
+|Deadly Shock|
+|Desperation|
+|Ditz Speech|
+|Dragonfire|
+|Drone Control|
+|Drug Fucked|
+|Dumb4Cum|
+|Easy|
+|Elasticity|
+|Energizing Libido|
+|Enhanced Dampeners|
+|Enlightened Nine-tails|
+|Escape Artist|
+|Evermilk|
+|Extra Ardor|
+|Face Fucker|
+|Fecund Figure|
+|Fertility|
+|Fight Smarter|
+|Firing Blanks|
+|Fixed CumQ|
+|Fixed GirlCumQ|
+|Fixed MilkQ|
+|Flee Disabled|
+|Flexibility|
+|Flower Power|
+|Fuck Sense|
+|Get Down!|
+|Giant Slayer|
+|Gun Tweaks|
+|Heavily Armored|
+|Heavy Weapons|
+|Heroic Reserves|
+|Hidden Loot|
+|Hips Don't Lie|
+|Hollow Bones|
+|Honeypot|
+|Hung|
+|Hypermilky|
+|Ice Cold|
+|Icy Veins|
+|Implant-tastic|
+|Improved Agility|
+|Incubator|
+|Infertile|
+|Innocent Allure|
+|Iron Will|
+|Juggernaut|
+|Jungle Queen Scent|
+|Keen Eyes|
+|Leap Up|
+|Limber|
+|Linked Emitters|
+|Low Tech Solutions|
+|Lucky Breaks|
+|Lunge|
+|Lusty Afterglow|
+|Mane|
+|Mega Milk|
+|Melee Immune|
+|Milk Fountain|
+|Milky|
+|Mini|
+|Multiple Attacks|
+|Multiple Shots|
+|Musky Pheromones|
+|Myr Venom|
+|Nine-tails|
+|No Cum Leakage|
+|Nyrea Eggs|
+|Nyrean Royal|
+|Omega Fever|
+|Oviposition|
+|PCs|
+|PIRATE|
+|PIRATE_GUN|
+|Panic Ejaculation|
+|Peace of Mind|
+|Penny Quest AI|
+|Penny Targetting|
+|Perma-cute|
+|Phallic Potential|
+|Phallic Restraint|
+|Pheromone Cloud|
+|Pheromone Sweat|
+|Potent|
+|Primorditatts|
+|RANDOM_AI|
+|Rage Aim|
+|Rahn Super Incubator|
+|Ranged Immune|
+|Rapid Recharge|
+|Regal Mane|
+|Rending Attacks|
+|Resin|
+|Riposte|
+|SHIP VENDOR|
+|STD Immune|
+|Second Attack|
+|Second Shot|
+|Sexy Thinking|
+|Sharp Eyes|
+|Shield Booster|
+|Shield Regen|
+|Shield Tweaks|
+|Shoot First|
+|Single Minded|
+|Slut Stamp|
+|Smoke Grenade|
+|Sneak Attack|
+|Snu-Snu Queen|
+|Static Burst|
+|Sterile|
+|Supply And Demand|
+|Survival Instincts|
+|TACTICAL_AI|
+|Treated Milk|
+|Treated Readiness|
+|True Doll|
+|Ultra-Exhibitionist|
+|Venom Slut|
+|Virile|
+|Weak Mind|
+|Weapon Tweaks|
+|Wooly|

@@ -1,3 +1,589 @@
 # Status Effect List
-`Stunned`, `Riposting`, `Tripped`, `Petra hunker down`, `Stun Immune`, `Petra hunker down II`, `Petra shield hits`, `Grappled`, `Petra overcharge`, `Disarm Immune`, `Force It Gender`, `Evasion Cooldown`, `Taking Cover`, `Blinded`, `BotRevivinBlues`, `Valden-Possessed`, `DefeatChecked`, `Stealth Field Generator`, `AKKADI BOT AI SKIP`, `Akkadi Net Gun Tried`, `Target Link`, `Akkadi Tracer Rounds`, `Sensor Link Cooldown`, `HP Boost Cooldown`, `Disarmed`, `Forced Gender`, `cock out`, `Blind`, `Staggered`, `Sundered`, `Bought From Bianca`, `Bolo CD`, `Web CD`, `Web`, `Grapple CD`, `Grapple`, `Ranged Evade`, `Melee Counter`, `Melee Hit`, `Grapple Cooldown`, `Bleeding`, `Missile Chargeup`, `Infertile`, `Repair Queued`, `Treated`, `Cockvine Grip`, `Evasion Reduction`, `Varmint Buddy`, `Free Chief`, `Crushing Worms`, `Parasite Cure`, `Chaff Grenade`, `Blue Fire Cooldown`, `Force Fem Gender`, `Unarmored`, `GooCamo`, `Forced Fem Gender`, `GooCamo Cooldown`, `Forced It Gender`, `Paralyzed`, `Force Male Gender`, `Used Wulfe`, `LustModeEngaged`, `Face Rided`, `Deflector Regeneration`, `Used Smuggled Stimulant`, `Porno Hacked Drone`, `Burning`, `Burrowed`, `Flee Disabled`, `Crunched`, `cuffs`, `musked`, `vibes`, `IQBGun`, `brainmelt`, `mindwash`, `latexspray`, `Bimboleum`, `Restrained`, `Vibed`, `IQ B-Gone`, `Brainmelt Lamps`, `Mindwashed`, `Latex Sprayed`, `Undetected Furpies`, `Pushed`, `Not Busted`, `Enraged`, `Shielded`, `Resolve`, `Encourage`, `Annoyed`, `Done Shooting`, `Drone Active`, `Tranquilized`, `Face Sat`, `Leapy Hitty Boid`, `FORGEBOI_SAT`, `Overheated`, `leithanUnloading`, `Buffet Cooldown`, `Psychic Miasma`, `Psionic Amplifier`, `Firestorm`, `Goo Shield`, `Harden`, `Aphro Gas`, `Force Herm Gender`, `Toxic Trickery`, `Turret Aimhacks`, `Phase 2`, `Degraded Armor`, `Camouflage`, `Lust Spores`, `GPrep`, `LPrep`, `Pumpkin Dodge`, `Queue Stealth Field`, `Item Healed`, `Used Second Wind`, `Cum Soaked`, `Pussy Drenched`, `KANE_AI_SKIP`, `Roofied`, `Kane's Honey`, `Honey Shot`, `HS CD`, `Uniball`, `Force Edge CD`, `Burn`, `Futa Lust`, `Korgi Blind Used`, `Korgi Pounce`, `Yappi Strappy`, `Raging`, `Heavy Gun`, `PEACEFUL_WIN`, `SURPRISE_MUTHA_TRUCKAH`, `Poison`, `Nade Cooldown`, `Shield Regen Cooldown`, `GunShield Overloaded`, `Machinegun Cooldown`, `Flashbang Cooldown`, `Shield Bash Cooldown`, `Worship Cooldown`, `no drone`, `Ditzy Strobed`, `Stumble Strobed`, `Stun`, `lustgasdisable`, `hypno`, `shielded`, `Cheerleader`, `Trip`, `BJ Offered`, `Aphro`, `Deflect Regened`, `Shield Regened`, `Flying`, `Gabilani_Fucking`, `Lieve Buff`, `Used Gas Nade`, `MaikeStruggled`, `Mind Blast Cooldown`, `Used Leech`, `Flashbangu`, `SeenKnife`, `Stagger Immune`, `Blindness`, `Berserk`, `Empowering Word`, `Bulge Adjusted`, `Gasu Masku`, `Mounts`, `grenados`, `grenadosDISABLED`, `vergeODoom`, `vergeOMeleeDoom`, `Mimbrane Smother`, `Mimbrane Cloud Cooldown`, `Mimbrane Lust Cloud`, `Brute Wall`, `Quaramarta!`, `Used Resolve`, `Naleen Coiled`, `Naleen Venom`, `charging musk`, `Counters Melee`, `Counters Ranged`, `Healed`, `Bottled Poison`, `Constrict CD`, `Tailed`, `Sampled`, `Gloved`, `lolli`, `Bouncy! Mod`, `GUSHed`, `Bouncy!`, `Net Cooldown`, `Evasion Boost`, `Blind Immune`, `Charged Weapon`, `Unzipped`, `Carpet Grenade Cooldown`, `Ovilium Effect`, `Ovilium`, `Pussy Plugged`, `Strangely Warm`, `Flushed`, `Fuck Fever`, `Nyrea Eggs`, `Myr Venom Withdrawal`, `Red Myr Venom`, `Goo Crotch`, `Special Scrotum`, `Hair Regoo`, `Latex Regrow`, `Arm Flower`, `Hair Flower`, `Remove Energizing Libido`, `Wool Removal`, `Hyena Fur`, `Blue Balls`, `Priapism`, `Vaginally-Filled`, `Pussy Pumped`, `Anally-Filled`, `Milk Bathed`, `Hellfire`, `Water Veil`, `Climaxed`, `Watered Down`, `Tittysuckle Cooldown`, `Clawgrab Cooldown`, `Focused`, `Fungaled`, `Shields Refilled`, `Wrench Charge`, `Raskvel Pile`, `Rat Special'd`, `Rat Boost Used`, `Rat Revive Used`, `NO AI`, `Rat Cascade Used`, `BreakRatpile`, `Rats Lusted Themselves`, `Plunder over Pillage!`, `RatRobbed`, `Target Lock`, `Shield Hack Cooldown`, `Shield Boost Cooldown`, `Disarm Cooldown`, `Shield Recharge`, `Gunlock`, `Gassed`, `Fixed CumQ`, `SHIZZY CUM`, `GunOutBunsOut`, `Evasion Boosted`, `Cheered`, `Roundhouse Kick CD`, `Busted`, `Fade-cloak`, `Fade-cloak struck`, `SLYVEREN_HAZ_UR_LOOT`, `genitalSucked`, `Optic Blur`, `Weapon Lock`, `Special Lock`, `IceMonkey`, `Shot Down`, `Disarmed1`, `Stormguard Determination`, `Shield CD`, `Flyaway`, `Stun Net Cooldown`, `Shield Boost CD`, `Stun Cooldown`, `Enzyme`, `Hammer Punch Next`, `Use Grope Next`, `Dane Grappled`, `Pollen Lust`, `Shield Charged`, `LUST MODE`, `Torra Lust Weakness`, `Iron Willed`, `Mited`, `YANKING PEN`, `Tease Order Tracker`, `No Weaponry`, `snaked`, `Volley CD`, `Trip CD`, `Thump CD`, `Zil Sting`, `Shields Up`, `Horn Style`, `Bee Musk`, `Armor Restore CD`, `HoneyCane Used`, `Pending Gain Milk Note: 75`, `Pending Gain Milk Note: 100`, `Pending Gain Milk Note: 150`, `Pending Gain Milk Note: 200`, `Pending Gain MilkMultiplier Note: 30`, `Pending Gain MilkMultiplier Note: 40`, `Pending Gain MilkMultiplier Note: 50`, `Pending Gain MilkMultiplier Note: 60`, `Pending Gain MilkMultiplier Note: 70`, `Pending Gain MilkMultiplier Note: 80`, `Pending Gain MilkMultiplier Note: 90`, `Pending Gain MilkMultiplier Note: 100`, `Pending Gain MilkMultiplier Note: 110`, `Pending Gain MilkMultiplier Note: 125`, `Drain Cooldown`, `Treatment Elasticity Report Q'ed`, `Heart Tea`, `Hot Meal`, `Resin`, `Oil Warmed`, `Oil Cooled`, `Tenderized`, `Brutalized`, `Gel Body`, `Goo Vent`, `Vanae Markings`, `Shark Markings`, `Body Markings`, `Mimbrane Foot Left`, `Mimbrane Foot Right`, `The Treatment`, `Mimbrane Balls`, `Painted Penis`, `Painted Tits`, `Body Paint`, `Denied By Luca`, `Dumbfuck`, `Dumbfuck Orgasm Procced`, `Sore Tubes`, `Temporary Nudity Cheat`, `Genital Slit`, `Temporary Swimwear Cheat`, `Temporary Treatment`, `Treated Amazon`, `Treated Faux Cow`, `Cum-Cow`, `Roehm Slimed`, `Zil Pheromones`, `Oral Fixation`, `Anal Addiction`, `Cumflation Immune`, `Shrike!`, `Cupid’s Kiss`, `Well-Groomed`, `Worn Out`, `Very Sore`, `Sore`, `Psychic Leech`, `Full Stomach`, `Pumped!`, `Pitch Black`, `Bulky Belly`, `Focus Pill`, `Psi Slave Collar`, `Ditzi Strobed`, `Weak Will`, `Roshan Blue`, `Myr Venom`, `Mare Musk`, `Adorahol`, `Soak`, `Priapin`, `Taint_CD`, `Perfect Simulant`, `Ellie's Milk`, `Aphrodisiac Milk`, `Butt Bug (Female)`, `Paradise!`, `Lane Detoxing Weakness`, `Quivering Quasar`, `Soak Overdose`, `Drone Disabled`, `Combat Drone Disabled`, `Tracer Rounds`, `Lightning Moves`, `Crystal Coated`, `Rusted Emitters`, `Sweaty`, `Sexy Moves`, `DaggerCloaked`, `Spear Wall`, `Leech Empowerment`, `Mimbrane Face`, `Endowment Immobilized`, `Smoke Grenade`, `Mimbrane Pussy`, `Heat`, `Rut`, `Lagonic Rut`, `Mimbrane Ass`, `Cum Cascade`, `Slow Grow`, `No Grow`, `Wing Style`, `Condensol-A`, `Condensol-B`, `Mimbrane Cock`, `Mimbrane Boobs`, `Boobswell Pads`, `Ovalasting`, `frizzy hair`, `Rubber Wrapped`, `Latex Hair`, `Orally-Filled`, `Treatment Elasticity Report Needed`, `Buzzed`, `Drunk`, `Smashed`, `Alcohol`, `Tolerance`, `Horn Bumps`, `Focus Fire`, `No Cum Leakage`, `Omit Cumflation Messages`, `Cum Cascade Suppressant`, `T.Pack`, `Icy Veins`, `Deep Freeze`, `Armor Slot Disabled`, `Melee Weapon Slot Disabled`, `Ranged Weapon Slot Disabled`, `Shield Slot Disabled`, `Accessory Slot Disabled`, `Lower Garment Slot Disabled`, `Upper Garment Slot Disabled`, `Egg Addled 2`, `Ludicrously Endowed`, `Overwhelmingly Endowed`, `Egg Addled 1`, `Egg Addled 3`, `X-Zil-Rate`, `Mead`, `Oil Numbed`, `Dzaan Withdrawal`, `Cum Paused`, `Milk Paused`, `STD Immunity`, `Planted`, `Oil Aroused`, `Oil Slicked`, `Shower Douche Toggle`, `Wing Position`, `Omega Oil`, `Queen Pregnancy State`, `DILDO`, `Def Proc`, `Charging Light Drive`, `Charged Shield`, `Sex On a Meteor`, `Tallavarian Tingler`, `Sweet Tooth`, `AlphaedStroked`, `Take Advantage`, `War Cry`, `Concentrated Fire`, `Gravitational Anomaly`, `Shields Damaged`, `KANE RANGED PREP`, `KANE MELEE PREP`, `Pollen Veil`, `Bonus Shots`, `CHARGING_POWER`, `Bonus Attacks`, `Evading!`, `KQDollStunText`, `Has Captive`, `Attempt Seduction`, `Seduction Declined`, `Goo Harden Offer`, `KQ BJ Offer`, `Trigger Game Over`, `Tranq'd`, `Used Shield Regen`, `Bloodthirsted`, `Survivaled`, `Lust Staggered`, `Don't Get Up`, `Stealth Field`, `Sensor Link`, `HP Boost CD`, `Lust Stunned`, `Gray Goo Clone`, `Resin Aroma`, `Internal Bleeding`, `Restricted`, `Healing Spray`, `Egregiously Endowed`, `Hobbled`, `Reduced Goo`, `Drone Targeting`, `Thicc&Shake`, `Undetected Sneezing Tits`, `Lassoed`, `Ausar Pregnancy Ends`, `Bothrioc Eggs`, `Eggy Belly`, `Frostwyrm Pregnancy Ends`, `Ilaria Pregnancy Ends`, `Lah Pregnancy Reflex Mod`, `Lah Pregnancy Ends`, `Milodan Pregnancy Ends`, `Nyrea Eggs Messages Available`, `Ovalasting Early Clutch`, `Psychic Tentacles Birth To Nursery`, `Quaelle Pregnancy Ends`, `Queen Pregnancy End`, `Raskvel Pregnancy Ends`, `Renvra Eggs Messages Available`, `Renvra Full Pregnancy Message 1`, `Renvra Full Pregnancy Message 2`, `Renvra Full Pregnancy Bellyrubs`, `Renvra Full Pregnancy Message 3`, `Renvra Full Pregnancy Message 4`, `Renvra Milky Titties Go`, `Renvra Full Pregnancy Message 5`, `Renvra Full Pregnancy Almost Due`, `Riya Spawn Reflex Mod`, `Riya Spawn Pregnancy Ends`, `Royal Eggs Messages Available`, `Goo Gloryholed`, `Sera Spawn Reflex Mod`, `Sera Spawn Pregnancy Ends`, `Shekka Pregnancy Ends`, `Siegwulfe Eggnancy Stage`, `Siegwulfe Eggnancy Ends`, `Sydian Pregnancy Ends`, `Venus Pitcher Egg Incubation Finished`, `Venus Pitcher Seed Residue`, `Zaalt Pregnancy Ends`, `Zephyr Preg Alert`, `Pregnancy Pending`, `In Creation`, `Leitha Charm`, `Bra Transparency`, `Sexy Costume`, `Jock Sexiness`, `HL Thong`, `Royal Nectar`, `Ass Slap Patch`, `Dispassion Fruit`, `Taken Estrobloom`, `Horse Pill`, `Foxfire`, `Lactaid Milk Tank Uses`, `Lactaid Overdrive Uses`, `The Mango`, `Mighty Tight`, `Peprika`, `Plumpkin`, `Gabilani Prophylactic`, `Lapinara Prophylactic`, `Raskvel Prophylactic`, `Sydian Prophylactic`, `Shield Boosted`, `Latex Skin`, `TittiesUsed`, `Woozy`, `Anal Lubricant`, `Amazona Disabled`, `Primorditatts Queued`, `Cerespirin`, `Clippex Gel`, `Fuzzball Candy`, `GaloMax`, `Gabilani Face Change`, `Goblinola Bar`, `Laquine Ears`, `Lucifier Candy`, `Omega Fever Delay`, `Semen's Candy`, `Tentatool`, `Backpack Upgrade`
-'
+|Name|
+|----|
+|AKKADI BOT AI SKIP|
+|Accessory Slot Disabled|
+|Adorahol|
+|Akkadi Net Gun Tried|
+|Akkadi Tracer Rounds|
+|Alcohol|
+|AlphaedStroked|
+|Amazona Disabled|
+|Anal Addiction|
+|Anal Lubricant|
+|Anally-Filled|
+|Annoyed|
+|Aphro|
+|Aphro Gas|
+|Aphrodisiac Milk|
+|Arm Flower|
+|Armor Restore CD|
+|Armor Slot Disabled|
+|Ass Slap Patch|
+|Attempt Seduction|
+|Ausar Pregnancy Ends|
+|BJ Offered|
+|Backpack Upgrade|
+|Bee Musk|
+|Berserk|
+|Bimboleum|
+|Bleeding|
+|Blind|
+|Blind Immune|
+|Blinded|
+|Blindness|
+|Bloodthirsted|
+|Blue Balls|
+|Blue Fire Cooldown|
+|Body Markings|
+|Body Paint|
+|Bolo CD|
+|Bonus Attacks|
+|Bonus Shots|
+|Boobswell Pads|
+|BotRevivinBlues|
+|Bothrioc Eggs|
+|Bottled Poison|
+|Bought From Bianca|
+|Bouncy!|
+|Bouncy! Mod|
+|Bra Transparency|
+|Brainmelt Lamps|
+|BreakRatpile|
+|Brutalized|
+|Brute Wall|
+|Buffet Cooldown|
+|Bulge Adjusted|
+|Bulky Belly|
+|Burn|
+|Burning|
+|Burrowed|
+|Busted|
+|Butt Bug (Female)|
+|Buzzed|
+|CHARGING_POWER|
+|Camouflage|
+|Carpet Grenade Cooldown|
+|Cerespirin|
+|Chaff Grenade|
+|Charged Shield|
+|Charged Weapon|
+|Charging Light Drive|
+|Cheered|
+|Cheerleader|
+|Clawgrab Cooldown|
+|Climaxed|
+|Clippex Gel|
+|Cockvine Grip|
+|Combat Drone Disabled|
+|Concentrated Fire|
+|Condensol-A|
+|Condensol-B|
+|Constrict CD|
+|Counters Melee|
+|Counters Ranged|
+|Crunched|
+|Crushing Worms|
+|Crystal Coated|
+|Cum Cascade|
+|Cum Cascade Suppressant|
+|Cum Paused|
+|Cum Soaked|
+|Cum-Cow|
+|Cumflation Immune|
+|Cupid’s Kiss|
+|DILDO|
+|DaggerCloaked|
+|Dane Grappled|
+|Deep Freeze|
+|Def Proc|
+|DefeatChecked|
+|Deflect Regened|
+|Deflector Regeneration|
+|Degraded Armor|
+|Denied By Luca|
+|Disarm Cooldown|
+|Disarm Immune|
+|Disarmed|
+|Disarmed1|
+|Dispassion Fruit|
+|Ditzi Strobed|
+|Ditzy Strobed|
+|Don't Get Up|
+|Done Shooting|
+|Drain Cooldown|
+|Drone Active|
+|Drone Disabled|
+|Drone Targeting|
+|Drunk|
+|Dumbfuck|
+|Dumbfuck Orgasm Procced|
+|Dzaan Withdrawal|
+|Egg Addled 1|
+|Egg Addled 2|
+|Egg Addled 3|
+|Eggy Belly|
+|Egregiously Endowed|
+|Ellie's Milk|
+|Empowering Word|
+|Encourage|
+|Endowment Immobilized|
+|Enraged|
+|Enzyme|
+|Evading!|
+|Evasion Boost|
+|Evasion Boosted|
+|Evasion Cooldown|
+|Evasion Reduction|
+|FORGEBOI_SAT|
+|Face Rided|
+|Face Sat|
+|Fade-cloak|
+|Fade-cloak struck|
+|Firestorm|
+|Fixed CumQ|
+|Flashbang Cooldown|
+|Flashbangu|
+|Flee Disabled|
+|Flushed|
+|Flyaway|
+|Flying|
+|Focus Fire|
+|Focus Pill|
+|Focused|
+|Force Edge CD|
+|Force Fem Gender|
+|Force Herm Gender|
+|Force It Gender|
+|Force Male Gender|
+|Forced Fem Gender|
+|Forced Gender|
+|Forced It Gender|
+|Foxfire|
+|Free Chief|
+|Frostwyrm Pregnancy Ends|
+|Fuck Fever|
+|Full Stomach|
+|Fungaled|
+|Futa Lust|
+|Fuzzball Candy|
+|GPrep|
+|GUSHed|
+|Gabilani Face Change|
+|Gabilani Prophylactic|
+|Gabilani_Fucking|
+|GaloMax|
+|Gassed|
+|Gasu Masku|
+|Gel Body|
+|Genital Slit|
+|Gloved|
+|Goblinola Bar|
+|Goo Crotch|
+|Goo Gloryholed|
+|Goo Harden Offer|
+|Goo Shield|
+|Goo Vent|
+|GooCamo|
+|GooCamo Cooldown|
+|Grapple|
+|Grapple CD|
+|Grapple Cooldown|
+|Grappled|
+|Gravitational Anomaly|
+|Gray Goo Clone|
+|GunOutBunsOut|
+|GunShield Overloaded|
+|Gunlock|
+|HL Thong|
+|HP Boost CD|
+|HP Boost Cooldown|
+|HS CD|
+|Hair Flower|
+|Hair Regoo|
+|Hammer Punch Next|
+|Harden|
+|Has Captive|
+|Healed|
+|Healing Spray|
+|Heart Tea|
+|Heat|
+|Heavy Gun|
+|Hellfire|
+|Hobbled|
+|Honey Shot|
+|HoneyCane Used|
+|Horn Bumps|
+|Horn Style|
+|Horse Pill|
+|Hot Meal|
+|Hyena Fur|
+|IQ B-Gone|
+|IQBGun|
+|IceMonkey|
+|Icy Veins|
+|Ilaria Pregnancy Ends|
+|In Creation|
+|Infertile|
+|Internal Bleeding|
+|Iron Willed|
+|Item Healed|
+|Jock Sexiness|
+|KANE MELEE PREP|
+|KANE RANGED PREP|
+|KANE_AI_SKIP|
+|KQ BJ Offer|
+|KQDollStunText|
+|Kane's Honey|
+|Korgi Blind Used|
+|Korgi Pounce|
+|LPrep|
+|LUST MODE|
+|Lactaid Milk Tank Uses|
+|Lactaid Overdrive Uses|
+|Lagonic Rut|
+|Lah Pregnancy Ends|
+|Lah Pregnancy Reflex Mod|
+|Lane Detoxing Weakness|
+|Lapinara Prophylactic|
+|Laquine Ears|
+|Lassoed|
+|Latex Hair|
+|Latex Regrow|
+|Latex Skin|
+|Latex Sprayed|
+|Leapy Hitty Boid|
+|Leech Empowerment|
+|Leitha Charm|
+|Lieve Buff|
+|Lightning Moves|
+|Lower Garment Slot Disabled|
+|Lucifier Candy|
+|Ludicrously Endowed|
+|Lust Spores|
+|Lust Staggered|
+|Lust Stunned|
+|LustModeEngaged|
+|Machinegun Cooldown|
+|MaikeStruggled|
+|Mare Musk|
+|Mead|
+|Melee Counter|
+|Melee Hit|
+|Melee Weapon Slot Disabled|
+|Mighty Tight|
+|Milk Bathed|
+|Milk Paused|
+|Milodan Pregnancy Ends|
+|Mimbrane Ass|
+|Mimbrane Balls|
+|Mimbrane Boobs|
+|Mimbrane Cloud Cooldown|
+|Mimbrane Cock|
+|Mimbrane Face|
+|Mimbrane Foot Left|
+|Mimbrane Foot Right|
+|Mimbrane Lust Cloud|
+|Mimbrane Pussy|
+|Mimbrane Smother|
+|Mind Blast Cooldown|
+|Mindwashed|
+|Missile Chargeup|
+|Mited|
+|Mounts|
+|Myr Venom|
+|Myr Venom Withdrawal|
+|NO AI|
+|Nade Cooldown|
+|Naleen Coiled|
+|Naleen Venom|
+|Net Cooldown|
+|No Cum Leakage|
+|No Grow|
+|No Weaponry|
+|Not Busted|
+|Nyrea Eggs|
+|Nyrea Eggs Messages Available|
+|Oil Aroused|
+|Oil Cooled|
+|Oil Numbed|
+|Oil Slicked|
+|Oil Warmed|
+|Omega Fever Delay|
+|Omega Oil|
+|Omit Cumflation Messages|
+|Optic Blur|
+|Oral Fixation|
+|Orally-Filled|
+|Ovalasting|
+|Ovalasting Early Clutch|
+|Overheated|
+|Overwhelmingly Endowed|
+|Ovilium|
+|Ovilium Effect|
+|PEACEFUL_WIN|
+|Painted Penis|
+|Painted Tits|
+|Paradise!|
+|Paralyzed|
+|Parasite Cure|
+|Pending Gain Milk Note: 100|
+|Pending Gain Milk Note: 150|
+|Pending Gain Milk Note: 200|
+|Pending Gain Milk Note: 75|
+|Pending Gain MilkMultiplier Note: 100|
+|Pending Gain MilkMultiplier Note: 110|
+|Pending Gain MilkMultiplier Note: 125|
+|Pending Gain MilkMultiplier Note: 30|
+|Pending Gain MilkMultiplier Note: 40|
+|Pending Gain MilkMultiplier Note: 50|
+|Pending Gain MilkMultiplier Note: 60|
+|Pending Gain MilkMultiplier Note: 70|
+|Pending Gain MilkMultiplier Note: 80|
+|Pending Gain MilkMultiplier Note: 90|
+|Peprika|
+|Perfect Simulant|
+|Petra hunker down|
+|Petra hunker down II|
+|Petra overcharge|
+|Petra shield hits|
+|Phase 2|
+|Pitch Black|
+|Planted|
+|Plumpkin|
+|Plunder over Pillage!|
+|Poison|
+|Pollen Lust|
+|Pollen Veil|
+|Porno Hacked Drone|
+|Pregnancy Pending|
+|Priapin|
+|Priapism|
+|Primorditatts Queued|
+|Psi Slave Collar|
+|Psionic Amplifier|
+|Psychic Leech|
+|Psychic Miasma|
+|Psychic Tentacles Birth To Nursery|
+|Pumped!|
+|Pumpkin Dodge|
+|Pushed|
+|Pussy Drenched|
+|Pussy Plugged|
+|Pussy Pumped|
+|Quaelle Pregnancy Ends|
+|Quaramarta!|
+|Queen Pregnancy End|
+|Queen Pregnancy State|
+|Queue Stealth Field|
+|Quivering Quasar|
+|Raging|
+|Ranged Evade|
+|Ranged Weapon Slot Disabled|
+|Raskvel Pile|
+|Raskvel Pregnancy Ends|
+|Raskvel Prophylactic|
+|Rat Boost Used|
+|Rat Cascade Used|
+|Rat Revive Used|
+|Rat Special'd|
+|RatRobbed|
+|Rats Lusted Themselves|
+|Red Myr Venom|
+|Reduced Goo|
+|Remove Energizing Libido|
+|Renvra Eggs Messages Available|
+|Renvra Full Pregnancy Almost Due|
+|Renvra Full Pregnancy Bellyrubs|
+|Renvra Full Pregnancy Message 1|
+|Renvra Full Pregnancy Message 2|
+|Renvra Full Pregnancy Message 3|
+|Renvra Full Pregnancy Message 4|
+|Renvra Full Pregnancy Message 5|
+|Renvra Milky Titties Go|
+|Repair Queued|
+|Resin|
+|Resin Aroma|
+|Resolve|
+|Restrained|
+|Restricted|
+|Riposting|
+|Riya Spawn Pregnancy Ends|
+|Riya Spawn Reflex Mod|
+|Roehm Slimed|
+|Roofied|
+|Roshan Blue|
+|Roundhouse Kick CD|
+|Royal Eggs Messages Available|
+|Royal Nectar|
+|Rubber Wrapped|
+|Rusted Emitters|
+|Rut|
+|SHIZZY CUM|
+|SLYVEREN_HAZ_UR_LOOT|
+|STD Immunity|
+|SURPRISE_MUTHA_TRUCKAH|
+|Sampled|
+|Seduction Declined|
+|SeenKnife|
+|Semen's Candy|
+|Sensor Link|
+|Sensor Link Cooldown|
+|Sera Spawn Pregnancy Ends|
+|Sera Spawn Reflex Mod|
+|Sex On a Meteor|
+|Sexy Costume|
+|Sexy Moves|
+|Shark Markings|
+|Shekka Pregnancy Ends|
+|Shield Bash Cooldown|
+|Shield Boost CD|
+|Shield Boost Cooldown|
+|Shield Boosted|
+|Shield CD|
+|Shield Charged|
+|Shield Hack Cooldown|
+|Shield Recharge|
+|Shield Regen Cooldown|
+|Shield Regened|
+|Shield Slot Disabled|
+|Shielded|
+|Shields Damaged|
+|Shields Refilled|
+|Shields Up|
+|Shot Down|
+|Shower Douche Toggle|
+|Shrike!|
+|Siegwulfe Eggnancy Ends|
+|Siegwulfe Eggnancy Stage|
+|Slow Grow|
+|Smashed|
+|Smoke Grenade|
+|Soak|
+|Soak Overdose|
+|Sore|
+|Sore Tubes|
+|Spear Wall|
+|Special Lock|
+|Special Scrotum|
+|Stagger Immune|
+|Staggered|
+|Stealth Field|
+|Stealth Field Generator|
+|Stormguard Determination|
+|Strangely Warm|
+|Stumble Strobed|
+|Stun|
+|Stun Cooldown|
+|Stun Immune|
+|Stun Net Cooldown|
+|Stunned|
+|Sundered|
+|Survivaled|
+|Sweaty|
+|Sweet Tooth|
+|Sydian Pregnancy Ends|
+|Sydian Prophylactic|
+|T.Pack|
+|Tailed|
+|Taint_CD|
+|Take Advantage|
+|Taken Estrobloom|
+|Taking Cover|
+|Tallavarian Tingler|
+|Target Link|
+|Target Lock|
+|Tease Order Tracker|
+|Temporary Nudity Cheat|
+|Temporary Swimwear Cheat|
+|Temporary Treatment|
+|Tenderized|
+|Tentatool|
+|The Mango|
+|The Treatment|
+|Thicc&Shake|
+|Thump CD|
+|TittiesUsed|
+|Tittysuckle Cooldown|
+|Tolerance|
+|Torra Lust Weakness|
+|Toxic Trickery|
+|Tracer Rounds|
+|Tranq'd|
+|Tranquilized|
+|Treated|
+|Treated Amazon|
+|Treated Faux Cow|
+|Treatment Elasticity Report Needed|
+|Treatment Elasticity Report Q'ed|
+|Trigger Game Over|
+|Trip|
+|Trip CD|
+|Tripped|
+|Turret Aimhacks|
+|Unarmored|
+|Undetected Furpies|
+|Undetected Sneezing Tits|
+|Uniball|
+|Unzipped|
+|Upper Garment Slot Disabled|
+|Use Grope Next|
+|Used Gas Nade|
+|Used Leech|
+|Used Resolve|
+|Used Second Wind|
+|Used Shield Regen|
+|Used Smuggled Stimulant|
+|Used Wulfe|
+|Vaginally-Filled|
+|Valden-Possessed|
+|Vanae Markings|
+|Varmint Buddy|
+|Venus Pitcher Egg Incubation Finished|
+|Venus Pitcher Seed Residue|
+|Very Sore|
+|Vibed|
+|Volley CD|
+|War Cry|
+|Water Veil|
+|Watered Down|
+|Weak Will|
+|Weapon Lock|
+|Web|
+|Web CD|
+|Well-Groomed|
+|Wing Position|
+|Wing Style|
+|Wool Removal|
+|Woozy|
+|Worn Out|
+|Worship Cooldown|
+|Wrench Charge|
+|X-Zil-Rate|
+|YANKING PEN|
+|Yappi Strappy|
+|Zaalt Pregnancy Ends|
+|Zephyr Preg Alert|
+|Zil Pheromones|
+|Zil Sting|
+|brainmelt|
+|charging musk|
+|cock out|
+|cuffs|
+|frizzy hair|
+|genitalSucked|
+|grenados|
+|grenadosDISABLED|
+|hypno|
+|latexspray|
+|leithanUnloading|
+|lolli|
+|lustgasdisable|
+|mindwash|
+|musked|
+|no drone|
+|shielded|
+|snaked|
+|vergeODoom|
+|vergeOMeleeDoom|
+|vibes|
