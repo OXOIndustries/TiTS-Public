@@ -948,6 +948,24 @@ package editor.Game.CodeMap {
             return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'ballSize()'), args, results);
         }
 
+        // Breasts
+        public function hasBreasts(identifier: String, args: Array, results: Array): String {
+            return ToCode.boolean(identifier + '()', results);
+        }
+
+        public function breastCountIs(identifier: String, args: Array, results: Array): String {
+            return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'totalBreasts()'), args, results);
+        }
+
+        public function breastCupSizeIs(identifier: String, args: Array, results: Array): String {
+            return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'breastCup(' + args[0] + ')'), args.slice(1), results);
+        }
+
+        // Vagina
+        public function hasVagina(identifier: String, args: Array, results: Array): String {
+            return ToCode.boolean(identifier + '()', results);
+        }
+
         // Fluids
         // Milk
         public function milkTypeIs(identifier: String, args: Array, results: Array): String {

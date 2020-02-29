@@ -438,6 +438,10 @@
 |ballCountIs| Infinite `number` | Up to `args` + 1 | Balls count is equal to `arg` |
 |ballSizeIs| Infinite `number` | Up to `args` + 1 | Ball size is equal to `arg` |
 |milkTypeIs| Infinite `VALID_MILK_TYPE` | Up to `args` + 1 | Milk type is equal to `arg` |
+|hasBreasts|| Up to 2 ||
+|breastCountIs| Infinite `number` | Up to `args` + 1 | Breast count is equal to `arg` |
+|breastCupSizeIs| One `number` (Breast index, starts at 0), Infinite [BreastCupSize](BreastCupSize.md) | Up to `args` except `number` + 1 | Cup size of breast at `number` is equal to `arg` |
+|hasVagina|| Up to 2 ||
 |milkQRange| Infinite `number` | Up to `args` + 1 | Milk quantity `range` |
 |cumTypeIs| Infinite `VALID_CUM_TYPE` | Up to `args` + 1 | Cum type is equal to `arg` |
 |cumQRange| Infinite `number` | Up to `args` + 1 | Cum quantity `range` |
