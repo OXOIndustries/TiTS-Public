@@ -309,7 +309,7 @@ package editor.Lang.Interpret {
                 return new Product(new TextRange(node.range.start, node.range.start), '');
             }
 
-            var returnValue: * = '';
+            var returnValue: * = resultValue;
             var returnRange: * /*TextRange or Array of TextRange*/ = node.range;
             var returnCode: String = '';
 
@@ -318,10 +318,6 @@ package editor.Lang.Interpret {
                 if (results.value.length > 0 && results.value[resultValue]) {
                     returnValue = results.value[resultValue].value;
                     returnRange = results.value[resultValue].range;
-                }
-                else {
-                    returnValue = "";
-                    returnRange = new TextRange(node.range.end, node.range.end);
                 }
             }
             else if (typeof resultValue === 'boolean') {
@@ -343,16 +339,12 @@ package editor.Lang.Interpret {
                     returnRange = new TextRange(node.range.end, node.range.end);
                 }
             }
-            else {
-                returnValue = resultValue + '';
-                returnRange = node.range;
-            }
 
             if (retrieve.value.caps && returnValue.length > 0) {
                 returnValue = returnValue.charAt(0).toLocaleUpperCase() + returnValue.slice(1);
             }
 
-            return new Product(returnRange, returnValue + '');
+            return new Product(returnRange, returnValue);
         }
     }
 }
