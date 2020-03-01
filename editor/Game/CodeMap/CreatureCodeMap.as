@@ -908,7 +908,7 @@ package editor.Game.CodeMap {
         }
 
         public function cockTypeIs(identifier: String, args: Array, results: Array): String {
-            return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'cocks[' + args[0] + '].type'), args.slice(1), results);
+            return ToCode.equals(ToCode.replaceIdentity(identifier, 1, 'cocks[' + args[0] + '].type'), args.slice(1).map(mapNameToIndex(('TYPE_NAMES'))), results);
         }
 
         public function cockThatFits(identifier: String, args: Array, results: Array): String {
