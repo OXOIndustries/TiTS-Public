@@ -29,10 +29,22 @@ package editor.Game.Info {
             }
         }
 
-        public const i: Function = Validators.oneResult;
-        public const b: Function = Validators.oneResult;
-        public const cap: Function = Validators.oneResult;
-        public const rand: Function = Validators.hasOneOptionalNumberArgManyResults;
+        public const i: Object = {
+            includeResults: true,
+            func: Validators.oneResult
+        }
+        public const b: Object = {
+            includeResults: true,
+            func: Validators.oneResult
+        }
+        public const cap: Object = {
+            includeResults: true,
+            func: Validators.oneResult
+        }
+        public const rand: Object = {
+            includeResults: true,
+            func: Validators.hasOneOptionalNumberArgManyResults
+        }
 
         public function flagIs(args: Array, results: Array): String {
             if (args.length === 0) return 'needs a flag';

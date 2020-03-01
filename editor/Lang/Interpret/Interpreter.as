@@ -271,15 +271,25 @@ package editor.Lang.Interpret {
             if (typeof resultValue === 'function') {
                 // Validate args and results
                 if (retrieve.value.info && typeof retrieve.value.info === 'function') {
-                    const validResult: * = retrieve.value.info(argsValueArr, resultsValueArr);
-                    if (validResult != null) {
-                        this.createError(node.range, '"' + identifier + '" ' + validResult);
-                        return new Product(new TextRange(node.range.start, node.range.start), '');
+                    var checkFunc: Function;
+                    if (typeof retrieve.value.info === 'function')
+                        checkFunc = retrieve.value.info;
+                    else if (typeof retrieve.value.info === 'object' && 'func' in retrieve.value.info)
+                        checkFunc = retrieve.value.info.func;
+                    if (checkFunc != null) {
+                        const validResult: * = checkFunc(argsValueArr, resultsValueArr);
+                        if (validResult != null) {
+                            this.createError(node.range, '"' + identifier + '" ' + validResult);
+                            return new Product(new TextRange(node.range.start, node.range.start), '');
+                        }
                     }
                 }
 
                 // Evaluate
-                resultValue = resultValue.apply(retrieve.value.parent, argsValueArr);
+                if (retrieve.value.info && typeof retrieve.value.info === 'object' && 'includeResults' in retrieve.value.info && retrieve.value.info.includeResults)
+                    resultValue = resultValue.call(retrieve.value.parent, argsValueArr, resultsValueArr);
+                else
+                    resultValue = resultValue.apply(retrieve.value.parent, argsValueArr);
 
                 if (resultValue == null) {
                     this.createError(node.range, '"' + identifier + '" is ' + resultValue);
