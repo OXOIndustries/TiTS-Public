@@ -5,12 +5,10 @@ package editor.Lang.Interpret {
          */
         public var range: *;
         public var value: *;
-        public var code: String;
 
-        public function Product(range: *, value: *, code: String) {
+        public function Product(range: *, value: *) {
             this.range = range;
             this.value = value;
-            this.code = code;
         }
     }
 }

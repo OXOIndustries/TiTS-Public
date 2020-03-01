@@ -70,19 +70,19 @@ SILLY MODE
 # Relation between the code and parsers
 The `interpreter` takes in a `Object`. Anything `public` can be used in the text.
 
-In the code, a new TiTSDescriptor is passed to the `interpreter`. A Descriptor class is a wrapper around game code to limit access. 
+In the code, a new TiTSWrapper is passed to the `interpreter`. A Wrapper class is a wrapper around game code to limit access. 
 
 ## Visiblity
-The entry point is TiTSDescriptor. The interpreter will start evaluating `identifier` here.
+The entry point is TiTSWrapper. The interpreter will start evaluating `identifier` here.
 
 > `[silly|enabled|disabled]`
 
-The `silly` is in TiTSDescriptor and is `public`, thus it can be used.
+The `silly` is in TiTSWrapper and is `public`, thus it can be used.
 
 > `[pc.cockNoun 1]`
 
-`pc` is in TiTSDescriptor and is `public`. It returns a CreatureDescriptor.
-`cockNoun` is in CreatureDescriptor and is `public`, thus `pc.cockNoun` can be used.
+`pc` is in TiTSWrapper and is `public`. It returns a CreatureWrapper.
+`cockNoun` is in CreatureWrapper and is `public`, thus `pc.cockNoun` can be used.
 
 ---
 ## How the interpreter handles data types
@@ -131,66 +131,36 @@ Anything else will coerced to `String`.
 
 ---
 # Adding new parsers
-Anything `public` in TiTSDescriptor or subsequent classes will available to the interpreter.
+Anything `public` in TiTSWrapper or subsequent classes will available to the interpreter.
 
 Example:
-1. Open TiTSDescriptor.as
-2. Add `public const boobs: String = "(.)(.)";` to the TiTSDescriptor class
+1. Open TiTSWrapper.as
+2. Add `public const boobs: String = "(.)(.)";` to the TiTSWrapper class
 3. Compile and open the swf
 4. Type `[boobs]` and see `(.)(.)` in the output
 
 **Make sure what are adding does NOT change game values. Giving writers the power to change game values can and will cause problems.**
 
-## FunctionInfo
-This is for describing a `Function`.
-This info is accessed by the interpreter by taking the last `identity` in an `identifier` and adding `__info`.
+## Info
 
-> `pc.cockSimple` -> `pc.cockSimple__info`
+Info classes provide validation and other useful information and must mirror `Wrapper` classes.
 
----
-### argResultValidator
-> `addArgResultValidator(argResultValidator: Function)`
-> `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
+If a value has a type of `function`, it will be considered a validator.
+
+If a value has a type of `object`, it will be considered an info object.
+```
+{
+    func: // Validator. Function
+    includeResults: // Whether or not to include results. Boolean
+}
+```
+
+### Validation
+> `function(arguments: Array<String or Number>, results: Array<String>): String or null`
 
 This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
 
-An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` take in one optional `argument` and no `results`.
-
-Multiple can be added to the `FunctionInfo` by calling `addArgResultValidator`. The order they are added is the order of testing.
-
----
-### mapArgs
-> `addMapArgs(callback: Function)`
-> `callback(name: String, idx: int, arr: Array)`
-
-This maps `arguments` before being passed to `toCode`. Useful for converting types, flags, etc. to the corresponding index number.
-
-Each `argument` is surrounded by `""`.
-
-Multiple can be added to the `FunctionInfo` by calling `addMapArgs`. The order they are added is the order of processing.
-
----
-### toCode
-> `toCode(identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
-
-This changes how the code written.
-
-`[b|This is bold text]` normally turns into `b("This is bold text")`
-
-Since `toCode` was supplied, it becomes `"<b>This is bold text</b>"`
-
-> `My name is [pc.name]`
-
-```
-"My name is [pc.name]"
-```
-> `[pc.hasPerk HoneyPot]`
-```
-pc.hasPerk("HoneyPot")
-```
----
-### getDesc/setDesc
-This sets the description that will be displayed in the editor.
+An example of this would be `cockSimple` in CreatureWrapper. `cockSimple` take in one optional `argument` and no `results`.
 
 ---
 ### includeResults
@@ -200,14 +170,10 @@ Normally, they are called `func.apply(self, args)`, but this changes it to `func
 
 *Note: `apply` spreads `args` over the paramters. `call` does not spread.*
 
+## CodeMap
 ---
-### identityOverride
-Setting this overrides the `identity` used when generating code.
+> `function (identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
 
-Example:
-> Override is `taint()`.
+`CodeMap` classes must mirror `Wrapper` classes.
 
-> `[pc.taintIs 5|5|not 5]`
-```
-(pc.taint() === 5 ? "5" : "not 5")
-```
+The functions in these classes transform the `parser` into `code`.

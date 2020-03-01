@@ -1,4 +1,4 @@
-package editor.Descriptors {
+package editor.Game.CodeMap {
     public class ToCode {
         public static function oldParser(identifier: String, args: Array, results: Array): String {
             var text: String = '"[' + identifier;
@@ -50,24 +50,6 @@ package editor.Descriptors {
             return code;
         }
 
-        public static function everyArg(identifier: String, args: Array, results: Array): String {
-            var code: String = '(' + identifier + '(' + args.join(') && ' + identifier + '(') + ') ? ';
-            if (results.length >= 1)
-                code += results[0];
-            else
-                code += '""';
-            code += ' : ';
-
-            if (results.length >= 2)
-                code += results[1];
-            else
-                code += '""';
-
-            code += ')';
-            return code;
-        }
-
-
         public static function callRange(identifier: String, args: Array, results: Array): String {
             var code: String = "";
             // Remove "()" from the end
@@ -91,6 +73,22 @@ package editor.Descriptors {
             for (idx = 0; idx < args.length; idx++)
                 code += ')';
             return code;
+        }
+
+        public static function boolean(identifier: String, results: Array): String {
+            if (results.length === 1)
+                return '(' + identifier + ' ? ' + results[0] + ' : "")';
+            else
+                return '(' + identifier + ' ? ' + results[0] + ' : ' + results[1] + ')';
+        }
+
+        public static function funcCall(identifier: String, args: Array): String {
+            return identifier + '(' + args.join(', ') +  ')';
+        }
+
+        public static function replaceIdentity(oldIdent: String, amount: int, ... newIdent): String {
+            var arr: Array = oldIdent.split('.');
+            return arr.slice(0, arr.length - amount).concat(newIdent).join('.');
         }
     }
 }
