@@ -141,56 +141,26 @@ Example:
 
 **Make sure what are adding does NOT change game values. Giving writers the power to change game values can and will cause problems.**
 
-## FunctionInfo
-This is for describing a `Function`.
-This info is accessed by the interpreter by taking the last `identity` in an `identifier` and adding `__info`.
+## Info
 
-> `pc.cockSimple` -> `pc.cockSimple__info`
+Info classes provide validation and other useful information and must mirror `Wrapper` classes.
 
----
-### argResultValidator
-> `addArgResultValidator(argResultValidator: Function)`
-> `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
+If a value has a type of `function`, it will be considered a validator.
+
+If a value has a type of `object`, it will be considered an info object.
+```
+{
+    func: // Validator. Function
+    includeResults: // Whether or not to include results. Boolean
+}
+```
+
+### Validation
+> `function(arguments: Array<String or Number>, results: Array<String>): String or null`
 
 This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
 
 An example of this would be `cockSimple` in CreatureWrapper. `cockSimple` take in one optional `argument` and no `results`.
-
-Multiple can be added to the `FunctionInfo` by calling `addArgResultValidator`. The order they are added is the order of testing.
-
----
-### mapArgs
-> `addMapArgs(callback: Function)`
-> `callback(name: String, idx: int, arr: Array)`
-
-This maps `arguments` before being passed to `toCode`. Useful for converting types, flags, etc. to the corresponding index number.
-
-Each `argument` is surrounded by `""`.
-
-Multiple can be added to the `FunctionInfo` by calling `addMapArgs`. The order they are added is the order of processing.
-
----
-### toCode
-> `toCode(identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
-
-This changes how the code written.
-
-`[b|This is bold text]` normally turns into `b("This is bold text")`
-
-Since `toCode` was supplied, it becomes `"<b>This is bold text</b>"`
-
-> `My name is [pc.name]`
-
-```
-"My name is [pc.name]"
-```
-> `[pc.hasPerk HoneyPot]`
-```
-pc.hasPerk("HoneyPot")
-```
----
-### getDesc/setDesc
-This sets the description that will be displayed in the editor.
 
 ---
 ### includeResults
@@ -200,14 +170,10 @@ Normally, they are called `func.apply(self, args)`, but this changes it to `func
 
 *Note: `apply` spreads `args` over the paramters. `call` does not spread.*
 
+## CodeMap
 ---
-### identityOverride
-Setting this overrides the `identity` used when generating code.
+> `function (identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
 
-Example:
-> Override is `taint()`.
+`CodeMap` classes must mirror `Wrapper` classes.
 
-> `[pc.taintIs 5|5|not 5]`
-```
-(pc.taint() === 5 ? "5" : "not 5")
-```
+The functions in these classes transform the `parser` into `code`.
