@@ -4,9 +4,9 @@ package editor.Lang.Interpret {
     import editor.Lang.TextRange;
     
     public class Interpreter {
-        public static const FUNC_INFO_STRING: String = '__info';
         private var errors: Vector.<LangError>;
         private var globals: Object;
+        private var globalInfo: Object;
 
         /**
          * Joins the values of a node's children with a "."
@@ -45,9 +45,10 @@ package editor.Lang.Interpret {
          * @param globals The memory/object to access
          * @return
          */
-        public function interpret(node: Node, globals: Object): InterpretResult {
+        public function interpret(node: Node, globals: Object, globalInfo: Object): InterpretResult {
             this.errors = new Vector.<LangError>();
             this.globals = globals;
+            this.globalInfo = globalInfo;
             var output: *;
             try {
                 output = this.processNode(node);
@@ -148,9 +149,9 @@ package editor.Lang.Interpret {
         private function evalRetrieveNode(node: RetrieveNode): Product {
             var values: Array = node.children.map(this.processChildren);
             var obj: * = this.globals;
+            var infoObj: * = this.globalInfo;
             var name: String = '';
 
-            var infoObj: *;
             var identity: String;
             var parentObj: *;
             var caps: Boolean = false;
@@ -179,9 +180,9 @@ package editor.Lang.Interpret {
                     );
                 }
 
-                // Check for <name>__info
-                if (idx === values.length - 1 && (identity + FUNC_INFO_STRING) in obj) {
-                    infoObj = obj[identity + FUNC_INFO_STRING];
+                // Get info
+                if (typeof infoObj === 'object' && identity in infoObj) {
+                    infoObj = infoObj[identity];
                 }
 
                 parentObj = obj;
@@ -268,29 +269,17 @@ package editor.Lang.Interpret {
             var resultValue: * = retrieve.value.value;
 
             if (typeof resultValue === 'function') {
-                // Error checking
-                errorStart = this.errors.length;
-
                 // Validate args and results
-                if (retrieve.value.info && retrieve.value.info.argResultValidator && retrieve.value.info.argResultValidator.length > 0) {
-                    for each (var validator: * in retrieve.value.info.argResultValidator) {
-                        const validResult: * = validator(argsValueArr, resultsValueArr);
-                        if (validResult != null) {
-                            this.createError(node.range, '"' + identifier + '" ' + validResult);
-                            break;
-                        }
+                if (retrieve.value.info && typeof retrieve.value.info === 'function') {
+                    const validResult: * = retrieve.value.info(argsValueArr, resultsValueArr);
+                    if (validResult != null) {
+                        this.createError(node.range, '"' + identifier + '" ' + validResult);
+                        return new Product(new TextRange(node.range.start, node.range.start), '');
                     }
                 }
 
-                // Return on error
-                if (errorStart !== this.errors.length)
-                    return new Product(new TextRange(node.range.start, node.range.start), '');
-
                 // Evaluate
-                if (retrieve.value.info && retrieve.value.info.includeResults)
-                    resultValue = resultValue.call(retrieve.value.parent, argsValueArr, resultsValueArr);
-                else
-                    resultValue = resultValue.apply(retrieve.value.parent, argsValueArr);
+                resultValue = resultValue.apply(retrieve.value.parent, argsValueArr);
 
                 if (resultValue == null) {
                     this.createError(node.range, '"' + identifier + '" is ' + resultValue);

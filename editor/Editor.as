@@ -3,6 +3,7 @@ package editor {
     import classes.GameData.*;
     import classes.ShittyShips.Casstech;
     import editor.Game.CodeMap.TiTSCodeMap;
+    import editor.Game.Info.TiTSInfo;
     import editor.Game.Wrapper.TiTSWrapper;
     import editor.Display.Components.Button;
     import editor.Display.EditorUI;
@@ -35,7 +36,7 @@ package editor {
             tits.userInterface.resetPCStats();
             tits.shipDb.NewGame();
 
-            editorUI = new EditorUI(new Evaluator(new TiTSWrapper(tits), new TiTSCodeMap(tits)));
+            editorUI = new EditorUI(new Evaluator(new TiTSWrapper(tits), new TiTSInfo(tits), new TiTSCodeMap(tits)));
             editorUI.x = 0;
             editorUI.y = 0;
             editorUI.nsWidth = stage.stageWidth;

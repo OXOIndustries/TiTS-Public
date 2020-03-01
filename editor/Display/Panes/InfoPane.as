@@ -72,13 +72,14 @@ package editor.Display.Panes {
             // if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
             //         text += ' - ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
             var text: String = key;
-            if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
-                    text += ': ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
+            // if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
+            //         text += ': ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
             return text;
         }
 
         private function isFuncInfo(name: String): Boolean {
-            return name.slice(name.length - Interpreter.FUNC_INFO_STRING.length) == Interpreter.FUNC_INFO_STRING;
+            // return name.slice(name.length - Interpreter.FUNC_INFO_STRING.length) == Interpreter.FUNC_INFO_STRING;
+            return false;
         }
 
         private function startsWith(str: String, test: String): Boolean {

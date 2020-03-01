@@ -24,20 +24,23 @@ package editor {
         private var result: Object;
 
         private var globalObj: Object;
+        private var infoObj: Object;
         private var codeMapObj: Object;
 
-        public function Evaluator(globalObj: Object, codeMapObj: Object) {
+        public function Evaluator(globalObj: Object, infoObj: Object, codeMapObj: Object) {
             this.globalObj = globalObj;
+            this.infoObj = infoObj;
             this.codeMapObj = codeMapObj;
             this.eval('');
         }
 
         public function get global(): Object { return this.globalObj; }
+        public function get info(): Object { return this.infoObj; }
         public function get codeMap(): Object { return this.codeMapObj; }
 
         public function eval(text: String): void {
             parserResult = parser.parse(text);
-            interpretResult = interpreter.interpret(parserResult.root, this.globalObj);
+            interpretResult = interpreter.interpret(parserResult.root, this.globalObj, this.infoObj);
             toCodeResult = codifier.interpret(parserResult.root, this.codeMapObj);
             errors = parserResult.errors.concat(interpretResult.errors, toCodeResult.errors);
             debugStr = debugLexer(text) + debugParser() + debugRanges();
