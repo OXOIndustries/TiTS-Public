@@ -69,9 +69,9 @@
 	import classes.Items.Upgrades.*;
 
 	import classes.Parser.ParseEngine;
-    import editor.Descriptors.TiTSDescriptor;
+    import editor.Game.Wrapper.TiTSWrapper;
+    import editor.Game.Info.TiTSInfo;
     import editor.Lang.Interpret.Interpreter;
-    import editor.Lang.Lex.Lexer;
     import editor.Lang.Parse.Parser;
 
 	import classes.DataManager.DataManager;
@@ -649,10 +649,10 @@
 		public var gameOverEvent:Boolean;
 
 		public var parser:ParseEngine;
-        public const lexer: Lexer = new Lexer();
         public const parser2: Parser = new Parser();
         public const interpreter: Interpreter = new Interpreter();
-        public var titsDescriptor: TiTSDescriptor;
+        public var titsWrapper: TiTSWrapper;
+        public var titsInfo: TiTSInfo;
 
 		public var dataManager:DataManager;
 		public var userInterface:GUI;
@@ -743,7 +743,8 @@
 			shipLocation = "SHIP HANGAR";
 
 			parser = new ParseEngine(this, TiTS_Settings);
-            titsDescriptor = new TiTSDescriptor(this);
+            titsWrapper = new TiTSWrapper(this);
+            titsInfo = new TiTSInfo(this);
 
 			flags = new Dictionary();
 			

@@ -7,9 +7,8 @@ package classes.Engine.Interfaces
 	import classes.kGAMECLASS;
 	public function ParseText(msg:String):String
 	{
-        const tokens: * = kGAMECLASS.lexer.lex(msg);
-        const parserResult: * = kGAMECLASS.parser2.parse(tokens, msg);
-        const interpretResult: * = kGAMECLASS.interpreter.interpret(parserResult.root, kGAMECLASS.titsDescriptor);
+        const parserResult: * = kGAMECLASS.parser2.parse(msg);
+        const interpretResult: * = kGAMECLASS.interpreter.interpret(parserResult.root, kGAMECLASS.titsWrapper, kGAMECLASS.titsInfo);
 
         var errorText: String = '';
         for each (var error: * in parserResult.errors)
