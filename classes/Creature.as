@@ -5202,9 +5202,15 @@
 		{
 			var teaseSkill:Number = libido();
 			if(hasPerk("Ice Cold")) teaseSkill = (100-libido());
+
+			//Prorate for level, because sucking ass at this blows.
+			teaseSkill = (teaseSkill / (level * 5)) * 100;
+
 			//Cap Dat Shiiiiit
 			if(teaseSkill > 100) teaseSkill = 100;
 			else teaseSkill = Math.round(teaseSkill);
+
+
 			return teaseSkill;
 		}
 		public function teaseResistSkill():int
