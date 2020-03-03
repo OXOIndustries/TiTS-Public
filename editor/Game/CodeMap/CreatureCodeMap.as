@@ -1,10 +1,4 @@
 package editor.Game.CodeMap {
-    import classes.GLOBAL;
-
-    /**
-     * This is used to limit the interpreter's access
-     * Mainly taken from getDesc in Creature
-     */
     public class CreatureCodeMap {
         // Old parser are automatically converted
         // public const cockOrStrapon: Function = ToCode.oldParser;
@@ -681,13 +675,13 @@ package editor.Game.CodeMap {
 
         // New parsers
         // Lookup
-        private function nameToIndex(key: String, name: String): int {
-            return GLOBAL[key].indexOf(name.charAt(0).toLocaleUpperCase() + name.slice(1));
+        private function nameToIndex(key: String, name: String): String {
+            return 'GLOBAL.' + key.substr(0, key.lastIndexOf('_') + 1) + name.toLocaleUpperCase();
         }
 
         private function mapNameToIndex(key: String): Function {
             // Each item is surrounded by ""
-            return function (name: String, idx: int, arr: Array): int {
+            return function (name: String, idx: int, arr: Array): String {
                 return nameToIndex(key, name.slice(1, name.length - 1));
             }
         }
