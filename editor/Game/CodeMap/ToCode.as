@@ -21,8 +21,12 @@ package editor.Game.CodeMap {
                 else
                     code += '""';
                 code += ' : ';
-                if (idx + 1 === args.length)
-                    code += '""';
+                if (idx + 1 === args.length) {
+                    if (idx + 1 <= results.length)
+                        code += results[idx + 1];
+                    else
+                        code += '""';
+                }
             }
             for (idx = 0; idx < args.length; idx++)
                 code += ')';
