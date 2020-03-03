@@ -33,9 +33,6 @@ public function biancaVDayHook():Boolean
 	if(pc.legCount == 1 || !pc.hasGenitals()) return false;
 	//Cooldown.
 	if(pc.hasStatusEffect("BiancaVDRejectCD")) return false;
-	//Late at night only! - FEN NOTE: Cut this. Let's make the event actually attainable.
-	//Fen note: Will wants it to stay
-	if(hours < 20) return false;
 	//Need "Eat Her Out Unlocked":
 	if(flags["BIANCA_SEXED"] < 5 || biancaFamiliarity() < 49) return false;
 	//Once a year only!
@@ -86,6 +83,14 @@ public function biancaVDayStart():void
 		else if(getPlanetName().toLowerCase() == "myrellion") output("\n\nThe DMZ is never quiet. Rushers, Myr, and U.G.C officials wander the neutral junction in force. Restless tension.");
 		output(" Roads curve in every direction, promising vague flickers of discovery. When you focus on it, you can barely hear yourself think. Brushing shoulders with others is the way of things, but certain questions are raised when one gently grabs your [pc.arm] and pulls you out of the traffic.");
 	}
+	// Bianca non-Crew WORK HOURS, load the 'bianca_work' bust for this sequence
+	else if(hours < 20)
+	{
+		if(getPlanetName().toLowerCase() == "mhen'ga") output("\n\nEsbeth is alive with activity - being one of the very first planets encountered in the Rush, it still sees a great swell of activity that no amount of additional space can keep up with.");
+		else if(getPlanetName().toLowerCase() == "tarkus") output("\n\nRaskvel are active at all times. Day, night, there’s no discernible difference in the crowds of bunny-eared lizards peddling scrap to visiting Rushers.");
+		else if(getPlanetName().toLowerCase() == "myrellion") output("\n\nHundreds of restless souls sweep through Myrellion’s DMZ on a constant basis, brushing shoulders between a hodgepodge of rest spots wedged into each other. Myr, off-worlders, and others.");
+		output(" Your path could take you in any number of directions already being tread. When you think about the chaos of it, it’s easy to lose yourself in the cacophony. Knocking arms with others is inevitable, but having someone grab you aside is cause for concern.");
+	}
 	// Bianca Is Crew; load the ‘bianca_work’ bust for this sequence.
 	else
 	{
@@ -100,11 +105,16 @@ public function biancaAmbushesYouForVDayOrSomeShit():void
 {
 	clearOutput();
 	showBiancaVDay();
-	output("You know who your ‘assailant’ is before she pulls the red hood down. Slitted, glowing purple eyes shine through a pair of eyeglasses, and a lovely length of golden-blonde hair spills over the tall woman’s shoulders. <i>“[pc.name],”</i> Bianca smiles warmly. <i>“I apologize if I’ve startled you. ");
+
+	//biancaIsCrew,orDuringWorkHours:
+	if(biancaIsCrew() || hours < 20) output("You recognize her in a flash.");
+	else output("You know who your ‘assailant’ is before she pulls the red hood down.");
+	output(" Slitted, glowing purple eyes shine through a pair of eyeglasses, and a lovely length of golden-blonde hair spills over the tall woman’s shoulders. <i>“[pc.name],”</i> Bianca smiles warmly. <i>“I apologize if I’ve startled you. ");
 	if(flags["BIANCA_VDAYS"] != undefined) output("Just like last time, right? I hope it is not a problem.");
+	else if(hours < 20) output("I usually work at this time, but I thought this surprise would be more... meaningful");
 	else output("I would be, in your shoes, but I didn’t want to draw too much attention");
 	output(". May I ask you to walk with me?");
-	if(flags["BIANCA_VDAY_DECLINED"] != undefined) output(" I understand you were previously unavailable, but perhaps... tonight? Hehe...");
+	if(flags["BIANCA_VDAY_DECLINED"] != undefined) output(" I understand you were previously unavailable, but perhaps... " + (hours < 17 ? "today":"tonight") + "? Hehe...");
 	output("”</i> Dr. Ketria knits her fingers at her waist, tilting her head, a hopeful smile playing upon her lips. Both vulpine ears twitch, listening intently.");
 	IncrementFlag("BIANCA_VDAYS");
 	flags["BIANCA_VDAY_YEAR"] = getRealtimeYear();
@@ -492,7 +502,7 @@ public function oralFromBiancaForDickyWickies():void
 	else if((pc.cocks[0].cType == GLOBAL.TYPE_CANINE || pc.cocks[0].cType == GLOBAL.TYPE_VULPINE) || (pc.hasKnot() && pc.cocks[0].hasFlag(GLOBAL.FLAG_TAPERED)))
 	{
 		knotChecked = true;
-		output("\n\n<i>“Nnmyessssss...”</i> Bianca huffs your canid scent with innate enthusiasm, looking more happy to be pleasuring the throbbing [pc.cockColor] mass of your pointed hound-cock than she is serving perverted Rushers at her field clinic. <i>“You’re not just my valentine, [pc.name], not tonight...”</i> Capturing your taper between the plush peaks of her lips, gravity drags her firmed mouth down your shaft until it pokes the rear of her throat. Ascending and withdrawing, the knot-idolizing fox clutches the radius of your spunk-sealing girth, content to smear herself into it, wrap it in her lips, and hold it there, enjoying the woodsy musk it gives off. <i>“You’re my alpha...”</i> Only after kissing it about a dozen times does she finally move upwards. <i>“And you’re going to breed my mouth like one. I’ll make sure you get to feel your knot pressing against my lips, breaking me apart!”</i>");
+		output("\n\n<i>“Nnmyessssss...”</i> Bianca huffs your canid scent with innate enthusiasm, looking more happy to be pleasuring the throbbing [pc.cockColor] mass of your pointed hound-cock than she is serving perverted Rushers at her field clinic. <i>“You’re not just my valentine, [pc.name], not " + (hours < 17 ? "today":"tonight") + "...”</i> Capturing your taper between the plush peaks of her lips, gravity drags her firmed mouth down your shaft until it pokes the rear of her throat. Ascending and withdrawing, the knot-idolizing fox clutches the radius of your spunk-sealing girth, content to smear herself into it, wrap it in her lips, and hold it there, enjoying the woodsy musk it gives off. <i>“You’re my alpha...”</i> Only after kissing it about a dozen times does she finally move upwards. <i>“And you’re going to breed my mouth like one. I’ll make sure you get to feel your knot pressing against my lips, breaking me apart!”</i>");
 	}
 	// pc Feline Cock
 	else if(pc.cocks[0].cType == GLOBAL.TYPE_FELINE || pc.cocks[0].hasFlag(GLOBAL.FLAG_NUBBY))
@@ -975,7 +985,9 @@ public function finishUpWithBianca():void
 	clearOutput();
 	//By custom request.
 	showBust("BIANCA_LINGERIE");
-	output("It’s well past midnight when you’ve both recovered from your tryst, sweaty, exhausted, and mostly (seriously, where does she get all the wet naps?) cleaned up. The inexpressible joy of being with Bianca under the light of" + (biancaIsCrew() ? " an artificial moon":" a moon") + " makes the inevitable parting much more difficult. But then she’s there to kiss you on the forehead, rub around your [pc.ear], and whisper to you her plans for future naughtiness. You listen closely to the kinkiness described, sharing the same affection.");
+	if(hours < 4) output("It’s well past midnight");
+	else output("It’s well into the evening");
+	output(" when you’ve both recovered from your tryst, sweaty, exhausted, and mostly (seriously, where does she get all the wet naps?) cleaned up. The inexpressible joy of being with Bianca under the light of" + (biancaIsCrew() ? " an artificial moon":" a moon") + " makes the inevitable parting much more difficult. But then she’s there to kiss you on the forehead, rub around your [pc.ear], and whisper to you her plans for future naughtiness. You listen closely to the kinkiness described, sharing the same affection.");
 	output("\n\n<i>“Thank you again, [pc.name],”</i> Bianca says, tracing a finger around your jaw, enjoying the ways you react to her gentle caresses. <i>“This has done more for me than I can be expected to explain in a succinct time frame.”</i> She giggles. <i>“Now, I think we should both retire for the night, yes?”</i> Her head tilts, and one ear lowers.");
 
 	// bianca Is Crew
@@ -1018,10 +1030,10 @@ public function declineTheKinkyWithTheStinky():void
 {
 	clearOutput();
 	showBiancaVDay();
-	if(pc.isNice()) output("Not wanting to turn her down bluntly, you instead sweep Bianca into a tight hug and give her a kiss on the lips. <i>“I can’t tonight,”</i> you say. You know it will hurt her - it doesn’t matter how much, but it doesn’t have to be done flippantly. <i>“But next time? Let’s make time.”</i>");
-	else if(pc.isMischievous()) output("You give a sulky sigh that Bianca’d be remiss to not understand. Before saying anything, you grab the sides of her head and give her a kiss goodnight, petting her ears. <i>“I’m sorry, doc. I won’t be needing that service tonight. But next time?”</i> You smile, and kiss again. <i>“Count on it.”</i>");
-	else output("<i>“I-”</i> You start, but realize the tone you’d chosen would have been genuinely harmful. For Bianca, you clear your throat and bring her into a firm hug, sheltering" + (pc.tallness < 80 ? " yourself in her body":" her in your body") + ". <i>“It can’t be tonight, but there’ll be another time,”</i> you murmur, some unhappiness visible in your expression.");
-	output("\n\nBianca swallows and nods after a pregnant pause. <i>“I understand, [pc.name]. Besides,”</i> she grins, <i>“I had fun tonight. Please allow me to accompany you back to your ship, at least.”</i>");
+	if(pc.isNice()) output("Not wanting to turn her down bluntly, you instead sweep Bianca into a tight hug and give her a kiss on the lips. <i>“I can’t " + (hours < 17 ? "today":"tonight") + ",”</i> you say. You know it will hurt her - it doesn’t matter how much, but it doesn’t have to be done flippantly. <i>“But next time? Let’s make time.”</i>");
+	else if(pc.isMischievous()) output("You give a sulky sigh that Bianca’d be remiss to not understand. Before saying anything, you grab the sides of her head and give her a kiss goodnight, petting her ears. <i>“I’m sorry, doc. I won’t be needing that service " + (hours < 17 ? "today":"tonight") + ". But next time?”</i> You smile, and kiss again. <i>“Count on it.”</i>");
+	else output("<i>“I-”</i> You start, but realize the tone you’d chosen would have been genuinely harmful. For Bianca, you clear your throat and bring her into a firm hug, sheltering" + (pc.tallness < 80 ? " yourself in her body":" her in your body") + ". <i>“It can’t be " + (hours < 17 ? "today":"tonight") + ", but there’ll be another time,”</i> you murmur, some unhappiness visible in your expression.");
+	output("\n\nBianca swallows and nods after a pregnant pause. <i>“I understand, [pc.name]. Besides,”</i> she grins, <i>“I still had fun tonight. Please allow me to accompany you back to your ship, at least.”</i>");
 	output("\n\nSure.");
 	clearMenu();
 	addButton(0,"Next",biancaStrongArmsYouOntoYourShipForSomeReason);
@@ -1033,7 +1045,7 @@ public function biancaStrongArmsYouOntoYourShipForSomeReason():void
 	showBiancaVDay();
 	output("The return trip to the [pc.ship] is uneventful, but oh-so romantic. You hold her arm the entire way, absolutely no consciousness that you aren’t some kind of big shot already, and not a Rusher-slash-corporate-scion trying to pull [pc.himHer]self up by the bootstraps. Kind words are exchanged between jabs of impish banter. At your destination, you go to let go of Bianca, but she simply pulls you into one last chocolate-flavored kiss.");
 	output("\n\n<i>“Good night, [pc.name]. We will see each other again soon. I know it.”</i> She pats you on the head, hugging you straight into her big warm boobs. <i>“I’ll be waiting. So please, be safe.”</i>");
-	output("\n\nShe lets go, the glow of her eyes streaking against the blackness, and vanishes around a corner.");
+	output("\n\nShe lets go, the glow of her eyes streaking, and vanishes around a corner.");
 	output("\n\nReaching into your pocket, you pull out the decorative letter she gave you, staring at it, taking in the demure scent that clings to it. Your past times with good company come rushing back in the moment.");
 	output("\n\nIt’s... empowering.");
 	output("\n\n(<b>Gained Key Item: Bianca’s Valentine Letter!</b>)");
@@ -1056,9 +1068,9 @@ public function turnDownBiancaz():void
 	clearOutput();
 	showBiancaVDay();
 	if(pc.isNice()) output("<i>“I’m sorry, Bianca. I don’t have the time right now. It’s a hectic day...”</i> you answer sadly, scratching your nape.");
-	else if(pc.isMischievous()) output("<i>“No can do, Bianca,”</i> you reply with a sigh. <i>“Tonight’s not good for me...”</i>");
+	else if(pc.isMischievous()) output("<i>“No can do, Bianca,”</i> you reply with a sigh. <i>“" + (hours < 17 ? "Today":"Tonight") + "’s not good for me...”</i>");
 	else output("<i>“I can’t right now.”</i> You shake your head.");
-	output("\n\nBianca takes the news strongly, not even the slightest miffed tic in her vulpine features. Her head bows respectfully. <i>“I understand. It is out of the blue, after all.”</i> The doctor touches your hand gently, gathering up your [pc.fingers] and squeezing. <i>“I would like to try again another night, if that’s okay. It is not important... but... it is important to me.”</i> Letting go, she steps back and pulls her hood back up. <i>“Please be safe, [pc.name],”</i> she murmurs, disappearing from view.");
+	output("\n\nBianca takes the news strongly, not even the slightest miffed tic in her vulpine features. Her head bows respectfully. <i>“I understand. It is out of the blue, after all.”</i> The doctor touches your hand gently, gathering up your [pc.fingers] and squeezing. <i>“I would like to try again another time, if that’s okay. It is not important... but... it is important to me.”</i> Letting go, she steps back and pulls her hood back up. <i>“Please be safe, [pc.name],”</i> she murmurs, disappearing from view.");
 	output("\n\n");
 	if(pc.isNice()) output("For some reason, you feel really bad right now. Best to perish the thought ASAP.");
 	else if(pc.isMischievous()) output("That knocked the wind out of her sails. No reason to linger here. Doesn’t matter how old you are, those emotions fester.");
