@@ -10,6 +10,7 @@ package editor.Lang.Tokens {
         public static const Pipe: int = 7;
         public static const LeftParen: int = 8;
         public static const RightParen: int = 9;
+        public static const Escape: int = 10;
         
         public static const Names: Array = [
             'EOS',
@@ -21,7 +22,8 @@ package editor.Lang.Tokens {
             'Dot',
             'Pipe',
             'LeftParen',
-            'RightParen'
+            'RightParen',
+            'Escape'
         ];
     }
 }

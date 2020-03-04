@@ -93,14 +93,21 @@ package editor.Lang.Parse {
             var start: TextPosition = this.createStartPostion();
             var subText: String = '';
             var type: int = this.lexer.peek();
-            while (
-                type !== TokenType.EOS &&
-                type !== TokenType.LeftBracket &&
-                type !== TokenType.RightBracket &&
-                type !== TokenType.Pipe
-            ) {
-                subText += this.lexer.getText();
-                type = this.lexer.advance();
+            infiniteLoop: while (true) {
+                switch (type) {
+                    case TokenType.EOS:
+                    case TokenType.LeftBracket:
+                    case TokenType.RightBracket:
+                        break infiniteLoop;
+
+                    case TokenType.Escape:
+                        type = this.lexer.advance();
+
+                    default:
+                        subText += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                }
             }
 
             if (subText.length === 0) return null;
@@ -344,6 +351,9 @@ package editor.Lang.Parse {
                             newlines += indentText.substr(indent);
                         break;
 
+                    case TokenType.Escape:
+                        type = this.lexer.advance();
+
                     default:
                         subText += newlines + this.lexer.getText();
                         newlines = '';
@@ -388,6 +398,8 @@ package editor.Lang.Parse {
                     case TokenType.Space:
                         if (groupStart == null)
                             break infiniteLoop;
+                    case TokenType.Escape:
+                        type = this.lexer.advance();
                     case TokenType.Text:
                     case TokenType.Dot:
                         subStr += this.lexer.getText();
