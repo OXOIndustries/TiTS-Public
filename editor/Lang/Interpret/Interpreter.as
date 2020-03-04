@@ -162,14 +162,14 @@ package editor.Lang.Interpret {
                 // Determine if capitalization is needed
                 if (idx === values.length - 1) {
                     lowerCaseIdentity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
-                    if (!(identity in obj) && lowerCaseIdentity in obj) {
+                    if (obj != null && !(identity in obj) && lowerCaseIdentity in obj) {
                         caps = true;
                         identity = lowerCaseIdentity;
                     }
                 }
 
                 // Error check
-                if (typeof obj !== 'object' || !(identity in obj)) {
+                if (obj == null || typeof obj !== 'object' || !(identity in obj)) {
                     this.createError(
                         node.range,
                         '"' + identity + '" does not exist' + (name ? ' in "' + name + '"' : '')

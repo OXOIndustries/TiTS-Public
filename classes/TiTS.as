@@ -758,7 +758,7 @@
 			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
-			inputManager = new InputManager(stage, false);
+			inputManager = new InputManager(this, false);
 			setupInputControls();
 			
 			initStephEps();

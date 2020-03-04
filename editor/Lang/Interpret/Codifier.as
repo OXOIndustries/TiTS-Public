@@ -54,7 +54,7 @@ package editor.Lang.Interpret {
             catch (err: Error) {
                 this.createError(node.range, err + '\n' + err.getStackTrace());
                 return new InterpretResult(
-                    '',
+                    '""',
                     [node.range],
                     this.errors
                 );
@@ -144,7 +144,7 @@ package editor.Lang.Interpret {
             }
             
             if (errorStart !== this.errors.length)
-                return '';
+                return '""';
 
             const retrieve: Array = this.codifyRetrieveNode(node.children[0]);
             const args: Array = this.codifyArgsNode(node.children[1]);
@@ -159,10 +159,10 @@ package editor.Lang.Interpret {
                 identity = retrieve[idx];
 
                 // Error check
-                if (typeof obj !== 'object' || !(identity in obj)) {
+                if (obj == null || typeof obj !== 'object' || !(identity in obj)) {
                     // Do not need to report error here
                     // This check already exists in the Interpreter
-                    return '';
+                    return '""';
                 }
 
                 obj = obj[identity];
@@ -177,7 +177,7 @@ package editor.Lang.Interpret {
                     node.range,
                     'cannot generate code for "' + identity + '"'
                 );
-                return '';
+                return '""';
             }
 
             return obj(name, args, results);
