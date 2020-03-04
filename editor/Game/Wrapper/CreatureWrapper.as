@@ -16,7 +16,7 @@ package editor.Game.Wrapper {
             this.ownerObj = ownerObj;
         }
 
-        protected function get owner(): Creature { return this.ownerObj.value; }
+        protected function get owner(): Creature { return this.ownerObj.value(); }
 
         // These are from getDescription in Creature
         public function get height(): String {

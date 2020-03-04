@@ -130,6 +130,10 @@ package editor.Lang.Lex {
                     this.pos++;
                     return TokenType.RightParen;
                 }
+                case TokenSymbol.Backslash: {
+                    this.pos++;
+                    return TokenType.Escape;
+                }
                 default: {
                     this.eatWhileNot(
                         TokenSymbol.Tab,
@@ -140,7 +144,8 @@ package editor.Lang.Lex {
                         TokenSymbol.Dot,
                         TokenSymbol.Pipe,
                         TokenSymbol.LeftParen,
-                        TokenSymbol.RightParen
+                        TokenSymbol.RightParen,
+                        TokenSymbol.Backslash
                     );
                     return TokenType.Text;
                 }

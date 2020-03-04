@@ -17,9 +17,9 @@ package editor.Game.Wrapper {
             this.game = game;
             this.charDesc = new Object();
 
-            this.targetDesc = new CreatureWrapper(new ObjectAccessor("target", this.game));
-            this.attackerDesc = new CreatureWrapper(new ObjectAccessor("attacker", this.game));
-            this.enemyDesc = new CreatureWrapper(new ObjectAccessor("enemy", this.game));
+            this.targetDesc = new CreatureWrapper(new ObjectAccessor(this.game, "target"));
+            this.attackerDesc = new CreatureWrapper(new ObjectAccessor(this.game, "attacker"));
+            this.enemyDesc = new CreatureWrapper(new ObjectAccessor(this.game, "enemy"));
 
             var descConstructor: *;
             for (var charKey: String in this.game.chars) {
@@ -32,7 +32,7 @@ package editor.Game.Wrapper {
                         default:
                             descConstructor = CreatureWrapper;
                     }
-                    this.charDesc[charKey] = new descConstructor(new ObjectAccessor(charKey, this.game.chars));
+                    this.charDesc[charKey] = new descConstructor(new ObjectAccessor(this.game, "chars", charKey));
                 }
             }
         }
