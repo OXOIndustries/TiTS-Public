@@ -38,7 +38,8 @@ package classes.Items.Armor.Unique
 			attack = 0;
 			defense = 3;
 			shields = 0;
-			sexiness = 5;
+			sexiness = 3;
+			resolve = 2;
 			critBonus = 0;
 			evasion = 8;
 			fortification = 0;

@@ -28,6 +28,7 @@ package classes.Items.Apparel
 			
 			basePrice = 800;
 			sexiness = 2;
+			resolve = 1;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_STRETCHY];
 			
