@@ -5204,7 +5204,8 @@
 			if(hasPerk("Ice Cold")) teaseSkill = (100-libido());
 
 			//Prorate for level, because sucking ass at this blows.
-			teaseSkill = (teaseSkill / (level * 5)) * 100;
+			//Fen note: Nahhh, leave as is.
+			//teaseSkill = (teaseSkill / (level * 5)) * 100;
 
 			//Cap Dat Shiiiiit
 			if(teaseSkill > 100) teaseSkill = 100;
@@ -6197,6 +6198,7 @@
 			if (hasPerk("Innocent Allure")) temp += perkv1("Innocent Allure");
 			if (hasPerk("True Doll")) temp += perkv2("True Doll");
 			if (hasStatusEffect("Mare Musk")) temp += 2;
+			temp += statusEffectv1("Iyla’s Milk");
 			//You cannot handle the Mango!
 			temp += statusEffectv1("The Mango");
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
@@ -22756,6 +22758,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					//+20 libidoMod
+					case "Iyla’s Milk":
+						if(requiresRemoval)
+						{
+							this.libidoMod -= 20;
+						}
+						break;
 					//+5 willpower, +15 libido
 					case "Xanose":
 						if(requiresRemoval)
