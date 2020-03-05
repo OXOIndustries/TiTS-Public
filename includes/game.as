@@ -2182,7 +2182,7 @@ public function insideShipEvents():Boolean
 		shekkaConfesesThatShesAddicted();
 		return true;
 	}
-	if(shekkaSpitAddicted() && !pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+	if(shekkaSpitAddicted() && !pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && !pc.hasPerk("Myr Venom"))
 	{
 		shekkaUnaddictionNotice();
 		return true;
