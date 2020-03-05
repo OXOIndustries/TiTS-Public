@@ -1236,6 +1236,7 @@ public function milodanCockWorship():void
 	clearOutput();
 	showMilodanMale(true);
 	author("William");
+	if(!inCombat()) setEnemy(new MilodanMale());
 	// HP Victory
 	if(enemy.HP() <= 1)
 	{
@@ -1647,7 +1648,12 @@ public function omegaLossToMiloMale2():void
 		pc.buttChange(enemy.cockVolume(0));
 	}
 	processTime(5*60);
-	CombatManager.genericLoss();
+	if(inCombat()) CombatManager.genericLoss();
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 //Bad End Escape:
 public function omegaBadEndEscape():void
