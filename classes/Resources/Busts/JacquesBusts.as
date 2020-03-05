@@ -613,7 +613,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/bell-isle_grunmann.png", mimeType = "image/png")]
 			public var Full_LOGO_BELL_ISLE_GRUNMANN:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/brightwater.png", mimeType = "image/png")]
-			public var Bust_LOGO_BRIGHTWATER:Class;
+			public var Full_LOGO_BRIGHTWATER:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/carver.png", mimeType = "image/png")]
 			public var Full_LOGO_CARVER:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/galactic_huntress.png", mimeType = "image/png")]
@@ -635,7 +635,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/nova_securities.png", mimeType = "image/png")]
 			public var Full_LOGO_NOVA_SECURITIES:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/paragon.png", mimeType = "image/png")]
-			public var Bust_LOGO_PARAGON:Class;
+			public var Full_LOGO_PARAGON:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/pyrite.png", mimeType = "image/png")]
 			public var Full_LOGO_PYRITE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/reaper.png", mimeType = "image/png")]
@@ -655,7 +655,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/ugc.png", mimeType = "image/png")]
 			public var Full_LOGO_UGC:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/utopian_skies.png", mimeType = "image/png")]
-			public var Bust_LOGO_UTOPIAN_SKIES:Class;
+			public var Full_LOGO_UTOPIAN_SKIES:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/xenogen.png", mimeType = "image/png")]
 			public var Full_LOGO_XENOGEN:Class;
 		}
