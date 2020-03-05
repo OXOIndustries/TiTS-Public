@@ -259,7 +259,7 @@ public function cynthiaSex(response:String = "intro"):void
 			output(" Soon you’ve got the cowgirl far too distracted by your oral attentions to even play with her breasts, clutching the sheets as you eat her out.");
 			output("\n\n<i>“Oooh! Ooh, [pc.name]!”</i>");
 			output("\n\n<i>“Moo for me, cowgirl,”</i> you say with a grin, stepping up your licking to pay more attention to her clit. Cynthia clenches as your tonguetip drills her nub, throwing her head back and bellowing so loudly you’re sure the neighbors must hear. By the time you pull away she’s left breathing heavily, her pussy drenched and her legs quivering with need.");
-			output("\n\nYou don’t make her wait a moment longer. [pc.oneCock] slides across her fur as you bring it to her womanhood, pushing in with a groan echoed by a crooning moo from the minotauress underneath you.");
+			output("\n\nYou don’t make her wait a moment longer. [pc.OneCock] slides across her fur as you bring it to her womanhood, pushing in with a groan echoed by a crooning moo from the minotauress underneath you.");
 			
 			var cIdx:int = rand(pc.cocks.length);
 			

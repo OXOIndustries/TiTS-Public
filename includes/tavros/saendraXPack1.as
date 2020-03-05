@@ -2073,7 +2073,7 @@ public function zilCallGirlFuckHer(inAppt:Boolean = false):void
 	else output("waspy alien");
 	output(" moans and squirms under you, her muscles clenching hard around your [pc.cock] as you thrust and suck, trapping her in constant waves of pleasure that leave her screaming. Her vaginal muscles relax their deathgrip on your [pc.cock], letting you start to move a little faster. You take the opportunity with gusto, rearing back and hammering home, starting to pound the ");
 	if (CodexManager.entryViewed("Zil")) output("zil-");
-	else output(" call ");
+	else output("call ");
 	output("girl’s hole until the cramped quarters echo with the sounds for flesh smacking wetly against flesh, mixing with her moans to form a resounding symphony of pleasure.");
 	output("\n\nEvery sense you have is assailed with the wonders of your lover’s body: the feeling of her breasts and pussy underneath you, the taste of her honey on your [pc.tongue], the sounds of her shrieks and your feral grunts, the sight of her throwing her head back holding you close, the smells of sex and her sweet honey-laden orgasm as ceaseless as your pounding pushing her to the very edge. Her climax brings out your own as her body goes wild, flooding your mouth with unbidden gouts of honey and clenching hard around your cock, trapping you");
 	if (pc.balls > 0) output(" balls");

@@ -272,7 +272,7 @@ public function useMiscreantManor2():void
 	//New Texan Farmer 1st
 	else if(inCunt == 4)
 	{
-		output("\n\n<i>“Well, looks like another curious fillie wound up in Miscreant Manor.”</i>");
+		output("\n\n<i>“Well, looks like another curious filly wound up in Miscreant Manor.”</i>");
 		output("\n\nYou look up and spy a grinning New Texan farmer, his horns nearly as broad as his stacked shoulders. He’s wearing nothing but overalls, giving you a great look at his chiseled chest when he reaches out to pat your head, surprisingly gentle despite the calloused strength of his fingers.");
 		output("\n\n<i>“Don’t you worry your " + pc.mf("ugly","pretty") + " little head. You’re gonna leave here a-grinnin’, that’s fer sure.”</i> The bull fumbles with one of the buttons on his overalls, his fingers too thick to easily work the small fastener. <i>“Stupid things.”</i> Snorting in irritation, he gives it a small tug, and the button snaps, spinning off into the grass. Another short tug later, and his overalls are falling down around his ankles, revealing a half-hard cock nearly as thick as your forearm, half hidden behind coarse pubic hair.");
 		output("\n\nHe smells like sweat and sex, like he stumbled fresh out of his favorite cow-girl and on to the road a few minutes ago, the intermingled scents flooding your nose with enough Treatment-enhanced pheromones to flush your skin and make your vision swim. Saliva fills your mouth and bathes your tongue, and it isn’t until the hunky hick is wiping drool from your chin that you realize just how badly you want his dick in your mouth.");
