@@ -465,7 +465,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 		{
 			baseDamage *= 0.5;
 		}
-		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES))
+		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES) && tPC.race() != "frostwyrm")
 		{
 			baseDamage *= 1.25;
 		}
