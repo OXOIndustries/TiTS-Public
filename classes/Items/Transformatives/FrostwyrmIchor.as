@@ -271,7 +271,7 @@ package classes.Items.Transformatives
 			if (blueginas > 0)
 			{
 				author("Couch & B");
-				output(", down to tinging your " + (blueginas == 1 ? "vagina" : "vaginas") + " with a chilly blue hue");
+				output(", spreading down to your " + (blueginas == 1 ? "vagina" : "vaginas") + " with a chilly blue hue");
 			}
 			
 			output(", leaving you with a permanently frostbitten look.");
@@ -389,7 +389,7 @@ package classes.Items.Transformatives
 
 			//9999 check tail correctly
 			if (!pc.hasTail()) output("\n\nYou feel a pressure just above your [pc.ass], looking back to see a lump growing there. It soon bursts forth as a full-fledged tail,");
-			else output("\n\nYou feel [pc.tails] turn cold and stiff, drooping and thickening behind you. You look back to see a new tail forming, a thick tube of muscle");
+			else output("\n\nYou feel your [pc.tails] turn cold and stiff, drooping and thickening behind you. You look back to see a new tail forming, a thick tube of muscle");
 			output(" covered in thick, rough scales and edged with short spikes along its top and bundled into a ball at its tip, better for bludgeoning than for piercing. You flick it back and forth, getting used to <b>your new frostwyrm tail</b>.");
 			
 			pc.clearTailFlags();
@@ -435,7 +435,7 @@ package classes.Items.Transformatives
 		//Grow Slit:
 		private function growSlit(pc:Creature):void
 		{
-			output("\n\nYou think the cold might be getting to you as [pc.eachCock] shrinks, before noticing the tugging inward sensation in your groin. You reach down in a panic, but discover that thankfully you haven’t lost your manhood. Instead " + (pc.hasCocks() ? "they’re" : "it’s") + " contained in a new internal slit that’s practically invisible when sealed shut. Well, that’s certainly going to open up some new clothing options. You take some time to ponder the possibilities as you get used to <b>your new genital slit</b>.");
+			output("\n\nYou think the cold might be getting to you as [pc.eachCock] shrinks, before noticing the tugging inward sensation in your groin. You reach down in a panic, but discover that thankfully you haven’t lost your manhood. Instead, " + (pc.hasCocks() ? "they’re" : "it is") + " contained in a new internal slit that’s practically invisible when sealed shut. Well, that’s certainly going to open up some new clothing options. You take some time to ponder the possibilities as you get used to <b>your new genital slit</b>.");
 			
 			pc.createStatusEffect("Genital Slit");
 		}
@@ -483,7 +483,7 @@ package classes.Items.Transformatives
 		{
 			author("B");
 		
-			output("\n\nYou feel what you can only describe has a new vacancy in between your legs");
+			output("\n\nYou feel what you can only describe as a new vacancy in between your " + (pc.legCount > 1 ? "[pc.legs]":"[pc.thighs]"));
 			if (pc.hasCock()) output(", just beneath and a little behind your [pc.cock]");
 			output(". You dip your fingers at where your taint once was, to find a new, wet, pliable hole that sends pleasurable shivers up your spine whenever you give it a little rub. Just a little bit north from it, you find a little nub of flesh that makes you gasp in delight with each flick. <b>You now have a vagina!</b>");
 			
@@ -503,7 +503,7 @@ package classes.Items.Transformatives
 					validCunts.push(vIdx);
 			vIdx = RandomInCollection(validCunts);
 			
-			output("\n\nThe chill settles in your [pc.vagina " + vIdx + "], which squirms in response, muscles clenching and unclenching on their own as they strengthen and multiply. You pull your pussy lips apart to find the color has become an tinged bluish-pink, filled with dozens of new folds to grab every little bump and ridge on a male’s cock. Nestled within your lips is a tight blue nub of a clit, perfectly angled for getting ground against while being fucked from behind. Is this what a frostwyrm has between their legs? You slip a finger inside and lick your lips at how hard it is to pull it out, those new muscles clamping down and refusing to let go. You can’t wait to get this bad girl milking someone’s dick. <b>You’ve got a frostwyrm cunt</b>.");
+			output("\n\nThe chill settles in your [pc.vagina " + vIdx + "], which squirms in response, muscles clenching and unclenching on their own as they strengthen and multiply. You pull your pussy lips apart to find the color has become tinged bluish-pink, filled with dozens of new folds to grab every little bump and ridge on a male’s cock. Nestled within your lips is a tight blue nub of a clit, perfectly angled for getting ground against while being fucked from behind. Is this what a frostwyrm has between their legs? You slip a finger inside and lick your lips at how hard it is to pull it out, those new muscles clamping down and refusing to let go. You can’t wait to get this bad girl milking someone’s dick. <b>You’ve got a frostwyrm cunt</b>.");
 			
 			pc.shiftVagina(vIdx, GLOBAL.TYPE_FROSTWYRM);
 		}
