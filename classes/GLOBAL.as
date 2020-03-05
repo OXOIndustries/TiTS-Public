@@ -1188,6 +1188,7 @@
 			"Sex Toy",
 			"Piercing",
 			"Cockwear",
+			"Tent",
 		];
 
 		//CHARACTERS
