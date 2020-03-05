@@ -5216,7 +5216,7 @@
 		}
 		public function teaseResistSkill():int
 		{
-			return Math.round((willpower() / (5 * level))*100);
+			return (willpower());
 		}
 		public function lustDef():Number
 		{
