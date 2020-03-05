@@ -1399,7 +1399,7 @@ public function loseToTheSexdoll():void
 	output("\n\nRolling her broad hips, the herm bats her [enemy.cock] to your [pc.face]. The first smacks to your cheek are loud, disciplinary, and the subsequent, lilting slaps are quiet and wet. <i>“There! I hope you enjoyed your punishment.”</i> Hefting her [enemy.cockNoun], the salacious slut rubs the [enemy.cockHead] through the glaze of slime");
 	if(pc.hasFur()) output(" matting your [pc.furColor] fur");
 	else output(" soaking your [pc.skinFurScales]");
-	output(", riding its own violet messiness. <i>“Now we can think about fucking...”</i> Heavy ardor deepens her voice into a series of desirous husks.”</i>...How good sex feels when you get to have it...”</i> Flawless hips gyrate in a hula-hoop motion, spreading pheromones all over. <i>“...And how awesome it feels when you finally figure out what pleasure <b>reeeaaaallly</b> is,”</i> her bright eyes gleam, <i>“especially when you’ve got me to tell you all about it, [pc.raceCute]-[pc.boyGirl]!”</i>");
+	output(", riding its own violet messiness. <i>“Now we can think about fucking...”</i> Heavy ardor deepens her voice into a series of desirous husks. <i>“...How good sex feels when you get to have it...”</i> Flawless hips gyrate in a hula-hoop motion, spreading pheromones all over. <i>“...And how awesome it feels when you finally figure out what pleasure <b>reeeaaaallly</b> is,”</i> her bright eyes gleam, <i>“especially when you’ve got me to tell you all about it, [pc.raceCute]-[pc.boyGirl]!”</i>");
 
 	// pc Lost To Vulpatra - Cutesy hypno facefucks
 	if(enemy.hasCock(GLOBAL.TYPE_VULPINE))
