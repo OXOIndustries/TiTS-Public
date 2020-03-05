@@ -1583,7 +1583,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" They fold behind " + (target == pc ? "you":"[target.himHer]") + " neatly and compactly, the ends in line with the back of " + (target == pc ? "your":"[target.hisHer]") + " lower calves. They let " + (target == pc ? "you":"[target.himHer]") + " hover for a short time and glide easily, although true flight is deceptively difficult to maintain.");
 				break;
 			case GLOBAL.TYPE_FROSTWYRM:
-				outputRouter(" " + (target.wingCount == 2 ? "a pair of":num2Text(int(target.wingCount))) + " majestic reptilian wings sprout from " + (target == pc ? "your":"[target.hisHer]") + " back. The arms are covered in [target.scaleColor] scales, each bone tipped with a small talon, while the membranes are a glittering silver shade that produces a mesmerizing display in the light. Thanks to " + (target == pc ? "your":"[target.hisHer]") + " smaller size, they have no trouble bearing " + (target == pc ? "you":"[target.himHer]") + " aloft even without the frostwyrm’s psionic abilities.");
+				outputRouter(" " + (target.wingCount == 2 ? "a pair of":num2Text(int(target.wingCount))) + " majestic reptilian wings sprout from " + (target == pc ? "your":"[target.hisHer]") + " back. Your arms are covered in [target.scaleColor] scales, each bone tipped with a small talon, while the membranes are a glittering silver shade that produces a mesmerizing display in the light. Thanks to " + (target == pc ? "your":"[target.hisHer]") + " smaller size, they have no trouble bearing " + (target == pc ? "you":"[target.himHer]") + " aloft even without the frostwyrm’s psionic abilities.");
 				break;
 			case GLOBAL.TYPE_JANERIA:
 				outputRouter(" " + (target.wingCount == 4 ? "a quartet of":num2Text(int(target.wingCount))) + " large [target.skinColor] tentacles sprout from just behind " + (target == pc ? "your":"[target.hisHer]") + " shoulders, curling upward before drooping down so that the tips hang just a few inches above the ground. Each ends in a huge diamond-shaped pad, featureless but lightly sticky to the touch on one side while smooth and slippery on the other. When you curl the sticky sides of the pads inward, the result looks distinctly phallic.");
@@ -2943,9 +2943,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_FROSTWYRM:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are thick and jointed in two places, giving " + (target == pc ? "you":"[target.himHer]") + " a ");
-			if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) outputRouter(" digitigrade");
-			else if (target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) outputRouter(" plantigrade");
-			else outputRouter(" strange"); //Just in case
+			if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) outputRouter("digitigrade");
+			else if (target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) outputRouter("plantigrade");
+			else outputRouter("strange"); //Just in case
 			outputRouter(" appearance. They’re covered in rough, thick [target.scaleColor] scales so sharp that they’re practically spiked, while " + (target == pc ? "your":"[target.hisHer]") + " feet sport long, sharp talons for toes.");
 			break;
 		case GLOBAL.TYPE_JANERIA:
