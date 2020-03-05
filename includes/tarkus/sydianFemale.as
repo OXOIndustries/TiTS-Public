@@ -376,7 +376,7 @@ public function sydianFemalePCVictory():void
 	
 	clearMenu();
 
-	if (pc.lust() < 33)
+	/*if (pc.lust() < 33)
 	{
 		output("\n\nYou’re not aroused enough to take advantage of her, though.");
 
@@ -385,43 +385,43 @@ public function sydianFemalePCVictory():void
 		addDisabledButton(2, "Give Throbb");
 		addDisabledButton(3, "Call Others");
 		addDisabledButton(4, "Gentle Fuck");
+	}*/
+	//else
+	//{
+	output(" You could use her to get off");
+	if (enemy.hasStatusEffect("Unarmored"))
+	{
+		output(", though it might be fun to surprise her by being gentle, or to turn her over to her people in her humiliated state.");
 	}
 	else
 	{
-		output(" You could use her to get off");
-		if (enemy.hasStatusEffect("Unarmored"))
-		{
-			output(", though it might be fun to surprise her by being gentle, or to turn her over to her people in her humiliated state.");
-		}
-		else
-		{
-			output(" or just leave her here.");
-			if (pc.hasItemByClass(Throbb)) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
-		}
-
-		if (!pc.hasCock() && !pc.hasTailCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don’t have a wiener!");
-		else
-		{
-			var bTailcock:Boolean = (pc.hasTailCock() && pc.tailCockVolume() <= enemy.vaginalCapacity());
-			if (pc.cockThatFits(enemy.vaginalCapacity()) < 0 && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It’s a jumbo wiener!");
-			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored") && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren’t in the way...");
-			else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
-		}
-
-		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
-
-		if (!pc.hasItemByClass(Throbb)) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
-		else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throbb", "Give Throbb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
-		else addButton(2, "Give Throbb", femSydianGiveThrob, undefined, "Give Throbb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
-
-		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(3, "CallOthers", "Call Others", "She’s too emotionally and physically intact for other sydians to consider her an easy target.");
-		else addButton(3, "CallOthers", femSydianCallOthers, undefined, "Call Others", "Get some help to humiliate the girl. Depending on who shows up, you might land a three-way or have to hide from a brutal male.");
-
-		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not vulnerable enough to regard kindness as anything but a weakness.");
-		else if (enemy.lust() < 33) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not turned on enough to play along with you.");
-		else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) != -1)) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
-		else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
+		output(" or just leave her here.");
+		if (pc.hasItemByClass(Throbb)) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
 	}
+
+	if (!pc.hasCock() && !pc.hasTailCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don’t have a wiener!");
+	else
+	{
+		var bTailcock:Boolean = (pc.hasTailCock() && pc.tailCockVolume() <= enemy.vaginalCapacity());
+		if (pc.cockThatFits(enemy.vaginalCapacity()) < 0 && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It’s a jumbo wiener!");
+		else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored") && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren’t in the way...");
+		else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
+	}
+
+	addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
+
+	if (!pc.hasItemByClass(Throbb)) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
+	else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throbb", "Give Throbb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
+	else addButton(2, "Give Throbb", femSydianGiveThrob, undefined, "Give Throbb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
+
+	if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(3, "CallOthers", "Call Others", "She’s too emotionally and physically intact for other sydians to consider her an easy target.");
+	else addButton(3, "CallOthers", femSydianCallOthers, undefined, "Call Others", "Get some help to humiliate the girl. Depending on who shows up, you might land a three-way or have to hide from a brutal male.");
+
+	if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not vulnerable enough to regard kindness as anything but a weakness.");
+	else if (enemy.lust() < 33) addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "She’s not turned on enough to play along with you.");
+	else if (pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) != -1)) addButton(4, "Gentle Fuck", femSydianGentleFuck, undefined, "Gentle Fuck", "Show the sydian that sex can be more than a power play.");
+	else addDisabledButton(4, "Gentle Fuck", "Gentle Fuck", "Your genitals are incompatible with the poor girl!");
+	//}
 	addButton(14, "Leave", leaveHerAfterWin);
 }
 

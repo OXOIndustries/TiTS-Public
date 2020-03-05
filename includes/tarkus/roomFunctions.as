@@ -302,7 +302,9 @@ public function rustCoastEncounters():Boolean {
 		if (biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
 		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: pc.hasPerk("Breed Hungry") ? 6 : 2} );
-		
+
+		if (sydianCboyAvailable()) e.push( { v: encounterSydianCboy, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
+
 		//Run the event
 		weightedRand(e)();
 		return true;
@@ -348,6 +350,8 @@ public function rustRidgesEncounters():Boolean {
 		if (biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
 		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: pc.hasPerk("Breed Hungry") ? 6 : 2} );
+
+		if (sydianCboyAvailable()) e.push( { v: encounterSydianCboy, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
 		
 		//Run the event
 		weightedRand(e)();

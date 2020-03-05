@@ -60,7 +60,7 @@ public function beatUpARustMonster():void
 	{
 		output("Panting with lust, the sydian falls to his knees, stroking his [enemy.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re a girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
 	}
-	if(pc.lust() < 33) 
+	/*if(pc.lust() < 33) 
 	{
 		output("You aren’t aroused enough for any forms of sex.\n\n");
 		clearMenu();
@@ -68,23 +68,23 @@ public function beatUpARustMonster():void
 		addDisabledButton(1,"Cowgirl","Cowgirl","33 lust and a vagina are needed for this scene.");
 		addDisabledButton(2,"Tailpeg+","Tailpeg+","33 lust and a tailcock are needed for this scene.");
 		addDisabledButton(3,"Tailsuck","Tailsuck","Using your tail on the sydian requires a tail vagina and 33 lust.");
-	}
-	else
-	{
-		clearMenu();
-		//Dudes Buttfukk - Dick that fits in butt
-		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Pitch Anal",dudesButtFuckInATotallyNonGayWay,undefined,"Pitch Anal","Buttfuck the brute.");
-		else addDisabledButton(0,"Pitch Anal","Pitch Anal","A phallus that will fit into the sydian is required for anal sex.");
-		//Chicks Go For A Ride
-		if(pc.hasVagina()) addButton(1,"Cowgirl",chicksRideASydian,undefined,"Cowgirl","Mount the brutish sydian and ride him, leaving no doubt that you’re in charge.");
-		else addDisabledButton(1,"Cowgirl","Cowgirl","In order to ride the sydian cowgirl, you need a vagina.");
-		//Peg & Footjerb a Rustmonster With Your Cocktail
-		if(pc.hasCockTail()) addButton(2,"Tailpeg+",greatFootjerbSavin,undefined,"Tailpeg+","Use your tailcock to plunder him from behind while teasing his own member.");
-		else addDisabledButton(2,"Tailpeg+","Tailpeg+","You need a tailcock for this scene.");
-		//Hungry Hungry Tailgina
-		if(pc.hasTailCunt()) addButton(3,"Tailsuck",hungryhungryTailginasThirst,undefined,"Tailsuck","Feed your tail cunt a meal of delicious xeno cum.");
-		else addDisabledButton(3,"Tailsuck","Tailsuck","Using your tail on the sydian requires a tail vagina.");
-	}
+	}*/
+	//else
+	//{
+	clearMenu();
+	//Dudes Buttfukk - Dick that fits in butt
+	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Pitch Anal",dudesButtFuckInATotallyNonGayWay,undefined,"Pitch Anal","Buttfuck the brute.");
+	else addDisabledButton(0,"Pitch Anal","Pitch Anal","A phallus that will fit into the sydian is required for anal sex.");
+	//Chicks Go For A Ride
+	if(pc.hasVagina()) addButton(1,"Cowgirl",chicksRideASydian,undefined,"Cowgirl","Mount the brutish sydian and ride him, leaving no doubt that you’re in charge.");
+	else addDisabledButton(1,"Cowgirl","Cowgirl","In order to ride the sydian cowgirl, you need a vagina.");
+	//Peg & Footjerb a Rustmonster With Your Cocktail
+	if(pc.hasCockTail()) addButton(2,"Tailpeg+",greatFootjerbSavin,undefined,"Tailpeg+","Use your tailcock to plunder him from behind while teasing his own member.");
+	else addDisabledButton(2,"Tailpeg+","Tailpeg+","You need a tailcock for this scene.");
+	//Hungry Hungry Tailgina
+	if(pc.hasTailCunt()) addButton(3,"Tailsuck",hungryhungryTailginasThirst,undefined,"Tailsuck","Feed your tail cunt a meal of delicious xeno cum.");
+	else addDisabledButton(3,"Tailsuck","Tailsuck","Using your tail on the sydian requires a tail vagina.");
+	//}
 	//Have a Drink on Me (Victory Blow the Sydian)
 	//frogapus (threw in some snowballing, too. If it’s not your thing, feel free to drop it)
 	addButton(4,"Give BJ",haveADrinkOnMeWithSnowBallsMrRustBro,undefined,"Give Blowjob","Get down and give the alien a blowjob, striking a blow for improved intergalactic relations.");
