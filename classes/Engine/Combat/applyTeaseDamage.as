@@ -120,7 +120,7 @@ package classes.Engine.Combat
 			bonusCap += attacker.statusEffectv3("Painted Penis");
 			bonusCap += attacker.statusEffectv3("Painted Tits");
 			
-			//Cap is 30 plus enough to exceed lustDefense.
+			//Cap is 30 plus enough to exceed lustDefense but scales higher for foes over 100 maxLust.
 			var cap:Number = Math.round(30 * (target.lustMax()/100)) + target.lustDef();
 			trace("Cap: " + cap)
 			cap += bonusCap;
