@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
+	import classes.Items.Protection.ImprovisedShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -40,7 +41,9 @@ package classes.Characters
 			this.armor.longName = "chitinous plating";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
-			
+
+			this.shield = new ImprovisedShield();
+
 			this.physiqueRaw = 30;
 			this.reflexesRaw = 20;
 			this.aimRaw = 20;
@@ -176,6 +179,7 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "Sydian";
 			kGAMECLASS.tarkusSSTDChance(this);
+			//Rusted Shield should be an uncommon-ish drop from this enemy. Has about 50 shields in its regular state, but becomes “Salvaged Shield” when repaired through regular means, having 75 shields instead.
 			
 			randomise();
 			this._isLoading = false;
