@@ -32,12 +32,12 @@ package classes.Items.Apparel
 			attackVerb = "";
 			
 			basePrice = 220;
-			attack = 0;
+			attack = 3;
 			defense = 0;
 			shieldDefense = 0;
 			sexiness = 5;
-			critBonus = 0;
-			evasion = 2;
+			critBonus = 3;
+			evasion = 4;
 			fortification = 0;
 			
 			version = _latestVersion;

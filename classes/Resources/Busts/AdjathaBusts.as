@@ -274,6 +274,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/cora_nude.png", mimeType = "image/png")]
 		public var Bust_CORA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/cream_cow_1.png", mimeType = "image/png")]
+		public var Bust_CREAM_COW_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cream_cow_2.png", mimeType = "image/png")]
+		public var Bust_CREAM_COW_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cream_cow_3.png", mimeType = "image/png")]
+		public var Bust_CREAM_COW_3:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cow_lager.png", mimeType = "image/png")]
 		public var Bust_BEER_COW:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cow_whiskey.png", mimeType = "image/png")]
@@ -1288,6 +1294,8 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/war_alpha_nude.png", mimeType = "image/png")]
 		public var Bust_WAR_ALPHA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_cow.png", mimeType = "image/png")]
+		public var Bust_WALL_COW:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/wall_fanfir.png", mimeType = "image/png")]
 		public var Bust_WALL_FANFIR:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/wall_gabilani.png", mimeType = "image/png")]
@@ -1605,6 +1613,12 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cora_nude.png", mimeType = "image/png")]
 			public var Full_CORA_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cream_cow_1.png", mimeType = "image/png")]
+			public var Full_CREAM_COW_1:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cream_cow_2.png", mimeType = "image/png")]
+			public var Full_CREAM_COW_2:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cream_cow_3.png", mimeType = "image/png")]
+			public var Full_CREAM_COW_3:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cow_lager.png", mimeType = "image/png")]
 			public var Full_BEER_COW:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cow_whiskey.png", mimeType = "image/png")]
@@ -2533,6 +2547,8 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/war_alpha_nude.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_cow.png", mimeType = "image/png")]
+			public var Full_WALL_COW:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_fanfir.png", mimeType = "image/png")]
 			public var Full_WALL_FANFIR:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_gabilani.png", mimeType = "image/png")]

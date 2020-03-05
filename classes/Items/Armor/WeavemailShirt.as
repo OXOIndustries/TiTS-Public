@@ -39,12 +39,13 @@
 			
 			//Information
 			this.basePrice = 7000;
-			this.attack = 0;
+			this.attack = 5;
 			this.defense = 7;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 2;
-			this.critBonus = 0;
+			this.sexiness = 3;
+			this.resolve = 2;
+			this.critBonus = 2;
 			this.evasion = 0;
 			this.fortification = 0;
 			

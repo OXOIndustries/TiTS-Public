@@ -234,7 +234,7 @@
 			}
 		}
 
-		private var _libidoRaw: Number = 3;
+		private var _libidoRaw: Number = 5;
 		public function get libidoRaw():Number
 		{
 			return _libidoRaw;
@@ -5198,9 +5198,34 @@
 		public function maxOutLust(): void {
 			lustRaw = lustMax();
 		}
+		public function teaseSkill():int
+		{
+			var teaseSkill:Number = libido();
+			if(hasPerk("Ice Cold")) teaseSkill = (100-libido());
+
+			//Prorate for level, because sucking ass at this blows.
+			//Fen note: Nahhh, leave as is.
+			//teaseSkill = (teaseSkill / (level * 5)) * 100;
+
+			//Cap Dat Shiiiiit
+			if(teaseSkill > 100) teaseSkill = 100;
+			else teaseSkill = Math.round(teaseSkill);
+
+
+			return teaseSkill;
+		}
+		public function teaseResistSkill():int
+		{
+			return (willpower());
+		}
 		public function lustDef():Number
 		{
-			return Math.ceil(level/1.5 + willpower()/4);
+			return Math.ceil(level/1.5 + willpower()/4 + resolve());
+		}
+		public function resolve():Number
+		{
+			var res:Number = 0;
+			return armor.resolve + lowerUndergarment.resolve + upperUndergarment.resolve;
 		}
 		public function lustQ():Number
 		{
@@ -5485,7 +5510,7 @@
 				}
 			}
 
-			var bonus:Number = 0;
+			var bonus:Number = resolve();
 			if(accessory is BeatricesScarf) bonus += 3;
 			if(accessory is GooCore && isGoo()) bonus += 20;
 			bonus += statusEffectv4("Cum High");
@@ -5536,7 +5561,7 @@
 				}
 			}
 			
-			var currLib:int = libidoMod + libidoRaw;
+			var currLib:int = libidoMod + libidoRaw + sexiness();
 			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
 			if (accessory is Allure) currLib += 20;
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
@@ -5722,7 +5747,7 @@
 			return amount;
 		}
 		public function willpowerMax(raw:Boolean = false): Number {
-			var bonuses:int = 0;
+			var bonuses:int = resolve()/2;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			if(hasStatusEffect("Xanose")) bonuses += 5;
 			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
@@ -5734,7 +5759,7 @@
 			else return ((level * 5) + bonuses);
 		}
 		public function libidoMax(raw:Boolean = false): Number {
-			var bonuses:int = 0;
+			var bonuses:int = sexiness()/2;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Barcoded")) bonuses += 10;
 			bonuses += perkv3("Slut Stamp");
@@ -6173,6 +6198,7 @@
 			if (hasPerk("Innocent Allure")) temp += perkv1("Innocent Allure");
 			if (hasPerk("True Doll")) temp += perkv2("True Doll");
 			if (hasStatusEffect("Mare Musk")) temp += 2;
+			temp += statusEffectv1("Iyla’s Milk");
 			//You cannot handle the Mango!
 			temp += statusEffectv1("The Mango");
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
@@ -6187,7 +6213,15 @@
 		}
 		public function outfitSexiness(): Number
 		{
-			return (itemSexiness(armor) + itemSexiness(upperUndergarment) + itemSexiness(lowerUndergarment));
+			var sexi:Number = 0;
+			if(armor is EmptySlot) sexi += 5;
+			else sexi += itemSexiness(armor);
+			if(lowerUndergarment is EmptySlot) sexi += 3;
+			else sexi += itemSexiness(lowerUndergarment);
+			if(upperUndergarment is EmptySlot) sexi += 3;
+			else sexi += itemSexiness(upperUndergarment);
+
+			return (sexi);
 		}
 		public function itemSexiness(item:*): Number
 		{
@@ -22724,6 +22758,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					//+20 libidoMod
+					case "Iyla’s Milk":
+						if(requiresRemoval)
+						{
+							this.libidoMod -= 20;
+						}
+						break;
 					//+5 willpower, +15 libido
 					case "Xanose":
 						if(requiresRemoval)

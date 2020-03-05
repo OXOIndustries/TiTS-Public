@@ -557,6 +557,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_AKKADI:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/bell-isle_grunmann.png", mimeType = "image/png")]
 		public var Bust_LOGO_BELL_ISLE_GRUNMANN:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/brightwater.png", mimeType = "image/png")]
+		public var Bust_LOGO_BRIGHTWATER:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/carver.png", mimeType = "image/png")]
 		public var Bust_LOGO_CARVER:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/galactic_huntress.png", mimeType = "image/png")]
@@ -577,6 +579,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_NOVA_SECURITIES:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/maxcorp.png", mimeType = "image/png")]
 		public var Bust_LOGO_MAXCORP:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/paragon.png", mimeType = "image/png")]
+		public var Bust_LOGO_PARAGON:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/pyrite.png", mimeType = "image/png")]
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
@@ -595,6 +599,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_TAMANICORP:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/ugc.png", mimeType = "image/png")]
 		public var Bust_LOGO_UGC:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/utopian_skies.png", mimeType = "image/png")]
+		public var Bust_LOGO_UTOPIAN_SKIES:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/xenogen.png", mimeType = "image/png")]
 		public var Bust_LOGO_XENOGEN:Class;
 		
@@ -606,6 +612,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_AKKADI:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/bell-isle_grunmann.png", mimeType = "image/png")]
 			public var Full_LOGO_BELL_ISLE_GRUNMANN:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/HR/brightwater.png", mimeType = "image/png")]
+			public var Full_LOGO_BRIGHTWATER:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/carver.png", mimeType = "image/png")]
 			public var Full_LOGO_CARVER:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/galactic_huntress.png", mimeType = "image/png")]
@@ -626,6 +634,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_MAXCORP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/nova_securities.png", mimeType = "image/png")]
 			public var Full_LOGO_NOVA_SECURITIES:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/HR/paragon.png", mimeType = "image/png")]
+			public var Full_LOGO_PARAGON:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/pyrite.png", mimeType = "image/png")]
 			public var Full_LOGO_PYRITE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/reaper.png", mimeType = "image/png")]
@@ -644,6 +654,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_TAMANICORP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/ugc.png", mimeType = "image/png")]
 			public var Full_LOGO_UGC:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/HR/utopian_skies.png", mimeType = "image/png")]
+			public var Full_LOGO_UTOPIAN_SKIES:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/HR/xenogen.png", mimeType = "image/png")]
 			public var Full_LOGO_XENOGEN:Class;
 		}

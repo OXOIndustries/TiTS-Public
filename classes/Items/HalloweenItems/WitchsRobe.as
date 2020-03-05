@@ -8,7 +8,7 @@ package classes.Items.HalloweenItems
 	import classes.Engine.Interfaces.clearOutput;
 	import classes.Characters.PlayerCharacter;
 	
-	//Level ?? Halloween Funsies.
+	//Level 6 Halloween Funsies.
 	public class WitchsRobe extends ItemSlotClass
 	{
 		public function WitchsRobe()
@@ -38,13 +38,13 @@ package classes.Items.HalloweenItems
 			attack = 0;
 			defense = 0;
 			shields = 0;
-			sexiness = 6;
-			critBonus = 0;
-			evasion = 10;
+			sexiness = 5;
+			critBonus = 10;
+			evasion = 12;
 			fortification = 0;
 			
 			resistances.burning.resistanceValue = -10.0;
-			//resistances.freezing.resistanceValue = 10.0;
+			resistances.tease.resistanceValue = 10.0;
 			
 			// Note: Since the suit creates a stable environment any gaseous based damage wouldn't work against it.
 			itemFlags = [];

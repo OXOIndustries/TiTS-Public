@@ -8,7 +8,7 @@
 	
 	public class FrostbaneMail extends ItemSlotClass
 	{
-		//Level ??? (???). Balance 2.0
+		//Level 8 (Very Rare) Balance 2.0
 		//constructor
 		public function FrostbaneMail()
 		{
@@ -45,6 +45,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
+			this.resolve = 5;
 			this.critBonus = 0;
 			this.evasion = 7;
 			this.fortification = 20;

@@ -34,10 +34,12 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 10;
+			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 6;
+			this.evasion = 7;
 			this.fortification = 0;
+
+			resistances.drug.resistanceValue = 30.0;
 			
 			this.version = this._latestVersion;
 		}

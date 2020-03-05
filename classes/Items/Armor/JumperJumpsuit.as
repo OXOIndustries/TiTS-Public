@@ -42,13 +42,14 @@
 			this.defense = 5;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 7;
+			this.sexiness = 4;
+			this.resolve = 1;
 			this.critBonus = 0;
 			this.evasion = 18;
 			this.fortification = 0;
 			
 			resistances.tease.resistanceValue = -10.0;
-			resistances.electric.resistanceValue = 15.0;
+			resistances.electric.resistanceValue = 35.0;
 			resistances.burning.resistanceValue = 10.0;
 			
 			this.version = _latestVersion;
