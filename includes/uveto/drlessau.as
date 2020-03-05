@@ -133,7 +133,7 @@ public function drLessauTalkMenu():void
 	addButton(2, "Chimera", drLessauWTFRU, undefined, "Chimera", "You’ve never really seen anything quite like the doctor before.");
 	if (flags["UVETO_DEEPSEALAB_QUEST"] == 0) addButton(3, "ResearchShaft", drLessauResearchShaft, undefined, "Research Shaft", "Ask Lessau about the sealed research shaft you’ve seen.");
 	else if (flags["UVETO_DEEPSEALAB_QUEST"] == 1) addDisabledButton(3, "ResearchShaft", "Research Shaft", "You were already given permission to enter the lab.");
-	if (flags["UVETO_DEEPSEALAB_QUEST"] >= 4 && flags["MET_FROSTWYRM"] != undefined && flags["LESSAU_FROSTWYRM_QUEST"] == undefined ) addButton(4, "Frostwyrm", drLessauFrostWyrm, undefined, "Frostwyrm", "You wonder if Lessau can tell you anything about the frostwyrm...");
+	if (flags["UVETO_DEEPSEALAB_QUEST"] >= 4 && flags["FROSTWYRM_NOT_HOSTILE"] >= 2 && flags["LESSAU_FROSTWYRM_QUEST"] == undefined ) addButton(4, "Frostwyrm", drLessauFrostWyrm, undefined, "Frostwyrm", "You wonder if Lessau can tell you anything about the frostwyrm...");
 	else if (flags["LESSAU_FROSTWYRM_QUEST"] == 0) addDisabledButton(4, "Frostwyrm", "Frostwyrm", "You have already talked about the frostwyrm.");	
 	else if (flags["LESSAU_FROSTWYRM_QUEST"] == 1) addButton(4, "Frostwyrm", drLessauFrostWyrmGiveSample, undefined, "Frostwyrm", "Give Dr Lessau the sample you collected.");
 	
