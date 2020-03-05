@@ -392,7 +392,8 @@ public function fullServiceCapsuleHotel3():void
 	pc.changeLust(10);
 	clearMenu();
 	//[Tail Milking] [Tail Fuck]
-	addButton(0,"Tail Milking",penisRouter,[tailMilkingWithMyssah,500,false,0],"Tail Milking","Myssah’s going to wrap your cock inside her tail-pussy and milk you all night long...");
+	if(pc.hasCock()) addButton(0,"Tail Milking",penisRouter,[tailMilkingWithMyssah,500,false,0],"Tail Milking","Myssah’s going to wrap your cock inside her tail-pussy and milk you all night long...");
+	else addDisabledButton(0,"Tail Milking","Tail Milking","You need a penis for this.");
 	addButton(1,"Tail Fuck",vaginaRouter,[tailFuckWithMyssah,500,1,0,true],"Tail Fuck","Myssah’s going to bury her thick tail-tip inside you all night long...");
 }
 
