@@ -1,8 +1,8 @@
 //Coded by: THE 'NOXO, written by the DUBSAN
 public function iylaBustString(nude:Boolean = false):String { return "IYLA" + (nude ? "_NUDE":""); }
 public function drinkCowBustString(nude:Boolean = false):String { return "DRINK_COW_" + flags["DHAAL_MILKCOW"] + (nude ? "_NUDE":""); }
-public function creamCowBustString(nude:Boolean = false):String { return "CREAM_COW" + (nude ? "_NUDE":""); }
-public function wallCowBustString(nude:Boolean = false):String { return "WALL_COW" + (nude ? "_NUDE":""); }
+public function creamCowBustString(nude:Boolean = false):String { return "CREAM_COW_" + flags["DHAAL_CREAMCOW"]; }
+public function wallCowBustString(nude:Boolean = false):String { return "WALL_COW"; }
 
 public function showIyla(nude:Boolean = false):void
 {
@@ -24,7 +24,7 @@ public function showWallCowAndIlya(nude:Boolean = false):void
 {
 	showName("WALL COW\n& IYLA");
 	//These only occur together when Iyla is nude. Argument is for Wally-woo.
-	showBust(wallCowBustString(nude),iylaBustString(true));
+	showBust(iylaBustString(true),wallCowBustString(nude));
 }
 public function showWallCow(nude:Boolean = false):void
 {
@@ -34,6 +34,10 @@ public function showWallCow(nude:Boolean = false):void
 public function generateDrinkCow():void
 {
 	flags["DHAAL_MILKCOW"] = rand(3)+1;
+}
+public function generateCreamCow():void
+{
+	flags["DHAAL_CREAMCOW"] = rand(3)+1;
 }
 public function creamgirlIsVIP():Boolean
 {
@@ -95,7 +99,7 @@ public function enterTheMilkbar():Boolean
 	else 
 	{
 		addButton(0,"Iyla",summonIyla,undefined,"Iyla","Call the bartender over.");
-		if(pc.pcIsMilkVIP()) addButton(1,"VIP",VIPtalkAskForMilkbruh,undefined,"VIP","Head up to the VIP area.");
+		if(pcIsMilkVIP()) addButton(1,"VIP",VIPtalkAskForMilkbruh,undefined,"VIP","Head up to the VIP area.");
 	}
 	return false;
 }
@@ -369,6 +373,7 @@ public function getCreamButton(button:int):void
 public function getSomeCream():void
 {
 	clearOutput();
+	generateCreamCow();
 	showCreamCow();
 	pc.createStatusEffect("GotCreamFromMilkBar");
 	author("Wsan");
@@ -616,9 +621,10 @@ public function enterVIPRoomFirstTime():void
 	clearOutput();
 	showWallCowAndIlya();
 	author("Wsan");
+	pc.createStatusEffect("IylaInVIP");
 	output("The moment you open your room, several things become readily apparent.");
 	output("\n\nThe first is that this is <i>not</i> Iyla’s bar. This kind of extravagant excess could only have been born of corporate desire and besides - the responsible party is right there on the opposite wall, imprinted in bold. Brightwater LLC.");
-	output("\n\nThe next is that the woman in the wall has the most enormous breasts you have ever seen in your life. Her gargantuan titties extend across the floor, several feet of soft, tanned milk-filled flesh, easily big enough for you to recline on which is no doubt the intent. Though she’s wearing a ring gag, she seems happy enough - she gives you a friendly wave and her eyes crinkle at the edges, suggesting a smile.");
+	output("\n\nThe next is that the woman in the wall has the most enormous breasts you have ever seen in your life. Her gargantuan titties extend across the floor, several feet of soft milk-filled flesh, easily big enough for you to recline on which is no doubt the intent. Though she’s wearing a ring gag, she seems happy enough - she gives you a friendly wave and her eyes crinkle at the edges, suggesting a smile.");
 	output("\n\nThe third is that although you’ve seen a number of people in your journeys beset by monetary woes you haven’t really had to grapple with yourself - none have been quite so... stark as the situation here. How much was that 50k you just paid really worth?");
 	output("\n\nAnd at last, you realize the signs outside were right. If you have the money and the power on Dhaal, anything is possible. <i>Anything</i>.");
 	if(pc.isBimbo())
@@ -1886,6 +1892,7 @@ public function pullOnTopIylaMIlkDrank():void
 public function callCreamGirl():void
 {
 	clearOutput();
+	generateCreamCow();
 	showCreamCow();
 	author("Wsan");
 	output("<i>“Oh, you will <b>not</b> regret this,”</i> Iyla promises. <i>“Honestly, I love playing with them myself... I know I shouldn’t, but the faces they make...”</i> Iyla bites her lip. <i>“Nnf. Let me go get one for you.”</i>");

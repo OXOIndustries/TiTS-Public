@@ -359,6 +359,11 @@
 		public var Bust_HOVER_DRONE_SILLY:Class;
 		public var Bounds_HOVER_DRONE_SILLY:Rectangle = new Rectangle(0, 18, 100, 110);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/iyla.png", mimeType = "image/png")]
+		public var Bust_IYLA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/iyla_nude.png", mimeType = "image/png")]
+		public var Bust_IYLA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/jerome.png", mimeType = "image/png")]
 		public var Bust_JEROME:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/jerome_nude.png", mimeType = "image/png")]
@@ -735,6 +740,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_grunt.png", mimeType = "image/png")]
 		public var Bust_VOIDPIRATE:Class;
 		public var Bounds_VOIDPIRATE:Rectangle = new Rectangle(27, 0, 64, 64);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/wall_cow.png", mimeType = "image/png")]
+		public var Bust_WALL_COW:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/waralpha.png", mimeType = "image/png")]
 		public var Bust_WAR_ALPHA:Class;
@@ -1133,6 +1141,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/hover_drone_silly.png", mimeType = "image/png")]
 			public var Full_HOVER_DRONE_SILLY:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/iyla.png", mimeType = "image/png")]
+			public var Full_IYLA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/iyla_nude.png", mimeType = "image/png")]
+			public var Full_IYLA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerome.png", mimeType = "image/png")]
 			public var Full_JEROME:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerome_nude.png", mimeType = "image/png")]
@@ -1488,6 +1501,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/black_void_grunt.png", mimeType = "image/png")]
 			public var Full_VOIDPIRATE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/wall_cow.png", mimeType = "image/png")]
+			public var Full_WALL_COW:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/waralpha.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA:Class;
