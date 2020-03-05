@@ -240,9 +240,9 @@ package classes.Resources
 			public static const RooUnderTableLick:Class;
 
 			//ROXY
-			[Embed(source = "../../assets/images/imagepack/paige/masamaki_roxy.png", mimeType = "image/png")]
+			[Embed(source = "../../assets/images/imagepack/roxy/masamaki_roxy.png", mimeType = "image/png")]
 			public static const RoxyDoggy:Class;
-			[Embed(source = "../../assets/images/imagepack/paige/masamaki_roxy_cummy.png", mimeType = "image/png")]
+			[Embed(source = "../../assets/images/imagepack/roxy/masamaki_roxy_cummy.png", mimeType = "image/png")]
 			public static const RoxyDoggyCummy:Class;
 
 			//SECOP (PUNK)
