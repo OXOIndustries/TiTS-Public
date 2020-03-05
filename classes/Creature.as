@@ -5428,7 +5428,7 @@
 			{
 				//Inverse intelligence + libido - bimbo tech specs can minmax easier whynot~
 				var bimbInt:Number = (intelligenceMax() - intelligence() + 1);
-				bimbInt += libido()/10;
+				bimbInt += libidoRaw/10; //Changed from libido() to avoid circular dependancy with siegewulf bimbo in sexiness().
 				//Gotta cap it so it doesn't get FUCKED SILLY
 				if(bimbInt >= level * 5) bimbInt = level * 5;
 				//Compare actual intelligence (for exceptions like Dumb4Cum and extra smart bimbos)
@@ -14520,7 +14520,8 @@
 			}
 			//capacity adjectives
 			if (forceAdjectives || (adjectives && rand(3) == 0)) {
-				if(desc != "") desc += ", ";
+				//No comma for the range where no text is displayed~!
+				if(desc != "" && !(ballFullness > 10 && ballFullness < 80)) desc += ", ";
 				if (ballFullness <= 10) desc += RandomInCollection(["recently emptied","well-drained","nearly empty"]);
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
 				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
