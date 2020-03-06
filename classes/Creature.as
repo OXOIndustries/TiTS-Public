@@ -5428,7 +5428,7 @@
 			{
 				//Inverse intelligence + libido - bimbo tech specs can minmax easier whynot~
 				var bimbInt:Number = (intelligenceMax() - intelligence() + 1);
-				bimbInt += libidoRaw/10; //Changed from libido() to avoid circular dependancy with siegewulf bimbo in sexiness().
+				bimbInt += libido()/10;
 				//Gotta cap it so it doesn't get FUCKED SILLY
 				if(bimbInt >= level * 5) bimbInt = level * 5;
 				//Compare actual intelligence (for exceptions like Dumb4Cum and extra smart bimbos)
@@ -6181,10 +6181,11 @@
 				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo())
 				{
 					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
-					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					//FEN NOTE: NOPE! It's now 3 points to each.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += 3;
 					else { /* Nada! */ }
 				}
-				else temp += Math.round(bimboIntelligence() * 0.1);
+				else temp += 5;
 			}
 			/*Sweaty penalties!
 			Instead of being hard-coded extra checks, this is being worked into the sexual preferences system.
@@ -6286,10 +6287,11 @@
 				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo())
 				{
 					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
-					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					if (kGAMECLASS.siegwulfeIsDom()) temp += 3;
 					else { /* Nada! */ }
 				}
-				else temp += Math.round(bimboIntelligence() * 0.1);
+				//Bimbowulf gives more sexy.
+				else temp += 2;
 			}
 			if (hasPerk("Agility")) {
 				if (temp < 0 || (temp * 0.5) < 10) temp += 10;
