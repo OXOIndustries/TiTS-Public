@@ -49,11 +49,20 @@ public function paigeRegardingTheBed(noMoreBedPaige:Boolean = true):void
 public function paigeJumpToSexFlowchart(args:Array):void
 {
 	IncrementFlag("SEXED_PAIGE");
-	if (pc.hasCock())
-	{
-		addButton(0,"Be Bottom",SSVBB,args);
-		addButton(1,"Be Top",SSVBT,args);
-	}
+	if(pc.hasCock())
+    {
+        // {PC has a dick that’s too big}
+        if(pc.cockVolume(0) > paige.vaginalCapacity(0))
+        {
+           addButton(0,"Down On You",SSDY,args);
+           addButton(1,"Down On Her",SSDH,args);
+        }
+        else
+        {
+           addButton(0,"Be Bottom",SSVBB,args);
+           addButton(1,"Be Top",SSVBT,args);
+        }
+    }
 	else
 	{
 		args.push("SSTI");

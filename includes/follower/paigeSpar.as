@@ -1370,7 +1370,7 @@ public function FFWOE(args:Array):void
 	if(InCollection("FFWOTR", args)) output("You grunt out to the air. <i>“Paige,”</i> you say gruffly, but then you don’t finish your sentence. She’ll figure it out on her own.");
 
 	// Continue here if the PC is male
-	if(pc.hasCock() && !pc.hasVagina())
+	if(pc.hasCock())
 	{
 		output("\n\nYour [pc.cock] bloats, your cum shooting up your tube ");
 		//if {not FFWOTR}
