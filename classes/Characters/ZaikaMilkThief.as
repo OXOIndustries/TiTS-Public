@@ -224,8 +224,8 @@
 		{
 			//Force like milky & tailgenital. Dislike sweat?
 			sexualPreferences.setRandomPrefs(2 + rand(3),2);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS, sexualPreferences.getRandomLikeFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS, sexualPreferences.getRandomLikesFactor());
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomDislikeFactor());
 			
 			//Set da tid.
