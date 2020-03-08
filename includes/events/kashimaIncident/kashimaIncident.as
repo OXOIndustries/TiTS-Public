@@ -294,7 +294,7 @@ public function lustyBugpony():void
 	output("”</i>");
 
 	processTime(10 + rand(5));
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	clearMenu();
 	if (pc.isHerm())
@@ -509,8 +509,8 @@ public function lustyBugponyCocked():void
 
 			output("\n\nYou hide a smirk as she ends up slathering her tits in your cum under her armor, but eventually end up helping her strap on her back plates before gathering up your own, equally soaked, gear. At least your Codex is water-proof. Right?");
 
-			pc.energy(-5);
-			pc.lust(15);
+			pc.changeEnergy(-5);
+			pc.changeLust(15);
 			pc.orgasm();
 			processTime(10+rand(3));
 			sweatyDebuff(1);
@@ -570,8 +570,8 @@ public function lustyBugponyCocked():void
 			output("\n\nYou grin, trying to ignore how close you are to climax. Something inside you demands you make sure the amazon orgasm first, to make her eat her words about this being the wrong way. Then again, the way she’s moaning and gushing slime all over your crotch from her gaping pussy, you don’t think she’s got much resistance left. All there’s left to do, really, is hold out longer than she can: fight back your basest desires and hammer yourself deep inside.");
 
 			processTime(10+rand(3));
-			pc.energy(-5);
-			pc.lust(15);
+			pc.changeEnergy(-5);
+			pc.changeLust(15);
 			sweatyDebuff(1);
 			clearMenu();
 			addButton(0, "Next", lustyBugPonyCockedNotTaurII);

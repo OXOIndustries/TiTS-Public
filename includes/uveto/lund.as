@@ -1307,7 +1307,7 @@ public function evenEvenMoreLundSex(x:int):void
 	output("\n\nLying there, eyes wide in half-shock and half-admiration, you realize the truth of the situation: he was never fighting you for dominance. He’s been breaking you in the entire time, easing you into being an unresisting fuck for him to enjoy. And as your fatigued hips begin to wildly buck once more, you realize you don’t care.");
 
 	if(pc.isTaur()) output("\n\nYour legs thrash about so wildly Lund seizes your rearmost two, holding them wide open so he can plow your [pc.vagOrAss " + x + "] all throughout your orgasm");
-	else output("\n\nLund leans forward and lifts your legs, holding your thighs and pressing down until your knees are besides your head, pounding the fuck out of your [pc.vagOrAss " + x + "] all the while");
+	else output("\n\nLund leans forward and lifts your legs, holding your thighs and pressing down until your knees are beside your head, pounding the fuck out of your [pc.vagOrAss " + x + "] all the while");
 	output(". Your voice comes out in a shaky, lilting scream of lust as ");
 	if(pc.hasVagina()) output("juices spray from your squelching cunt");
 	else output("your asshole squeezes down on Lund so tightly that for a moment he can’t move");
@@ -2850,7 +2850,7 @@ public function lundSubmissionThing():void
 		else output(" cross to his bed immediately, where your outfit lies. He looks in approval as you begin to put it on");
 		output(", a smile playing across his lips. Once you have your ‘real’ clothes on, he looks you up and down and nods.");
 
-		output("\n\n<i>“Good,”</i> he says, circling you once and tugging at the fastenings across your");
+		output("\n\n<i>“Good,”</i> he says, circling you once and tugging at the fastenings across your ");
 		if(pc.mf("m","f") == "m") output("[pc.butt]");
 		else output("[pc.breasts], tummy, and [pc.butt]");
 		output(". He pointedly ignores");
@@ -3902,7 +3902,7 @@ public function lundSubmissionNumber3():void
 	author("Wsan");
 
 	output("Approaching Lund, he actually gives you a friendly wave and a smile as you draw closer. Allowing yourself to be swept up in the giddiness of it all, you press yourself up against him and plaster his face with kisses.");
-	output("\n\n<i>“Oh, master,”</i> you sigh, breathing in his scent with your face rubbing in his fur. He smells like sweat and sex, the two things you do with him most often. You can feel yourself getting" + (pc.hasCock() ? "hard":"wet") + (!pc.isCrotchExposed() ? " in your [pc.lowerGarments]":"") + " already and you’ve only just gotten here. <i>“Master...”</i>");
+	output("\n\n<i>“Oh, master,”</i> you sigh, breathing in his scent with your face rubbing in his fur. He smells like sweat and sex, the two things you do with him most often. You can feel yourself getting " + (pc.hasCock() ? "hard":"wet") + (!pc.isCrotchExposed() ? " in your [pc.lowerGarments]":"") + " already and you’ve only just gotten here. <i>“Master...”</i>");
 	output("\n\n<i>“Hnh,”</i> Lund murmurs, wrapping his arm around your [pc.hips]. <i>“" + (korgiTranslate() ? "Come, pet, I have something to show you":"Pet come with master, show pet thing") + ".”</i>");
 	moveToLundsHouse();
 	output("\n\n<i>“Yeees, masterrr,”</i> you call out in a sing-song voice. Swept along back to his bedroom in a happy daze, he opens the door and you stand there confused for a moment. Letting his arm slip from your back and brush past your [pc.ass] to give you a grope, he walks over to the bed and pats it.");
@@ -4105,7 +4105,11 @@ public function beLundsCookslutEpilogue():void
 	IncrementFlag("LUND_ADVANCED_SUBMISSION");
 	pc.loadInMouth(lundipoo);
 	restHeal();
-	while(pc.lust() > 40 && pc.lustMin() <= 40) { pc.lust(-15); }
+	while(pc.lust() > 40) 
+	{
+		//Modified this. Used to check against minLust to stop, but minLust wasn't factoring in lustMod the same way that lust() does, resulting in an effective minimum of 90.
+		if(pc.lust(-10) == pc.lust(-10)) break;
+	}
 	//End Lund Submission Part 3 by Wsan
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

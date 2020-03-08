@@ -44,7 +44,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.femininity = 0;
+			this.femininity = 90;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "blue";
 			this.tallness = 6*12+11;

@@ -224,7 +224,7 @@ package classes.Items.Transformatives
 						}
 						pc.hairType = GLOBAL.HAIR_TYPE_FEATHERS;
 						// +5 lust
-						pc.lust(5);
+						pc.changeLust(5);
 					}
 					else output("\n\n" + pc.hairTypeLockedMessage());
 					changes++;
@@ -582,7 +582,7 @@ package classes.Items.Transformatives
 						output(" to find that your [pc.cockNoun " + cIdx + "] has sprouted a collection of tentacles up and down its shaft, with the largest groupings around your base and crown. <b>You have a suula cock now!</b>");
 						
 						pc.shiftCock(cIdx, GLOBAL.TYPE_SIREN);
-						pc.lust(5);
+						pc.changeLust(5);
 					}
 					else output("\n\n" + pc.cockTypeLockedMessage());
 					changes++;
@@ -643,7 +643,7 @@ package classes.Items.Transformatives
 						if(puffFlag == 1) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 						if(puffFlag == 2) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_PUMPED);
 						if(puffFlag == 3) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
-						pc.lust(5);
+						pc.changeLust(5);
 					}
 					else output("\n\n" + pc.vaginaTypeLockedMessage());
 					changes++;

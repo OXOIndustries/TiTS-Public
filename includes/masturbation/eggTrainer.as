@@ -110,6 +110,35 @@ public function repeatEggTrainerApproach():void
 	output("You find yourself drawn back to the bubblegum-pink Tamani Corp box sitting in your hold. The Egg Trainer is humming ever so faintly, thrumming as its internal mechanisms slosh around and heat the dozens and dozens of eggs inside it. It smells faintly of lilacs and lube. The saddle-seat atop it beckons you, inviting you to take a seat and take a load in.");
 	if(pc.lust() >= 75 || pc.libido() >= 75) output(" You’re already shuddering with anticipation....");
 	output("\n\nThe holo-screen on the front of the box presents you with several options....");
+	
+	output("\n\n<b><u>Statistics</u></b>");
+	output("\n<b>* Egg Trainer Level:</b> " + (flags["EGG_TRAINING"] != undefined ? flags["EGG_TRAINING"] : "<i>Untrained</i>"));
+	if(pc.hasStatusEffect("Ovalasting"))
+	{
+		output("\n<b>* Ovalasting Level:</b> " + (flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined ? flags["EGG_TRAINING_OVALASTING_LEVEL"] : "<i>Untrained</i>"));
+		if(pc.statusEffectv1("Ovalasting") > 0)
+		{
+			output("\n<b>* Ovalasting Implant," + (pc.vaginas.length > 1 ? " First" : "") + " Vagina:</b> Active");
+			if(pc.hasStatusEffect("Ovalasting Big Egg " + 0) > 0) output(", Fertilized");
+		}
+		if(pc.statusEffectv2("Ovalasting") > 0)
+		{
+			output("\n<b>* Ovalasting Implant, Second Vagina:</b> Active");
+			if(pc.hasStatusEffect("Ovalasting Big Egg " + 1) > 0) output(", Fertilized");
+		}
+		if(pc.statusEffectv3("Ovalasting") > 0)
+		{
+			output("\n<b>* Ovalasting Implant, Third Vagina:</b> Active");
+			if(pc.hasStatusEffect("Ovalasting Big Egg " + 2) > 0) output(", Fertilized");
+		}
+		if(pc.statusEffectv4("Ovalasting") > 0)
+		{
+			output("\n<b>* Ovalasting Implant, Anus:</b> Active");
+			if(pc.hasStatusEffect("Ovalasting Big Egg " + 3) > 0) output(", Fertilized");
+		}
+	}
+	output("\n\n");
+	
 	processTime(1);
 	eggTrainerMenu();
 }
@@ -266,6 +295,7 @@ public function eggTrainerTrained(x:int):void
 	if(pc.hasStatusEffect("Ovalasting"))
 	{
 		if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != 10) IncrementFlag("EGG_TRAINING_OVALASTING_LEVEL");
+		if(flags["EGG_TRAINING_OVALASTING_LEVEL_MAX"] == undefined || flags["EGG_TRAINING_OVALASTING_LEVEL_MAX"] < flags["EGG_TRAINING_OVALASTING_LEVEL"]) flags["EGG_TRAINING_OVALASTING_LEVEL_MAX"] = flags["EGG_TRAINING_OVALASTING_LEVEL"];
 	}
 }
 
@@ -392,7 +422,7 @@ public function eggTrainingMachineTime():void
 
 	//[Next]
 	//Update pc.belly until the end of the scene, with gravidity based on Egg Training/eggs rolled.
-	pc.lust(200);
+	pc.changeLust(200);
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",layingTrainingTwo);
@@ -596,7 +626,7 @@ public function carryTrainingWithEggMachine():void
 
 	output("\n\n<i>“Take good care of ‘em, sugar!”</i> the holo-screen tells you, and the tentacle gives you a resounding slap on the ass before wriggling back into its hole. You groan, running your hands across your lumpy belly as the machine shuts down, leaving you to recover - and to enjoy your wonderfully pregnant belly before you eventually get up and stagger towards the shower, slowly adjusting to your new weight.");
 
-	pc.lust(50+rand(10));
+	pc.changeLust(50+rand(10));
 	pc.shower();
 	processTime(25);
 
@@ -1045,7 +1075,40 @@ public function eggTrainerOvalastingMenu():void
 		else addButton(btnSlot++, "Asshole", eggTrainerOvalastingGo, -1, "Ovalasting: Asshole", "Use Ovalasting with your [pc.asshole].");
 	}
 	else addButton(0, "Ovalasting", eggTrainerOvalastingGo);
+	
+	if(ovaEffect == null && flags["EGG_TRAINING_OVALASTING_LEVEL_MAX"] != undefined)
+	{
+		output("\n\nBecause you had prior training with the implant, it looks like you are able to pre-set a desired Ovalasting egg level before starting the procedure.");
+		
+		addButton(13, ("Level: " + (flags["EGG_TRAINING_OVALASTING_LEVEL"] == undefined ? 0 : flags["EGG_TRAINING_OVALASTING_LEVEL"])), eggTrainerOvalastingSetLevel, 0, "Modify Ovalasting Level", "Adjust the level you want the Ovalasting implant to start with before implantation.");
+	}
 	addButton(14, "Cancel", repeatEggTrainerApproach);
+}
+public function eggTrainerOvalastingSetLevel(numAdd:int):void
+{
+	clearOutput();
+	showName("\nOVALASTING");
+	showBust("EGG_TRAINER");
+	author("Jacques00");
+	
+	output("Set the Ovalasting level to the value you wish the implant to start at.");
+	
+	if(numAdd != 0)
+	{
+		if(flags["EGG_TRAINING_OVALASTING_LEVEL"] == undefined) flags["EGG_TRAINING_OVALASTING_LEVEL"] = 0;
+		flags["EGG_TRAINING_OVALASTING_LEVEL"] += numAdd;
+	}
+	
+	output("\n\n<b>Current Ovalasting Level:</b> " + flags["EGG_TRAINING_OVALASTING_LEVEL"]);
+	output("\n\n");
+	
+	clearMenu();
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined && flags["EGG_TRAINING_OVALASTING_LEVEL"] >= flags["EGG_TRAINING_OVALASTING_LEVEL_MAX"]) addDisabledButton(0, "+ Level");
+	else addButton(0, "+ Level", eggTrainerOvalastingSetLevel, 1);
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] == undefined || flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 0) addDisabledButton(1, "- Level");
+	else addButton(1, "- Level", eggTrainerOvalastingSetLevel, -1);
+	
+	addButton(14, "Back", eggTrainerOvalastingMenu);
 }
 // [Ovalasting]
 public function eggTrainerOvalastingGo(oIdx:int = -1):void
@@ -1415,7 +1478,7 @@ public function eggTrainerOvalastingRemovalMenu():void
 		else if(pc.isPregnant(3)) addDisabledButton(btnSlot++, "Asshole", "Ovalasting: Asshole", "Your ass is currently occupied!");
 		else addButton(btnSlot++, "Asshole", eggTrainerOvalastingRemoval, -1, "Ovalasting: Asshole", "Remove the Ovalasting egg from your [pc.asshole].");
 		
-		if(ovas >= 2) addButton(13, "Lastest", eggTrainerOvalastingRemoval, -2, "Ovalasting: Latest", "Remove the most recently implanted Ovalasting egg.");
+		if(ovas >= 2) addButton(13, "Latest", eggTrainerOvalastingRemoval, -2, "Ovalasting: Latest", "Remove the most recently implanted Ovalasting egg.");
 	}
 	else
 	{

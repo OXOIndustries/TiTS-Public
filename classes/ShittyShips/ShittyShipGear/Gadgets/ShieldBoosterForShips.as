@@ -90,8 +90,6 @@
 				usingCreature.energy(-this.shieldDefense);
 
 				var healing:Number = 3900 + rand(200);
-				usingCreature.shields(healing);
-				
 				if(usingCreature.hasPerk("PCs")) 
 				{
 					clearOutput();
@@ -101,7 +99,7 @@
 				{
 					output("An alarm on the console blares, informing you that " + possessive(usingCreature.getCombatName()) + " shields are restored!");
 				}
-				output(" (<b>S:</b> +<b><span class='shield'>" + healing + "</span></b>)");
+				usingCreature.changeShields(healing);
 			}
 			return false;
 		}

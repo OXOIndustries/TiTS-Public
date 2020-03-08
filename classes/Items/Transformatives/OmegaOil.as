@@ -62,12 +62,12 @@ package classes.Items.Transformatives
 			//Effect : auto raises pc lust by 15
 			if(pc.hasStatusEffect("Fuck Fever") && !hasAnalPregnancy)
 			{
-				pc.lust(15);
 				output("Despite the fire already coursing through your veins, you decide to take another dose of Omega Oil. You pour the viscous liquid on your finger");
 				if(pc.analCapacity() >= 100) output("s");
 				output(" and apply it in the usual fashion into your over heated body.");
 				if(pc.isTaur()) output(" You have no trouble finding a “comfortable” position this time.");
 				output(" The oil is blissfully cool to your overheated body.");
+				pc.changeLust(15);
 				
 				if(rand(2) == 0)
 				{
@@ -96,7 +96,6 @@ package classes.Items.Transformatives
 			{
 				//Consume
 				//automatically adds 15 to the players lust/
-				pc.lust(15);
 				if(kGAMECLASS.flags["OMEGA_FEVERED"] == undefined)
 				{
 					output("Torn between apprehension and curiosity, you wonder what kind of strange side-effects you may trigger this time as you");
@@ -105,6 +104,7 @@ package classes.Items.Transformatives
 				output(" pour the oil on your fingers once again and apply it, finger");
 				if(pc.analCapacity() >= 100) output("s");
 				output(" blissfully cool inside your heated body.");
+				pc.changeLust(15);
 
 				//Main effects
 				//same as 1st dose/
@@ -149,7 +149,6 @@ package classes.Items.Transformatives
 			else if(pc.hasStatusEffect("Strangely Warm") && !hasAnalPregnancy)
 			{
 				//automatically adds 15 to the players lust/
-				pc.lust(15);
 				output("The label does warn the user against applying more than one dose in 48 hours; however, you decide not to heed this warning");
 				//first time dose with status “flushed”:
 				if(kGAMECLASS.flags["OMEGE_FLUSHED"] == undefined)
@@ -168,6 +167,7 @@ package classes.Items.Transformatives
 				if(pc.analCapacity() < 100) output(" finger");
 				else output(" fingers");
 				output(" in your ass all the more pleasurable as you wait for the product to take effect.");
+				pc.changeLust(15);
 
 				//main effects
 				//same as 1st dose
@@ -175,7 +175,6 @@ package classes.Items.Transformatives
 				if(!pc.hasStatusEffect("Flushed") && rand(2) == 0)
 				{
 					//Effect: min lust raised by 15, pc more vulnerable to (cock) tease/ lust attack
-					pc.lust(25);
 					output("\n\nYou feel quite apathetic all of a sudden, as if your brain were wrapped in a thick wooly duvet. A haze of lust clouds your mind as your");
 					if(!pc.hasVagina()) output(" [pc.asshole] moistens");
 					else 
@@ -195,8 +194,9 @@ package classes.Items.Transformatives
 					output(" overwhelm you. You find yourself wishing you could just stay just like this forever");
 					//if willpower <50% of max, random:
 					if(pc.WQ() < 50) output(", without that pesky inheritance your Dad wanted you to find.");
-					else output(", waiting for a well-endowed mate to claim you for their own. ");
+					else output(", waiting for a well-endowed mate to claim you for their own.");
 					output("\n\nEventually the haze begins to lift and the world rights itself. As you pull yourself together however, it feels like <b>you are a bit hornier than before!</b>");
+					pc.changeLust(25);
 					
 					updateOmega(pc, 2);
 					changes++;
@@ -206,7 +206,6 @@ package classes.Items.Transformatives
 			else
 			{
 				//automatically adds 15 to the players lust
-				pc.lust(15);
 				output("Pulling the small bag from your pack, you open it and pour the viscous liquid on your fingers. Following the instructions on the back of the packet,");
 				if(pc.isTaur()) output(" and many uncomfortable contortions later,");
 				output(" you position one lubed finger against your [pc.asshole] and slowly massage the rim, then push it in. The ointment feels quite cool at first, but fortunately warms rapidly. After a few seconds fingering yourself, a ");
@@ -218,6 +217,7 @@ package classes.Items.Transformatives
 				if(pc.hasVagina()) output(", and you feel moisture  trickling down your [pc.thighs]");
 				if(!pc.hasGenitals()) output(", then slowly spreads all over your [pc.skinFurScalesNoun], making you so sensitive you would probably climax from the slightest draft against your skin");
 				output(". A dull ache throbs inside you. You <i>need</i> to be filled with a big, fat cock, with a thick knot to keep you impaled on it while it breeds you. The feeling passes quickly, but it leaves you slightly flushed as you wait for the advertised effects to occur.");
+				pc.changeLust(15);
 				//Gives status “Flushed” (48 hours)
 				//Effect: min lust raised by 15 (for the duration of the status)
 				if(!pc.hasStatusEffect("Strangely Warm") && !hasAnalPregnancy && rand(2) == 0)
@@ -227,7 +227,6 @@ package classes.Items.Transformatives
 					updateOmega(pc, 1);
 					changes++;
 				}
-				pc.lust(15);
 			}
 			
 			//Main effects :
@@ -287,7 +286,7 @@ package classes.Items.Transformatives
 					if(pc.isNice()) output(" That wasn’t a faulty lot, was it?");
 					else if(pc.isMischievous()) output(" Well that’ll teach you to buy products from some no-name company....");
 					else output(" What a fucking scam.");
-					pc.lust(10);
+					pc.changeLust(10);
 					break;
 				case 4:
 					output("\n\nYou wait for a while, still slowly pumping your finger inside yourself. However, nothing more happens.");

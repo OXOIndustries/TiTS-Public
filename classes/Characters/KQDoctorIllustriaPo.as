@@ -2,7 +2,6 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	//import classes.Items.Guns.*
 	import classes.Items.Melee.Whip;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.JoyCoPremiumShield;
@@ -28,7 +27,7 @@
 			this.originalRace = "Cyborg";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Illustria is more machine than woman. Despite her softened, artificial skin, her dermis sports clearly demarcated joints with reinforcement pins that look hard enough to use as military armor. Her breasts and sides house transparent windows. Mysterious fluids swirl behind them, ready to be dispensed into into her victim's bodies. Rich blonde hair wreathes her flawless features and serves to conceal the antennae-like attachments she has instead of ears. Everything about this eight foot tall mad doctor seems designed to heighten her sex appeal, display her apparent knowledge, or intimidate those foolish enough to oppose her.";
+			this.long = "Illustria is more machine than woman. Despite her softened, artificial skin, her dermis sports clearly demarcated joints with reinforcement pins that look hard enough to use as military armor. Her breasts and sides house transparent windows. Mysterious fluids swirl behind them, ready to be dispensed into into her victim’s bodies. Rich blonde hair wreathes her flawless features and serves to conceal the antennae-like attachments she has instead of ears. Everything about this eight foot tall mad doctor seems designed to heighten her sex appeal, display her apparent knowledge, or intimidate those foolish enough to oppose her.";
 			this.customBlock = "";
 			this.customDodge = "She seems to start moving out of the way before you even launch the attack. Drat!";
 			this.isPlural = false;
@@ -213,6 +212,7 @@
 			//Needlefingers
 			choices.push(needlefingers);
 			//Fingerfuck (exposed crotches only)
+			/*
 			if(target.isCrotchExposedByArmor())
 			{
 				if(target.hasVagina()) choices.push(fingerfuckAttack);
@@ -227,7 +227,8 @@
 			//Aphrospray (Uses 33% energy. Unavoidable low lust damage)
 			if(this.energy() >= 33) choices.push(aphrospray);
 			//Recharge (Refills her inner goo. refills energy. Only happens if PC stunned and below 100%)
-			if(target.hasStatusEffect("Stun") || target.hasStatusEffect("Stunned")) choices.push(rechargeDatBot);
+			if((target.hasStatusEffect("Stun") || target.hasStatusEffect("Stunned")) && this.energy() < 100) choices.push(rechargeDatBot);
+			*/
 
 			//Illustria acts
 			choices[rand(choices.length)](target);
@@ -245,7 +246,7 @@
 				//Stripperbot (removes armor, then undies on next attack) (requires shields)
 				if(!target.isCrotchExposed()) choices.push(stripperBotAttack);
 				//Aphrobot (injects with druuuugs) (requires bossshields)
-				choices.push(aphroSting);
+				//choices.push(aphroSting);
 				//Idlebot (every third round attempts to tidy the lab)
 				choices.push(idleBot);
 				//Bot acts
@@ -261,7 +262,7 @@
 			else
 			{
 				output(", but when they touch you, they fill you with prickling warmth. As she retreats, you see gleaming steal needles painlessly retracting into the tips of her digits. Whatever she drugged you with feels good...");
-				applyDamage(new TypeCollection( { drug: 12+rand(3) } ), this, target, "minimal");
+				//applyDamage(new TypeCollection( { drug: 12+rand(3) } ), this, target, "minimal");
 			}
 		}
 		//Fingerfuck (exposed crotches only)
@@ -306,7 +307,7 @@
 			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\n\nYou manage to force your eyes closed before it can do much more than warm your loins.");
 			else
 			{
-				output(" Strangely, the flash of light feels like it goes on for a solid ten or fifteen seconds. By the time you're able to see again, you're kind of woozy. <b>It's hard to move around as quickly as before</b> - like your limbs are dragging through a vat of pussy-scented molasses.");
+				output(" Strangely, the flash of light feels like it goes on for a solid ten or fifteen seconds. By the time you’re able to see again, you’re kind of woozy. <b>It’s hard to move around as quickly as before</b> - like your limbs are dragging through a vat of pussy-scented molasses.");
 				target.createStatusEffect("Stumble Strobed", 0, 0, 0, 0, false, "Icon_Constricted", "Your reflexes are halved until the end of combat!", true, 0);
 			}
 			applyDamage(new TypeCollection( { psionic: 4+rand(2) } ), this, target, "minimal");
@@ -335,10 +336,20 @@
 			if(this.energy() >= 100) output("\n\nOne third of her internal fluids drain away.");
 			else if(this.energy() >= 67) output("\n\nThe second third of her internal fluids drains into the wall.");
 			else output("\n\nThe final dregs of her internal fluids drain away.");
-			if(this.energy() >= 100) output("\n\n<i>“I hope you’re thirsty.”</i> Fire extinguishing devices emerge from the ceiling and spray the room down with her pink, drugged fluids. There’s no hiding from it. It drenches you, soaking into your skin. It’s not just muggy in here, but warm too. Humid. You wonder how your own sweaty form would feel against Illustria’s sculpted perfection...");
-			else output("\n\n<i>“Bathe in perfection.”</i> Like you have any other choice but to let it splatter across your skin and make you feel horny, and silly, and sooo fuckable.");
+			if(this.energy() >= 100) 
+			{
+				output("\n\n<i>“I hope you’re thirsty.”</i> Fire extinguishing devices emerge from the ceiling and spray the room down with her pink, drugged fluids. There’s no hiding from it");
+				if(target.hasAirtightSuit()) output(", but at least you have an airtight suit to protect you from it.");
+				else output(". It drenches you, soaking into your skin. It’s not just muggy in here, but warm too. Humid. You wonder how your own sweaty form would feel against Illustria’s sculpted perfection...");
+			}
+			else 
+			{
+				output("\n\n<i>“Bathe in perfection.”</i> ");
+				if(!target.hasAirtightSuit()) output("Like you have any other choice but to let it splatter across your skin and make you feel horny, and silly, and sooo fuckable.");
+				else output("Like it even matters. Safe in your airtight armor, you don’t have to worry about her exotic contact poisons.");
+			}
 			this.energy(-33);
-			applyDamage(new TypeCollection( { drug: 15+rand(3) } ), this, target, "minimal");
+			if(!target.hasAirtightSuit()) applyDamage(new TypeCollection( { drug: 15+rand(3) } ), this, target, "minimal");
 		}
 		//Recharge (Refills her inner goo. refills energy. Only happens if PC stunned and below 100%)
 		public function rechargeDatBot(target:Creature):void
@@ -354,15 +365,17 @@
 			{
 				output("While you’re focused on Illustria, her floating assistant strikes, its dangling tentacle splitting into fifty different manipulators, peeling you out of your [pc.armor] in a flash!");
 				if(!target.isCrotchExposedByLowerUndergarment()) output(" At least your [pc.lowerUndergarment] keeps you decent.");
-				else output(" <b>You're exposed!</b>");
-				this.inventory.push(target.armor);
-				target.armor = new EmptySlot();
+				else output(" <b>You’re exposed!</b>");
+				//this.inventory.push(target.armor);
+				//target.armor = new EmptySlot();
+				if(target is PlayerCharacter) (target as PlayerCharacter).takeArmor();
 			}
 			else if(!target.isCrotchExposedByLowerUndergarment())
 			{
-				output("The floating drone scoops in and drags down your [pc.lowerUndergarment] a flash. Hey! <b>You're exposed!</b>");
-				this.inventory.push(target.lowerUndergarment);
-				target.lowerUndergarment = new EmptySlot();
+				output("The floating drone scoops in and drags down your [pc.lowerUndergarment] a flash. Hey! <b>You’re exposed!</b>");
+				//this.inventory.push(target.lowerUndergarment);
+				//target.lowerUndergarment = new EmptySlot();
+				if(target is PlayerCharacter) (target as PlayerCharacter).takeLowerUndergarment();
 			}
 		}
 		//Aphrobot (injects with druuuugs) (requires bossshields)
@@ -382,7 +395,7 @@
 		//"no drone" status gib.
 		public function botfall(target:Creature):void
 		{
-			output("With her shields cracked, Illustria's drone wobbles. It falls to the ground as its capacitors empty, powerless.");
+			output("With her shields cracked, Illustria’s drone wobbles. It falls to the ground as its capacitors empty, powerless.");
 			this.createStatusEffect("no drone");
 		}
 	}

@@ -26,13 +26,21 @@ public function multiButtonPageNote():String
 {
 	return "(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your selections.</b>)";
 }
-public function isEquippableItem(item:ItemSlotClass):Boolean
+public function isEquippableItem(item:ItemSlotClass, checkEquip:Boolean = false):Boolean
 {
 	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) return false;
+	
+	// Preventive measures
+	if(checkEquip)
+	{
+		if(!pc.itemSlotUnlocked(item.type)) return false;
+		if(pc.hasStatusEffect("Disarmed") && !pc.hasCombatStatusEffect("Disarmed") && InCollection(item.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON])) return false;
+	}
+	
 	return	InCollection(item.type, 
 		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
 		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
-		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT
+		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT, GLOBAL.TENT
 		);
 }
 
@@ -1004,6 +1012,7 @@ public function buyItemMultiCustom():void
 public function buyItemMultiCustomOK():void
 {
 	if(isNaN(Number(userInterface.textInput.text))) {
+		//buyItemMultiCustomOK(); - As per https://github.com/OXOIndustries/TiTS-Public/pull/229/files by Somebody-Else-Entirely
 		buyItemMultiCustom();
 		output("Choose a quantity that is a positive integer, please.");
 		return;
@@ -1792,18 +1801,24 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(1, "Shield", "Shield Generator", "You do not have a shield generator equipped.");
 	
+	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
+	{
+		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
+	}
+	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
+	
+	if (pc.accessory.shortName != "")
+	{
+		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
+	}
+	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
+
 	if (pc.lowerUndergarment.shortName != "")
 	{
 		if(inCombat) addDisabledButton(5, "U.Wear Off", StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Cannot be unequipped in combat.");
 		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, pc.lowerUndergarment);
 	}
 	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
-	
-	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
-	{
-		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
-	}
-	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
 	
 	if (pc.armor.shortName != "")
 	{
@@ -1817,12 +1832,6 @@ public function unequipMenu(inCombat:Boolean = false):void
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, pc.rangedWeapon);
 	}
 	else addDisabledButton(7, "Ranged", "Ranged Weapon", "You do not have a ranged weapon equipped.");
-	
-	if (pc.accessory.shortName != "")
-	{
-		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
-	}
-	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
 	if(pc.hasPiercing())
 	{
@@ -1844,7 +1853,13 @@ public function unequipMenu(inCombat:Boolean = false):void
 	{
 		addButton(11,"Decorations",decorationsMenu,undefined,"Decorations","View your currently installed decorations");
 	}
-	else addDisabledButton(11,"Decorations","Decorations","You do not have decorations installed.")
+	else addDisabledButton(11,"Decorations","Decorations","You do not have decorations installed.");
+
+	if (!(pc.tent is EmptySlot))
+	{
+		addOverrideItemButton(12, pc.tent, "Tent Off", unequip, pc.tent);
+	}
+	else addDisabledButton(12, "Tent", "Tent", "You do not have a tent equipped in your quickslot.");
 	
 	//Set user and target.
 	itemUser = pc;
@@ -2280,7 +2295,8 @@ public function equipmentDisplay():void
 	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
 	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n");
+	output("<b>Tent:</b> " + StringUtil.toDisplayCase(pc.tent.longName) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
 	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
@@ -2316,7 +2332,8 @@ public function inventoryDisplay():void
 	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
 	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n");
+	output("<b>Tent:</b> " + StringUtil.toDisplayCase(pc.tent.longName) + "\n\n");
 	
 	output("<b><u>Inventory:</u></b> (" + pc.inventory.length + "/" + pc.inventorySlots() + " slots used.)");
 	if(pc.inventory.length > 0)
@@ -2602,6 +2619,10 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			unequippedItems.push(pc.upperUndergarment);
 			pc.upperUndergarment = new EmptySlot();
 			break;
+		case GLOBAL.TENT:
+			unequippedItems.push(pc.tent);
+			pc.tent = new EmptySlot();
+			break;
 	}
 	
 	var i:int = 0;
@@ -2672,6 +2693,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			output("You");
 			if(arg.type == GLOBAL.ARMOR) output(" don");
+			else if(arg.type == GLOBAL.TENT) output(" clip on");
 			else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
 			else output(" equip");
 			output(" your " + arg.longName + ".");
@@ -2745,6 +2767,11 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			removedItem = pc.upperUndergarment;
 			pc.upperUndergarment = arg;
+		}
+		else if(arg.type == GLOBAL.TENT)
+		{
+			removedItem = pc.tent;
+			pc.tent = arg;
 		}
 		else output("\n\n<b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 		
@@ -2860,6 +2887,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		tItem = null;
 	}
 	
+	var loot:ItemSlotClass = (newLootList[0] as ItemSlotClass);
 	// Fallback; offer an options menu to handle things.
 	if (tItem)
 	{
@@ -2868,20 +2896,41 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
 		addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
-		if (newLootList.length >= 2) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
-		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT) || InCollection((newLootList[0] as ItemSlotClass).type, [GLOBAL.PIERCING, GLOBAL.COCKWEAR])) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
+		if (newLootList.length >= 2)
+		{
+			var canEquip:Boolean = false;
+			// Equippable items check
+			if(isEquippableItem(loot, true))
+			{
+				// Wearables only if empty slot--no swapping here!
+				if(	(InCollection(loot.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && !pc.hasArmor())
+				||	(loot.type == GLOBAL.MELEE_WEAPON && !pc.hasMeleeWeapon())
+				||	(loot.type == GLOBAL.RANGED_WEAPON && !pc.hasRangedWeapon())
+				||	(loot.type == GLOBAL.SHIELD && !pc.hasShieldGenerator())
+				||	(loot.type == GLOBAL.ACCESSORY && !pc.hasAccessory())
+				||	(loot.type == GLOBAL.LOWER_UNDERGARMENT && !pc.hasLowerGarment())
+				||	(loot.type == GLOBAL.UPPER_UNDERGARMENT && !pc.hasUpperGarment())
+				||  (loot.type == GLOBAL.TENT && (pc.tent is EmptySlot))
+				) canEquip = true;
+			}
+			if(canEquip) addButton(2,"Use", useLoot, newLootList);
+			else addDisabledButton(2,"Use","Use","You cannot use this item while there are more items in the loot queue.");
+			
+			addButton(7, "Skip", nextItem, newLootList, "Skip to Next Item", "Look at the next item instead.");
+		}
+		else if (loot.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT) || InCollection(loot.type, [GLOBAL.PIERCING, GLOBAL.COCKWEAR])) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
+		else if (loot.isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
 		else addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
 		output(". The new acquisition");
-		if(newLootList[0].quantity > 1) output("s stow");
+		if(loot.quantity > 1) output("s stow");
 		else output(" stows");
 		output(" away quite easily.");
 		
 		// Special Events
-		if(newLootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
+		if(loot is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
 		
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
@@ -2922,6 +2971,31 @@ public function discardItem(lootList:Array):void {
 	clearMenu();
 	if(lootList.length > 0) addButton(0,"Next",itemCollect, lootList);
 	else addButton(0,"Next",lootScreen);
+}
+
+public function nextItem(lootList:Array):void {
+	clearMenu();
+	
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to skip to!\n\n");
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
+	output("\n");
+	output("You take a look at the next item instead...");
+	
+	var loot:ItemSlotClass = lootList[0];
+	lootList.splice(0,1);
+	lootList.push(loot);
+	
+	output("\n\n");
+	
+	if(lootList.length > 0) itemCollect(lootList);
+	else lootScreen();
 }
 
 public function replaceItemPicker(lootList:Array):void {
@@ -2987,7 +3061,7 @@ public function useLoot(lootList:Array):void {
 	// useLoot returns true during an equip-call
 	if (useItem(loot))
 	{
-		if(isEquippableItem(loot)) lootList.splice(0, 1);
+		if(isEquippableItem(loot, true)) lootList.splice(0, 1);
 	}
 	if (loot.quantity <= 0)
 	{
@@ -2996,7 +3070,8 @@ public function useLoot(lootList:Array):void {
 	
 	if (lootList.length > 0)
 	{
-		output("Loot list looped!\n\n");
+		//output("Loot list looped!\n\n");
+		output("\nYou move to the next item...\n\n");
 		itemCollect(lootList);
 	}
 }

@@ -109,7 +109,7 @@
 						else kGAMECLASS.output(" Just ahead of the base");
 						kGAMECLASS.output(", your member’s flesh engorges exponentially, swelling into a thick, cum-engorged knot. With a cry, you fall to the ground as the new doggy-cock discharges its heady load, shooting a thick rope of [pc.cum] through the swollen knot and onto the ground.");
 						kGAMECLASS.output("\n\nYou spend a few moments collecting yourself, cleaning the spunk off your new puppy pecker and adjusting to the heft and weight of the knot.");
-						pc.lust(20+rand(20));
+						pc.changeLust(20+rand(20));
 						pc.libido(2);
 						changes++;
 						pc.shiftCock(x,GLOBAL.TYPE_CANINE);
@@ -138,7 +138,7 @@
 					if(pc.hasPerk("Hung")) pc.cocks[x].cLength(Math.round(5 + rand(10))/10);
 					kGAMECLASS.output(Math.round(pc.cocks[x].cLength()*10)/10 + " inches. You take a moment to marvel at your new, larger member, ready for action.");
 					changes++;
-					pc.lust(10+rand(5));
+					pc.changeLust(10+rand(5));
 				}
 				//Knot size+
 				choices = new Array();
@@ -157,7 +157,7 @@
 					else kGAMECLASS.output("spread your [pc.legOrLegs]");
 					kGAMECLASS.output(" and grab your knotty cock. Your bitch-breaking knot is swelling even larger, engorging with cum and blood as your own arousal peaks. You feverishly grab your wang, stroking it as quick as you can as your knot grows larger than it ever has before!");
 					changes++;
-					pc.lust(20+rand(20));
+					pc.changeLust(20+rand(20));
 					pc.libido(.5);
 					pc.cocks[x].knotMultiplier += 0.1;
 				}
@@ -181,7 +181,7 @@
 				if(changes < changeLimit && x >= 0 && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nYou shudder violently as waves of pleasure suddenly shoot up through your loins. A flush of wetness pours down your [pc.legOrLegs] as your cunt contracts rhythmically, drooling a steady river of [pc.girlCum] - more than you’re used to producing. You shudder and sigh as your cunny nearly orgasms, just cresting the peaks of pleasure before the excess lube finally dissipates. Still, you feel a whole lot wetter than usual. You could definitely handle bigger cocks and toys now.");
-					pc.lust(20+rand(20));
+					pc.changeLust(20+rand(20));
 					pc.vaginas[x].wetness(1);
 					changes++;
 				}

@@ -1107,9 +1107,9 @@ public function runningFromAntsmex():void
 		else output("flagpoles.");
 		flags["LAST_ANT_ORGY"] = 2;
 		processTime(2);
-		pc.energy(-15);
-		pc.HP(-5);
-		pc.lust(45);
+		pc.changeHP(-5);
+		pc.changeLust(45);
+		pc.changeEnergy(-15);
 		clearMenu();
 		addButton(0,"Next",goWithTheAntOrgy, false);
 	}

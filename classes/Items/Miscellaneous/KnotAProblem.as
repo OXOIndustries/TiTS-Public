@@ -100,7 +100,7 @@
 							if(target.vaginas[0].wetnessRaw < 5) target.vaginas[0].wetnessRaw++;
 						}
 					}
-					target.lust(330);
+					target.changeLust(330);
 				}
 				//if PC has a dick that can be affected
 				else if(x >= 0)
@@ -119,13 +119,13 @@
 					if(!target.hasKnot(x)) kGAMECLASS.output("new ");
 					kGAMECLASS.output("[pc.knot " + x + "], fingers exploring the modified girth of the meaty bitch-breaker. It responds to your touch, throbbing with new and irresistible need, your newborn flesh aching for sensation. You give it eagerly, starting to stroke your meat - gently at first, but quickly picking up to a quick pace, hand moving quickly across your length and lavishing your knot with attention. You’re immediately greeted with almost overwhelming waves of pleasure, threatening to barrel you to the ground. Damn, you’re sensitive now! You can practically feel the cum rushing through your vein, swelling your knot even further; the faster you move, the more intense the sensation, until you can’t take it anymore.");
 					kGAMECLASS.output("\n\nWith a grunt, you let loose the first load of jizz with your newly modded cock, slumping back and breathing hard as your growing member spasms and throbs, ");
-					target.lust(500);
 					if(target.cumQ() > 8) kGAMECLASS.output("[pc.cumColor] seed shooting from it and across the ground.");
 					else kGAMECLASS.output("a single droplet of your exhausted [pc.cumNoun] dripping to the ground.") ;
 					kGAMECLASS.output(" Unsteadily, you slump to your [pc.knees], desperately trying to catch your breath. This ");
 					if(!target.hasKnot(x)) kGAMECLASS.output("new");
 					else kGAMECLASS.output("new and improved");
 					kGAMECLASS.output(" knot is going to be a hell of a lot of fun....");
+					target.changeLust(500);
 					//Actual TF
 					//No knot yet!
 					if(!target.hasKnot(x)) 

@@ -65,7 +65,7 @@
 							if(target.isAssExposed()) output(" bare ass");
 							else output(" clothed behind");
 							output(" and feel your cheeks expand rapidly. You can’t help but moan and give your butt a few caresses and light smacks in its greatly enlarged state.");
-							target.lust(5);
+							target.changeLust(5);
 							break;
 						// [pc.butt] increases by 3
 						case 3:
@@ -81,7 +81,7 @@
 							}
 							else output(" your [pc.asshole] pulsates");
 							output(" in unadulterated joy. You grope and smack your rapidly expanding [pc.butt] until it reaches its maximum capacity. <b>You take a moment to compose yourself and give a few more admirative smacks to your massively expanded ass.</b>");
-							target.lust(10);
+							target.changeLust(10);
 							break;
 					}
 					

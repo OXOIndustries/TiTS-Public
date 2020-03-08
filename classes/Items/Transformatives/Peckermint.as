@@ -116,7 +116,7 @@ package classes.Items.Transformatives {
 					target.orgasm();
 				}
 				
-				target.energy(5);
+				target.changeEnergy(5);
 				
 			//not the player	
 			} else {

@@ -361,8 +361,8 @@ public function deepCleanDatDirtyAusar():void
 	{
 		output("\n\nYou cry out as your [pc.cock " + selCock + "] explodes, firing shot after shot into her waiting womb.");
 		if(pc.hasVagina()) output(" Your [pc.pussy] clenches around Anno’s clever fingers as you cum, her rhythm setting the pace for your climax.");
-		output(" Anno rides your joined orgasm out, rocking her hips steadily as if to make sure you’ve emptied every sperm in your ");
-		if(pc.balls > 0)output("[pc.balls");
+		output(" Anno rides your joined orgasm out, rocking her hips steadily as if to make sure you’ve emptied all the sperm in your ");
+		if(pc.balls > 0)output("[pc.balls]");
 		else output("body");
 		output(" into her. There’s no question she really cleaned you out, in any case. ");
 		if(pc.hasKnot(selCock)) output("But with your knot sealing her entrance shut, your swimmers are trapped in her with nowhere to go, leaving her insides anything but clean.");
@@ -1694,8 +1694,8 @@ public function simoneWorkoutResults(response:String = ""):void
 			}
 			else
 			{
-				pc.lust(50 + rand(21));
-				pc.HP(-1);
+				pc.changeHP(-1);
+				pc.changeLust(50 + rand(21));
 			}
 			
 			StatTracking.track("contests/simone challenge wins");

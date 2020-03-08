@@ -76,9 +76,9 @@
 				}
 				//Usage text:
 				kGAMECLASS.output("You chomp down on the delicious, almost sugary egg.");
-				if(healing > 0) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
+				if(healing > 0) kGAMECLASS.output(" You feel better almost immediately!");
 				else kGAMECLASS.output(" Nothing changes except for the taste in your mouth.");
-				target.HP(healing);
+				target.changeHP(healing);
 			}
 			//Not player!
 			else
@@ -86,9 +86,9 @@
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " eats a brightly-colored egg");
-				if(healing > 0) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
+				if(healing > 0) kGAMECLASS.output(" and instantly regains a little health!");
 				else kGAMECLASS.output(" to no effect.");
-				target.HP(healing);
+				target.changeHP(healing);
 			}
 			return false;
 		}

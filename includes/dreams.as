@@ -149,6 +149,10 @@ public function dreamChances(inShip:Boolean = false):Boolean
 		if(seraIsMistress()) dreams.push(demonDream);
 		if(isHalloweenish()) dreams.push(superGhostioDream);
 		if(pc.hasPerk("Primorditatts")) dreams.push(capraphormDreamSequence);
+		//Kiro & Kally fun!
+		if(kiroIsCrew() && kiroKallyThreesomes() > 1 && kiro.hasCock() && !kiro.isBimbo() && kiro.hasCock(GLOBAL.TYPE_EQUINE))
+			dreams.push(kiroAndKallyBreedingDreamForCrewKiro);
+
 	}
 	if(dreams.length > 0) 
 	{
@@ -230,7 +234,7 @@ public function angelDreamGo():void
 	if(pc.isBimbo()) output("stretch out your hands, eager to play with such benevolent boners. The moment you make skin to skin contact, you shudder, reveling in the holy hotness pulsing against your fingers.");
 	else output("hold out your hands, ostensibly to push them away, but the minute you feel the benevolent boners touching your palms, you squeeze them right back.");
 	//[Next]
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",angelFutaBukkakePart2);
 }
@@ -250,7 +254,7 @@ public function angelFutaBukkakePart2():void
 	output("\n\nThey could bend you over and ram one up your asshole, and you wouldn’t complain. A wave of brilliant goo cascades over your [pc.hair]. Simultaneously, a geyser of purifying cum bathes your flank. Your hands are pried off the trembling lengths mid-orgasm, no matter how tightly your fingers clutch at them, and forced to serve new masters. These ones go off immediately, like they’ve been edging this whole time, getting off to watching you deep-throat their mistress, ready to explode the moment they brushed your pinkie.");
 	output("\n\nThis time, the cum doesn’t stop. You are bathed in it, anointed in it, baptized in a swimming pool of angelic nut-butter. Better still, the dick in your mouth is bulging, its urethra straining, expanding, pumped full of a sticky snack for your corrupted middle. It goes off like a cannon, making your [pc.belly] burble and expand. It’s flooding you, pumping what must be gallons of angelic essence forcefully into your very soul. You can feel yourself expanding with it, not just physically but completely, becoming greater, holier, more fit to serve the galaxy and these gifted girls.");
 	output("\n\nWhite-glowing juices blind you, but you don’t need to see with your eyes. You can see with your own blinding radiance, ignited by these divine creatures’ offerings. Every cummy splash is a declaration of your own divine purpose, a reminder that you exist to serve the universe’s whims. Your spirit drinks in the cum right alongside your belly, and just when you feel fit to burst, you cum.");
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",angelFutaBukkakePart3);
 }
@@ -527,7 +531,7 @@ public function reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsFor
 	output("\n\nReaha has always been an obedient one, but when it comes to the milking process itself, she’s a bit more stubborn. Immediately after taking a seat on the tiny wooden stool, your [pc.crotch] is soon greeted by a handful of Reaha’s [reaha.butt]. You’ve already gotten used to her needing to sit on your lap and feel your [pc.chest] on her back, while your hands reach around her, hugging her through the milking session. But this time, stark naked and still slightly aroused from the trip down sexy memory lane, it’s a different matter, and you try to push her off. Reaha, however, won’t have any of that, slamming her soft ass back down, making her “Steele’s cow” tattoo jiggle in the process. Annoyed by your resistance, she keeps wriggling back and forth across your crotch, mooing in frustration until you’re forced to give in to the childlike tantrum. <i>“Who do you think I’m worried about”</i>, you irritatedly mutter as you start massaging her breasts, warming them up while trying to keep your mind on granny’s cookies, or anything else except the growing heat in your nethers.");
 	output("\n\nIt’s not only the cows who’ve been horny lately. Without a steady partner, you’ve been pretty backed up too, and masturbation clearly doesn’t seem to cut it anymore. At this point, you’re worried you could attack your dear cows. You’re particularly concerned about Reaha. The last thing you want is for her to hate you after a relentless assault, but the bovine in question seems blissfully unaware of that, smiling from ear to ear while you knead her heavenly soft udders.");
 	output("\n\nAfter you’ve thoroughly warmed her up, milk already dripping involuntarily from her teats, she’s ready for the real deal. Placing her stiffening nipples between your experienced fingers, you start tugging and pinching at them, and are immediately rewarded with a cry of delight and a fountain of milk flooding out of her. Reaha moos in pure bliss as you empty her breasts, visibly shuddering while the big orbs deflate at a steady rate. It’s not long before you fill the bucket and the white waterfall starts slowing down, turning into small trickles that leak down her bosom, occasionally flowing out again whenever you pinch hard enough.");
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",reahaDreamPart2);
 }
@@ -617,7 +621,7 @@ public function reahaDreamPart2():void
 		output("\n\nThis fleeting moment of joy lasts for what seems like an eternity until you finally pull out of the spent cow, a nice trickle of [pc.cumNoun] oozing out of her, a clear sign of a job well done.");
 	}
 	output("\n\nLooking at your blissed out lover, you wonder what you’re gonna do with her and all this mess before several of the other cows start mooing loudly, desperate for their own turn. <i>“Duty calls”</i>, you think to yourself, smiling from ear to ear, not seeing any reason to stop yourself now that you’ve already come this far. With this many cows you might finally be able to quench the insatiable need in your loins. However, just as you’re about to scuff over to them, you find yourself pinned down by Reaha once again. <i>“I’m not done with you yet”</i>, she says, eyes glimmering mischievously.");
-	pc.lust(100);
+	pc.changeLust(100);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",reahaDreamPart3);
@@ -639,7 +643,7 @@ public function reahaDreamPart3():void
 		output(" wipe the sleep from your eyes.");
 		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Reaha was next to you...");
 		
-		pc.lust(5);
+		pc.changeLust(5);
 		dreamResetCock();
 		
 		clearMenu();
@@ -677,7 +681,7 @@ public function reahaDreamPart3():void
 		
 		pc.milkInMouth(reaha);
 	}
-	pc.lust(5);
+	pc.changeLust(5);
 	dreamResetCock();
 	
 	clearMenu();
@@ -723,7 +727,7 @@ public function venusDreamsPart2():void
 	else output("jerked");
 	output(" yourself to moaning completion with her eyes and tits and curves and vines as your sole obsession, you stand drooling in front of her. Those breasts bounce, held in her hands, swaying, matching the ephemeral image superimposed over reality like a bad holovid editing trick. You’ve been seeing her all along, every time your eyes close. Each bounce and tremble of those tits is perfection in triplicate: the tiny ghostly versions of her swimming on your eyes and still present when you can bring yourself to blink, and the real thing there in the darkness. You want her. You need her. You spread your " + (pc.hasLegs() ? "legs" : "thighs") + " and shamble closer with everything on display.");
 	output("\n\n<i>“That’s right, come to the familiar home of your desires. We can both be so happy. You understand where your home is... climb in and let me pleasure your... wait. That is strange.”</i>");
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",venusDreamsPart3);
 }
@@ -776,7 +780,7 @@ public function venusDreamsPartBimbo():void
 	output("\n\nIt is. Sparks and spikes and bolts of pleasure. One finds a place inside your ass you weren’t sure existed, and just begins vibrating on top of it. Whatever the liquid on those vines is, it coats your tongue and turns it into a clit, a cock, a pussy, an entire sexual explosion between your lips. Only the whites of your eyes are visible in the moment her vines really begin their push.");
 	output("\n\nLubricated, gentle, and all encompassing. The vines in your ass weave themselves together to form a structure like a huge but prehensile dildo. It keeps going and going until nothing is left of “you” except the you floating above, watching herself get fucked. The body down there looks uncomfortable with the vines filling it up and going all the way through. But all your discomfort is taken away by those big tits. She drifts forward through the fertile ground and rests her huge tits on your face.");
 	output("\n\nGiggling. Clenching. Trying to send instructions to the poor vine-sleeve of meat and need and groaning ecstasy below with the plant lady’s green tits taking your mind. None of your instructions work. None of your thoughts work. Eventually even your out of body experience starts having mindless fuckquakes that send the green woman’s seed gushing back out of your butt. Mingled with your drool it has painted a pale green trail down your chest and formed a puddle under your suspended form.");
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",venusDreamsPartBimbo2);
 }
@@ -918,7 +922,7 @@ public function venusDreamsPartFucknormousTits2():void
 	output("\n\nYour breasts bounce and vibrate, cumming from within. You are cumming from being fucked full of her seed. Turned into fertile ground. Planted, filled, fulfilled, made part of her ecosystem. Your bouncing breasts occupy so much of your mind that the presence of any other sensory cluster vanishes into oblivion.");
 	output("\n\nOblivious to your own state, your eyes white and then glowing green with need from within. Mouth drooling faintly green drool. Your forehead heated as she kisses it again. Another climax, more tender need, more wonderful ache. You are there for the vines to fuck your tits full of seeds and make you full. They are growing, getting bigger. Each burst of growth is accompanied by a mindless moan you are surprised to realize comes from your own mouth. Jumping off the ground a little, your whole body tense with good feelings, you notice that a third larger vine is reaching for your stretched nipples.");
 
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",venusDreamsPartFucknormousTits3);
 }
@@ -977,7 +981,7 @@ public function venusPitcherDreamsPartNormal():void
 	output("\n\nSlap, smack, squish. So much lubricant and nectar inside that it flows back out onto the ground from your stretched well fucked ass. She is powerful and the vines around your wrists and ankles aid her in lifting and dropping you. Gravity bottoms you out and makes you its bitch every time you think you have a moment’s break from her long thick “cock”. You ride it deep, making sure to wiggle and squeeze your sphincter as tight as you can on the full hilting.");
 	output("\n\nShe moans, she can feel it, and she is even more inspired to let go when her would-be fucktoy begins riding and bouncing. You can only move a little in her grasp, but a little is enough. <i>“Oh, such an eager [pc.boyGirl]... I shall have to help you express both that desire, and all of your fluids...”</i> She pauses, smirks, whispers something: <i>“Oh, but you cannot.”</i>");
 
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",venusPitcherDreamsPartNormal2);
 }
@@ -1598,7 +1602,7 @@ public function alexandraDream2():void
 	output("\n\nShe moves one hand from below her bust to slide you a piece of paper. <i>“It’s not your fault. You’ve worked <b>so</b> hard to make sure you didn’t fall prey to the sorts of sluts that take men like you and suck them dry. Here. All you have to do is sign right down here, right on the bottom line, and we’ll make sure that doesn’t happen. You’ll come with me back to the ranch, we’ll get you set up in your little vacation home, and you’ll get to finally let out all that pent-up desire.”</i>");
 	output("\n\nThe contract is right in front of you, a pen placed helpfully beside it. Even if your limbs feel like they’re made of cement right now, you’re able to pick up the pen and sign the paper if you want to. <i>And you really, <b>really</b> want to.</i>");
 	output("\n\nDo you?");
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Yes",alexandraDream2Yes);
 	addButton(1,"No",alexandraDream2No);
@@ -1665,7 +1669,7 @@ public function alexandraDream2Yes():void
 	output("\n\nWhat decision? You’re not sure. It isn’t important right now.");
 	output("\n\nRight now, you just want to find some fertile bitch to <b>breed.</b>");
 	pc.taint(1);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	alexandraIndulge();
@@ -1723,7 +1727,7 @@ public function alexandraDream3():void
 	output("\n\nMilk dribbling from her teats. Alexandra smirking as she wrings another load from one of her bullstuds with her fat, heaving tits. You’re so close to cumming. Alexandra instructing you to obey, using her psychic powers to influence you at your most vulnerable, to shape your desires while you hand yourself over to pleasure, to sleep, to dreams. You can almost feel her in your head, <b>adjusting</b> you to be more how she <b>wants</b> you to be.");
 	output("\n\nYou - the real you, not the dream you - know you can wake up. And you know that if you don’t, if you stay in the fantasy, if you see it through to the end...you’ll end up changed. But would that be a bad thing? It feels incredible. And it’s not like you’re going to wake up zombified if you let this psychic cowgirl goddess give you a wet dream. Right?");
 	output("\n\nYou can indulge a little bit more. You can let Alexandra take control. All she wants to do is make you feel good. All she wants is to make you cum so hard your brain turns off for a while.");
-	pc.lust(120);
+	pc.changeLust(120);
 	clearMenu();
 	addButton(0,"Wake Up",wakeUpForAlexandra);
 	addButton(1,"Stay Asleep",stayAsleepForAlexandra);
@@ -1811,7 +1815,7 @@ public function alexandraDream4():void
 	output("\n\n<i>“Here’s what we’re going to do,”</i> Alexandra continues, moving slowly to undo the buttons of Fiona’s blouse. <i>“We’re going to set up a little change in the chain of command here. You know, so no one has to make any <b>calls</b> or send you any <b>messages</b> while you’re relaxing. No interruptions. And then, just as a little treat from me to you, my bull here is going to fuck you <b>senseless.</b> Let’s call it...”</i> Alexandra giggles to herself. <i>“‘Proof of conception.’”</i>");
 	output("\n\nFiona purrs with delight. She presses her now-bare breasts up against your rod, sandwiching the sizable length of your fuckpillar between her tits. She massages the warm softness of her chest around your shaft, but it’s painfully clear that she’s not nearly big enough to titfuck you properly. That’s fine, though. Alexandra doesn’t want you to just fuck their tits. She wants you to spunk in their cunts and make sure they get hooked on being creampied. On being bred.");
 	output("\n\nYour eyelids sink lower, and you feel the programming she’s drilled into your head begin to take over. It’s so simple. Like going on autopilot and getting a nice, fat cumshot at the end for being a good little slave. <i>All you have to do is give up. All you have to do is give in.</i>");
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Give Up",alexandraDream4GiveUp);
 	addButton(1,"Get Out",alexandraDream4GetOut);
@@ -1900,7 +1904,7 @@ public function alexandraDream5():void
 	output("\n\nYou’ll be her puppet, you’ll win, and your reward will be a harem of breedable cowgirls and a life where you only have to stumble from one cumshot to the next. You’ll help her fuck her enemies into submission and control all the other weak, horny bull breeders. Even the ones who don’t know they’re just fuck-addicted bulls yet.");
 	output("\n\nAnd the best part is that it’s all your choice. You’re seconds away from signing away your free will and admitting that you’d rather be a mindless drone than a real person with hopes and dreams and choices.");
 	output("\n\nDo it. Give in. Give up.</i>");
-	pc.lust(30);
+	pc.changeLust(30);
 	//(Give in) (or not i guess)
 	clearMenu();
 	addButton(0,"Give In",alexandraDream5GiveIn);

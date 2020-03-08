@@ -281,7 +281,7 @@ public function drBadgerJobOffer():void
 		output("\n\n<i>“This is a very special gun,”</i> the doctor explains. <i>“I made it very carefully so it would only work on Penny - I can’t have you going and bimbo-ifying the whole galaxy, can I? After all, that’s </i>my<i> job.”</i>");
 		output("\n\nShe pets you once more on the head as you stare thoughtfully at the gun-thing in your hands, and your tail waggles with unthinking glee as you look back up at her grinning face.");
 		output("\n\n<i>“Well, run along then pet, and show that mean ol’ cop how good it can feel being one of Dr. Badger’s bimbos!”</i>");
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	//IF PC WAS NOT BIMBO-IFIED BY DR BADGER
 	else
@@ -369,7 +369,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		output("\n\nYou laugh. Still, the question remains, and eventually Penny returns to it.");
 		output("\n\n<i>“I can’t say I’m not tempted. " + (pennyIsCrew() ? "And if there’s one thing I learned from you, it’s that sex can solve pretty much every problem.":"And if there’s one thing I’ve learned it’s that there really isn’t much police work that <i>can’t</i> be solved on this planet by just fucking it, so it’s not like I’d be abandoning my post.") + "”</i> She pauses for a moment as she licks her fingers, savoring the taste of her cum. <i>“Or, well, you said Dr. Badger said that that gun only works on me at the moment. Maybe I could check around in my contacts, see if I could find someone smart enough to change it, make it so that it’d work on </i>her<i> instead. Or fuck, maybe we should just be sensible and report her. Maybe her libido is high enough as it is.”</i>");
 		output("\n\nEver so slowly, her head starts to dip back down, her cock pushing back up through her tits. Even for her this is a lot, so she must be <i>really</i> turned on - you doubt you’ll get much more in the way of reasoned discussion out of her. It looks like she’s left it up to you.");
-		pc.lust(8);
+		pc.changeLust(8);
 	}
 	//IF PC WAS BIMBOIFIED BY DR BADGER AND PENNY IS NOT A CUMSLUT
 	else if(pcBimboedByBadger() && !pennyIsCumSlut())
@@ -458,7 +458,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		flags["NO_REPORTING_DOC_BADGER"] = 1;
 		pc.lust(100);
 		pc.orgasm();
-		pc.lust(33);
+		pc.changeLust(33);
 	}
 	flags["PENNY_BADGER_WARNED"] = 1;
 	clearMenu();
@@ -509,7 +509,7 @@ public function zapPennyAfterWarningHer():void
 		if(!pennyIsCumSlut() && pennyIsCrew()) output(" Of course now that Penny is only good for fucking, she’ll need a job. Maybe she can camwhore while you’re out adventuring?");
 		else output(" Penny seems happy too" + (!pennyIsCrew() ? ", and you suspect that in a place like this a police officer whose first resort is to fuck any problems into submission will probably do pretty well.":".") + " You can have fun with this new version of Penny later, but for now you’ve got a payment to collect.");
 		processTime(11);
-		pc.lust(25);
+		pc.changeLust(25);
 	}
 	//IF PLAYER IS BIMBOIFIED AND PENNY DOES NOT HAVE A DICK
 	else if(pcBimboedByBadger() && !penny.hasCock())
@@ -716,7 +716,7 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\nShe looks almost hurt, the first time since you zapped her that you’ve seen her expression look anything other than blissful. <i>“Why on earth would </i>anyone<i> want to do that? She’s like, magic! Have you </i>seen<i> my cock? It’s cumming </i>forever<i>. You don’t lock up someone who can do something like that!”</i>");
 		output("\n\nWell, looks like mission accomplished - Dr. Badger doesn’t have anything to worry about here. Penny stands up slowly, visibly delighting in her newly revamped form, spinning to take in her bubble butt and exaggerated tits. It’s nice that she’s happy with the results too " + (!pennyIsCrew() ? ", and you suspect that in a place like this a police officer whose first resort is to fuck any problems into submission will probably do pretty well":"") + ". You can have fun with this new version of Penny later, but for now you’ve got a payment to collect.");
 		processTime(11);
-		pc.lust(25);
+		pc.changeLust(25);
 	}
 	//IF PC WAS NOT BIMBO-IFIED BY DR BADGER AND PENNY IS A CUMSLUT
 	else if(!pcBimboedByBadger() && pennyIsCumSlut())
@@ -750,7 +750,7 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\nShe looks almost hurt, the first time since you zapped her that you’ve seen her expression look anything other than blissful. <i>“Why on earth would </i>anyone<i> want to report her? She’s like, magic! Have you </i>seen<i> my cock? It’s cumming </i>forever<i>. You don’t lock up someone who can do something like that!”</i>");
 		output("\n\nWell, looks like mission accomplished - Dr. Badger doesn’t have anything to worry about here. Penny seems happy too" + (pennyIsCrew() ? "":", and you suspect that in a place like this a police officer whose first resort is to fuck any problems into submission will probably do pretty well" ) + ". You can have fun with this new version of Penny later, but for now you’ve got a payment to collect.");
 		processTime(11);
-		pc.lust(25);
+		pc.changeLust(25);
 	}
 	//IF PC WAS BIMBO-IFIED BY DR BADGER AND PENNY IS NOT A CUMSLUT
 	else if(pcBimboedByBadger() && !pennyIsCumSlut())
@@ -971,7 +971,7 @@ public function turnTheTablesOnBadgertwat():void
 		if(pennyIsCumSlut()) output(" She’s interrupted briefly as her cock hardens dramatically once again, making her shudder with bliss as it pushes up between her breasts. <i>“Well, okay</i>, she adds, <i>“I was </i>mostly<i> hoping you’d say that. The thought of being a 100% cum-focused bimbo slut " + (pennyIsCrew() ? "- even more than I already am - ":"") + "has... a definitely appeal, but no, this is a much better plan.”</i>");
 		output("\n\nShe types on her terminal for a few moments, frowning at the display as she searches through the information. <i>“Listen, I can’t promise anything, but I know some people who know some people, and I’m sure with all the folks out here for the Planet Rush there’s got to be someone who knows enough to reconfigure this thing. I’ll put out the call, but it will probably take a while before I hear anything.”</i>");
 		output("\n\nNodding at the raygun in your hand, she says. <i>“Leave that with me. I’ll let you know when I’ve found something. And then after that we can have some fun, </i>and<i> show her U.G.C Peacekeepers" + (pennyIsCrew() ? " - even former ones -":"") + " aren’t something to fuck with.”</i>");
-		if(pennyIsCumSlut()) output("\n\nThen, after a brief pause, she adds quietly, <i>“and, uh, </i>after<i> that, " + (pennyIsCrew() ? "I can get back to jerking off on camera...":"maybe we could find a way to make the whole cum-focused bimbo slut thing work on our terms. If, uh, if you want...") + "”</i>");
+		if(pennyIsCumSlut()) output("\n\nThen, after a brief pause, she adds quietly, <i>“And, uh, </i>after<i> that, " + (pennyIsCrew() ? "I can get back to jerking off on camera...":"maybe we could find a way to make the whole cum-focused bimbo slut thing work on our terms. If, uh, if you want...") + "”</i>");
 		output("\n\nThat seems to be it. For now you just need to sit tight and wait for Penny to get back to you.");
 	}
 	//IF PLAYER WAS BIMBO-IFIED BY DR BADGER
@@ -986,7 +986,7 @@ public function turnTheTablesOnBadgertwat():void
 		}
 		output("\n\nShe types on her terminal for a few moments, frowning at the display as she searches through the information. You pout as you wait. Maybe you <i>should</i> have just zapped her - you probably wouldn’t have agreed with her idea if you knew it would end up with all this standing around and not getting fucked. <i>“Listen,”</i> she says eventually, <i>“I can’t promise anything, but I know some people who know some people, and I’m sure with all the folks out here for the Planet Rush there’s got to be someone who knows enough to reconfigure this thing. I’ll put out the call, but it will probably take a while before I hear anything.”</i>");
 		output("\n\nNodding at the raygun in your hand, she says. <i>“Leave that with me. I’ll let you know when I’ve found something. And then after that we can have some fun, </i>and<i> show her U.G.C Peacekeepers aren’t something to fuck with.”</i>");
-		if(pennyIsCumSlut()) output("\n\nThen, after a brief pause, she adds quietly, <i>“and, uh, </i>after<i> that, " + (pennyIsCrew() ? "I can get back to jerking off on camera...":"maybe we could find a way to make the whole cum-focused bimbo slut thing work on our terms. If, uh, if you want...") + "”</i>");
+		if(pennyIsCumSlut()) output("\n\nThen, after a brief pause, she adds quietly, <i>“And, uh, </i>after<i> that, " + (pennyIsCrew() ? "I can get back to jerking off on camera...":"maybe we could find a way to make the whole cum-focused bimbo slut thing work on our terms. If, uh, if you want...") + "”</i>");
 		output("\n\nThat seems to be it. For now you just need to sit tight and wait for Penny to get back to you. And maybe, while you’re waiting, like, actually get some sex. That would be <i>super</i> nice.");
 	}
 	output("\n\n<b>Penny has taken possession of the bimbo ray.</b>");
@@ -1613,7 +1613,7 @@ public function talkToDoctorBadger():void
 		output("\n\nThere is a long silence.");
 		output("\n\n<i>“Uh... want to fuck?”</i> you ask eventually.");
 		output("\n\n<i>“Oh holy shit yes.”</i>");
-		pc.lust(20);
+		pc.changeLust(20);
 		processTime(1);
 	}
 	doctorBimboBadgerMenu();

@@ -137,7 +137,7 @@ package classes.Items.Transformatives {
 							if(rand(3) == 0) output("\n\nNot that you feel like you need to, but sex would definitely feel better with the added moisture down below.");
 							else if(rand(2) == 0) output("\n\nYou touch yourself with a finger, purely to get a better feel for how the slutshroom changed you. It’s nice... in a pulse-quickening way. You stop yourself before you wind up jilling off.");
 							else output("\n\nAfterward, you keep thinking back to your newly moistened vagina, not because your libido is picking up but because its a natural reaction to having part of your body change so drastically.");
-							pc.lust(10);
+							pc.changeLust(10);
 						}
 						//Max wet but not lewd enough - +4
 						else
@@ -149,7 +149,7 @@ package classes.Items.Transformatives {
 								if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) output(" under the [pc.skinFurScalesNoun]");
 								output(". Weird. Wasn’t this supposed to make your [pc.vaginas] wetter? You reach down and rub yourself until trickles of moisture run down your [pc.thighs]. Nothing different about that! Though you could really go for a nice masturbation session right about now...");
 							}
-							pc.lust(10);
+							pc.changeLust(10);
 							pc.libido(4);
 						}
 						pc.slowStatGain("libido",6);
@@ -172,7 +172,7 @@ package classes.Items.Transformatives {
 								if(kGAMECLASS.flags["MET_SYRI"] != undefined) output(" What if the next time you see Syri she can smell how wet you’re getting? She’d probably fuck you over an arcade machine until you got pregnant.");
 								else output(" What if the next time you run into one, they’re compelled to take you by your fragrant cunt. It probably wouldn’t even be rape. You want to feel the knot squish around inside your emboldened channel.");
 							}
-							pc.lust(10);
+							pc.changeLust(10);
 						}
 						//Knot wetter - +3
 						else
@@ -191,7 +191,7 @@ package classes.Items.Transformatives {
 								output("\n\nIt feels warm and gooey inside you, the mutagenic mushroom seeping into your bloodstream to make you better, sexier. You shake your head as your lust builds, getting you nice and wet - though not any more so than normal. Should you like getting sexier? Your fingers dive into [pc.oneVagina], just to make sure the mushrooms are working. It seems like a pretty good idea, getting wet and ready. Everybody wants to fuck the [pc.boyGirl] with the dripping-wet cooze.");
 								output("\n\nAfter a long, satisfying session of fingerplay, imagining all the hotties that’ll line up for a shot at you once you become the " + pc.mf("king","queen") + " of squirting, you have the good sense to blush in shame. That was certainly an exceptionally lewd thought, and you didn’t even get any wetter for the trouble! Could the mushrooms have done something else?");
 							}
-							pc.lust(10);
+							pc.changeLust(10);
 							pc.libido(3);
 						}
 						pc.slowStatGain("libido",6);
@@ -220,7 +220,7 @@ package classes.Items.Transformatives {
 							}
 						}
 						pc.slowStatGain("libido",8);
-						pc.lust(10);
+						pc.changeLust(10);
 					}
 					//Else + .5
 					//Notwetter only:
@@ -271,7 +271,7 @@ package classes.Items.Transformatives {
 					if(wetnessAmount < 2000) 
 					{
 						output("\n\nYou wonder what the mushroom is doing to you as you feel your stomach fill with heat. Will that warmth, dripping into your [pc.vaginas] drop by drop, make you squirt gallons? The thought alone has you leaking more and more [pc.girlCum], and though nothing else seems to happen, you feel a sense that something is different, like your next orgasm will be even wetter.");
-						pc.lust(5);
+						pc.changeLust(5);
 					}
 					//Sub 5k
 					else if(wetnessAmount < 5000)

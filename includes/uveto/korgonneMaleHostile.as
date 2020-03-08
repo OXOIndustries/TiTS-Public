@@ -111,7 +111,7 @@ public function korgMaleEncounter():void
 			if(pc.shields() > 1) 
 			{
 				output(" Your shield flickers as they glance off and fall nearby.");
-				pc.shields(-3);
+				pc.changeShields(-3);
 			}
 			else
 			{
@@ -166,16 +166,16 @@ public function korgMaleEncounter():void
 		else if(pc.shields() > 3) 
 		{
 			output("They ping your shield harmlessly and fall to the ground.");
-			pc.shields(-3);
+			pc.changeShields(-3);
 		}
 		else
 		{
 			output("They ");
 			if(pc.shields() > 0)
 			{
-				pc.shields(-3);
 				output("penetrate your shield and ");
 				output("embed themselves, and an ill feeling twists your gut.");
+				pc.changeShields(-3);
 			}
 			//(if poisoned)
 			if(!pc.hasStatusEffect("Poisoned"))

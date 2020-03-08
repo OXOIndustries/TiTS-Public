@@ -23,7 +23,7 @@
 
 public function pennyPumpkingEmailSubject():String
 {
-	if(flags["PENNY_BADGER_BIMBO"] != undefined) return "Annoying pumpkin guy";
+	if(penny.isBimbo()) return "Annoying pumpkin guy";
 	else if(pennyIsCumSlut()) return "‘Pump-King’ causing trouble on Mhen’ga";
 	else return "‘Pump-King’ Rampaging on Mhen’ga";
 }
@@ -32,7 +32,7 @@ public function pennyPumpkingEmailText():String
 {
 	var emailTxt:String = "";
 	//bimbo penpen
-	if(flags["PENNY_BADGER_BIMBO"] != undefined) emailTxt = "So like, I was getting fucked by those zil dudes and they tried to get me to join their club for their weird ‘Pump-King’ dude but I was like <i>“Uh, I </i>have<i> a </i>[pc.boyGirl]friend!<i>”</i> and they were like trying to drag me into the jungle! But I fucked them again and uh... I think I woke up in my office? Anyway I don’t like this Pump-king weirdo. You should come beat him up for me! He’s making me actually do my job, and that SUCKS! And not the good way.\n\n<i>A nude selfie is enclosed as well, Penny’s tongue hanging sloppily out of her mouth while her free hand pinches a pebbled nipple. She’s clearly in the middle of orgasm, judging by the fact that her eyes are rolled halfway up into her skull and her face is covered almost completely with jizz. How is she holding the camera while she’s cumming her brains out?</i>";
+	if(penny.isBimbo()) emailTxt = "So like, I was getting fucked by those zil dudes and they tried to get me to join their club for their weird ‘Pump-King’ dude but I was like <i>“Uh, I </i>have<i> a </i>[pc.boyGirl]friend!<i>”</i> and they were like trying to drag me into the jungle! But I fucked them again and uh... I think I woke up in my office? Anyway I don’t like this Pump-king weirdo. You should come beat him up for me! He’s making me actually do my job, and that SUCKS! And not the good way.\n\n<i>A nude selfie is enclosed as well, Penny’s tongue hanging sloppily out of her mouth while her free hand pinches a pebbled nipple. She’s clearly in the middle of orgasm, judging by the fact that her eyes are rolled halfway up into her skull and her face is covered almost completely with jizz. How is she holding the camera while she’s cumming her brains out?</i>";
 	//cumslut penpen
 	else if(pennyIsCumSlut()) emailTxt = "[pc.name],\n\nHey, sexy. Remember me? Well, there’s trouble in paradise - some wacko calling themselves the ‘Pump-king’ is running loose in the jungle around Esbeth, vandalizing shit with a pumpkin on their head and gathering displaced zil as followers. They’re not even that good in bed!\n\nCould you come lend a hand? I have... other things I could be doing. Like you.\n\n<i>A nude selfie is enclosed as well. Penny is taking a picture of herself with her left hand and masturbating furiously with her right, the entirety of her lewd body on display, the fennec’s eyes practically glowing with sexual hunger.</i>";
 	else emailTxt = "[pc.name],\n\nHey, uh, I’m really sorry to beg for help, but we’ve got a bit of a situation here on Mhen’ga, and I was wondering if you could lend a hand " + (flags["ZIL_PROBLEM_DEALT_WITH"] != undefined ? "like you did with those Zil?":"to a settlement in need? I’m sure it would help the Steele brand.") + " There’s this weirdo running around with a Pumpkin on his head calling himself the ‘Pump-king’ and proclaiming himself King of Mhen’ga. At least, I <i>think</i> it’s a dude, given that he’s specifically calling himself a king. Whatever. I sent for backup, but they gave me some bullshit about low threat level and said the nearest non-priority team would be out from Tavros in two weeks. TWO FUCKING WEEKS. I mean whoever this is isn’t hurting anyone so far, just vandalizing shit and banging zil girls, but Crazy Carl says his latest weapon shipment got stolen.\n\nWhich leads me to the other thing, actually; some of the zil have started to recognize him as their leader. They’re even protecting him, or I probably would’ve caught him myself. I mean I’m not <i>that</i> worried, they’re only the size of a small tribe, but I’d still really like to not wait two weeks to have this bullshit resolved and take the chance of this weirdo becoming a real threat. Can you come beat some sense into this dude so I can lock him up?\n\n\t<i>Officer Penny Inoue, U.G.C. liaison for Mhen’ga colony</i>";
@@ -206,7 +206,7 @@ public function loseToPumpking():void
 	output("\n\n<i>“That was excellent. Guards, take this one to my chambers,”</i> she says simply, motioning to the approaching zil, who hoist you up by the arms and drag you through a door directly behind the throne - her chambers, you can only assume. Inside is a roughly carved king-sized bed with a very comfortable looking mattress, which the bee-men swiftly throw you onto, one of them bringing up a collar and chain and securing the collar around your neck. Your arms are then similarly bound behind your back, ensuring that you can do nothing but wait until the Pump-king decides to go to bed.");
 	output("\n\nAnd wait...");
 	output("\n\nAnd wait...");
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",pumpkingBadEnd2);
 }

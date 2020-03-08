@@ -99,6 +99,16 @@ public function zhengShiSSTDChance(arg:Creature):void
 	if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
+/* WIP stub for later use */
+public function dhaalSSTDChance(arg:Creature):void
+{
+	var sstdList:Array = [];
+	//if(rand(40) == 0) sstdList.push("Undetected Furpies");
+	//if((arg.originalRace == "raskvel" || arg.raceShort() == "raskvel") && rand(30) == 0) sstdList.push("Undetected Locofever");
+	//if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	//if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
+	//if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
+}
 
 // Test stuff
 public function induceSSTD():void

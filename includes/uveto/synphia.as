@@ -146,8 +146,22 @@ public function synphiaMenu():void
 	addButton(5,"Gadgets",buyGadgetsFromSynphia,undefined,"Gadgets","Purchase gadgets for your [pc.ship] from Synphia.");
 	addButton(6,"Upgrades",buyUpgradesFromSynphia,undefined,"Upgrades","Purchase upgrades for your [pc.ship] from Synphia.");
 	addButton(7,"Unfit",unfitSynphia,undefined,"Unfit","See about having an installed upgrade removed.");
+	addButton(10,"BuyUniforms",buyUniformsFromSynphia,undefined,"Buy Uniforms","As a SteeleTech employee, she can probably hook you up with one of the corporate jumpsuits, assuming you want one.");
+
 	addButton(14,"Leave",leaveSynphia);
 }
+public function buyUniformsFromSynphia():void
+{
+	clearOutput();
+	showSynphia();
+	author("Fenoxo");
+	shopkeep = chars["SYNPHIA"];
+	shopkeep.inventory = [new SteeleTechSuit(), new SteeleTechSuit(), new SteeleTechSuit(), new SteeleTechSuit(), new SteeleTechSuit(),new SteeleTechSuit()];
+
+	shopkeep.keeperBuy = "You ask her if she can sell you any SteeleTech uniforms.\n\nSynphia blinks at you for a moment, then shrugs with an air of complete unconcern. <i>“Ordinarily not, but if anyone ought to be able to wear the old black and gold, it’s you and yours, I suppose. As long as the credits are accounted for, the beancounters won’t mind me clearing out the excess inventory. How many do you need?”</i>\n";
+	buyItem();
+}
+
 public function synphiaAppearance():void
 {
 	clearOutput();

@@ -91,7 +91,7 @@ public function sureHelpPlugTheLeakingPexigaWithYammiFirstTime():void
 	output("\n\n[pexiga.name]’s tail continues its sinuous invasion of Yammi’s heavy breasts while the orange girl puts her hands to the task of milking the pexiga. With a well practiced grip, she seizes the dangling tongue and squeezes in long, tight strokes. Starting all the way up at the ring gag and slowly making her way down to the tender tip, she pumps [pexiga.name]’s hanging organ like she were applying frosting onto a cake.");
 	output("\n\nThe silver bimbo, perhaps misconstruing Yammi’s intent, wiggles the tip of her tongue into the sparadat’s mouth, feeding the sugary saliva to the cook rather than to the collection bowl. Yammi sputters and splashes the warm, gooey fluid all over her face as she tries to extract the pexiga’s slimy length from between her lips.\n\n<i>“Very naughty,”</i> you scold [pexiga.name] with a slap across the ass. <i>“Don’t try to tongue-fuck Yammi’s face while she’s milking you.”</i> The pale girl giggles at the impact, wiggling her booty as if to invite another. Instead, however, you apply the next slap to Yammi’s rump, drawing an outraged cry from the cook. <i>“And that’s for wasting so much saliva,”</i> you explain coyly. <i>“If you can’t get it into the bowl, you should at least swallow it. Waste not, want not.”</i> She shoots you a miffed glance from the bottom of the girl sandwich, but redoubles her efforts in milking the pexiga’s tongue.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",sureHelpPlugTheLeakingPexigaWithYammiFirstTime2);
 }
@@ -134,7 +134,7 @@ public function sureHelpPlugTheLeakingPexigaWithYammiFirstTime2():void
 
 	output("\n\nYou lose track of time as your [pc.hips] slam against the girls’ rumps, fucking deeper and deeper until the allure of release grows heavy in your gut. The alien sluts writhe atop each other as you go, gasps and moans smothered by their wet, slippery kiss. Soft, pliant heat suckles at your loins while you rock against them with quick, shallow smacks. Yammi’s tummy has swollen a bit from all the saccharine fluid filling her, and after a moment, you notice that her fingers are powerlessly grabbing at the pexiga on top. The weak, blissed-out shudders trembling along your [pc.cock " + args[0] + "] tells you she’s had enough.");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",sureHelpPlugTheLeakingPexigaWithYammiFirstTime3,args);
 }
@@ -193,7 +193,7 @@ public function firstTimePexibuttMilkingForLadyTypes():void
 	output("\n\n<i>“It’s lucky you’re so pretty,”</i> Yammi grumbles without very much rancor. She wiggles her sizable booty as you slide her tight-fitting bottom off and returns the favor by pulling your [pc.gear] off, piece by piece. [pexiga.name] watches with some interest, carefully noting how the cook uses her fingertips to tease your sensitive spots, lingering just long enough to bring a shiver to your spine before moving on.");
 	output("\n\nWhen the three of you are completely bare, you turn on the reclining pexiga. <i>“Heads or tails?”</i> you ask Yammi. She shrugs, walking around the girl slowly, taking in the bimbo’s freshly Badger-boosted proportions. Well, you figure, if she doesn’t have an opinion, you may as well take full stock of that huge, thick, muscular tongue. You guide [pexiga.name] to lay down on her back along the short side of the table, letting her head and legs dangle off of either side. Standing inches from her face, you reach down to stroke her soft, hair-like spines and scratch behind her frilly ears.");
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",firstTimePexibuttMilkingForLadyTypes2);
 }
@@ -213,7 +213,7 @@ public function firstTimePexibuttMilkingForLadyTypes2():void
 	output("\n\nThe massive barbell, with its huge, golden orbs, slams against your quivering slit, but is far too large to just slide in. The metal rubs against your [pc.clits] as the pexiga whines with the desire to drink from your innermost depths. She draws back and tries again and again, buffeting your joybuzzer with the piercing’s mouth-watering hardness. <i>“It won’t go in,”</i> [pexiga.name] whimpers and as the artificial voice floats out of the golden orbs, an almost electric tingle runs through your pussy that very nearly knocks your ass to the ground.");
 	output("\n\n<i>“Do... do that again,”</i> you gasp, your hands reaching up to clutch at your [pc.chest] with trembling fingers.");
 	processTime(15);
-	pc.lust(80);
+	pc.changeLust(80);
 	clearMenu();
 	addButton(0,"Next",firstTimePexibuttMilkingForLadyTypes3);
 }
@@ -367,7 +367,7 @@ public function pexigaYammiTalkGooo():void
 	output("\n\n<i>“Tastes better with help,”</i> she teases, her big blue eyes full of a mischievous appetite.");
 	//Player gains +5 lust
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	pexigaTalkMenu(pexigaYammiTalkGooo);
 }
 
@@ -388,7 +388,7 @@ public function pexigaGagTalk():void
 	else output(" Your chest tightens and you’re tempted to jump her right now, but a long, hot sigh puts you back in control. Soon.");
 	output(" Still, you kind of wonder how many of your crewmates would take up [pexiga.name] on a similar offer. Or already have, for that matter. You really ought to put cameras up in here.");
 	processTime(13);
-	pc.lust(2);
+	pc.changeLust(2);
 	pexigaTalkMenu(pexigaGagTalk);
 }
 
@@ -418,7 +418,7 @@ public function pexigaDroolTalk():void
 	output("\n\nBy the time she’s done, you look like you’ve been drenched in glistening oil. The rich scent of sugary slime clings to your nostrils as you pull yourself up. You can’t help but lick your lips as you give the overeager girl a pat on the head.");
 	//player gains +10 lust
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.energy(40);
 	pexigaTalkMenu(pexigaDroolTalk);
 }
@@ -566,7 +566,7 @@ public function chatUpDatPexigaYooooo():void
 		output("\n\n<i>“Sorry, kiddo. I don’t think you’ll be leaking from there any time soon.”</i> You pat her on the head to comfort her, but apparently the nipple penetration made her forget all about her jealousy for Reaha’s bovine attributes. A blissed-out look of intoxicated delight is fixed on [pexiga.name]’s face and she hardly registers the world around her.");
 		output("\n\nPerhaps you set off some memories of her pregnancy? You gently shake her back into awareness, just to be sure she’s not totally gone again. Blinking, she meets your gaze and licks your face. <i>“Hai hai,”</i> she chirps happily, apparently forgetting the entire conversation.");
 		processTime(7);
-		pc.lust(4);
+		pc.changeLust(4);
 	}
 	//chat 8
 	else
@@ -620,7 +620,7 @@ public function getYammiHelpMilkingPexiga():void
 		else if(flags["YAMMI_PEX_MILK"] == 2) output("By the time the bowl is full, your chef is panting harder than the pexiga. <i>“Um, good... good job everybody. I’ll uh... I’ll take that. Thank you, [pexiga.name]. Good girl.”</i> She retreives the bowl and turns aside to empty it into containers for future use. When her back is turned, you get full view of the orange girl’s posterior and can’t help but notice a thin trail of clear nectar leaking down her inner thighs. Her bikini bottom is absolutely soaked.");
 		else output("Despite her best efforts, Yammi can’t help herself. <i>“Ooh yeah. Right there,”</i> she moans, wobbling in place. Her hands start shaking and the food canister in her hand slips from her grasp, spilling tablets everywhere. <i>“Y- yeah...”</i> she gurgles, oblivious to the mess. You’ve already stopped stroking the pexiga’s tongue, but she continues to drool all the same, quickly overfilling it. Sweet-scented saliva begins oozing over the sides, so you take the bowl from [pexiga.name]’s hands and set it somewhere a little safer. When you turn back to the table, you find your chef getting her neck polished by her assistant. The long, tentacle-like tongue traces gooey laps across the orange-girl’s collar in a decidedly hungry manner. Eyes closed, body trembling, Yammi’s hands find their way under her apron as well. They seem busy, so you head out after getting a good, long eyeful of the two.");
 		processTime(20);
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//4th time and on"
 	else
@@ -635,7 +635,7 @@ public function getYammiHelpMilkingPexiga():void
 		output("\n\nThe chef gasps in mock outrage, knocking the bowl to the ground and climbing up onto the table herself. <i>“You little brat,”</i> she murmurs leaning in and grabbing her assistant’s head with one hand and over-filled bosom with the other. The two press tightly, kissing and caressing, sucking and licking, their trilled ears tucked down so they can only hear the soft sounds of their entwined bodies.");
 		output("\n\nYou, it seems, have been completely forgotten. Rude.");
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	
 	milkedPexigaCollect(true);
@@ -657,7 +657,7 @@ public function milkPexigaHandSolo():void
 	output("\n\nWhen the bowl is finally full, you release your grip on her tongue and [pexiga.name] slumps down at once, as if her spine had been turned to jelly. With shallow, panting gasps, she lazily licks at the stainless steel, trying to taste the flavor of your hands just a little bit more. You plop a couple more treats into her mouth for being so well behaved and give her a scratch right between the shoulderblades.");
 	output("\n\nAnother job well done. Though, if [pexiga.name] likes your taste so much, you’ll have to be sure to keep away from feral pexigas.");
 	processTime(22);
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	milkedPexigaCollect(false);
 }
@@ -984,7 +984,7 @@ public function eatOutPexigoo2():void
 	output("\n\nTrying her best to drink from the coral girl’s innermost depths, [pexiga.name] draws back and tries again and again, buffeting her handler’s joybuzzer relentlessly. <i>“It won’t go in,”</i> Yammi mumbles a second before her eyes go wide. A shudder ripples through her and across the pexiga’s body all the way to your tongue. Your intuition tells you that despite the cook’s commentary, [pexiga.name] made it fit.");
 	output("\n\nYammi collapses atop [pexiga.name]’s upper body, burying her face between the silver bimbo’s breasts and tightly wrapping her arms around the other girl’s waist. She tries to speak, but the trembling just keeps getting stronger, a bit of drool leaking out of her mouth and onto [pexiga.name] for a change.");
 	processTime(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",eatOutPexigoo3);
 }
@@ -1002,7 +1002,7 @@ public function eatOutPexigoo3():void
 	output("\n\nThe pexiga cries out, her translator sending its voltaic impulses right into Yammi’s stuffed cleft, up her spine, and into her head. The sparadat’s body tenses, every muscle clenching in unison as the cascade of orgasms reaches it crest. You spare an upwards glance and notice her pupils contracting to pinpoints. She remains frozen in place before slowly sliding off of the silver girl, sinking to the ground and dragging [pexiga.name]’s tongue with her.");
 	processTime(15);
 	pc.energy(50);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",eatOutPexigoo4);
 }
@@ -1181,7 +1181,7 @@ public function tooBigPexigaFacefuck(x:int):void
 	output("\n\nThe wet coils bring you to full hardness in moments, her grip tightening and loosening in milking waves of pressure. Left like this, she could surely squeeze out her creamy prize with time, but you’ve got another idea. Reaching down, you grab her under her arms and hoist the girl to her knees. Leaning forward, you push the tongue-bound mass of your [pc.cock " + x + "] against the bimbo’s overheated body. <i>“You can’t count on your mouth for everything,”</i> you explain, bracing your hands on your hips.");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",tooBigPexigaFacefuck2,x);
 }

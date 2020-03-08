@@ -160,6 +160,7 @@
 		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
 		include "../includes/follower/kiro.as";
+		include "../includes/follower/kiroBimbo.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/olympiaAndSidewinder.as";
@@ -376,6 +377,7 @@
 		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
+		include "../includes/tarkus/lumi.as";
 		include "../includes/tarkus/mindwashVisor.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
 		include "../includes/tarkus/raskvelMaleFight.as";
@@ -508,6 +510,12 @@
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
+
+		// Dhaal
+		include "../includes/dhaal/capsuleHotel.as";
+		include "../includes/dhaal/milkBar.as";
+		include "../includes/dhaal/milkThief.as";
+		include "../includes/dhaal/rooms.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -555,6 +563,7 @@
 		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
+		include "../includes/uveto/milodanFutazon.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
@@ -698,7 +707,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.040";
+			version = "0.8.057";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -750,6 +759,9 @@
 			
 			inputManager = new InputManager(stage, false);
 			setupInputControls();
+			
+			// Pre-load character/ship data
+			initializeNPCs();
 			
 			initStephEps();
 			

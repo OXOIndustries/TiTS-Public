@@ -76,7 +76,7 @@ package classes.Items.Transformatives {
 				}
 				else output("\n\nBesides an arousal boost, not much happens afterwards--it seems you’ve got what this item has to offer already!");
 				
-				target.lust(30);
+				target.changeLust(30);
 			//not the player	
 			} else {
 				kGAMECLASS.output(target.capitalA + target.short + " uses the ointment to no effect.");

@@ -200,7 +200,7 @@ public function shukuchiMhengaEncounter():void
 	output("\n\nHe’s on his own, so it seems. Waiting for something, perhaps, or at least setting up for some scheme you couldn’t put a finger on.");
 	if(flags["MET_PENNY"]){
 		output("\n\nYou’re certain that Officer Penny would be aware of a shady character operating like this, although this is the most backwater a planet can be.");
-		if (flags["PENNY_BIMBO"] || flags["PENNY_IS_A_CUMSLUT"]) output("\n\nThinking on it, Officer Penny probably has more cum-centric problems to take care of, anyway...");
+		if (penny.isBimbo() || pennyIsCumSlut()) output("\n\nThinking on it, Officer Penny probably has more cum-centric problems to take care of, anyway...");
 	}
 	output("\n\nHaving no clear route of action on the spot, you approach the leaning figure from the side with your left arm to the wall, careful not to make yourself too obvious. You can’t see him react to you and with that mask, it’s impossible to know if he’s playing you or not. Nothing for it, either way...");
 	output("\n\nAs you come within several feet of him, there’s the echo of synthetic voice chatter and static coming through your codex. How in the hell...?");

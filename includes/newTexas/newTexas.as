@@ -3012,7 +3012,7 @@ public function carrieCockTailSneakyDeaky():void
 	var x:int = 0;
 	var cumTotal:Number = pc.cumQ();
 	//Mhen’gan fantasy requires PC knows about Penny’s crush on Flahne and both are still on Mhen’ga (not followers)
-	if(flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined && !pennyIsCrew()) fantasies.push(0);
+	if(flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut() && !pennyIsCrew()) fantasies.push(0);
 	//Myrelli fantasy requires PC has toured the Gildenmere thollum
 	if(flags["THOLLUM_TOURED"] != undefined) fantasies.push(1);
 	

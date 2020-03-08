@@ -311,7 +311,7 @@ public function sellToDatDogslut():void
 public function annoShopSetup():void
 {
 	chars["ANNO"].inventory = [];
-	
+	chars["ANNO"].inventory.push(new HLSteeleTechTent());
 	chars["ANNO"].inventory.push(new AusarTreats());
 	chars["ANNO"].inventory.push(new HammerCarbine());
 	chars["ANNO"].inventory.push(new LaserCarbine());
@@ -321,6 +321,7 @@ public function annoShopSetup():void
 	chars["ANNO"].inventory.push(new ACock());
 	chars["ANNO"].inventory.push(new AHCock());
 	chars["ANNO"].inventory.push(new ADCock());
+	
 	
 	gooArmorOrphanedCheck(chars["ANNO"]);
 	

@@ -261,8 +261,8 @@ package classes.Characters
 			}
 			
 			// Asploded!
-			this.HP(-9000);
-			this.energy(-9000);
+			this.changeHP(-9000);
+			this.changeEnergy(-9000);
 		}
 	}
 }

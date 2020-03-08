@@ -3012,7 +3012,7 @@ public function ratsAllGangThingsComeToAnEnd(vagId:int):void
 		if (pc.HP() <= 0) output("\n\nStanding is surprisingly easy too. You check yourself for wounds from the fight, finding that they’ve all vanished away. <b>The rats must have healed your injuries</b>!");
 	}
 
-	if (pc.HP() <= 0) pc.HP(pc.HPMax());
+	if (pc.HP() <= 0) pc.changeHP(pc.HPMax());
 	IncrementFlag("RATS_GANGBANGED");
 	
 	ratsLossFinish();

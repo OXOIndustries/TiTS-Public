@@ -91,7 +91,7 @@ public function joyCoMagicMilker7Sucks():void
 			//Pass 20m + rand(5)
 			processTime(20 + rand(5));
 			//Raise lust by 10-15
-			pc.lust(10+rand(5));
+			pc.changeLust(10+rand(5));
 			//BoostLactation by a tiny amount.
 			pc.boostLactation(1);
 			//Nipples Enlarged
@@ -138,7 +138,7 @@ public function joyCoMagicMilker7Sucks():void
 				if(pc.biggestTitSize() >= 6) output("no matter how enormous they are or how they jiggle from the application of suction.");
 				else output("perhaps if they were larger you could hold more.");
 				output(" Still, it feels nice to be doing something, even if that something is leaning back and ensuring that every single drop of your body’s [pc.milk]-supply is thoroughly extracted. A small [pc.milkColor] baggie dangles from the back of the Magic-Milker 7 to hold it all.");
-				pc.lust(10);
+				pc.changeLust(10);
 			}
 		}
 		//Lactation Success: quantity decent
@@ -162,7 +162,7 @@ public function joyCoMagicMilker7Sucks():void
 			{
 				output("It makes your [pc.nipples] swell with soon-to-be released [pc.milkNoun], turning shiny and glossy a second before they start drooling into the cups. Those trickles turn into a series of rapidly expressed droplets and occasional squirts.");
 				output("\n\nYou sigh at the feeling of release and watch the cups fill with the sloshing liquid. It foams slightly before the motor pulls it down the silver tubes to the main sphere. There, it is collected into a clear bag that dangles from the back of the device, turning [pc.milkColor] as it hangs against your [pc.belly], filling. You groan from the feeling of having your sensitive flesh so aggressively worked over and do the only thing you can in such a situation: enjoy every second of it.");
-				pc.lust(25);
+				pc.changeLust(25);
 			}
 		}
 		//Lactation Success: quantity good
@@ -193,7 +193,7 @@ public function joyCoMagicMilker7Sucks():void
 				output("\n\nYou groan at the intensity of the sensations you’re presented with, cupping your [pc.chest] behind the device and squeezing to coax out more, shuddering at each exquisite spurt of [pc.milk] only to have the next well up before you finish. Reveling in the act of giving and producing becomes your entire focus, and it subsumes you while the device whisks your body’s juice away. On the rear of the milker, a [pc.milkColor] bag has emerged. It hangs against your [pc.belly], half full and only getting fuller.");
 				if(pc.hasCock()) output(" Down south, [pc.oneCock] has risen up, throbbing with hot desire and pressing against the bag, pinning it to your body while it expands.");
 				output(" You whimper and tremble. Being milked is too damned good.");
-				pc.lust(50+rand(10));
+				pc.changeLust(50+rand(10));
 			}
 		}
 		//Lactation Success: quantity superhuman
@@ -225,7 +225,7 @@ public function joyCoMagicMilker7Sucks():void
 					}
 					output(".");
 				}
-				pc.lust(100);
+				pc.changeLust(100);
 			}
 			else
 			{

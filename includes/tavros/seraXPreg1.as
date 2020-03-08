@@ -510,7 +510,7 @@ public function seraBreedResponse(arg:Array):void
 			output("\n\n<i>“Yes mistress!”</i> you wail, utterly surrendering yourself to the intoxicating submissiveness crowding your senses. <i>“Mark me! Fuck me! " + (!pc.isPregnant(vag) ? "Breed me" : "Make me yours") + "!”</i> This is answered with a furious snap of the bio-whip off your right butt-cheek.");
 			output("\n\nSera ruts you like she’s been in prison for the past six months, and with the contact aphro flaring up your nervous system you are swiftly forced to an orgasm like an electric shock, your [pc.tongue] hanging out of your mouth as your [pc.vagina] kneads at her relentless dick with full body pulses, " + (pc.isSquirter(vag) ? "dripping" : "spurting") + " [pc.femcum] around her base. Sera rasps and groans her approval, riding it for as long as she can before releasing, the sensation of the last of her hot, fertile cum engorging your womb and caking your thighs extending your own augmented orgasm. The succubus drops the whip and grips you by " + (pc.hasHair() ? "the [pc.hairs]" : "the throat") + ", forcing your head back and making you arch your back for her, the sharp pain inextricable from the brilliant pleasure.");
 			
-			pc.HP(-3);
+			pc.changeHP(-3);
 			processTime(20 + rand(6));
 			
 			// [pb]
@@ -625,7 +625,7 @@ public function seraSpawnPregnancyEnds():void
 	{
 		output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no help for it -- you’ll have to deliver the baby on your own.");
 		// minor HP damage?
-		pc.HP(-5);
+		pc.changeHP(-5);
 	}
 	
 	// merge

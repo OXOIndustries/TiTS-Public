@@ -376,7 +376,7 @@
 			this.energy(-33);
 			//damage.multiply(0.5);
 			//output("\nTEST DATA: " + damage.getTotal());
-			this.shields(Math.round(damage.getTotal()));
+			this.changeShields(Math.round(damage.getTotal()));
 			output("\n<b>She sapped your shields!</b>");
 		}
 		//Grapple

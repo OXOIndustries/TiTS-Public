@@ -314,7 +314,7 @@
 				output(" lips, and a pair of clits that gleam like polished metal.</b> Experimentally, you start touching yourself, finding that your soft cushiony lips are as delicate as your inner ones used to be, if not more so. Feeling satisfied with inspecting the exterior, you allow a couple of fingers to slide past the pillowy cushions and into your hungry tunnel, <b>where an erogenous tongue has taken residence.</b> The ‘oral’ muscle turns out to be as sensitive as a clit, making you clamp down on your digits with the lightest stroke against it. You can’t help but chuckle a bit at the thought of your pussy gobbling them whole. To be honest, you feel like you could let your nethers swallow any wide, thick cock right then and there, or scissor the first lady you meet, just to test out the delightful feeling of some crotch on crotch action.");
 				
 				// ++ Lust
-				target.lust(50);
+				target.changeLust(50);
 				// increase libido by 3
 				if(target.libido() < 50)
 				{
@@ -385,7 +385,7 @@
 				output("\n\nYou get to enjoy the strange spectacle for a good long while, savoring every moment of this blissful reunion, before all too suddenly, your tongue cools down and retracts back into hiding. You’re left feeling a bit horny and slightly disappointed, but it’s reassuring to know the pussy-based licker is back to add to your pleasure whenever you feel like playing with yourself... or a brave enough partner.");
 				
 				// ++ Lust
-				target.lust(50);
+				target.changeLust(50);
 				// Add tongue flag
 				target.vaginas[selVag].addFlag(GLOBAL.FLAG_TONGUE);
 				if(newColor != "null") target.vaginas[selVag].vaginaColor = newColor;

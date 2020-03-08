@@ -79,8 +79,8 @@
 					//HP GAINZ
 					//40% chance of 10% HP gain, 80% chance of 10 energy gain if not raskvel morph
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.
-					pc.HP(Math.round(pc.HPMax() * .4));
-					pc.energy(25);
+					pc.changeHP(Math.round(pc.HPMax() * .4));
+					pc.changeEnergy(25);
 				}
 				//Rask-morphed
 				else
@@ -89,8 +89,8 @@
 					//70% chance of 10% HP gain, 100% chance of 20 energy gain if raskvel morph
 					//HP GAINS
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.
-					pc.HP(Math.round(pc.HPMax() * .8));
-					pc.energy(50);
+					pc.changeHP(Math.round(pc.HPMax() * .8));
+					pc.changeEnergy(50);
 				}
 				//Stats
 				//Increase intelligence if below 30%
@@ -159,7 +159,7 @@
 					if(pc.libido() <= pc.libidoMax() * 2/3)
 					{
 						kGAMECLASS.output(" You find yourself avoiding making thrusting movements with your [pc.hips], because when you do the desire to throw everything aside and find someone or thing to fuck becomes too much, forcing you to stop and take deep breaths, getting a handle back on your lust.");
-						pc.lust(33);
+						pc.changeLust(33);
 					}
 					//High:
 					else
@@ -168,7 +168,7 @@
 						if(pc.hasVagina()) kGAMECLASS.output(" You find yourself dreaming of spreading your hips for the next male you see, forcing them to give you many strong children to bear after repeated bouts of lush rutting");
 						else if(pc.hasCock()) kGAMECLASS.output(" You find yourself dreaming of forcing yourself on the next female you see, making them bear your many strong children after repeated bouts of lush rutting");
 						if(pc.hasVagina() || pc.hasCock()) kGAMECLASS.output(", and as shameful as these thoughts are, there is no denying their strong, base appeal.");
-						pc.lust(40);
+						pc.changeLust(40);
 					}
 					changes++;
 					pc.slowStatGain("libido",2);
@@ -378,7 +378,7 @@
 						pc.ballSizeRaw -= 2;
 					}
 					kGAMECLASS.output(" It’s...uncomfortable, to be honest. The sensation of dense urge that three testicles gave you before is tripled now they are packed together in such a small space; a hot, needy sphere that is forever goading you to find release, whatever the cost.");
-					pc.lust(10);
+					pc.changeLust(10);
 					pc.libido(1);
 					target.createStatusEffect("Uniball",0,0,0,0,true,"","",false,0);
 					changes++;
@@ -414,7 +414,7 @@
 						pc.cocks[cockToBe].cType = GLOBAL.TYPE_RASKVEL;
 						pc.cocks[cockToBe].cockColor = "purple";
 						pc.cocks[cockToBe].addFlag(GLOBAL.FLAG_SMOOTH);
-						pc.lust(15);
+						pc.changeLust(15);
 						changes++;
 					}
 				}
@@ -439,7 +439,7 @@
 						kGAMECLASS.output(" your vaginal opening</b>, bulging and eager to your touch. This is certainly going to make sex... interesting.");
 						pc.vaginas[cuntToBe].clits = 2;
 						changes++;
-						pc.lust(15);
+						pc.changeLust(15);
 						pc.libido(2);
 					}
 				}
@@ -463,7 +463,7 @@
 						}
 						kGAMECLASS.output(" puffing up to the energy cycling through them. It eventually dissipates, but when you check downstairs you find that whilst your mons retained its pigmentation your vagina proper has shifted to a brilliant purple color, shining in its own excitement.");
 						pc.vaginas[cuntToBe].vaginaColor = "purple";
-						pc.lust(10);
+						pc.changeLust(10);
 						pc.libido(1);
 						changes++;
 					}

@@ -352,7 +352,7 @@ public function getHealedByVi(cost:Number):void
 	}
 	//Else PC’s one of those fucking furry nudists like Tigger:
 	else output("\n\n<i>“All done, " + pc.mf("sir","ma’am") + "! Is there anything else you require?”</i>");
-	pc.HP(pc.HPMax());
+	pc.changeHP(pc.HPMax());
 	pc.credits -= cost;
 	processTime(23);
 	IncrementFlag("HEALED_BY_VI");

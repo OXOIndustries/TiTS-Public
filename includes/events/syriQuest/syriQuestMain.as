@@ -309,7 +309,7 @@ public function syriQuestGetJiggly():void {
 	processTime(30+rand(15));
 	//Give minor exhibitionism.
 	pc.exhibitionism(1);
-	pc.lust(33);
+	pc.changeLust(33);
 	//pc.loadInMouth(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	clearMenu();
@@ -973,7 +973,7 @@ public function syriQuestArriveAtAkkadiBase():void {
 	author("Savin");
 	if (pc.willTakeColdDamage()) {
 		output("The journey to the Akkadi base is miserable beyond words. Shortly after takeoff, all the heat drains out of the cargo hold, leaving you to freeze your ass off in the Uvetan cold. You can barely feel your body, and you’re trembling uncontrollably.");
-		pc.HP(-Math.round(pc.HPMax()/2));
+		pc.changeHP(-Math.round(pc.HPMax()/2));
 		if (pc.HP() < 1) pc.HP(1);
 	}
 	else output("The journey is boring, spent playing around on your Codex between bouts of paranoia, listening for footsteps that never come.");

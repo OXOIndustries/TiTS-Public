@@ -1365,7 +1365,7 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 	output("Both of your hands quest down between you, both of them on his body as they travel southward. Your fingertips dig into the fur on his chest, feeling how tight the muscles underneath that thick, bushy milodan fur of his are, before going on and feeling the ridge of each and every pronounced ab on his six-pack bulging through his belly fur. He clenches at your touch, thickening the muscles against your fingers, making you pause, which makes him chuckle once.");
 	output("\n\nYour left hand gets impatient and dips further down, faster, seeking out his pitch-black rod, its pointed head poking at your pelvis. They gently coil around his thick shaft – you can feel his heart through the thick skin of his cock, bloating it with every pump, making the prongs and ridges on the underside of the head bloat against your touch with every beat. He hisses inwardly at your touch and pumps his hips forward, fucking his cock into your grip, splitting the gap in your hand open wider and gliding your grip down the length of his shaft. His fist-sized fuzzy balls");
 	if (pc.balls > 0) output(" press into yours, rubbing right up against them");
-	else if (pc.hasVagina()) output(" press against your [pc.vagina " + vagIdx +"], the fur on his nuts tickling your vulva");
+	else if (vagIdx >= 0) output(" press against your [pc.vagina " + vagIdx +"], the fur on his nuts tickling your vulva");
 	else output(" glide against the blank slate that is your crotch");
 	output(" with his hump. Inches pour from his sheath, making you wonder just how much more he has hidden in there.");
 	output("\n\nYour right hand is a bit more reserved, drinking in his body with every touch and tickle against his ironclad, muscled body. They count, and double-check, each of his abs, before going lower to massage at his waist, where his stomach becomes his groin. You can feel the heat of his cock radiate against the back of your hand, guiding you towards its warmth; before long, you’re leaning your shoulder deeper between you two, until your fingers grace the base of his cock, where it connects with his body, and your knuckles bump against that thick, inflating knot down there.");
@@ -1389,9 +1389,10 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 	output("\n\nYour body submits to the pleasure of being Eitan’s hot water bottle, and you have your first orgasm before he has his second: your " + (vagIdx < 0 ? "[pc.asshole]" : "[pc.vagina " + vagIdx + "]") + " clenches, and a thunderbolt of pleasure rips through you, from your " + (vagIdx < 0 ? "sphincter" : "cooch") + " to your scalp. It’s not just one orgasm, either: it’s so many, so quickly, that you couldn’t hope to count them with a clearer head than yours. You’d clench tighter onto Eitan if he didn’t already have you so full that you’re stretched to the limit around him. Your [pc.legOrLegs] " + (pc.hasLegs() ? "shake" : "shakes") + " in the pleasure, quivering against Eitan’s tight body, and your vision grows blurry and crossed; you have to bite into your lower lip to keep from screaming something in pleasure – or from blacking out.");
 	if (pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output("\n\nAnd <i>then,</i> your [pc.cock] follows suit, stiff as iron and red with the blood keeping it stiff. With your body arched as it is, your cock is pointed like a weapon back at your chest, and your [pc.cum] rockets from you, painting yourself [pc.cumColor] from your stomach to");
-		if (pc.cumQ() < 250) output(" your chest");
-		else output(" your face" + (pc.cumQ() < 3000 ? "." : ", and then as far as the wall behind you."));
+		if (cumQ < 250) output(" your chest");
+		else output(" your face" + (cumQ < 3000 ? "." : ", and then as far as the wall behind you."));
 		output(" With every push of Eitan’s cock into your body, he milks your prostate for more of your own jizz to cover you, and even when you don’t have anything left to shoot, the constant hammering of his body into yours ekes out orgasm after dry orgasm.");
 	}
 	output("\n\nHis second round is much faster than his first, owing both to your own pleasure setting off his fuse, and to the fact that he’s probably sensitive so soon after his first round. This time, when it happens, his body stiffens upright: both of his hands find your waist, gripping your handles as hard as his hand on your ass (which, in the heat of the moment, you hardly notice), and he thrusts forward once more, stuffing at much of himself as he can into you.");
@@ -1402,7 +1403,7 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 
 	// end scene (scene: Get Fucked); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0); go to (scene: Aftercare)
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	if (vagIdx < 0) pc.loadInAss(eitan);
 	else pc.loadInCunt(eitan, vagIdx);
 	eitan.orgasm();
@@ -1482,7 +1483,7 @@ public function lickingMiloPolesFromTheUvetanSnow():void
 
 	// end scene (scene: Suck Him); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0);
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	var eitan:Creature = getEitan();
 	pc.loadInMouth(eitan);
 	pc.loadInMouth(eitan);
@@ -1556,7 +1557,7 @@ public function getOnTopOfEitansCock(vagIdx:int):void
 
 	// end scene (scene: Ride Eitan); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0); go to (scene: Aftercare)
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	if (vagIdx < 0) pc.loadInAss(eitan);
 	else pc.loadInCunt(eitan, vagIdx);
 	eitan.orgasm();
