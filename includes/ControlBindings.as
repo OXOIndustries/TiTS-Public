@@ -389,6 +389,13 @@
 			Cheats.ArdiaLetsYouChoose();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Reset Bizzy",
+		"Reset Bizzy to unmet status.",
+		function():void {
+			Cheats.BackInBizzness();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -416,6 +423,7 @@
 	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
 	inputManager.BindCheatSequence("Sexdoll Encounter", "doll");
 	inputManager.BindCheatSequence("Ardia DM7+ Sex Choice", "ardiaschoice");
+	inputManager.BindCheatSequence("Reset Bizzy", "backinbizzness");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
