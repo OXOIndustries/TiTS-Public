@@ -931,7 +931,9 @@ public function bizzySexOral(opts:Array):void
 
 			output("\n\n<i>“You, uh, need to come to me if you want that, [pc.Mr] Steele,”</i> she says with a mischievous giggle. She pats her boobs. Jiggle jiggle. <i>“I can’t really get on my knees for you anymore.”</i> She licks her plush lips, makes them gleam. <i>“You <i>do</i> want it, though? I think you do...</i>”");
 
-You leave your [pc.lowerGarments] behind you as you begin the ascent of Mount Bizzy. {<5’9” She coos and laughs as you haul your petite frame onto the top of those ludicrous beachballs of hers, seeming to mostly find your weight tickly. You could use her as a bouncy castle! / If else: You’re a bit worried about putting your weight on her - her tits are quite sensitive and you aren’t small - but she takes your clambering easily and when you crest her you find the soft, pillowy mass easily supports you. Oh, this is <i>delightful</i>.}
+			output("\n\nYou leave your [pc.lowerGarments] behind you as you begin the ascent of Mount Bizzy. ");
+			if (pc.tallness < 69 ) output("She coos and laughs as you haul your petite frame onto the top of those ludicrous beachballs of hers, seeming to mostly find your weight tickly. You could use her as a bouncy castle!");
+			else output("You’re a bit worried about putting your weight on her - her tits are quite sensitive and you aren’t small - but she takes your clambering easily and when you crest her you find the soft, pillowy mass easily supports you. Oh, this is <i>delightful</i >.");
 
 		output("\n\n<i>“That’s what I thought,”</i> Bizzy coos, gazing up at you as you straddle her chest, admiring the pretty face and green bedroom eyes below you. You murmur with pleasure as she grasps your [pc.cock], expertly running her fingers up the sensitive side. <i>“A mere pair of massive boobies isn’t going to stop [pc.Mr] Steele getting [pc.his] cock sucked by the best in the business.</i>”");
 
@@ -939,9 +941,9 @@ You leave your [pc.lowerGarments] behind you as you begin the ascent of Mount Bi
 		if (flags["BIZZY_DIET"] == 1) output(" You also detect a certain neediness in her eyes, particularly when you ooze pre along her tongue. The eyes of a dedicated cumslut greedily in sight of an extra meal.");
 
 		output("\n\nShe takes you nice and deep,");
-		if (pc.cock[0].cLength > 12) output(" unfazed by the size of you,");
-		output(" little ‘ulp’ sounds leaving her opened lips as " + (pc.cock[0].cLength > 12 ? "all":"a good portion") + " of your [pc.cock] is kneaded by hot, silky mouth.");
-		if (pc.cock[0].cLength > 8) output("It rouses you to take matters into your own hands: To grasp her behind the back of her head and firmly holster your dripping [pc.cockNoun] into her throat, draw out glottal wet sounds from that tight, hot cavern, dipping yourself in there gloriously before unsheathing yourself entirely, saliva trailing from your [pc.cockNoun] as you release her. She pants hard a couple of times, then trails her flat, rough tongue up the burning underside.");
+		if (pc.biggestCockLength() > 12) output(" unfazed by the size of you,");
+		output(" little ‘ulp’ sounds leaving her opened lips as " + (pc.biggestCockLength() > 12 ? "all":"a good portion") + " of your [pc.cock] is kneaded by hot, silky mouth.");
+		if (pc.biggestCockLength() > 8) output("It rouses you to take matters into your own hands: To grasp her behind the back of her head and firmly holster your dripping [pc.cockNoun] into her throat, draw out glottal wet sounds from that tight, hot cavern, dipping yourself in there gloriously before unsheathing yourself entirely, saliva trailing from your [pc.cockNoun] as you release her. She pants hard a couple of times, then trails her flat, rough tongue up the burning underside.");
 		else output("You give her more and more, and as your lust rises to a sharp point you grasp her by the back of her head and firmly holster your entire [pc.cockNoun] into her mouth, stopping her entirely for a few moments before coming loose, saliva trailing from your [pc.cockNoun] as you release her. She pants hard a couple of times, then trails her flat, rough tongue up the burning underside.");
 
 		output("\n\n<i>“Harder,”</i> she says.");
