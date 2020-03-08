@@ -1034,9 +1034,13 @@ public function mitziAppearance():void
 	if(!mitzi.isChestExposed()) 
 	{
 		output(" The latter are barely contained by her [mitzi.chestCovers]. Mitzi’s outsized chest could make a pair of industrial wheelbarrows creak. It’s a wonder the clothing can hold together at all. Those [mitzi.breastCupSize] knockers beg to be squeezed, and from the way the smirking bimbo keeps them jostling around, she knows.");
+		//From content with Bizzy
+		if(flags["MITZI_BRANDED"] == 1) output(" Across the top of the right-hand one ‘[pornStudioName]’ is prominently tattooed, branding her as one of your top drawer camwhores.");
 		if(mitzi.isChestVisible()) output(" Jutting tit-tips lewdly distend her transparent garment, intent that you know every crease along their pebbly surface.");
 	}
 	else output("The latter are completely uncovered by her choice of attire, free to wobble and jostle in cleavage defining clashes. Those [mitzi.breastCupSize] knockers seem like two emerald mountains, their summits crowned by sensitive, jutting tips whose perpetual hardness never seems to flag. Mitzi’s outsized chest could be wrapped up in the most chaste blouse, and the mammoth mounds’ libidinous squeezability would shine through as clear as daylight.");
+	//From content with Bizzy
+	if(flags["MITZI_BRANDED"] == 1) output(" Across the top of the right-hand one ‘[pc.pornName]’ is prominently tattooed, branding her as one of your top drawer camwhores.");
 	output(" If you were small enough to squeeze under her 3’6”</i> frame, you could comfortable shelter beneath the physics-defying bosom.");
 
 	output("\n\nNo exploration of the viridian bimbo’s body would be complete without the long moments it takes your view to slide along the outlandishly bubbly expansive of her ass. She cocks her hip the other way when she sees you looking, sending the pillowy buttcheeks rolling.");
