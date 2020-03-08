@@ -403,6 +403,7 @@ public function seraAppearance():void
 	output("\n\n");
 	if(chars["SERA"].hasCock()) output("A foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. ");
 	output("Sera’s ass is nothing to sneeze at either; it’s large, nicely rounded, and crowned with a prehensile, spaded tail.");
+	if (flags["SERA_BRANDED"] == 1) output(" On her left buttock ‘[pornStudioName]’ is prominently tattooed, branding her as one of your top drawer camwhores.");
 	if(seraRecruited()) output(" The spade at the end seems a little big and bulgy, reminiscent of a cock head.");
 	else output(" She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
 	
