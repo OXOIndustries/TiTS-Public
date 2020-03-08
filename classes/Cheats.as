@@ -6,7 +6,7 @@
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.InRoomWithFlag;
 	import classes.Engine.Utility.getPlanetName;
-	
+	import classes.GameData.MailManager;
 	
 	/**
 	 * ...
@@ -196,6 +196,67 @@
 				kGAMECLASS.flags["INFINITE_CREW"] = undefined;
 			}
 		}
+		
+		public static function BackInBizzness():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			
+			kGAMECLASS.output("\n<b>Bizzy has been reset!</b>");
+			
+			//So, so many flags
+			//Progression flags
+			kGAMECLASS.flags["BIZZY_PORN_STUDIO"] = undefined;
+			kGAMECLASS.flags["BIZZY_SLAVER_CHOICE"] = undefined;
+			kGAMECLASS.flags["BIZZY_BIG_ENOUGH"] = undefined;
+			kGAMECLASS.flags["BIZZY_PORN_STUDIO_NAME"] = undefined;
+			kGAMECLASS.flags["BIZZY_CONSTRUCTION_COMPLETE"] = undefined;
+			kGAMECLASS.flags["BIZZY_MAIL_PAYMENT_DAY"] = undefined;
+			kGAMECLASS.flags["BIZZY_SHOW_PLAN"] = undefined;
+			
+			//Misc. flags
+			kGAMECLASS.flags["BIZZY_CAN_TALK_MOTHER"] = undefined;
+			kGAMECLASS.flags["BIZZY_DIET"] = undefined;
+			kGAMECLASS.flags["BIZZY_BOTTIE_PERSONALITY"] = undefined;
+
+			//Sex flags
+			kGAMECLASS.flags["BIZZY_SEEN_NAKED"] = undefined;
+			kGAMECLASS.flags["BIZZY_SUCKED_COCK"] = undefined;
+			kGAMECLASS.flags["BIZZY_ATE_PUSSY"] = undefined;
+			kGAMECLASS.flags["BIZZY_VAG_FUCKED"] = undefined;
+			kGAMECLASS.flags["BIZZY_TITTYFUCKED"] = undefined;
+			kGAMECLASS.flags["BIZZY_BOOBY_RUBBED"] = undefined;
+			
+			//Feature flags
+			kGAMECLASS.flags["BIZZY_FEATURE_COOLDOWN"] = undefined;
+			kGAMECLASS.flags["BIZZY_MITZI_CUNTNOSIS"] = undefined;
+			kGAMECLASS.flags["BIZZY_MITZI_DOUBLE_DICK"] = undefined;
+			kGAMECLASS.flags["BIZZY_SERA_DOUBLE_ANAL"] = undefined;
+			kGAMECLASS.flags["MITZI_BRANDED"] = undefined;
+			kGAMECLASS.flags["SERA_BRANDED"] = undefined;
+			
+			//Potential future content flags
+			kGAMECLASS.flags["BIZZY_SERA_BDSM"] = undefined;
+			kGAMECLASS.flags["BIZZY_FLAT_ACCEPTANCE_COUNTER"] = undefined;
+			kGAMECLASS.flags["BIZZY_LACTATING"] = undefined;
+			
+			
+			//Refunds
+			if (kGAMECLASS.flags["BIZZY_PORN_STUDIO"] > 0) kGAMECLASS.pc.credits += 40000;
+			if (kGAMECLASS.flags["BIZZY_PORN_STUDIO"] > 1) kGAMECLASS.pc.credits += 1200;
+			if (kGAMECLASS.flags["BIZZY_PORN_STUDIO"] > 2) kGAMECLASS.pc.credits += 1200;
+			if (kGAMECLASS.flags["BIZZY_PORN_STUDIO"] > 3) kGAMECLASS.pc.credits += 3600;
+			if (kGAMECLASS.flags["BIZZY_PORN_STUDIO"] > 4) kGAMECLASS.pc.credits += 200000;
+			if (kGAMECLASS.flags["BIZZY_PORN_STUDIO"] > 5) kGAMECLASS.pc.credits += 10000;
+			
+			MailManager.clearEntry("bizzy_camgirl_initiate");
+			MailManager.clearEntry("bizzy_camgirl_profits");
+		}
+		
 		public static function infiniteItemUse():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
