@@ -1053,7 +1053,7 @@ package classes.Items.Transformatives
 			
 			if (target.faceType != GLOBAL.TYPE_VULPINE && target.faceTypeUnlocked(GLOBAL.TYPE_VULPINE)) // wrong face type - changing
 			{
-				while (target.lipRating() > 0 && target.lipModUnlocked(target.lipMod - 1))
+				while (target.lipMod > 0 && target.lipModUnlocked(target.lipMod - 1))
 				{ // say no to cartoonish lips on muzzle!
 					target.lipMod--;
 				}

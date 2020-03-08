@@ -828,7 +828,7 @@ public function ramisMakeMeLastLongerYesLikeThat():void
 		IncrementFlag("RAMIS_SUBBY_WORKOUT");
 		pc.slowStatGain("willpower", 3);
 		pc.slowStatGain("reflexes", 2);
-		pc.lust(15 + pc.libido()/4);
+		pc.changeLust(15 + pc.libido()/4);
 		pc.energy(-40);
 	}
 	else
@@ -1572,7 +1572,7 @@ public function ramisBathingCats(from:String = "none"):void
 			output("\n\nYou feel nothing but the wonderful glow of submission, melding with the steaming, confined atmosphere of the shower, [pc.cockSmallest] outstandingly erect. Ramis herself luxuriates in it for a little while longer, fingering herself and enjoying the feeling of your tongue deep inside her, before reluctantly raising her hands back up to her head. Shower foam cascades down onto you as she rinses herself off.");
 		
 			ramisOrgasm();
-			pc.lust(pc.libido()/2+30);
+			pc.changeLust(pc.libido()/2+30);
 			
 			addButton(0, "Next", ramisBottomShowerEnd);
 		}
@@ -1630,7 +1630,7 @@ public function ramisShowerEatOut(newScene:Boolean = true):void
 	output("\n\n<i>“Now come out’n... yes!”</i> she cries, as you withdraw and focus on her small clit, bulging well out of its hood for you to tease and flick at with the tip of your [pc.tongue]. A clawed hand grabs you by the back of your head, shoves your mouth hard into her muff. Trying not to cough, you resume tonguing the wet, silky walls of her inner pussy, and gasp when it shivers and then grips your tongue almost painfully hard in a series of mighty, wet clenches. Ramis hisses and growls her enjoyment, somewhere far above; it’s all you can do to hold your breath and continue lapping at her sex the best you can, drunk on both your top’s gratification and the literal taste of it, slathered over your tongue and lips.");
 	
 	ramisOrgasm();
-	pc.lust(pc.libido()/2+30);
+	pc.changeLust(pc.libido()/2+30);
 	
 	addButton(0, "Next", ramisBottomShowerEnd);
 }
@@ -1655,7 +1655,7 @@ public function ramisShowerRimFirst():void
 	flags["RAMIS_SEXED_RIM"] = 1;
 	ramisSexed();
 	ramisOrgasm();
-	pc.lust(pc.libido()/2+30);
+	pc.changeLust(pc.libido()/2+30);
 	
 	addButton(0, "Next", ramisBottomShowerEnd);
 }
@@ -2841,7 +2841,7 @@ public function ramisFaceSittingJackOffScene(args:Array):void
 			processTime(5);
 			
 			// +Lust, fluids in mouth status
-			pc.lust(15);
+			pc.changeLust(15);
 			pc.girlCumInMouth(ppRamis);
 			
 			addButton(0, "Next", ramisFaceSittingJackOffScene, [1, cIdx, cLength, ppRamis]);
@@ -3201,13 +3201,15 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 			output("\n\n<i>“Nngh!”</i> Ramis’s bosom heaves as she pants for breath, massaging her hand. <i>“Fuck. Keep forgetten how good you are at that.”</i> She grins at you lustily. <i>“It’s </i>good<i> to get reminded. See? Now I like it. You took my knickers, just shrugged’n admitted it, and there’s not a bloody thing I can do about it. You pervy, hunky mad lad.”</i> She pauses, gazing at you. <i>“Wanna shag? I’m really turned on right now, won’t lie.”</i>");
 			output("\n\nYou give her a hard kiss, wrap your tongue around hers and taste her fiery breath, and then murmur ‘later’ in her ear. You leave with a swagger. What a panty-stealing player you are.");
 			output("\n\n(<b>+2000 XP!</b>)");
+			
+			pc.changeLust(20);
 			output("\n\n");
 			
 			processTime(3);
 			
 			// +Lust, +2000XP
 			StatTracking.track("contests/ramis arm wrestle wins");
-			pc.lust(20);
+			
 			pc.XP(2000);
 			
 			addButton(0, "Next", mainGameMenu);

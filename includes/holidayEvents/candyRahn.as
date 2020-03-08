@@ -69,7 +69,7 @@ public function drinkSomeNog():void
 	output("\n\nFinally, gasping, you pull free. Your head spins with the beginning of intoxication and your stomach is warm from the festive nog.");
 	output("\n\nCandy giggles at your flushed expression. <i>“Anything else you’re looking for this holiday season?”</i> she says.");
 	processTime(10);
-	pc.lust(40);
+	pc.changeLust(40);
 	pc.imbibeAlcohol(40);
 	clearMenu();
 	//[Return to Sex Options]
@@ -105,7 +105,7 @@ public function suckCandysCane():void
 
 	//[Effect: Lust 40]
 	processTime(20);
-	pc.lust(40);
+	pc.changeLust(40);
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
 	pp.createPerk("Fixed CumQ",30000,0,0,0);
@@ -203,7 +203,7 @@ public function niceCandyVariant():void
 	output(". <i>“Looks like someone’s ready for their treat,”</i> she purrs, stroking you with tasty fingers.");
 
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	if(pc.hasVagina()) addButton(0,"Vaginal Catch",takeCandysCandyCane,undefined,"Take Her Candy Cane","Let her bring the season’s greetings to your most intimate locale.");
 	if(pc.hasCock()) addButton(1,"Titfuck",fuckCandysMarshmallows,undefined,"Fuck Her Marshmallows","Fuck her big, pillowy, marshmallowy boobs.");

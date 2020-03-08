@@ -467,9 +467,9 @@
 		{
 			output("The Overseer flies up to a jutting rock some distance away and uses the cover and the shadows to hunker down. You can spy her here and there but landing a shot might be hard...");
 			output("\n\nWith a new shimmer to her shield, she starts using the shadowed ceiling as cover while jumping erratically from spot to spot! <b>Melee attacks are out of the question while she’s flying that high!</b>");
-			this.shields(this.shieldsMax());
-			this.lust(-30);
-			this.energy(45);
+			this.changeShields(this.shieldsMax());
+			this.changeLust(-30);
+			this.changeEnergy(45);
 			createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Cannot be struck by normal melee attacks!", true, 0);
 		}
 	}

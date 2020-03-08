@@ -444,9 +444,9 @@
 		//healing item here:
 		public function bunnyHealsAlot():void
 		{
-			output("<i>“Damnit,”</i> the laquine curses, pulling a medipen from her pouch and jabbing it into her neck. She tosses the spent device away while her wounds knit into unblemished flesh. <i>“Would it kill you to have a little fun?”</i> (+Full HP)");
+			output("<i>“Damnit,”</i> the laquine curses, pulling a medipen from her pouch and jabbing it into her neck. She tosses the spent device away while her wounds knit into unblemished flesh. <i>“Would it kill you to have a little fun?”</i>");
 			this.createStatusEffect("Item Healed");
-			this.HP(this.HPMax());
+			this.changeHP(this.HPMax());
 		}
 		//Lust reduction
 		public function cumCoveringSuperRes():void

@@ -1817,7 +1817,7 @@ public function messageButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 	var txt:String = "";
 	var msgList:Array = [];
 	msgList.push(1);
-	if(target.hasLowerGarment() || target.hasUpperGarment()) msgList.push(2);
+	if(target.hasLowerGarment()) msgList.push(2);
 	msgList.push(3);
 	msgList.push(4);
 	msgList.push(5);
@@ -1834,7 +1834,7 @@ public function messageButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 			break;
 		// Only available while wearing clothing.
 		case 2:
-			txt += ParseText("Something seems to be pulling at your [pc.underGarment]. Or rather pushing at it from the inside and tickling at your asshole. You look around to see if anybody is watching before discreetly looking at the back of your [pc.underGarments]. You are greeted with the sight of the butt bugs’ backside visibly making a miniature bulge against your [pc.underGarments]. You quickly swat at the parasite to get it to stop, startling it into going back up your ass faster than you would’ve liked. You experience the shock and pleasures of a singular yet quick penetration, and that leaves you wanting more.");
+			txt += ParseText("Something seems to be pulling at your [pc.underGarment]. Or rather pushing at it from the inside and tickling at your asshole. You look around to see if anybody is watching before discreetly looking at the back of your [pc.underGarment]. You are greeted with the sight of the butt bugs’ backside visibly making a miniature bulge against your [pc.underGarment]. You quickly swat at the parasite to get it to stop, startling it into going back up your ass faster than you would’ve liked. You experience the shock and pleasures of a singular yet quick penetration, and that leaves you wanting more.");
 			target.lust(5);
 			break;
 		case 3:
@@ -2075,7 +2075,7 @@ public function expelButtBugEgg(eggs:int = 0):void
 	
 	processTime(14);
 	
-	pc.lust(40);
+	pc.changeLust(40);
 	
 	trackButtBugEggs(buttBugF, "infertile", eggs);
 	
@@ -2199,7 +2199,7 @@ public function birthButtBugType1(eggs:int = 0):void
 		processTime(9);
 		
 		// decrease lust by 10
-		pc.lust(-10);
+		pc.changeLust(-10);
 	}
 	else if(eggs < 25)
 	{
@@ -2213,7 +2213,7 @@ public function birthButtBugType1(eggs:int = 0):void
 		processTime(16);
 		
 		// increase lust by 20
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	else
 	{

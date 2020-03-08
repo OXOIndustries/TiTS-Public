@@ -111,7 +111,7 @@ package classes.GameData.Pregnancy.Handlers
 				var babies:int = mother.pregnancyData[pregSlot].pregnancyQuantity;
 				var belly:int = mother.pregnancyData[pregSlot].pregnancyBellyRatingContribution;
 				mother.createStatusEffect("Siegwulfe Eggnancy Ends", babies, belly, pregSlot, mother.statusEffectv1("Siegwulfe Eggnancy Stage"));
-				kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeLaying);			
+				kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeLaying);
 				mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 				StatTracking.track("pregnancy/siegwulfe eggs laid", pData.pregnancyQuantity);
 				pData.reset();

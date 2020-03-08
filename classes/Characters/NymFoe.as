@@ -318,8 +318,8 @@
 				}
 				else 
 				{
-					output(" (<b>-34 Energy</b>)");
-					target.energy(-34);
+					//output(" (<b>-34 Energy</b>)");
+					target.changeEnergy(-34);
 				}
 			}
 		}
@@ -396,7 +396,7 @@
 					output("\n\nYou dodge, but the multitude of sex toys and half-broken garbage all over Doctor Badger’s floor trips you up. Nym-Foe’s spray catches you and you sputter as the fluid seeps into your [pc.skinFurScales], leaving your body feeling swollen and slightly numb. Pinpricks of sensation radiate through your [pc.chest], and you shudder as your body throbs under the building pressure.");
 					output("\n\n<b>At least she’s less bouncy!</b>");
 					// 24 lust damage
-					target.lust(24);
+					target.changeLust(24);
 				}
 				//Second Hit:
 				else if(target.statusEffectv1("GUSHed") == 1)
@@ -404,7 +404,7 @@
 					output("\n\nYour body is woozy and doesn’t seem to be responding to your brain very well anymore. Another spray of clear fluid drenches you and the numbness floods you once more. When it recedes, the sensation in your chest is as suffocating as if you were being pinned under a starship. You gasp and moan, trying your best to ignore the furnace of your [pc.chest].");
 					output("\n\n<b>At least she’s less bouncy!</b>");
 					// 24 lust damage
-					target.lust(24);
+					target.changeLust(24);
 				}
 				//Third Hit:
 				else if(target.statusEffectv1("GUSHed") == 2)
@@ -412,7 +412,7 @@
 					output("\n\nIt’s like you’re not even trying to get out of the way anymore. The android’s glistening bounty spurts from her pink nipples and hoses you down yet again. Your gut tells you something terrible is happening, but your brain can’t be bothered to investigate. You exult in the cold numbness and rejoice at the tingling warmth. It feels so good, tears start brimming in your eyes and it’s hard to keep your mouth closed, your [pc.tongue] hanging out as you pant like a bitch in heat.");
 					output("\n\n<b>At least she’s less bouncy!</b>");
 					// 24 lust damage
-					target.lust(24);
+					target.changeLust(24);
 				}
 				//Fourth Hit
 				else if(target.statusEffectv1("GUSHed") == 3)
@@ -420,14 +420,14 @@
 					output("\n\nYou raise an arm weakly, as if your palm will hold back the gushing tide of the nursedroid’s twin geysers. A fresh coating of the translucent lactation leaves you barely standing. The temptation to drop to your knees is so strong that you’re fighting yourself nearly as much as the reprogramed android. Your body feels wound up tighter than a spring-loaded trap, every muscle and nerve twitching with pent-up need.");
 					output("\n\n<b>At least she’s less bouncy!</b>");
 					// 24 lust damage
-					target.lust(24);
+					target.changeLust(24);
 				}
 				//Fifth Hit
 				else
 				{
 					output("\n\nYou fall to your [pc.ass] and open your mouth wide, accepting the droid’s shower with an obedient moan. Heat overtakes you and, body dripping with the oily drug, all resistance fades from your slack limbs.");
 					// 15000 lust damage. Go to “GUSH’d Bad End”
-					target.lust(1500000);
+					target.changeLust(1500000);
 					//9999
 				}
 			}

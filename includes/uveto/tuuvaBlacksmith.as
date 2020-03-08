@@ -1458,7 +1458,7 @@ public function fuckTuuva(x:int = 0):void
 	if(y < 0) output("pussy");
 	else output("holes");
 	output(" with as much force as you can, causing the bed to shake under you. You jackhammer in and out of her with no regard for her own pleasure, which, ironically, seems to be turning her on even more. Arcs and splashes of girl-juice fly out of her increasingly upraised booty with each thrust you make, turning the bed into a musky swamp of sexual fluids.");
-	output("\n\nAs your wild fuck grows more intense, you start dragging her more upright, plowing her face directly into the sheets soaked by her own juices. You even yank her tail as you drag her up. You’d probably stop if it didn’t make her moan out; seems like she’s a bit of masochist. You decide to take advantage of this, slowing down your feral thrusts just enough that you can get some slaps in on her tawny-furred booty");
+	output("\n\nAs your wild fuck grows more intense, you start dragging her more upright, plowing her face directly into the sheets soaked by her own juices. You even yank her tail as you drag her up. You’d probably stop if it didn’t make her moan out; seems like she’s a bit of masochist. You decide to take advantage of this, slowing down your feral thrusts just enough that you can get some slaps in on her tawny-furred booty.");
 	output("\n\nHer ");
 	if(y < 0) output("pussy convulses");
 	else output("sloppy holes convulse");

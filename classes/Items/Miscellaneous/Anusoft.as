@@ -72,7 +72,7 @@
 					// Anus becomes Slightly Pumped, capacity increases
 					pc.ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 					if(pc.ass.bonusCapacity < 100) pc.ass.bonusCapacity += 10;
-					pc.lust(50);
+					pc.changeLust(50);
 				}
 				// Anus has the Slightly Pumped flag but not the Pumped flag:
 				// Anus loses the Slightly Pumped flag and gains the Pumped flag. Increase bonusCapacity towards 100.
@@ -103,7 +103,7 @@
 					pc.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 					pc.ass.addFlag(GLOBAL.FLAG_PUMPED);
 					if(pc.ass.bonusCapacity < 100) pc.ass.bonusCapacity += 10;
-					pc.lust(100);
+					pc.changeLust(100);
 				}
 				// Anus has the Pumped flag, bonusCapacity is less than 100:
 				// Increase bonusCapacity.
@@ -113,7 +113,7 @@
 					
 					// Fully pumped, increase capacity
 					pc.ass.bonusCapacity += 10;
-					pc.lust(15);
+					pc.changeLust(15);
 				}
 				// Anus has the Pumped flag, bonusCapacity is 100 or more:
 				// Dud result.
@@ -121,7 +121,7 @@
 				{
 					kGAMECLASS.output("\n\nYou feel a little twitch in your tailpipe, but no other changes. It looks like your asshole is as prepared for pleasure as any hole could ever be.");
 					// Dud
-					pc.lust(5);
+					pc.changeLust(5);
 				}
 			}
 			else

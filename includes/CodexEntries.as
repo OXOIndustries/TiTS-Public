@@ -4,13 +4,13 @@
 
 public function configureCodex():void
 {
-	// Complex path tree entries DO work, but until we actually NEED to organise the data
+	// Complex path tree entries DO work, but until we actually NEED to organize the data
 	// (and I implement some kind of path folding), I don't think we should actually USE them more than say 1 deep (because the way addEntry works
 	// requires at least a "root" path of some sort
 	// At the very least, the "tree" view down the side of the UI supports scrolling, so its not a HUGE issue and it
 	// can wait until we're at a point it needs to be fixed.
 	
-	// Other types of entries -- these are categorised under separate headings
+	// Other types of entries -- these are categorized under separate headings
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Arty", testPersonEntryA);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Buttsunder", testEventEntryA);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentatool", testLocationEntryA);
@@ -99,7 +99,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "BI/G", bellIsleGrunmannCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Camarilla", camarillaCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Humphard Inc.", humphardIncCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Humphard Inc.", humphardIncCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "J’ejune", jejuneCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "JoyCo", joyCoCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "KihaCorp", kihaCorpCodex, true);
@@ -1749,7 +1749,7 @@ public function xhelarfogCodexEntry():void
 	outputCodex("\n\nTheir flesh is known to be rather sticky - a feature known to let them cling, gecko-like, to walls - though they are able to secrete a substance that prevents their exterior ‘skin’ from adhering itself to anything they touch. It should, therefore, be noted that it is extremely unwise to attempt to penetrate anything but the sexual organs or mouth of any individual, unless you have a fetish for awkward medical appointments - as separating oneself from them is known to be quite the ordeal.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Body Composition (Scales)"));
-	outputCodex("Due to the gold-rich environment of the Xhelarfog home planet, individuals end up taking in a great amount in their diet. Rather than excrete this as waste, it has been observed that they instead organise it into clumps, which then rise to the surface of their flesh in formations that appear like, and are often referred to as rough, uneven scales.");
+	outputCodex("Due to the gold-rich environment of the Xhelarfog home planet, individuals end up taking in a great amount in their diet. Rather than excrete this as waste, it has been observed that they instead organize it into clumps, which then rise to the surface of their flesh in formations that appear like, and are often referred to as rough, uneven scales.");
 	outputCodex("\n\nThis is thought to be an unusual defense mechanism, as this process never really stops - the eldest observed Xhelarfog have been known to be almost completely covered in these ‘scales’, saving only the palms of their hands and feet, the underside of their tails and the horn-like protrusions on their head.");
 	outputCodex("\n\nIt is theorised that should a metal other than gold occur in greater proportions than it in an individual’s diet from infancy, they would instead develop scales of this metal - but no testing has been done due to the more recent discovery of the race.");
 	outputCodex("\n\n");
@@ -1909,7 +1909,7 @@ public function mimbraneCodexEntry():void
 	outputCodex("A Mimbrane can survive on sources of moisture such as plants, fruits or water, but it cannot reproduce until it has found and attached itself to a host. If it has clung to an organ that features some sort of orifice, it will dissolve its mouth in favor of substituting it with its newfound outlet. If there is no orifice, the Mimbrane will maintain its small mouth, trying its best to disguise it as an innocuous bump on its host.");
 	outputCodex("\n\nThe mouth is where a Mimbrane continues to feed and breathe. The parasite is unable to continue breathing through its epidermis when coupled as its skin is currently occupied mimicking the host. As a result, the creature will wait for moments of inactivity to open and shut its mouth, stirring fresh air around and allowing it to easily absorb and process oxygen. The sensation – whether with a claimed hole or the creature’s mouth – can very easily be felt by the host and is the most glaring reminder of the parasite’s presence.");
 	outputCodex("\n\nMimbranes ingest host secretions that pass through their borrowed mouths by absorbing them into the skin surround the opening in a manner similar to breathing. This action does not require the same amount of movement, however, and usually goes undetected by hosts. The exception goes for parasites lacking a borrowed spout, who use their natural mouths in a manner similar to all other living creatures in order to collect what they crave. When located on extremities such as the hands, Mimbranes will attempt to push themselves to a visible source when hungry.");
-	outputCodex("\n\nDue to their slow and miniscule metabolism, the parasites only require a small fraction of the various discharges they can come into contact with. Most Mimbranes are unable to gorge themselves rapidly; a trait that prevents the creatures from growing too large to quickly, which would increase the odds of irritating their hosts and thus hasten the parasites’ demise.");
+	outputCodex("\n\nDue to their slow and minuscule metabolism, the parasites only require a small fraction of the various discharges they can come into contact with. Most Mimbranes are unable to gorge themselves rapidly; a trait that prevents the creatures from growing too large to quickly, which would increase the odds of irritating their hosts and thus hasten the parasites’ demise.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Mimbranes store and process any and all nutrients they come into contact with once they are attached to a host. As a result, the body part they’ve encapsulated can appear to swell over time. The parasite can easily grow anywhere between twenty five and fifty percent of the size of the organ it currently resides over. People with swollen penises, vaginas, asses, or anything else never feel as if their organs have been smothered with the extra weight due to the creature’s continued mimicry and faked signals it sends to the nervous system.");
@@ -3445,16 +3445,16 @@ public function gravCuffsCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Grav Cuffs"));
-	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("<b>Manufactured By:</b> TamaniCorp");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
-	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.");
+	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by the sex-loving TamaniCorp. The cuffs are packed full of features; nearly as many as some mainstream androids.");
 	outputCodex("\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.");
 	outputCodex("\n\nPremium cuffs come with several special features, such as a magni lock feature for fastening different cuffs together, voice activation, and a vocal locking system.");
 	outputCodex("\n\nGrav-cuffs are notoriously hard to break out of.");
-	if(silly) outputCodex(" They are made out of top secret alloy that Bran Flazingan has patented as “Hardium”. The Humphard CEO claims the composition of the alloy was inspired by his erect penis, “the hardest thing in the known galaxy.”");
+	//Nope! if(silly) outputCodex(" They are made out of top secret alloy that Bran Flazingan has patented as “Hardium”. The Humphard CEO claims the composition of the alloy was inspired by his erect penis, “the hardest thing in the known galaxy.”");
 	outputCodex("\n\n");
-	CodexManager.unlockEntry("Humphard Inc.");
+	//CodexManager.unlockEntry("Humphard Inc.");
 	CodexManager.viewedEntry("Grav Cuffs");
 }
 public function holodomCodex():void
@@ -3462,16 +3462,16 @@ public function holodomCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Holodom"));
-	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("<b>Manufactured By:</b> JoyCo");
 	outputCodex("\n<b>Description:</b> Hard light holographic condom, or “holodom.”");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
-	outputCodex("Holodoms were one of Humphard’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
+	outputCodex("Holodoms were one of JoyCo’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
 	outputCodex("\n\nBefore the holodom, galactic citizens had to rely on other less enjoyable methods of safe sex. Traditional condoms reduced sensation, body modification and implants were troublesome, and oral supplements were not always cross-species compatible. The holodom offered a quick, easy way to have sex with practically any species without worrying about impregnation or disease.");
 	outputCodex("\n\nOn the release of seed, a holodom captures it within the field and keeps it stored in a hard light bubble. For incredibly virile users, this often creates a spectacular ‘bubble’ of semen that can stress the holodom and potentially cause it to burst.");
 	outputCodex("\n\nSome seedy dealers sell fake holodoms that, while holographic, are not ‘hard light’. There are a number of customers who buy these products to dupe their sexual partners, often in a bid to get them pregnant.");
 	outputCodex("\n");
-	CodexManager.unlockEntry("Humphard Inc.");
+	//CodexManager.unlockEntry("Humphard Inc.");
 	CodexManager.viewedEntry("Holodom");
 }
 public function sumaCreamCodex():void
@@ -3727,7 +3727,8 @@ public function Bess13CodexEntry():void
 	outputCodex("\n\nBoth Bess-13 and Ben-14 units come with male and female genital attachments. They can have one, both, or neither attached at any given time.");
 	outputCodex("\n\nBoth units have the ability to equip a pussy and have it extend out from a prehensile tail growing from between their legs. This is particularly useful for users with unusual body types or for offering vaginal penetration while being pegged from behind. Some users find this ability unsettling and never make use of it.");
 	outputCodex("\n\nTheir FlexMetal bodies allows them to incorporate all but the largest of individuals in any orifice. Since Bess-13 and Ben-14 Units are marketed as breeding relief androids, they can easily take huge amounts of liquid inside of them and in a pinch swell their bodies to compensate.");
-	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy. Bran Flazingan, the galaxy’s eighth richest man and eccentric tycoon, called the Bess-13’s and Ben-14’s “the most enticing object you’ll ever feel the need to fuck.”");
+	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy.");
+	//" Bran Flazingan, the galaxy’s eighth richest man and eccentric tycoon, called the Bess-13’s and Ben-14’s “the most enticing object you’ll ever feel the need to fuck.”");
 	outputCodex("\n\n");
 	// Totally changable of course. Sixth might be too big a spot for this NPC.
 	outputCodex(blockHeader("History:"));
@@ -3785,7 +3786,7 @@ public function panaraCodex():void
 
 
 /* People */
-
+/*
 public function branFlazinganCodex():void
 {
 	clearOutputCodex();
@@ -3818,7 +3819,7 @@ public function branFlazinganCodex():void
 	outputCodex("\n\n");
 	// Bran Flazingan: Imagine Donald Trump + Rance (AliceSoft Games) + Ron Jeremy. The name is a play on Zap Brannigan.
 	CodexManager.viewedEntry("Bran Flazingan");
-}
+}*/
 
 
 /* Companies */
@@ -3860,6 +3861,7 @@ public function camarillaCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Camarilla");
 }
+/*
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
@@ -3888,7 +3890,8 @@ public function humphardIncCodex():void
 	CodexManager.unlockEntry("Grav Cuffs");
 	CodexManager.unlockEntry("Holodom");
 	CodexManager.viewedEntry("Humphard Inc.");
-}
+}*/
+
 public function jejuneCodex():void
 {
 	clearOutputCodex();
@@ -4045,7 +4048,7 @@ public function envyoidicsCodex():void
 	outputCodex("<b>Company Name:</b> Envyoidics LTD");
 	outputCodex("\n<b>Industry:</b> Modification, historical preservation");
 	outputCodex("\n\n");
-	outputCodex("Formed relatively recently with the increase in rushes and technological developments, Envyoidics is a boutique gene-modding company specializing in obscure, exotic morphs. Whilst relatively successful for such a small company, they remain mostly unknown to U.G.C space as their distributors and partners tend to be independant businesses operating on the frontier.");
+	outputCodex("Formed relatively recently with the increase in rushes and technological developments, Envyoidics is a boutique gene-modding company specializing in obscure, exotic morphs. Whilst relatively successful for such a small company, they remain mostly unknown to U.G.C space as their distributors and partners tend to be independent businesses operating on the frontier.");
 	outputCodex("\n\nTheir reputation is such that prominent scientists and historians, who do know about them, hold great respect for their work; and yet there is a sharp ethical divide about their business patterns: Uncovering histories of long dead civilizations and then marketing them as play toys for the rich. So far, their slow but provable growth shows that the researchers and scientists at Envyoidics know their niche: Illumorpheme in particular has taken some sectors by storm with it’s body-friendly transformations, exclusivity and pleasing end results.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Envyoidics");

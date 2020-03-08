@@ -71,6 +71,7 @@ public function resetStepCounters():void
 	flags["FIELDS_STEP"] = 0;
 	//KQ
 	flags["KQ2_FIGHT_STEPS"] = 0;
+	flags["KQ_STEP"] = undefined;
 }
 
 public function debugMenus():void

@@ -330,7 +330,7 @@
 					}
 					outputB(" now " + pc.vaginas[0].vaginaColor + "!</b>");
 					changes++;
-					pc.lust(30);
+					pc.changeLust(30);
 					pc.slowStatGain("libido",2);
 				}
 				//Squirter
@@ -383,7 +383,7 @@
 					outputB("\n\nYou test out your newly filled udders by giving them a quick squeeze. From your [pc.nipples], a six foot stream of milk arcs out and splatters on the ground. <b>You’ve gained a Squirt Attack, when you have enough milk!</b>");
 					//Gain squirt attack
 					changes++;
-					pc.lust(35);
+					pc.changeLust(35);
 				}
 				//Eye Color Change
 				// Eye color is not vanae type.

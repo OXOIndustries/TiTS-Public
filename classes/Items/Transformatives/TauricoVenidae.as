@@ -259,7 +259,7 @@ package classes.Items.Transformatives
 				if(pc.cocks[y].cType != GLOBAL.TYPE_EQUINE)
 				{
 					output(" It begins to shift form, forming a ring around the middle and thickening at the head - perfect for stretching a cute deertaur wiiide open so you can slide the rest of your considerable length in after it. You groan in satisfaction as it finishes thickening, settling into place as a <b>thick, flared equine cock!</b> Vesperians must believe in walking softly and carrying a big stick.");
-					pc.lust(40);
+					pc.changeLust(40);
 					pc.shiftCock(y,GLOBAL.TYPE_EQUINE);
 					pc.libido(2);
 				}

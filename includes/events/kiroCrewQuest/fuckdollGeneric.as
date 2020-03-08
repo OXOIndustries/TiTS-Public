@@ -262,7 +262,7 @@ public function fuckaDemEarcunts(x:int):void
 	output("\n\nYou rut the security slut’s head, pounding with abandon. She doesn’t mind from the sound of it, moaning stupidly when smack yourself home at force." + (pc.balls > 0 ? " The sweaty imprint of your [pc.sack] lingers on her cheek, a tempting target for you to strike on every downthrust.":"") + " Her lower jaw and tongue flap about, completely limp, passive. Spit flecks your [pc.thighs], but it just makes the whole act better, knowing that the target of your lusts has already been rendered insensate by pleasure. She gave herself over to you to be used without concern or mercy. She wanted this.");
 	output("\n\nLooking down at the fox’s narrow face, it’s clear just how much <i>loves</i> being properly abused. She looks like she’s riding the galaxy’s longest orgasm, like the feeling of your [pc.cockNounSimple " + x + "] plumbing the depths of her cranial cunt carried her all the way to cloud nine. Whenever you cum will be fine with her, you’re sure. She’ll moan for it, beg you for another, and maybe that’s what you should give her. Maybe you should shoot a load deep into this greedy, clutching, alien hole and spin her around for a shot at the second. Maybe you’re so worked up that you won’t be satisfied without a creampie in both of these seductively swollen slits.");
 	processTime(15);
-	pc.lust(5400);
+	pc.changeLust(5400);
 	clearMenu();
 	addButton(0,"Cum",cumOnceForFoxyEars,x,"Cum","One cumshot is plenty.");
 	addButton(1,"Cum+Finger",cumAndFingerFoxyEars,x,"Cum+Finger","A single cumshot is plenty, but a finger in the horny minx’s other ear might be a bit of fun...");
@@ -312,7 +312,7 @@ public function allGasmFoxEarOutroStuff(args:Array):void
 	if(cums < 100) output(" You don’t take long to sow your sperm deep inside the foxy prick-holster. Her anatomy coaxes it out of you with firm, milking strokes, like she was designed to empty sexual predators at speed. In your case, it leaves you feeling drained and satisfied in record time.");
 	else if(cums < 4000) output(" Depositing the entirety of your [pc.cumVisc] load into the fox feels like it should take a while, but miraculously, she milks it out of you at speed. Her anatomy miraculously coaxes you to fire faster, to pump out sperm-infused loads far quicker than you’d naturally be capable of. It’s like her body is designed to drain virile predators at speed, to leave them satisfied and sleepy in record time.");
 	else if(cums < 10000) output(" Flooding the fox’s insides with sperm should take a while. Your climaxes can be so long, so ecstatic, but this petite fluffball somehow has you spurting in record time. Her clenching fucktunnel milks you with deliberate strokes, somehow convincing your anatomy to spurt faster and harder than is natural. She empties you in record time, a visible bulge revealing itself on her belly by the time you finish.");
-	else output(" Your titanic deluge should be a slow, moderated thing. This time, it isn’t. Spurts spray out of you rapid fire as the fox’s insides coax you to climax with far greater speed than normal. There’s something about her anatomy, some way that it tricks your [pc.cocks] into overdrive, demanding " + (!pc.hasCocks() ? "it milk itself":"they milk themselves") + " as fast as your urethra" + (pc.hasCocks() ? "s":"") + " will allow. In short order, the vulpatra’s tummy has bulged to full and pregnant proportions, but her tiny body could never contain your entire climax, not with the way you cum.\n\nFortunately, the cock-brained turbuslut’s mouth provides an easy ‘out’ valve for your excess semen. Her flapping tongue soon drools a torrent [pc.cumVisc] [pc.cumColor] onto her tits. She paints the twin spheres in record time, leaving the rest to cascade across her taut, pregnant dome and puddle beneath her submissively folded legs. You note that her tail is completely flat, lying deep in the cum and sopping it up like a sponge - just the rest of her, you suppose.\n\nBy the time you finish, she’s a cummy wreck, her small prick spraying thin ropes of alien cream to frost your far more virile lake.");
+	else output(" Your titanic deluge should be a slow, moderated thing. This time, it isn’t. Spurts spray out of you rapid fire as the fox’s insides coax you to climax with far greater speed than normal. There’s something about her anatomy, some way that it tricks your [pc.cocks] into overdrive, demanding " + (!pc.hasCocks() ? "it milk itself":"they milk themselves") + " as fast as your urethra" + (pc.hasCocks() ? "s":"") + " will allow. In short order, the vulpatra’s tummy has bulged to full and pregnant proportions, but her tiny body could never contain your entire climax, not with the way you cum.\n\nFortunately, the cock-brained turboslut’s mouth provides an easy ‘out’ valve for your excess semen. Her flapping tongue soon drools a torrent [pc.cumVisc] [pc.cumColor] onto her tits. She paints the twin spheres in record time, leaving the rest to cascade across her taut, pregnant dome and puddle beneath her submissively folded legs. You note that her tail is completely flat, lying deep in the cum and sopping it up like a sponge - just the rest of her, you suppose.\n\nBy the time you finish, she’s a cummy wreck, her small prick spraying thin ropes of alien cream to frost your far more virile lake.");
 	processTime(10);
 	if(!enemy.hasStatusEffect("VR")) enemy.loadInCunt(pc,0);
 	pc.orgasm();
@@ -505,7 +505,7 @@ public function normalCockInSexdollHole(x:int):void
 	output("\n\nDespite your efforts, you fall forward, collapsing on the shoulder of your spend toy. You feel your spend manhood slip from the sexdoll’s oozing cunt, your semi-hard mass of cockflesh still ablaze with heat. Oddly, that warmth doesn’t seem to cool down, instead sinking in and spreading throughout your exhausted body. A lusty shiver runs up your spine. Suddenly, you don’t feel quite like yourself.");
 	output("\n\nGasping, trying to collect your breath, you glance at her, your sense flooding back as the lusty haze in your mind starts to lift. You remember clearly how dangerous she is, and what she will attempt to do to you if you can’t compose yourself quickly.");
 	output("\n\nLooking at her now, you think, perhaps, you may have earned yourself a short reprieve.");
-	output("\n\n[enemy.name]’s eyes are not on you, if she even knows you’re there, instead fixed up at the ceiling. Wide and glazed, she seems shell-shocked, like a stalled machine or a frozen computer. Given what she is, that may not be far off from what’s happened. Her breathing is heavy still, her [enemy.chest] heaving up and down against you, and despite her prior habit of not shutting up, she remains inertly silent. Even her [enemy.cockNounSimple], which is sandwhiched between your two bodies, feels oddly soft, the seemingly insatiable sex organ rather harmless at the moment.");
+	output("\n\n[enemy.Name]’s eyes are not on you, if she even knows you’re there, instead fixed up at the ceiling. Wide and glazed, she seems shell-shocked, like a stalled machine or a frozen computer. Given what she is, that may not be far off from what’s happened. Her breathing is heavy still, her [enemy.chest] heaving up and down against you, and despite her prior habit of not shutting up, she remains inertly silent. Even her [enemy.cockNounSimple], which is sandwhiched between your two bodies, feels oddly soft, the seemingly insatiable sex organ rather harmless at the moment.");
 	output("\n\nShe seems so harmless, you can almost overlook the fact she’s a sex crazed fuck toy bent on " + (pc.hasVagina() ? "riding":"sodomizing") + " you until you’re as fucked up as she is... Almost.");
 	output("\n\nAfter a few heartbeats, she blinks. Slowly her tongue pulls back out of her mouth, licking at a thick glob of the purple-tinted seed on her lip, letting out a low purr as she tastes it. Against your belly, you feel her cock twitch and stiffen, the sexdoll’s refractory period seemingly already nearing its end.");
 	output("\n\nTaking a deep breath, you pull yourself up off of the now stirring woman, stretching out your taut muscles and quickly replacing your [pc.crotchCover]. As you prepare to leave, you notice her stirring on the ground once more, her sense almost returned, her cock rising back to full mast.");
@@ -607,7 +607,7 @@ public function pcRidesASexdollFacebyWill(x:int):void
 		output("\n\nWhether or not that was a poor attempt to keep you away from Kiro for longer doesn’t matter.");
 		if(pc.isBimbo()) output(" As if you’d fall for it anyway! Girls like you are <i>always</i> the readiest for dick!");
 		output(" She’s been drinking in the sight of your swollen [pc.pussiesLight] the whole time. Light refracts in the [pc.girlCumColor] cascade seeping from your overflowing pot" + (pc.hasVaginas() ? "s":"") + ". The capability of your [pc.pussyNoun " + x + "] isn’t lost on her, and when your groin twitches another [pc.girlCumVisc] string onto her " + (enemy.hasFur() ? "matting bellyfur":"taut tummy") + ", the minx forgets all about eating you out. The knowing-est (and slightly awkward) smiles are exchanged between the two of you.");
-		output("\n\nThen you’re sitting yourself on her stomach, capturing her [enemy.cock] in the cleavage between your [pc.butts]. Enfolded in your [pc.skinFurScales], her rock-hard cock throws out a gout of hot and off-purple precum that lands on your spine" + (pc.tailCount > 0 ? " hasTail:, stains your [pc.tails],":"") + " and seeps into the valley, making her rhythmic passage easier. Struggling to pump all the way through the canyon, she whimpers her approval, <i>“MmaaapussssyIwantpussypussypussy!”</i>");
+		output("\n\nThen you’re sitting yourself on her stomach, capturing her [enemy.cock] in the cleavage between your [pc.butts]. Enfolded in your [pc.skinFurScales], her rock-hard cock throws out a gout of hot and off-purple precum that lands on your spine" + (pc.tailCount > 0 ? ", stains your [pc.tails],":"") + " and seeps into the valley, making her rhythmic passage easier. Struggling to pump all the way through the canyon, she whimpers her approval, <i>“MmaaapussssyIwantpussypussypussy!”</i>");
 		if(enemy.hasCock(GLOBAL.TYPE_VULPINE)) output(" Though your partner’s a dainty and diminutive plaything, she manages at least one good thrust before your weight proves superior to her strength. It was still enough to smash your thoughts to pieces with another mini-orgasm.");
 		else if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) output(" Unsurprisingly, a laquine’s thigh- and hip-muscles are built to overcome <i>any</i> obstacle to coitus. The bunny-turned-sybian jerks rapid-fire, achieving mating speed in one of the least procreative positions ever. The bouncing impact of her powerful waist to yours pressures a jolting orgasm, then another; sumptuous vibrations feed through your lower half - fuck, what have you gotten yourself into?");
 		else output(" Demonstrating her talent for screwing a girl senseless, the herm thrusts hard enough to bounce you up clear off her body; glorious aftershocks worm through your [pc.legOrLegs]. Concentration fractures like glass. Half your brain emerges with the next cum, her infinite horniness finally being arrested by the dead-locked weight of your spasming body.");
@@ -657,6 +657,7 @@ public function pcRidesASexdollFacebyWill(x:int):void
 	{
 		output("\n\nSomething tells you that Po’s fuckdoll was unprepared for so magical a cunt seizing her today. It’s worth it to see her face spread itself into an ‘oh’ of amazement. You take her to the hilt quickly and cleanly");
 		if(enemy.hasCock(GLOBAL.TYPE_DEMONIC)) output(", a feat that would leave astonished onlookers stunned. There must be around two feet of dick inside (at LEAST!) and <i>you STILL have room!</i>");
+		else output(".");
 		output(" Euphoria puddles inside you, girlish lube mixing with herm-spooge and drooling hot across your conjoined loins. Moving around is even easier, like gripping a flight stick in your hand and maneuvering skillfully through three dimensions. <i>“You’re the best!”</i> she wails, biting her lip cutely. <i>“Ohhh yesss...!”</i>");
 	}
 	if(!enemy.hasStatusEffect("VR")) pc.cuntChange(x,enemy.cockVolume(0));
@@ -1099,8 +1100,8 @@ public function sixtyNineFuckdoll():void
 		else if(enemy.hasCock(GLOBAL.TYPE_HUMAN)) output("pale woman");
 		else output("succubus");
 		output(" watches you undress, staring at and commenting on the curves you");
-		if(pc.isBimbo()) output("happily flaunt");
-		else output("expose");
+		if(pc.isBimbo()) output(" happily flaunt");
+		else output(" expose");
 		output(". Never insulting, she squawks with pure delight when your [pc.hips] wiggle about, suggests a few lewd (and downright absurd) methods to enhance your [pc.thighs], and sweeps a lengthy tongue over her perfect [enemy.lipColor] lips when you deign to reveal your loins.");
 	}
 	else
@@ -1138,7 +1139,7 @@ public function sixtyNineFuckdoll():void
 	output(" presented. Here with a thirsty succubus to serve your whim, you can let Kiro be for a time.");
 
 	processTime(20);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",wills69Part2,[x,y]);
 }
@@ -1163,7 +1164,7 @@ public function wills69Part2(args:Array):void
 		if(pc.balls > 0)
 		{
 			if(pc.balls == 1) output(" The orb in your sack is slurped like the treat");
-			else output("The orbs in your sack are slurped like the treats");
+			else output(" The orbs in your sack are slurped like the treats");
 			output(" at the end of a lollipop - " + (pc.balls == 1 ? "it wears":"they wear") + " the lascivious shape of her plump mouth all around " + (pc.balls == 1 ? "its diameter":"their diameters") + " until your sack turns the neon color of her lipstick.");
 		}
 		output(" [pc.CumColor] precum spurts, and a heavy sensation closes in when you look down to see her jacking you, moaning as she pumps your flesh until ardor bursts forth, splattering the twitchy broadness standing inches away. The copious make-up she wears begins to shimmer as you’re slowly brought to rutting mania.");
@@ -1378,6 +1379,10 @@ public function wills69Part3(args:Array):void
 
 public function loseToTheSexdoll():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	showSexDoll(true);
 	author("William");
 	
@@ -1666,7 +1671,7 @@ public function loseToTheSexdoll():void
 		else if(pc.hasVagina()) output(", spilling [pc.girlCum] on the deck");
 		else if(pc.hasCock()) output(", busting fat wads of gurgling [pc.cumNoun] between the glossy cheeks of her ass");
 		else output(", overwhelmed by an inexpressible sense of ecstasy, shocked by how synergized this rendezvous has been");
-		output(". Jism detonates in volumes unimaginable, an ocean tide ath begins to swallow you into a puddle of steaming-hot virility.");
+		output(". Jism detonates in volumes unimaginable, an ocean tide bath begins to swallow you into a puddle of steaming-hot virility.");
 		output("\n\nExcess dribbles from your body. She starts again, teasing you again, use you again, ferally and roughly. An uncertain passage of time occurs. Ensorceled as you are, you never actually register that you fall unconscious at some point.");
 		processTime(45);
 		pc.orgasm();
@@ -1680,11 +1685,13 @@ public function loseToTheSexdoll():void
 
 public function badEndToGenericDollsPart2():void
 {
+	if(!enemy.hasStatusEffect("VR")) moveTo("KQ T14");
+	
 	clearOutput();
 	//show po!
 	author("William");
 	showBust("ILLUSTRIA_PO");
-	showName("DR.\nPO");
+	showName("DOCTOR\nPO");
 	// Doctor Po sequence
 	// Vulpatra = 2, Laquine = 13, Human = 20, Demon = 34
 	var petNumber:Number = 0;
@@ -1708,7 +1715,7 @@ public function badEndToGenericDollsPart2():void
 	output(". <i>“You can tell me anything.”</i>");
 	output("\n\n<i>“I love...”</i> you ramble, losing your train of thought at the exact moment her boobs start to leak. Mysticism. Your jaw slackens and your breaths emerge in random, lustful exhortations. Mistress scoots closer, draping a leg over your lap, soaked in ambrosia. You think it can’t get any better, but then her lips press to the side of your head, kissing you long, softly, imploringly. That tousled braid of hair, like an electric lash, slides over your flawless " + (pc.hasFur() ? "fur":"skin") + ".");
 	output("\n\nYou can’t take it anymore. <i>“I love you!”</i> [pc.Cum] jets from your manhood, potent pillars of sperm blasting across the room and contaminating the once sanitary room. <i>“Your pussy smells so good!”</i> The declaration causes <b>your pussy</b> to cum, squirting torrents of [pc.girlCum] to complement male orgasm." + (!pc.hasVagina() ? " Of course you have a pussy. You always had one, and it was always this powerful.":"") + " <i>“You’re so so so so beautiful, I can’t just-”</i> <i>Spurt.</i> <i>“-Choose-”</i> <i>Spurt.</i> <i>“-One!”</i>");
-	output("\n\nTension departs in splurting surges, aided by Mistress Illustria’s touch. Muscles rhythmically clench, forcing out waves of twin-sexed satisfaction. Your balls never diminish and your glands never go sore. There’s no pain, only a glorious loop of constant climax. Your cheeks scream delight, only muffling when you’re properly kissed. Her tongue dives inside, swabbing over your cheeks before tangling with your taste buds. Doctor Po’s isn’t as endowed, yet it snares yours in a sensual twirl that speaks to authority and experience, both forces intermingling in the knot of spit-slick flesh.");
+	output("\n\nTension departs in splurting surges, aided by Mistress Illustria’s touch. Muscles rhythmically clench, forcing out waves of twin-sexed satisfaction. Your balls never diminish and your glands never go sore. There’s no pain, only a glorious loop of constant climax. Your cheeks scream in delight, only muffling when you’re properly kissed. Her tongue dives inside, swabbing over your cheeks before tangling with your taste buds. Doctor Po’s isn’t as endowed, yet it snares yours in a sensual twirl that speaks to authority and experience, both forces intermingling in the knot of spit-slick flesh.");
 	output("\n\nIllustria has melted into your body, shuddering lip-to-squishing-lip. Her thumbs play around the saucers of your plumped nipples, squeezing out violet lactic arcs from your tremendous jugs. Ripples pass through the creamy");
 	if(pc.hasFur()) output(" curtains of your boobfur");
 	else output(" swells of your boobflesh");
@@ -1721,12 +1728,12 @@ public function badEndToGenericDollsPart2():void
 	if(enemy.hasStatusEffect("VR"))
 	{
 		pc.taint(1);
-		pc.lust(50);
+		pc.changeLust(50);
 	}
 	else
 	{	pc.taint(100);
 		pc.libido(300);
-		pc.lust(50);
+		pc.changeLust(50);
 	}
 	clearMenu();
 	addButton(0,"Next",badEndToGenericDollsPart3);
@@ -1766,7 +1773,7 @@ public function badEndToGenericDollsPart3():void
 	days += 20;
 	processTime(50);
 	pc.orgasm();
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",badEndToGenericDollsPart4);
 }

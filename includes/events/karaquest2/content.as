@@ -1829,9 +1829,9 @@ public function kq2EncounterShade():void
 		output("\n\nYou nod understandingly and try to move by. She holds you in place for another moment, though: just long enough to plant a small kiss on your cheek. <i>“For luck. You’ll need it.”</i>");
 		
 		//Restore some PC Health, Energy. Increase +5 Lust.
-		pc.HP(pc.HPMax() * 0.15);
-		pc.energy(pc.energyMax() * 0.15);
-		pc.lust(5);
+		pc.changeHP(pc.HPMax() * 0.15);
+		pc.changeEnergy(pc.energyMax() * 0.15);
+		pc.changeLust(5);
 		
 		output("\n\nShade gives you a slight nod and takes her hand back, letting you pass her by. You rush to rejoin Kara at the helipad...");
 
@@ -2035,7 +2035,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	else output(" The heat in your body seems to coalesce in your bare groin, forming an intense ball of pointless pleasure.");
 	output(" You feel amazing, like any touch would send you over the edge. And the pirate knows it.");
 	
-	pc.lust(50);
+	pc.changeLust(50);
 
 	output("\n\n<i>“Touch yourself,”</i> she commands, smiling as you immediately obey, running a hand down your groin");
 	if (pc.hasCock()) output(" and caressing your [pc.cock]");
@@ -3104,7 +3104,7 @@ public function kq2ShadeFollowUpResponse(response:String = "none"):void
 		output("\n\nShade scowls at you, and the next thing you know you’re reeling back, pain sparking out from your [pc.face]. Your cheek burns painfully, and you blink away stars from your vision just in time to see Shade walking off in a huff. You think about reaching out for her, but think better of it -- after a hit that hard, an armed and dangerous babe like her might just get violent if you did.");
 		output("\n\nWith a sigh, you order a drink -- heavy on the ice -- and press it to your cheek. Ouch.");
 		
-		pc.HP(-10);
+		pc.changeHP(-10);
 	}
 	
 	//Remove Shade from Myrellion. Doesn’t like PC anymore. 

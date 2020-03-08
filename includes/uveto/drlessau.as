@@ -155,7 +155,7 @@ public function drLessauKnewDad():void
 	output("\n\n<i>“You make it sound like she’s property,”</i> you reply. Lessau fixes you with as serious a look as you’ve ever seen from anyone.");
 	output("\n\n<i>“You don’t leave Xenogen, [pc.name]. Not if they find you useful, or if you grow too knowledgeable about what they do behind closed doors.");
 	//Done the M'henga or Myrellion Xenogen quests
-	if (flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1 || flags["NEVRIE_QUEST"] == 2) output(" I would caution you against doing any more for them than you already have, or you too may find yourself considered an asset too important to let roam free.");
+	if (flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1 || flags["NEVRIE_QUEST"] == 2 || flags["NEVRIE_QUEST"] == 3) output(" I would caution you against doing any more for them than you already have, or you too may find yourself considered an asset too important to let roam free.");
 	output("”</i>");
 	output("\n\nLessau lets the statement hang, seemingly unwilling to go into more lurid detail. The moment eventually passes, and Lessau returns to his story after a moment to collect himself.");
 	output("\n\n<i>“At the time Steele Tech was mostly a mining company. The biotechnology division was woefully underdeveloped and underfunded, so we began from almost nothing. Between Victor’s generous funding and some fortunate breakthroughs, we’ve managed to develop at a brisk pace since then. We even bought the rights to a terran transformative and improved it. Sadly it did little to help Victor’s condition, but it proved the commercial viability of our department as well. Sales of Humana+ have been brisk... or Terran Treats, as I gather most people call them.”</i> Lessau grumbles a bit at the mention of the more popular name.");
@@ -563,7 +563,9 @@ public function steeleBiomedGangbangII():void
 	author("Couch");
 	
 	output("Distracted by your indulgence, you give a muffled grunt of surprise as " + (!metWalt() ? "the wolf" : "Walt") + " slips your remaining gear off to get at your [pc.hips]. A sweep of his tongue along your [pc.vagOrAss] makes you shiver, prompting him to keep going, each lick digging a little deeper in.");
-	output("\n\nMore of their coworkers join in now, assisting " + (!metCynthia() ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, " + (pc.hasTail() ? "your tail, " : "") + "" + (pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
+	output("\n\nMore of their coworkers join in now, assisting " + (!metCynthia() ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, ");
+	if(pc.hasTail()) output("your tail" + (pc.tailCount > 1 ? "s":""));
+	output((pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
 	output("\n\n<i>“Alright, alright, let’s not crowd " + pc.mf("him", "her") + ",”</i> the minotauress says after a bit of this. <i>“You’ll all get a turn, let’s do this all nice and orderly-like.”</i> She looks down at you with a grin as the rest of her coworkers draw back a bit."); 
 	if (!metCynthia()) output("<i>“Name’s Cynthia, by the way. Pleasure to meet you, boss.”</i>");
 	

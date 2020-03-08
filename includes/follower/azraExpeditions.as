@@ -400,7 +400,7 @@ public function negotiateWithSlutGoo():void
 		output("\n\nAzra turns away in a hurry to gather her own, leaving you with nothing to do but watch the two-headed goo-girl eat and cum and eat in cum. She’s so curvaceous, and she cums so noisily. You can feel yourself getting hot under the collar. Familiar urges well up inside you, and you realize that if you don’t do something about it, you’ll wind up horny and distracted for the rest of the day. Maybe the nice goo could help you out?");
 
 		processTime(5);
-		pc.lust(5);
+		pc.changeLust(5);
 		//[Wait] [Get Help]
 		clearMenu();
 		addButton(0,"Wait",waitForBimboNegotiationsAndGetHornedUp)
@@ -1145,7 +1145,7 @@ public function fuckUpTurrets():void
 	//Else normal lust
 	else output("\n\nThere’s not much else to do, and Azra doesn’t seem to mind. Now would be as good a time as any to blow off some excess steam.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[Fuck Her] [Hyper Fun] [Face Ride][Wait it Out]
 	clearMenu();
 	if(pc.biggestCockVolume() > 700) addButton(1,"Hyper Fun",hyperRaskFun);
@@ -2005,7 +2005,7 @@ public function acceptPunishmentSucky():void
 		output("\n\n<i>“The tribute has been fairly met,”</i> the sydian matriarch goes on, turning her attention to you. She waves her sceptre airily. <i>“You may take your spunkshrooms and leave.”</i> She pauses as she notices you’re still kneeling, taps the sceptre in her hand thoughtfully. <i>“...You really enjoyed doing that, didn’t you? It is almost treat time. You can come along and be the treat, if you like. Save one some trouble.”</i>");
 		output("\n\n<i>“I uh,”</i> stumbles Azra, pointing at her collection of fungus. <i>“I’d sooner examine these, thank you, your Majesty. But I can wait here and do that if you want to go along with them, [pc.name]...”</i>");
 
-		pc.lust(55);
+		pc.changeLust(55);
 		//[Hell Yeah] [Nah]
 		clearMenu();
 		addButton(0,"Hell Yeah",raskyRooOrgipoo);
@@ -2104,7 +2104,7 @@ public function multiBalljobRaskTraps():void
 	output("”</i>");
 
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",multiBalljobRaskTraps2);
 }
@@ -2145,7 +2145,7 @@ public function multiBalljobRaskTraps2():void
 	pc.applyCumSoaked();
 	pc.loadInMouth(new RaskvelMale());
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",multiBalljobRaskTraps3);
 }
@@ -2171,7 +2171,7 @@ public function multiBalljobRaskTraps3():void
 	else output("\n\nYou hastily nod, and you stride away together with your sample of spunkshrooms in silence.");
 	flags["AZRA_RASK_ORGIED"] = 1;
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 
 	clearMenu();
 	addButton(0,"Next",backSafeAndSoundAfterTarkusBooty);
@@ -2191,8 +2191,7 @@ public function raskyRooOrgipoo():void
 	output("\n\nShe sinks back into her throne, and with a wriggle of her muscles and a grateful sigh she begins to peel her armor back, revealing the soft, smooth orange skin beneath. Tiny flakes of rust hang in the still air down here. You emit little puffs of bronze dust as her fine, firm breasts and protuberant nipples slide into view.");
 	output("\n\n<i>“Soon I shall have an army of them at my command,”</i> husks the sydian, feathers waving and prideful desire inflaming her face, compound eyes unfocused as she mauls her own boob, fingers sinking deep into the softness there as she pulls at the nipple. She recrosses her legs, and you catch a glimpse of her pussy, as soft, pale and plump as her armor is hard, tanned and severe. <i>“But - for now - I have them, and you. And it’s treat time. So what shall we do with you?”</i>");
 	processTime(4);
-	pc.lust(5);
-	clearMenu();
+	pc.changeLust(5);
 	//[Lay Her] [Spit Roast]
 	if(pc.hasCock() && pc.cockThatFits(550) >= 0) addButton(0,"Lay Her",penisRouter,[fuckTheSydianQueen,550,false,0],"Lay Her","Dick the sydian. You may require some femboy fucking to get to her.");
 	else if(pc.hasCock()) addDisabledButton(0,"Lay Her","Lay Her","Your dick is way to big to for her to willingly accept.");
@@ -2298,7 +2297,7 @@ public function spitRoastRaskvelTimes():void
 	}
 	//merge
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",raskOrgyPart2,route);
 }
@@ -2541,7 +2540,7 @@ public function fuckTheSydianQueen(x:int):void
 	output("\n\nWith a shivering cry, the fourth raskvel orgasms, unable to keep fucking his peer without losing himself to intense excitement, shooting back out in a rocket trail of backed-up cum. You, however, don’t stop buggering poor Azaphel, reaching deep into his delicious tightness, until he’s lying quivering in a lake of his own cum, his balls shrunk down to grape size. And when you slowly withdraw out of his thoroughly gaped hole, relishing the warm texture sliding up it, your [pc.cock " + x + "] is still rock-hard, dripping pre. The sydian has been arching her back, mouth open and feathers fluttering as she watches this act of anal destruction, and when she sees this she roughly pushes Sessalai to one side and opens her arms to you, her orange pussy unfurled and tongue-polished, gleaming and ready.");
 
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",fuckTheSydianQueen2,x);
 }
@@ -2707,7 +2706,7 @@ public function backSafeAndSoundAfterTarkusBooty():void
 			//Merge
 			output("\n\nAzra flushes hotter, then races toward the bathroom faster than a railgun bolt. You take off after her, imagining her naked all the while.");
 			processTime(25);
-			pc.lust(5);
+			pc.changeLust(5);
 			clearMenu();
 			addButton(0,"Next",azraFirstTimeBangIntro);
 		}
@@ -2807,7 +2806,7 @@ public function followAzraForFirstTimeBango():void
 
 	//[FuckHerCunt] [Tribbing]
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	if(pc.hasCock()) 
 	{
@@ -2963,7 +2962,7 @@ public function fuckAzrasCuntPussy1stTimeEverytime(xx:int):void
 	else output("S");
 	output("he kisses you hard. <i>“But if you fuck half as well as you kiss, you might convince me yet.”</i> Another soul-searing kiss is thrust upon you. All the while, Azra’s hips wiggle in small circles against your questing digits, drenching your fingertips in a much slicker liquid than shower water. A condom is pressed into your other hand as the kiss breaks. <i>“Suit up.”</i>");
 	processTime(2);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[Suit Up]
 	clearMenu();
 	addButton(0,"Next",fuckAzrasCuntPussy1stTimeEverytime2,xx);
@@ -2998,7 +2997,7 @@ public function fuckAzrasCuntPussy1stTimeEverytime2(xx:int):void
 	output("\n\nThe clingy warmth of Azra’s pussy erases any concerns about where your seed is going to travel. It’s pleasure and contentment in equal parts, gliding along on a curtain of liquid excitement. When she bottoms out, the tendrils twirl and constrict, clutching at your [pc.knot " + xx + "]. The edges touch the skin of your [pc.belly]. In their wake, there’s a subtle buzz irritation followed by a sudden spike in your lust, making you swell bigger and harder inside her.");
 	pc.cockChange();
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",fuckAzrasCuntPussy1stTimeEverytime3,xx);
 }
@@ -3066,7 +3065,7 @@ public function fuckAzrasCuntPussy1stTimeEverytime4(xx:int):void
 	else output(". Her spooge-spurting dick slides up and down your pre-painted chest, spilling what feels like gallons of creamy goo. Some deflects off your chin, but most bubbles up to cascade across your pecs like a pearlescent wave.");
 	output(" <i>“Too much!”</i> she cries, moments before her cunt seizes you once more.");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",fuckAzrasCuntPussy1stTimeEverytime5,xx);
 }
@@ -3213,7 +3212,7 @@ public function azraTribbyTribbyBangBang():void
 	output(" over her silken mound. She’s <i>wet</i>, not just from water. Azra is so turned on that her pussy literally drools. You can feel it, oozing between you in a lubricating curtain.");
 
 	processTime(20);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",azraTribbyTribbyBangBang2);
 }
@@ -3668,7 +3667,7 @@ public function loseToNaleenBros():void
 	output("\n\nAzra goes right to work with a bright red organ - her tongue, you belatedly realize. It slithers out and wraps around one cock, then the other, revealing another inch of gleaming shaft-slurping muscle with every passing second. It forms a twisted helix around both members, weaving them closer and closer together until thin bands of tongue are grinding against both, slipping and sliding in alternating directions. It is the naleen’s turn to groan in mindless bliss, this time.");
 	output("\n\nAzra, through it all, masturbates herself, at first stroking her dick, then diving deeper, hands disappearing below her pendulous balls. Her arms flex with the effort of savaging her pussy. You can only assume she’s at least three digits deep inside herself. Ribbons of pre cascade from the rounded crown of her dick. The tendrils around it, upon contact with the sloppy lubricant, go wild, slapping into the shaft. They must be stinging it; it grows harder and firmer before your eyes, and Azra’s wantonly curling tongue accelerates at the same pace.");
 	processTime(25);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",loseToNaleenBrosHarder);
 }
@@ -3685,7 +3684,7 @@ public function loseToNaleenBrosHarder():void
 	output("\n\nThere’s no balls to fondle, but there is something else, something your nose dips into every time you take him to the base: his slit. The naleen’s slit is even muskier than his lengths, laden with different, more bestial pheromones. You flick your [pc.tongue] in the next time you slide down a shaft, and the naleen smashes your head hard against his scaled waistline, giving you a deeper sample. He all but loses control at the slightest probing into his twin-cocks’ home. When you thrust your tongue... or a finger... in, he cries out and falls to the floor, dragging you with him.");
 	output("\n\nYou wouldn’t have it any other way now that you’re focused utterly on sucking snake-dick. From atop him, you can bob your head however you want, kiss his concealing slit with your lips, even finger him if you want. And you do. You stuff two digits into his hole, one above and one below, then work your tongue back and forth between them, circling around his quaking cock-flesh. The naleen’s smooth-scaled hips lurch upward, but you ride him with like your [pc.lips] are sewed to his needy loins, either incapable or unwilling to be bucked off.");
 	processTime(20);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",loseToNaleenBrosHardest);
 }
@@ -3699,7 +3698,7 @@ public function loseToNaleenBrosHardest():void
 	output("\n\nThe siren’s thighs are slick with her girlcum. Her eyes have rolled back, overwhelmed by the feelings her quivering body is experience. Her cock is still shooting too. Creamy spunk messily slops everywhere, falling in small Azra-made lakes on the forest floor. She seems like she could orgasm forever, the way she is carrying on. Somehow, the twirling length of her tongue keeps moving, though it is no longer sliding about in a sensuous cock-massage. It is tweaking and jerking, violently jacking off a naleen who looks like he’s incapable of understanding how he’s feeling so much pleasure.");
 	output("\n\nThe cat-snake’s eyes roll back a moment before one of his purplish shafts sprays onto Azra’s shoulder, painting her golden skin and glimmering locks in liquid ivory. Her throat bobs, swallowing the rest while her own turgid shaft leaks its last few droplets.");
 	processTime(4);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",loseToNaleenBrosHardestWithAVengeance);
 }
@@ -3837,8 +3836,8 @@ public function winVsNaleenBros():void
 		if(pc.lust() >= 50) output(" That smell... that smell will haunt your dreams. It punches you square in the nose and knocks you off your feet. You nearly sick up a time or two, but at least you aren’t so turned on any more.");
 		else output(" While the ointment does seem to mend your wounds, the greasy texture is something you could do without. The scent of half-rotten grass clippings is far from appealing.");
 		output("\n\n<i>“Come on,”</i> Azra bids, stepping over one of the defeated naleen. <i>“We’re getting close.”</i> She lifts a frond and looks back over her shoulder. <i>“I doubt I’ll make it without my protector.”</i>\n\n");
-		pc.HP(pc.HPMax());
-		pc.lust(-55);
+		pc.changeHP(pc.HPMax());
+		pc.changeLust(-55);
 		processTime(5);
 	}
 	processTime(4);
@@ -4265,7 +4264,7 @@ public function azraMhengaMissionEpilgue2():void
 	output("”</i>");
 	output("\n\nAzra sweeps you up into a hug. <i>“Of course!”</i> Her golden cheeks flush brilliant orange as she embraces you. <i>“Thank you. Thank you so much.”</i> She pauses, searching your face with her wide, expressive eyes, then makes up her mind about something. That something turns out to be kissing you. The affectionate suula leans in, her plump black lips pressing against yours, gently at first, then with increasing forcefulness. She’s warm and faintly sweet-tasting. Do you resist her advances or welcome them? You aren’t sure how she’ll handle being pushed away.");
 	processTime(8);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	//[Resist] [Welcome]
 	addButton(0,"Resist",resistAzrasAdvancesYouMonster);

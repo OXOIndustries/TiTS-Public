@@ -134,7 +134,7 @@
 			output("\n\nAlmost instantly, you feel a pleasant warmth developing at the injection spot, slowly spreading all the way up to the tip. Soon after, your [pc.cockNoun " + i + "] begins to rise in slow, throbbing fits to full mast, but it doesn’t stop there. The warmth is quickly replaced by an irritating, tingly feeling, and your [pc.cock " + i + "] begins fattening up, again starting at the base all the way to the tip. The tingling finally fades and you are left with a noticeably thicker wiener. You could stop here, or you could go for more; those holes ain’t gonna plug themselves--and what better to plug them with than a fat monster cock?");
 			
 			target.cocks[i].cThicknessRatioRaw += 0.1;
-			target.lust(10);
+			target.changeLust(10);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);

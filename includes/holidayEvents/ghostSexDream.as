@@ -34,7 +34,7 @@ public function superGhostioDream():void
 	output("\n\nThe ghost smiles again, looking relieved. She looks down at you, and her smile takes on a mischievous look. She runs her tongue’s shimmering tip over her upper lip, and raises her glowing hand once more, then lowers it until it’s floating over your [pc.crotch].");
 	output("\n\nThe look she gives you makes it clear what she wants. But she pauses, waiting for some response from you.");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Nope",noGhostRapeplz,undefined,"Nope","Dream or not, you’ll stick to the living, thanks.");// Go to [No]
 	addButton(1,"Yes",yesGhostRapePlz,undefined,"Yes","Sure. Ghost sex. Why not?");// Go to [Yes]

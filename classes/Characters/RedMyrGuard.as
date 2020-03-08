@@ -280,7 +280,7 @@
 				
 				outputDamage(dr);
 				
-				if (dr.hpDamage > 0) target.energy( -10);
+				if (dr.hpDamage > 0) target.changeEnergy( -10);
 			}
 		}
 		

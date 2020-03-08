@@ -294,7 +294,7 @@ package classes.Characters
 			// Shield Booster
 			output("Saen waves her mechanical arm " + (target is PlayerCharacter ? "at you" : "over herself") + " and the metallic probe shoots out, jacking into " + (target is PlayerCharacter ? "your" : "her") + " shield generator. " + (target is PlayerCharacter ? "You breath" : "She breathes") + " a sigh of relief as " + (target is PlayerCharacter ? "your" : "her") + " shields are restored!");
 
-			target.shields(target.shieldsMax() * 0.25);
+			target.changeShields(target.shieldsMax() * 0.25);
 			createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
 		}
 		

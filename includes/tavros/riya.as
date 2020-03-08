@@ -1450,7 +1450,7 @@ public function riyaSpawnPregnancyEnds():void
 		else output(" belongings");
 		output(", finding as safe and comfortable a spot as possible in the wild terrain. Despite your self-directed anger for not staying near professional medical care, you know there’s no help for it at this point. You’re going to have to give birth unassisted.");
 		// minor HP damage?
-		pc.HP(-5);
+		pc.changeHP(-5);
 	}
 	
 	// merge

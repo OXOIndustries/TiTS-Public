@@ -299,7 +299,7 @@ public function quaelleTalkHitOn():void
 			flags["QUAELLE_LOVER"] = 1;
 			flags["QUAELLE_FERTILE"] = 1;
 			if (flags["QUAELLE_SHUTDOWN_TIMER"] == undefined) flags["QUAELLE_SHUTDOWN_TIMER"] = GetGameTimestamp();
-			pc.lust(15); //plus 15 more in hug below
+			pc.changeLust(15); //plus 15 more in hug below
 			processTime(5);
 			quaelleHugged();
 		}
@@ -330,7 +330,7 @@ public function quaelleTalkHitOn():void
 			flags["QUAELLE_LOVER"] = 1;
 			flags["QUAELLE_FERTILE"] = 1;
 			if (flags["QUAELLE_SHUTDOWN_TIMER"] == undefined) flags["QUAELLE_SHUTDOWN_TIMER"] = GetGameTimestamp();
-			pc.lust(15); //plus 15 more in hug below
+			pc.changeLust(15); //plus 15 more in hug below
 			processTime(5);
 			quaelleHugged();
 		}
@@ -589,7 +589,7 @@ public function quaelleSexNoShowApologise():void
 	flags["QUAELLE_SEX_WAIT"] = undefined;
 	
 	processTime(2);
-	pc.lust(5);
+	pc.changeLust(5);
 	quaelleMainMenu();	
 }
 
@@ -1076,7 +1076,7 @@ public function quaelleSexLickPussyKeepGoing():void
 	processTime(25 + rand(15));
 	IncrementFlag("QUAELLE_SEXED");
 	IncrementFlag("QUAELLE_LICK_CLIT");
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.loadInMouth(chars["QUAELLE"]);
 	pc.loadInMouth(chars["QUAELLE"]);
 	quaelleHugged();
@@ -1136,7 +1136,7 @@ public function quaelleSexLickPussyHole():void
 	processTime(25 + rand(15));
 	IncrementFlag("QUAELLE_SEXED");
 	IncrementFlag("QUAELLE_LICK_CUNT_BACK");
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.girlCumInMouth(chars["QUAELLE"]);
 	quaelleHugged();
 	
@@ -1234,7 +1234,7 @@ public function quaelleSexCatchVag(hole:int):void
 	}
 	
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0, "Next", quaelleSexCatchVagNext, hole);
 	
@@ -1396,8 +1396,6 @@ public function quaelleSexBathSexy():void
 	showQuaelle(true);
 	author("Nonesuch");	
 	
-	pc.lust(30);
-	
 	output("<i>“You want something... naughty? You’re not still pent up and trembulent after all that, Steele?”</i> giggles Quaelle, psychedelic eyes skating over your naked body. Her hand shifts across your [pc.thigh], strokes your inner thigh. <i>“Awwww. I’d hate for you to leave my company and not feel, hmm, hmm, satisfied. Let me see what I can find...”</i>");
 	output("\n\nShe fiddles with her remote control for a bit, before finding <i>The Power Palace</i>.");
 	output("\n\n<i>“Hello again, mere mortals,”</i> husks the lithe, red-skinned woman with the huge, spreading horns lying on the divan. <i>“It is I, Rita Veluptua.”</i>");
@@ -1409,6 +1407,8 @@ public function quaelleSexBathSexy():void
 	else output(", and that’s exactly what it does.");
 	
 	output("\n\nYour caresses with Quaelle turn into outright fondling as you both watch entranced, your fingering of her soft, blue pussy getting rougher and rougher, her sighs turning into wanton, bubbly moans as you watch two hooded androgynes worship Rita’s feet as she applies an electro-shock to another hanging unfortunate, with an exquisite eye for where he’s least expecting it.");
+
+	pc.changeLust(30);
 	
 	var x:int = 0;
 	if (pc.hasCock())
@@ -1588,8 +1588,6 @@ public function quaelleImmobileBathSexy():void
 	showQuaelle(true);
 	author("Nonesuch");	
 		
-	pc.lust(50);
-	
 	output("<i>“Oooh. You wwwwant something... viiiibrulent? Yooouuuu are a shiverousssss thing,”</i> says Quaelle, eyes twinkling. She shifts slightly in the water, her great pregnant bulk sending little steaming waves skating over your naked body. <i>“Iiiii’m not sure I can, eeeemmmm, do much for yooouuuuu in my current state.. But if you’d like to doooo... soomethiing with meeee...”</i>");
 	output("\n\nShe’s arranged herself so she’s on her side, half-submerged, her front pussy just above the steaming waters. Its sapphire folds are plump and splayed by pregnancy, oozing sweetness, mouth-wateringly inviting.");
 	output("\n\n<i>“...Hmm. I wwwwouldn’t say noooooo.”</i>");
@@ -1601,6 +1599,7 @@ public function quaelleImmobileBathSexy():void
 	output("\n\nThe participants are added at timely intervals, so that what starts as a solitary display of strange intimacy ramps up slowly into a bacchanalian orgy of total depravity. It’s meant to involve you in it, lower your inhibitions by stages");
 	if (pc.isBimbo() || pc.isBro() || pc.exhibitionism() >= 66 || pc.libido() >= 50) output(", not that that’s something anybody needs to do with you.");
 	else output(", and that’s exactly what it does.");
+	pc.changeLust(50);
 	
 	output("\n\nAs the action becomes sprawling and intense, you turn your attention fully to the twat you’ve been idly fingering, sinking deep into the water in order to kiss and tongue its blue silkiness. Mmm... roehm pussy. It’s softened and lush with pregnancy, almost immediately drooling sugary femcum into your mouth and over your cheeks. Quaelle’s baby bump bounces against your forehead and she moans with helpless pleasure, unable to tear her eyes off what’s happening on the screen.");
 	output("\n\nYou can’t see that yourself, of course, but the Pleasure Palace is clearly made with every viewer in mind, particularly perhaps those viewers who are tongue deep in their partner. Your ears are full of groans, gasps, little screams, whip-lashes and the whispering intimacy of other exquisitely nasty pieces of equipment. Quaelle’s orgasmic cries meld with those emanating from the screen, as if the pair of you were indeed part of the orgy. You lap at her silky innards as she shudders mightily around you, a slave to the energetic movements of your tongue.");

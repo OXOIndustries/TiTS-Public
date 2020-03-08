@@ -34,7 +34,7 @@ public function mistybirbsDream2():void
 	output("\n\n<i>“There I was, lamenting how I had no guests to entertain me,”</i> she says, <i>“And then you barge right in, naked and ready! How thoughtful of you.”</i> She settles beside you and runs her hands along your naked body, laughing as she does. <i>“Though I really wish you’d not broken down my door...”</i> ");
 	output("\n\n<i>“I’m sorry,”</i> you gasp, <i>“I didn’t mean to-”</i> She covers your mouth with her hand, her soft skin perfumed and alluring. Her pleasant scent is so pronounced that it overrides your thoughts entirely for a moment, leaving you blinking in surprise and taking a deep breath through your nose. As you do, you feel your face flush and your vagina clench in need. Her perfume is definitely more than just an enticing fragrance...");
 	output("\n\n<i>“Hush,”</i> she says, <i>“I’m not interested in apologies. I’ve already determined how you’re going to repay me. You see, I’m lonely out here. I’ve no friends to speak of, no one to spend any time with. It gets boring. You’re going to help me change that.”</i> You look up at her nervously, seeing a twisted smirk and a malicious glint in her eyes. <i>“Of course, I’ll need to make a few <b>changes</b> before that can happen...”</i>");
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",mistybirbsDream3);
 }
@@ -50,7 +50,7 @@ public function mistybirbsDream3():void
 	output("\n\nSatisfied, the witch pulls her clothing down around her magnificent breasts, then lets it fall to the ground entirely, baring her immaculate, voluptuous body. She walks back over to her couch and falls into it, stretching sensually and slipping a hand between her legs.");
 	output("\n\n<i>“Oh, you have no idea how long I’ve been wanting to do this, dear,”</i> she says, letting out cute moans and sighs as she openly masturbates. You want to stare, but the rising heat in your groin is distracting you. You can feel the mixture already having an effect on you; you’re sweating, and your heart is beating faster and faster with each passing second. There is this irrepressible impulse to buck your hips overtaking you, and you do so several times, humping the empty air for some inexplicable reason.");
 	output("\n\n<i>“Ah, fuck...”</i> you gasp, frowning and throwing your head back and forth. Something is very wrong with you, and it’s only getting worse with time. You thrust into the air again, your ass slamming against the table violently as your hips come back down. Looking at your crotch, you pale as you see something... phallic growing out of your pelvis. Unable to control yourself, you cry out and thrust again, then again. Each time you do, you sprout a few more inches of dick, until you thrust one final time and break down, letting out an orgasmic scream as you cum all over your stomach. The sensation of covering yourself in semen is an entirely new one, and it cements the reality of your situation. Tears welling in your eyes, you pant wildly as you take in your new cock, easily more than half a foot long, maybe even a full foot in length.");
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mistybirbsDream4);
 }
@@ -214,7 +214,7 @@ public function hyperPaigeDream2():void
 	output("\n\nToo late you remember to fumble for your Codex. With your fingers still shaking from surprise, you key in the codes to bring up the lights.");
 	output("\n\nPaige stands there strangely, shoulders back and almost limp, her crotch thrust forward. Her legs wobble unsteadily as she brings one in front of the other. But the most alarming of all is the thing between her legs: a thirty-inch pillar glossy red cock, hybridized into the hellish proportions of equine and canine blended together without any concern for the natural order of either. <i>SLAP!</i> It smacks wetly into her chest, matting her fur with a fat, gumball-sized bubble of pre. The basketball-sized nuts keeping her sack stretched taut gurgle powerfully.");
 	output("\n\n<i>“Paige?”</i> The you tell yourself that the tremor in your voice is hardly noticeable. <i>“Paige!?”</i>");
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",hyperPaigeDream3);
 }
@@ -227,7 +227,7 @@ public function hyperPaigeDream3():void
 	output("\n\nYou look away before it gives you a headache. <i>“Tell me what’s wrong. What happened?”</i>");
 	output("\n\nThis seems to give the ausar pause. She bites her lip. A little of the old Paige surfaces in her confused expression, then fades behind a mask of desperate need. <i>“Fuck. Pussy.”</i> She steps forward, less wobbly now. Her gait is slow but determined. One hand curls in to heft at the swollen nuts between her legs only to have the taut, fuzzy wrapping surge out in greeting. <i>SMACK!</i> A torrent of chromatic, opalescent goo races down her shaft, slicking the valley between those watermelon-sized nads. <i>“Fuck you. Better than pussy. Oooooh yes. Fuck. Need fuck you. Need cum you.”</i>");
 	output("\n\nUh oh. Paige is clearly not herself. Do you help her... or run for it?");
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(1,"Crotch Kick",crotchKickAPaige);
 	addButton(0,"Help",hyperPaigeDream4);
@@ -606,7 +606,7 @@ public function nurseDream2():void
 	output("\n\nFirst, you notice her huge lips, slutty red, stretched in an unnaturally wide smile. Your eyes wander higher up to meet hers, but find a film of gauze. Other than her lips, her whole body is covered in bandages. <i>“Hellllooo, cute thing!”</i> she bounces up, and her huge tits almost spill out of the rugged nurse’s uniform she’s wearing. Outside of the bandages, she seems human, though her voluptuous curves shouldn’t be achievable without mods. <i>“Just look at that face! Ooh, I could eat you up!”</i> As she speaks, you notice her mouth is filled with at least two rows of sharp, uneven teeth. If you could, you’d gulp with horror. Instead, you just have to let drool dribble down your chin.");
 	output("\n\n<i>“My, are you scared? That’s not a good look on you, honey!”</i> Her smile gets, though you’d think it impossible, even wider <i>“You know how you’d look better?”</i> she asks, bringing a syringe up to your face. You shake your head, as little as you can. <i>“Horny,”</i> the Nurse hisses into your ear. She pushes out an experimental drop of the liquid and lets it fall into your open mouth. It stings at first, but then a warmth spreads through your throat. For a split-second, all your worries and questions disappear, and the only thing left is unspeakable pleasure. A wanton moan escapes your lips before you can regain your conscience. <i>“Mmm, there, wasn’t that nice?”</i> The Nurse sticks out her long, reptilian tongue and licks her lips, coating them in saliva <i>“Now just to make you like that fo-re-ver!”</i> she squeals.");
 	output("\n\nWait, what? Your eyes widen, as you begin struggling against the restrains again. She just giggles at the panicked, muffled noises you make, drawing the needle closer to your wrist. <i>“After that nothing will hurt anymore,”</i> you hear, before the pain in your veins blurs out everything else.");
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",nurseDream3);
 }
@@ -947,7 +947,7 @@ public function linarahnStuff2():void
 	output("\n\nA sudden thump of wood on wood catches your attention. You’re moving so reflexively that you only notice you’ve actually sat up, startled as you were, after you’ve already done so. Across from you is the young woman you’d seen before. You watch, your mind still foggy, as she slips out of the wooden plateau sandals and how she, standing on one leg without even the slightest waver in her balance, slips off the short toe-socks. She smiles at you, sending a shiver down your spine; you can’t tell if that’s supposed to be good or bad. The woman reaches behind herself, undoing the firmly wrapped cloth belt holding her kimono together with practiced motions, then crosses her arms in front of her chest, her left hand on her right shoulder and vice versa. Slowly, teasingly, she pushes her kimono down, baring herself inch by delightful inch. The candles illuminate her toned, curvy form. For her overall slim frame, her hips are alluringly wide, swaying with each measured step she takes toward you from the moment the silken garment hit the floor.");
 	output("\n\nAs the candles illuminate her from behind, you can’t make out much more of her front, though her silhouette outlines her ample chest for you, especially as she reaches up to run a hand through her hair. Your heart feels like it’ll jump out of your chest more and more the closer she gets, and you hope sincerely she’ll help you with your needs. You’re so fixated on her shadow-framed form that you barely realize something soft and silky slithering around your wrists and ankles until it’s too late.");
 	output("\n\nThe woman’s hair has elongated beyond what you’d seen previously, restraining you without effort. Somehow, you’re not sure you could’ve put up more of a struggle against her hair if you’d been fully there and considerably less horny. With a wide, predatory smile, the woman crawls onto the bed and presses her lips firmly onto yours.");
-	pc.lust(100);
+	pc.changeLust(100);
 	//If PC has two dicks
 	if(pc.cockTotal() > 1)
 	{
@@ -1457,7 +1457,7 @@ public function witchsKittenScene():void
 	output("\n\n<i>“Good boy,”</i> Dasima breathes, a gentle breeze brushing your face. <i>“Just look into the fire. Listen to my voice. Are you listening, little boy?”</i>");
 	output("\n\n<i>“Yeah...”</i> you murmur, staring into the writhing flames.");
 	output("\n\n<i>“That’s it. Look deep. Let your thoughts drift away. Open yourself to my voice. Listen closely. Closer...”</i>");
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",witchsKittenScene2);
 }
@@ -1548,7 +1548,7 @@ public function demonSeraShipRape():void
 	output("\n\nHer tail wraps securely around your neck as she lifts her heel off of you and rips your clothes to shreds. As she works she begins to explain just what the demon visitor gifted her and outlines her plans for the future and for you. Your horror grows to the point that even if she released her tail your frozen limbs would keep you presenting yourself to her. It’s only when her demonic cock rams into your traitorous and welcoming asshole that you’re brought back to the present from the vision she’s painted.");
 	output("\n\n<i>“Your ass is now mine.”</i>");
 	output("\n\nA part of your mind rebels at that, but the roiling sensations of a foot-long cock speared in your guts overwhelms you and you decide that you’ll allow this wonderfulness to continue until she’s done. And <i>then</i>, then she’ll get what she deserves...");
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",demonSeraShipRape2);
 }
@@ -1588,7 +1588,7 @@ public function foxxlingsOralCumDream():void
 	output("\n\nSuspended in the liquid, you thrash around for a moment only to realize that somehow you’re still able to breathe... that is until you feel the all too familiar feeling of a cock being shoved down your throat.");
 	output("\n\nThe cock-shaped cum unceremoniously travels down your gullet, becoming one with the reservoir of semen spewing from your maw which forms into bigger, thicker version of its former self. You hear a gasp of contentment from somewhere above as you begin to suck. You feel yourself getting aroused, your hand reaching down to rub your [pc.groin] in that weightless sea of cum. You relax, the slow repetitive task of a lazy suck combining with a soft arousal. Yawning around the cock in your mouth, you can’t help but think, <i>“Now this is comfortable.”</i>");
 	output("\n\nYou awake with a start, and then can’t help but chuckle at yourself for dreaming such lewd things. As you recount the events it becomes more and more obvious that it was a dream. You’ve never even seen that bedroom before. As you rise to get your day started, though, you almost slip on what looks like a few droplets of the cum from that very dream. Strange.");
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1627,7 +1627,7 @@ public function analButtCumMonster():void
 		output("\n\nSoon, the androgynous cum monster is railing you good, hands snatching you back as every thrust propels you forward. Its trunk wetly claps against your [pc.thighs] as your hole is stretched to the max, and you can’t help but love every second of it. The creature knowns your [pc.asshole] almost as well as you do, which makes sense considering where it came from.");
 	}
 	output("\n\nAs the gooey cum-beast continues to pound you into senselessness, you feel gravity shift, and suddenly you’re falling... until your head hits the floor of your room. Looking up, you realize you’ve hit the deck, quite literally. With a chuckle you figure it must have all been a dream and silently smile at the crazy things the mind is capable of coming up with. As you get up and dust yourself off a bit, though, you find remnants of spunk on your fingertips, the very same cum that the creature from your dream was made of.");
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

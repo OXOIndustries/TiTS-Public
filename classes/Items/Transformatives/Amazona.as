@@ -442,7 +442,7 @@
 						output(".");
 						
 						target.breastRows[0].breastRatingRaw = breastSizeNew;
-						target.lust(10);
+						target.changeLust(10);
 					}
 					else output("\n\n" + target.breastRatingLockedMessage());
 				}
@@ -477,7 +477,7 @@
 						output("\n\nYour muscles are filled with a sense of power; each move is almost sensual in how good it feels. You throw out a few jabs and kicks, just to feel your muscles work and stretch. A sublime tightness takes hold of you, molding and smoothing away any fat or imperfections, slowly giving you the adonis-like figure promised on the label. The feeling stops, leaving you satisfied and noticeably more toned.");
 						
 						target.tone = toneNew;
-						target.lust(5);
+						target.changeLust(5);
 						
 						if(target.tone >= 50) output(" Damn, looking ripped!");
 					}
@@ -500,7 +500,7 @@
 						output(". The plush feeling rises to a fever pitch as you explore your newly broadened frame, but where ever your hands roam the feeling soon dissipates. You stop groping yourself before you go too far, still feeling small tingles of arousal as your body comes down off of it’s transformative high.");
 						
 						target.thickness = thicknessNew;
-						target.lust(10);
+						target.changeLust(10);
 						
 						if(target.thickness >= 50) output(" Damn, getting pretty " + (kGAMECLASS.silly ? "thicc" : "built") + ".");
 					}
@@ -540,7 +540,7 @@
 						output(" The growth stops after a few seconds, leaving you holding ordinary, non-growing assflesh. You give your newly embiggened cheeks a light slap as you get on your way.");
 						
 						target.buttRatingRaw = buttSizeNew;
-						target.lust(5);
+						target.changeLust(5);
 					}
 					else output("\n\n" + target.buttRatingLockedMessage());
 				}
@@ -672,7 +672,7 @@
 					output(" The pain rises to a peak before suddenly shifting. You can’t place it at first, your crotch feels like a white hot ball of over-stimulated nerves; almost unsure of what it should be experiencing. Eventually the sensation settles, and only one word comes to your mind: pleasure. White hot pleasure that seizes every neuron in your brain and demands that they all pay attention.");
 					output("\n\nYou knead at the afflicted area. It feels better than masturbating ever has, and the feeling only seems to be getting stronger. As the sensation progresses you notice that you’re touching more flesh than usual; indeed the area appears to be swelling. You panic, wondering what this strange growth is, but are unable to pry your hands away. You’re a passenger in your own body as the swelling gets worse and worse, until it stops.");
 					
-					target.lust(100);
+					target.changeLust(100);
 					target.createCock();
 					target.setNewCockValues(0);
 					if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw *= 1.25;
@@ -760,7 +760,7 @@
 						{
 							target.cocks[i].cLengthRaw += 2;
 						}
-						target.lust(25);
+						target.changeLust(25);
 					}
 					else output("\n\n" + target.cockLengthLockedMessage());
 					
@@ -802,7 +802,7 @@
 					output(", enhancing the pleasant sensations, until your " + (target.balls == 1 ? "teste starts" : "testes start") + " pulsing rapidly. The sensation only make you squeeze harder, letting you feel how " + (target.balls == 1 ? "it seems" : "they seem") + " to grow slightly with each pulse. Your [pc.cocks] " + (totalCocks == 1 ? "is" : "are") + " rock hard, spraying streams of pre-cum in time with the pulsations. By the time the growth stops, your [pc.balls] " + (target.balls == 1 ? "has" : "have") + " become considerably larger, and your crotch is covered in a thick layer of pre.");
 					
 					target.ballSizeRaw += 2;
-					target.lust(25);
+					target.changeLust(25);
 					
 					// Bulgy bonus
 					// Triggers the same way as the Hung bonus
@@ -838,8 +838,8 @@
 			// Not counted as a transformation
 			output("\n\nA surge of energy rushes through your body, revitalizing every strand of muscle. Damn, you feel like you could run a marathon, and still have the energy to drain some hung stud dry!");
 			
-			target.energy(50);
-			target.lust(5);
+			target.changeEnergy(50);
+			target.changeLust(5);
 		}
 		
 		// Overdosing

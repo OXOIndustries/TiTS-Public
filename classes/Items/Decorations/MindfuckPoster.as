@@ -27,7 +27,7 @@
 			
 			this.description = "a holo-poster depicting the virtues of mindfucks";
 			
-			this.tooltip = "Using this item will install the holo-poster as a decoration on your ship.";
+			this.tooltip = "Using this item will install the holo-poster as a decoration on your ship.\n\nAccording to the signatures on the projector, the lines were drawn by MrPink and the colors by Adjatha. Sweet!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -58,6 +58,11 @@ package classes.Resources.Busts
 		public var Bust_AGROSH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/argosh_nude.png", mimeType = "image/png")]
 		public var Bust_AGROSH_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/arine.png", mimeType = "image/png")]
+		public var Bust_ARINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/arine_nude.png", mimeType = "image/png")]
+		public var Bust_ARINE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
 		public var Bust_ATHA:Class;
@@ -235,6 +240,11 @@ package classes.Resources.Busts
 		public var Bust_CASS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/celise.png", mimeType = "image/png")]
+		public var Bust_CELISE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/celise_giga.png", mimeType = "image/png")]
+		public var Bust_CELISE_GIGA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/cherry.png", mimeType = "image/png")]
 		public var Bust_CHERRY:Class;
@@ -477,6 +487,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kase_nude.png", mimeType = "image/png")]
 		public var Bust_KASE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/kasmiran.png", mimeType = "image/png")]
+		public var Bust_KASMIRAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kasmiran_nude.png", mimeType = "image/png")]
+		public var Bust_KASMIRAN_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/nessa.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_big.png", mimeType = "image/png")]
@@ -663,6 +678,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/luca_nude.png", mimeType = "image/png")]
 		public var Bust_LUCA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/lumi.png", mimeType = "image/png")]
+		public var Bust_LUMI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lumi_nude.png", mimeType = "image/png")]
+		public var Bust_LUMI_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lureling.png", mimeType = "image/png")]
 		public var Bust_LURELING:Class;
 		public var Bounds_LURELING:Rectangle = new Rectangle(33, 2, 115, 110);
@@ -758,6 +778,11 @@ package classes.Resources.Busts
 		public var Bust_MYRRA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/myrra_nude.png", mimeType = "image/png")]
 		public var Bust_MYRRA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/myssah.png", mimeType = "image/png")]
+		public var Bust_MYSSAH:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/myssah_nude.png", mimeType = "image/png")]
+		public var Bust_MYSSAH_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_bros.png", mimeType = "image/png")]
 		public var Bust_NALEEN_BROS:Class;
@@ -1138,7 +1163,10 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tank_kannon.png", mimeType = "image/png")]
 		public var Bust_TANK_KANNON:Class;
-		
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/taursuit.png", mimeType = "image/png")]
+		public var Bust_TAURSUIT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/techie.png", mimeType = "image/png")]
 		public var Bust_TECHGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/techie_nude.png", mimeType = "image/png")]
@@ -1352,6 +1380,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/argosh_nude.png", mimeType = "image/png")]
 			public var Full_AGROSH_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/arine.png", mimeType = "image/png")]
+			public var Full_ARINE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/arine_nude.png", mimeType = "image/png")]
+			public var Full_ARINE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_ausar.png", mimeType = "image/png")]
@@ -1517,6 +1550,11 @@ package classes.Resources.Busts
 			public var Full_CASS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cass_nude.png", mimeType = "image/png")]
 			public var Full_CASS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/celise.png", mimeType = "image/png")]
+			public var Full_CELISE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/celise_giga.png", mimeType = "image/png")]
+			public var Full_CELISE_GIGA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cherry.png", mimeType = "image/png")]
 			public var Full_CHERRY:Class;
@@ -1756,6 +1794,10 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase_nude.png", mimeType = "image/png")]
 			public var Full_KASE_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kasmiran.png", mimeType = "image/png")]
+			public var Full_KASMIRAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kasmiran_nude.png", mimeType = "image/png")]
+			public var Full_KASMIRAN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nessa.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT:Class;
@@ -1928,6 +1970,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/luca_nude.png", mimeType = "image/png")]
 			public var Full_LUCA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lumi.png", mimeType = "image/png")]
+			public var Full_LUMI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lumi_nude.png", mimeType = "image/png")]
+			public var Full_LUMI_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lureling.png", mimeType = "image/png")]
 			public var Full_LURELING:Class;
 
@@ -2015,6 +2062,11 @@ package classes.Resources.Busts
 			public var Full_MYRRA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myrra_nude.png", mimeType = "image/png")]
 			public var Full_MYRRA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myssah.png", mimeType = "image/png")]
+			public var Full_MYSSAH:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myssah_nude.png", mimeType = "image/png")]
+			public var Full_MYSSAH_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/naleen_futa.png", mimeType = "image/png")]
 			public var Full_NALEEN_FUTA:Class;
@@ -2341,6 +2393,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tank_kannon.png", mimeType = "image/png")]
 			public var Full_TANK_KANNON:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/taursuit.png", mimeType = "image/png")]
+			public var Full_TAURSUIT:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie.png", mimeType = "image/png")]
 			public var Full_TECHGUARD:Class;

@@ -323,8 +323,8 @@
 			var heal:Number = Math.round(this.HPMax()*0.5);
 			output("She pulls one of the vials from her bicep before knocking back the liquid. The liquid affects her immediately as energy floods her system, giving her the strength to carry on the fight, but energy is not the only thing that floods her system as her two dicks spring to life and start to drool clear pre. (+" + heal + " HP)");
 			this.createStatusEffect("Healed");
-			this.lust(20);
-			this.HP(heal);
+			this.changeHP(heal);
+			this.changeLust(20);
 		}
 	}
 }

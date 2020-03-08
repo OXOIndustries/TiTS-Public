@@ -11,6 +11,7 @@
 	import classes.Items.Protection.OzoneAegis;
 	import classes.Items.Accessories.SalamanderDuster;
 	import classes.Items.Accessories.SalamanderDefenseSystem;
+	import classes.Items.Tents.HLKihaCorpTent;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -19,7 +20,7 @@
 		//constructor
 		public function Emmy()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			fluidSimulate = true;
@@ -32,6 +33,7 @@
 			keeperBuy = "";
 			keeperSell = "";
 			
+			inventory.push(new HLKihaCorpTent());
 			inventory.push(new SalamanderRifle());
 			inventory.push(new SalamanderPistol());
 			inventory.push(new SalamanderDuster());
@@ -183,6 +185,10 @@
 			dataObject.breastRows[0].breastRatingRaw = 28;
 			dataObject.nippleWidthRatio = 2;
 			dataObject.nippleColor = "black";
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.inventory.push(new HLKihaCorpTent().getSaveObject());
 		}
 	}
 }

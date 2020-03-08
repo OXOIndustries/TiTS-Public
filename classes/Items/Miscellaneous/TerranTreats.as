@@ -164,7 +164,7 @@
 					if(target.cockTypeUnlocked(x,GLOBAL.TYPE_HUMAN))
 					{
 						kGAMECLASS.output("\n\nThe tingling of the microsurgeons homes in on [pc.oneCock], and you watch as the flesh contorts, settling on a roughly cylindrical shape with a mushroom-like head, the new member covered ruddy pink skin. <b>You’ve got a human dick</b>!");
-						pc.lust(5+rand(3));
+						pc.changeLust(5+rand(3));
 						pc.libido(1);
 						changes++;
 						pc.shiftCock(x,GLOBAL.TYPE_HUMAN);
@@ -233,7 +233,7 @@
 					if(target.vaginaTypeUnlocked(x,GLOBAL.TYPE_HUMAN))
 					{
 						kGAMECLASS.output("\n\nYour [pc.vagina " + x + "] feels strange, like its entire length is squirming. The flesh of your folds and outer lips reshapes, becoming a simple slit with a pink interior and a single clit nestled within. <b>[pc.OneVagina] is now human-like</b>.");
-						pc.lust(5+rand(3));
+						pc.changeLust(5+rand(3));
 						pc.libido(1);
 						changes++;
 						pc.shiftVagina(x,GLOBAL.TYPE_HUMAN);

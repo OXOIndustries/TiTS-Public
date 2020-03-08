@@ -29,7 +29,7 @@ public function showArine(nude:Boolean = false):void
 
 public function arineBustDisplay(nude:Boolean):String
 {
-	return "";
+	return ("ARINE" + (nude ? "_NUDE":""));
 }
 
 public function showArdiaAndMom(nude:Boolean = false):void // nude will probably never be used but best make sure
@@ -826,7 +826,7 @@ public function increaseTheArdiaDonut():void
 	output("\n\nWhen you do, though, Ardia squeals. her [ardia.cock] jumps with a rush of lust, hard enough to overpower the weight of her balls -- and sending the two fat orbs slapping down against her own anal mound in the process. Just that stimulation alone pushes her over the edge, making her keratin-edged cock erupt all over her tits. She thrashes, back arching as her anal orgasm milks her prostate all over her chest and face, treating your fingers to a front-row experience of her silken fuckhole clenching wildly around them. It feels like you’re surrounded by soft, wet sponge though -- she’s practically incapable of being <i>tight</i> now, of strangling a cock being her sphincter’s muscles. Now Ardia’s ass exists only to pleasure thrusting spears, to meekly accept every hard rod that presses against her. " + (pc.hasCock() ? "Your cock" : "The first cock she sees") + " is going to positively <i>melt</i> into her... and just having her ring teased is probably going to make her cum her brains out from now on.");
 	output("\n\nOh, this is going to be <b>fun</b>.");
 
-	pc.lust(35+pc.libido()/2);
+	pc.changeLust(35+pc.libido()/2);
 	ardia.ass.delFlag(GLOBAL.FLAG_PUMPED);
 	ardia.ass.addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 	pc.destroyItemByClass(Anusoft);
@@ -999,7 +999,7 @@ public function areYouSureYouWantToBangArdia():void
 		author("Savin");
 		processTime(1);
 		output("<i>“I’ll risk it,”</i> you say, swaggering a little closer to the chunky alpha-babe. She grins and starts running the zipper on her suit all the way down, revealing more and more flawless bronzed skin and heavy curves. You can’t help but lick your lips as the full, monumental expanse of Ardia’s deep cleavage is revealed, quaking subtly in its latex prison as her arms keep working down and down, all the way to her hefty package. ");
-		output("\n\nArdia’s cock isn’t all that much to look at, by galactic standards, but the haft is ribbed by little keratin nubs, and it bobs above a swinging sack stretched taut around two balls, each individually larger than Ardia’s fist. The moment her zipper unleashes them, the pair of them come spilling out of her suit, swaying and slapping her thighs. You can almost <i>hear</i> them churning, full of addictive liquid weight.");
+		output("\n\nArdia’s cock isn’t all that much to look at, by galactic standards, but the shaft is ribbed by little keratin nubs, and it bobs above a swinging sack stretched taut around two balls, each individually larger than Ardia’s fist. The moment her zipper unleashes them, the pair of them come spilling out of her suit, swaying and slapping her thighs. You can almost <i>hear</i> them churning, full of addictive liquid weight.");
 		output("\n\n<i>“W-well, here I am,”</i> Ardia smiles, peeling the suit off her shoulders and down her thighs. <i>“Now wh-”</i>");
 		output("\n\nYou cut her off by taking her cheeks in hand, kissing her fiercely. Ardia’s little keratin-coated cock jumps in surprise, a rush of blood flooding it and her cheeks in equal measure.");
 		output("\n\nNow... how do you want her?");
@@ -1097,7 +1097,7 @@ public function ardiaSexMenu():void
 	else addButton(2, "Rvs Cowgirl", gettingRiddenByArdia, rand(pc.cocks.length), "Reverse Cowgirl", "Ask Ardia to crush your pelvis and drain your [pc.balls] with that ass.");
 	if (!pc.hasCock()) addDisabledButton(3, "Get Titfuck", "Get Titfuck", "You need a penis for this!");
 	else addButton(3, "Get Titfuck", penisRouter, [doinSomeDzaanTiddies, pc.biggestCockVolume() + 1, false, 0], "Get Titfuck", "Ask Ardia to wrap those pillowy jugs around your dick.");
-	addButton(4, "Get Missionary", ardiaShutsTheLightForProcreation, rand(pc.vaginas.length+1)-1, "Get Missionary", "Snuggle into Ardia’s bed, spread your [pc.legs] for her, and let your thick-as-a-brick alpha fuck you full of her intoxicating semen.");
+	addButton(4, "GetMissionary", ardiaShutsTheLightForProcreation, rand(pc.vaginas.length+1)-1, "Get Missionary", "Snuggle into Ardia’s bed, spread your [pc.legs] for her, and let your thick-as-a-brick alpha fuck you full of her intoxicating semen.");
 	addButton(5, "Rim Her", nomSumArdiaButt, undefined, "Rim Her", "Lick and kiss Ardia’s " + (ardia.hasPlumpAsshole() ? (ardia.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED) ? "plump, " : "") + "sensitive" : "dark") + " chocolate asshole.");
 	addButton(6, "Ball Worship", succSomeArdiaNuts, undefined, "Ball Worship", (domArdia ? "Polishing your alpha-to-be’s ballsack should remind her of what you are, and what you’re going to be to her." : "A dzaan alpha’s nutsack is a sex-organ on par with her cock. Show Ardia just how good you are at appreciating it."));
 	addButton(7, "Facesitting", areYouPCEnoughToBeArdiasChair, undefined, "Facesitting", (ardiaDomLevel() < 4 ? "The savory crescent of Ardia’s dusky pussy is tucked away behind her balls and between her thighs. If you want a taste of it, then getting <b><i>under<i></b> the thickness would be more prudent than getting down with it." : "Your beauteous alpha’s soft pussy needs as much attention as her male side does. She’ll enjoy it. Besides, it’s not like you won’t be sucking her nuts while you’re under there."));
@@ -1178,7 +1178,7 @@ public function succSomeArdiaDong():void
 		output("\n\n<i>“Mmm, looking forward to it already,”</i> she whispers, and then she’s asleep. You suppose the exertion must’ve taken a lot out of her -- Ardia’s not really the type for strenuous physical activity, after all. Leaving her future betas hungry isn’t going to be a concern, though. You can already tell.");
 		output("\n\nYou carefully extricate yourself from the sprawl of your lover’s limbs and slip out of bed an hour later, a little more rested and a little less full.");
 
-		pc.lust(20+pc.libido()/10);
+		pc.changeLust(20+pc.libido()/10);
 	}
 	else if (ardiaDomLevel() < 7)
 	{
@@ -1207,7 +1207,7 @@ public function succSomeArdiaDong():void
 		output("\n\n<i>“Okay,”</i> Ardia replies, reaching out and dabbing the bedsheet at your lips to clean you off before she gives you a smile. <i>“Have a good sleep, cutie. Oh, and uh, watch the extra weight. Trust me, I know.”</i>");
 		output("\n\nYou somehow drag yourself back to your room with your tummy unbelievably swollen courtesy of Ardia’s sperm, still warm and reminding you of just how good she tasted. Even now her scent lingers on your breath, and you can’t help but notice just how horny that’s making you... maybe if you get some sleep it’ll go away on its own.");
 		//leave player with high lust
-		pc.lust(60+pc.libido()/4);
+		pc.changeLust(60+pc.libido()/4);
 	}
 	else if (ardiaDomLevel() < 10)
 	{
@@ -2607,7 +2607,7 @@ public function getBreakfastForArdiaInstead():void
 	output(" before you remember the sight you woke up to. Those fat, seed-filled balls... fuck, you’re going to have to masturbate to get this out of your head, or better yet, go see her as soon as you can.");
 	output("\n\nYou roll out of bed, hungry in more ways than one.");
 
-	pc.lust(20+pc.libido()/5);
+	pc.changeLust(20+pc.libido()/5);
 
 	addButton(0, "Next", mainGameMenu);
 }
@@ -3177,7 +3177,7 @@ public function giveAnotherMeaningToSafeSexWithArdia():void
 	output("\n\nArdia gasps, bouncing on the balls of her feet. Her tits bounce under their latex restraints, quaking hypnotically. <i>“Really? That’s great! I’ve never heard of something like that, but Anno’s pretty darn smart. If she says it’ll work, I trust her. So does that mean...?”</i>");
 	output("\n\nYeah, that’s what it means. You step forward and pull the meaty dzaan in, sinking both hands into that lush ass of hers. She gasps, but you can feel her cock snapping to attention, straining against its latex sheath against your thigh. <i>“C-captain...”</i>");
 	output("\n\n<i>“[pc.name],”</i> you whisper, kneading your fingers into the dzaan’s skin-tight jumper. Your hands quickly make their way to her zippers, pulling them down so you can feast your eyes for the first time on all those beautiful bronze curves. You can’t help but lick your lips as the full, monumental expanse of Ardia’s deep cleavage is revealed, quaking subtly in its latex prison as her arms keep working down and down, all the way to her hefty package.");
-	output("\n\nArdia’s cock isn’t all that much to look at, by galactic standards, but the haft is ribbed by little keratin nubs, and it bobs above a swinging sack stretched taut around two balls, each individually larger than Ardia’s fist. The moment her zipper unleashes them, the pair of them come spilling out of her suit, swaying and slapping her thighs. You can almost <i>hear</i> them churning, full of addictive liquid weight.");
+	output("\n\nArdia’s cock isn’t all that much to look at, by galactic standards, but the shaft is ribbed by little keratin nubs, and it bobs above a swinging sack stretched taut around two balls, each individually larger than Ardia’s fist. The moment her zipper unleashes them, the pair of them come spilling out of her suit, swaying and slapping her thighs. You can almost <i>hear</i> them churning, full of addictive liquid weight.");
 	output("\n\n<i>“W-well, here I am,”</i> Ardia smiles, peeling the suit off her shoulders and down her thighs. <i>“Now wh-”</i>");
 	output("\n\nYou cut her off by taking her cheeks in hand, kissing her fiercely. Ardia’s little keratin-coated cock jumps in surprise, a rush of blood flooding it and her cheeks in equal measure. ");
 	output("\n\nNow... how do you want her?");

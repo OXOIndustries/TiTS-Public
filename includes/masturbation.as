@@ -775,8 +775,8 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 				if(pc.hasCock()) output("jacking off like wild.");
 				else if(pc.hasVagina()) output("grinding your [pc.vaginas] like wild.");
 				else output("playing with yourself like some kind of wild animal.");
-				pc.lust(5);
 				output(" Fuck! Now you’re even hornier.");
+				pc.changeLust(5);
 			}
 			else 
 			{
@@ -1621,7 +1621,7 @@ public function milkturbation():void
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
 		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.milkColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
-		pc.lust(5 + rand(3));
+		pc.changeLust(5 + rand(3));
 		pc.boostLactation(1);
 	}
 	//Milk Success!
@@ -1760,7 +1760,7 @@ public function milkturbation():void
 		if(!orgasmed && orgasmOdds <= 20)
 		{
 			output("\n\nSlowing to a trickle as your supply exhausts itself, your " + possessive(pc.chestDesc()) + " flow finally gives up in spite of your relentless tugging. You’ve milked out as much as you can by hand, leaving yourself with sore, glossy nipples and a moistened front. Tending to such a sensitive area has left you with a certain residual warmth in your [pc.crotch]");
-			pc.lust(10 + rand(4));
+			pc.changeLust(10 + rand(4));
 			if(pc.lust() < pc.lustMax()) output(", but it’s not unmanageable.");
 			else {
 				output(", <b>and you’re going to have to masturbate immediately if you want to have any chance of thinking straight in the near future.</b>");
@@ -3424,7 +3424,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(arg == "Mitzi") 
 	{
 		output("\n\nOf course, your indiscriminate licking lights a fire in your loins. Mitzi wasn’t kidding about the aphrodisiacs.");
-		pc.lust(100);
+		pc.changeLust(100);
 	}
 	output("\n\nGrinning to yourself, you ");
 	if(!pc.isCrotchExposed()) output("slip out of your clothes");
@@ -5722,7 +5722,7 @@ public function saviciteDildoUsings(x:int):void
 	processTime(20);
 	pc.orgasm();
 	pc.orgasm();
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",saviciteDildoUsingsPartDueces,x);
 }

@@ -654,7 +654,7 @@ public function bigTiddyGFUnderTable(isMouth:Boolean):void
 	}
 
 	processTime(5+rand(7));
-	pc.lust(10+rand(6));
+	pc.changeLust(10+rand(6));
 
 	clearMenu();
 	addButton(0, "Next", (isMouth ? bigTiddyGFUnderTableMouth : bigTiddyGFUnderTableHands));
@@ -820,7 +820,7 @@ public function bigTiddyGothGFStripHer():void
 	flags["BIGTIDDYGOTHGF_NAKED"] = 1;
 
 	processTime(5+rand(3));
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	if (pc.hasCock() && pc.shortestCockLength() <= 16) addButton(0, "Fuck Her", bigTiddyGothGFFuckHer, undefined, "Fuck Her", "Lay her down and plow her.");

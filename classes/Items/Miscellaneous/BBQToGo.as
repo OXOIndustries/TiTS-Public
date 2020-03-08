@@ -88,9 +88,8 @@
 				//Consume:
 				//Effect: %Chance +thickness, +25 Energy
 				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
-				if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Energy</b>)");
 				target.modThickness(2);
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			else
 			{
@@ -102,9 +101,9 @@
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens a BBQ To-Go box and wolfs down the contents, getting a");
-				if(healing > 0) kGAMECLASS.output(" quick energy boost. (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output(" quick energy boost.");
 				else kGAMECLASS.output(" full stomach in the process.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			if (inCombat()) target.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			return false;

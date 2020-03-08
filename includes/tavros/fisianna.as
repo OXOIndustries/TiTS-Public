@@ -887,8 +887,8 @@ public function massageFisiYesIII():void
 	output(", you stretch and find yourself completely loose and limber, fully ready to tackle whatever challenge comes your way.");
 	output("\n\n<i>“Please don’t be afraid to ask me to do this for you again if you feel hurt in any way, [pc.name]. I would, as always, be more than happy to make sure you’re at least in tip-top shape.”</i> Fisianna assures you, affection full in her voice. With a final kiss and a wave goodbye, you head out of her apartment and onto the street in front of it. After that massage, how could you <i>not</i> want another one?");
 
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 
 	currentLocation = "RESIDENTIAL DECK 13";
 	IncrementFlag("FISI_TIMES_MASSAGED");

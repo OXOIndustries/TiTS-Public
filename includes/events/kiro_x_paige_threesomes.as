@@ -419,7 +419,7 @@ public function kiroPaigeGossip():void
 		output("\n\n<i>“Kiro, I’m not gonna lie,”</i> she says, her breath coming out in husky whimpers. <i>“That’s... that’s fucking hot.”</i>");
 		output("\n\nKiro knows an opportunity when she sees it: her own hand lays on Paige’s lap, her fingers gently raking across the sturdy muscles of her thigh as they inch toward her body, toward the valley of her crotch. <i>“Kally always thought you were hot too, you know,”</i> Kiro whispers, her tongue snaking out to tickle the fur on Paige’s ear. <i>“I could arrange something, the four of us, if you’d like.”</i>");
 		output("\n\nYou clear your throat to get their attention, before things get a little too out-of-hand.");
-		pc.lust(20);
+		pc.changeLust(20);
 		flags["PAIGE_KNOWS_KIRO_KALLYFUX"] = 1;
 	}
 	flags["PAIGE_KIRO_GOSSIP"] = 1;
@@ -529,7 +529,7 @@ public function paigeKiroThreesomeIntro():void
 	//[=Next=]
 	// end scene (scene: Threesome Intro); increase Lust by 50; go to (scene: PKTSI)
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",PKTSI);
 }
@@ -569,7 +569,7 @@ public function PKTSI():void
 	output("\n\nDo you sit here and keep your attention on Paige, and try and make the focus about her for this tryst? Do you push Paige off you and get the both of you to focus on Kiro and her inflating horsecock, to be used on you both? Or do you lay back and let the girls work their magic on you, and revel in the attention they could give?");
 
 	processTime(25);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	//[=You=][=Paige=][=Kiro=]
 	// end scene (scene: PKTSI)
@@ -615,7 +615,7 @@ public function PKTSY():void
 	output("\n\nAll three of you are pretty horny. You could get right to the bottom of things if you wanted; you doubt any of you needs any further encouragement. Kiro’s about as hard as she’s going to get. Or, you could let the girls continue to have their way with you – who knows what’ll happen when they work their way between your legs?");
 
 	processTime(10);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	//[=Stay Still=][=Get To It=]
 	// end scene (scene: PKTSY)
@@ -692,7 +692,7 @@ public function PKTSYSS(args:Array):void
 	output(". They occasionally swap places with each other, attacking at you from different angles, while taking the time on each pass to sloppily make out with each other for a moment before pressing on.");
 	output("\n\nIf you don’t take the initiative to move the group forward, there’s a good chance that one of them might. But hell, maybe you’re okay with that....");
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	//[=Let Them=][=Get Ridden=]
 	addButton(0,"Let Them",PKTSYLT,args);
@@ -760,7 +760,7 @@ public function PKTSYGTI(args:Array):void
 		output("\n\nThe rhythm you’ve been put into beneath the two ladies continues for some time – you have no sense of it, when all your senses revolve around being fucked, and all you see is the bristly fur of Paige’s ass rubbing against you over and over. You currently don’t have any control of the pace or the action. You could change that, if you wanted....");
 	}
 	processTime(15);
-	pc.lust(30);
+	pc.changeLust(30);
 	//[=This Is Fine=][=Buck Back=]
 	// end scene (scene: PKTSYGTI)
 	addButton(0,"This Is Fine",PKTSYTIF,args);
@@ -816,7 +816,7 @@ public function PKTSYLT(args:Array):void
 	output("\n\n<i>“Sing for us, angel,”</i> Kiro agrees, her hot breath panting against your neck and shoulder. Her own body shakes and her own thrusting into you is becoming more and more haphazard and eager. The sound of her big Kui-Tan balls beating against your [pc.ass] almost drowns out her voice. <i>“Tell your ladies what they want to hear.”</i>");
 	output("\n\nYou clench your teeth. You’re not sure if you can put the pleasure you’re feeling to words, but maybe you don’t need to, and they’ll settle for a loud, drawn out groan or something. When your orgasm hits you, it’s about all you could hope to achieve.");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSYE,args);
 	//[=Climax=]
@@ -900,7 +900,7 @@ public function PKTSYTIF(args:Array):void
 		output("\n\nAnd then....");
 	}
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSYE,args);
 	//[=Climax=]
@@ -988,7 +988,7 @@ public function PKTSYBB(args:Array):void
 		output("\n\nWith that, you feel Paige’s hands grab onto your [pc.ass], keeping you steady and split for the nut that’s about to blow in your [pc.vagina]. It’s only a few thrusts away... and then, one less... and then....");
 	}
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSYE,args);
 	//[=Climax=]
@@ -1086,7 +1086,7 @@ public function PKTSP():void
 	//[=Kiss Her=][=Eat Her Out=]
 	// end scene (scene: PKTSP)
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Kiss Her",PKTSPKH,args);
 	addButton(1,"Eat Her Out",PKTSPEHO,args);
@@ -1132,7 +1132,7 @@ public function PKTSPKH(args:Array):void
 
 	//[=Double P.=][=Sandwich=]
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	// end scene (scene: PKTSPKH)
 	if(!pc.hasCock()) addButton(0,"Cuddle Up",PKTSPCU,args);
@@ -1182,7 +1182,7 @@ public function PKTSPEHO(args:Array):void
 	output("”</i>");
 	output("\n\nYour mind’s eye swims with the possibilities....");
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	//[=Sandwich=][=CargoLift=]
 	addButton(0,"Sandwich",PKTSPS,args);
@@ -1286,7 +1286,7 @@ public function PKTSPCU(args:Array):void
 		output("\n\nKiro isn’t much farther behind, and, with some eagerness, you realize that you’re just a few more thrusts away from learning if Kiro really has what it takes to give you two a good, long soak....");
 	}
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSPE,args);
 	// end scene (scene: PKTSPCU); go to (scene: PKTSPE)
@@ -1346,7 +1346,7 @@ public function PKTSPS(args:Array):void
 
 	output("\n\nYou wonder, as the three of you reach your climaxes simultaneously, if you look, smell, or taste any different to Paige in the moments before your body clenches in that familiar release....");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSPE,args);
 	// end scene (scene: PKTSPS); go to (scene: PKTSPE)
@@ -1414,7 +1414,7 @@ public function PKTSPCL(args:Array):void
 	output("\n\nYour lower body shakes in pleasure, your orgasm building quickly inside you and ready to burst forth, to meet both of your lovers’ unspoken requests. The three of you become a little more frenetic as time goes on, until you’re thrusting so fiercely and wantonly that you can’t withhold yourself any longer....");
 
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSPE,args);
 	//[=Climax=]
@@ -1558,7 +1558,7 @@ public function PKTSKSH(args:Array):void
 	output("\n\nYou look down the long, bloated shaft of Kiro’s equine dong. Kiro’s giving you the opportunity to go first and take this monster into yourself – and, given how it’s coated in that elasticizing oil, you’ll probably be able to take <i>all</i> of it. But, on the other hand, you could continue doing what you’re doing here and let Paige get fucked. Kiro’s body tastes pretty good, after all....");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	//[=Continue=][=Go First=]
 	// end scene (scene: PKTSKSH)
@@ -1619,7 +1619,7 @@ public function PKTSKLU(args:Array):void
 		output("\n\nTwo ideas cross your mind at the same time. On the one hand, you could take a more proactive role in this threesome – Kiro might have a shitload of cock on her, but that doesn’t mean she has to do all the work. But, on the other hand, you could be selfish and greedy and do nothing as Kiro has her way with your willing body. You’re sure Paige would understand....");
 	}
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	//[=Your Turn=][=Reposition=]
 	// if PC is not getting fucked, the button is [=Your Turn=]; if the PC is getting fucked, the button is [=Do Nothing=]
@@ -1664,7 +1664,7 @@ public function PKTSKC(args:Array):void
 	output("\n\nIt’s only a few more thrusts before she gets what she wants. You keep your eyes peeled on them both: you wouldn’t want to miss this show for the world.");
 	
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSKE,args);
 }
@@ -1729,7 +1729,7 @@ public function PKTSKGF(args:Array):void
 	output("\n\nYou can hear Kiro’s muffled voice as she chows on Paige’s box, and from the way she’s grunting in ascension, and the way her stiff dick seems to angle itself just a little bit higher, and the way the skin of her balls tense and scrunch around your legs, she’s not going to last much longer either. And Paige is the same way: she’s the most vocal of you three, with her voice coming out in wanton, feral, horny yelps; her grip slips occasionally and you can feel her quivering body press onto yours as she tries desperately to cum into Kiro’s mouth.");
 	output("\n\nYou bite onto the sheet and clench your jaw, bracing for the tidal wave that’s about to come crashing into all three of you....");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	//[=Climax=]
 	// end scene (scene: PKTSKGF); go to (PKTSKE)
 	clearMenu();
@@ -1821,7 +1821,7 @@ public function PKTSKR(args:Array):void
 	//[=Climax=]
 	// end scene (scene: PKTSKR); go to (scene: PKTSKE)
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",PKTSKE,args);
 }

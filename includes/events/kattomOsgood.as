@@ -1,3 +1,5 @@
+import classes.Items.Combat.EroGasGrenade;
+
 // Exclusions
 public function pattonIsNotSupposedToBeHere():Boolean
 {
@@ -52,7 +54,16 @@ public function pattonIsHere():Boolean
 		return true;
 	}
 	return false;
-}	
+}
+public function setKattomHere(arg:String = ""):void
+{
+	if(arg == "") flags["KATTOM_LOCATION"] = currentLocation;
+	else flags["KATTOM_LOCATION"] = arg;
+	generateMap();
+	flags["KATTOM_MOVE_CD"] = GetGameTimestamp();
+	setKattomsInventory();
+	return;
+}
 
 public function setKattomsInventory():void
 {
@@ -121,6 +132,13 @@ public function setKattomsInventory():void
 			else patty.inventory.push(new Vanquisher());
 			//Stormbull
 			patty.inventory.push(new Stormbull());
+			break;
+		case "dhaal":
+			patty.inventory.push(new EroGasGrenade());
+			patty.inventory.push(new Rouser());
+			patty.inventory.push(new GlacialAuger());
+			patty.inventory.push(new IceCappers());
+			patty.inventory.push(new StreetSweeper());
 			break;
 		default:
 			patty.inventory.push(new Savicite());
@@ -235,7 +253,7 @@ public function pattonSexAttempt():void
 	showKattom();
 	output("As soon as you put on your best come-hither face, Kattom steps back, arms upraised in a panic. <i>“None of that please. My services are purely of the mercantile variety. Any sensual interactions would violate the terms of my latest marriages, you see.”</i> He holds up a hand, revealing three fingers with gemstones socketed into the very flesh. <i>“My wives would take me to the cleaners if I violated my vows.”</i> Kattom sighs heavily. <i>“I’m sure any of the locals would jump at the chance for fornication, if you truly need relief of that nature.”</i>");
 	processTime(1);
-	pc.lust(-5);
+	pc.changeLust(-5);
 	addDisabledButton(3,"Flirt","Flirt","You already tried this.");
 }
 

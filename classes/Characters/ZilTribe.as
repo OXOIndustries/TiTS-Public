@@ -401,7 +401,7 @@
 		public function armorReplenish(target:Creature):void
 		{
 			output("Whilst two zil box you in with their circling spear-tips, the rest of the mob rearrange themselves. Shields change hands, black carapace tightening up with concerted concentration. Before you know it you’re being assaulted on all sides again, the warrior wasps’ armor revitalized.");
-			this.shields(70);
+			this.changeShields(70);
 			this.createStatusEffect("Armor Restore CD",5,0,0,0);
 		}
 		//Honey-cane

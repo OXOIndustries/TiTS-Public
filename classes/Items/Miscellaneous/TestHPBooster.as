@@ -93,12 +93,13 @@ package classes.Items.Miscellaneous
 				}
 				
 				hpChange = gainHP(target);
+				/* OLD. New hotness damage change below.
 				if(hpChange > 0)
 				{
 					if(usingCreature == target) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>");
 					else kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
-				}
-				target.HP(hpChange);
+				}*/
+				target.changeHP(hpChange);
 			}
 			else
 			{
@@ -116,8 +117,9 @@ package classes.Items.Miscellaneous
 				}
 				
 				hpChange = gainHP(target);
-				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
-				target.HP(hpChange);
+				//OLD BUSTED: if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
+				//NEW HOTTIE:
+				target.changeHP(hpChange);
 			}
 
 			return false;

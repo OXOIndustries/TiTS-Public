@@ -170,7 +170,7 @@
 				// remove tongue flag
 				target.vaginas[selVag].delFlag(GLOBAL.FLAG_TONGUE);
 				// + lust
-				target.lust(25);
+				target.changeLust(25);
 			}
 			// Lust increase scene:
 			// Requirements: No tongue flag
@@ -197,7 +197,7 @@
 				output("\n\nYou’re but a moment from reaching your climax, before all too suddenly, the fizzing sound stops and the sensations that came with it die down. You’re left incredibly horny, almost desperate for release.");
 				
 				// +++ Lust
-				target.lust(target.lustMax(), true);
+				target.changeLust(target.lustMax());
 			}
 			
 			clearMenu();

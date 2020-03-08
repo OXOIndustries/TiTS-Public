@@ -131,7 +131,17 @@ public function hijackThisShippyShopPrompt():void
 		return;
 	}
 	
-	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, your current ship will be left abandoned.");
+	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, <b>your current ship will be left abandoned</b>.");
+	
+	if(!canAbandonShip(shits["SHIP"]))
+	{
+		output("\n\nUnfortunately, you would be unable to part with your current ship. Maybe you should return with another ship--one that you are willing to sacrifice for the <i>Sidewinder</i>...");
+		output("\n\n");
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	output("\n\nAre you sure you want to hijack the <i>Sidewinder</i>?");
 	output("\n\n");
 	
@@ -154,7 +164,7 @@ public function hijackThisShippyShop():void
 		output("drop trou and mount the hardlight dildo, nestling onto the big shaft of hardlight meat as you take the controls. Oooh, that tingles!");
 		if(pc.hasVagina()) pc.cuntChange(0,250);
 		pc.buttChange(250);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	//else: 
 	else output("deactivate the hardlight shaft - for now, at least - and sit yourself in the captain’s chair. The controls react to you in an instant, brightening with golden light as key panels snap into place on either side of you.");
@@ -194,7 +204,7 @@ public function disarmOlympia():void
 	{
 		output("The moment you see her finger sliding into the trigger guard, your instincts kick into overdrive. You reach for her gun, but just a second too late: Olympia pulls the trigger, sending a volley of buckshot slamming into your shields, hard enough to blow you backwards over the command chair.");
 		output("\n\n<i>“I don’t think so,”</i> she growls, advancing on you. <i>“Leave now.”</i>");
-		pc.shields(-50);
+		pc.changeShields(-50);
 		clearMenu();
 		//[Leave] [Diplomacy]
 		//As per above options
@@ -496,7 +506,7 @@ public function nameTheSidewinder():void
 		output("<i>“Very good, captain,”</i> Olympia says, taking the datapad back.");
 	}
 	output(" <i>“I’ll have hull painted next time we dock. Perhaps even add your company colors? Hmm! Either way, thank you for taking me aboard, captain. Even now, I have the feeling that I’ll be much happier here on your crew than I ever was on Zheng Shi... or before. If there’s anything I can do to help you on your mission, you have only to ask.”</i>");
-	output("\n\nAs she says it, Olympia’s already turning back to her work, but not with a sultry wink and a brush of her tail against your [pc.leg]. She is still a sexbot, after all...");
+	output("\n\nAs she says it, Olympia’s already turning back to her work, but not without a sultry wink and a brush of her tail against your [pc.leg]. She is still a sexbot, after all...");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -865,7 +875,7 @@ public function uniformOlympia():void
 	olympia.armor = new SteeleTechSuit();
 	showOlympia();
 	processTime(4);
-	pc.lust(4);
+	pc.changeLust(4);
 	//actually set clothing.
 	clearMenu();
 	addButton(0,"Next",olympiasClothes)
@@ -881,7 +891,7 @@ public function olympiasLabcoat():void
 	output("\n\nOlympia scrunches her lips to the side, thinking. <i>“If you insist. I have to admit, that attire does bring back certain unpleasant memories. But the obvious appeal of the sexy scientist doesn’t escape me.”</i>");
 	output("\n\nThat seems to be enough to convince her. Olympia " + ((olympia.armor is SteeleTechSuit) ? "slowly unzips her catsuit, letting the latex pool around her feet before stepping":"steps") + " over towards the drawer that holds all her belongings. She quickly retrieves her lab coat and undergarments, sliding them on with practiced ease. Once done, she gives you a slight nod. <i>“Done. Anything else, captain?”</i>");
 	processTime(3);
-	pc.lust(2);
+	pc.changeLust(2);
 	//actually set clothing.
 	olympia.armor = new KhansLabCoat();
 	showOlympia();
@@ -899,7 +909,7 @@ public function olympiaNakkersLetsGo():void
 	output("\n\nOlympia grins at you, hands on her broad hips. <i>“Mmm, that feels much better. Nice to have a little fresh air on my skin, synthetic or not.”</i>");
 	output("\n\nAnd it’s a nice view, too...");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	//actually set clothing.
 	olympia.armor = new EmptySlot();
 	showOlympia();
@@ -1123,7 +1133,7 @@ public function sexWithOlympia():void
 	else output("\n\n<i>“Just that you need some R&R,”</i> you suggest.");
 	output("\n\nOlympia raises an eyebrow and curls her tail all the way around your [pc.leg]. <i>“Is that so? Well then, captain, your command is my wish...”</i>");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	olympiaCrewSexMenu();
 }
 

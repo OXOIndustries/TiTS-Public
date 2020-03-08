@@ -2872,7 +2872,7 @@ public function encounterMimbrane():void
 
 				output("\n\nLooks like your parasitic passenger is turning traitorous in favor of coming to the aid of its comrade. Best to end this fight quick before you fall victim to its sexual urges.");
 
-				pc.lust(10);
+				pc.changeLust(10);
 			}
 			//if PC has multiple Mimbranes
 			else
@@ -2885,7 +2885,7 @@ public function encounterMimbrane():void
 	
 				output("\n\nThe best you can manage against the surprise assault is a coughing stumble away from the unbidden sensual perspiration. Looks like your parasitic passengers are turning traitorous in favor of coming to the aid of their comrade. Best to end this fight quick before you fall victim to their sexual urges.");
 
-				pc.lust(10); // Doublecheck the mechanics on this value
+				pc.changeLust(10); // Doublecheck the mechanics on this value
 			}
 		}
 	}
@@ -3044,7 +3044,7 @@ public function playerMimbraneSpitAttack():void
 				// Cost "feeds"
 				feedCost(eligibleMimbranes[ii], 5);
 				// Raises player lust
-				pc.lust(10);
+				pc.changeLust(10);
 				
 				return;
 			}
@@ -3056,8 +3056,6 @@ public function playerMimbraneSpitAttack():void
 				//pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
 				feedCost(eligibleMimbranes[ii], 5);
 
-				// Raises player lust
-				pc.lust(5);
 
 				// Failure text
 				output("\n\n");
@@ -3102,6 +3100,8 @@ public function playerMimbraneSpitAttack():void
 				{
 					output("You’re surprised when you feel an odd buildup along your [pc.face], working its way towards your [pc.lips]. The Mimbrane covering your head is readying a dangerous ball of lust to server to your opponent. Unfortunately your timing isn’t precisely matched with that of the parasite’s. A sudden breath on your part clashes with the parasite’s attempt to gather its attack, causing an explosion of misty desire to take place in front of your face.");
 				}
+				// Raises player lust
+				pc.changeLust(5);
 			}
 			else
 			{
@@ -3109,8 +3109,6 @@ public function playerMimbraneSpitAttack():void
 				// Succesful attack, calculate if critical
 				if (pc.statusEffectv3(eligibleMimbranes[ii]) >= 10 && rand(10) <= 2) // 10+ food, 3 in 10 [0-9]
 				{
-					// Backsplash (lol)
-					pc.lust(5);
 
 					// Cost
 					// Converted to feedcost to prevent excess growth
@@ -3257,7 +3255,7 @@ public function playerMimbraneCloudAttack():void
 				// Misfires!
 				applyCloudDebuff(pc);
 				// Also initially raises lust
-				pc.lust(5);
+				pc.changeLust(5);
 				return;
 			}
 			// 20% chance of misfire
@@ -3268,8 +3266,6 @@ public function playerMimbraneCloudAttack():void
 				// Misfires!
 				applyCloudDebuff(pc);
 
-				// Also initially raises lust
-				pc.lust(2);
 
 				// Output text
 				output("\n\n");
@@ -3305,6 +3301,8 @@ public function playerMimbraneCloudAttack():void
 				{
 					output("It’s bad enough that the Mimbrane encasing your head has drenched you in a rich layer of sweat, but now you’re having trouble seeing through the thick cloud of salacious intent that’s forming as a result. You involuntarily go to wipe your brow, which accidentally causes you to inhale some of the dangerous fumes. The parasite manipulates your [pc.face] enough to avoid any further exposure to its premature attack.");
 				}
+				// Also initially raises lust
+				pc.changeLust(2);
 				
 				return;
 			}
@@ -3423,8 +3421,6 @@ public function mimbraneCombatInterference():Boolean
 				//pc.setStatusValue(eligibleMimbranes[i], 3, pc.statusEffectv3(eligibleMimbranes[i]) - 3);
 				feedCost(eligibleMimbranes[i], 3);
 
-				// Raises player lust
-				pc.lust(2);
 
 				// Apply the debuff
 				applyCloudDebuff(pc);
@@ -3472,6 +3468,8 @@ public function mimbraneCombatInterference():Boolean
 					//Head Mimbranes
 					output("The Mimbrane covering your head is working double time, clouding your [pc.face] with sweat and a fog of lust. You can’t hold your breath forever and eventually wind up inhaling some of the noxious, nectary fumes.");
 				}
+				// Raises player lust
+				pc.changeLust(2);
 
 				// Break the loop so we only have a single mutiny action that skips a player combat turn
 				return true;
@@ -3735,7 +3733,7 @@ public function defeatMimbrane():void
 
 	clearMenu();
 	addButton(0, "Kill It", killDatMimbrane);
-	addButton(1, "Let It Go", letMimbraneGo);
+	addButton(14, "Leave", letMimbraneGo);
 
 	if (pc.hasCock() && pc.lust() >= 33) addButton(2, "Mimbrane Fap", useDatMimbraneLikeACondom,undefined,"Mimbrane Fap","Use the mimbrane like a living sextoy. It’s certainly slippery enough.");
 	else if(pc.lust() >= 33) addDisabledButton(2,"Mimbrane Fap","Mimbrane Fap","You need a penis to fap with a mimbrane.");
@@ -3879,7 +3877,7 @@ public function beatUpByAFuckinDishcloth():void
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
 	output(" getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caressing you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and the oppressive environment.");
-	pc.lust(100);
+	pc.changeLust(100);
 	if(pc.hasTailCock() && rand(2) == 0)
 	{
 		processTime(2);
@@ -5245,7 +5243,7 @@ public function cockVineVictoryPostParasitePals():void
 		//do pc.orgasm times 1, other loss consequences
 		//do mimbrane attach if eligible and end
 		processTime(10);
-		pc.lust(150);
+		pc.changeLust(150);
 		clearMenu();
 		addButton(0,"Next",attachAMimbrane);
 	}
