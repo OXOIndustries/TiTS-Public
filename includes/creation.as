@@ -56,6 +56,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
 		case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
 		case "fauxcow": cheatFunc = Cheats.TryTreatmentHaxFauxCow; break;
+		case "backinbizzness": cheatFunc = Cheats.BackInBizzness; break;
 	}
 	if(cheatFunc != null)
 	{
