@@ -9051,6 +9051,24 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			roamCount++;
 		}
+		// Amara
+		if(flags["KQ2_QUEST_FINISHED"] != undefined)
+		{
+			output2("\n<b>* Amara:</b> Met her");
+			if(flags["KQ2_FOUGHT_AMARA"] != undefined) output2(", Fought her");
+			switch(flags["SHADE_AMARA_PEACE"])
+			{
+				case 3:
+					output2(", Sexed her");
+				case 2:
+					output2(", Accepted peace offer");
+					break;
+				case 1:
+					output2(", Refused peace offer");
+				default:
+			}
+			roamCount++;
+		}
 		// Azra
 		if(flags["MET_AZRA"] != undefined)
 		{

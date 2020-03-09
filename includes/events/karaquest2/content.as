@@ -43,7 +43,7 @@ KQ2_NUKE_EXPLODED		-- 0/undefined, nope
 KQ2_SHADE_DEAD			-- 0/undefined, alive
 						-- 1 Kara killed her
 KQ2_FOUGHT_AMARA		-- 0/undefined, nope
-
+						-- 1, fought her
 KQ2_BETRAYED_KARA		-- 0/undefined, nothing
 						-- 1, accepted credits from amara to dump kara
 
@@ -2282,6 +2282,8 @@ public function kq2EncounterAmaraSilent():void
 public function kq2FightAmara():void
 {
 	var h:Array = [new KQ2Amara(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
+
+	flags["KQ2_FOUGHT_AMARA"] = 1;
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors([pc, kara]);
