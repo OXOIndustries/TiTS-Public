@@ -1259,11 +1259,14 @@ public function jumpThatPirateLord():void
 
 	output("\n\nWhile your hands continue to play with Amara’s tits, you subtly shift your [pc.hips] so that your [pc.vagOrAss] is rubbing against her rock-hard pride. The pirate tenses, thrusting her hips up to meet you, but her tapered crown just skids off your thigh, poking you in the [pc.belly]. <i>“Enough of that!”</i> you chastise, sitting straight down on her pelvis. She’s the one wrapped up like a pretty little present for you, after all; you’re going to enjoy her at your own pace. Only when she stops squirming, surrendering to your two-fisted molestation of her chest, do you deign to start moving your hips.");
 
-	output("\n\n<i>“Ohhh,”</i> Shade purrs, <i>“I think you’ve got a hidden dom{me} streak in you! How have you let me take this lead all this time...”</i>");
+	output("\n\n<i>“Ohhh,”</i> Shade purrs, <i>“I think you’ve got a hidden " + pc.mf("dom", "domme") + " streak in you! How have you let me take this lead all this time...”</i>");
 
 	output("\n\n<i>“It just seemed natural.”</i> You give her another grin and lift yourself on your [pc.knees], letting Amara’s cock naturally find its way through the cleft of your ass before you come back down. The bound pirate moans as your cheeks squeeze her, but her eyes go wild with desire when you lift again, and her crown manages to rub against the entrance of your [pc.vagOrAss]. You pinch her nipples just before sliding down on that thick puppy-cock, making sure you have this randy bitch’s <b>full</b> attention all the way down.");
 
-	output("\n\nAmara’s dick is thicker than average, but the length’s nothing to write home about - eight inches, about average for an ausar. {Indeed, it reminds you distinctively of Kaede’s as you settle down on it.} The knot’s nice and bulky, at least, and presses up between your thighs when you easily bottom out on its owner’s shaft. She throbs desperately inside you, shaking her hips like she wants to wedge that big bitch-breaker inside you already.");
+	output("\n\nAmara’s dick is thicker than average, but the length’s nothing to write home about - eight inches, about average for an ausar. ");
+	// PC has fucked Kaede:
+	if(flags["KAEDE_FUCKED"] != undefined) output("Indeed, it reminds you distinctively of Kaede’s as you settle down on it. ");
+	output("The knot’s nice and bulky, at least, and presses up between your thighs when you easily bottom out on its owner’s shaft. She throbs desperately inside you, shaking her hips like she wants to wedge that big bitch-breaker inside you already.");
 
 	output("\n\nNone of that, now. You give the wicked pirate a slap across the cheeks - just a gentle one to remind her of her place. Shade’s earlier suggestion bears out, and you feel Amara’s cock throb powerfully inside you. Warm precum spills out into your [pc.vagOrAss], and a dark flush spreads across the pirate’s cheeks far larger than the one your palm left. A little line of drool meanders down from around her ball gag, accompanying a moan that sounds awfully more like pleasure than pain.");
 
@@ -1279,7 +1282,11 @@ public function jumpThatPirateLord():void
 
 	output("\n\nYou grab the pirate lord’s big, ginger ears and give them a rough pull while you slam yourself down on her knot, moaning as your [pc.vagOrAss] spreads around the thick tie. Amara squirms, bucking her hips to try and thrust it up into you with desperate desire... and this time, you go ahead and let her act out her body’s breed-hungry needs. Your fuckhole accepts her fat bitch-breaker, sending shockwaves of pleasure pounding through your loins.");
 
-	output("\n\nAmara blabbers something through her geek ball, and you feel her cock swelling inside you. Her knot throbs, and you can feel her pounding heart rate through it right until a burst of warmth fills your [pc.vagOrAss]. You gasp, pulling on Amara’s ears and growling her name while she cums, demanding that she thrust herself even deeper inside until you, too, join her in climax. {pc.hasCock|Your [pc.cock] pumps its load all over the pirate lord’s bare, clamped tits, painting them [pc.cumColor] while she packs you with her own creamy load.|Your [pc.vagOrAss] trembles as the pirate lord’s tapered dick packs it with squirt after squirt of white warmth.] Pretty soon those palmable pale balls of hers are clenching under your [pc.butt], tensing over and over again until they’re empty and your belly is stuffed with warm contentment.");
+	output("\n\nAmara blabbers something through her geek ball, and you feel her cock swelling inside you. Her knot throbs, and you can feel her pounding heart rate through it right until a burst of warmth fills your [pc.vagOrAss]. You gasp, pulling on Amara’s ears and growling her name while she cums, demanding that she thrust herself even deeper inside until you, too, join her in climax. ");
+	// PC has cock:
+	if(pc.hasCock()) output("Your [pc.cock] pumps its load all over the pirate lord’s bare, clamped tits, painting them [pc.cumColor] while she packs you with her own creamy load. ");
+	else output("Your [pc.vagOrAss] trembles as the pirate lord’s tapered dick packs it with squirt after squirt of white warmth. ");
+	output("Pretty soon those palmable pale balls of hers are clenching under your [pc.butt], tensing over and over again until they’re empty and your belly is stuffed with warm contentment.");
 
 	output("\n\n<i>“Fuck! That was hot,”</i> Shade laughs. A moist hand slaps your ass, and your lover takes a seat beside you, grinning down at her partner. <i>“I’ve never seen you cum so fast, Amy. What happened to my big ol’ fuckbeast, huh?”</i>");
 
@@ -1371,13 +1378,23 @@ public function sailWithShade():void
 
 	output("\n\nThe dread lord squirms, thrashing in her restraints and spewing muffled expletives at you until you press your rump down hard enough to nearly suffocate the bitch. Like some kind of perverted instinct, her tongue thrusts up against your taint, searching out some way to pleasure you.");
 
-	output("\n\n<i>“What a well-trained pet,”</i> you laugh, shifting your hips to give Amara access to your {balls / pussy // ass}. She goes at you hard, wriggling that canid tongue all over every inch.");
+	output("\n\n<i>“What a well-trained pet,”</i> you laugh, shifting your hips to give Amara access to your ");
+	// PC has vagina:
+	if(pc.hasVagina()) output("[pc.pussy]");
+	// PC has ball(s):
+	else if(pc.hasBalls()) output("[pc.balls]");
+	else output("[pc.ass]");
+	output(". She goes at you hard, wriggling that canid tongue all over every inch.");
 
 	output("\n\n<i>“Yeah, she’s good with that mouth,”</i> Shade chuckles. She’s come to straddle the pirate’s hips, wrapping a hand around the veiny red rocket thrusting up from between Amara’s legs and rubbing it against her silver-maned muff. <i>“You haven’t lived until you’ve spent a night with Amy between your thighs from dusk ‘till dawn. Mmm.”</i>");
 
 	output("\n\nShade sighs, pressing Amara’s tie against her quim. <i>“But you can enjoy that tonight. It’s a safe day, so... I’m gonna help myself to a nice, creamy load. Been a while since you got to rawdog me, huh, Amy? Not that <b>you</b> miss it, trailing your bastards all across the stars. I’m sure there’s a girl or three on every planet eager for you seed, huh?”</i>");
 
-	output("\n\nYou can <b>feel</b> Amara trying to bitch and moan about the way Shade’s teasing her, but it only serves to heighten your pleasure. Her tongue thrashes around, {burying itself in your [pc.vagOrAss]/ slurping on your balls}. That intensity only redoubles when Shade rises up on her knees, slipping Amara’s tapered tip between her lips, and slides down the throbbing pole with a throaty moan. Her tits bounce heavily when her ass slaps into the hermaphrodite’s thighs,");
+	output("\n\nYou can <b>feel</b> Amara trying to bitch and moan about the way Shade’s teasing her, but it only serves to heighten your pleasure. Her tongue thrashes around, ");
+	// PC has ball(s), but no vagina (for consistency):
+	if(!pc.hasVagina() && pc.hasBalls()) output("slurping on your [pc.balls]");
+	else output("burying itself in your [pc.vagOrAss]");
+	output(". That intensity only redoubles when Shade rises up on her knees, slipping Amara’s tapered tip between her lips, and slides down the throbbing pole with a throaty moan. Her tits bounce heavily when her ass slaps into the hermaphrodite’s thighs,");
 	// Shade is milky:
 	if(shade.isLactating()) output(" beading with over-burdened milk from the impact. The MILF-kitty blushes, wiping herself off... until she sees you staring at those bountiful mammaries.");
 	else output(" quaking hypnotically. You just can’t peel your eyes off them...");
