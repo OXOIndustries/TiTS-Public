@@ -11,11 +11,11 @@ public function TundraEncounterBonus():Boolean
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	//Just reuse Uveto's shit. It doesnt matter much really.
 	IncrementFlag("TUNDRA_STEP");
-	// While roaming has a chance to receive email from Shade
-	if(flags["TUNDRA_STEP"] >= 3 && rand(1) == 0) getMailBountyWork();
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
+		// While roaming has a chance to receive email from Shade
+		getMailBountyWork();
 		//Reset step counter
 		flags["TUNDRA_STEP"] = 0;
 		//POSSIBLE ENCOUNTERS! SABERFLOOF!
