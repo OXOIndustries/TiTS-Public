@@ -1177,7 +1177,7 @@ public function shadeDisplaysHerBounty():void
 {
 	clearOutput();
 	author("Savin");
-	showBust(shadeBustDisplay(), amaraBustDisplay());
+	showBust(shadeBustDisplay(), amaraBustDisplay(true));
 	showName("SHADE\n& AMARA");
 
 	output("Before you can fully register what you're seeing, Shade's hand tightens on your shoulder. <i>“Listen, kid. I love ya something fierce, but Amara here's my kid's other parent. Always been good to us... to her... so I'm not gonna let you and me bein' a thing hurt Astra. That means you and Amy here need to work out whatever bad blood you've got. This is your chance to vent all those frustrations. You gonna be a good girl and let [pc.name] work it all out, Amy?”</i>");
@@ -1397,7 +1397,7 @@ public function sailWithShade():void
 {
 	clearOutput();
 	author("Savin");
-	showBust(shadeBustDisplay(true), amaraBustDisplay());
+	showBust(shadeBustDisplay(true), amaraBustDisplay(true));
 
 	output("You can dream up a lot of things you’d love to do to a tied-up hermaphrodite MILF, but every one of them can be improved by adding another chesty momma to the mix. You start to disrobe yourself, sauntering towards the bed, and cast a grin over your shoulder at Shade. <i>“Well? Are you coming or what?”</i>");
 
