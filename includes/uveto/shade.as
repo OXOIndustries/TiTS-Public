@@ -1150,6 +1150,8 @@ public function helpShadeClaimThatBounty():void
 
 	output("\n\nIt's Amara, the pirate lord.");
 
+	processTime(5);
+
 	clearMenu();
 	addButton(0, "Next", shadeDisplaysHerBounty);
 }
@@ -1172,6 +1174,8 @@ public function shadeDisplaysHerBounty():void
 
 	output("\n\nWith a husky whisper in your [pc.ear], Shade adds, <i>“Just between you and me... the mighty Dread Lord of the Void here is a shameless submissive slut. She likes to pretend she's a scary swingin' dick among the big bad pirates, but I've had nineteen years to find out all her little secrets. She's going to enjoy this as much as you will. Maybe more. So go on... whatever your twisted little libido can dream up.”</i>");
 
+	processTime(2);
+
 	clearMenu();
 	addButton(0, "Take Dick", jumpThatPirateLord, undefined, "Take Dick", "You're not one to pass up a chance to ride a thick, red Ausar knot. Especiallly when it's attached to a smoking hot MILF who's more dangerous than half the foes you've faced so far put together.");
 	if(pc.hasCock()) addButton(1, "Give Dick", enterThatPirateLord, undefined, "Give Dick", "You can see a cute muff under the pirate lord's balls, glistening in the mood light. It's hard to pass up a chance to breed a smoking hot MILF who's more dangerous than half the foes you've faced so far put together. Maybe you can give Astra a new sibling...");
@@ -1193,6 +1197,7 @@ public function noThanksForThePirateLord():void
 
 	output("\n\nIt’s an understandable position, even if Amara is a pirate. You might not want to bone down with a Dread Lord, but can you at least understand where Shade’s coming from. Right?");
 
+	processTime(2);
 
 	clearMenu();
 	addButton(0, "Make Peace", makePeaceWithThePirateLord, undefined, "Make Peace", "You'll put aside your grudge with Amara. For Shade and Astra's sake.");
@@ -1222,6 +1227,7 @@ public function makePeaceWithThePirateLord():void
 
 	output("\n\nAnd that’s your cue to leave, looks like. You give Shade a parting kiss on the cheek before slipping out of the room, leaving your lover and hers to their own devices. At least now you won’t have to worry about Amara’s pirates coming after you - though the rest of the Black Void may yet be another question.");
 
+	processTime(5);
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
@@ -1235,6 +1241,8 @@ public function noWayPirateLord():void
 	output("You shake your head vigorously and step away from Shade and Amara, saying you aren’t going to be letting pirate scum off that easy. Certainly not in exchange for kinky sex.");
 
 	output("\n\nShade sighs long and hard, rubbing her face with her hands. You decide to slip away while you can, before Shade can throw a fit over the answer. She’s going to have to find some way to make this work, not you - she’s the one who decided it would be a good idea to have a kid with a pirate lord.");
+
+	processTime(1);
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
@@ -1288,10 +1296,16 @@ public function jumpThatPirateLord():void
 	else output("Your [pc.vagOrAss] trembles as the pirate lord’s tapered dick packs it with squirt after squirt of white warmth. ");
 	output("Pretty soon those palmable pale balls of hers are clenching under your [pc.butt], tensing over and over again until they’re empty and your belly is stuffed with warm contentment.");
 
+	var ppAmara:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina()) pc.loadInCunt(ppAmara, rand(pc.totalVaginas()));
+	else pc.loadInAss(ppAmara);
+	pc.orgasm();
+
 	output("\n\n<i>“Fuck! That was hot,”</i> Shade laughs. A moist hand slaps your ass, and your lover takes a seat beside you, grinning down at her partner. <i>“I’ve never seen you cum so fast, Amy. What happened to my big ol’ fuckbeast, huh?”</i>");
 
 	output("\n\nAmara’s eyes narrow, and she says something into her gag. Shade just snickers and runs her hand from your flanks up Amara’s belly, tweaking a tit before finally cupping her chin. Finally, she reaches down and unbuckles the ball gag, pulling it free... and pulling a six-inch spear of latex out of Amara’s throat attached to the inside of it.");
 
+	processTime(15);
 
 	clearMenu();
 	addButton(0, "Next", finishWithThePirateLord);
@@ -1344,9 +1358,15 @@ public function enterThatPirateLord():void
 	if(pc.hasKnot()) output(", right until you ram your knot in, making sure no more of your jizz will escape. Maybe you can really give Astra a little sister...");
 	else output(", staining her thighs and pooling under Amara’s ass.");
 
+	// Potential to put a load in Amara, currently unimplemented.
+	// amara.loadInCunt(pc, 1);
+	pc.orgasm();
+
 	output("\n\nShade howls with laugher, watching her lover squirm under you, soaked in her cum and filling with yours. <i>“Atta girl! Take it like you deserve. Fuck, that was hot.”</i> A moist hand slaps your ass, and your lover takes a seat beside you, grinning down at her partner. <i>“I’ve never seen you cum so fast, Amy. What happened to my big ol’ fuckbeast, huh?”</i>");
 
 	output("\n\nAmara’s eyes narrow, and she says something into her gag. Shade just snickers and runs her hand from your flanks up Amara’s belly, tweaking a tit before finally cupping her chin. Finally, she reaches down and unbuckles the ball gag, pulling it free... and pulling a six-inch spear of latex out of Amara’s throat attached to the inside of it.");
+
+	processTime(15);
 
 	clearMenu();
 	addButton(0, "Next", finishWithThePirateLord);
@@ -1418,9 +1438,15 @@ public function sailWithShade():void
 	else output(" thrusting so deep into your [pc.vagOrAss] that you nearly squeal. Orgasm comes crashing down on you a few moments later, nearly dislodging you from Amara’s face amidst a stream of giggling curses and climactic moans.");
 	output(" Shade holds you tight the whole way through, smiling down at you until you and Amara have both spent your loads, leaving each other nice and sticky.");
 
+	// Potential to put a load from Amara in Shade, currently unimplemented.
+	// shade.loadInCunt(ppAmara, 1);
+	pc.orgasm();
+
 	output("\n\n<i>“Mmm, that’s good,”</i> Shade purrs, grinding herself down on Amara’s knot. <i>“Feels just as thick and hard as the first night we met... heh. Sorry, kiddo, you definitely don’t want to hear two old women talking dirty.”</i>");
 
 	output("\n\nShe laughs and peels you out of her cleavage. You’re given a kiss and rolled off of Amara, landing beside the lovers as Shade hefts herself off Amara’s knot, leaving her silver-fringed pussy agape and dripping. With an exaggerated stretch, the kitty-MILF leans down, pressing her tits into her lover’s and slipping a thumb into the open ring-gag. <i>“Let’s get this off you, babe.”</i>");
+
+	processTime(15);
 
 	clearMenu();
 	addButton(0, "Next", finishWithThePirateLord);
@@ -1460,6 +1486,8 @@ public function finishWithThePirateLord():void
 	output("\n\nYeah, you guess it’s all cool now. For Shade’s sake, if not for the chance of getting another shot at Amara’s so-called perfect body.");
 
 	output("\n\n<i>“Great!”</i> Shade smiles, clapping her hands. <i>“Now both of you get dressed and fuck off. Astra’s gonna be home any minute and I need a shower.”</i>");
+
+	processTime(5);
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
