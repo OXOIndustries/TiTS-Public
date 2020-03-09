@@ -17,6 +17,15 @@ SHADE_IS_YER_SIS : Tracks non-incestuous sister relationship.
 	0 - Shade's sister mode is ambiguous.
 	1 - Shade is definitely in sister mode.
 	2 - Shade's sister mode had been acknowledged, but ignored anyway for mutual incest.
+SHADES_BOUNTY
+	0/undefined - She hasn't caught a bounty (yet)
+	1 - She has a bounty tied up
+	2 - PC saw her bounty
+SHADE_AMARA_PEACE
+	0/undefined - Hasn't happened
+	1 - PC refused peace offer
+	2 - PC accepted peace offer
+	3 - PC punished Amara and made peace the right way
 */
 
 public function shadeBustDisplay(nude:Boolean = false):String
@@ -63,6 +72,8 @@ public function shadeIsActive():Boolean
 public function shadeIsHome():Boolean
 {
 	if(hours < 10 || hours >= 20) return true;
+	// She wouldn't leave her house with a bounty tied up
+	if(flags["SHADES_BOUNTY"] == 1) return true;
 	return false;
 }
 public function astraIsHome():Boolean
@@ -683,7 +694,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 			response = "lover sibling decision";
 			tooltip = "This is Shade’s house. Time to make a decision about where you want the pair of you to go.";
 		}
-		else if(MailManager.isEntryViewed("shade_bounty_work")) // && !EVENT_HAPPENED
+		else if(MailManager.isEntryViewed("shade_bounty_work") && flags["SHADE_AMARA_PEACE"] == undefined)
 		{
 			response = "bounty";
 			tooltip = "This is Shade’s house. Time to assist your lover with that bounty.";
@@ -1109,7 +1120,11 @@ public function getMailBountyWork():void
 	// Shade must be lover, must have fought Amara KQ2_FOUGHT_AMARA is set????, must have done other Shade scenes
 	if(!shadeIsLover() || flags["SHADE_ON_UVETO"] < 3) return;
 
-	if(!MailManager.isEntryUnlocked("shade_bounty_work")) goMailGet("shade_bounty_work");
+	if(!MailManager.isEntryUnlocked("shade_bounty_work"))
+	{
+		goMailGet("shade_bounty_work");
+		flags["SHADES_BOUNTY"] = 1;
+	}
 }
 
 public function createBountyEmailShade():String
@@ -1149,6 +1164,8 @@ public function helpShadeClaimThatBounty():void
 	output("\n\nShe's wearing nothing but a lacy black bra with cups that part around her nipples, and a tight pair of panties that hug an impressive bulge of doggy knot and plump fleshy balls.");
 
 	output("\n\nIt's Amara, the pirate lord.");
+
+	flags["SHADES_BOUNTY"] = 2;
 
 	processTime(5);
 
@@ -1227,6 +1244,8 @@ public function makePeaceWithThePirateLord():void
 
 	output("\n\nAnd that’s your cue to leave, looks like. You give Shade a parting kiss on the cheek before slipping out of the room, leaving your lover and hers to their own devices. At least now you won’t have to worry about Amara’s pirates coming after you - though the rest of the Black Void may yet be another question.");
 
+	flags["SHADE_AMARA_PEACE"] = 2;
+
 	processTime(5);
 
 	clearMenu();
@@ -1241,6 +1260,8 @@ public function noWayPirateLord():void
 	output("You shake your head vigorously and step away from Shade and Amara, saying you aren’t going to be letting pirate scum off that easy. Certainly not in exchange for kinky sex.");
 
 	output("\n\nShade sighs long and hard, rubbing her face with her hands. You decide to slip away while you can, before Shade can throw a fit over the answer. She’s going to have to find some way to make this work, not you - she’s the one who decided it would be a good idea to have a kid with a pirate lord.");
+
+	flags["SHADE_AMARA_PEACE"] = 1;
 
 	processTime(1);
 
@@ -1486,6 +1507,8 @@ public function finishWithThePirateLord():void
 	output("\n\nYeah, you guess it’s all cool now. For Shade’s sake, if not for the chance of getting another shot at Amara’s so-called perfect body.");
 
 	output("\n\n<i>“Great!”</i> Shade smiles, clapping her hands. <i>“Now both of you get dressed and fuck off. Astra’s gonna be home any minute and I need a shower.”</i>");
+
+	flags["SHADE_AMARA_PEACE"] = 3;
 
 	processTime(5);
 
