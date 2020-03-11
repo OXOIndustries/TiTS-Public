@@ -324,9 +324,13 @@ package editor.Lang.Interpret {
 
             if (typeof resultValue === 'number') {
                 // Evaluate
-                if (results.value.length > 0 && results.value[resultValue]) {
+                if (results.value.length > resultValue) {
                     returnValue = results.value[resultValue].value;
                     returnRange = results.value[resultValue].range;
+                }
+                else {
+                    returnValue = '';
+                    returnRange = new TextRange(node.range.end, node.range.end);
                 }
             }
             else if (typeof resultValue === 'boolean') {
