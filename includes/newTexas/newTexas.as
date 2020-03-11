@@ -48,7 +48,15 @@ public function customsAndCheckInOnNewTexas():Boolean
 	
 	clearOutput();
 	author("Savin");
-	showBust("OGRAM","AMMA");
+	if(flags["NEW_TEXAN_CUSTOMS_MET"] == undefined)
+	{
+		// Don't show Amma on first arrival as she is "hiding"
+		showBust("OGRAM");
+	}
+	else
+	{
+		showBust("OGRAM","AMMA");
+	}
 	author("Savin");
 	output("The Customs and Visitor Check-in office dominates the only passage between the spaceport and the ranch proper, ensuring anybody coming or going gets a proper screening. Two desks are set up, facing each other across the thoroughfare: one is labeled <i>“Customs and Weapons Check,”</i> the other, <i>“Visitor Check-in.”</i> Very straightforward. ");
 	//If First time going through:

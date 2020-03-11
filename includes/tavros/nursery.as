@@ -2505,7 +2505,8 @@ public function pregAverageLoadSizes():void
 
 public function nurseryMilkingRoomFunc():Boolean
 {
-	if(flags["MET_ZEPHYR"] != undefined)
+	// Only show the option after having had kids with Zephyr and she actually comes to the nursery
+	if(flags["ZEPHYR_KIDS_DAYCOUNTER"] != undefined)
 	{
 		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn’t at the nursery to lend a hand.");
 		else if (!pc.isLactating()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need to be lactating to milk yourself!");
