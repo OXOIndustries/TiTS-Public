@@ -143,7 +143,7 @@ package editor.Game.Info {
         private function nameToIndexInGroup(key: String, group: String, args: Array): String {
             for (var idx: int = 0; idx < args.length; idx++) {
                 if (GLOBAL[group].indexOf(nameToIndex(key, args[idx])) === -1)
-                    return '"' + args[idx] + '" is not in ' + key;
+                    return 'cannot accept "' + args[idx] + '" because it does not exist in ' + key;
             }
             return null;
         }
