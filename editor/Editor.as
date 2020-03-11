@@ -36,7 +36,7 @@ package editor {
             tits.userInterface.resetPCStats();
             tits.shipDb.NewGame();
 
-            editorUI = new EditorUI(new Evaluator(new TiTSWrapper(tits), new TiTSInfo(tits), new TiTSCodeMap(tits)));
+            editorUI = new EditorUI(new Evaluator(new TiTSWrapper(tits), new TiTSInfo(tits), new TiTSCodeMap(tits), tits));
             editorUI.x = 0;
             editorUI.y = 0;
             editorUI.nsWidth = stage.stageWidth;
