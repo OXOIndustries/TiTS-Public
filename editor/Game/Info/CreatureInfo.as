@@ -134,8 +134,8 @@ package editor.Game.Info {
         // Validators
         private function nameInGroup(group: String, args: Array): String {
             for (var idx: int = 0; idx < args.length; idx++) {
-                if (GLOBAL[group].indexOf(args[idx]) === -1)
-                    return '"' + args[idx] + '" is not in ' + group;
+                if (nameToIndex(group, args[idx]) === -1)
+                    return 'cannot accept "' + args[idx] + '" because it does not exist in ' + group;
             }
             return null;
         }
