@@ -25,7 +25,7 @@ package editor.Display.Panes {
             panes.push(new CodePane(evaluator));
             panes.push(new InfoPane(evaluator));
             panes.push(new DebugPane(evaluator));
-            panes.push(new SettingsPane());
+            panes.push(new SettingsPane(evaluator));
 
             for each (var pane: * in panes) {
                 paneContainer.addChild(pane);

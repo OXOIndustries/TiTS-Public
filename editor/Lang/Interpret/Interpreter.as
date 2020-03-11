@@ -121,19 +121,19 @@ package editor.Lang.Interpret {
          * @return 'Product.value = String'
          */
         private function evalConcatNode(node: ConcatNode): Product {
-            var products: * = node.children.map(this.processChildren);
-
-            // Squashes ranges
             var ranges: Array = [];
-            for each (var child: * in products)
-                if (child.range is Array)
-                    for each (var childRange: * in child.range)
+            var valueStr: String = '';
+            var product: *;
+            for each (var child: * in node.children) {
+                product = this.processNode(child);
+
+                // Squashes ranges
+                if (product.range is Array)
+                    for each (var childRange: * in product.range)
                         ranges.push(childRange);
                 else
-                    ranges.push(child.range);
+                    ranges.push(product.range);
 
-            var valueStr: String = '';
-            for each (var product: * in products) {
                 valueStr += product.value;
             }
 
@@ -147,7 +147,6 @@ package editor.Lang.Interpret {
          * @return 'Product.value = {} or { value: *, parent: Object, caps: Boolean, info: FunctionInfo }'
          */
         private function evalRetrieveNode(node: RetrieveNode): Product {
-            var values: Array = node.children.map(this.processChildren);
             var obj: * = this.globals;
             var infoObj: * = this.globalInfo;
             var name: String = '';
@@ -157,10 +156,10 @@ package editor.Lang.Interpret {
             var caps: Boolean = false;
             var lowerCaseIdentity: String;
 
-            for (var idx: int = 0; idx < values.length; idx++) {
-                identity = values[idx].value;
+            for (var idx: int = 0; idx < node.children.length; idx++) {
+                identity = this.processNode(node.children[idx]).value;
                 // Determine if capitalization is needed
-                if (idx === values.length - 1) {
+                if (idx === node.children.length - 1) {
                     lowerCaseIdentity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
                     if (obj != null && !(identity in obj) && lowerCaseIdentity in obj) {
                         caps = true;

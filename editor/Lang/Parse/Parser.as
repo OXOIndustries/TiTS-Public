@@ -92,21 +92,19 @@ package editor.Lang.Parse {
         private function text(): Node {
             var start: TextPosition = this.createStartPostion();
             var subText: String = '';
-            var type: int = this.lexer.peek();
-            infiniteLoop: while (true) {
-                switch (type) {
-                    case TokenType.EOS:
-                    case TokenType.LeftBracket:
-                    case TokenType.RightBracket:
-                        break infiniteLoop;
-
-                    case TokenType.Escape:
-                        type = this.lexer.advance();
-
-                    default:
-                        subText += this.lexer.getText();
-                        type = this.lexer.advance();
-                        break;
+            var token: int = this.lexer.peek();
+            while (
+                token !== TokenType.EOS && 
+                token !== TokenType.LeftBracket && 
+                token !== TokenType.RightBracket
+            ) {
+                if (token === TokenType.Escape) {
+                    subText += this.lexer.getText().substring(1);
+                    token = this.lexer.advance();
+                }
+                else {
+                    subText += this.lexer.getText();
+                    token = this.lexer.advance();
                 }
             }
 
@@ -130,8 +128,6 @@ package editor.Lang.Parse {
 
             var codeNode: Node = this.eval();
 
-            this.whitespace();
-
             // don't advance token stream on error
             if (this.lexer.peek() !== TokenType.RightBracket) {
                 this.createError('Missing "]"', new TextRange(start, this.createStartPostion()));
@@ -152,7 +148,9 @@ package editor.Lang.Parse {
             this.whitespace();
 
             var identityNode: Node = this.retrieve();
-            if (identityNode === null) return null;
+            if (identityNode === null) {
+                return null;
+            }
 
             var argNodes: Node = this.args();
 
@@ -180,40 +178,38 @@ package editor.Lang.Parse {
         private function retrieve(): Node {
             this.whitespace();
 
-            if (this.lexer.peek() !== TokenType.Text) {
-                this.createError('Missing Identifier');
+            var token: int = this.lexer.peek();
+
+            if (token !== TokenType.Text) {
+                this.createError('Missing Identity');
                 return null;
             }
 
             // Retrieve node to get value from global
-            var rootNode: Node = new RetrieveNode(
-                this.createRange(),
-                [new IdentityNode(this.createRange(), this.lexer.getText())]
-            );
+            const arr: Array = [new IdentityNode(this.createRange(), this.lexer.getText())];
 
-            this.lexer.advance();
+            token = this.lexer.advance();
 
             var dotRange: TextRange = this.createRange();
-            while (this.lexer.peek() === TokenType.Dot) {
-                this.lexer.advance();
+            while (token === TokenType.Dot) {
+                token = this.lexer.advance();
 
-                if (this.lexer.peek() !== TokenType.Text) {
-                    this.createError('Missing Identifier', dotRange);
+                if (token !== TokenType.Text) {
+                    this.createError('Missing Identity', dotRange);
                     return null;
                 }
 
-                rootNode.children.push(
-                    new IdentityNode(this.createRange(), this.lexer.getText())
-                );
+                arr.push(new IdentityNode(this.createRange(), this.lexer.getText()));
 
-                this.lexer.advance();
+                token = this.lexer.advance();
 
                 dotRange = this.createRange();
-
-                rootNode.range.end = rootNode.children[rootNode.children.length - 1].range.end;
             }
 
-            return rootNode;
+            return new RetrieveNode(
+                new TextRange(arr[0].range.start, arr[arr.length - 1].range.end),
+                arr
+            );
         }
 
         /**
@@ -221,14 +217,13 @@ package editor.Lang.Parse {
          * @return ArgsNode
          */
         private function args(): Node {
-            var arr: Array = [];
-            const start: TextPosition = this.createStartPostion();
+            const arr: Array = [];
 
             // Add Value nodes to Args node
             var valueNode: Node = this.getValue();
             if (valueNode) arr.push(valueNode);
             
-            while (this.lexer.peek() == TokenType.Space) {
+            while (this.lexer.peek() === TokenType.Space) {
                 this.lexer.advance();
 
                 valueNode = this.code();
@@ -238,11 +233,10 @@ package editor.Lang.Parse {
                 arr.push(valueNode);
             }
 
-            var end: TextPosition = this.createStartPostion();
             if (arr.length > 0)
-                end = arr[arr.length - 1].range.end;
-
-            return new ArgsNode(new TextRange(start, end), arr);
+                return new ArgsNode(new TextRange(arr[0].range.start, arr[arr.length - 1].range.end), arr);
+            else
+                return new ArgsNode(this.createRange(), arr);
         }
 
         /**
@@ -252,18 +246,18 @@ package editor.Lang.Parse {
         private function results(): Node {
             // Indentation
             var indent: int = 0;
-            while (this.lexer.peek() === TokenType.Newline) {
+            var token: int = this.lexer.peek();
+            while (token === TokenType.Newline) {
                 // In case of multiple newlines before pipe
                 indent = 0;
-                this.lexer.advance();
-                while (this.lexer.peek() === TokenType.Space) {
+                token = this.lexer.advance();
+                while (token === TokenType.Space) {
                     indent += this.lexer.getText().length;
-                    this.lexer.advance();
+                    token = this.lexer.advance();
                 }
             }
 
-            var arr: Array = [];
-            const start: TextPosition = this.createStartPostion();
+            const arr: Array = [];
 
             // Consume Pipe then ResultConcat
             var node: Node;
@@ -280,11 +274,10 @@ package editor.Lang.Parse {
                 arr.push(node);
             }
 
-            var end: TextPosition = this.createStartPostion();
             if (arr.length > 0)
-                end = arr[arr.length - 1].range.end;
-
-            return new ResultsNode(new TextRange(start, end), arr);
+                return new ResultsNode(new TextRange(arr[0].range.start, arr[arr.length - 1].range.end), arr);
+            else
+                return new ResultsNode(this.createRange(), arr);
         }
 
         /**
@@ -324,10 +317,10 @@ package editor.Lang.Parse {
             var start: TextPosition = this.createStartPostion();
             var subText: String = '';
             var newlines: String = '';
-            var type: int = this.lexer.peek();
+            var token: int = this.lexer.peek();
 
             infiniteLoop: while (true) {
-                switch (type) {
+                switch (token) {
                     case TokenType.LeftBracket:
                         // whitespace before [
                         subText += newlines;
@@ -339,12 +332,12 @@ package editor.Lang.Parse {
 
                     case TokenType.Newline:
                         newlines += this.lexer.getText();
-                        type = this.lexer.advance();
+                        token = this.lexer.advance();
 
                         var indentText: String = '';
                         while (this.lexer.peek() === TokenType.Space) {
                             indentText += this.lexer.getText();
-                            type = this.lexer.advance();
+                            token = this.lexer.advance();
                         }
 
                         if (indentText.length >= indent)
@@ -352,12 +345,15 @@ package editor.Lang.Parse {
                         break;
 
                     case TokenType.Escape:
-                        type = this.lexer.advance();
+                        subText += newlines + this.lexer.getText().substring(1);
+                        newlines = '';
+                        token = this.lexer.advance();
+                        break;
 
                     default:
                         subText += newlines + this.lexer.getText();
                         newlines = '';
-                        type = this.lexer.advance();
+                        token = this.lexer.advance();
                         break;
                 }
             }
@@ -375,9 +371,9 @@ package editor.Lang.Parse {
          */
         private function whitespace(): Boolean {
             var counter: int = 0;
-            var type: int = this.lexer.peek();
-            while (type === TokenType.Space || type === TokenType.Newline) {
-                type = this.lexer.advance();
+            var token: int = this.lexer.peek();
+            while (token === TokenType.Space || token === TokenType.Newline) {
+                token = this.lexer.advance();
                 ++counter;
             }
             return counter > 0;
@@ -391,33 +387,35 @@ package editor.Lang.Parse {
             var subStr: String = "";
             const start: TextPosition = this.createStartPostion();
 
-            var type: int = this.lexer.peek();
+            var token: int = this.lexer.peek();
             var groupStart: TextPosition;
             infiniteLoop: while (true) {
-                switch (type) {
+                switch (token) {
                     case TokenType.Space:
                         if (groupStart == null)
                             break infiniteLoop;
                     case TokenType.Escape:
-                        type = this.lexer.advance();
+                        subStr += this.lexer.getText().substring(1);
+                        token = this.lexer.advance();
+                        break;
                     case TokenType.Text:
                     case TokenType.Dot:
                         subStr += this.lexer.getText();
-                        type = this.lexer.advance();
+                        token = this.lexer.advance();
                         break;
                     case TokenType.LeftParen:
                         if (groupStart == null)
                             groupStart = this.createStartPostion();
                         else
                             subStr += this.lexer.getText();
-                        type = this.lexer.advance();
+                        token = this.lexer.advance();
                         break;
                     case TokenType.RightParen:
                         if (groupStart != null)
                             groupStart = null;
                         else
                             subStr += this.lexer.getText();
-                        type = this.lexer.advance();
+                        token = this.lexer.advance();
                         break;
                     default:
                         break infiniteLoop;

@@ -10,8 +10,10 @@ package editor.Lang.Lex {
         private var lastCol: int = 0;
         private var token: int; // or null
         private var _text: String;
+        private var mode: Vector.<int> = new Vector.<int>();
         public function Lexer(text: String) {
             this._text = text;
+            this.mode.push(0);
         }
 
         public function get offsetStart(): int { return this.start; };
@@ -95,6 +97,44 @@ package editor.Lang.Lex {
             if (this.pos >= this._text.length)
                 return TokenType.EOS;
 
+            switch (this.mode[this.mode.length - 1]) {
+                case 0: return this.textMode();
+                case 1: return this.codeMode();
+                case 2: return this.resultsMode();
+                default: throw new Error('Invalid Mode');
+            }
+        }
+
+        private function textMode(): int {
+            switch (this._text.charAt(this.pos)) {
+                case TokenSymbol.LeftBracket: {
+                    this.pos++;
+                    this.mode.push(1);
+                    return TokenType.LeftBracket;
+                }
+                case TokenSymbol.Backslash: {
+                    this.pos += 2;
+                    return TokenType.Escape;
+                }
+                default: {
+                    while (this.pos < this._text.length) {
+                        this.eatWhileNot(
+                            TokenSymbol.Newline,
+                            TokenSymbol.Backslash, 
+                            TokenSymbol.LeftBracket
+                        );
+
+                        if (this._text.charAt(this.pos) !== TokenSymbol.Newline) break;
+
+                        this.lineNum++;
+                        this.offset = ++this.pos;
+                    }
+                    return TokenType.Text;
+                }
+            }
+        }
+
+        private function codeMode(): int {
             switch (this._text.charAt(this.pos)) {
                 case TokenSymbol.Tab:
                 case TokenSymbol.Space: {
@@ -108,10 +148,12 @@ package editor.Lang.Lex {
                 }
                 case TokenSymbol.LeftBracket: {
                     this.pos++;
+                    this.mode.push(1);
                     return TokenType.LeftBracket;
                 }
                 case TokenSymbol.RightBracket: {
                     this.pos++;
+                    this.mode.pop();
                     return TokenType.RightBracket;
                 }
                 case TokenSymbol.Dot: {
@@ -120,6 +162,7 @@ package editor.Lang.Lex {
                 }
                 case TokenSymbol.Pipe: {
                     this.pos++;
+                    this.mode.push(2);
                     return TokenType.Pipe;
                 }
                 case TokenSymbol.LeftParen: {
@@ -131,7 +174,7 @@ package editor.Lang.Lex {
                     return TokenType.RightParen;
                 }
                 case TokenSymbol.Backslash: {
-                    this.pos++;
+                    this.pos += 2;
                     return TokenType.Escape;
                 }
                 default: {
@@ -145,6 +188,53 @@ package editor.Lang.Lex {
                         TokenSymbol.Pipe,
                         TokenSymbol.LeftParen,
                         TokenSymbol.RightParen,
+                        TokenSymbol.Backslash
+                    );
+                    return TokenType.Text;
+                }
+            }
+        }
+
+        private function resultsMode(): int {
+            switch (this._text.charAt(this.pos)) {
+                case TokenSymbol.Tab:
+                case TokenSymbol.Space: {
+                    this.eatWhile(TokenSymbol.Space, TokenSymbol.Tab);
+                    return TokenType.Space;
+                }
+                case TokenSymbol.Newline: {
+                    this.lineNum++;
+                    this.offset = ++this.pos;
+                    return TokenType.Newline;
+                }
+                case TokenSymbol.LeftBracket: {
+                    this.pos++;
+                    this.mode.push(1);
+                    return TokenType.LeftBracket;
+                }
+                case TokenSymbol.RightBracket: {
+                    this.pos++;
+                    if (this.mode[this.mode.length - 1] === 2)
+                        this.mode.pop();
+                    this.mode.pop();
+                    return TokenType.RightBracket;
+                }
+                case TokenSymbol.Pipe: {
+                    this.pos++;
+                    return TokenType.Pipe;
+                }
+                case TokenSymbol.Backslash: {
+                    this.pos += 2;
+                    return TokenType.Escape;
+                }
+                default: {
+                    this.eatWhileNot(
+                        TokenSymbol.Tab,
+                        TokenSymbol.Space,
+                        TokenSymbol.Newline,
+                        TokenSymbol.LeftBracket,
+                        TokenSymbol.RightBracket,
+                        TokenSymbol.Pipe,
                         TokenSymbol.Backslash
                     );
                     return TokenType.Text;
