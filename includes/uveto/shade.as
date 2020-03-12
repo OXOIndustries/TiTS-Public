@@ -660,16 +660,12 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	{
 		var currDate:Date = new Date();
 		
-		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas())
+		// Only if event hasn't happened (this year) yet
+		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && flags["SHADE_XMAS"] != currDate.fullYear)
 		{
 			/* EXCEPTION FOR HOLIDAYS! */
-			
-			//Never done before or first time this year!
-			if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
-			{
-				response = "ho ho ho";
-				tooltip = "This is Shade’s house. Time for some holiday cheer!";
-			}
+			response = "ho ho ho";
+			tooltip = "This is Shade’s house. Time for some holiday cheer!";
 		}
 		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;
