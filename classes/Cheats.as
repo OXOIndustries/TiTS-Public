@@ -217,6 +217,7 @@
 			kGAMECLASS.flags["BIZZY_CONSTRUCTION_COMPLETE"] = undefined;
 			kGAMECLASS.flags["BIZZY_MAIL_PAYMENT_DAY"] = undefined;
 			kGAMECLASS.flags["BIZZY_SHOW_PLAN"] = undefined;
+			kGAMECLASS.flags["BIZZY_SLAVER_CHOICE"] = undefined;
 			
 			//Misc. flags
 			kGAMECLASS.flags["BIZZY_CAN_TALK_MOTHER"] = undefined;
