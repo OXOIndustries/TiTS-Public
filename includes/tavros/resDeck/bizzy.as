@@ -3732,37 +3732,42 @@ public function bizzyFeatureSelection():void
 	addButton(14, "Later", bizzyStage5Menu);
 }
 
-public function bizzyMitziFeatureSelection():void
+public function bizzyMitziFeatureSelection(showIntro:Boolean = true):void
 {
-	clearOutput();
+
 	showBizzyBust();
 	clearMenu();
 
-	if (flags["BIZZY_MITZI_CUNTNOSIS"] == undefined && flags["BIZZY_MITZI_DOUBLE_DICK"] == undefined)
+	if (showIntro)
 	{
-		output("You patch across to your ship, summon Mitzi, tell her where to go. You worry slightly about letting the squat bubblehead out on her own, but since you hinted heavily at why you wanted her, you needn’t have. She’s like a sex-guided missile. Three minutes later there’s an eager hammering on the door.");
+		clearOutput();
+		
+		if (flags["BIZZY_MITZI_CUNTNOSIS"] == undefined && flags["BIZZY_MITZI_DOUBLE_DICK"] == undefined)
+		{
+			output("You patch across to your ship, summon Mitzi, tell her where to go. You worry slightly about letting the squat bubblehead out on her own, but since you hinted heavily at why you wanted her, you needn’t have. She’s like a sex-guided missile. Three minutes later there’s an eager hammering on the door.");
 
-		output("\n\n<i>“Oohhhh, I know yoouuu!”</i> Mitzi cries, heart eyes lighting up when she trots into [pornStudioName]’s boudoir. <i>“I’ve watched your shows! I’ve had some <i>amazing</i> orgasms watching you get fucked. It’s, like, wow, what a honor!”</i>");
+			output("\n\n<i>“Oohhhh, I know yoouuu!”</i> Mitzi cries, heart eyes lighting up when she trots into [pornStudioName]’s boudoir. <i>“I’ve watched your shows! I’ve had some <i>amazing</i> orgasms watching you get fucked. It’s, like, wow, what a honor!”</i>");
 
-		output("\n\nShe wiggles straight over to Bizzy in her [mitzi.armor] and throws her arms around her legs, squeezing hard.");
+			output("\n\nShe wiggles straight over to Bizzy in her [mitzi.armor] and throws her arms around her legs, squeezing hard.");
 
-		output("\n\n<i>“Wow, ok,”</i> the kaithrit laughs, embarrassed. <i>“I never thought this would be how I met my fans.”</i>");
+			output("\n\n<i>“Wow, ok,”</i> the kaithrit laughs, embarrassed. <i>“I never thought this would be how I met my fans.”</i>");
 
-		output("\n\n<i>“And we’re gonna do a sexy scene together?”</i> The gabilani is never anything short of enthusiastic, but she’s actually bouncing up and down right now, fists pushed into her cheeks. Her unnaturally buoyant tits wobble mesmerically. <i>“This is soooooo exciting! I’m gonna be famous!”</i>");
+			output("\n\n<i>“And we’re gonna do a sexy scene together?”</i> The gabilani is never anything short of enthusiastic, but she’s actually bouncing up and down right now, fists pushed into her cheeks. Her unnaturally buoyant tits wobble mesmerically. <i>“This is soooooo exciting! I’m gonna be famous!”</i>");
 
-		output("\n\nBizzy has disentangled herself and is weighing her biggest (and possibly smallest) fan up, tapping her chin thoughtfully.");
+			output("\n\nBizzy has disentangled herself and is weighing her biggest (and possibly smallest) fan up, tapping her chin thoughtfully.");
 
-		output("\n\n<i>“She’s custom made for camwhoring, isn’t she?”</i> she says with a slow grin. <i>“Mmm... I can think of lots of things to do with an eager, squishy little snack like this.");
-		if (bizzySlaveCollar() == true && flags["MITZI_BRANDED"] != true) output(" Speaking of which... <i>“ the kaithrit nods down at Mitzi’s wide, plump ass with a mischievous smirk. <i>“ ...want her to be branded, like me? The mothy guys said to just send any other performers we pick up down to them to get it done. Wouldn’t take half an hour.”</i>");
-	}
+			output("\n\n<i>“She’s custom made for camwhoring, isn’t she?”</i> she says with a slow grin. <i>“Mmm... I can think of lots of things to do with an eager, squishy little snack like this.");
+			if (bizzySlaveCollar() == true && flags["MITZI_BRANDED"] != true) output(" Speaking of which... <i>“ the kaithrit nods down at Mitzi’s wide, plump ass with a mischievous smirk. <i>“ ...want her to be branded, like me? The mothy guys said to just send any other performers we pick up down to them to get it done. Wouldn’t take half an hour.”</i>");
+		}
 
-	else
-	{
-		output("You patch across to your ship, summon Mitzi, tell her it’s time for her to be in another [pornStudioName] special. She’s over to the apartment far faster than you’d credit a creature less than 4 feet tall with two balloons tied to her front.");
+		else
+		{
+			output("You patch across to your ship, summon Mitzi, tell her it’s time for her to be in another [pornStudioName] special. She’s over to the apartment far faster than you’d credit a creature less than 4 feet tall with two balloons tied to her front.");
 
-		output("\n\n<i>“My favorite streamer!”</i> she cheers once she’s inside, running straight over to Bizzy in her [mitzi.armor] to hug her. The kaithrit bends down to return the embrace, looking slightly embarrassed. Squish.");
+			output("\n\n<i>“My favorite streamer!”</i> she cheers once she’s inside, running straight over to Bizzy in her [mitzi.armor] to hug her. The kaithrit bends down to return the embrace, looking slightly embarrassed. Squish.");
 
-		output("\n\n<i>“What are we gonna do today then, [pc.Master]?”</i> asks Mitzi, looking over her shoulder at you. Her grip on Bizzy starts to become a grope. <i>“Something really filthy, I hope... </i>”");
+			output("\n\n<i>“What are we gonna do today then, [pc.Master]?”</i> asks Mitzi, looking over her shoulder at you. Her grip on Bizzy starts to become a grope. <i>“Something really filthy, I hope... </i>”");
+		}
 	}
 
 	addButton(0, "Cuntnosis", bizzyMitziFeatureCuntnosis, undefined, "Cuntnosis", "Have Mitzi hypnotize Bizzy into being her drooling pussy slave.");
@@ -3784,7 +3789,7 @@ public function bizzyBrandMitzi():void
 
 	flags["MITZI_BRANDED"] = true;
 	processTime(30);
-	addButton(0, "Next", bizzyMitziFeatureSelection);
+	addButton(0, "Next", bizzyMitziFeatureSelection, false);
 }
 
 public function bizzyMitziFeatureCuntnosis():void
@@ -4146,46 +4151,50 @@ public function bizzyMitziFeatureDoubleDick4():void
 	bizzyStage5Menu();
 }
 
-public function bizzySeraFeatureSelection():void
+public function bizzySeraFeatureSelection(showIntro:Boolean = true):void
 {
-	clearOutput();
 	showBizzyBust();
 	clearMenu();
 
 	var validDoubleAnalDick:int = -1;
 
-	if (flags["BIZZY_SERA_BDSM"] == undefined && flags["BIZZY_SERA_DOUBLE_ANAL"] == undefined)
+	if (showIntro)
 	{
-		output("You patch across to your ship, summon Sera, tell her where to go. Fortunately you carry around her collar control around on Tavros, just for eventualities like this.");
+		clearOutput();
+			
+		if (flags["BIZZY_SERA_BDSM"] == undefined && flags["BIZZY_SERA_DOUBLE_ANAL"] == undefined)
+		{
+			output("You patch across to your ship, summon Sera, tell her where to go. Fortunately you carry around her collar control around on Tavros, just for eventualities like this.");
 
-		output("\n\nShe takes her time. You’d guess partially to drink in her old haunts again, partially to wind you up. About twenty minutes later, there’s a rattle of nails on the door.");
+			output("\n\nShe takes her time. You’d guess partially to drink in her old haunts again, partially to wind you up. About twenty minutes later, there’s a rattle of nails on the door.");
 
-		output("\n\n<i>“So, this is your pet porn studio, is it?”</i> The statuesque demon-morph clacks through the lounge and then into the boudoir, tail swishing, a sneer brushing her mouth as her reptilian eyes flick here and there. <i>“I can see the delivery boy ploughing the bored housewife right now. Did you really intend to build something so mundane? Why not a dungeon?”</i>");
+			output("\n\n<i>“So, this is your pet porn studio, is it?”</i> The statuesque demon-morph clacks through the lounge and then into the boudoir, tail swishing, a sneer brushing her mouth as her reptilian eyes flick here and there. <i>“I can see the delivery boy ploughing the bored housewife right now. Did you really intend to build something so mundane? Why not a dungeon?”</i>");
 
-		output("\n\n<i>“We can do a dungeon,”</i> Bizzy says, sat on the bed. Her tone is relaxed, but her face is tense as she takes in the imposing, heavily modded human. She picks up her holo-device, clicks at it a bit, and a moment later you’re standing in a projection of a stone prison, lit with flickering torches and hung with chains. <i>“See?”</i>");
+			output("\n\n<i>“We can do a dungeon,”</i> Bizzy says, sat on the bed. Her tone is relaxed, but her face is tense as she takes in the imposing, heavily modded human. She picks up her holo-device, clicks at it a bit, and a moment later you’re standing in a projection of a stone prison, lit with flickering torches and hung with chains. <i>“See?”</i>");
 
-		output("\n\n<i>“Mmm. Holographic sh- stuff has never done much for me,”</i> Sera proclaims. She moves forward, stretches out her claws, and gently scrapes Bizzy’s throat and chin. Unresisting, the kaithrit looks soft and unfocused as she gazes into Sera’s fluorescent eyes. <i>“Love the tits you’ve put on this one, [pc.master]. Really looking forward to getting my claws into them.”</i>");
+			output("\n\n<i>“Mmm. Holographic sh- stuff has never done much for me,”</i> Sera proclaims. She moves forward, stretches out her claws, and gently scrapes Bizzy’s throat and chin. Unresisting, the kaithrit looks soft and unfocused as she gazes into Sera’s fluorescent eyes. <i>“Love the tits you’ve put on this one, [pc.master]. Really looking forward to getting my claws into them.”</i>");
 
-		output("\n\nBizzy inhales and blinks, looking the tall succubus up and down with a slightly more clinical gaze.");
+			output("\n\nBizzy inhales and blinks, looking the tall succubus up and down with a slightly more clinical gaze.");
 
-		output("\n\n<i>“She’s like an... edgier version of Kanette, isn’t she?”</i> the kaithrit says with a little smirk. <i>“I can see our audience liking that. What do you think, uh, ‘Sera’? Ready to slut it up on camera for your [pc.Master]?”</i>");
+			output("\n\n<i>“She’s like an... edgier version of Kanette, isn’t she?”</i> the kaithrit says with a little smirk. <i>“I can see our audience liking that. What do you think, uh, ‘Sera’? Ready to slut it up on camera for your [pc.Master]?”</i>");
 
-		output("\n\n<i>“Whatever this Kanette of yours can do, I can do ten times better,”</i> snaps Sera, jabbing her [sera.skinColor] breast fiercely. <i>“Bring it on, kitty slut. I will make your eyes roll right out of your skull and moan my name with the right amount of respect, any time you want!”</i>");
+			output("\n\n<i>“Whatever this Kanette of yours can do, I can do ten times better,”</i> snaps Sera, jabbing her [sera.skinColor] breast fiercely. <i>“Bring it on, kitty slut. I will make your eyes roll right out of your skull and moan my name with the right amount of respect, any time you want!”</i>");
 
-		if (bizzySlaveTat()) output("\n\n<i>“I think you want to put the brand on that one,”</i> Bizzy says to you, grin widening even more. <i>“She strikes me as someone who might forget who owns her, if it’s not written across her bum. The mothy guys said to just send any other performers we pick up down to them to get it done. Wouldn’t take half an hour.”</i>");
+			if (bizzySlaveTat()) output("\n\n<i>“I think you want to put the brand on that one,”</i> Bizzy says to you, grin widening even more. <i>“She strikes me as someone who might forget who owns her, if it’s not written across her bum. The mothy guys said to just send any other performers we pick up down to them to get it done. Wouldn’t take half an hour.”</i>");
 
-		output("\n\nYou better get a camera on these two fast; the sexual tension in this room is escalating rapidly.");
-	}
+			output("\n\nYou better get a camera on these two fast; the sexual tension in this room is escalating rapidly.");
+		}
 
-	else
-	{
-		output("You patch across to your ship, summon Sera, tell her it’s time for her to be in another [pornStudioName] special. She slinks into the apartment eventually, as if she just happened to be in the area.");
+		else
+		{
+			output("You patch across to your ship, summon Sera, tell her it’s time for her to be in another [pornStudioName] special. She slinks into the apartment eventually, as if she just happened to be in the area.");
 
-		output("\n\n<i>“This studio is dependent on me really, isn’t it?”</i> she sighs, her tail flicking at Bizzy’s ankles. <i>“Poor titty kitty is merely a conduit for me to reach my adoring fans.”</i>");
+			output("\n\n<i>“This studio is dependent on me really, isn’t it?”</i> she sighs, her tail flicking at Bizzy’s ankles. <i>“Poor titty kitty is merely a conduit for me to reach my adoring fans.”</i>");
 
-		output("\n\n<i>“It’s true. The audience really does love watching you getting your attitude fucked right out of your skull,”</i> Bizzy shoots back, tails curling upwards.");
+			output("\n\n<i>“It’s true. The audience really does love watching you getting your attitude fucked right out of your skull,”</i> Bizzy shoots back, tails curling upwards.");
 
-		output("\n\nHonestly, you should look into monetising these two’s catfights.");
+			output("\n\nHonestly, you should look into monetising these two’s catfights.");
+		}
 	}
 
 	for (var i:int = 0; i < pc.cocks.length; i++)
@@ -4216,7 +4225,7 @@ public function bizzyBrandSera():void
 	processTime(30);
 	flags["SERA_BRANDED"] = true;
 
-	addButton(0, "Next", bizzySeraFeatureSelection);
+	addButton(0, "Next", bizzySeraFeatureSelection, false);
 }
 
 public function bizzySeraFeatureBDSM():void
