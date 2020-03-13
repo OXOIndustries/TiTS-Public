@@ -3784,7 +3784,7 @@ public function bizzyBrandMitzi():void
 
 	flags["MITZI_BRANDED"] = true;
 	processTime(30);
-	bizzyMitziFeatureSelection();
+	addButton(0, "Next", bizzyMitziFeatureSelection);
 }
 
 public function bizzyMitziFeatureCuntnosis():void
@@ -4216,7 +4216,7 @@ public function bizzyBrandSera():void
 	processTime(30);
 	flags["SERA_BRANDED"] = true;
 
-	bizzySeraFeatureSelection();
+	addButton(0, "Next", bizzySeraFeatureSelection);
 }
 
 public function bizzySeraFeatureBDSM():void
