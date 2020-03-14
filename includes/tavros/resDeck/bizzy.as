@@ -4296,7 +4296,7 @@ public function bizzySeraFeatureDoubleAnal2():void
 
 	output("\n\nYou press the second button. Bizzy whines and Sera grits her teeth, arching her back and forcing Bizzy towards her, as even more vibrations begin to shake them, this time emanating through their pussies.");
 
-	output("\n\n<i>“[pc.master] is teasing us... </i>” Sera grits. Her eyes flash at the darkness beyond her feet, horns rearing. <i>“Maybe [pc.he]’s willing to come out and actually see to us, huh?”</i>");
+	output("\n\n<i>“[pc.Master] is teasing us... </i>” Sera grits. Her eyes flash at the darkness beyond her feet, horns rearing. <i>“Maybe [pc.he]’s willing to come out and actually see to us, huh?”</i>");
 
 	output("\n\nTime for your grand entrance. A spotlight clicks on over you, sat casually back on the bed, toying with the remote controls that are so sweetly tormenting your pets.");
 
@@ -4401,8 +4401,8 @@ public function bizzySeraFeatureDoubleAnal5():void
 	clearMenu();
 
 	output("You sink back onto the satin sheets and turn the muffled whirr of the vibes off at last, sweaty and triumphant, admiring your handiwork, as one of the silent, skillful drones does above your shoulder. Two thoroughly gaped assholes dripping your [pc.cumColor] seed");
-	if (pc.cumQ() > 5000) output(", two bellies rounded out with your seed,");
-	output(" two fine, sweaty, tussled camwhores looking back at you with slutty gratification writ large on their faces.");
+	if (pc.cumQ() > 5000) output(", two bellies rounded out with your seed");
+	output(", two fine, sweaty, tussled camwhores looking back at you with slutty gratification writ large on their faces.");
 
 	output("\n\n<i>“This has been a [pornStudioName] production,”</i> you inform another drone, floating before your face. <i>“Say goodbye, Bizzy.”</i>");
 
@@ -4420,7 +4420,7 @@ public function bizzySeraFeatureDoubleAnal5():void
 
 	output("\n\n<i>“You’re welcome,”</i> Sera says archly, considering the [pc.cum] still drooling copiously out of her asshole.");
 
-	output("\n\n<i>“Yeah.”</i> Bizzy flashes a mischievous little smile at her camwhore partner and then you. <i>“You’ll bring her back for more, won’t you?");
+	output("\n\n<i>“Yeah.”</i> Bizzy flashes a mischievous little smile at her camwhore partner and then you. <i>“You’ll bring her back for more, won’t you? ");
 	if(flags["BIZZY_SERA_DOUBLE_ANAL"] == undefined) output("I think my fans are really going to love seeing her getting fucked.”</i>");
 
 	else output("My fans </i>love<i> seeing the brat get her brains fucked out.”");
