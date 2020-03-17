@@ -288,7 +288,9 @@ public function chrysalisInventory():Array
 	inventory.push(new DendroGro());
 	inventory.push(new Rainbotox());
 	inventory.push(new Chocolac());
-	inventory.push(new SweetTreat()); // 9999 - Temporary
+	inventory.push(new SweetTreat());
+	inventory.push(new Dicksprout());
+	 // 9999 - Temporary
 	
 	return inventory;
 }
