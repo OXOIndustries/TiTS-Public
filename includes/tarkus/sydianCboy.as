@@ -3,7 +3,7 @@ public function showSydianCboy(nude:Boolean = false):void
 {
 	if (enemy.hasCock()) showName("SYDIAN\nHERM");
 	else showName("SYDIAN\nCBOY");
-	var bustS:String = "SYDIAN_CBOY";
+	var bustS:String = "SYDIAN";
 	if (enemy.hasCock()) bustS += "_HERM";
 	showBust(bustS + (nude ? "_NUDE":""));
 
@@ -21,14 +21,17 @@ public function encounterSydianCboy():void
 {
 	var tEnemy:SydianCboy = new SydianCboy();
 	setEnemy(tEnemy);
+	if (flags["SYD_CBOY_GREW_COCK"] == 1) enemy.cockify();
 	showSydianCboy();
-	output("\n\nYou whip around just in time to see what appears to be a male sydian barreling towards you. Far more aggressive than the others you’ve seen, his intention remains the same: subduing you by force. You’ll have to fight!");
+
+	if (!enemy.hasCock()) output("\n\nYou whip around just in time to see what appears to be a male sydian barreling towards you. Far more aggressive than the others you’ve seen, his intention remains the same: subduing you by force. You’ll have to fight!");
+	else output("\n\nYou whip around just in time to see a familiar male sydian barreling towards you. Despite what you’ve done for him, his intention remains the same: subduing you by force. You’ll have to fight!");
 
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(defeatSydianCboy);
-	CombatManager.lossScene(sydianCboyLoss);
+	CombatManager.lossScene(sydianCboyLossRouter);
 	if (enemy.hasCock()) CombatManager.displayLocation("SYDIAN\nHERM");
 	else CombatManager.displayLocation("SYDIAN\nCBOY");
 	clearMenu();
@@ -42,22 +45,26 @@ public function defeatSydianCboy():void
 	//HP Win Text
 	if (enemy.HP() <= 0)
 	{
-		output("The fury in the Sydian cuntboy’s eyes seems to fade as he collapses to his knees.");
+		output("The fury in the Sydian " + (!enemy.hasCock() ? "cuntboy’s":"maleherm’s") + " eyes seems to fade as he collapses to his knees.");
 		output("\n\n<i>“You win, offworlder, do what you wish.”</i>");
 		output("\n\nLooks like he’s too exhausted to fight back... Do you take advantage?");
 	}
 	//Lust Win Text
 	else
 	{
-		output("The Sydian cuntboy’s expression gives up on containing anything but lust as he falls to his knees - leant back and legs spread.");
+		output("The Sydian " + (!enemy.hasCock() ? "cuntboy’s":"maleherm’s") + " expression gives up on containing anything but lust as he falls to his knees - leant back and legs spread.");
 		output("\n\n<i>“You win, offworlder. Please, take me as you wish.”</i>");
 		output("\n\nLooks like he’s too turned on to think about anything but getting fucked... Do you take advantage?");
 	}
 	output("\n\n");
 	clearMenu();
-	if (pc.hasItemByClass(Throbb) || pc.hasItemByClass(Virection)) addButton(0,"Give Mods",giveCboyADickHeWantsOne,undefined,"Give Mods","He seems pretty upset... Maybe about not having a dick? You could do something about that.");
-	else addDisabledButton(0,"Give Mods","Give Mods","He seems pretty upset... Maybe about not having a dick? Nothing you can do though.")
-	if (pc.hasCock()) addButton(1,"Fuck Puss",fuckSydCboyPussy,undefined,"Fuck His Puss","Your dick, his pussy.");
+	if (enemy.hasCock()) addButton(0,"Take Cock",takeSydianHermCock,[takeSydianHermCock, enemy.cockVolume(0),1,0],"Take Cock","You gave him a dick, may as well use it.");
+	else
+	{
+		if (pc.hasItemByClass(Throbb) || pc.hasItemByClass(Virection)) addButton(0,"Give Mods",giveCboyADickHeWantsOne,undefined,"Give Mods","He seems pretty upset... Maybe about not having a dick? You could do something about that.");
+		else addDisabledButton(0,"Give Mods","Give Mods","He seems pretty upset... Maybe about not having a dick? Nothing you can do though.")
+	}
+	if (pc.hasCock()) addButton(1,"Fuck Puss",penisRouter,[fuckSydCboyPussy,enemy.vaginalCapacity(0),false,0],"Fuck His Puss","Your dick, his pussy.");
 	else addDisabledButton(1,"Fuck Puss","Fuck His Puss","You’re gonna need a penis of your own.");
 	if (pc.isNice()) addDisabledButton(2,"Spank","Spank","He seems upset, and you’re not really the type to make things worse.");
 	else (pc.isTaur()) addDisabledButton(2,"Spank","Spank","This wasn’t written for taurs.");
@@ -66,10 +73,126 @@ public function defeatSydianCboy():void
 	else addDisabledButton(3,"Talk","Talk","There’s nothing more to say.");
 	addButton(14,"Leave",leaveSydCboyBehind);
 }
+//Take Cock
+public function takeSydianHermCock(x:int):void
+{
+	clearOutput();
+	showSydianCboy(true);
+	output("You really were nice, giving him mods before... Time to use what you’ve given him.");
+
+	var looseness:Number = pc.ass.looseness();
+	if (x >= 0) looseness = pc.looseness(x);
+
+	//{Choose the modified throbb or virection scene at random}
+	//Throbb
+	if (rand(2) == 0)
+	{	
+		output("\n\nYou");
+		if (!pc.isNude()) output(" strip and");
+		output(" crouch next to the sydian, rocking back on your heels as you wrap a hand around his cock. Even this slight teasing has it hard, hot and pulsing in your grasp as you run your fingers over the head. Your pinkie traces over his cumslit, drawing a single bead of quicksilver and you grin, scooping it up and licking it up. <i>Delicious.</i> He squirms under you, an almost embarrassed sounding insectile chitter erupting from him as he takes in your");
+		if (pc.isNice()) output(" almost");
+		output(" predatory gaze.");
+		output("\n\nThe sydian has other ideas though. You know well that he is not one to tolerate easy submission. You’re just about to settle over him, lining his cock up against your [pc.vagOrAss " + x + "] when he strikes. There’s a blur of motion, and you soon find yourself winded, on your back, with over seven feet of lusty alien pinning you down. Maybe it’d bother you under normal circumstances, but you knew what you were getting into - right now, the rust monster is nothing but a rutting beast whose brain is fuelled and driven only by his cock. The thrust into your [pc.vagOrAssNoun " + x + "] is savage, animalistic, and it takes you a moment even after the pain-pleasure fades to notice that ohh, good, perfect - the sydian’s signature cilia have started to massage and stroke your sensitive inner walls and smearing them with aphrodisiacs.");
+		output("\n\nOn sheer instinct, your");
+		//goo:
+		if (pc.isGoo()) output(" [pc.leg] splits into two masses, reforming around his hips");
+		//naga:
+		if (pc.isNaga()) output(" tail wraps around his hips and abdomen");
+		//{non-goo, non-naga:
+		else output(" [pc.legs] wrap around his hips");
+		output(", holding him tight against you");
+		if (pc.hasCocks()) output(", your [pc.cocks] trapped, frotting against your needy forms");
+		output(". There’s nothing for it but to cling tight to him as he begins thrusting into you,");
+		if (looseness > 3) output(" even your ");
+		if (x >= 0) output("pussy");
+		else output("asshole");
+		output(" managing to clamp down tight, spasming as the aphrodisiac leaking tendrils lining his cock stroke and stimulate your insides.");
+		output("\n\nYou’re treated as little more than a sex toy for him, a simple object made for the sole purpose of taking his cock - and you fucking <i>love</i> it. Large, plated hands clasp your shoulders, ensuring you can’t make the slightest move against his wishes - despite the exhausted, submissive gestures from before. He’s had quite the second wind. You knew this would happen, you must have, not that you’re complaining! It’s not long before nothing matters to you other than the feeling of his cock pounding into you, cilia exploring every inch of you.");
+		if (x >= 0) pc.cuntChange(x, enemy.cockVolume(0));
+		else pc.buttChange(enemy.cockVolume(0));
+		output("\n\nOf course, you don’t neglect his pussy - you won, after all, it’s your right - plunging two [pc.fingers] into his wet, dripping snatch. You easily find his g-spot, engorged now as it takes the role of his cock’s base, pounding it rhythmically in time with his frantic thrusts");
+		//{pussy:
+		if (x >= 0) output(" against your own");
+		//ass, has cock:
+		else if (pc.hasCock()) output(" against your prostate");
+		//else:
+		else output(" into your ass");
+		output(". The sydian seems equal parts eager to thrust into your [pc.vagOrAss " + x + "] and to press against your digits, creating a ceaseless rhythm of desperate, powerful thrusts. He won’t last long, you realize. He’s fallen out of practice, still not used to the cock you gifted him with... No matter. You soon chase him to a shared orgasm,");
+		//{pussy:
+		if (x >= 0) output(" working [pc.oneClit]");
+		//ass, has cock:
+		else if (pc.hasCock()) output(" stroking [pc.oneCock]");
+		//neuter:
+		else output(" pinching and pulling at your [pc.nipples]");
+		output(" with your free hand.");
+		output("\n\nHe howls, a bestial cry of pleasure, pouring what feels like weeks worth of backed up cum into your spasming hole, treating you as nothing but an object for him to vent his frustrations and lusts into. That won’t stand, of course. The moment he’s done and his grip slackens, you roll the both of you over. He isn’t allowed any time to go soft as chemical lust fills your brain once more, riding him as hard as your");
+		if (!pc.hasPerk("Amazonian Endurance") output(" shaky, post-orgasm");
+		output(" [pc.legOrLegs] will allow for.");
+		output("\n\nFor a moment it looks like he might try and fight you, but now that his initial climax is fading, he respects your right to do as you will with him.");
+		output("\n\nYou grin. Much better.");
+		output("\n\nPulling your fingers from his spasming cunt - and laughing breathily when his tail flies up instead to stuff him full not even a moment later - you turn your attention to his antennae, teasing at their feathery tips and coating your palms in slick aphrodisiac. Your hands roam over your body");
+		if (pc.hasBreasts())
+		{
+			output(", cupping");
+			if (pc.breastTotal() > 2) output(" two of");
+			output(" your [pc.breasts]");
+			if (pc.isLactating()) output(" and squeezing, coaxing out beads, then streams of [pc.milk] as you lather");
+			else output(" and lathering");
+			output(" them up. V");
+		}
+		else output(", v");
+		output("enturing lower and lower... You skip past your crotch for now. Inner thighs, ass, lower stomach - you soak them all in chemical bliss, tugging at your ‘victim’s’ feelers whenever you need a fresh coating.");
+		output("\n\nYou wait for the perfect moment. The Sydian’s breaths come shorter, he spurts pre into you with each downward motion, your moans grow louder, your ");
+		if (x >= 0) output("pussy");
+		else output("asshole");
+		output("\ spasms on his shaft. Then, finally, finally, you");
+		//{PC has cock(s):
+		if (pc.hasCock()) output(" wrap your hand around " + (pc.hasCocks() ? "one of your cocks":"your cock") + ", coating it in aphrodisiac and jerking it firmly");
+		//vag(s) only:
+		else if (pc.hasVagina()) output(" move to " + (pc.clitTotal() > 1 ? "one of your clits":"your clit") + ", pinching and pulling at it as you coat it in aphrodisiac");
+		//else:
+		else output(" flatten your palm against your bare groin, coating it in aphrodisiac");
+		output(" and <i>cum<i>. You both do.");
+		output("\n\nSeemingly thankful, the sydian holds you for a few moments as you catch your breath before withdrawing. He watches you as you gather your things, seeming clearer now he’s climaxed twice, and nods at you before scarpering back into the wastes.");
+	}
+	//Virection
+	else
+	{
+		output("\n\nYou crouch next to the defeated sydian, casting a long look over his heaving chest and down to his cock, wrapping a hand around it.");
+		output("\n\n<i>“Nice dick.”</i> You murmur. <i>“I think I’ll take it for a ride.”</i>");
+		output("\n\n<i>“Y-yesss,”</i> he hisses, thrusting into your hand, clearly desperate to feel ");
+		if (x >= 0) output("[pc.oneVagina]");
+		else output("your [pc.ass]");
+		output(" squeezing around it. And you don’t make him wait much longer. There’s no need to lube yourself up, he’s already producing thick streams of liquid aphrodisiac");
+		if (pc.wetness(x) >= 3) output(" and you’re already plenty wet yourself");
+		output(", so you give him one final pump of your hand before straddling him, lining his tip up to the entrance of your" + (pc.wetness(x) >= 3 ? " wettened":"") + " [pc.vagOrAss " + x + "].");
+		output("\n\nHe doesn’t hold back, thrusting up into you the moment you’re in position with a drawn out gasp. You can’t help a breathy laugh, watching his expression contort in pleasure. He must not have readjusted to the feeling of sinking himself deep into a tight");
+		if (looseness > 3) output("...ish");
+		output(" hole. Neither of you see any point in hesitating, and you start up a fast pace, bouncing to the rhythm that your hammering heart sets. He grabs your hips, but you refuse to let him lead - you’ve earned your right to control - and so all he can do is cling on for dear life. Perhaps you’ll have bruises later from where he’s clutching at you. Perhaps later you’ll care. Right here, right now, all you care about is the feeling of cilia stroking your sensitive insides, the thick rod stuffing your needy [pc.vagOrAss " + x + "] full. You’re both panting, gasping for breath, but it only encourages you to work harder, move faster.");
+		if (x >= 0) pc.cuntChange(x, enemy.cockVolume(0));
+		else pc.buttChange(enemy.cockVolume(0));
+		output("\n\n<i>“Good boy,”</i> you pant, ruffling a hand through his crimson hair and laughing when one of his antennae bats at your hand. He huffs at you, perhaps feeling belittled. He stops when you clench your first and yank his head back. A thin whimper slips from his lips, but no protest joins it.");
+		output("\n\nSatisfied, you use your hold to make sure he can’t break eye contact as you grind his pelvis into dust beneath you, grinning as you see his eyes cloud with lust. All the while, his cock leaks his lust, releasing fluid into you, convincing you to ride him harder, harder, still harder. It’s a relentless, merciless cycle: the faster you move your [pc.hips], the more desperate you become, but you can’t stop. You won’t stop. In fact, it doesn’t take long until your head tilts back with a scream, your [pc.vagOrAss " + x + "] clenching and spasming around the sydian’s cock.");
+		if (pc.hasCock()) output(" Your own sprays [pc.cumGem] fluid across his chest");
+		output("\n\n...You’re not satisfied. He still hasn’t cum inside you! You’re still not <i>full</i> like you wanted to be! There’s nothing for it but to ignore your suddenly discovered exhaustion and the tremble in your legs and just keep going, and keep going you do. Well, that is until the man beneath you seems to sense your tiredness and" + (pc.PQ() >= 66 ? ", after a brief fight,":"") + " flips the two of you over, pinning you beneath him. There’s no use struggling - he even presses his lips harshly against yours to muffle any sounds of complaint as he ruts into you, seeking his own orgasm with an almost barbaric selfishness that leaves you reeling.");
+		output("\n\nYou don’t care. Fuck, you can’t <i>think</i> straight let alone care. You cling to him on reflex, legs wrapping around his waist to pull him in closer as he fucks your [pc.vagOrAss " + x + "] with every bit of strength he has until finally his head tips back with a roar of animalistic pleasure, unloading plenty of hot, thick cum into your waiting passage. It’s enough to set you off again, trembling and moaning as you orgasm alongside him.");
+		output("\n\nSeemingly thankful, the sydian holds you for a few moments as you catch your breath before withdrawing. He watches you as you gather your things, seeming clearer now he’s climaxed, and nods at you before scarpering back into the wastes.");
+	}
+	output("\n\n");
+	processTime(35);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	if (x >= 0) pc.loadInCunt(enemy,x);
+	else pc.loadInAss(enemy);
+	CombatManager.genericVictory();
+}
+
 //Give Mods
 public function giveCboyADickHeWantsOne():void
 {
 	clearOutput();
+	showSydianCboy();
 	output("Well, maybe taking advantage isn’t the right term to use. Really, you’re just going to give him what he wants. You dig through your pack, finding just what you were after...");
 	processTime(1);
 	clearMenu();
@@ -94,6 +217,7 @@ public function giveSydCboyThrobb():void
 		x = pc.findEmptyPregnancySlot(1);
 		if (x < 0) x = pc.smallestVaginaIndex();
 	}
+	pc.destroyItemByClass(Throbb);
 	output("Throbb it is. You pull the cyan-filled injector from your pack, flicking it to make sure there aren’t any air bubbles before crouching to his level and presenting it to him.");
 	//{kind or misch: 
 	if (!pc.isAss())
@@ -117,12 +241,13 @@ public function giveSydCboyThrobb():void
 	output(", holding him tight against you");
 	if (pc.hasCock()) output(", your [pc.cocks] trapped, frotting against your needy forms");
 	output(". There’s nothing for it but to cling tight to the sydian as he begins thrusting into you,");
-	looseness:Number = pc.ass.looseness();
+	var looseness:Number = pc.ass.looseness();
 	if (x >= 0) looseness = pc.looseness(x);
-	else looseness = pc.ass.looseness;
 	if (looseness > 3) output(" even your");
 	output(" " + (x >= 0 ? "pussy":"asshole") + " managing to clamp down tight, spasming as the tendrils lining his cock stroke and stimulate your insides.");
 	output("\n\nYou’re treated as little more than a sex toy for him, a simple object made for the sole purpose of taking his cock - and you fucking <i>love</i> it. Large, plated hands clasp your shoulders, ensuring you can’t make the slightest move against his wishes - despite the exhausted, submissive gestures from before. Throbb has given him quite the second wind. You knew this would happen, you must have, not that you’re complaining! It’s not long before nothing matters to you other than the feeling of his cock pounding into you, cilia exploring every inch of you.");
+	if (x >= 0) pc.cuntChange(x, enemy.cockVolume(0));
+	else pc.buttChange(enemy.cockVolume(0));
 	output("\n\nOf course, you don’t neglect his pussy - you won, after all, it’s your right - plunging two [pc.fingers] into his wet, dripping snatch. You easily find his g-spot, engorged now as it takes the role of his cock’s base, pounding it rhythmically in time with his frantic thrusts");
 	if (x >= 0) output(" against your own");
 	else if (pc.hasCock()) output(" against your prostate");
@@ -154,6 +279,7 @@ public function giveSydCboyThrobb():void
 	output(" and <i>cum<i>. You both do.");
 	output("\n\nEventually, both of you begin to recover from your climaxes. Seemingly thankful, the sydian holds you for a few moments as you catch your breath before withdrawing. He watches you as you gather your things, seeming clearer now that he’s climaxed twice, and nods at you before scarpering back into the wastes.");
 	output("\n\n");
+	flags["SYD_CBOY_GREW_COCK"] = 1;
 	processTime(35);
 	pc.orgasm();
 	if (x >= 0) pc.loadInCunt(enemy,x);
@@ -171,6 +297,7 @@ public function giveSydCboyVirection():void
 		x = pc.findEmptyPregnancySlot(1);
 		if (x < 0) x = pc.smallestVaginaIndex();
 	}
+	pc.destroyItemByClass(Virection);
 	output("Virection it is. You pull the pill out from your pack, unwrapping the packaging with practiced ease before crouching down to his level.");
 	if (pc.isNice())
 	{
@@ -201,18 +328,20 @@ public function giveSydCboyVirection():void
 	if (pc.wetness(x) >= 3) output(" and you’re already plenty wet yourself");
 	output(", so you give him one final pump of your hand before straddling him, lining his tip up to the entrance of your" + (pc.wetness(x) >= 3 ? " wettened":"") + " [pc.vagOrAss " + x + "].");
 	output("\n\nHe doesn’t hold back, thrusting up into you the moment you’re in position with a drawn-out gasp. You can’t help a breathy laugh, watching his expression contort in pleasure. It must feel like an eternity since he last got to sink himself deep into a tight");
-	looseness:Number = pc.ass.looseness();
+	var looseness:Number = pc.ass.looseness();
 	if (x >= 0) looseness = pc.looseness(x);
-	else looseness = pc.ass.looseness;
 	if (looseness > 3) output("...ish");
 	output(" hole. Neither of you see any point in hesitating, and you start up a fast pace, bouncing to the rhythm that your hammering heart sets. He grabs your hips, but you refuse to let him lead - you’ve earned your right to control - and so all he can do is cling on for dear life. Perhaps you’ll have bruises later from where he’s clutching at you. Perhaps later you’ll care. Right here, right now, all you care about is the feeling of cilia stroking your sensitive insides, the thick rod stuffing your needy [pc.vagOrAss " + x + "] full. You’re both panting, gasping for breath, but it only encourages you to work harder, move faster.");
+	if (x >= 0) pc.cuntChange(x, enemy.cockVolume(0));
+	else pc.buttChange(enemy.cockVolume(0));
 	output("\n\n<i>“Good boy,”</i> you pant, ruffling a hand through his crimson hair and laughing when one of his antennae bats at your hand. He huffs at you, perhaps feeling belittled. He stops when you clench your first and yank his head back. A thin whimper slips from his lips, but no protest joins it.");
-	output("\n\nSatisfied, you use your hold to make sure he can’t break eye contact while you grind his pelvis into dust beneath you, grinning as you see his eyes cloud with lust. All the while, his cock leaks his lust, releasing fluid into you, convincing you to ride him harder, harder, still harder. It’s a relentless, merciless cycle: the faster you move your [pc.hips], the more desperate you become, but you can’t stop. You won’t stop. In fact, it doesn’t take long until your head tilts back with a scream, your [pc.vagOrAss " + x + "] clenching and spasming around the sydian’s cock");
-	if (pc.hasCock()) output(". Your own sprays [pc.cumGem] fluid across his chest.");
+	output("\n\nSatisfied, you use your hold to make sure he can’t break eye contact while you grind his pelvis into dust beneath you, grinning as you see his eyes cloud with lust. All the while, his cock leaks his lust, releasing fluid into you, convincing you to ride him harder, harder, still harder. It’s a relentless, merciless cycle: the faster you move your [pc.hips], the more desperate you become, but you can’t stop. You won’t stop. In fact, it doesn’t take long until your head tilts back with a scream, your [pc.vagOrAss " + x + "] clenching and spasming around the sydian’s cock.");
+	if (pc.hasCock()) output(" Your own sprays [pc.cumGem] fluid across his chest.");
 	output("\n\n...You’re not satisfied. He still hasn’t cum inside you! You’re still not <i>full</i> like you wanted to be! There’s nothing for it but to ignore your suddenly discovered exhaustion and the tremble in your legs and just keep going, and keep going you do. Well, that is until the man beneath you seems to sense your tiredness and" + (pc.PQ() >= 66 ? ", after a brief fight,":"") + " flips the two of you over, pinning you beneath him. There’s no use struggling - he even presses his lips harshly against yours to muffle any sounds of complaint as he ruts into you, seeking his own orgasm with an almost barbaric selfishness that leaves you reeling.");
 	output("\n\nYou don’t care. Fuck, you can’t <i>think</i> straight let alone care. You cling to him on reflex, [pc.legs] wrapping around his waist to pull him in closer as he fucks your [pc.vagOrAss " + x + "] with every bit of strength he has until finally his head tips back with a roar of animalistic pleasure, unloading plenty of hot, thick cum into your waiting passage. It’s enough to set you off again, trembling and moaning as you orgasm alongside him.");
 	output("\n\nSeemingly thankful, the sydian holds you for a few moments as you catch your breath before withdrawing. He watches you as you gather your things, seeming clearer now that he’s climaxed, and nods at you before scarpering back into the wastes.");
 	output("\n\n");
+	flags["SYD_CBOY_GREW_COCK"] = 1;
 	processTime(35);
 	pc.orgasm();
 	if (x >= 0) pc.loadInCunt(enemy,x);
@@ -220,7 +349,7 @@ public function giveSydCboyVirection():void
 	CombatManager.genericVictory();
 }
 //Fuck His Puss
-public function fuckSydCboyPussy():void
+public function fuckSydCboyPussy(x:int):void
 {
 	clearOutput();
 	showSydianCboy(true);
@@ -231,12 +360,15 @@ public function fuckSydCboyPussy():void
 	output(". Satisfied with his obedience, you carefully");
 	if (!pc.isNude()) output(" strip out of your own gear and");
 	output(" drop your [pc.weapon], moving to kneel between his spread thighs, hands holding tight around their insides to keep them apart.");
-	if (pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE, pc.biggestCockIndex())) output(" Your [pc.cockBiggest] easily seeks out his entrance");
-	else output(" You spend a moment lining your [pc.cockBiggest] up against his entrance");
+	if (pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE, x)) output(" Your [pc.cock " + x + "] easily seeks out his entrance");
+	else output(" You spend a moment lining your [pc.cock " + x + "] up against his entrance");
 	output(" before you push in with a slight moan of pleasure. He’s soaked" + (flags["FUCKED_SYDIAN_CBOY_PUSSY"] != undefined ? " as usual":"") + ", already drooling from both ends at the feeling of penetration, and so you don’t bother waiting for any adjustment.");
+	pc.cockChange();
 	if (flags["FUCKED_SYDIAN_CBOY_PUSSY"] != undefined) output("\n\nAlmost as soon as you start thrusting, his legs shift to wrap around your waist, following the training from before.");
 	else output("\n\nYou shift your hands further down his legs as you start thrusting, using a grip on his calves to force him to wrap his legs around your waist. <i>“Keep those there,”</i> you order. <i>“Behave for me.”</i>");
-	output("\n\nYour pace doesn’t leave room for{1st: much more} conversation, hard enough that any pauses are used to gasp for breath or for your partner to cry out - he’s so sensitive that he’s cumming already. Still though, you think you could probably tease him" + (flags["FUCKED_SYDIAN_CBOY_PUSSY"] != undefined ? " again":"") + "... Leaning in close, you speak as directly into his ear as you can manage. <i>“I could leave you full of offworlder offspring.”</i>");
+	output("\n\nYour pace doesn’t leave room for " + (flags["FUCKED_SYDIAN_CBOY_PUSSY"] == undefined ? "much more":"") + " conversation, hard enough that any pauses are used to gasp for breath or for your partner to cry out - he’s so sensitive that he’s cumming already");
+	if (enemy.hasCock()) output(", painting his chest in cum");
+	output(". Still though, you think you could probably tease him" + (flags["FUCKED_SYDIAN_CBOY_PUSSY"] != undefined ? " again":"") + "... Leaning in close, you speak as directly into his ear as you can manage. <i>“I could leave you full of offworlder offspring.”</i>");
 	if (pc.fertility() <= 0) output(" It’s an empty threat of course, but you don’t intend to pull out: he won’t know.");
 	else output(" You don’t have any intentions of pulling out so it’s a very real threat.");
 	output(" <i>“I know your ‘brothers’ out here have likely been knocking up rushers left, right and centre");
@@ -248,7 +380,7 @@ public function fuckSydCboyPussy():void
 	output("”</i> You pause a moment, adjusting your angle to something that makes him moan a little louder, pussy squirt a little more femcum. <i>“");
 	//{done [Talk]:
 	if (flags["SYDIAN_CBOY_TALK"] != undefined) output("Then this is mine");
-	else output(" This is my revenge for that");
+	else output("This is my revenge for that");
 	output(".”</i>");
 	output("\n\nHis expression is as hard to read" + (flags["FUCKED_SYDIAN_CBOY_PUSSY"] != undefined ? " as always":"") + ", but he doesn’t do anything to stop you from doing as you like - legs even locking around you a little tighter. You respond in turn, increasing both the speed of your thrusts and the intensity of your remarks. Perhaps he’d enjoy being filled with your spawn? Isn’t it something he’d want? You beat him, after all, perhaps any offspring the two of you would produce would be the kind of strong ones you’ve known females of his race to beg to be seeded with.");
 	//1st time
@@ -260,17 +392,22 @@ public function fuckSydCboyPussy():void
 	//Repeat
 	else
 	{
-	output("\n\nWell used to this style of domination, the sydian’s willpower quickly fades beneath your efforts. Soon enough, he’s responding in kind to your teasing, offering up his own pleas with no thought given to the fact that any number of the other locals could come across the two of you and hear the wanton moans of the claimed warrior.");
-	output("\n\n<i>“Please! Please, use me as your own, take me, fill me full of your young-!”</i>");
+		output("\n\nWell used to this style of domination, the sydian’s willpower quickly fades beneath your efforts. Soon enough, he’s responding in kind to your teasing, offering up his own pleas with no thought given to the fact that any number of the other locals could come across the two of you and hear the wanton moans of the claimed warrior.");
+		output("\n\n<i>“Please! Please, use me as your own, take me, fill me full of your young-!”</i>");
 	}
-	output(" He’s cut off only by the less coherent noises he makes. His moans and ramblings only grow louder, more desperate, especially when you shift one of your hands away from his thigh to pinch and tug at his swollen, enlarged clit. He’s earned it, after all. You treat it almost like you would a small cock,");
-	if (!pc.isNice())
+	output(" He’s cut off only by the less coherent noises he makes. His moans and ramblings only grow louder, more desperate, especially when you shift one of your hands away from his thigh to");
+	if (!enemy.hasCock())
 	{
-		output(" occasional");
-		if (pc.isMisch()) output(" half-");
-		output("insults at the size included,");
+		output(" pinch and tug at his swollen, enlarged clit. He’s earned it, after all. You treat it almost like you would a small cock,");
+		if (!pc.isNice())
+		{
+			output(" occasional");
+			if (pc.isMisch()) output(" half-");
+			output("insults at the size included,");
+		}
+		output(" taking it between thumb and forefinger and jerking it in short, firm strokes. Your partner seems to appreciate the effort, twitching his hips both into your hand and onto your cock, crying out louder whenever you give him that little extra bit of pressure.");
 	}
-	output(" taking it between thumb and forefinger and jerking it in short, firm strokes. Your partner seems to appreciate the effort, twitching his hips both into your hand and onto your cock, crying out louder whenever you give him that little extra bit of pressure.");
+	else output("stroke and tug at his throbbing cock, jerking it in short, firm strokes. Your partner seems to appreciate the effort, twitching his hips both into your hand and onto your own dick, crying out louder whenever you give him that little extra bit of pressure.");
 	output("\n\nHmm. His submission is good but... Not quite enough. You pull back, then out - slapping his ass when he whimpers in disappointment");
 	if (pc.physique() <= 20) output(" (and promptly trying to muffle a whimper of your own, smacking something that’s essentially armor-plated wasn’t your best idea to date)");
 	output(".");
@@ -279,13 +416,15 @@ public function fuckSydCboyPussy():void
 	if (pc.isAss()) output(" yank");
 	else if (pc.isMisch()) output(" pull");
 	else output(" lightly tug");
-	output(" at it until he gets the hint to raise his hips higher, pressing his chest into the ground beneath you. His pussy winks, soaked and inviting, and you don’t waste a moment longer, slamming your [pc.cockBiggest] back into him. He howls in pure, animalistic pleasure, pushing back onto your thrust as best as he’s able.");
-	output("\n\nYou give him what you both want: an almost brutally hard pounding that’s going to leave both of you with bruising hips - not that you care right now, your mind is blank of anything but white-hot pleasure. It doesn’t take long for your partner to cum, screaming and thrashing beneath you, his cunt clenching and relaxing spastically around your [pc.cockBiggestNoun], trying to milk it for every drop of [pc.cum] you can give.");
+	output(" at it until he gets the hint to raise his hips higher, pressing his chest into the ground beneath you. His pussy winks, soaked and inviting, and you don’t waste a moment longer, slamming your [pc.cock " + x + "] back into him. He howls in pure, animalistic pleasure, pushing back onto your thrust as best as he’s able.");
+	output("\n\nYou give him what you both want: an almost brutally hard pounding that’s going to leave both of you with bruising hips - not that you care right now, your mind is blank of anything but white-hot pleasure. It doesn’t take long for your partner to cum, screaming and thrashing beneath you");
+	if (enemy.hasCock()) output(" as he sprays another load onto the ground")
+	output(", his cunt clenching and relaxing spastically around your [pc.cockNoun " + x + "], trying to milk it for every drop of [pc.cum] you can give.");
 	output("\n\nEvery muscle in your body strains as you try to continue, to hold back your orgasm, to spend just one single moment more with this pleasure coursing through you, but all good things must end. You cry out, pushing yourself in up to the hilt");
-	if (pc.hasKnot(pc.biggestCockIndex())) output(", knot and all");
+	if (pc.hasKnot(x)) output(", knot and all");
 	output(", and cum, unloading so hard that you feel like you could be dry for days.");
 	output("\n\nAfter");
-	if (pc.hasKnot(pc.biggestCockIndex())) output(" more than a");
+	if (pc.hasKnot(x)) output(" more than a");
 	output(" little while, you finally pull out, gathering your belongings and patting the insensate sydian on the head as you leave him, getting back to your journey.");
 	output("\n\n");
 	incrementFlag("FUCKED_SYDIAN_CBOY_PUSSY");
@@ -302,7 +441,7 @@ public function spankSydCboyCuzYouAnAsshole():void
 	output("You’re not satisfied with just beating him into submission. He needs to learn a valuable lesson in exactly why he shouldn’t just attack people out of the blue.");
 	output("\n\nYou sit beside him and grab him" + (pc.isAss() ? " roughly":"") + " by the scruff of the armor-plated neck, dragging him over your lap and humming as you consider his form. A run of your hand over his firm ass confirms that it’s as armored as the rest of him, but his tail twitching to try and knock away your offending appendage confirms that he very much can feel what you’re doing. Of course, you can’t have his tail getting in the way, so you grab it with the other hand before spanking him <i>hard</i> with the first.");
 	output("\n\nHe screams, far more high pitched and feminine than what you were expecting, and you can’t help but laugh. The reaction doesn’t garner him any sympathy though. You just wait for the noise to peter out before delivering another harsh blow.");
-	output("\n\nIt’s even better the second time. You make sure to strike the same spot, savouring the shriek and squirm, and end up laughing harder as you see him squirt just a little ‘fem’cum, pussy twitching. Perfect. There’s no recovery time allowed after that, you rain down smack after smack, regretting only the fact that you can’t see the bruises that you’re doubtless leaving on him.");
+	output("\n\nIt’s even better the second time. You make sure to strike the same spot, savouring the shriek and squirm, and end up laughing harder as you see him squirt just a little ‘fem’cum, pussy twitching" + (enemy.hasCock() ? " and cock leaking pre":"") + ". Perfect. There’s no recovery time allowed after that, you rain down smack after smack, regretting only the fact that you can’t see the bruises that you’re doubtless leaving on him.");
 	output("\n\nWithin a few minutes, he’s cumming hard, shaking and screaming under your touch. You grin, stroking over his ass once more before standing carelessly, letting him clatter to the ground unceremoniously before walking off. Hopefully, he’ll think twice about attacking you again - even if it’s just until his ass stops aching.");
 	output("\n\n");
 	processTime(10);
@@ -369,9 +508,14 @@ public function leaveSydCboyBehind():void
 	CombatManager.genericVictory();
 }
 //PC LOSS
+public function sydianCboyLossRouter():void
+{
+	if (!enemy.hasCock()) sydianCboyLoss();
+	else sydianMhermLoss();
+}
 public function sydianCboyLoss():void
 {
-	showSydianCboy(true);
+	showSydianCboy();
 	//HP Loss Text
 	if (pc.HP() <= 0) output("Your [pc.weapons] clatter to the ground as you sink to your knees, unable to keep fighting.");
 	//Lust Loss Text
@@ -408,14 +552,33 @@ public function sydianCboyLoss():void
 	pc.changeLust(25);
 	//[Next]
 	clearMenu();
-	if (pc.hasItemByClass(Throbb)) addButton(0,"Next",loseToSydCboyThrobb);
-	else if (pc.hasItemByClass(Virection)) addButton(0,"Next",loseToSydCboyVirection);
+	if (pc.hasItemByClass(Throbb)) addButton(0,"Next",loseToSydCboyThrobb(true));
+	else if (pc.hasItemByClass(Virection)) addButton(0,"Next",loseToSydCboyVirection(true));
 	else addButton(0,"Next",loseToSydCboyNoMods);
 }
-//Throbb Scene
-public function loseToSydCboyThrobb():void
+public function sydianMhermLoss():void
 {
-	clearOutput();
+	showSydianCboy(true);
+	//HP Loss Text
+	if (pc.HP() <= 0) output("Your [pc.weapons] clatter to the ground as you sink to your knees, unable to keep fighting.");
+	//Lust Loss Text
+	else output("You fall to your knees, hands grabbing at and discarding your equipment. Why keep fighting? You want everything the Sydian maleherm has to offer.");
+	//Merge
+	output("\n\nHe grins, patting your head lightly before pushing you onto your back. Your legs spread on instinct as you look up at the hardness between his thighs, then are pushed wider as he gets in position.");
+	output("\n\n<i>“I’m not done with you, offworlder.”</i>\n\n");
+	//{play throbb or virection scene at random}
+	if (rand(2) == 0) loseToSydCboyThrobb();
+	else loseToSydCboyVirection();
+}
+//Throbb Scene
+public function loseToSydCboyThrobb(noCock:Boolean = false):void
+{
+	//noCock var for if this scene is playing where he's still growing his cock
+	if (noCock)
+	{
+		clearOutput();
+		pc.destroyItemByClass(Throbb);
+	}
 	showSydianCboy(true);
 	var x:int = -1;
 	if (pc.hasVagina() && pc.blockedVaginas() == 0)
@@ -423,9 +586,22 @@ public function loseToSydCboyThrobb():void
 		x = pc.findEmptyPregnancySlot(1);
 		if (x < 0) x = pc.smallestVaginaIndex();
 	}
-	output("He doesn’t spend any time waiting, pressing the newly forming cockhead against the entrance to your [pc.vagOrAss " + x + "] and thrusting in with little warning. You cry out, pained at first by its suddenness, but growing cilia press into your walls, massaging them and painting them in more and more of that lust-bringing fluid he produces.");
+	output("He doesn’t spend any time waiting, pressing " + (noCock ? "the newly forming":"his") + " cockhead against the entrance to your [pc.vagOrAss " + x + "] and thrusting in with little warning. You cry out, pained at first by its suddenness, but " + (noCock ? "growing":"his") + " cilia press into your walls, massaging them and painting them in more and more of that lust-bringing fluid he produces.");
 	output("\n\nHe ruts into you, each thrust deeper than the last as his cock just keeps growing. Eventually, it settles at around eight inches.");
-	output("\n\nThere’s very little focus on anything but the Sydian’s own pleasure, yours less than secondary to everything that’s going on as the Throbb’s payload of taint doubtlessly sinks its hooks into his brain, encouraging it towards the pursuit of nothing but thicker, headier cumshots and <i>oh</i>-");
+	//Since cock isn't actually grown yet, temporary cock volume
+	if (noCock)
+	{
+		if (x >= 0) pc.cuntChange(x, 25);
+		else pc.buttChange(25);
+	}
+	else
+	{
+		if (x >= 0) pc.cuntChange(x, enemy.cockVolume(0));
+		else pc.buttChange(enemy.cockVolume(0));
+	}
+	output("\n\nThere’s very little focus on anything but the Sydian’s own pleasure,");
+	if (noCock) output(" yours less than secondary to everything that’s going on as the Throbb’s payload of taint doubtlessly sinks its hooks into his brain, encouraging it towards the pursuit of nothing but thicker, headier cumshots and <i>oh</i>-");
+	else output(" yourself secondary to everything that’s going on and <i>oh</i>-");
 	output("\n\nThick fingers");
 	if (pc.hasCock()) output(" wrap around [pc.oneCock], stroking it");
 	else if (pc.hasVagina()) output(" play over [pc.oneClit], circling and pinching it lightly");
@@ -507,6 +683,7 @@ public function loseToSydCboyThrobb():void
 	output("\n\nYour eyes roll back in your head all the same, passing out from exhaustion.");
 	output("\n\nBy the time you’ve recovered and come to your senses, the Sydian is long gone. Seems he’s at least{ folded your clothes and} left your equipment where you can reach it easily.");
 	output("\n\n");
+	flags["SYD_CBOY_GREW_COCK"] = 1;
 	processTime(45);
 	pc.orgasm();
 	pc.orgasm();
@@ -517,9 +694,14 @@ public function loseToSydCboyThrobb():void
 	CombatManager.genericLoss();
 }
 //Virection Scene
-public function loseToSydCboyVirection():void
+public function loseToSydCboyVirection(noCock:Boolean = false):void
 {
-	clearOutput();
+	//noCock var for if this scene is playing where he's still growing his cock
+	if (noCock)
+	{
+		clearOutput();
+		pc.destroyItemByClass(Virection);
+	}
 	showSydianCboy(true);
 	var x:int = -1;
 	if (pc.hasVagina() && pc.blockedVaginas() == 0)
@@ -527,9 +709,23 @@ public function loseToSydCboyVirection():void
 		x = pc.findEmptyPregnancySlot(1);
 		if (x < 0) x = pc.smallestVaginaIndex();
 	}
-	output("Rather than press the newly forming cock right into you, he pulls you into a reverse cowgirl position with your wrists clamped firmly in one of his large hands.");
-	output("\n\n<i>“I should thank you, really.”</i> He grumbles, as his other arm wraps around your waist, adjusting your position so that the entrance to your [pc.vagOrAss " + x + "] slicks against his cock’s head. <i>“But I had to beat it out of you, and it hasn’t done everything I wanted. So I won’t.”</i>");
-	output("\n\nWith that, he sits you down, sinking himself up to the hilt. Not quite ready, you cry out, but any pain that you felt soon melts into pleasure, the Sydian’s trademark cilia forming as he begins thrusting up into you, smearing your inner walls with natural aphrodisiac.");
+	output("Rather than press " + (noCock ? "the newly forming":"his") + " cock right into you, he pulls you into a reverse cowgirl position with your wrists clamped firmly in one of his large hands.");
+	if (noCock) output("\n\n<i>“I should thank you, really.”</i> He grumbles, as his other arm wraps around your waist, adjusting your position so that the entrance to your [pc.vagOrAss " + x + "] slicks against his cock’s head. <i>“But I had to beat it out of you, and it hasn’t done everything I wanted. So I won’t.”</i>");
+	else output("\n\n<i>“I should thank you, really, for getting me back to myself”</i> He grumbles, as his other arm wraps around your waist, adjusting your position so that the entrance to your [pc.vagOrAss " + x + "] slicks against his cock’s head. <i>“But it hasn’t done everything I wanted. So I won’t.”</i>");
+	output("\n\nWith that, he sits you down, sinking himself up to the hilt. Not quite ready, you cry out, but any pain that you felt soon melts into pleasure, the Sydian’s trademark cilia");
+	if (noCock) output("forming as he begins thrusting up into you, smearing your inner walls with natural aphrodisiac.");
+	else output("smearing your inner walls with natural aphrodisiac as he begins thrusting up into you.");
+	//Since cock isn't actually grown yet, temporary cock volume
+	if (noCock)
+	{
+		if (x >= 0) pc.cuntChange(x, 25);
+		else pc.buttChange(25);
+	}
+	else
+	{
+		if (x >= 0) pc.cuntChange(x, enemy.cockVolume(0));
+		else pc.buttChange(enemy.cockVolume(0));
+	}
 	output("\n\nIt’s more than enough to spur you on, bracing your [pc.legOrLegs] under you better so that you can move, riding him. You’re slow at first, but the amount of liquid lust being pushed into your needy hole demands you use its slickness to bounce on his still growing cock harder, faster.");
 	output("\n\nHe grunts, releasing your wrists once he’s content in the fact that you’ll do your job without protesting, both of his hands falling to your [pc.hips] to steady you a little but mostly being used as leverage for his own upwards thrusts.");
 	output("\n\nOne of your own hands falls to the ground in front of you as you lean forwards, gasping as the position presses his tip against your");
@@ -557,6 +753,7 @@ public function loseToSydCboyVirection():void
 	//else:
 	else output(" insides");
 	output(".");
+
 	output("\n\nYou cum.");
 	output("\n\n");
 	//{Neuter: 
@@ -607,6 +804,7 @@ public function loseToSydCboyVirection():void
 	if (!pc.isNude()) output(" folded your clothes and");
 	output(" left your equipment where you can reach it easily.");
 	output("\n\n");
+	flags["SYD_CBOY_GREW_COCK"] = 1;
 	processTime(30);
 	pc.orgasm();
 	pc.orgasm();
@@ -655,7 +853,7 @@ public function loseToSydCboyNoMods():void
 	output(", but your attacker shows no signs of stopping. Much as you’re sure he’s affected by his own supply of aphrodisiacs, his stamina is" + (pc.hasPerk("Amazonian Endurance") ? " somehow":"") + " far better than your own, and if anything, he’s only picking up the pace.");
 	output("\n\n");
 	//{long/prehensile tongue:
-	if (pc.haLongTongue()) output("Inhumanly long t");
+	if (pc.hasLongTongue()) output("Inhumanly long t");
 	//squishy tongue:
 	else if (pc.hasTongueFlag(GLOBAL.FLAG_SQUISHY)) output("Broad t");
 	else output("T");
@@ -680,5 +878,6 @@ public function loseToSydCboyNoMods():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.applyPussyDrenched();
+	pc.girlCumInMouth(enemy);
 	CombatManager.genericLoss();
 }

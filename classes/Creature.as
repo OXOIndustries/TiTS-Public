@@ -22242,7 +22242,7 @@
 		}
 		public function hasAirtightSuit():Boolean
 		{
-			return (!hasStatusEffect("Corroded Seals") && hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
+			return (!hasStatusEffect("Corroded Seals") && !hasStatusEffect("Degraded Armor") && hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
 		}
 		public function hasShields():Boolean
 		{

@@ -7,8 +7,9 @@ package classes.Characters
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.kGAMECLASS;
-	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.weightedRand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.output;
@@ -42,7 +43,7 @@ package classes.Characters
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
 
-			this.shield = new ImprovisedShield();
+			this.shield = new RustedShield();
 
 			this.physiqueRaw = 30;
 			this.reflexesRaw = 20;
@@ -175,6 +176,7 @@ package classes.Characters
 			this.ass.loosenessRaw = 2;
 
 			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Force Male Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Sydian";
@@ -187,17 +189,20 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "SYDIAN_CBOY";
+			if (this.hasCock()) return "SYDIAN_CBOY_HERM";
+			else return "SYDIAN_CBOY";
 		}
 		
 		private function randomise():void
 		{
-			sexualPreferences.setRandomPrefs(2 + rand(3));
-			cocks[0].cLengthRaw = 9 + rand(4);
-			if(rand(3) == 0) hairColor = "pale green";
-			else if(rand(2) == 0) hairColor = "fiery orange";
-			else hairColor = "blood-hued crimson";
-			long = "The figure you're facing stands almost seven feet tall, looking every bit the hulking brute. He - there's no way you could mistake him for any other gender - stands with an easy balance that can only have come from spending years climbing around the heaps and spires of his home planet. There isn't a single stitch of clothing or equipment to protect his modesty, only carapace-like plates that cover most of him. Two feelers twitch atop his head, each about eight inches long, and another four sprout from the end of his long, tapered tail. That limb still looks thick enough to smart if he were to club you with it. His eyes are inky onyx spheres, though his hair is " + hairColor + ". A cock as orange as a terran sunset dangles between his legs, about " + cocks[0].cLength() + " inches long and covered with a peculiar coat of tiny, brush-like cilia.";
+			sexualPreferences.setRandomPrefs(4 + rand(3));
+		}
+
+		public function cockify():void
+		{
+			this.createCock();
+			this.cocks[0].cLengthRaw = 8;
+			this.cocks[0].cThicknessRatioRaw = 1.5;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -205,145 +210,205 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			var choices:Array = new Array();
-			choices[choices.length] = rustBroDegrade;
-			//HP Time!
-			if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
-			{
-				if(hasStatusEffect("Hammer Punch Next"))
-				{
-					hammerAttack(target);
-					return;
-				}
-				if (hasStatusEffect("Tripped")) 
-				{
-					choices[choices.length] = hammerAttack;
-					choices[choices.length] = hammerAttack;
-				}
-				choices[choices.length] = sydianTackleAttack;
-				if(!target.hasStatusEffect("Tripped")) choices[choices.length] = CombatAttacks.TripAttack;
-				choices[choices.length] = bodySlamByBros;
-			}
-			//Nice guy
+			if hasStatusEffect("Charge Follow Up") chargeySequal(target);
 			else
 			{
-				if(hasStatusEffect("Use Grope Next")) 
-				{
-					sydianMaleGropesYou(target);
-					return;
-				}
-				if(lust() >= 60) 
-				{
-					choices[choices.length] = sydianLickAttack;
-					choices[choices.length] = sydianLickAttack;
-				}
-				choices[choices.length] = sydianAntennaeTickle;
+				var choices:Array = [];
+				choices.push({ v: degradeAndEnjoy, w: 10 });
+				choices.push({ v: chargeyCharge, w: 10 });
+				if (!target.hasStatusEffect("Tripped") choices.push({ v: trippyTripTrip, w: 10 });
+				else choices.push({ v: proneLustingLyingDown, w: 20 });
+				if (!hasStatusEffect("Suplex Cooldown") && HPQ() < 100) choices.push({ v: sydianSuplex, w: 10 }); 
+
+				var attack:Function = weightedRand(choices);
+				attack(target);
 			}
-			var attack:* = choices[rand(choices.length)];
-			if (attack is SingleCombatAttack) (attack as SingleCombatAttack).execute(alliedCreatures, hostileCreatures, this, target);
-			else attack(target);
+			updateDesc();
 		}
-		
-		private function bodySlamByBros(target:Creature):void
+
+		public function updateDesc():void
 		{
-			if(combatMiss(this, target)) output("The injured sydian tries to grab hold of you, but he just can't manage to get you.");
-			else
+			long = "At seven feet and change, the flushed and furious sydian you’re up against stands a touch taller than the other males you’ve faced, but holds himself with the perfect grace of a much smaller and less muscular man. Whilst he doesn’t have a single stitch of clothing, relying only on carapace to give him a sense of modesty, he seems to have found a rusted shield emitter somewhere.";
+			if (this.hasCock()) long +="\n\nThe two eight inch feelers atop his head and the four at the tip of his powerful tail seem to drip heavily with natural aphrodisiac - as does his cock. Judging by the wetness dripping from the cunt you know he has, and the slight note of lust in his pitch-black eyes, he might be more than a little hopped up on his own supply.";
+			else long += "\n\nThe two eight inch feelers atop his head and the four at the tip of his powerful tail seem to drip heavily with natural aphrodisiac - as does the orange flash of a... vagina... you notice between his legs. Judging by how wet he seems and the slight note of lust in his pitch-black eyes, he might be more than a little hopped-up on his own supply.";
+			long +="\n\n";
+			if (this.lustQ() <= 33)
 			{
-				output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
-				
-				if (target.shields() > 0) output(" Not even your shields protect you!");
-				var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (physique() / 2) }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING);
-				damageRand(damage, 15);
-				var damageResult:DamageResult = calculateDamage(damage, this, target);
-				outputDamage(damageResult);
+				//{Low Lust, High HP:
+				if (this.HPQ() > 66) long += "Despite that, he seems capable of staying focused on forcing you into submission.";
+				//{Low Lust, Mid HP:
+				else if (this.HPQ() > 33) long += "He looks a little wobbly on his feet, but his scuffed up armor and leaky cunt don’t seem to bother him yet.";
+				//{Low Lust, Low HP:
+				else long += "Of course, beaten down as he is, he has more pressing matters on his hands.";
 			}
-		}
-		
-		private function hammerAttack(target:Creature):void
-		{
-			output("The sydian follows through with a heavy punch!");
-			if(combatMiss(this, target) && !target.hasStatusEffect("Tripped"))
+			else if (this.lustQ() <= 66)
 			{
-				output(" Somehow you get out of the way, though his fist passes by closely enough for you to hear the wind off it.");
+				//{Mid Lust, High HP:
+				if (this.HPQ() > 66) long += "It’s beginning to distract him a little, his tail occasionally flicking between his wettened thighs.";
+				//{Mid Lust, Mid HP: 
+				else if (this.HPQ() > 33) long += "He’s starting to get wobbly on his feet, though whether from arousal or the damage he’s taken you couldn’t say.";
+				//{Mid Lust, Low HP: 
+				else long += "Whilst he certainly looks more aroused than he did at the start of this fight, he seems more bothered by the noticeable dents and cracks in his armor plating.";
 			}
 			else
 			{
-				output(" He connects!");
-				var damage:TypeCollection = new TypeCollection( { kinetic: (15 + physique() / 2) } );
-				damageRand(damage, 15);
-				applyDamage(damage, this, target);
+				//{High Lust, High HP: 
+				if (this.HPQ() > 66) long += "...That might be an understatement, actually. Whenever he’s not using his tail to balance himself, or attacking you with it, it’s between his legs, working his cunt in an attempt to bring himself some kind of relief.";
+				//{High Lust, Mid HP: 
+				else if (this.HPQ() > 33) long += "He’s wobbly on his feet from the damage he’s taken, and his tail certainly isn’t helping him by trying to plunge into his soaked vagina whenever he’s not focused entirely on using it.";
+				//{High Lust, Low HP: 
+				else long += "You’re not sure whether the fact his legs look ready to buckle under him has more to do with the liberal streams of wetness pouring from between his legs," + (this.hasCock() ? " the stiffness of his cock,":"") + " or the noticeable dents and cracks in his armor plating.";
 			}
-			removeStatusEffect("Hammer Punch Next");
 		}
-		
-		private function sydianTackleAttack(target:Creature):void
+
+		//HP damage:
+		//{Won’t trigger if the sydian is at full HP. Probably needs some kind of recharge as it ignores shields and the lust damage isn’t avoidable. Deals minor lust damage.}
+		public function sydianSuplex(target:Creature):void
 		{
-			output("The sydian lowers his shoulder and charges! ");
-			if(combatMiss(this, target)) output("You dive out of the way at the last second, avoiding it.");
+			author("GothPastel");
+			if (combatMiss(this, target))
+			{
+				//High Evasion Miss:
+				if (target.reflexes()/2 + rand(20) + 1 >= this.reflexes()/2+10)
+				{
+					output("Your attacker moves to grab you, but you step out of the way easily!");
+				}
+				//Regular Miss:
+				else
+				{
+					output("Your attacker grabs hold of you, but you pull yourself loose before he can do any damage.");
+					if (!target.hasAirtightSuit())
+					{
+						output(" - not that it stops a thin veneer of aphrodisiac from slipping off his rough hands and wicking into your skin.");
+						applyDamage(new TypeCollection( { drug: 5 } ), this, target, "minimal");
+					}
+				}
+			}
 			else 
 			{
-				output("He connects, knocking you backwards and putting him in the perfect position for another blow.");
-				createStatusEffect("Hammer Punch Next");
-				
-				applyDamage(new TypeCollection( { kinetic: 5 + rand(4) }, DamageFlag.CRUSHING), this, target);
-			}
-		}
-		
-		private function sydianLickAttack(target:Creature):void
-		{
-			output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva.");
-	
-			if (target.hasAirtightSuit())
-			{
-				output(" He presses it to your face, unaware that the action is useless against your airtight [pc.armor]. While this display is not affecting you directly, you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-			}
-			else
-			{
-				output(" He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-				applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), this, target, "minimal");
-			}
-		}
-		
-		private function sydianAntennaeTickle(target:Creature):void
-		{
-			output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the foot long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
-			applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), this, target, "minimal");
-		}
-		
-		private function sydianMaleGropesYou(target:Creature):void
-		{
-			removeStatusEffect("Use Grope Next");
-			output("The sydian barrels into you, but rather than trying to harm you, he's pawing at every bit of you that he can reach.");
-			if(target.reflexes()/2 + rand(20) + 1 > physique()) {
-				output(" You manage to slip out of his hold before he can excite you too much.");
-				applyDamage(new TypeCollection( { tease: 3 } ), this, target, "minimal");
-			}
-			else
-			{
-				output(" His big, thick fingers cup and squeeze, then explore and caress, manhandling you with enough precision to give away that this isn't the first time he's done this.");
-				applyDamage(new TypeCollection( { tease: 15 + rand(10) } ), this, target, "minimal");
-			}
-		}
-		
-		private function rustBroDegrade(target:Creature):void
-		{
-			output("The sydian artfully spins his tail at you, the multiple antennae at its tip pointed directly at you!");
-			if(combatMiss(this, target)) output(" You manage to hop back, and his tail only catches air!");
-			else
-			{
-				//Wearing armor!
-				if(target.armor.shortName != "" && !target.hasStatusEffect("Degraded Armor"))
+				output("Your attacker grabs hold of you and suplexes you to the ground with inhuman ease!");
+				if (target.hasAirtightSuit())
 				{
-					output(" The strike doesn't hit hard enough to deal damage, but smears your " + target.armor.longName + ". <b>Your armor is degraded and will not provide any defense for the rest of this fight!</b>");
-					target.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
+					//{Shields up & airtight armor:
+					if (target.shields > 0) output(" Your shields do nothing to protect you, but your armor blocks the veneer of aphrodisiac on the Sydian’s rough hands from affecting you.");
+					//Shields down & airtight armor:
+					else output(" Your armor blocks the veneer of aphrodisiac on the Sydian’s rough hands from affecting you.");
 				}
 				else
 				{
-					output(" The strike smacks cleanly into your [pc.skinFurScales], leaving a veneer of viscous goo behind. It rapidly wicks into your body, leaving your surfaces clean but your heart hammering with excitement. It's some kind of mild aphrodisiac!");
-					applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), this, target, "minimal");
+					//shields up and airtight armor:
+					if (target.shields > 0) output(" Your shields do nothing to protect you and y");
+					//else:
+					else output(" Y");
+					output("ou feel the thin veneer of aphrodisiac on the Sydian's rough hands wicking into your skin.");
 				}
-				createStatusEffect("Use Grope Next");
-			}	
+				applyDamage(new TypeCollection( { kinetic: 30 }, BYPASS_SHIELD ), this, target, "minimal");
+				if (!target.hasAirtightSuit()) applyDamage(new TypeCollection( { drug: 15 } ), this, target, "minimal");
+			}
+			//I have now discovered there is an automatic updateCooldowns function in GroundCombatManager. God bless.
+			createStatusEffect("Suplex Cooldown", 4);
+		}
+
+		//Shield/HP damage 1:
+		//{Can trigger at any point}
+		public function chargeyCharge(target:Creature):void
+		{
+			author("GothPastel");
+			//Miss:
+			if (combatMiss(this,target)) output("The Sydian charges you, shoulder first, but a well-timed dodge to the side sends him staggering as he misses.");
+			//Hit, Shields up: 
+			//Maybe: inflict 'staggered' status effect or something similar for 1 round.
+			else 
+			{
+				output("The Sydian charges you, shoulder first, knocking you back");
+				var stag:Boolean = false;
+				if (!target.hasStatusEffect("Stagger") && target.physique()/2 + rand(20) < this.physique()/2 + rand(20))
+				{
+					output(" and leaving you a little unsteady on your feet");
+					createStatusEffect("Charge Follow Up");
+					stag = true;
+				}
+				output(".");
+				applyDamage(new TypeCollection( { damageRand(new TypeCollection( { kinetic: 10 } ), 15 } ), this, target, "minimal");
+				if (stag) CombatAttacks.applyStagger(target, 1);
+			}
+		}
+
+		//Shield/HP damage 2:
+		//{Triggers turn immediately after a successful shield/HP damage 1 attack if staggered for high damage}
+		public function chargeySequal(target:Creature):void
+		{
+			author("GothPastel");
+			//Hit:
+			if (!combatMiss(this,target))
+			{
+				output("Taking advantage of your newfound unsteadiness, the Sydian lashes out with a fist, connecting with you easily!");
+				applyDamage(new TypeCollection( { damageRand(new TypeCollection( { kinetic: 30 } ), 15 } ), this, target, "minimal");
+			}
+			//Miss:
+			else output("Taking advantage of your newfound unsteadiness, the Sydian lashes out with a fist - but you manage to get back to your senses and spin out of the way at the last moment!");
+			
+			removeStatusEffect("Charge Follow Up");
+		}
+
+		//Trip:
+		//{Does no damage, but leaves the PC prone}
+		public function trippyTripTrip(target:Creature):void
+		{
+			author("GothPastel");
+			//Hit: 
+			if (!combatMiss(this,target)) 
+			{
+				output("The Sydian’s tail swings out towards you! Try as you might, you can’t get out of the way in time, and the thick limb knocks your feet out from under you - leaving you flat on your back.");
+				CombatAttacks.applyTrip(target);
+			}
+			//Miss: 
+			else output("The Sydian’s tail swings out towards you! You jump right over it, treating the attack like a high stakes game of jump rope.");
+		}
+
+		//Light lust attack:
+		//{Degrades armor on first attack, deals minor lust damage after}
+		public function degradeAndEnjoy(target:Creature):void
+		{
+			author("GothPastel");
+			//Miss:
+			if (combatMiss(this, target)) output("Dripping with natural aphrodisiac, the feathered tip of the Sydian’s tail flies towards you, but you sidestep at the last moment!");
+			else
+			{
+				//Hit, armor degradation:
+				if (target.hasArmor() && !target.hasStatusEffect("Degraded Armor"))
+				{
+					output("Dripping with natural aphrodisiac, the feathered tip of the Sydian’s tail flies towards you, smearing across your [pc.armor], degrading it. <b>Your armor is degraded and won’t provide any protection for the rest of the fight!</b>");
+					target.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
+				}
+				//Hit, lust damage:
+				else
+				{
+					output("Dripping with natural aphrodisiac, the feathered tip of the Sydian’s tail flies towards you, smearing across your [pc.armor] and soaking through into your skin. The trails leave your skin flushed and heart pounding - turning you on a lot more than a regular caress would warrant!");
+					applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
+				}
+			}
+		}
+
+		//Heavy lust attack:
+		//{PC must be prone to trigger}
+		public function proneLustingLyingDown(target:Creature):void
+		{
+			author("GothPastel");
+			output("The Sydian drops to all fours and skitters over your prone form! You find yourself treated to a close-up view of a drippy orange puss as aphrodisiac-coated fingers steal");
+			if (!target.hasAirtightSuit()) output(" under your [pc.clothing] and");
+			output(" across your body.");
+
+			//willpower check
+			var resist:Boolean = (target.willpower() + rand(20) + 1 >= this.lustQ()/2 + 10);
+			var damage:TypeCollection = new TypeCollection( { drug: 20, tease: 8 } );
+			if (resist) damage = new TypeCollection( { drug: 5, tease: 5 } );
+			
+			//Resist:
+			if (resist) output("You resist huffing in a lungful of his scent, but the tracks of aphrodisiac soaking into your skin turn you on a little nonetheless.");
+			//Hit:
+			else output("You can’t resist huffing in a lungful of desperately aroused scent, leaving you panting and horny when the Sydian just as quickly pulls away!");
+			applyDamage(damageRand(damage, 15), this, target, "minimal");
 		}
 	}
 }
