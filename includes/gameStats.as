@@ -6843,6 +6843,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Male Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);
 					if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] != undefined) output2("\n<b>* Male Sydian, Times Cunt-Fucked By:</b> " + flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"]);
 				}
+				if(flags["MET_SYDIAN_CBOY"] != undefined)
+				{
+					output2("\n<b>* Cuntboy Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);
+					if(flags["FUCKED_SYDIAN_CBOY_PUSSY"] != undefined) output2("\n<b>* Cuntboy Sydian, Times Fucked His Pussy:</b> " + flags["FUCKED_SYDIAN_CBOY_PUSSY"]);
+					if(flags["SYD_CBOY_GREW_COCK"] != undefined || flags["TALKED_TO_SYDIAN_CBOY"] != undefined) output2("\n<b>* Cuntboy Sydian</b>");
+					if(flags["TALKED_TO_SYDIAN_CBOY"] != undefined) output2(", Talked about his missing cock");
+					if(flags["SYD_CBOY_GREW_COCK"] != undefined) output2(", Grew back his cock");
+				}
 				if(flags["SYDIAN_QUEEN_STAGE"] != undefined)
 				{
 					output2("\n<b>* Sydian Queen, Your Servile Status:</b>");

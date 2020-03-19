@@ -33,6 +33,7 @@ public function encounterSydianCboy():void
 
 	if (!enemy.hasCock()) output("\n\nYou whip around just in time to see what appears to be a male sydian barreling towards you. Far more aggressive than the others you’ve seen, his intention remains the same: subduing you by force. You’ll have to fight!");
 	else output("\n\nYou whip around just in time to see a familiar male sydian barreling towards you. Despite what you’ve done for him, his intention remains the same: subduing you by force. You’ll have to fight!");
+	IncrementFlag("MET_SYDIAN_CBOY");
 
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
