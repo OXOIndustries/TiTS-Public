@@ -181,7 +181,6 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "Sydian";
 			kGAMECLASS.tarkusSSTDChance(this);
-			//Rusted Shield should be an uncommon-ish drop from this enemy. Has about 50 shields in its regular state, but becomes “Salvaged Shield” when repaired through regular means, having 75 shields instead.
 			
 			randomise();
 			this._isLoading = false;
@@ -210,13 +209,13 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if hasStatusEffect("Charge Follow Up") chargeySequal(target);
+			if (hasStatusEffect("Charge Follow Up")) chargeySequal(target);
 			else
 			{
 				var choices:Array = [];
 				choices.push({ v: degradeAndEnjoy, w: 10 });
 				choices.push({ v: chargeyCharge, w: 10 });
-				if (!target.hasStatusEffect("Tripped") choices.push({ v: trippyTripTrip, w: 10 });
+				if (!target.hasStatusEffect("Tripped")) choices.push({ v: trippyTripTrip, w: 10 });
 				else choices.push({ v: proneLustingLyingDown, w: 20 });
 				if (!hasStatusEffect("Suplex Cooldown") && HPQ() < 100) choices.push({ v: sydianSuplex, w: 10 }); 
 
@@ -329,7 +328,7 @@ package classes.Characters
 					stag = true;
 				}
 				output(".");
-				applyDamage(new TypeCollection( { damageRand(new TypeCollection( { kinetic: 10 } ), 15 } ), this, target, "minimal");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 10 } ), 15), this, target, "minimal");
 				if (stag) CombatAttacks.applyStagger(target, 1);
 			}
 		}
@@ -343,7 +342,7 @@ package classes.Characters
 			if (!combatMiss(this,target))
 			{
 				output("Taking advantage of your newfound unsteadiness, the Sydian lashes out with a fist, connecting with you easily!");
-				applyDamage(new TypeCollection( { damageRand(new TypeCollection( { kinetic: 30 } ), 15 } ), this, target, "minimal");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 30 } ), 15), this, target, "minimal");
 			}
 			//Miss:
 			else output("Taking advantage of your newfound unsteadiness, the Sydian lashes out with a fist - but you manage to get back to your senses and spin out of the way at the last moment!");

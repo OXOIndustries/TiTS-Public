@@ -67,7 +67,7 @@ public function defeatSydianCboy():void
 	if (pc.hasCock()) addButton(1,"Fuck Puss",penisRouter,[fuckSydCboyPussy,enemy.vaginalCapacity(0),false,0],"Fuck His Puss","Your dick, his pussy.");
 	else addDisabledButton(1,"Fuck Puss","Fuck His Puss","You’re gonna need a penis of your own.");
 	if (pc.isNice()) addDisabledButton(2,"Spank","Spank","He seems upset, and you’re not really the type to make things worse.");
-	else (pc.isTaur()) addDisabledButton(2,"Spank","Spank","This wasn’t written for taurs.");
+	else if (pc.isTaur()) addDisabledButton(2,"Spank","Spank","This wasn’t written for taurs.");
 	else addButton(2,"Spank",spankSydCboyCuzYouAnAsshole,undefined,"Spank","Show the big bad rust monster how offworlders deal with naughty boys.");
 	if (flags["TALKED_TO_SYDIAN_CBOY"] == undefined) addButton(3,"Talk",talkToSydCboyAboutFeewings,undefined,"Talk","Find out what happened.");
 	else addDisabledButton(3,"Talk","Talk","There’s nothing more to say.");
@@ -126,7 +126,7 @@ public function takeSydianHermCock(x:int):void
 		else output(" pinching and pulling at your [pc.nipples]");
 		output(" with your free hand.");
 		output("\n\nHe howls, a bestial cry of pleasure, pouring what feels like weeks worth of backed up cum into your spasming hole, treating you as nothing but an object for him to vent his frustrations and lusts into. That won’t stand, of course. The moment he’s done and his grip slackens, you roll the both of you over. He isn’t allowed any time to go soft as chemical lust fills your brain once more, riding him as hard as your");
-		if (!pc.hasPerk("Amazonian Endurance") output(" shaky, post-orgasm");
+		if (!pc.hasPerk("Amazonian Endurance")) output(" shaky, post-orgasm");
 		output(" [pc.legOrLegs] will allow for.");
 		output("\n\nFor a moment it looks like he might try and fight you, but now that his initial climax is fading, he respects your right to do as you will with him.");
 		output("\n\nYou grin. Much better.");
@@ -619,7 +619,7 @@ public function loseToSydCboyThrobb(noCock:Boolean = false):void
 		else output("paint");
 		if (!pc.hasCocks()) output("s");
 		output(" you both with your [pc.cum] as your [pc.vaginas]");
-		if (pc.hasVaginas() output(" tremble and twitch, clenching down in unison, even if only one of them is");
+		if (pc.hasVaginas()) output(" tremble and twitch, clenching down in unison, even if only one of them is");
 		else output(" trembles and twitches, clenching");
 		output(" around his his cock, " + (pc.isSquirter() ? "spraying":"leaking") + " [pc.girlCum] everywhere.");
 	}
@@ -637,7 +637,7 @@ public function loseToSydCboyThrobb(noCock:Boolean = false):void
 	//vag{s} only:
 	else if (pc.hasVagina())
 	{
-		if (pc.hasVaginas() output(" tremble and twitch, clenching down in unison, even if only one of them is");
+		if (pc.hasVaginas()) output(" tremble and twitch, clenching down in unison, even if only one of them is");
 		else output(" trembles and twitches, clenching");
 		output(" around his his cock, " + (pc.isSquirter() ? "spraying":"leaking") + " [pc.girlCum] everywhere.");	
 	}
@@ -774,6 +774,7 @@ public function loseToSydCboyVirection(noCock:Boolean = false):void
 		else if (pc.girlCumQ() < 2000) output(" flood");
 		else output("n explosion");
 		output(" of [pc.girlCumType] pours from between your [pc.legs] as " + (pc.hasVaginas() ? "each":"your") + " vagina spasms" + (pc.hasVaginas() ? " in turn":"") + " for your conqueror.");
+	}
 	//Dicks only: 
 	else if (pc.hasCock())
 	{
@@ -830,6 +831,7 @@ public function loseToSydCboyNoMods():void
 		else if (pc.cumQ() + pc.girlCumQ() < 2000) output("flow");
 		else output("deluge");
 		output(" of your mixed fluids to paint the ground beneath you");
+	}
 	//{vags only: 
 	else if (pc.hasVagina())
 	{
