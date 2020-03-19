@@ -33,7 +33,9 @@ package classes.Characters
 			this.originalRace = "sydian";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Placeholder";
+			this.long = "At seven feet and change, the flushed and furious sydian you’re up against stands a touch taller than the other males you’ve faced, but holds himself with the perfect grace of a much smaller and less muscular man. Whilst he doesn’t have a single stitch of clothing, relying only on carapace to give him a sense of modesty, he seems to have found a rusted shield emitter somewhere.";
+			if (this.hasCock()) long +="\n\nThe two eight inch feelers atop his head and the four at the tip of his powerful tail seem to drip heavily with natural aphrodisiac - as does his cock. Judging by the wetness dripping from the cunt you know he has, and the slight note of lust in his pitch-black eyes, he might be more than a little hopped up on his own supply.";
+			else long += "\n\nThe two eight inch feelers atop his head and the four at the tip of his powerful tail seem to drip heavily with natural aphrodisiac - as does the orange flash of a... vagina... you notice between his legs. Judging by how wet he seems and the slight note of lust in his pitch-black eyes, he might be more than a little hopped-up on his own supply.";
 			this.customDodge = "The sydian cuntboy darts to the side at the last moment, your attack not even grazing him.";
 			this.customBlock = "A chitin plated arm comes up to block your attack, and the sydian takes no damage!";
 			this.isPlural = false;

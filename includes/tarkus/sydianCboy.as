@@ -159,7 +159,7 @@ public function takeSydianHermCock(x:int):void
 		else if (pc.hasVagina()) output(" move to " + (pc.totalClits() > 1 ? "one of your clits":"your clit") + ", pinching and pulling at it as you coat it in aphrodisiac");
 		//else:
 		else output(" flatten your palm against your bare groin, coating it in aphrodisiac");
-		output(" and <i>cum<i>. You both do.");
+		output(" and <i>cum</i>. You both do.");
 		output("\n\nSeemingly thankful, the sydian holds you for a few moments as you catch your breath before withdrawing. He watches you as you gather your things, seeming clearer now he’s climaxed twice, and nods at you before scarpering back into the wastes.");
 	}
 	//Virection
@@ -283,7 +283,7 @@ public function giveSydCboyThrobb():void
 	if (pc.hasCock()) output(" wrap a hand around [pc.oneCock], coating it in aphrodisiac and jerking it firmly");
 	else if (pc.hasVagina()) output(" move to [pc.oneClit], pinching and pulling at it as you coat it in aphrodisiac");
 	else output(" flatten your palm against your bare groin, coating it in aphrodisiac");
-	output(" and <i>cum<i>. You both do.");
+	output(" and <i>cum</i>. You both do.");
 	output("\n\nEventually, both of you begin to recover from your climaxes. Seemingly thankful, the sydian holds you for a few moments as you catch your breath before withdrawing. He watches you as you gather your things, seeming clearer now that he’s climaxed twice, and nods at you before scarpering back into the wastes.");
 	output("\n\n");
 	flags["SYD_CBOY_GREW_COCK"] = 1;
@@ -688,7 +688,9 @@ public function loseToSydCboyThrobb(noCock:Boolean = false):void
 	output(" with his pre as he finally draws close to his second peak.");
 	output("\n\nYou cum together, him letting out an almost monstrous roar as he explodes inside you, your own orgasm seeming almost weak and submissive in comparison, exhausted as you are from your previous ones.");
 	output("\n\nYour eyes roll back in your head all the same, passing out from exhaustion.");
-	output("\n\nBy the time you’ve recovered and come to your senses, the Sydian is long gone. Seems he’s at least{ folded your clothes and} left your equipment where you can reach it easily.");
+	output("\n\nBy the time you’ve recovered and come to your senses, the Sydian is long gone. Seems he’s at least");
+	if (!pc.isNude()) output(" folded your clothes and");
+	output(" left your equipment where you can reach it easily.");
 	output("\n\n");
 	flags["SYD_CBOY_GREW_COCK"] = 1;
 	processTime(45);
