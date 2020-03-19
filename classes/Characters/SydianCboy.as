@@ -5,7 +5,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
-	import classes.Items.Protection.ImprovisedShield;
+	import classes.Items.Protection.RustedShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.weightedRand;
 	import classes.GameData.CodexManager;
@@ -13,6 +13,7 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.author;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	
@@ -196,13 +197,6 @@ package classes.Characters
 		{
 			sexualPreferences.setRandomPrefs(4 + rand(3));
 		}
-
-		public function cockify():void
-		{
-			this.createCock();
-			this.cocks[0].cLengthRaw = 8;
-			this.cocks[0].cThicknessRatioRaw = 1.5;
-		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
@@ -289,19 +283,19 @@ package classes.Characters
 				if (target.hasAirtightSuit())
 				{
 					//{Shields up & airtight armor:
-					if (target.shields > 0) output(" Your shields do nothing to protect you, but your armor blocks the veneer of aphrodisiac on the Sydian’s rough hands from affecting you.");
+					if (target.shields() > 0) output(" Your shields do nothing to protect you, but your armor blocks the veneer of aphrodisiac on the Sydian’s rough hands from affecting you.");
 					//Shields down & airtight armor:
 					else output(" Your armor blocks the veneer of aphrodisiac on the Sydian’s rough hands from affecting you.");
 				}
 				else
 				{
 					//shields up and airtight armor:
-					if (target.shields > 0) output(" Your shields do nothing to protect you and y");
+					if (target.shields() > 0) output(" Your shields do nothing to protect you and y");
 					//else:
 					else output(" Y");
 					output("ou feel the thin veneer of aphrodisiac on the Sydian's rough hands wicking into your skin.");
 				}
-				applyDamage(new TypeCollection( { kinetic: 30 }, BYPASS_SHIELD ), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.BYPASS_SHIELD ), this, target, "minimal");
 				if (!target.hasAirtightSuit()) applyDamage(new TypeCollection( { drug: 15 } ), this, target, "minimal");
 			}
 			//I have now discovered there is an automatic updateCooldowns function in GroundCombatManager. God bless.

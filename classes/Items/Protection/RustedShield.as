@@ -45,7 +45,6 @@ package classes.Items.Protection
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances = new TypeCollection();
 			resistances.kinetic.resistanceValue = 20.0;
 			resistances.electric.resistanceValue = -30.0;
 

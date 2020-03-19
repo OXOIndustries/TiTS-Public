@@ -21,7 +21,14 @@ public function encounterSydianCboy():void
 {
 	var tEnemy:SydianCboy = new SydianCboy();
 	setEnemy(tEnemy);
-	if (flags["SYD_CBOY_GREW_COCK"] == 1) enemy.cockify();
+	
+	if (flags["SYD_CBOY_GREW_COCK"] == 1)
+	{
+		enemy.createCock();
+		enemy.cocks[0].cLengthRaw = 8;
+		enemy.cocks[0].cThicknessRatioRaw = 1.5;
+	}
+
 	showSydianCboy();
 
 	if (!enemy.hasCock()) output("\n\nYou whip around just in time to see what appears to be a male sydian barreling towards you. Far more aggressive than the others you’ve seen, his intention remains the same: subduing you by force. You’ll have to fight!");
@@ -134,7 +141,7 @@ public function takeSydianHermCock(x:int):void
 		if (pc.hasBreasts())
 		{
 			output(", cupping");
-			if (pc.breastTotal() > 2) output(" two of");
+			if (pc.totalBreasts() > 2) output(" two of");
 			output(" your [pc.breasts]");
 			if (pc.isLactating()) output(" and squeezing, coaxing out beads, then streams of [pc.milk] as you lather");
 			else output(" and lathering");
@@ -149,7 +156,7 @@ public function takeSydianHermCock(x:int):void
 		//{PC has cock(s):
 		if (pc.hasCock()) output(" wrap your hand around " + (pc.hasCocks() ? "one of your cocks":"your cock") + ", coating it in aphrodisiac and jerking it firmly");
 		//vag(s) only:
-		else if (pc.hasVagina()) output(" move to " + (pc.clitTotal() > 1 ? "one of your clits":"your clit") + ", pinching and pulling at it as you coat it in aphrodisiac");
+		else if (pc.hasVagina()) output(" move to " + (pc.totalClits() > 1 ? "one of your clits":"your clit") + ", pinching and pulling at it as you coat it in aphrodisiac");
 		//else:
 		else output(" flatten your palm against your bare groin, coating it in aphrodisiac");
 		output(" and <i>cum<i>. You both do.");
@@ -427,7 +434,7 @@ public function fuckSydCboyPussy(x:int):void
 	if (pc.hasKnot(x)) output(" more than a");
 	output(" little while, you finally pull out, gathering your belongings and patting the insensate sydian on the head as you leave him, getting back to your journey.");
 	output("\n\n");
-	incrementFlag("FUCKED_SYDIAN_CBOY_PUSSY");
+	IncrementFlag("FUCKED_SYDIAN_CBOY_PUSSY");
 	processTime(30);
 	pc.orgasm();
 	enemy.loadInCunt(pc,0);	
@@ -552,8 +559,8 @@ public function sydianCboyLoss():void
 	pc.changeLust(25);
 	//[Next]
 	clearMenu();
-	if (pc.hasItemByClass(Throbb)) addButton(0,"Next",loseToSydCboyThrobb(true));
-	else if (pc.hasItemByClass(Virection)) addButton(0,"Next",loseToSydCboyVirection(true));
+	if (pc.hasItemByClass(Throbb)) addButton(0,"Next",loseToSydCboyThrobb,true);
+	else if (pc.hasItemByClass(Virection)) addButton(0,"Next",loseToSydCboyVirection,true);
 	else addButton(0,"Next",loseToSydCboyNoMods);
 }
 public function sydianMhermLoss():void
@@ -673,7 +680,7 @@ public function loseToSydCboyThrobb(noCock:Boolean = false):void
 	if (pc.hasVagina())
 	{
 		output(", creating a sinful mix of ");
-		if (pc.isManHerm() || pc.isCuntBoy()) output(" ‘feminine’");
+		if (pc.isManHerm() || pc.isCuntboy()) output(" ‘feminine’");
 		else output(" feminine");
 		output(" fluid that mixes");
 	}
