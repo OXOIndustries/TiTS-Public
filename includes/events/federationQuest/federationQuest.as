@@ -1816,7 +1816,7 @@ public function fedQuestQueenMhenga():void
 	if(pc.credits >= 30000) addButton(11, "Donate", fedQuestQueenDonate, undefined, "Talk: Donate", (silly?"Less money, less problems.":"Give the myr rebels enough credits to buy their way off planet. With so many of them, and one as large as the War Queen... you doubt you could find them passage for less than 30,000 credits."));
 	else addDisabledButton(11, "Donate", "Talk: Donate", "You don’t have the required 30,000 credits to afford passage for all the rebels.");
 	//PC must have a capital ship, or a ship with a shit ton of cargo space. Else, grayed out.
-	if(9999 == 0) addButton(12, "Take Them", fedQuestQueenTake, undefined, "Talk: Take Them", "You have a big-ass ship. Big enough to take all these gold myr, anyway. Tell the queen to meet you somewhere safe, and you’ll evacuate them yourself.");
+	if(flags["INFINITE_CREW"] != undefined || (shits["SHIP"] == undefined?3:shits["SHIP"].shipCrewCapacity()) >= 12) addButton(12, "Take Them", fedQuestQueenTake, undefined, "Talk: Take Them", "You have a big-ass ship. Big enough to take all these gold myr, anyway. Tell the queen to meet you somewhere safe, and you’ll evacuate them yourself.");
 	else addDisabledButton(12, "Take Them", "Talk: Take Them", "There is absolutely no way you could ferry all these gold myr with your current ship.");
 	
 	if(flags["KQ2_QUEST_FINISHED"] == 1) addButton(13, "Tap Kara", fedQuestQueenKara, undefined, "Talk: Tap Kara", "Kara and her smuggler buddies aboard the <i>Ghost</i> owe you a big damn favor, and you know they’re operating around here. Tap your favor with them to evacuate the myrmedion rebels.");
