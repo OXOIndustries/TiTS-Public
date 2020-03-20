@@ -634,6 +634,7 @@ package classes.Items.Miscellaneous
 		public function dicksproutPutAway():void
 		{
 			clearOutput();
+			clearMenu();
 			output("Now is not the time to use that. You stash the item back inside its box and then inside your inventory.\n\n");
 			kGAMECLASS.processTime(2);
 			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new Dicksprout()]);
