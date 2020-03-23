@@ -237,28 +237,22 @@ public function winVsKorgonneMale():void
 		if(rand(2) == 0) enemy.inventory.push(new Savicite());
 		else enemy.inventory.push(new Picardine());
 
-		output("\n\nThe fight has concluded on very good terms. ");
-		//(PC lust too low)
-		if(pc.lust() < 33) output("Not aroused enough to get intimate, you accept the expensive gift and leave the korgonne behind.");
-		else 
+		output("\n\nThe fight has concluded on very good terms. You accept the expensive gift and the korgonne smiles");
+		if(enemy.lust() >= 33 && pc.mf("","girl") == "girl") output(", searching your body with his odd eyes. He’d definitely ");
+		else output(". He’d probably ");
+		output("be into ‘exploring’ your new relationship further, if you asked.");
+		//(tailcunt needs feeding)
+		if (target.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 		{
-			output("You accept the expensive gift and the korgonne smiles");
-			if(enemy.lust() >= 33 && pc.mf("","girl") == "girl") output(", searching your body with his odd eyes. He’d definitely ");
-			else output(". He’d probably ");
-			output("be into ‘exploring’ your new relationship further, if you asked.");
-			//(tailcunt needs feeding)
-			if (target.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
-			{
-				output(" Your parasitic tail-cunt apparently feels the same way, because it lunges for the korgonne’s dick as you grab the gem!");
-				//shunt into 'Cowgirl' sexscene, cunnertail variant.
-				clearMenu();
-				addButton(0,"Next",korgCowgirlWin,true);
-				return;
-			}
-			//end fight and queue up gem reward instead of normal drops
-			//else if tailcunt needs feeding, do ‘Next’ and shunt into ‘Cowgirl’ sex scene, tailcunt variation
-			//else present sex menu
+			output(" Your parasitic tail-cunt apparently feels the same way, because it lunges for the korgonne’s dick as you grab the gem!");
+			//shunt into 'Cowgirl' sexscene, cunnertail variant.
+			clearMenu();
+			addButton(0,"Next",korgCowgirlWin,true);
+			return;
 		}
+		//end fight and queue up gem reward instead of normal drops
+		//else if tailcunt needs feeding, do ‘Next’ and shunt into ‘Cowgirl’ sex scene, tailcunt variation
+		//else present sex menu
 	}
 	//50% chance of cease-fire; fight ends early but with normal drop table
 	else if(enemy.statusEffectv1("PEACEFUL_WIN") == 1)
@@ -274,18 +268,12 @@ public function winVsKorgonneMale():void
 		output("\n\n<i>“You no take canned eel?”</i> he says, faintly disappointed.");
 		if(enemy.lust() >= 33 && pc.mf("","girl") == "girl") output(" <i>“Maybe... share korgonne heat instead?”</i>");
 
-		output("\n\nThe fight has concluded on somewhat friendly terms");
-		if(pc.lust() < 33) output(". Disinclined to suggest anything more intimate, you leave the korgonne behind.\n\n");
-		//else
-		else 
+		output("\n\nThe fight has concluded on somewhat friendly terms, and the korgonne seems amenable to ‘exploring’ your new relationship further.");
+		//(tailcunt needs feeding)
+		if (target.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 		{
-			output(", and the korgonne seems amenable to ‘exploring’ your new relationship further.");
-			//(tailcunt needs feeding)
-			if (target.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
-			{
-				output(" Your parasitic tail-cunt apparently feels the same way, because it lunges for the korgonne’s dick, spreading its lips wide!");
-				//else if tailcunt needs feeding, do ‘Next’ and shunt into ‘Cowgirl’ sex scene, tailcunt variation
-			}
+			output(" Your parasitic tail-cunt apparently feels the same way, because it lunges for the korgonne’s dick, spreading its lips wide!");
+			//else if tailcunt needs feeding, do ‘Next’ and shunt into ‘Cowgirl’ sex scene, tailcunt variation
 		}
 		//end fight, but with normal drops
 		//if lust too low, do whatever
@@ -303,11 +291,7 @@ public function winVsKorgonneMale():void
 	//else
 	else
 	{
-		output("You consider the korgonne");
-		if(pc.lust() < 33) output(", but you’re not horny enough to do anything with him");
-		output(".");
-		if(pc.lust() >= 33) output(" His eyes dance with alive interest in you... you could have him if you want. Do you take him, and how?");
-
+		output("You consider the korgonne. His eyes dance with alive interest in you... you could have him if you want. Do you take him, and how?");
 		//buttons ‘Cowgirl’, ‘Pitch Anal’, ‘Pussy-worship’, ‘Mutual Masturbation’
 	}
 	output("\n\n");
@@ -317,34 +301,24 @@ public function winVsKorgonneMale():void
 public function korgWinSexMenu():void
 {
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		addButton(0,"Cowgirl",korgCowgirlWin,undefined,"Cowgirl","Ride the raider’s naughty, knotty dick with your [pc.vagOrAss].");
-		if(pc.hasCuntSnake()) addButton(1,"Cowgirl(Tail)",korgCowgirlWin,true,"Cowgirl(Tail)","Snake your insatiable tail into the raider’s legwraps and stuff it with knotty korgonne dick.");
-		else addDisabledButton(1,"Cowgirl(Tail)","Cowgirl(Tail)","You need a parasitic tail-vagina for this.");
+	addButton(0,"Cowgirl",korgCowgirlWin,undefined,"Cowgirl","Ride the raider’s naughty, knotty dick with your [pc.vagOrAss].");
+	if(pc.hasCuntSnake()) addButton(1,"Cowgirl(Tail)",korgCowgirlWin,true,"Cowgirl(Tail)","Snake your insatiable tail into the raider’s legwraps and stuff it with knotty korgonne dick.");
+	else addDisabledButton(1,"Cowgirl(Tail)","Cowgirl(Tail)","You need a parasitic tail-vagina for this.");
 
-		if((pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) || pc.hasHardLightEquipped() || pc.hasTailCock()) addButton(2,"Pitch Anal",pitchKorgAnal,undefined,"Pitch Anal","Fill the korgonne’s ass with a phallic object.");
-		else if(pc.hasCock()) addDisabledButton(2,"Pitch Anal","Pitch Anal","You won’t fit him with your mountainous meat.");
-		else addDisabledButton(2,"Pitch Anal","Pitch Anal","You don’t have anything to fuck the raider’s ass with!");
+	if((pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) || pc.hasHardLightEquipped() || pc.hasTailCock()) addButton(2,"Pitch Anal",pitchKorgAnal,undefined,"Pitch Anal","Fill the korgonne’s ass with a phallic object.");
+	else if(pc.hasCock()) addDisabledButton(2,"Pitch Anal","Pitch Anal","You won’t fit him with your mountainous meat.");
+	else addDisabledButton(2,"Pitch Anal","Pitch Anal","You don’t have anything to fuck the raider’s ass with!");
 
-		if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(3,"PussyWorship",korgPussWorship,undefined,"Pussy-Worship","Entice the korg-boy to serve with a snoot full of pussy.");
-		else if(pc.blockedVaginas() > 0 && pc.hasVagina()) addDisabledButton(3,"PussyWorship","Pussy-Worship","You should get rid of whatever is blocking your [pc.vaginas] first.");
-		else if(pc.hasCuntSnake()) addDisabledButton(3,"PussyWorship","Pussy-Worship","You need to have a pussy to make the korgonne worship - your parasitic tail-cunt isn’t interested in reverence, only sperm.");
-		else addDisabledButton(3,"PussyWorship","Pussy-Worship","You need to have a pussy to make the korgonne worship.");
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(3,"PussyWorship",korgPussWorship,undefined,"Pussy-Worship","Entice the korg-boy to serve with a snoot full of pussy.");
+	else if(pc.blockedVaginas() > 0 && pc.hasVagina()) addDisabledButton(3,"PussyWorship","Pussy-Worship","You should get rid of whatever is blocking your [pc.vaginas] first.");
+	else if(pc.hasCuntSnake()) addDisabledButton(3,"PussyWorship","Pussy-Worship","You need to have a pussy to make the korgonne worship - your parasitic tail-cunt isn’t interested in reverence, only sperm.");
+	else addDisabledButton(3,"PussyWorship","Pussy-Worship","You need to have a pussy to make the korgonne worship.");
 
-		if(!pc.hasGenitals()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","Before the korgonne can masturbate your genitals to orgasm, you need to get some genitals!");
-		else if(pc.hasVagina() && !pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You should get rid of whatever you have blocking your pussy up first.");
-		else if(pc.isTaur() && !pc.hasCock()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","The korgonne can’t reach your pussy all the way at the end of your body!");
-		else addButton(4,"Mutual Mast.",mutualMasturbkorg,undefined,"Mutual Masturbation","Have the korgonne use his hand to bring you to orgasm while you stroke him off.");
-	}
-	else
-	{
-		addDisabledButton(0,"Cowgirl","Cowgirl","You aren’t aroused enough for this.");
-		addDisabledButton(1,"Cowgirl(Tail)","Cowgirl (Tail)","You aren’t aroused enough for this.");
-		addDisabledButton(2,"Pitch Anal","Pitch Anal","You aren’t aroused enough for this.");
-		addDisabledButton(3,"PussyWorship","Pussy-Worship","You aren’t aroused enough for this.");
-		addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You aren’t aroused enough for this.");
-	}
+	if(!pc.hasGenitals()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","Before the korgonne can masturbate your genitals to orgasm, you need to get some genitals!");
+	else if(pc.hasVagina() && !pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You should get rid of whatever you have blocking your pussy up first.");
+	else if(pc.isTaur() && !pc.hasCock()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","The korgonne can’t reach your pussy all the way at the end of your body!");
+	else addButton(4,"Mutual Mast.",mutualMasturbkorg,undefined,"Mutual Masturbation","Have the korgonne use his hand to bring you to orgasm while you stroke him off.");
+
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 

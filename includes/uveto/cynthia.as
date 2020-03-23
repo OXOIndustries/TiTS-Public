@@ -68,11 +68,7 @@ public function cynthiaBarMenu():void
 	addButton(1, "Herself", cynthiaTalk, "herself", "Herself", "Ask Cynthia about herself and her coworkers.");
 	if(flags["BIOMED_GANGBANGED"] == undefined) addDisabledButton(2, "Libido", "Libido", "You’d need to have seen the extent of Cynthia’s libido to ask her about it.");
 	else addButton(2, "Libido", cynthiaTalk, "libido", "Libido", "The staff seems pretty comfortable with fucking during work hours, don’t they?");
-	if(pc.hasGenitals())
-	{
-		if(pc.lust() >= 33) addButton(3, "Sex", cynthiaSex);
-		else addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for this!");
-	}
+	if(pc.hasGenitals()) addButton(3, "Sex", cynthiaSex);
 	else addDisabledButton(3, "Sex", "Sex", "You need genitals to do this!");
 	addButton(14, "Back", mainGameMenu);
 }

@@ -294,11 +294,7 @@ public function tuuvaMenu():void
 	addButton(2,"Talk",tuuvaTalk,undefined,"Talk","Get to know the small-statured smith.");
 	if(silly) addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Creepily stare at her for an awkward amount of time so you can meticulously list her physical features.");
 	else addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Looks over Tuuva’s appearance.");
-	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] != undefined)
-	{
-		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her “wares”.");
-		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.")
-	}
+	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] != undefined) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her “wares”.");
 	else addDisabledButton(4,"Sex","Sex","Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.");
 
 	//Special Talk Options

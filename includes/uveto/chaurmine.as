@@ -438,8 +438,7 @@ public function chaurmineUvetoMenu():void
 	//[Talk] // Go to Uveto Chat
 	addButton(1,"Talk",chaurmineUvetoTalks);
 	//[Sex] // Go to Uveto Sex
-	if(pc.lust() >= 33) addButton(2,"Sex",chaurmineUvetoSexApproach);
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
+	addButton(2,"Sex",chaurmineUvetoSexApproach);
 	//[Leave]
 	addButton(14,"Leave",mainGameMenu);
 }

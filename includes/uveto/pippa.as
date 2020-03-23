@@ -789,7 +789,7 @@ public function pippaStandardMassage():void
 	else if (pippaCurrentOil() != PIPPA_OIL_NUMB) pc.lust(20);
 	
 	
-	if (pc.lust() >= 33 && pc.hasGenitals() && flags["PIPPA_FLIRTED"] == 1 && pippaCurrentOil() != PIPPA_OIL_NUMB)
+	if (pc.hasGenitals() && flags["PIPPA_FLIRTED"] == 1 && pippaCurrentOil() != PIPPA_OIL_NUMB)
 	{
 		output(" You look at Pippa and she’s smiling, with a lusty twinkle in her eye. <i>“Maybe we aren’t done.”</i> " + (pippaCurrentOil() == PIPPA_OIL_LUST ? "Unsurprisingly, the arousing oil’s drawn a physical reaction from you, leaving " : "You hadn’t even noticed in your state of relaxation, but you’ve become quite aroused, "));
 		
@@ -1203,16 +1203,8 @@ public function pippaMainMenu(arg:Array = null):void
 	if (hasValidPippaFood()) addButton(2, "Give Food", givePippaFoodMenu, pippaMainMenu);
 	else addDisabledButton(2, "Give Food", "Give Food", "You don’t have any food to give Pippa.");
 	
-	if (flags["PIPPA_FLIRTED"] == 1)
-	{
-		if (pc.lust() >= 33) addButton(3, "Sex", pippaSexMenu, pippaMainMenu);
-		else addDisabledButton(3, "Sex", "Sex", "You’re not currently aroused enough for sex.");
-	}
-	else
-	{
-		if (pc.lust() >= 33) addButton(3, "Flirt", pippaFlirt);
-		else addDisabledButton(3, "Flirt", "Flirt", "You’re not currently aroused enough for sex.");
-	}
+	if (flags["PIPPA_FLIRTED"] == 1) addButton(3, "Sex", pippaSexMenu, pippaMainMenu);
+	else addButton(3, "Flirt", pippaFlirt);
 	
 	addButton(5, "Massage", pippaStandardMassage, undefined, "Standard Massage", "Get a massage from Pippa\n\nCost: " + pippaStandardMassageCost() + " Credits");
 	

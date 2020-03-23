@@ -417,8 +417,7 @@ public function lundMenu():void
 	if(flags["LUND_LUND_TALK"] == 1) addButton(2,"Outside",askLundAboutOutside);
 	else addDisabledButton(2,"Outside","Outside","Maybe talk to him a bit about himself first.");
 	if(flags["LUND_OUTSIDE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","Maybe talk to him a bit more before jumping his bone.");
-	else if(pc.lust() >= 33) addButton(3,"Sex",lundSexStarter);
-	else addDisabledButton(3,"Sex","Sex","You aren’t quite in the mood right now.");
+	else addButton(3,"Sex",lundSexStarter);
 	if(flags["LUND_PB"] == undefined) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if Lund might enjoy having a peanut butter cookie.");
 	else if(flags["LUND_MADE_U_SUBMIT"] != undefined || pc.isBimbo()) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if you could get Lund somewhere private so you can give him another cookie...");
 	else if(flags["LUND_PB_DISABLED"] == undefined) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You snicker as you wonder to yourself if Lund is in the mood for another cookie. He certainly seemed to enjoy the last one!");

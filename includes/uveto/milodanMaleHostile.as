@@ -134,44 +134,32 @@ public function miloMaleWinMenu():void
 {
 	clearMenu();
 
-	if(pc.lust() >= 33)
+	if(pc.hasCock())
 	{
-		if(pc.hasCock())
-		{
-			if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Doggystyle",doggieStyleDatSaberDoggie,undefined,"Doggystyle","Make this pussy-puppy take it like the bitch he is.");
-			else addDisabledButton(0,"Doggystyle","Doggystyle","Your dick is too big to fit in his butt.");
-		}
-		else addDisabledButton(0,"Doggystyle","Doggystyle","You don’t have a penis to stuff in his poor boy-pussy.");
-
-		if(pc.hasVagina() && pc.blockedVaginas() == 0)
-		{
-			if(!pc.isTaur()) addButton(1,"Vaginal Ride",rideVaginalMilodanMaleBecauseTHEYIFFENING,undefined,"Vaginal Ride","Take care of your lusts by riding him into the snow, though you aren’t sure if you’ll let him nut inside just yet...");
-			else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","Your tauric anatomy is ill-suited for this act.");
-		}
-		else if(pc.hasVagina()) addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You'll want an unobstructed vagina to do this.");
-		else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You need a vagina to take him in your vagina.");
-
-		addButton(2,"Ride Anal",takeMaleMilodanForAnAnalRide,undefined,"Ride Anal","Take the barbarian in your ass for a little anal fun.");
-
-		if(pc.isTaur())
-		{
-			if(pc.hasGenitals()) addButton(3,"Taurssionary",taurssionaryWithFloofyBoyslut,undefined,"Taurssionary","Sometimes when you’re a centaur, you have to be creative in how you get fucked.");
-			else addDisabledButton(3,"Taurssionary","Taurssionary","If you’re going to get fucked missionary (or as close as your anatomy will allow), you should probably have some genitals. It seems like a good idea. Give it a try sometime, whynot. You’re missing out on so much otherwise.\n\nPlease!");
-		}
-		else addDisabledButton(3,"Taurssionary","Taurssionary","As the name would imply, you need to be a centaur or something similar for this particular act.");
-
-		addButton(4,"Rimjob",giveMilodanMalesStinkyButtholeALick,undefined,"Rimjob","Tongue his ass until he’s squirting so much hot release into the snow that it steams.");
-		addButton(5,"CockWorship",milodanCockWorship,undefined,"Cock Worship","You won the fight... that means you get to do what you want. That includes giving this studly catman some crotch worship." + (silly ? " No kink shaming here.":""));
+		if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Doggystyle",doggieStyleDatSaberDoggie,undefined,"Doggystyle","Make this pussy-puppy take it like the bitch he is.");
+		else addDisabledButton(0,"Doggystyle","Doggystyle","Your dick is too big to fit in his butt.");
 	}
-	else
+	else addDisabledButton(0,"Doggystyle","Doggystyle","You don’t have a penis to stuff in his poor boy-pussy.");
+
+	if(pc.hasVagina() && pc.blockedVaginas() == 0)
 	{
-		addDisabledButton(0,"Doggystyle","Doggystyle","You aren’t aroused enough for that.");
-		addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You aren’t aroused enough for that.");
-		addDisabledButton(2,"Ride Anal","Ride Anal","You aren’t aroused enough for that.");
-		addDisabledButton(3,"Taurssionary","Taurssionary","You aren’t aroused enough for that.");
-		addDisabledButton(4,"Rimjob","Rimjob","You aren’t aroused enough for that.");
-		addDisabledButton(5,"CockWorship","Cock Worship","You aren’t aroused enough for that.");
+		if(!pc.isTaur()) addButton(1,"Vaginal Ride",rideVaginalMilodanMaleBecauseTHEYIFFENING,undefined,"Vaginal Ride","Take care of your lusts by riding him into the snow, though you aren’t sure if you’ll let him nut inside just yet...");
+		else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","Your tauric anatomy is ill-suited for this act.");
 	}
+	else if(pc.hasVagina()) addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You'll want an unobstructed vagina to do this.");
+	else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You need a vagina to take him in your vagina.");
+
+	addButton(2,"Ride Anal",takeMaleMilodanForAnAnalRide,undefined,"Ride Anal","Take the barbarian in your ass for a little anal fun.");
+
+	if(pc.isTaur())
+	{
+		if(pc.hasGenitals()) addButton(3,"Taurssionary",taurssionaryWithFloofyBoyslut,undefined,"Taurssionary","Sometimes when you’re a centaur, you have to be creative in how you get fucked.");
+		else addDisabledButton(3,"Taurssionary","Taurssionary","If you’re going to get fucked missionary (or as close as your anatomy will allow), you should probably have some genitals. It seems like a good idea. Give it a try sometime, whynot. You’re missing out on so much otherwise.\n\nPlease!");
+	}
+	else addDisabledButton(3,"Taurssionary","Taurssionary","As the name would imply, you need to be a centaur or something similar for this particular act.");
+
+	addButton(4,"Rimjob",giveMilodanMalesStinkyButtholeALick,undefined,"Rimjob","Tongue his ass until he’s squirting so much hot release into the snow that it steams.");
+	addButton(5,"CockWorship",milodanCockWorship,undefined,"Cock Worship","You won the fight... that means you get to do what you want. That includes giving this studly catman some crotch worship." + (silly ? " No kink shaming here.":""));
 	addButton(14,"Leave",leaveDatMilodanHesASlutAnywayItsNotLiekYouLikedHimOrAnythingBaka);
 }
 

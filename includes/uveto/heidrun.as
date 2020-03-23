@@ -70,8 +70,7 @@ public function approachHeidrun():void
 	//[Buy] [Appearance] [Sex]
 	processTime(1);
 	clearMenu();
-	if(pc.lust() >= 33) addButton(2,"Sex",sexWithHeidrun);
-	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for that right now.");
+	addButton(2,"Sex",sexWithHeidrun);
 	addButton(1,"Appearance",heidrunAppearance);
 	if(flags["HEIDRUN_CREDS"] != undefined)
 	{
