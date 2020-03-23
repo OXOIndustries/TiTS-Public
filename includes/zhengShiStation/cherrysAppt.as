@@ -40,23 +40,20 @@ public function cherryRoomMenu():void
 	else addDisabledButton(1,"Feed Bubble","Feed Bubble","You need to have given her a fresh bubble for this..." + (flags["CHERRY_HUGE_BUBS"] == 1 ? " And that huge bubble you gifted her is apparently sentimental...":""));
 
 	
-	if(pc.lust() >= 33)
-	{
-		// {Fuck her/Fuck Her?/Fuck Her!} [Feed Bubble] [Blow Bubble] [Leave]
-		if(!pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis for this.");
-		else if(flags["CHERRY_SEX_INTRO"] == undefined) addButton(0,"Fuck Her",fuckCherryYo,undefined,"Fuck Her","Try your luck, and maybe get all up in that gel...");
-		else if(!cherryCumflated()) addButton(0,"Fuck Her?",fuckCherryAnywayYo,undefined,"Fuck Her?","Damn the consequences, you’re hungry for a big slice of Cherry pie.");
-		else addButton(0,"Fuck Her!",fuckCherryExclamationPointo,undefined,"Fuck Her!","With Cherry nice and bloated, she’ll be safe to the touch for a while.");
+	// {Fuck her/Fuck Her?/Fuck Her!} [Feed Bubble] [Blow Bubble] [Leave]
+	if(!pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis for this.");
+	else if(flags["CHERRY_SEX_INTRO"] == undefined) addButton(0,"Fuck Her",fuckCherryYo,undefined,"Fuck Her","Try your luck, and maybe get all up in that gel...");
+	else if(!cherryCumflated()) addButton(0,"Fuck Her?",fuckCherryAnywayYo,undefined,"Fuck Her?","Damn the consequences, you’re hungry for a big slice of Cherry pie.");
+	else addButton(0,"Fuck Her!",fuckCherryExclamationPointo,undefined,"Fuck Her!","With Cherry nice and bloated, she’ll be safe to the touch for a while.");
 
-		//[Blow Bubble]
-		if(!pc.isTaur()) addButton(2,"Blow Bubble",cherryBlowBubbleScene,undefined,"Blow Bubble","Use a Bubble Buddy and feed Cherry right from the tap.")
-		else addDisabledButton(2,"Blow Bubble","Blow Bubble","Your body shape is incompatible with this scene.");
-	}
-	else 
+	//[Blow Bubble]
+	if(!pc.isTaur()) addButton(2,"Blow Bubble",cherryBlowBubbleScene,undefined,"Blow Bubble","Use a Bubble Buddy and feed Cherry right from the tap.")
+	else addDisabledButton(2,"Blow Bubble","Blow Bubble","Your body shape is incompatible with this scene.");
+	/*else 
 	{
 		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t turned on enough for this.");
 		addDisabledButton(2,"Blow Bubble","Blow Bubble","You aren’t turned on enough for this.");
-	}
+	}*/
 
 	addButton(14,"Leave",leaveCherrysPlace);
 }

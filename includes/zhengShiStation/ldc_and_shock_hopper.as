@@ -650,37 +650,34 @@ public function victoryOverShockyHoppy():void
 	clearMenu();
 	addButton(0,"Take It",takeTheAccessCodesAndProbes,undefined,"Take It","Just take the access codes and leave the bunnies alone.");
 	addButton(1,"Save Them",saveThemSluts,undefined,"Save Them","Oh no, you’re not letting him walk off with all these innocent women.");
-	if(pc.lust() >= 33)
-	{
 		
-		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) 
-		{
-			addButton(2,"Dom His Butt",cockSelect,[domTheLDCsAss,enemy.analCapacity(),true,0],"Dom His Butt","Give the bunny-boy a taste of his own medicine before anything else.");
-			addButton(3,"Fuck Hopper", cockSelect,[fuckTheHopper,enemy.vaginalCapacity(0),true,0],"Fuck Hopper","Bend the blue dickbunny over and give her a good fuckin’ as punishment.");
-		}
-		else 
-		{
-			addDisabledButton(2,"Dom His Butt","Dom His Butt","You need a penis that fits inside him or a hardlight strap-on for this.");
-			addDisabledButton(3,"Fuck Hopper","Fuck Hopper","You need a penis that fits inside him or a hardlight strap-on for this.");
-		}
-		addButton(4,"Ride Hopper",vaginaRouter,[rideHopperSlut,enemy.cockVolume(0),1,0],"Ride Hopper","Hop on that pillar of bunny mean and show the L.D.C. how to <i>really</i> pleasure an oversexed futa slut like the Hopper.");
-		if(pc.isTaur()) addDisabledButton(5,"Threesome","Threesome","Your body type is unsuited to this position.");
-		else if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(5,"Threesome",cockSelect,[laquineShockyThreesomes,enemy.analCapacity(),true,0],"Threesome","If all these depraved laquines do is sit around getting laid, they wouldn’t mind one last round together. One you’ll be leading, whether L.D.C. likes it or not.");
-		else addDisabledButton(5,"Threesome","Threesome","You need a penis that fits inside their butts for this.");
-		if(pc.hasVagina())
-		{
-			if(pc.legCount != 2) addDisabledButton(6,"Drain Bunnies","Drain Bunnies","You need to walk on two legs for this.");
-			else if(pc.isAmazon(false)) addButton(6,"Drain Bunnies",vaginaRouter,[drainBunnies,enemy.cockVolume(0),0,0],"Drain Bunnies","After a fight like that, what better way to work out your differences than riding both those rabbits to exhaustion?");
-			else if(pc.isBimbo()) addButton(6,"Drain Bunnies",vaginaRouter,[drainBunnies,enemy.cockVolume(0),0,0],"Drain Bunnies","You can’t let that big, juicy dick just walk out of here without a taste! And what about that sexy bunny? Sure she tried to hurt you, but they’re both packing some fine meat, and who knows how much cum?");
-			else addDisabledButton(6,"Drain Bunnies","Drain Bunnies","You’ll need either the endurance of a galaxy-class porn star or be a much more open-minded and depraved individual to consider this. Super sluts only, ‘kay?");
-		}
-		else addDisabledButton(6,"Drain Bunnies","Drain Bunnies",(pc.isBimbo() ? "You can’t dom these two without a pussy!":"How can you wring cummies out of bunnies without a pussy!?"));
-		if(pc.hasCock()) addButton(7,"Get Service(P)",getWorshippedByBuns,true,"Get Service(P)","Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.");
-		else addDisabledButton(7,"Get Service(P)","Get Service(P)","You can’t receive real oral service without a dick!");
-		if(pc.hasVagina()) addButton(8,"Get Service(V)",getWorshippedByBuns,false,"Get Service(V)","Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.");
-		else addDisabledButton(8,"Get Service(V)","Get Service(V)","You can’t receive real oral service without a pussy!");
+	if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) 
+	{
+		addButton(2,"Dom His Butt",cockSelect,[domTheLDCsAss,enemy.analCapacity(),true,0],"Dom His Butt","Give the bunny-boy a taste of his own medicine before anything else.");
+		addButton(3,"Fuck Hopper", cockSelect,[fuckTheHopper,enemy.vaginalCapacity(0),true,0],"Fuck Hopper","Bend the blue dickbunny over and give her a good fuckin’ as punishment.");
 	}
-	else
+	else 
+	{
+		addDisabledButton(2,"Dom His Butt","Dom His Butt","You need a penis that fits inside him or a hardlight strap-on for this.");
+		addDisabledButton(3,"Fuck Hopper","Fuck Hopper","You need a penis that fits inside him or a hardlight strap-on for this.");
+	}
+	addButton(4,"Ride Hopper",vaginaRouter,[rideHopperSlut,enemy.cockVolume(0),1,0],"Ride Hopper","Hop on that pillar of bunny mean and show the L.D.C. how to <i>really</i> pleasure an oversexed futa slut like the Hopper.");
+	if(pc.isTaur()) addDisabledButton(5,"Threesome","Threesome","Your body type is unsuited to this position.");
+	else if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(5,"Threesome",cockSelect,[laquineShockyThreesomes,enemy.analCapacity(),true,0],"Threesome","If all these depraved laquines do is sit around getting laid, they wouldn’t mind one last round together. One you’ll be leading, whether L.D.C. likes it or not.");
+	else addDisabledButton(5,"Threesome","Threesome","You need a penis that fits inside their butts for this.");
+	if(pc.hasVagina())
+	{
+		if(pc.legCount != 2) addDisabledButton(6,"Drain Bunnies","Drain Bunnies","You need to walk on two legs for this.");
+		else if(pc.isAmazon(false)) addButton(6,"Drain Bunnies",vaginaRouter,[drainBunnies,enemy.cockVolume(0),0,0],"Drain Bunnies","After a fight like that, what better way to work out your differences than riding both those rabbits to exhaustion?");
+		else if(pc.isBimbo()) addButton(6,"Drain Bunnies",vaginaRouter,[drainBunnies,enemy.cockVolume(0),0,0],"Drain Bunnies","You can’t let that big, juicy dick just walk out of here without a taste! And what about that sexy bunny? Sure she tried to hurt you, but they’re both packing some fine meat, and who knows how much cum?");
+		else addDisabledButton(6,"Drain Bunnies","Drain Bunnies","You’ll need either the endurance of a galaxy-class porn star or be a much more open-minded and depraved individual to consider this. Super sluts only, ‘kay?");
+	}
+	else addDisabledButton(6,"Drain Bunnies","Drain Bunnies",(pc.isBimbo() ? "You can’t dom these two without a pussy!":"How can you wring cummies out of bunnies without a pussy!?"));
+	if(pc.hasCock()) addButton(7,"Get Service(P)",getWorshippedByBuns,true,"Get Service(P)","Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.");
+	else addDisabledButton(7,"Get Service(P)","Get Service(P)","You can’t receive real oral service without a dick!");
+	if(pc.hasVagina()) addButton(8,"Get Service(V)",getWorshippedByBuns,false,"Get Service(V)","Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.");
+	else addDisabledButton(8,"Get Service(V)","Get Service(V)","You can’t receive real oral service without a pussy!");
+	/*else
 	{
 		addDisabledButton(2,"Fuck Hopper","Fuck Hopper","You aren’t aroused enough for this.");
 		addDisabledButton(3,"Dom His Butt","Dom His Butt","You aren’t aroused enough for this.");
@@ -689,7 +686,7 @@ public function victoryOverShockyHoppy():void
 		addDisabledButton(6,"Drain Bunnies","Drain Bunnies","You aren’t aroused enough for this.");
 		addDisabledButton(7,"Get Worshiped","Get Worshiped","You aren’t aroused enough for this.");
 		addDisabledButton(7,"Get Worshiped","Get Worshiped","You aren’t aroused enough for this.");
-	}
+	}*/
 }
 
 //Take It

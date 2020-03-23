@@ -333,12 +333,9 @@ public function urbolgMenu():void
 	addButton(0,"Appearance",urbolgAppearance);
 	addButton(1,"Talk",talkToUrbolg);
 	addButton(2,"Buy",buyFromUrbolg);
-	if(pc.lust() >= 33) 
-	{
-		if(flags["SEXED_URBOLG"] == undefined) addButton(3,"Flirt",urbolgFlirtSex);
-		else addButton(3,"Sex",urbolgFlirtSex);
-	}
-	else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
+	if(flags["SEXED_URBOLG"] == undefined) addButton(3,"Flirt",urbolgFlirtSex);
+	else addButton(3,"Sex",urbolgFlirtSex);
+	//else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
 	if(pc.hasGenitals()) addButton(4,"PB Cookie",urbolgPBCookiesBYOUMADMAN,undefined,"PB Cookie","You often see Urbolg when he’s hard at work. Maybe he’d like to have a nice treat to relax after some hard work.");
 	else addDisabledButton(4,"PB Cookie","PB Cookie","You need traditional genitals of some sort to pursue such an action.");
 	if(pc.accessory is MaikesCollar)

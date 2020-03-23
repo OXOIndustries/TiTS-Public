@@ -44,7 +44,6 @@ public function daneMenu():void
 	{
 		if(flags["DANE_SEXED"] == undefined) addButton(1,"Flirt",daneSexIntro);
 		else addButton(1,"Please Him",daneSexIntro,undefined,"Please Him","Dane’s going to take charge if you want to sleep with him, but that’s what you want, isn’t it?");
-		if(pc.lust() < 33) setButtonDisabled(1);
 	}
 	else addDisabledButton(1,"Flirt","Flirt","You turned down Dane so hard that flirting isn’t really an option any more.");
 	addButton(14,"Leave",mainGameMenu);

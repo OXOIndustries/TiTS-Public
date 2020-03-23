@@ -219,11 +219,7 @@ public function cherryMenu():void
 	addButton(2,"Talk",talkToCherry,undefined,"Talk","Talk to Cherry.");
 	//[Cum Bubble]
 	addButton(3,"Give Bubble",cumBubblesOptionsForCherry,undefined,"Give Bubble","Goo girls love Bubble Buddy snacks.");
-	if(cherryCumflated()) 
-	{
-		if(pc.lust() < 33) addDisabledButton(4,"Fuck","You are not aroused enough for this.");
-		else addButton(4,"Fuck",bubbledBitchesNeedBoounced,undefined,"Fuck","With Cherry still cum-fattened from your previous feeding, she should be safely fuckable.");
-	}
+	if(cherryCumflated()) addButton(4,"Fuck",bubbledBitchesNeedBoounced,undefined,"Fuck","With Cherry still cum-fattened from your previous feeding, she should be safely fuckable.");
 	else addDisabledButton(4,"Fuck","Fuck","Cherry’s not really safe to touch, let alone fuck.");
 	addButton(14,"Leave",pickWallSlutMenu);
 }
