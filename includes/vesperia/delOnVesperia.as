@@ -150,8 +150,7 @@ public function delVesperiaMenu():void
 	clearMenu();
 	addButton(0,"Drinks",drinkFromDel,undefined,"Drinks","Get a drink from the slutty waitress.");
 	addButton(1,"Talk",talkToDel,undefined,"Talk","Sit and chat with Del.");
-	if(pc.lust() >= 33) addButton(2,"Sex",sexWithKallysDel,undefined,"Sex","Take Del to pound town.");
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
+	addButton(2,"Sex",sexWithKallysDel,undefined,"Sex","Take Del to pound town.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

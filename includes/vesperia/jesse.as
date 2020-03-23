@@ -231,7 +231,6 @@ public function approachJesse(back:Boolean = false):void
 	if (flags["JESSE_TALK_BODY"] == undefined) addDisabledButton(3, "Locked", "Locked", "You don’t know her well enough to talk about this yet.");
 	// check if the bagotricks scene needs genitals, otherwise kill this line
 	//else if (!pc.hasGenitals() && !pc.hasHardLightEquipped()) addDisabledButton(3, "Sex", "Sex", "You need genitals or a hardlight dildo for this.");
-	else if (pc.lust() < 33) addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for this.");
 	else addButton(3, "Sex", jesseSexMenu, undefined, "Sex", "Get at that eager booty!");
 	addButton(14, "Leave", mainGameMenu);
 }

@@ -420,8 +420,7 @@ public function sylvieMenu():void
 	else
 	{
 		//[Get Sexy]
-		if(pc.lust() >= 33) addButton(0,"Get Sexy",sylvieSexyTimeIntro,undefined,"Get Sexy","Now that she’s finally loosened up for a bit of fun, party with Sylvie!");
-		else addDisabledButton(0,"Get Sexy","Get Sexy","You aren’t turned on enough for that.");
+		addButton(0,"Get Sexy",sylvieSexyTimeIntro,undefined,"Get Sexy","Now that she’s finally loosened up for a bit of fun, party with Sylvie!");
 		
 		var bSynthSheath:Boolean = (CodexManager.entryUnlocked("SynthSheath"));
 		if(sylvieHasCock()) addDisabledButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"Sylvie already has a cock!");
