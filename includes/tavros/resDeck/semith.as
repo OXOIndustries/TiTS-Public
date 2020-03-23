@@ -446,8 +446,7 @@ public function semithMenuNavigation(activeTopic:Function = undefined):void {
 		&&	pc.analCapacity() < chars["SEMITH"].cockVolume(0)
 		)
 			addDisabledButton(2, "Sex", "Sex", "You can’t do this for some reason... You’ll need to have genitals or an asshole that can fit him...");
-		else if(pc.lust() >= 33) addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
-		else addDisabledButton(2, "Booty Call", "Booty Call", "You are just not aroused enough for that.");
+		else addButton(2, "Booty Call", semithSexMenu, undefined, "Booty Call", "You’re here to fuck. Make that clear.");
 	}
 	
 	addButton(14, "Leave", mainGameMenu);

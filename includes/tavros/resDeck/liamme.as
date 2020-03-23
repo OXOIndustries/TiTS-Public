@@ -172,8 +172,7 @@ public function liammeMenu():void
 	//[Talk] Have a chat with Liamme.
 	addButton(1,"Talk",talkToLiamme,undefined,"Talk","Have a chat with Liamme.");
 	//[Sex] There isn’t anything to suggest Lia </i>isn’t<i> down for a good lay.
-	if(pc.lust() >= 33) addButton(2,"Sex",fuckLiamme,undefined,"Talk","There isn’t anything to suggest Lia </i>isn’t<i> down for a good lay.");
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
+	addButton(2,"Sex",fuckLiamme,undefined,"Talk","There isn’t anything to suggest Lia </i>isn’t<i> down for a good lay.");
 	//[Exhibition] Try to have a little exhibitionistic fun with this trappy puppy. //PC can’t be a taur, requires Liamme to have been sexed once, all talk scenes to be complete, moderate exhib score, misch/hard.
 	if(flags["SEXED_LIAMME"] != undefined && flags["LIAMME_TALK_SELF"] != undefined && flags["LIAMME_TALK_TAVROS"] != undefined && flags["LIAMME_TALK_MODS"] != undefined && pc.exhibitionism() >= 33 && (pc.isAss() || pc.isMischievous())) 
 	{

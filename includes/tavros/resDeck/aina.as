@@ -204,8 +204,7 @@ public function helpAina():void
 	pc.lust(25);
 	
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0, "Offer Sex", helpAinaWithSex);
-	else addDisabledButton(0,"Offer Sex","Offer Sex","You aren’t aroused enough for this.");
+	addButton(0, "Offer Sex", helpAinaWithSex);
 	if(pc.IQ() >= 40 || pc.characterClass == GLOBAL.CLASS_ENGINEER) addButton(1, "Fix Toy", helpAinaByFixingHerToy);
 	else addDisabledButton(1,"Fix Toy","Fix Toy","You have no idea how to fix it.");
 	addButton(14,"Leave", leaveAinaAlone);
@@ -414,8 +413,7 @@ public function ainaMenu():void
 		if(!ainaIsInHeat() || ainaRecentlyRelieved()) addButton(1, "Talk", ainaTalk);
 		else addDisabledButton(1, "Talk", "Talk", "Aina is in no state for talking.");
 		addButton(2, "Tea", ainaSharesSomeTea, undefined, "Tea", "Take Aina up on her Tea offer.");
-		if(pc.lust() >= 33) addButton(3, "Offer Sex", ainaSexMenu);
-		else addDisabledButton(3,"Offer Sex","Offer Sex","You aren’t aroused enough for this.");
+		addButton(3, "Offer Sex", ainaSexMenu);
 		if (ainaIsDirty()) addButton(4, "Shower with", ainaDirtyShowerIntro, undefined,"Shower with horsie","Ask Aina to take a shower with you");
 		else addButton(4, "Shower", ainaShower);
 		if (flags["AINA_COMFORT"] >= 2 && (hours >= 5 && hours <= 8)) addButton(5, "Comfort", ainaPregComfort2, undefined,"Have breakfast","Eat breakfast with Aina");

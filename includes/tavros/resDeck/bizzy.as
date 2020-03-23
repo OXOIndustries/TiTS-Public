@@ -276,29 +276,18 @@ public function bizzySexMenu(fromItem:Boolean = false):void
 	
 	var btnSlot:int = 0;
 
-	if (pc.lust() >= 33 && pc.hasCock()) addButton(btnSlot++, "Vaginal", bizzySexVaginal, fromItem, "Vaginal", "Bend her over the couch.");
-	else if (pc.lust() < 33) addDisabledButton(btnSlot++, "Vaginal", "Vaginal", "You’re not turned on enough for this.");
+	if (pc.hasCock()) addButton(btnSlot++, "Vaginal", bizzySexVaginal, fromItem, "Vaginal", "Bend her over the couch.");
 	else addDisabledButton(btnSlot++, "Vaginal", "Vaginal", "You need a cock to give her a good seeing to.");
 
-	if (pc.biggestTitSize() >= 3 && pc.lust() >= 33) addButton(btnSlot++, "BoobyRubs", bizzyBoobyRubs, fromItem, "Booby Rubs", "Aren’t boobs nice? Compare yours with hers.");
-	else if (pc.lust() < 33) addDisabledButton(btnSlot++, "BoobyRubs", "Booby Rubs", "You’re not turned on enough for this.");
+	if (pc.biggestTitSize() >= 3) addButton(btnSlot++, "BoobyRubs", bizzyBoobyRubs, fromItem, "Booby Rubs", "Aren’t boobs nice? Compare yours with hers.");
 	else addDisabledButton(btnSlot++, "BoobyRubs", "Booby Rubs", "You need to be rockin’ a rack of your own to get down with some fat tiddy pillow squishing.");
 
-	if (pc.hasCock())
-	{
-		if (pc.lust() < 33) addDisabledButton(btnSlot++, (pc.hasVagina() ? "Oral (M)" : "Oral"), (pc.hasVagina() ? "Oral (Cock)" : "Oral"), "You’re not turned on enough for this.");
-		else addButton(btnSlot++, (pc.hasVagina() ? "Oral (M)" : "Oral"), bizzySexOral, [false, fromItem], (pc.hasVagina() ? "Oral (Cock)" : "Oral"), "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
-	}
-	if (pc.hasVagina())
-	{
-		if (pc.lust() < 33) addDisabledButton(btnSlot++, (pc.hasCock() ? "Oral (F)" : "Oral"), (pc.hasCock() ? "Oral (Vag)" : "Oral"), "You’re not turned on enough for this.");
-		else addButton(btnSlot++, (pc.hasCock() ? "Oral (F)" : "Oral"), bizzySexOral, [true, fromItem], (pc.hasCock() ? "Oral (Vag)" : "Oral"), "Cats are good at licking.");
-	}
+	if (pc.hasCock()) addButton(btnSlot++, (pc.hasVagina() ? "Oral (M)" : "Oral"), bizzySexOral, [false, fromItem], (pc.hasVagina() ? "Oral (Cock)" : "Oral"), "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
+	if (pc.hasVagina()) addButton(btnSlot++, (pc.hasCock() ? "Oral (F)" : "Oral"), bizzySexOral, [true, fromItem], (pc.hasCock() ? "Oral (Vag)" : "Oral"), "Cats are good at licking.");
 
 	if (flags["BIZZY_PORN_STUDIO"] >= 2)
 	{
-		if (pc.hasCock() && pc.lust() >= 33) addButton(btnSlot++, "Titfuck", bizzyTittyFuck, fromItem, "Tittyfuck", "Use her new anatomy in the best way possible.");
-		else if (pc.lust() < 33) addDisabledButton(btnSlot++, "Titfuck", "Tittyfuck", "You’re not turned on enough for this.");
+		if (pc.hasCock()) addButton(btnSlot++, "Titfuck", bizzyTittyFuck, fromItem, "Tittyfuck", "Use her new anatomy in the best way possible.");
 		else addDisabledButton(btnSlot++, "Titfuck", "Tittyfuck", "You need a cock to slide between her succulent tits.");
 	}
 
@@ -873,8 +862,7 @@ public function bizzyStage5Menu():void
 	addButton(1, "Camshow", bizzyStage5Camshow);
 	addDisabledButton(2, "Talk");
 	addButton(3, "Breasts", bizzyStage5Breasts, undefined, "Breasts", "The most important subject of all.");
-	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisabledButton(4, "Sex", "Sex", "You’re not turned on enough to really get the most out of your personal big titty kitty.");
+	addButton(4, "Sex", bizzySexMenu);
 	addButton(14, "Leave", bizzyGoLeave);
 }
 
@@ -1012,9 +1000,7 @@ public function bizzyStage4Menu():void
 	addButton(1, "Camshow", bizzyStage4Camshow);
 	addDisabledButton(2, "Talk");
 	addButton(3, "Breasts", bizzyStage4Breasts, undefined, "Breasts", "The most important subject of all.");
-	
-	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisabledButton(4, "Sex", "Sex", "You’re not turned on enough to really get the most out of your personal big titty kitty.");
+	addButton(4, "Sex", bizzySexMenu);
 
 	if (flags["BIZZY_SHOW_PLAN"] != undefined && flags["BIZZY_SHOW_PLAN"] == 1)
 	{
@@ -1328,9 +1314,7 @@ public function bizzyStage3Menu():void
 	addButton(1, "Camshow", bizzyStage3Camshow);
 	addDisabledButton(2, "Talk");
 	addButton(3, "Breasts", bizzyStage3Breasts, undefined, "Her Breasts", "The most important subject of all.");
-	
-	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisabledButton(4, "Sex", "Sex", "You’re not turned on enough to really get the most out of your personal big titty kitty.");
+	addButton(4, "Sex", bizzySexMenu);
 	
 	addButton(14, "Leave", bizzyGoLeave);
 }
@@ -1569,9 +1553,7 @@ public function bizzyStage2Menu():void
 	addButton(1, "Camshow", bizzyStage2Camshow, undefined, "Camshow", "Ask her how the business is doing. Can you see one of her shows?");
 	addDisabledButton(2, "Talk");
 	addButton(3, "Breasts", bizzyStage2Breasts, undefined, "Breasts", "The most important subject of all.");
-	
-	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisabledButton(4, "Sex", "Sex", "You’re not turned on enough to really get the most out of your personal big titty kitty.");
+	addButton(4, "Sex", bizzySexMenu);
 	
 	addButton(14, "Leave", bizzyGoLeave);
 }
@@ -1803,9 +1785,7 @@ public function bizzyStage1Menu():void
 	addButton(1, "Camshow", bizzyStage1Camshow, undefined, "Camshow", "Ask her how the business is doing. Can you see one of her shows?");
 	addDisabledButton(2, "Talk");
 	addButton(3, "Breasts", bizzyStage1Breasts, undefined, "Breasts", "The most important subject of all.");
-	
-	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisabledButton(4, "Sex", "Sex", "You’re not turned on enough to really get the most out of your personal titty kitty.");
+	addButton(4, "Sex", bizzySexMenu);
 	
 	addButton(14, "Leave", bizzyGoLeave);
 }
