@@ -677,16 +677,6 @@ public function victoryOverShockyHoppy():void
 	else addDisabledButton(7,"Get Service(P)","Get Service(P)","You can’t receive real oral service without a dick!");
 	if(pc.hasVagina()) addButton(8,"Get Service(V)",getWorshippedByBuns,false,"Get Service(V)","Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.");
 	else addDisabledButton(8,"Get Service(V)","Get Service(V)","You can’t receive real oral service without a pussy!");
-	/*else
-	{
-		addDisabledButton(2,"Fuck Hopper","Fuck Hopper","You aren’t aroused enough for this.");
-		addDisabledButton(3,"Dom His Butt","Dom His Butt","You aren’t aroused enough for this.");
-		addDisabledButton(4,"Ride Hopper","Ride Hopper","You aren’t aroused enough for this.");
-		addDisabledButton(5,"Threesome","Threesome","You aren’t aroused enough for this.");
-		addDisabledButton(6,"Drain Bunnies","Drain Bunnies","You aren’t aroused enough for this.");
-		addDisabledButton(7,"Get Worshiped","Get Worshiped","You aren’t aroused enough for this.");
-		addDisabledButton(7,"Get Worshiped","Get Worshiped","You aren’t aroused enough for this.");
-	}*/
 }
 
 //Take It

@@ -49,11 +49,6 @@ public function cherryRoomMenu():void
 	//[Blow Bubble]
 	if(!pc.isTaur()) addButton(2,"Blow Bubble",cherryBlowBubbleScene,undefined,"Blow Bubble","Use a Bubble Buddy and feed Cherry right from the tap.")
 	else addDisabledButton(2,"Blow Bubble","Blow Bubble","Your body shape is incompatible with this scene.");
-	/*else 
-	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t turned on enough for this.");
-		addDisabledButton(2,"Blow Bubble","Blow Bubble","You aren’t turned on enough for this.");
-	}*/
 
 	addButton(14,"Leave",leaveCherrysPlace);
 }

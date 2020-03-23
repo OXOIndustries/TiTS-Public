@@ -1095,12 +1095,6 @@ public function defeatTheSlavebreaker():void
 	}
 	if(pc.hasVagina()) addButton(2,"Get Licked",getEatenOutBySlyverenVicotory,undefined,"Get Licked","Snakes have long tongues, right? Put hers to work.");
 	else addDisabledButton(2,"Get Licked","Get Licked","You need a vagina for this.");
-	/*else
-	{
-		addDisabledButton(0,"Facefuck","Facefuck","You aren’t aroused enough for this.");
-		addDisabledButton(1,"Cuntfuck","Cuntfuck","You aren’t aroused enough for this.");
-		addDisabledButton(2,"Get Licked","Get Licked","You aren’t aroused enough for this.");
-	}*/
 	
 	if(enemy.hasItemByClass(Throbb)) addButton(3,"Give Throbb",giveThrobToSlyveren,undefined,"Give Throbb","Maybe slapping a dick on her will make her a little easier to deal with...");
 	else addDisabledButton(3,"Give Throbb","Give Throbb","She needs to be carrying some Throbb in order for you to make her taste her own medicine...");
