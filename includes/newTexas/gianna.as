@@ -410,7 +410,7 @@ public function giannaMenu():void
 	giannaDisplay();
 	//[Talk][Fuck][Silicone][Temperature][Plugin][Leave]
 	clearMenu();
-	iaddButton(0,"Fuck",giannaFuckChoices,undefined,"Fuck","Engage in a sexual act with the eager to please android.");
+	addButton(0,"Fuck",giannaFuckChoices,undefined,"Fuck","Engage in a sexual act with the eager to please android.");
 	addButton(1,"Talk",talkToGianna,undefined,"Talk","Strike up a conversation with the enthusiastic android.");
 	if(flags["GIANNA_BODY_TALK_RESULT"] == undefined) addDisabledButton(2,"Locked","Locked","You’ll have to talk to Gianna to unlock this option.");
 	else addButton(2,"Silicone",giannaBodyModMenu,undefined,"Silicone","She can adjust her body with silicone. Check in on her current levels and see if she’d like to make some adjustments.")

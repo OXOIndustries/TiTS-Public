@@ -99,7 +99,7 @@ public function winVsBoredJumper():void
 		return;
 	}*/
 	//Enough
-	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
+	output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
 	
 	clearMenu();
 	//addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");

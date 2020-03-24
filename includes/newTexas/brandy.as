@@ -99,7 +99,6 @@ public function brandyMenu():void
 	addButton(2,"Sex",sexWithBrandy,undefined,"Sex","Maybe the busty bovine is up for some fun.");
 	//[Exhibitionism] Take advantage of Brandy’s past. //Requires that the “Her Mods” scene be done, and a mischievous or hard personality, not taur or naga compatible.
 	if(flags["BRANDY_MODS"] != undefined && !pc.isNice() && !pc.isTaur() && !pc.isNaga()) addButton(3,"Exhibitionism",brandyExhibitionism,undefined,"Exhibitionism","Take advantage of Brandy’s past.");
-		else addDisabledButton(3,"Exhibitionism","Exhibitionism","You aren’t aroused enough for that.");
 	else if(flags["BRANDY_MODS"] == undefined) addDisabledButton(3,"Exhibitionism","Exhibitionism","You don’t know enough about her past.");
 	else addDisabledButton(3,"Exhibitionism","Exhibitionism","This is only possible for non-taurs and non-nagas who are of the mischievous or hard personality type.");
 	//[Taur sex] Maybe Brandy can do something special for someone of your stature. //Requires PC to be a taur. 
