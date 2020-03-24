@@ -97,13 +97,10 @@ public function lilianaMenu():void
 	clearMenu();
 	//[sex][talk][cuddles(at night(7pm or later) only)][later]
 	//[SEX]
-	if(pc.lust() >= 33) 
-	{
-		if(pc.hasVagina()) addButton(0,"Sex",sexUpDatAntBitch);
-		else if(pc.hasCock() && pc.cockThatFits(300) >= 0) addButton(0,"Sex",sexUpDatAntBitch);
-		else addDisabledButton(0,"Sex","Sex","You need a dick that will fit in her vagina or a vagina of your own to engage in intercourse with Liliana");
-	}
-	else addDisabledButton(0,"Sex","Sex","You aren’t presently aroused enough for sex.");
+	
+	if(pc.hasVagina()) addButton(0,"Sex",sexUpDatAntBitch);
+	else if(pc.hasCock() && pc.cockThatFits(300) >= 0) addButton(0,"Sex",sexUpDatAntBitch);
+	else addDisabledButton(0,"Sex","Sex","You need a dick that will fit in her vagina or a vagina of your own to engage in intercourse with Liliana");
 	//[TALK]
 	if(flags["LILIANA_TALKS"] == undefined) addButton(1,"Talk",talkToLilianaYouBafoooooon,undefined,"Talk","Talk to Liliana about her situation.");
 	else if(flags["LILIANA_TALKS"] == 1) addButton(1,"Talk",talkToLilianaYouBafoooooon,undefined,"Talk","Talk to Liliana about her missing arm.");

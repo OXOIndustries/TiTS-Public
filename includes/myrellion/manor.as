@@ -321,9 +321,7 @@ public function selleraMenu(prevFunc:Function = null):void
 	else if (pc.isTaur()) addDisabledButton(8, "Sex", "Sex", "Stop having so many legs.");
 	else if (!pc.hasGenitals()) addDisabledButton(8, "Sex", "Sex", "You need something to have sex with.");
 	else gatedButton( { id: 8, lbl: "Sex", f: selleraFucksYouInRecognitionOfYourWork, arg: undefined, ttH: "Sex", ttB: "Sellera did say she would reward you for your help. It’s time to collect on that reward.", prevF: prevFunc } );
-	if(pc.lust() >= 33) gatedButton( { id: 9, lbl: "Sex Service", f: selleraEnlistForSexualService, arg: undefined, ttH: "Sex Service", ttB: "See if you can help the Federation in more sensual ways.", prevF: prevFunc } );
-	else addDisabledButton(9,"Sex Service","Sex Service","You aren’t turned on enough for this kind of service right now.");
-
+	gatedButton( { id: 9, lbl: "Sex Service", f: selleraEnlistForSexualService, arg: undefined, ttH: "Sex Service", ttB: "See if you can help the Federation in more sensual ways.", prevF: prevFunc } );
 	gatedButton( { id: 10, lbl: "Appearance", f: selleraAppearance, arg: undefined, ttH: "Sellera’s Appearance", ttB: "The general appearance of Field Marshal Sellera.", prevF: prevFunc } );
 	addButton(14, "Leave", selleraLeave, undefined, "Leave", "Bid Sellera farewell and go back upstairs.");
 }

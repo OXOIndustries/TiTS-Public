@@ -493,7 +493,7 @@ public function genesModsTalkModsCombine():void
 		return;
 	}
 
-	if (pc.isFeminine() && pc.lust() >= 33)
+	if (pc.isFeminine())
 	{
 		output("\n\nAn ivory claw lands upon your shoulder");
 		if (pc.isChestGarbed()) output(", sliding beneath your [pc.upperGarment]");
@@ -695,7 +695,7 @@ public function genesModsTalkMyrII():void
 		return;
 	}
 
-	if (pc.isFeminine() && pc.lust() >= 33)
+	if (pc.isFeminine())
 	{
 		output("\n\nHe gazes");
 		if (pc.tallness < 120) output(" down");

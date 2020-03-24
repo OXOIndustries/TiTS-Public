@@ -641,7 +641,6 @@ public function yarastaMainMenu():void
 	if(flags["YARASTA_SCHEDULE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","You barely know the prefect. While it’s possible she’s down for casual sex beneath that prim exterior, you’re far more likely to catch a hand for asking.");
 	else if((hours >= 7 && hours < 12) || (hours >= 13 && hours < 18)) addDisabledButton(3,"Sex","Sex","Yarasta is with her class right now, and you’re definitely not a Sex Ed teacher.");
 	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
-	else if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t quite aroused enough to propose that at the moment.");
 	else addButton(3,"Sex",yarastaSexApproach,undefined,"Sex","Ask Yarasta if she’d like to have some adult fun.");
 	addButton(14,"Back",mainGameMenu);
 }
@@ -920,8 +919,7 @@ public function pryIntoYarastasSchedule():void
 	processTime(19);
 	flags["YARASTA_SCHEDULE_TALK"] = 1;
 	clearMenu();
-	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you’ll try that when you’re more in the mood.");
-	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
+	if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
 	else addButton(0,"Flirt",yarastaSexApproach,undefined,"Flirt","Ask Yarasta if she’d like to have some adult fun.");
 
 	addButton(1,"No",abortYarastaPrying);

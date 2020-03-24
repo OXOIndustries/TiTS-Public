@@ -132,8 +132,7 @@ public function anzhelaMenu():void
 	addButton(0, "Appearance", appearanceAnzhela,undefined,"Appearance","Take a look at Anzhela.");
 	addButton(1, "Talk", talkToAnzhela,undefined,"Talk","Have a chat with Anzhela.");
 	addButton(2,"Checkup",giveMeACheckupAnn,undefined,"Checkup","Get checked out by Anzhela to make sure everything’s in working order.");
-	if(pc.lust() >= 33) addButton(3,"SexRelief",sReliefAnn,undefined,"Sexual Relief","Get some sexual relief. Doctor’s orders!");
-	else addDisabledButton(3,"SexRelief","Sexual Relief","You don’t need any sexual relief at the moment.");
+	addButton(3,"SexRelief",sReliefAnn,undefined,"Sexual Relief","Get some sexual relief. Doctor’s orders!");
 	addButton(14, "Leave", mainGameMenu);
 }
 

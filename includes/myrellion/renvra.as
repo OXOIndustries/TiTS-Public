@@ -85,12 +85,8 @@ public function approachRenvra():void
 public function renvraMenu():void
 {
 	clearMenu();
-	if(pc.lust() >= 33) 
-	{
-		if(flags["RENVRA_RACE_TALK"] == 1) addButton(0,"Fuck Her",fuckHerYouNancy,0,"Fuck Her");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You don’t know her well enough for that.");
-	}
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for sex.");
+	if(flags["RENVRA_RACE_TALK"] == 1) addButton(0,"Fuck Her",fuckHerYouNancy,0,"Fuck Her");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You don’t know her well enough for that.");
 	addButton(1,"Sell Items",sellItemsToRenvra);
 	addButton(2,"Talk:Race",talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharacter,undefined,"Talk: Her Race","Ask Revnra about herself, and what exactly she is.");
 	if(flags["RENVRA_SEXED"] != undefined) addButton(3,"Talk:HerSex",askRenvraAbootHerSex,undefined,"Talk: Her Sex","Ask Revnra about her biology in particular.");
@@ -153,8 +149,7 @@ public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharact
 	flags["RENVRA_RACE_TALK"] = 1;
 	processTime(6);
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Fuck Her",fuckHerYouNancy,0,"Fuck Her");
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for sex.");
+	addButton(0,"Fuck Her",fuckHerYouNancy,0,"Fuck Her");
 	if(flags["RENVRA_SEXED"] != undefined) addButton(1,"Her Sex",askRenvraAbootHerSex,undefined,"Ask Renvra about her biology in paricular.");
 	else addDisabledButton(1,"Her Sex","Her Sex","You must have had intercourse with her to unlock this discussion.");
 	//[Fuck Her] [Her Sex] [Leave]

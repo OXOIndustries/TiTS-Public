@@ -670,18 +670,9 @@ public function nehzeraMenu(arg:Function = null):void
 	{
 		if(arg == talkToNehzaraAboutHistory) addDisabledButton(4,"Her History","Her History","You just finished talking about that. Maybe a new topic?");
 		else addButton(4,"Her History",talkToNehzaraAboutHistory,undefined,"Her History","Wars and politics are interesting and all, but what about the woman in front of you? You could ask how she got here, and why.");
-		
-		if(pc.lust() >= 33)
-		{
-			addButton(5,"Under Desk",sexUnderDeskWithNehzara,false,"Under Desk","It’d be more than a little humiliating to be hidden under a desk and used like some stress-relief toy, but there’s a saying about scratching backs....");
-			if(pc.hasCock() && !pc.isTaur()) addButton(6,"StorageCloset",sexWivNehzaraInStorageCloset,false,"Storage Closet","You’ve got what she wants, but you know she’ll want to call the shots. Still, going along with Nehzara and letting her use you for her own pleasure could be fun for both of you.");
-			else addDisabledButton(6,"StorageCloset","Storage Closet","You must not have any kind of tauric body and have a penis in order to access this scene.");
-		}
-		else 
-		{
-			addDisabledButton(5,"Under Desk","Under Desk","You’re not aroused enough for sexual hijinx at the moment.");
-			addDisabledButton(6,"StorageCloset","StorageCloset","You are not presently aroused enough for sexual hijinx.");
-		}
+		addButton(5,"Under Desk",sexUnderDeskWithNehzara,false,"Under Desk","It’d be more than a little humiliating to be hidden under a desk and used like some stress-relief toy, but there’s a saying about scratching backs....");
+		if(pc.hasCock() && !pc.isTaur()) addButton(6,"StorageCloset",sexWivNehzaraInStorageCloset,false,"Storage Closet","You’ve got what she wants, but you know she’ll want to call the shots. Still, going along with Nehzara and letting her use you for her own pleasure could be fun for both of you.");
+		else addDisabledButton(6,"StorageCloset","Storage Closet","You must not have any kind of tauric body and have a penis in order to access this scene.");
 		if(arg == talkToNehzaraAboutHistory) addButton(9,"Trench Wives?",trenchWives,undefined,"Trench Wives?","Wait... trench wives? There’s an unusual term, and she said something about <i>“war trophies.”</i> You could ask her to elaborate on that.");
 		if(arg == trenchWives) addDisabledButton(9,"Trench Wives","You just finished that discussion.");
 	}

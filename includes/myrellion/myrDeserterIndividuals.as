@@ -388,8 +388,7 @@ public function myrDeserterNonCombatMenu(gold:Boolean = false):void
 {
 	clearMenu();
 	//[Sex] [Talk] [Fight] [Flee]
-	if(pc.lust() >= 33) addButton(0,"Sex",sexWithAntGrills,gold);
-	else addDisabledButton(0,"Sex","Sex","You aren’t aroused enough for that.");
+	addButton(0,"Sex",sexWithAntGrills,gold);
 	// Fight is not available with the pregnant red myr. Otherwise, it goes right to combat.
 	addButton(1,"Talk",talkToAntSloots,gold);
 	if(gold) addButton(2,"Fight",fightADumbShitAntWaifu,gold);
@@ -988,80 +987,66 @@ public function winVsAntGrillDeserts():void
 	//[Dildo Screw] [Sit & Screw] [DoggyStyle] [Anal Sex] [Cum Spluge] [Hand Play]
 	processTime(2);
 	clearMenu();
-	if(pc.lust() >= 33)
+	//Dildo Screw (Red)
+	// Two variants - PC loss and PC Win/Consent version. For Red Only.
+	// Also a variant for the first time you get this scene, either loss or win/consent, where she introduces the dildo.
+	if(enemy is MyrRedFemaleDeserter) addButton(0,"DildoScrew",redDildoScrew,undefined,"Dildo Screw","Play with her and her dildo.");
+	//Sit & Screw (Gold)
+	// Two variants - PC loss and PC Win/Consent version. For Gold Only.
+	// Also a variant for the first time you get this scene, either loss or win, where she introduces the strap on.
+	else addButton(0,"Sit‘n’Screw",sitAndScrewGoldMyr,undefined,"Sit & Screw","Have some fun screwing her... with her strap-on if you need one.");
+	//Doggy Style (Both)
+	// PC Win or Non-Hostile Consent Only
+	// PC must have a dick.
+	// Max capacity 16 inches.
+	// Max girth four inches.
+	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+	else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
+	else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can’t do her doggie style without a dick of your own.");
+	//Cum Splurge (Red)
+	// Pc must have a cock.
+	// Not available on loss.
+	if(enemy is MyrRedFemaleDeserter)
 	{
-		//Dildo Screw (Red)
-		// Two variants - PC loss and PC Win/Consent version. For Red Only.
-		// Also a variant for the first time you get this scene, either loss or win/consent, where she introduces the dildo.
-		if(enemy is MyrRedFemaleDeserter) addButton(0,"DildoScrew",redDildoScrew,undefined,"Dildo Screw","Play with her and her dildo.");
-		//Sit & Screw (Gold)
-		// Two variants - PC loss and PC Win/Consent version. For Gold Only.
-		// Also a variant for the first time you get this scene, either loss or win, where she introduces the strap on.
-		else addButton(0,"Sit‘n’Screw",sitAndScrewGoldMyr,undefined,"Sit & Screw","Have some fun screwing her... with her strap-on if you need one.");
-		//Doggy Style (Both)
-		// PC Win or Non-Hostile Consent Only
-		// PC must have a dick.
-		// Max capacity 16 inches.
-		// Max girth four inches.
-		if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
-		else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
-		else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can’t do her doggie style without a dick of your own.");
-		//Cum Splurge (Red)
-		// Pc must have a cock.
-		// Not available on loss.
-		if(enemy is MyrRedFemaleDeserter)
-		{
-			if(pc.hasCock()) addButton(3,"Cum Splurge",cumSplurgeForRedAntSloots,undefined,"Cum Splurge","Have the red myr give you a BJ. All that venom should make it interesting...");
-			else addDisabledButton(3,"Cum Splurge","Cum Splurge","You need a penis that fits inside her for this scene.");
-			//Anal Sex (Red)
-			// PC must have cock.
-			if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
-			else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
-			if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she’s used to":"" + ".");
-			else addDisabledButton(4,"CompareToys","Compare Toys","You need hardlight-enabled underwear for this.");
-		}
-		else 
-		{
-			addDisabledButton(3,"Cum Splurge","Cum Splurge","This scene is exclusive to red myr deserters.");
-			addDisabledButton(2,"Anal Sex","Anal Sex","This scene is only available for the red myr.");
-		}
-		//Hand-Play (Gold)
-		if(enemy is MyrGoldFemaleDeserter)
-		{
-			// PC can be any gender.
-			// Not Available on PC loss
-			// No fucking taurs.
-			// Must have frontgenitals.
-			if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She’s got four arms... put them to work.");
-			else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
-		}
-		//else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
-		//Cuff&Fuck
-		cuffNFuckButton(5, enemy);
-		//Steal Dildo - new scene for either myr
-		//steal the dildo (or use the stolen one on her), with or without orgasm denial
-		//avail. in both myr's sex menus, combat-agnostic, but requires PC having seen 'Dildo Screw' (if with Briha) or 'Sit & Screw' (if with Lys), else button is hidden (not disabled)
-		//adds PC lust at the end so PC can possibly masturbate with dildo right away
-		//should add misch points
-		//tooltip: Distract the myr with orgasm and then abscond with her sex toy{(repeat) again}. Or you could stop just before orgasm....
-		gold = (enemy is MyrGoldFemaleDeserter);
-		var dildoToolTip:String = "Distract the myr with orgasm and then abscond with her sex toy";
-		if((gold && flags["GOLD_DILDOED"] != undefined) || ((!gold) && flags["RED_DILDOED"] != undefined)) dildoToolTip += " again";
-		dildoToolTip += ". Or you could stop just before orgasm....";
-		if((gold && flags["DILDO_SCREW_SCENE_SEEN"] != undefined) || (!gold && flags["RED_MYR_DESERT_DILDO_DONE"] != undefined)) addButton(6,"Steal Dildo",stealDildoScene,gold,"Steal Dildo",dildoToolTip);
-		else addDisabledButton(6,"Steal Dildo","Steal Dildo","You don’t even know if she has one!");
+		if(pc.hasCock()) addButton(3,"Cum Splurge",cumSplurgeForRedAntSloots,undefined,"Cum Splurge","Have the red myr give you a BJ. All that venom should make it interesting...");
+		else addDisabledButton(3,"Cum Splurge","Cum Splurge","You need a penis that fits inside her for this scene.");
+		//Anal Sex (Red)
+		// PC must have cock.
+		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
+		else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
+		if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she’s used to":"" + ".");
+		else addDisabledButton(4,"CompareToys","Compare Toys","You need hardlight-enabled underwear for this.");
 	}
-	else
+	else 
 	{
-		if(enemy is MyrRedFemaleDeserter) addDisabledButton(0,"DildoScrew","Dildo Screw","You’re not turned enough for sex.");
-		else addDisabledButton(0,"Sit‘n’Screw","Sit & Screw","You aren’t turned on enough for this.");
-		addDisabledButton(1,"DoggyStyle","DoggyStyle","You aren’t aroused enough for this.");
-		addDisabledButton(2,"Anal Sex","Anal Sex","You aren’t aroused enough for this.");
-		addDisabledButton(3,"Cum Splurge","Cum Splurge","You aren’t aroused enough for this.");
-		addDisabledButton(4,"Hand-Play","Hand-Play","You aren’t aroused enough for this.");
-
-		addDisabledButton(6,"Steal Dildo","Steal Dildo","You aren’t aroused enough for this.");
+		addDisabledButton(3,"Cum Splurge","Cum Splurge","This scene is exclusive to red myr deserters.");
+		addDisabledButton(2,"Anal Sex","Anal Sex","This scene is only available for the red myr.");
 	}
+	//Hand-Play (Gold)
+	if(enemy is MyrGoldFemaleDeserter)
+	{
+		// PC can be any gender.
+		// Not Available on PC loss
+		// No fucking taurs.
+		// Must have frontgenitals.
+		if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She’s got four arms... put them to work.");
+		else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
+	}
+	//else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
+	//Cuff&Fuck
+	cuffNFuckButton(5, enemy);
+	//Steal Dildo - new scene for either myr
+	//steal the dildo (or use the stolen one on her), with or without orgasm denial
+	//avail. in both myr's sex menus, combat-agnostic, but requires PC having seen 'Dildo Screw' (if with Briha) or 'Sit & Screw' (if with Lys), else button is hidden (not disabled)
+	//adds PC lust at the end so PC can possibly masturbate with dildo right away
+	//should add misch points
+	//tooltip: Distract the myr with orgasm and then abscond with her sex toy{(repeat) again}. Or you could stop just before orgasm....
+	gold = (enemy is MyrGoldFemaleDeserter);
+	var dildoToolTip:String = "Distract the myr with orgasm and then abscond with her sex toy";
+	if((gold && flags["GOLD_DILDOED"] != undefined) || ((!gold) && flags["RED_DILDOED"] != undefined)) dildoToolTip += " again";
+	dildoToolTip += ". Or you could stop just before orgasm....";
+	if((gold && flags["DILDO_SCREW_SCENE_SEEN"] != undefined) || (!gold && flags["RED_MYR_DESERT_DILDO_DONE"] != undefined)) addButton(6,"Steal Dildo",stealDildoScene,gold,"Steal Dildo",dildoToolTip);
+	else addDisabledButton(6,"Steal Dildo","Steal Dildo","You don’t even know if she has one!");
 	//Give Flower - new scene for Lys
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(enemy is MyrGoldFemaleDeserter)

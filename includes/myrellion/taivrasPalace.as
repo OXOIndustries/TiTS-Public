@@ -475,11 +475,7 @@ public function queensChambersBonus():Boolean
 		if(flags["CRYSTAL_GOO_DEFEAT"] != undefined) output("\n\nYou can see some gooey slop on the stone floor, near the little hatch Taivra’s pet broodmother goo lives in.");
 		//if NyreaKing & skipped Goofite:
 		else output("\n\nYou can see some gooey slop on the stone floor, near one of the big carpets on the stone floor just under a gloryhole in the wall beside her bed.");
-		if(pc.hasCock())
-		{
-			if(pc.lust() >= 33) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
-			else addDisabledButton(1,"Gloryhole","Use Gloryhole","You’re not aroused enough to consider this.");
-		}
+		if(pc.hasCock()) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
 		else addDisabledButton(1, "Gloryhole", "Use Gloryhole", "You don’t have the equipment to do that.");
 		addButton(2, "Storage", locationStorageMenuRoot, "nyrean");
 	}
@@ -933,22 +929,14 @@ public function pcBeatsGoo():void
 	output("\n\nWhat do you do?\n\n");
 	clearMenu();
 	//[Fuck Her] [Get Egged] [Leave]
-	if(pc.lust() >= 33)
+	if(pc.hasCock()) addButton(0,"Fuck Her",pcFuckDatGooWivCockVictory,undefined,"Fuck Her","The goo-girl’s entire body might as well be a huge pussy, ready to be fucked anywhere you like. Shove your [pc.cockNounSimple] right on in and fill her with cum!");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a cock to jam one inside of her.");
+	if(pc.hasGenitals()) 
 	{
-		if(pc.hasCock()) addButton(0,"Fuck Her",pcFuckDatGooWivCockVictory,undefined,"Fuck Her","The goo-girl’s entire body might as well be a huge pussy, ready to be fucked anywhere you like. Shove your [pc.cockNounSimple] right on in and fill her with cum!");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a cock to jam one inside of her.");
-		if(pc.hasGenitals()) 
-		{
-			if(pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) addDisabledButton(1,"Get Egged","Get Egged","You don’t have any room for eggs.");
-			else addButton(1,"Get Egged",getEggedByCrystalGoo,undefined,"Get Egged","You can only imagine how amazing it would feel to have the bubbly bimbo goo-girl pump you full of her eggs.");
-		}
-		else addDisabledButton(1,"Get Egged","Get Egged","You need genitals for this act.");
+		if(pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) addDisabledButton(1,"Get Egged","Get Egged","You don’t have any room for eggs.");
+		else addButton(1,"Get Egged",getEggedByCrystalGoo,undefined,"Get Egged","You can only imagine how amazing it would feel to have the bubbly bimbo goo-girl pump you full of her eggs.");
 	}
-	else
-	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough to even consider this.");
-		addDisabledButton(1,"Get Egged","Get Egged","You aren’t aroused enough to even consider this.");
-	}
+	else addDisabledButton(1,"Get Egged","Get Egged","You need genitals for this act.");
 	if(hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(14,"Leave",armorGooVictoryShits);
 	else addButton(14,"Leave",CombatManager.genericVictory);
 }
@@ -1756,12 +1744,8 @@ public function whupTaivrasAss():void
 	//[Fuck Taivra] [Kill Taivra] [Subjugate] [Leave]
 	//Any option gets you a Taivra’s Spear. Killing Tairvra gets you a Reaper Mk. I Shield Generator. Regardless, Steele will have the probe taken into town for Steele Tech to retrieve it - get 20,00 Credits. Item descripts follow.
 	clearMenu();
-	if(pc.lust() >= 33) 
-	{
-		if(pc.hasGenitals()) addButton(0,"Fuck Taivra",fuckTaivra,undefined,"Fuck Taivra","Take your frustrations out on the nyrean queen. It’s the least you deserve for conquering her and her people.");
-		else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You need genitals to fuck the Queen.");
-	}
-	else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You’re not aroused enough to consider this.");
+	if(pc.hasGenitals()) addButton(0,"Fuck Taivra",fuckTaivra,undefined,"Fuck Taivra","Take your frustrations out on the nyrean queen. It’s the least you deserve for conquering her and her people.");
+	else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You need genitals to fuck the Queen.");
 	addButton(1,"Kill Taivra",killTaivraYouMonster,undefined,"Kill Taivra","The nyrea have been a constant threat on this planet, and would have done far worse. Kill the queen to keep her and her people from bothering you - and any other offworlder - ever again.");
 	//Subjugate
 	//PC must have either read the nyrea codex or talked to Seifyn about Queen Taivra. Must have solo’d Queensguard and Taivra.
@@ -2759,10 +2743,8 @@ public function taivraRepeatMenu():void
 {
 	//[Talk] [Chambers] [Throne Sex] [Appearance]
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Chambers",goToTaivrasChambersForSex,undefined,"Chambers","Ask Taivra if the two of you can retire to her chambers - a bit more intimate of a setting. (This means sex!)");
-	else addDisabledButton(0,"Chambers","Chambers","You’re not really interested in a bedroom romp at the moment.");
-	if(pc.lust() >= 33) addButton(1,"Throne Sex",taivraThroneSex,undefined,"Throne Sex","Don’t bother with privacy or modesty: join Taivra’s group of betas on her throne and enjoy the pleasure the queen can offer.");
-	else addDisabledButton(1,"Throne Sex","Throne Sex","You’re not turned on enough for this.");
+	addButton(0,"Chambers",goToTaivrasChambersForSex,undefined,"Chambers","Ask Taivra if the two of you can retire to her chambers - a bit more intimate of a setting. (This means sex!)");
+	addButton(1,"Throne Sex",taivraThroneSex,undefined,"Throne Sex","Don’t bother with privacy or modesty: join Taivra’s group of betas on her throne and enjoy the pleasure the queen can offer.");
 	addButton(2,"Appearance",queenTaivraAppearance,undefined,"Appearance","Take a gander at the queen.");
 	
 	// (N.B: Maybe this could take place after a certain amount of time or number of scenes with your new waifu? Makes sense that you’d notice any discomfort she might have after spending some time with her)
@@ -3582,8 +3564,7 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			if(pc.hasCock())
 			{
 				if(pc.virility() <= 0) addDisabledButton(1, "Fuck Beta", "Fuck Beta", "You need to be producing virile seed to do this!");
-				else if(pc.lust() >= 33) addButton(1, "Fuck Beta", taivrasEggStuffedBeta, "fuck beta", "Fuck Beta", "Make sure those eggs are nice and fertilized while the beta babe’s busy with your mate. Bend her over and take her ass.");
-				else addDisabledButton(1, "Fuck Beta", "Fuck Beta", "You need a penis for this!");
+				else addButton(1, "Fuck Beta", taivrasEggStuffedBeta, "fuck beta", "Fuck Beta", "Make sure those eggs are nice and fertilized while the beta babe’s busy with your mate. Bend her over and take her ass.");
 			}
 			else addDisabledButton(1, "Fuck Beta", "Fuck Beta", "You need a penis for this!");
 			break;

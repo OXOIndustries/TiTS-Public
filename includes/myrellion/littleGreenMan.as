@@ -170,8 +170,7 @@ public function lirielMainMenu(myrWomen:Boolean = false):void
 	addButton(0, "Appearance", lirielAppearance, undefined, "Appearance", "Take in Liriel’s buxom green form.");
 	addButton(1, "Talk", lirielTalkResponse, [0, myrWomen], "Talk", "Have a conversation with the green beauty.");
 	addButton(2, "Shop", buyItem, undefined, "Shop", "Have a look at the wares of The Little Green Man.");
-	if(pc.lust() >= 33) addButton(3, "Sex", lirielSexMenu, myrWomen, "Sex", "Sexy times with Liriel.");
-	else addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for this.");
+	addButton(3, "Sex", lirielSexMenu, myrWomen, "Sex", "Sexy times with Liriel.");
 	addButton(14, "Leave", mainGameMenu);
 }
 public function lirielBackMenu(fromMenu:int = 0):void

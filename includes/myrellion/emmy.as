@@ -278,13 +278,8 @@ public function emmyMainMenu():void
 	else if(!pc.hasGenitals()) addDisabledButton(3,"SexRequest","SexRequest","You don’t even have genitalia.");
 	else if(flags["EMMY_EMAIL_TIMER"] != undefined && !MailManager.isEntryViewed("emmy_apology")) addDisabledButton(3,"SexRequest","SexRequest","You tried that, and she pushed you away. For a huge flirt, she sure is an ice queen.");
 	if(emmy.bellyRating() >= 40) addDisabledButton(3,"SexRequest","SexRequest","Emmy is wayyy too full for that.");
-	else if(flags["EMMY_QUEST"] != undefined && flags["EMMY_QUEST"] >= 1) 
-	{
-		if(pc.lust() >= 33) addButton(3,"SexRequest",sexAttemptStart,undefined,"Sex Request","See if Emmy is up for some sex.");
-		else addDisabledButton(3,"SexRequest","Sex Request","You aren’t aroused enough for this.");
-	}
-	else if(pc.lust() >= 33) addButton(3,"SexRequest",sexAttemptStart);
-	else addDisabledButton(3,"SexRequest","SexRequest","You aren’t turned on enough for that.");
+	else if(flags["EMMY_QUEST"] != undefined && flags["EMMY_QUEST"] >= 1) addButton(3,"SexRequest",sexAttemptStart,undefined,"Sex Request","See if Emmy is up for some sex.");
+	else addButton(3,"SexRequest",sexAttemptStart);
 	//Flower overwrites
 	if(flags["EMMY_QUEST"] == 0 && pc.hasItemByClass(VenusBloom)) 
 	{

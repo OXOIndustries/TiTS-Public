@@ -270,22 +270,11 @@ public function pcDefeatsCrystalGooToo():void
 		output(". I surrender,”</i> it says. It pulls a few shards from its surface, and the malleable plasm continues to stick out where it clung to the crystals. The little peaks don’t recede until it smooths them all in one wave, demonstrating just how sculptable its flesh is.");
 
 		clearMenu();
-		if (pc.lust() < 33)
-		{
-			output("\n\nYou’re not aroused enough to take advantage of the creature and its yielding body, though.");
-			addDisabledButton(0, "F. Sculpt", "Sculpt the Goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
-			addDisabledButton(1, "M. Sculpt", "Sculpt the Goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
-			addDisabledButton(2, "FormFuck", "Free Form Fucking", (pc.hasCock() ? "Let your dick do the sculpting." : "Ride the creature until it’s a green smear under your booty."));
-			addDisabledButton(3, "Cuddlebug", "Cuddlebug", "");
-		}
-		else
-		{
-			output("\n\nThe ganrael quivers when you reach out a hand but doesn’t flinch, suggesting that it won’t resist being shaped however you like... and that it’s excited.");
-			addButton(0, "F. Sculpt", crystalGooSculptingFem, undefined, "Sculpt the Goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
-			addButton(1, "M. Sculpt", crystalGooSculptingMale, undefined, "Sculpt the Goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
-			addButton(2, "FormFuck", crystalGooFreeformFucks, undefined, "Free Form Fucking", (pc.hasCock() ? "Let your dick do the sculpting." : "Ride the creature until it’s a green smear under your booty."));
-		}
-
+		output("\n\nThe ganrael quivers when you reach out a hand but doesn’t flinch, suggesting that it won’t resist being shaped however you like... and that it’s excited.");
+		addButton(0, "F. Sculpt", crystalGooSculptingFem, undefined, "Sculpt the Goo", "Shape your lover into a big-breasted, wide-hipped sex bomb and fuck it.");
+		addButton(1, "M. Sculpt", crystalGooSculptingMale, undefined, "Sculpt the Goo", "Shape your malleable lover into a big-dicked masculine stud and ride it.");
+		addButton(2, "FormFuck", crystalGooFreeformFucks, undefined, "Free Form Fucking", (pc.hasCock() ? "Let your dick do the sculpting." : "Ride the creature until it’s a green smear under your booty."));
+		
 		if (enemy is CrystalGooT1) addDisabledButton(3, "Cuddlebug", "Cuddlebug", "The ganrael can’t embrace you all over if you break off all its limbs.");
 		else addDisabledButton(3, "Sounding", "Sounding", "The ganrael’s very slippery and unstable without its plating. This is not the time to ask for precision work.");
 	}
@@ -301,28 +290,16 @@ public function pcDefeatsCrystalGooToo():void
 		if (enemy.HP() <= 0 || enemy is CrystalGooT1) output("<i>“That’s enough... you win,”</i> the alien admits. <i>“Do what you like.”</i>");
 		else output("<i>“Ugh... I’m horny. Can we just fuck?”</i> the alien asks.");
 
-		if (pc.lust() < 33) output(" You’re not aroused enough to take the offer.");
-
 		//display/hide sex buttons as befits lust, plus ‘Leave’ or w/e
 
 		addDisabledButton(0, "F. Sculpt", "Sculpt the goo", "You’ll need to break the ganrael’s armor to modify its body shape.");
 		addDisabledButton(1, "M. Sculpt", "Sculpt the goo", "You’ll need to break the ganrael’s armor to modify its body shape.");
-
-		if (pc.lust() < 33)
-		{
-			addDisabledButton(2, "FormFuck", "Free Form Fucking", "Fuck the ganrael however you can, without worrying about the armor.");
-			if (enemy is CrystalGooT1) addDisabledButton(3, "Cuddlebug", "Cuddlebug", "Wrap yourself in the ganrael’s embrace and let it enjoy your vulnerable body, or booty.");
-			else addDisabledButton(3, "Sounding", "Sounding", "Employ this ganrael’s sculptor ‘talents’ to make a smooth, sturdy rod and tease your urethra with it.");
-		}
+		addButton(2, "FormFuck", crystalGooFreeformFucks, undefined, "Free Form Fucking", "Fuck the ganrael however you can, without worrying about the armor.");
+		if (enemy is CrystalGooT1) addButton(3, "Cuddlebug", crystalGooCuddlebug, true, "Cuddlebug", "Wrap yourself in the ganrael’s embrace and let it enjoy your vulnerable body, or booty.");
 		else
 		{
-			addButton(2, "FormFuck", crystalGooFreeformFucks, undefined, "Free Form Fucking", "Fuck the ganrael however you can, without worrying about the armor.");
-			if (enemy is CrystalGooT1) addButton(3, "Cuddlebug", crystalGooCuddlebug, true, "Cuddlebug", "Wrap yourself in the ganrael’s embrace and let it enjoy your vulnerable body, or booty.");
-			else
-			{
-				if (pc.hasCock() || pc.hasVagina()) addButton(3, "Sounding", crystalGooSounding, true, "Sounding", "Employ this ganrael’s sculptor ‘talents’ to make a smooth, sturdy rod and tease your urethra with it.");
-				else addDisabledButton(3, "Sounding", "Sounding", "You should probably locate your urethra before asking your partner to stick anything in it.");
-			}
+			if (pc.hasCock() || pc.hasVagina()) addButton(3, "Sounding", crystalGooSounding, true, "Sounding", "Employ this ganrael’s sculptor ‘talents’ to make a smooth, sturdy rod and tease your urethra with it.");
+			else addDisabledButton(3, "Sounding", "Sounding", "You should probably locate your urethra before asking your partner to stick anything in it.");
 		}
 	}
 

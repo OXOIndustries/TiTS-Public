@@ -73,9 +73,8 @@ public function merchantQueenMenu():void
 	addButton(1,"Talk",talkToAntQueenButt);
 	if(flags["MERCHANT_QUEEN_SEX_UNLOCKED"]!= undefined)
 	{
-		if(pc.lust() >= 33 && (pc.hasCock() || pc.hasVagina())) addButton(2,"Flirt",flirtSexWithAnAntQueenMerchantButt,undefined,"Flirt","If she’s spending that much time fucking, maybe you can get in on the fun...");
-		else if(pc.lust() >= 33) addDisabledButton(2,"Flirt","Flirt","You don’t have any parts that the queen could interact with.");
-		else addDisabledButton(2,"Flirt","Flirt","Your libido is far too sated for you to be interested in flirting at the moment.");
+		if(pc.hasCock() || pc.hasVagina()) addButton(2,"Flirt",flirtSexWithAnAntQueenMerchantButt,undefined,"Flirt","If she’s spending that much time fucking, maybe you can get in on the fun...");
+		else addDisabledButton(2,"Flirt","Flirt","You don’t have any parts that the queen could interact with.");
 	}
 	else addDisabledButton(2,"Flirt","Flirt","You don’t know her well enough for that!");
 	addButton(14,"Leave",mainGameMenu);

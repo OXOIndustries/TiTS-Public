@@ -235,21 +235,12 @@ public function beatUpCrystalGoo():void
 	else output("most of her armor slipping off as her body secretes lusty juices");
 	output(".\n\n");
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock()) addButton(0,"Dick Fuck",malesBeatGoo,undefined,"Dick Fuck","Use your male parts on the fallen warrior.");
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You do not have a penis to fuck her with.");
-		if(pc.hasVagina()) addButton(1,"Vag Fuck",femaleCrystalGooWin,undefined,"Vagina Fuck","Use your girlybits on the fallen warrior.");
-		else addDisabledButton(1,"Vag Fuck","Vagina Fuck","You do not have a vagina to fuck her with.");
-		if(pc.isTaur()) addButton(2,"Centaur Ride",centaurRideSpecialVictory,undefined,"Centaur Ride","Give her a ride she won’t soon forget.");
-		else addDisabledButton(2,"Centaur Ride","Centaur Ride","You need to be a tauric creature, like a leithan, to do this action.");
-	}
-	else
-	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren’t turned on enough for that.");
-		addDisabledButton(1,"Vag Fuck","Vagina Fuck","You aren’t turned on enough for that.");
-		addDisabledButton(2,"Centaur Ride","Centaur Ride","You aren’t turned on enough for that.");
-	}
+	if(pc.hasCock()) addButton(0,"Dick Fuck",malesBeatGoo,undefined,"Dick Fuck","Use your male parts on the fallen warrior.");
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","You do not have a penis to fuck her with.");
+	if(pc.hasVagina()) addButton(1,"Vag Fuck",femaleCrystalGooWin,undefined,"Vagina Fuck","Use your girlybits on the fallen warrior.");
+	else addDisabledButton(1,"Vag Fuck","Vagina Fuck","You do not have a vagina to fuck her with.");
+	if(pc.isTaur()) addButton(2,"Centaur Ride",centaurRideSpecialVictory,undefined,"Centaur Ride","Give her a ride she won’t soon forget.");
+	else addDisabledButton(2,"Centaur Ride","Centaur Ride","You need to be a tauric creature, like a leithan, to do this action.");
 	if(hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(14,"Leave",armorGooVictoryShits);
 	else addButton(14,"Leave",CombatManager.genericVictory);
 }

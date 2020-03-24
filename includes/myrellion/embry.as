@@ -522,11 +522,7 @@ public function embryMenu():void
 		else addDisabledButton(4,"Spend Time","Spend Time","You don’t know her well enough to spend time with her.");
 		if(flags["EMBRY_RELATIONSHIP"] == 0) addDisabledButton(5,"Sex","Sex","She has no interest in sex with you.");
 		else if(flags["EMBRY_RELATIONSHIP"] < 3) addDisabledButton(5,"Sex","Sex","You don’t have that kind of relationship with her.");
-		else
-		{
-			if(pc.lust() >= 33) addButton(5,"Sex",embrySexMenu,undefined,"Sex","Have a sexual encounter with her.");
-			else addDisabledButton(5,"Sex","Sex","You aren’t aroused enough for a sex act.");
-		}
+		addButton(5,"Sex",embrySexMenu,undefined,"Sex","Have a sexual encounter with her.");
 		if(!pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.") && flags["EMBRY_TREATMENTS"] == 3 && flags["EMBRY_RELATIONSHIP"] == 3) addButton(6,"Get Panties",embryPanties,undefined,"Get Panties","Try and get a pair of [embry.name]’s panties. For reasons.");
 	}
 	//[Sex]

@@ -71,20 +71,12 @@ public function winVsInfectedMyr():void
 	//[Sex] [Compassion] [Watch] [Leave]
 	//Red femyr fuck/loss
 	//accounts for male and female. Not taur friendly, yes naga friendly
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock() || pc.hasVagina()) addButton(0,"Fuck Her",infectedMyrFuckSlashLossSlashButtstuffNotReally,false,"Fuck Her","Have sex with the needy ant-woman now that you’ve secured your place on top.");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","This action requires at least one standard genital.");
-		//Red femyr win watch
-		//no requirements
-		if(pc.hasVagina()) addButton(1,"Compassion",girlyCompassionVictoryWithInfectedMyr,undefined,"Compassion","Give her compassion... with your lady parts.");
-		else addDisabledButton(1,"Compassion","Compassion","You must have a vagina in order to undertake this action.");
-	}
-	else
-	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You are not aroused enough for this course of action.");
-		addDisabledButton(1,"Compassion","Compassion","You are not aroused enough for this course of action.");
-	}
+	if(pc.hasCock() || pc.hasVagina()) addButton(0,"Fuck Her",infectedMyrFuckSlashLossSlashButtstuffNotReally,false,"Fuck Her","Have sex with the needy ant-woman now that you’ve secured your place on top.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","This action requires at least one standard genital.");
+	//Red femyr win watch
+	//no requirements
+	if(pc.hasVagina()) addButton(1,"Compassion",girlyCompassionVictoryWithInfectedMyr,undefined,"Compassion","Give her compassion... with your lady parts.");
+	else addDisabledButton(1,"Compassion","Compassion","You must have a vagina in order to undertake this action.");
 
 	addButton(2,"Watch",watchInfectedMyrVictoryScene,undefined,"Watch","Watch her succumb to her own desires.");
 	addButton(14,"Leave",leaveDatSlutBitch);

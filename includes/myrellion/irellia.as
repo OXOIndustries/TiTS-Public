@@ -25,9 +25,7 @@ public function irelliaMenu():void
 	clearMenu();
 	addButton(0,"Appearance",irelliaAppearanceYouSlutFuckGoddamnWhyYouGottaBeLeeringAtAQueenWhileSheTriesToRelaxDontBeSuchAFuckinPerv);
 	addButton(1,"Discuss",discussSomethingWithAnAntQueen,irelliaMenu,"Discuss","Have a conversation with the ant queen about a variety of topics.");
-	if(pc.lust() >= 33) addButton(2,"Sex",irelliaSexyTimesApproach)
-	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough to be interested in seducing a queen!");
-
+	addButton(2,"Sex",irelliaSexyTimesApproach)
 	if(!pc.hasStatusEffect("Royal Nectar")) addButton(4,"Snack",tittysnackWithIrellia,undefined,"Snack","Get a snack... directly from her nectar-filled teats.");
 	else addDisabledButton(4,"Snack","Snack","Irellia does not want to share any more of her nectar with for now. Don’t be a glutton!");
 	addButton(14,"Back",mainGameMenu);
