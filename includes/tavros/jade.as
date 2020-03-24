@@ -120,7 +120,7 @@ public function approachJade():void {
 	addButton(3,"Sell",sellItem);
 	addButton(4,"Talk",talkToJade);
 	addButton(6,"Appearance",jadeAppearance);
-	if(pc.lust() >= 33 && flags["TALKED_WITH_JADE_ABOUT_HER_TITS"] == 1) addButton(5,"Sex",jadeSexMenu);
+	if(flags["TALKED_WITH_JADE_ABOUT_HER_TITS"] == 1) addButton(5,"Sex",jadeSexMenu);
 	else addDisabledButton(5,"Sex");
 	addButton(14,"Back",mainGameMenu);
 }

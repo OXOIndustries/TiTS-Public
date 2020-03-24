@@ -442,8 +442,7 @@ public function fisiMainMenu(fromBack:Boolean = false):void
 	{
 		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.");
 		
-		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
-		else if (flags["FISI_SEX_NUMBER"] == undefined && !pc.hasGenitals()) addDisabledButton(4, "Sex", "Sex", "You can’t access this without genitals first.");
+		if (flags["FISI_SEX_NUMBER"] == undefined && !pc.hasGenitals()) addDisabledButton(4, "Sex", "Sex", "You can’t access this without genitals first.");
 		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
 		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten!");
 	}

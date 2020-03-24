@@ -207,11 +207,7 @@ public function approachRamis(special:String = "none"):void
 			// [Drink] [Back Off]
 			if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 			else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
-			if(pc.isMan() || pc.isManHerm())
-			{
-				if(pc.lust() >= 33) addButton(1, "Flirt", ramisFlirt);
-				else addDisabledButton(1, "Flirt", "Flirt", "You are not aroused enough for this!");
-			}
+			if(pc.isMan() || pc.isManHerm()) addButton(1, "Flirt", ramisFlirt);
 			else addDisabledButton(1, "Flirt", "Flirt", "You are not physically man enough to try this!");
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
 			return;
@@ -301,8 +297,7 @@ public function approachRamis(special:String = "none"):void
 		// [Appearance] [Flirt] [Drink] [Back Off]
 		if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 		else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
-		if(pc.lust() >= 33) addButton(1, "Flirt", ramisFlirt);
-		else addDisabledButton(1, "Flirt", "Flirt", "You are not aroused enough for this!");
+		addButton(1, "Flirt", ramisFlirt);
 		addButton(2, "Back Off", ramisLeave, "man");
 	}
 	// Failsafe

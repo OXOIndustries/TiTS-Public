@@ -73,12 +73,12 @@ public function investigateSlashShelly():void
 	else addDisabledButton(1,"Assist","Assist","You must talk to Shelly before you can assist her with anything.");
 	if(flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined)
 	{
-		if(pc.hasCock() && pc.lust() >= 33)
+		if(pc.hasCock())
 		{
 			if(pc.cockThatFits(shellyCapacity()) >= 0) addButton(2,"Sex",sexWithShelly);
 			else addDisabledButton(2,"Sex","Sex","You’re too big to fit inside Shelly.");
 		}
-		else addDisabledButton(2,"Sex","Sex","Sex with Shelly requires both a phallus and lust to be at or above 33.");
+		else addDisabledButton(2,"Sex","Sex","Sex with Shelly requires a phallus.");
 		
 		if(flags["ASSISTED_SHELLY_WITH_LAYING"] >= 3)
 		{

@@ -146,8 +146,7 @@ public function gilMenu():void
 		if(pc.hasItemByClass(PupperPoppers)) addButton(1,"Sell",getCashForDoggo,true,"Sell","Sell him some pupper poppers.");
 		else addDisabledButton(1,"Sell","Sell","You don’t have any Pupper Poppers to sell.");
 		addButton(2,"Talk",talkToGilDoggo,undefined,"Talk","Chat with him.");
-		if(pc.lust() >= 33) addButton(3,"Sex",sexWithGilYaDumbshit,undefined,"Sex","Tell him that you would like to collect his reward.");
-		else addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for sex.");
+		addButton(3,"Sex",sexWithGilYaDumbshit,undefined,"Sex","Tell him that you would like to collect his reward.");
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -316,8 +315,7 @@ public function giveDoggoADoggoTreat():void
 	//[Credits] “Ask him to pay in cash.” //Leads to Sell section.
 	addButton(0,"Credits",getCashForDoggo,undefined,"Credits","Ask him to pay in cash.");
 	//[Sex] “Ask him to pay with sex.” //Leads to the Sex section.
-	if(pc.lust() >= 33) addButton(1,"Sex",sexWithGilYaDumbshit,true,"Sex","Ask him to pay with sex.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for that...");
+	addButton(1,"Sex",sexWithGilYaDumbshit,true,"Sex","Ask him to pay with sex.");
 	//[Gift] “Tell him it’s a gift.”
 	addButton(2,"Gift",gilGiftGift,undefined,"Gift","Tell him it’s a gift.");
 }
@@ -361,8 +359,7 @@ public function getCashForDoggo(direct:Boolean = false):void
 		//[Credits] “Ask him to pay in cash.” //Leads to Sell section.
 		addButton(0,"Sell",getCashForDoggo,true,"Sell","Go ahead and sell.");
 		//[Sex] “Ask him to pay with sex.” //Leads to the Sex section.
-		if(pc.lust() >= 33) addButton(1,"Sex",sexWithGilYaDumbshit,true,"Sex","Ask him to pay with sex.");
-		else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for that...");
+		addButton(1,"Sex",sexWithGilYaDumbshit,true,"Sex","Ask him to pay with sex.");
 		//[Gift] “Tell him it’s a gift.”
 		addButton(2,"Gift",gilGiftGift,undefined,"Gift","Tell him it’s a gift.");
 		return;

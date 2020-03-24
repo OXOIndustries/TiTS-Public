@@ -80,16 +80,8 @@ public function inessaMenu():void
 	addButton(1,"Buy",inessaBuyGo);
 	addButton(2,"BuyDildo",buyDildosFromInessa);
 	addButton(3,"Talk",talkToInessaSlut);
-	if(flags["INESSA_BEING_DOMMED"] == 1)
-	{
-		if(pc.lust() >= 33) addButton(4,"Order",inessaSexApproach);
-		else addDisabledButton(4,"Order","Order","You aren’t turned on enough to pursue some sex.");
-	}
-	else if(flags["INESSA_INESSAED"] != undefined)
-	{
-		if(pc.lust() >= 33) addButton(4,"Sex",inessaSexApproach);
-		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough to pursue some sex.");
-	}
+	if(flags["INESSA_BEING_DOMMED"] == 1) addButton(4,"Order",inessaSexApproach);
+	else if(flags["INESSA_INESSAED"] != undefined) addButton(4,"Sex",inessaSexApproach);
 	else addDisabledButton(4,"Sex","Sex","You don’t know her well enough for that.");
 	//INESSA EXPANSION - Must have silk and Xanthe must be alive
 	if((flags["INESSA_EXP"] != 1 && flags["INESSA_EXP"] >= 2) || flags["KQ2_MYRELLION_STATE"] > 0) { /* Nada */ }
@@ -1201,7 +1193,7 @@ public function hoverholeFapFapFap():void
 public function cuffNFuckButton(btnSlot:int = 0, sexedFoe:Creature = null):void
 {
 	if(sexedFoe == null) return;
-	if(pc.hasItemByClass(GravCuffs) && pc.lust() >= 33)
+	if(pc.hasItemByClass(GravCuffs))
 	{
 		var fitsInside:Boolean = false;
 		if(sexedFoe.hasVagina()) fitsInside = (pc.cockThatFits(sexedFoe.vaginalCapacity(0)) >= 0);

@@ -82,8 +82,7 @@ public function VahnTheMechanic():void
 	clearMenu();
 	addButton(0,"Appearance",appearanceForVahn);
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
-	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
+	addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	addButton(4,"BuyUniforms",buyUniformsFromVahn,undefined,"Buy Uniforms","As a SteeleTech employee, Vahn can probably hook you up with one of the corporate jumpsuits, assuming you want one.");
 	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");

@@ -90,11 +90,7 @@ public function ilariaMenu():void
 	clearMenu();
 	//[Order Up] [Leave]
 	addButton(0,"Order Up",orderFromIlaria,undefined,"Order Up","Check out the menu!");
-	if(flags["ILERIA_GLAZED"] != undefined)
-	{
-		if(pc.lust() >= 33) addButton(1,"Sex",sexWithIlaria,undefined,"Sex","Most of her scenes involve you “helping” her attached to her cock-milker, to save up some “special sauce.”");
-		else addDisabledButton(1,"Sex","Sex","You are not aroused enough for this!");
-	}
+	if(flags["ILERIA_GLAZED"] != undefined) addButton(1,"Sex",sexWithIlaria,undefined,"Sex","Most of her scenes involve you “helping” her attached to her cock-milker, to save up some “special sauce.”");
 	else addDisabledButton(1,"Sex","Sex","She doesn’t seem like she’s ready for this just yet.");
 	if(flags["ILERIA_GLAZED"] != undefined) addButton(2,"Appearance",ilariaAppearance,undefined,"Appearance","Take a look at her.");
 	else addDisabledButton(2,"Appearance","Appearance","You haven’t seen <i>all</i> of her yet.");
