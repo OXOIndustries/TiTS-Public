@@ -274,6 +274,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/cora_nude.png", mimeType = "image/png")]
 		public var Bust_CORA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/cream_cow_1.png", mimeType = "image/png")]
+		public var Bust_CREAM_COW_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cream_cow_2.png", mimeType = "image/png")]
+		public var Bust_CREAM_COW_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cream_cow_3.png", mimeType = "image/png")]
+		public var Bust_CREAM_COW_3:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cow_lager.png", mimeType = "image/png")]
 		public var Bust_BEER_COW:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cow_whiskey.png", mimeType = "image/png")]
@@ -600,7 +606,15 @@ package classes.Resources.Busts
 		public var Bust_KQ_VR_QUEEN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vr_queen_futa.png", mimeType = "image/png")]
 		public var Bust_KQ_VR_QUEEN_FUTA:Class;
-		
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_twins.png", mimeType = "image/png")]
+		public var Bust_KQ_TWINS:Class;
+		public function get Bust_KQ_TWINS_NUDE():Class { return Bust_KQ_TWINS; }
+		public function get Bust_KQ_TWIN_A():Class { return Bust_KQ_TWINS; }
+		public function get Bust_KQ_TWIN_B():Class { return Bust_KQ_TWINS; }
+		//public var Bounds_KQ_TWIN_A:Rectangle = new Rectangle(50, 24, 37, 37);
+		//public var Bounds_KQ_TWIN_B:Rectangle = new Rectangle(116, 23, 42, 42);
+		public var Bounds_KQ_TWIN_A:Rectangle = new Rectangle(105, 5, 60, 60);
+		public var Bounds_KQ_TWIN_B:Rectangle = new Rectangle(35, 5, 60, 60);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy.png", mimeType = "image/png")]
 		public var Bust_KRISSY:Class;
@@ -726,6 +740,19 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/miko_mai.png", mimeType = "image/png")]
 		public var Bust_MIKO_AND_MAI:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_small.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_SMALL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_small_nude.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_SMALL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_mid.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_MEDIUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_mid_nude.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_MEDIUM_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_big.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_LARGE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milkthief_big_nude.png", mimeType = "image/png")]
+		public var Bust_MILK_THIEF_LARGE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/milly.png", mimeType = "image/png")]
 		public var Bust_MILLY:Class;
@@ -1267,6 +1294,8 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/war_alpha_nude.png", mimeType = "image/png")]
 		public var Bust_WAR_ALPHA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_cow.png", mimeType = "image/png")]
+		public var Bust_WALL_COW:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/wall_fanfir.png", mimeType = "image/png")]
 		public var Bust_WALL_FANFIR:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/wall_gabilani.png", mimeType = "image/png")]
@@ -1584,6 +1613,12 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cora_nude.png", mimeType = "image/png")]
 			public var Full_CORA_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cream_cow_1.png", mimeType = "image/png")]
+			public var Full_CREAM_COW_1:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cream_cow_2.png", mimeType = "image/png")]
+			public var Full_CREAM_COW_2:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cream_cow_3.png", mimeType = "image/png")]
+			public var Full_CREAM_COW_3:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cow_lager.png", mimeType = "image/png")]
 			public var Full_BEER_COW:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cow_whiskey.png", mimeType = "image/png")]
@@ -1897,6 +1932,9 @@ package classes.Resources.Busts
 			public var Full_KQ_VR_QUEEN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_queen_futa.png", mimeType = "image/png")]
 			public var Full_KQ_VR_QUEEN_FUTA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_twins.png", mimeType = "image/png")]
+			public var Full_KQ_TWINS:Class;
+			public function get Full_KQ_TWINS_NUDE():Class { return Full_KQ_TWINS; }
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;
@@ -2012,6 +2050,19 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/miko_mai.png", mimeType = "image/png")]
 			public var Full_MIKO_AND_MAI:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_small.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_SMALL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_small_nude.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_SMALL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_mid.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_MEDIUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_mid_nude.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_MEDIUM_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_big.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_LARGE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milkthief_big_nude.png", mimeType = "image/png")]
+			public var Full_MILK_THIEF_LARGE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milly.png", mimeType = "image/png")]
 			public var Full_MILLY:Class;
@@ -2496,6 +2547,8 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/war_alpha_nude.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_cow.png", mimeType = "image/png")]
+			public var Full_WALL_COW:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_fanfir.png", mimeType = "image/png")]
 			public var Full_WALL_FANFIR:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_gabilani.png", mimeType = "image/png")]

@@ -107,7 +107,7 @@ public function tharePlantationManorApproach(response:String = "none"):void
 			
 			// Restore 25% Energy, + Lust
 			pc.energy(pc.energyMax()/4);
-			pc.lust(5 + rand (6));
+			pc.changeLust(5 + rand (6));
 			
 			// [Appearance] [Me] [Plantation] [Zil] [Workers] [Finish]
 			thareManorMenu();
@@ -168,7 +168,7 @@ public function thareManorMeal(newPage:Boolean = true):void
 	
 	// Restore 25% Energy, + Lust
 	pc.energy(pc.energyMax()/4);
-	pc.lust(5 + rand (6));
+	pc.changeLust(5 + rand (6));
 	
 	// [Appearance] [Me] [Plantation] [Zil] [Workers] [Finish]
 	thareManorMenu();
@@ -259,7 +259,7 @@ public function thareManorResponse(response:String = "none"):void
 			
 			processTime(4);
 			IncrementFlag("PLANTATION_ZIL_TALK");
-			pc.lust(2 + rand (2));
+			pc.changeLust(2 + rand (2));
 			
 			// Unlocks “Workers” option
 			if(flags["THARE_MANOR_ENTERED"] < 2)
@@ -341,7 +341,7 @@ public function thareManorResponse(response:String = "none"):void
 			processTime(2);
 			IncrementFlag("PLANTATION_MEALS");
 			// + Lust
-			pc.lust(10 + rand (11));
+			pc.changeLust(10 + rand (11));
 			
 			// [Appearance] [Bath] [Fuck] [Sleep]
 			thareAbleMenu();

@@ -803,7 +803,7 @@ public function lilianaSexyholocawk(talked:Boolean = false):void
 		//re-present the ‘buy an arm’ choices from Lil’s 2nd talk scene, minus the current scene
 		IncrementFlag("LILIANA_HOLODONGED");
 		processTime(25);
-		if(pc.isTaur()) pc.lust(15);
+		if(pc.isTaur()) pc.changeLust(15);
 		else
 		{
 			pc.orgasm();
@@ -831,7 +831,7 @@ public function lilianaSexyholocawk(talked:Boolean = false):void
 		//if not going to arm-surgeon, place PC wherever he goes after sex with Liliana
 		IncrementFlag("LILIANA_HOLODONGED");
 		processTime(25);
-		if(pc.isTaur()) pc.lust(15);
+		if(pc.isTaur()) pc.changeLust(15);
 		else
 		{
 			pc.orgasm();

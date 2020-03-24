@@ -35,12 +35,13 @@ package classes.Items.Apparel
 			
 			this.basePrice = 14000;
 			this.attack = 0;
-			this.defense = 4;
+			this.defense = 5;
 			this.shieldDefense = 0;
 			this.sexiness = 2;
+			this.resolve = 3;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 4;
+			this.fortification = 6;
 			resistances.freezing.resistanceValue = 50.0;
 			resistances.electric.resistanceValue = 15.0;
 			resistances.burning.resistanceValue = -10.0;

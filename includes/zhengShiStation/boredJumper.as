@@ -192,8 +192,8 @@ public function loseToSweatBunny69():void
 		output("\n\nYou find yourself nodding, hissing, <i>“Yesss,”</i> through clenched teeth.");
 		output("\n\n<i>“It feels so... so good to be sweaty, doesn’t it?”</i>");
 		output("\n\nYour mouth salivates at the mention, suddenly craving the salt. <i>“Yes!”</i>");
-		pc.HP(pc.HPMax());
-		pc.lust(pc.lustMax());
+		pc.changeHP(pc.HPMax());
+		pc.changeLust(pc.lustMax());
 	}
 	//Lust loss
 	else
@@ -369,7 +369,7 @@ public function sweatBunHyperCockDock():void
 	output("\n\n<i>“Nnng!”</i> you cry, though you cannot say if it is out of pleasure or sheer stubbornness. The sensation of your [pc.cock " + x + "] getting plugged and filling with pre-cum is strange but almost sort of pleasant, especially when the rest of the pirate-slut’s body is doing everything it can to stimulate your exterior.");
 	output("\n\nSpit and sweat are everywhere. The rabbit’s suit is so slicked with it that she all but glides back and forth on her see-sawing path along your pole. <i>“You ready, sweetness? Because Momma’s more than ready.”</i>");
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",sweatBunHyperCockDock2,x);
 }
@@ -415,7 +415,7 @@ public function sweatBunHyperCockDock2(x:int):void
 	output("\n\nYou nod vigorously. At this point, it sounds incredible.");
 	processTime(10);
 	sweatyDebuff(1);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",sweatBunHyperCockDock3,x);
 }
@@ -553,7 +553,7 @@ public function sweatBunSlickyslickTitbang():void
 	}
 	//Merge
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",sweatBunSlickyslickTitbang2);
 }
@@ -1546,7 +1546,7 @@ public function facePussyFuckJumper():void
 	output("\n\n<i>“Better,”</i> you coo, pulling away from the too hot stone. <i>“Not so hard.”</i> Relaxing slightly, you let an inch of her furry ears slide through your fingers - enough for her lips to kiss your hungry folds.");
 	output("\n\nThis is more like it. Tentative licks and kisses are exactly what you need, not brutal face-fucking... at least, not to start. You don’t release her, however. The troublesome slut-bun hasn’t earned that luxury, not after how she started. Her tongue is yours to command, and her face with it. You firmly guide her mouth around your exterior, then tip her head back for another taste of her lips on [pc.oneClit].");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",boredJumperMuzzleFuck2);
 }
@@ -1903,7 +1903,7 @@ public function takeTheBunnyDick():void
 	output(". Before the mood is ruined, you have to decide where you want her to stick that [enemy.cock] of hers...");
 
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	sweatyDebuff(1);
 	clearMenu();
 	if(pc.hasVagina()) addButton(0,"Vaginal",vaginaRouter, [vaginallyFilledByJumperWiNSceneByWilliam, enemy.cockVolume(0), 0, 0],"Vaginal","Get this horny bunny to fuck you like one!");
@@ -2558,7 +2558,7 @@ public function heatSexLaquineJumper():void
 		pc.destroyItemByClass(BreedersBliss,1);
 	}
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",boredJumperHeatSexII);
 }
@@ -2597,7 +2597,7 @@ public function boredJumperHeatSexII():void
 	output("\n\nAnticipation soars as you feel two latex-covered hands take hold of you, her [enemy.cockHead] perfectly aligned with your waiting pussy, you’re readier than ever!");
 	if(silly) output(" You won’t tire if she’ll take you higher!");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	pc.loadInMouth(enemy);
 	clearMenu();
 	addButton(0,"Next",boredJumperHeatSexIII);

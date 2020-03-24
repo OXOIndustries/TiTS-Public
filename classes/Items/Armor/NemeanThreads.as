@@ -11,7 +11,7 @@ package classes.Items.Armor
 		public function NemeanThreads()
 		{
 			_latestVersion = 1;
-			
+			//Level 6 common.
 			quantity = 1;
 			stackSize = 1;
 			type = GLOBAL.ARMOR;
@@ -28,10 +28,11 @@ package classes.Items.Armor
 			
 			basePrice = 11000;
 			attack = 0;
-			defense = 7;
+			defense = 9;
 			shieldDefense = 0;
 			shields = 0;
-			sexiness = 4;
+			sexiness = 3;
+			this.resolve = 2;
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;

@@ -419,7 +419,7 @@ public function roomServiceFromRensa():void
 	output("\n\n<i>“So, how do you want me?”</i> the halfbreed whore purrs, tracing a pair of fingers along the side of the bed. <i>“On top, or ");
 	if(pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
 	else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	terenshaSexMenu();
 }
@@ -1176,7 +1176,7 @@ public function tellMeYourStoryRenPart2():void
 		if (pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
 		else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
 
-		pc.lust(33);
+		pc.changeLust(33);
 		
 		terenshaSexMenu();
 	}
@@ -1197,7 +1197,7 @@ public function tellMeYourStoryRenPart2():void
 		output("\n\nShe laughs and offers you a hand up, guiding you back to the brothel floor. <i>“See ya cow-[pc.boyGirl]. Unless I somehow managed to keep your interest after that,”</i> she says with a wink, sashaying back to her table.");
 
 		clearMenu();
-		pc.lust(15);
+		pc.changeLust(15);
 		addButton(0,"Next",mainGameMenu);
 	}
 }
@@ -1270,7 +1270,7 @@ public function askRenshaForACow3Way():void
 	output("\n\n<i>“A-as long as I get off, I don’t care!”</i> Reaha moans, wiggling her ass at you; an overt plea for you to come ravish her dripping sex. <i>“C’mon, please!”</i>");
 	output("\n\n<i>“Well, [pc.name]?”</i> Terensha says, punctuating your name with a little moan - her prick vanishes into the cow-girl’s mouth, right up to the knot-like base in one thrust. <i>“We’re all yours.”</i>");
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	//[From Behind] [Double Dragon]
 	clearMenu();
 	if(pc.hasHardLightEquipped() || pc.cockThatFits(500) >= 0) addButton(0,"From Behind",takeReahaAndRenshaFromBehind,undefined,"From Behind","Take advantage of the cow-girl’s neediness and pound her puss from behind while Ren face-fucks her.");
@@ -1322,7 +1322,7 @@ public function takeReahaAndRenshaFromBehind():void
 	output(" There’s not exactly a lot of room left to maneuver inside her, no matter how much fem-lube pours out from the orgasming cow-girl; it’s a struggle to push inwards, jockeying with Ren for even the tiniest bit of space inside your shared cock-holster cow.");
 	output("\n\nOf course, that only means you’re rubbing more and more intently against the slick shaft of Ren’s prick and the sodden walls of Reaha’s quim. You’re not sure if Ren and Reaha ever really <i>stop</i> cumming, the way they moan and gasp and squirt, but their lurid acts only add to your pleasure: you’ve barely fought your way back to hilt in Reaha’s quivering quim before you feel the familiar, rising tension burning in your loins.");
 	processTime(10);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",keepBangingonReahaWithRensha,x);
 }

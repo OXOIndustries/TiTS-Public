@@ -127,7 +127,7 @@ package classes.Engine.ShipCombat
 					"<b>\\\[<span class='bad'>Overheating</span>\\\]</b>",
 					"<b>\\\[<span class='good'>SELECTED</span>\\\]</b>",
 					function(tarShip:SpaceShip):void {
-						tarShip.AddBonusCapacitorEffect(0, 0, 0, 1.0);
+						tarShip.AddBonusCapacitorEffect(0, 0, 0, 1.0, 0);
 						RegisterOverchargeToShip(tarShip, OVERCHARGE_POWERCORE);
 					}),
 				new OverchargeStationDetails(

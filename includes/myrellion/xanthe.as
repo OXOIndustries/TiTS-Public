@@ -1192,7 +1192,7 @@ public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):v
 	else output("flushed face");
 	output(". Apparently you really <i>are</i> going to have to ask if you want to play with them!");
 	processTime(7);
-	pc.lust(45);
+	pc.changeLust(45);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1321,7 +1321,7 @@ public function yesYouCanDomMeXanthe():void
 	output("\n\nIt’s not even a question of being claimed, as you know in your heart that you already belong to her. You’ve <i>always</i> belonged to her. All that’s left is to say the words that confirm it.");
 	output("\n\n<i>“...Yes.”</i> You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe.");
 	processTime(4);
-	pc.lust(10);
+	pc.changeLust(10);
 	// Play ‘Tie and Tease’ sex scene
 	clearMenu();
 	addButton(0,"Next",tieAndTeaseWithXanthe)
@@ -1393,7 +1393,7 @@ public function tieAndTeaseWithXanthe():void
 	output("\n\n<i>“If you beg... nicely beg... I might feel gracious enough to play with you. Otherwise I might just stick a vibrating toy in your [pc.vagOrAss] on low for a couple of days, enough to get you frustrated but not enough to get you off.”</i>");
 	output("\n\nYou’re not sure what makes you more panicked - the thought of going without your Mistress’s attentions, or the cruelly delicious punishment looming over your head. Either way you desperately beg her to pay attention to you. It would be a shame not to play with such a nicely wrapped toy like you!");
 
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(5);
 	clearMenu();
 	//[She Leaves You!] [Pays Attention] 
@@ -1488,7 +1488,7 @@ public function getLeftByXantheSlooot():void
 	output(", forcing a muffled moan from your lips.");
 	
 	processTime(25);
-	pc.lust(44);
+	pc.changeLust(44);
 	clearMenu();
 	addButton(0,"Next",getLeftAloneByXanthePartDues,x);
 }
@@ -1529,7 +1529,7 @@ public function getLeftAloneByXanthePartDues(x:int = 0):void
 	output("\n\nJust when you think you’re never going to see her again, your Mistress returns, though not to free you. Instead she pulls off the tape and feeds you, telling you not to utter a word. You compliantly do so, then afterwards your mouth is stuffed with a pair of fresh panties and sealed over again.");
 	
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",leftTeasedForEver,x);
 }
@@ -1761,7 +1761,7 @@ public function shePaysAttentionToYouSlut():void
 	if(!pc.hasVagina()) output("butt");
 	output("slut.”</i> Your Mistress’s husky voice comes from just behind your ear, causing the [pc.skinFurScales] on your back to tingle with delight.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(20);
 	//[Not A Slut!] [Totally A Slut]
 	clearMenu();
@@ -1792,7 +1792,7 @@ public function notASlutXanthe():void
 	else output("in pleasure");
 	output(". You let out a raspy moan then immediately flush, knowing it doesn’t help your case.");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",slutNotASlutEpilogue);
 }
@@ -1814,7 +1814,7 @@ public function yesXantheImTotesMyGoatsASlut():void
 	else output(" in pleasure");
 	output(". You let out a raspy moan, knowing deep down that you are definitely her special property.");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",slutNotASlutEpilogue);
 }
@@ -1969,7 +1969,7 @@ public function nothingWithXantheTodayBadumTish():void
 	output("Your Mistress doesn’t get you to do anything too hard today, nor does she give you any form of discipline either. She’s so cruel!");
 	output("\n\nWalking away frustrated and pent up, you find yourself biting your lip. Surely your Mistress will give you her particular attentions sooner or later?");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1997,7 +1997,7 @@ public function getXanthesPantiesSloot():void
 	output("\n\nYou nod feverently. You can’t wait to masturbate with Mistress Xanthe’s panties, which have touched her exquisite sex. It will be the next best thing to having the honor of making love to her and giving her pleasure, and by the sounds of things, knowing that you’re using her panties will give her pleasure as well.");
 	output("\n\n<b>You have acquired Mistress Xanthe’s panties!</b>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.createKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.");
 	pc.removeStatusEffect("XanthePanties");
 	clearMenu();

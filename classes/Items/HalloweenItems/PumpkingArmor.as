@@ -41,13 +41,13 @@
 			//Information
 			this.basePrice = 3500;
 			this.attack = 0;
-			this.defense = 14;
+			this.defense = 13;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 50;
+			this.fortification = 45;
 			
 			resistances.electric.resistanceValue = 40.0;
 			//resistances.burning.resistanceValue = -7.0;

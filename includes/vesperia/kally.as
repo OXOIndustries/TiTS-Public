@@ -272,7 +272,7 @@ public function approachKally():void
 		output("”</i> She whirls to grab a glass, sending her boobs bouncing once more.”</i>");
 		output("\n\nThat sounds okay, as long as she’s the one to cut you off.");
 		//+lust
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	//Met, buzzed, have had <i>“special”</i> drinks
 	else if(pc.isBuzzed() && pc.hasStatusEffect("Adorahol"))
@@ -929,7 +929,7 @@ public function tellKallyShesCute():void
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("Why don’t we see if there’s anything I can do for you that doesn’t require a bedroom, hrmm?");
 		else output("If you rounded up my sister, I could be talked into giving you a little more time with the girls.");
 		output("”</i>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//Buzzed (or normal drunk)
 	else if(pc.isBuzzed() || pc.isDrunk())
@@ -1139,7 +1139,7 @@ public function askKallyAboutAusar():void
 //1- landing pad
 public function kiroKallyCanadiaLPBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	kiro.ballSizeRaw = 10;
 	if((flags["KIRO_MET_KALLY"] == undefined || flags["KIRO_MET_KALLY"] == 0) && MailManager.isEntryViewed("kirodatemeet"))
 	{
@@ -1173,7 +1173,7 @@ public function kiroKallyCanadiaLPBonus():void
 //2 - airlock
 public function kiroKallyCanadiaAirlockBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	if((flags["KIRO_MET_KALLY"] == 0 || flags["KIRO_MET_KALLY"] == 1) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1185,7 +1185,7 @@ public function kiroKallyCanadiaAirlockBonus():void
 //3 - Hallway
 public function kiroKallyCanadiaHallwayBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	if((flags["KIRO_MET_KALLY"] == 1 || flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1198,7 +1198,7 @@ public function kiroKallyCanadiaHallwayBonus():void
 //4 - Outside the bar
 public function kiroKallyCanadiaBarBonus():void
 {
-	if(!roamingKiroAvailable()) return;
+	if(!roamingKiroAvailable() && !crewKiroAvailable()) return;
 	if((flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1569,7 +1569,7 @@ public function pushKiroToWannaFuckHerSis():void
 	output("\n\nYou have to draw back to keep things from getting out of hand, leaving Kiro panting. <i>“I knew you had it in you.”</i>");
 	output("\n\n<i>“You... you’re going to... have some Kiro in you the minute we go somewhere private,”</i> the lusty kui-tan growls. <i>“I’m going to fuck you till you’re walking bow-legged, you cheeky fucking cock-tease.”</i>");
 	processTime(6);
-	pc.lust(15);
+	pc.changeLust(15);
 	flags["KIRO_INCEST_TEASED"] = 1;
 	clearMenu();
 	addButton(0,"Let’s Go",letsGoButtfuckMeKiro,undefined,"Let’s Go","Let her get her revenge in right now.");
@@ -1978,7 +1978,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 	output(". Kiro fucks you hard enough to smack your forehead into the headboard. She doesn’t give an apology, and you don’t ask for one; you’re too busy being dazed and aroused, helplessly teetering on the edge of a climax.");
 	output("\n\nHer sheets are just so slippery! Your cheek won’t stop sliding on them. They’re too slick from the spit-reconstituted cum, and you keep drooling more. Kiro must approve of the sight, because you feel her cock tremble inside you. It’s a change that brings you some small measure of satisfaction. She’s getting off on fucking you silly! You coo with desire but are immediately interrupted by Kiro doubling her pace, hilting herself into you with such force that it hurts the tenderized cheeks to either side of Kiro’s new favorite fucktunnel.");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",roughButtfuckFromKiroPart2);
 }
@@ -2152,7 +2152,7 @@ public function kallyNeedsTappedByBimbos():void
 	output(" now that it’s closed. The only thing you’d change to make it a better blowjob nook would be floor padding.");
 	output("\n\nNow, to get to work.");
 	processTime(6);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",tapKallysKegAsBimboII);
 }
@@ -2457,7 +2457,7 @@ public function kallyGetsEatenOutByBroz():void
 	}
 	output(" She wiggles so that her head is drooping toward your crotch. Eager hands delve below the belt and grab hold, feeling you up the same way a blind woman might explore your face with her fingertips. Meanwhile, her dick juts into the air like a totem pole, flipping her skirt up so that the entire bar can see. She doesn’t appear to mind.");
 	processTime(6);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",kallyBroCunnilingus2);
 }
@@ -2502,7 +2502,7 @@ public function kallyBroCunnilingus2():void
 	output("\n\nAnd what a cunt it is! It squeezes down on your tongue and fountains her musky desire against your [pc.lipsChaste]. If you withdraw, it seems to swell upward, making itself appear even lewder in hopes of rubbing against something. You kiss it, sweet thing that it is, then thrust inside, deep. Your tongue swirls in circles, gathering up her liquid sex. Pleasing her is automatic. On some level, you suppose you were made for this. Squirt after squirt, you milk her for every drop of feminine bliss she can provide. You milk her until her tongue is limp against your [pc.cock] and she’s barely managing to moan.");
 	output("\n\nYou milk Kally until your face is glossier than her cunt, and her bedroom reeks of pussy. Then you work her some more. She takes deep breaths of your crotch’s pheromonal soup, then cums again, the hardest time yet. You hear her jizz splash against her face and feel it drip down your own dick. More importantly, her slit squeezes tighter than a naleen’s coils. It threatens to choke your mouth’s muscle completely off. The pressure is agonizing. Then it relaxes completely, too spent to so much as quiver with an aftershock.");
 	processTime(25);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",kallyBroCunnilingus3);
 }
@@ -3025,7 +3025,7 @@ public function actuallyPeeptime():void
 	pc.setStatusMinutes("Kally Cummed Out",10);
 	variableRoomUpdateCheck();
 	processTime(20);
-	pc.lust(35);
+	pc.changeLust(35);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3052,7 +3052,7 @@ public function kallyAndKiroGloryholeThreesomeMeeting():void
 	output(", bathing Kiro in warm, wet heat. And she loves it. You can tell by the way she throbs against you and the slight twitches of her hips driving it deeper. You can read it in the spurts and dribbles that you swallow, greedy as a galotian whore.");
 	output("\n\nThen you hear the stall on the other side close and latch. Another person?");
 	processTime(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGloryholeSupremo2);
 }
@@ -3087,7 +3087,7 @@ public function kiroAndKallyGloryholeSupremo2():void
 	output("\n\n<i>“What? No I, uh... I - oh god yes, like that!”</i> Kally moans, shuddering. <i>“Yes! I want this, okay? Is that okay?”</i> She takes a deep, ragged breath. <i>“I know it’s weird and stupid, but I can’t stop thinking about you and your big, stupid dick. Just cum already! It’s not like it's really incest... not if we’re just soaking some stupid slut!”</i>");
 	output("\n\nBoth of them are throbbing between your fingers, urethras flooding with pre. The walls shudder from the force of the two herms pressing against them, trying to get as much of their dicks into your hands as possible.");
 	processTime(15);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGloryholeSupremo3);
 }
@@ -3205,7 +3205,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	output("\n\nYou’re not making any face... until Kiro finds [pc.oneClit] to rub. Then your mouth falls open, and you grind yourself against the chubby sister, pressing your weeping slit against her inhuman tool. The cocky pirate lets you go before you crush her hand between your pelvises, its mission accomplished.");
 	output("\n\nKally’s eyes widen as she takes in the sight of you. Her fingers tighten reflexively against your [pc.chest], almost painfully so. <i>“All right then. You asked for this...”</i>");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste2);
 }
@@ -3265,7 +3265,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	output("\n\nDeep inside you, you feel her starting to flare, just a little bit.");
 	output("\n\nKiro chuckles and draws herself halfway out, sure to keep it angled to press against her incestuous sister through the lining of your anus. Then, she slams herself back in, aided by her own sensuous leakings. She bathes every wrinkle and bend in your back door in wet-hot kui-tan cream, all before she orgasms; a girl as productive as her can leave you feeling creampied after a few dozen thrusts, to say nothing of what happens when she finally does go off.");
 	processTime(20);
-	pc.lust(80);
+	pc.changeLust(80);
 	clearMenu();
 	addButton(0,"Next",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste3,x);
 }
@@ -3475,7 +3475,7 @@ public function kiroAndKallyGoToGetMilkedThreesome():void
 	}
 	//[NEXT]
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGoToGetMilkedThreesome2);
 }
@@ -3534,7 +3534,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 		}
 	}
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGoToGetMilkedThreesome3);
 }
@@ -3571,7 +3571,7 @@ public function kiroAndKallyGoToGetMilkedThreesome3():void
 	else output("smirk. <i>“You turn into a real slut when you’re cum-drunk, you know that?”</i>");
 	output("\n\nBoth sisters let out breathy giggles at your retort, no doubt imagining a variety of situations where the three of you are jizzing into an even larger variety of each other’s holes. Kiro’s titters are cut short by a sharp, almost pained gasp. Her balls are dangling about halfway down to her shins, the sack stretched taut, little more than shrink-wrapping for the pair of ludicrously virile orbs. She looks to her sister and then to you, eyes wide and pupils dilated wider. <i>“I... need to cum. Can I cum?”</i> She runs a hand through her increasingly slippery crotch-fur, fingertips massaging the tender flesh beneath. <i>“Just a little bit?”</i>");
 	processTime(13);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGoToGetMilkedThreesome4);
 }
@@ -3606,7 +3606,7 @@ public function kiroAndKallyGoToGetMilkedThreesome4():void
 	//Merge
 	output("\n\n<i>“Spunk-slut,”</i> Kally belatedly retorts, stumbling in the door after Kiro, her balls audibly dragging on the ground behind her. <i>“She’d probably suck me off if you told her to. Mmmm, I bet she’d probably leak a few gallons in the process.”</i> Her dick is dribbling steadily now, but you’re inside the Spunk Bunker now - you can get these girls (as well as yourself) some relief.");
 	processTime(7);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGoToGetMilkedThreesome5);
@@ -3645,7 +3645,7 @@ public function kiroAndKallyGoToGetMilkedThreesome5():void
 		output("”</i>");
 	}
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[Next] Ze milking!
 	clearMenu();
 	addButton(0,"Next",kiroAndKallyGoToGetMilkedThreesome6);
@@ -4102,7 +4102,7 @@ public function yesVixetteCumSlurpies(arg:String):void
 		output("\n\nVixette paws at the kui-tan’s dick apologetically. <i>“Mmmhmm, if you say so, Kally 2. And uh... that [pc.race]. You were all wonderful.”</i> She turns to look straight at Kally once more, eyes transformed into a pair of playful-looking pixel kittens. <i>“You’ll come back soon?”</i>");
 	}
 	processTime(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",vixetteCleaningEnd,arg);
 }
@@ -4231,7 +4231,7 @@ public function kiroXKallyEmailShow():void
 		output(" Also, you’d best clean up the mess you made in the process.");
 		pc.orgasm();
 	}
-	else pc.lust(10);
+	else pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -423,7 +423,7 @@ public function wetraxxelBrawlerPCLossTonguePolish():void
 	output("\n\nSeemingly satisfied by the punishment he’s meted out, the bug-man turns on a heel and walks away, disappearing into the deeper caves. Woozily, you gather up your [pc.gear] and stumble off.\n\n");
 
 	processTime(15+rand(5));
-	pc.lust(15);
+	pc.changeLust(15);
 
 	//Return PC to the entrance to the wetraxxel's territory. 
 	currentLocation = "1X11";

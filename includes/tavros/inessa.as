@@ -167,7 +167,7 @@ public function inessaAppearance():void
 	output("\n\nYou feel a little hornier " + (flags["INESSA_BELTED"] != 2 ? "for gazing at her. Given her burning cheeks, you’re not the only one" : "gazing at your wonderful sub, and seeing her so happy fills you with pride. Given her burning cheeks, you’re not the only one feeling worked up") + ".");
 	
 	// Raise lust by 5 for looking at nekkid girl.
-	pc.lust(4);
+	pc.changeLust(4);
 	// Head back to Inessa’s main menu.
 	inessaMenu();
 	addDisabledButton(0,"Appearance","Appearance","You’re looking at her right now.");
@@ -424,7 +424,7 @@ public function skinModsInessa():void
 		output("\n\nHer kissable lips are slightly parted, hovering very close to yours. You can feel her gentle breath warmly brushing over your own mouth, her breathing hurried and heated.");
 		output("\n\nThe sweet smell of flowers fill the air. The electricity is palpable. Do you kiss her?");
 		processTime(5);
-		pc.lust(15);
+		pc.changeLust(15);
 
 		//[Inch Closer] [Pull Back]
 		clearMenu();
@@ -2125,7 +2125,7 @@ public function inessaWalksOnTheWildSide():void
 	output("\n\nSloppy, muffled sounds fill the shop as your lithe tail dick energetically explores Inessa’s mouth. The sensation is not great at first - her teeth keep rubbing over the bulging meat of your shaft, and without hands to help her she struggles to properly get hold of the over-excited tentacle. You clamp down on the impulse to impatiently throat-fuck her, though - she’s young and inexperienced. Leaning on the counter and concentrating on the door, you husk instructions and sigh your approval when she gets it right, until she is hollowing her cheeks fulsomely around your [pc.cockTail], providing a wonderful, wet suck for you to thrust your throbbing tail into with succulent strokes. You reward her quick learning by pulling out and smearing the pre-oozing tip over her cute lips and nose; she pants for breath and coos with submissive delight, licking at the slit of her new best friend. Heavy and full with fervent arousal now, you rear it back and shove it into her fuck-hole, delighted that she immediately tightens her walls back around your shaft...");
 	output("\n\nWa-<b>TSSSHHHH!</b> It takes all of your self-discipline not to freeze as the shop door opens, and to smoothly continue undulating your [pc.cockTail] into Inessa’s face. Her eyes go wide though, and she spasms slightly in her bonds.");
 	output("\n\n<i>“I’m sorry,”</i> says the business-suited platinum blonde human male, stood stock-still in the doorway, <i>“is this a bad time?”</i>");
-	output("\n\n<i>“Not at all,”</i> you reply blandly. The body of your vestigial cock writhes like a cut power-line, pleasure coursing up from its bulging head. Showing as little visible effort as you possibly can, you damp down on its excited energy, forcing the way it pushes into Inessa’s hot mouth to be gentle and slow. <i>“Welcome to Happy Tails. What can I interest you in?”</i>");
+	output("\n\n<i>“Not at all,”</i> you reply blandly. The body of your wriggling cock writhes like a cut power-line, pleasure coursing up from its bulging head. Showing as little visible effort as you possibly can, you damp down on its excited energy, forcing the way it pushes into Inessa’s hot mouth to be gentle and slow. <i>“Welcome to Happy Tails. What can I interest you in?”</i>");
 	output("\n\n <i>“Well, I - ”</i> replies the tall, well-built man, finally tearing his eyes away from her to you. <i>“ - I’m in need of a few things I suppose, but - advice, mostly. For a couple who are looking to spice things up a little in the bedroom. What would you recommend?”</i>");
 	output("\n\n<i>“You can do much worse than starting off with a pair of premium edition grav-cuffs,”</i> you reply breezily. <i>“We have a demonstration model set up here.”</i> Your control of the situation seems to be having the effect you’re looking for - Inessa’s jaw and tongue are working again, kneading wetly away at your ancillary alien penis. Her face has turned an adorable shade of purple, and her eyes flick up to both you and the customer when you " + pc.moveAction(false,true) + " over to her knelt, cuffed form - but she continues to hollow her cheeks around the shaft of your [pc.cockTail] determinedly. What a good girl.");
 	output("\n\n<i>“These cuffs automatically adjust for comfort, but are unbreakable by anything short of military spec cutting tools,”</i> you say. Intense pleasure throbs through your appendage and you up the pace with which you thrust its saliva-coated end into the saeri, but keep your voice level. <i>“Their most impressive feature, though, is that you can adjust both their weight and the weight of the individual cuffed. Cuffs - zero.”</i>");

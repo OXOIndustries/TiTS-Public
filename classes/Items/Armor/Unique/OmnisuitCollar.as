@@ -38,9 +38,10 @@ package classes.Items.Armor.Unique
 			attack = 0;
 			defense = 3;
 			shields = 0;
-			sexiness = 7;
+			sexiness = 3;
+			resolve = 2;
 			critBonus = 0;
-			evasion = 2;
+			evasion = 8;
 			fortification = 0;
 			
 			resistances.burning.resistanceValue = 34.0;

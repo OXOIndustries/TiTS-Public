@@ -280,7 +280,7 @@ public function touchKaedesFluffyTailWhosAGoodGirlSheIs():void
 	output("\n\n<i>“Cheers,”</i> Kaede grins, raising her glass. You do the same, drinking with one hand and stroking her tail with the other. You find that special spot near the base again, and the ginger pup’s tail starts swishing happily once again. Rather than cleaning the deck for the owner, though, Kaede flicks her canine rudder into your lap, wrapping your crotch in her warm embrace. Oh, that feels nice...");
 	output("\n\n<i>“My fur’s about the only thing that’s soft right now,”</i> Kaede whispers into your [pc.ear], hand squeezing your thigh. <i>“Hope you’re satisfied...”</i>");
 	processTime(13);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	//[Yes] [Keep Going]
 	addButton(0,"Yes",yesThatsEnoughKaede,undefined,"Yes","That’s enough teasing for now.");
@@ -328,7 +328,7 @@ public function keepTailScritching():void
 	}
 	
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
@@ -359,7 +359,7 @@ public function maximumTeaseTheSloot():void
 	
 	IncrementFlag("KAEDE_PUBLIC_SHAME");
 	processTime(4);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.addHard(1);
 	clearMenu();
 	if (flags["KAEDE_EXHIBITIONISM"] != undefined && flags["KAEDE_EXHIBITIONISM"] >= 30) {
@@ -439,7 +439,7 @@ public function getARoomWithKaede():void
 	output("\n\nSounds good. Kaede drops a credit chit to cover her tab and grabs your hand, leading you towards the lodge’s guest wing. It’s a short walk to Kaede’s door, each step punctuated by a rising chorus of little gasps and moans, drawn out by wandering hands and bending bodies. She swipes an access card over the lock and ushers you inside, hurriedly working her belt off and locking the door at the same time. The room’s simply furnished but cozy, with a queen-sized bed and a desk covered in Vesperian-themed knick-knacks taking up most of the space. A canvas bag full of clothes is the only evidence of Kaede’s residence.");
 	output("\n\nYou grab the cute half-ausar by the hips and give her a rough push, throwing her face-up onto the bed. She yelps in surprise, turning into a giggle as you stalk up after her, straddling her hips and pulling her out of her leather jacket.");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[Fuck Her Ass] [Rocket Ride] [Invite a Friend]
 	clearMenu();
 	if((pc.hasCock() && pc.cockThatFits(370) >= 0) || pc.hasHardLightEquipped()) addButton(0,"Fuck Her Ass",fuckHerAssYouSlootAndByHerIMeanKaede,undefined,"Fuck Her Ass","Time to take this pretty puppy to pound-town.");
@@ -533,7 +533,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	if(x >= 0) output(" Between your final thrusts, your mind races to make a choice.");
 
 	processTime(25);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	if(x >= 0)
 	{
@@ -717,7 +717,7 @@ public function annoAndKaedeAndPCAndSufferingRIPLeira():void
 	output("\n\n<i>“Hey, babe,”</i> Anno giggles, ruffling Kaede’s hair. <i>“Hi, boss. How’s it hangin’?”</i>");
 	output("\n\nBetter, now that she’s here. Anno grins and runs her hands down Kaede’s back, squeezing the halfbreed’s ass.");
 	output("\n\nThe snowy-haired ausar commands the lights to dim <i>“to something sexy.”</i> The room’s V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede’s hair and tail as Anno slips her arms around her girlfriend’s waist, pulling her into a kiss, passionate and, more intimate than the playful gropes: their chests press together, lips parting to allow their tongues to explore each others’ mouths.");
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(4);
 	clearMenu();
 	//[Fuck Them] [Service Kaede] [Watch Them]
@@ -914,7 +914,7 @@ public function kaedePopsIntoZeGloryHole():void
 	pc.loadInMouth(syri);
 	IncrementFlag("GLORYHOLE_SERVER");
 	flags["GLORYHOLED_KAEDE"] = 1;
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();

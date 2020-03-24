@@ -402,7 +402,7 @@ public function askKiroForRougherSex():void
 		output("”</i> She nips at your neck and fondly gropes your chest. <i>“I’ll take you back and split you wide open right now, if that’s what you want to do, just say the word.”</i>");
 		output("\n\nIt would seem you’ve unleashed a bit of a monster in Kiro...");
 		processTime(2);
-		pc.lust(4);
+		pc.changeLust(4);
 		kiroTalkMenuInCanadia(askKiroForRougherSex);
 	}
 }
@@ -440,7 +440,7 @@ public function buttfuckMeHardPleaseKiro():void
 	showKiro();
 	output("A look of roguish delight graces the kui-tan’s animalistic features. <i>“Really?”</i> She grabs your hand and guides it under the bar to press against the bulge of her sheath. <i>“You think you could handle all this?”</i> It thickens beneath your fingers hesitant touch. <i>“You think you can handle being bent over and used as a filthy, slutty cum-dump?”</i> Kiro pushes down, forcing you to feel her cock swelling up and out of its confinement. <i>“You think you can handle this splitting your ass after I tenderize it with a few dozen spanks?”</i> She looks deeply into your eyes. <i>“Do you?”</i>");
 	processTime(1);
-	pc.lust(2);
+	pc.changeLust(2);
 	//[Yes] [No]
 	clearMenu();
 	addButton(0,"Yes",youCanButtfuckMeYouSkank);
@@ -1001,7 +1001,7 @@ public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 	pc.loadInMouth(chars["KIRO"]);
 	processTime(25);
 	kiro.orgasm();
-	pc.lust(3000);
+	pc.changeLust(3000);
 	pc.shower();
 	clearMenu();
 	addButton(0,"Next",lostDrankinContestToKiroz);
@@ -1053,7 +1053,7 @@ public function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 	output("\n\nThere’s one last titanic ‘splort’ into the roiling nano-weave package. Giving Kiro a few tentative squeezes, you test to make sure she’s finished. The way she sighs at your touches tells you that yes, she did cum, and she feels very, very good right now. A soft, padded hand pats you on your head a moment before Kiro tumbles into bed with you, resting her head against the jiggling, white pillow.");
 	output("\n\nThe space-pirate sighs, a trace of alcohol faint on her breath as she pants, <i>“Rest up. Once I get this off and clean up a little, I’m going to use you again. I’m going to have you get me off until you can’t move without me dripping down your legs and tainting your breath. I’m going to leave you looking like a pregnant woman who just filmed bukkake porn. And then I’m going to clean you up and do it again.”</i> She strokes your jaw. <i>“You’re going to smell like my cum no matter how many showers you take for weeks, [pc.name]. Aren’t you glad you took that bet?”</i>");
 	processTime(33);
-	pc.lust(3000);
+	pc.changeLust(3000);
 	kiro.orgasm();
 	clearMenu();
 	addButton(0,"Next",lostDrankinContestToKiroz);
@@ -1376,7 +1376,7 @@ public function getTongueBathedEpilogue():void
 	output("\n\n<i>“Well? Are you going to get started or what?”</i>\n\nShe starts at that, then smirks, and then all but throws herself at you, her arms winding themselves around your waist to ensure you can’t get anywhere. Once that happens, she descends upon your [pc.butt] like a herm possessed, her tongue sliding rapaciously across and around each asscheek, circling your outer curves before sliding into your crack and then insinuating itself downwards, thick and deep until her tongue tip is brushing insistently over your puckered back passage.");
 	output("\n\nYou jump slightly as you feel her lick your [pc.asshole]. You wonder if you should have her clean in there too or stick just to your butt.");
 	processTime(25);
-	pc.lust(33);
+	pc.changeLust(33);
 
 	//[Rim][JustButt]
 	clearMenu();
@@ -1801,7 +1801,7 @@ public function takeKirosVirginity():void
 
 	output("\n\nYou shift slightly underneath her, feeling the most sensitive parts of your [pc.cock " + x + "] grinding against the sodden slit. Both of you release eager moans. Are you ready for this?");
 	processTime(12);
-	pc.lust(3000);
+	pc.changeLust(3000);
 	clearMenu();
 	addButton(0,"Yes",yesImTakingKirosVcards, x);
 	addDisabledButton(1,"No","No","You consider throwing out a <i>“no”</i>, but change your mind. You’re more than ready for this and have no desire to spoil the mood.");
@@ -1841,7 +1841,7 @@ public function yesImTakingKirosVcards(x:int):void
 	output("\n\nYou kiss the nape of her neck while she cums, clutching her ass with one hand and stroking her shimmering waves of chocolate-brown hair with the other. The moaning kui-tan trembles bonelessly, jetting more and more wasted jizz onto your body while her pussy clutches weakly at your rod, unable to do anything but writhe in the grip of long-forbidden passion. You hold her throughout, letting her fully expend her ardor, and then, once she goes fully limp, slumped against your shoulder, you have your opportunity.");
 	kiro.orgasm();
 	kiro.orgasm();
-	pc.lust(3000);
+	pc.changeLust(3000);
 	pc.applyCumSoaked();
 	processTime(14);
 	//[Next]
@@ -2534,7 +2534,7 @@ public function fluffilyWhorishPawjobs():void
 	else output(" It feels heavenly. <i>“All you’ve got to do is point it in my direction.");
 	output(" Give me proper access. You can cum all over the floor and my feet" + (!kiroIsCrew() ? ", maybe even order a nice drink before you do it":"") + ". Whaddya say?”</i>");
 	output("\n\nIt is... tempting, to say the least. Her foot definitely has your full, unbridled attention" + ((!kiroIsCrew() || crew(true) > 1) ? ", but someone could potentially see":"") + ". Do you let Kiro relieve you?");
-	pc.lust(35);
+	pc.changeLust(35);
 	processTime(4);
 	//[Yes] [No]
 	clearMenu();
@@ -3113,7 +3113,7 @@ public function treatedPussPumps():void
 		output("\n\n<i>“Hurry,”</i> she moans while looking to the bed.");
 	}
 	processTime(10);
-	pc.lust(14);
+	pc.changeLust(14);
 	//Next
 	clearMenu();
 	addButton(0,"Next",kiroPussPumpPartII);
@@ -3171,7 +3171,7 @@ public function kiroPussPumpPartII():void
 
 	output("\n\nThe kui-tan won’t accept anything but you and her fucking at this point. You created this pussy-pumped monster, and it’s your responsibility to please it. How do you take care of her over-sensitive lips?");
 	processTime(20+rand(5));
-	pc.lust(35);
+	pc.changeLust(35);
 	clearMenu();
 
 	IncrementFlag("PUMPED_KIRO_PUSSY");
@@ -3397,7 +3397,7 @@ public function giveKiroSomeRelief():void
 	output("\n\nYou slide away before she can do any damage, gurgling weakly as she plugs your throat behind her exiting phallus. She leaves a cheek-bulging blast of jizz in your mouth as a parting gift, then proceeds to issue forth a half dozen weaker blasts across your [pc.hair], [pc.face], and neck as she gradually goes limp, soaked in spit and cum. You sit there, gasping for breath, soaked in sex, and totally used. Licking the jism and residual sheath-musk off your lips, you reach up " + (kiroIsCrew() ? "to grab some tissues":"to the table to grab some napkins") + ", content in the knowledge that you’ve brought so much pleasure to such a magnificent specimen.");
 	pc.loadInMouth(kiro);
 	processTime(8);
-	pc.lust(25);
+	pc.changeLust(25);
 	kiro.orgasm();
 	output("\n\nKiro looks a little unsteadily, then meets your gaze and asks, <i>“Now what?”</i>");
 	pc.exhibitionism(1);
@@ -3493,7 +3493,7 @@ public function kiroFuckOrgyFuntimes():void
 	//Merge
 	output("\n\nKiro pulls out a card and swipes it on an old-style card reader. It clicks, and the magnetic door wooshes open, revealing four other girls in various states of undress.");
 	processTime(1);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",kiroFuckOrgyFuntimes2);
 }
@@ -3522,7 +3522,7 @@ public function kiroFuckOrgyFuntimes2():void
 	else output("I’m Mai, and this is my worthless whore of a sister, Miko. I’m sure you’re charmed.");
 	output("”</i>");
 	processTime(3);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[Ignore] [Kiss Hand]
 	clearMenu();
 	addButton(0,"Ignore",ignoreMaiHandshake);
@@ -3712,7 +3712,7 @@ public function kiroFuckOrgyFuntimes4():void
 	output("\n\n<i>“We both know you’re the one that needs a regular filling. Why else would you have given your sister all that Throbb?”</i> Kiro flicks Mai’s comparatively tiny dick, making the dual-gendered vixen shudder and whine. <i>“I don’t know why you insist on using those drugs on the people you fuck. We all know how they just make you priaprismic. Do you actually like being unable to get off after the first time? Some dom you are.”</i>");
 	output("\n\nWhining, Mai clutches at Kiro as she is forced down the kui-tan’s Flahne-moistened member. She stretches obscenely and moans, her modest cock looking absolutely overripe. It’s so swollen that it might actually be up to a full seven inches by now, but not a single droplet of pre-cum escapes, not even when Kiro’s flared cock-head distends her belly.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",kiroFuckOrgyFuntimes5);
 }
@@ -3742,7 +3742,7 @@ public function kiroFuckOrgyFuntimes5():void
 	output("\n\nFlahne’s slow-grinding fuck may not be designed to bring you off, but you’re <i>hard</i>. Hard enough to fuck a woman carved from solid rock. Hard enough that between the rahn’s jelly-like folds and the sensation of getting bathed in cum, you find your [pc.hips] lifting and your orgasm mounting. The ovipositor-packing secretary pats your [pc.belly] knowingly and coos from behind the still-spurting cat. <i>“Cum all you like. You’re not going soft any time soon.”</i>");
 	output("\n\nYou couldn’t stop your orgasm if you tried.");
 	processTime(30);
-	pc.lust(20);
+	pc.changeLust(20);
 	//500mLs in mouth!
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
@@ -3973,7 +3973,7 @@ public function kiroKallyThreesomesApproach():void
 	output("”</i> She slurps the pussy-juice from her fingers and sighs happily, despite Kiro’s playful scowl.");
 	output("\n\nThey both advance, snuggling you into a mass of warm boob and cushy fur, each suggesting lewder and lewder things to do to the other. Just what do you want to do with these two prick-toting vixens?");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	if(pc.hasCock() && pc.thinnestCockThickness() < 4) addButton(0,"Milk Them",kiroKallyDoubleMilkingThreesome,undefined,"Milk Them","Plug them both into the milker and buttfuck all the ‘nuki seed their bulging ballsacks can carry.");
 	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that’s less than four inches thick to plug both of them into Kiro’s milker and buttfuck the seed out of them.");
@@ -4113,7 +4113,7 @@ public function kiroKallyDoubleMilkingThreesome2():void
 		output("\n\nFluff bumps into your [pc.ass] hard enough to send you stumbling. <i>“You heard the lady, [pc.name]. You’d better get us started before I wind up bending her over and recording my own porno.”</i>");
 	}
 	processTime(20);
-	pc.lust(55);
+	pc.changeLust(55);
 	clearMenu();
 	addButton(0,"Next",kiroKallyDoubleMilkingThreesome3);
 }
@@ -4196,7 +4196,7 @@ public function kiroKallyDoubleMilkingThreesome3():void
 	output(", you can see what she’s talking about. Creamy white goo is sliding through the tubes, squeezed out of the libidinous bartender by the anal pressure and the relentless machine’s inhuman suction. Grabbing big fistfuls of fur, you clutch onto her quivering booty and shift your angle until you feel your [pc.cock " + x + "] pressing on a rounded lump.");
 	output("\n\nThe flow becomes thicker the moment you make contact with Kally’s prostate. She moans and vigorously clenches, inadvertently grinding you harder against the extra-large organ and releasing a still-thicker flow of alcoholic, raccoon-girl goo. You realize, with some delight, that the kui-tan girl grows less coherent with every thrust and more wanton by the second. One of her hands is wrapped around the hard plastic casing of the fuck-sleeve, trying to stroke it off as if it was her own dick. When she’s not moaning, she’s blowing kisses at Kiro or blubbering sweet nothings.");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",kiroKallyDoubleMilkingThreesome4,x);
 }
@@ -4325,7 +4325,7 @@ public function kiroKallyDoubleMilkingThreesome5(x:int):void
 	output("\n\nYou aren’t sure if your smile is from how nice it feels to hand out the reaming of a lifetime or from the sweet display of love going on just inches away from your throbbing dick.");
 	if(pc.isBro() || pc.isAss()) output(" It’s probably just your dick, to be brutally honest.");
 	processTime(25);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",kiroKallyDoubleMilkingThreesome6,x);
 }

@@ -37,11 +37,13 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 7;
+			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 5;
+			this.evasion = 7;
 			this.fortification = 0;
 			
+			resistances.tease.resistanceValue = 20.0;
+
 			this.version = this._latestVersion;
 		}
 	}

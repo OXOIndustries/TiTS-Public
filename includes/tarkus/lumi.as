@@ -181,7 +181,7 @@ public function lumiAppearance():void
 	output("\n\nBut it’s not just her body that is attractive - she is one <i>very</i> pretty girl, with a cute, feminine face that comes across as youthful and earnest, complemented by full lips, pointy elfin ears and impossibly vibrant turquoise eyes that seem to shine with perpetual curiosity. However, those same eyes also betray subtle signs of drug use. The Gabilani’s light-grey hair is kept tied behind her in a tall ponytail, lending a note of seriousness to her charming looks.");
 	output("\n\nAs you take in her features, your eyes happen to lock with Lumi’s, and she pouts coyly, crossing her arms, though you can see a very subtle blush on her cheeks. Just you were in sizing her up, it appears she wasted no time either. <i>“Have you ogled enough?”</i> She asks in a slightly peeved tone. The irony doesn’t escape you.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	addDisabledButton(0, "Appearance", "Appearance", "You are already checking her out.");	
 }
 //[NoThxBai]
@@ -564,7 +564,7 @@ public function lumiVictory():void
 	
 	if (lumiAddictionLevel() > 1) lumiAddictionLevel(1,true);
 	IncrementFlag("LUMI_PC_WINS");
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	output("\n\n");
 	clearMenu();

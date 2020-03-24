@@ -313,7 +313,7 @@ package classes.Items.Transformatives
 							output(" warp");
 							if(target.tailCount == 1) output("s and morphs");
 							else output(" and meld");
-							output(" into a long, narrow tail tipped in a spade, the rest of the tail a single uniform length that you find to be completely prehensile. <b>You have a demon tail!</b>");
+							output(" into a long, narrow tail tipped in a spade, the rest of the tail a single uniform thickness that you find to be completely prehensile. <b>You have a demon tail!</b>");
 							if(target.hasTailCock())
 							{
 								output(" The tip opens up to reveal that its [pc.cockTail] has been left unchanged.");

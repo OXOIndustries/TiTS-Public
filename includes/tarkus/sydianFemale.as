@@ -523,11 +523,12 @@ public function femSydianGentleFuck():void
 		else output(" <i>“Pah. You’re making a mistake, but whatever.”</i>");
 		output(" You release her hand and she blinks stupidly when you bid her goodbye. <i>“We probably won’t meet again.”</i>");
 
-		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.\n\n");
+		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.");
 		//end, raise lust some, pass small time
 
 		processTime(7+rand(3));
-		pc.lust(10);
+		pc.changeLust(10);
+		output("\n\n");
 		pc.addNice(2);
 
 		clearMenu();
@@ -947,7 +948,7 @@ public function femSydianCallOthers():void
 		processTime(30+rand(15));
 		if (!pc.isAss() || pc.isTaur() || (!pc.hasCock() && !pc.hasVagina()))
 		{
-			pc.lust(20+rand(5));
+			pc.changeLust(20+rand(5));
 		}
 		else
 		{

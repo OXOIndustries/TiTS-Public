@@ -1448,7 +1448,7 @@ public function chooseSexualGift():void {
 	addButton(7,"Mini",applySexualGift,"mini","Mini","Decreases the size of your male organs and causes them to be more receptive to future size-decreasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
 	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
-	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
+	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","You will have a lower sex drive than normal, but you'll be better at teasing with a low libido than most!");
 	addButton(11,"Infertile",applySexualGift,"infertile","Infertile","No matter what changes are made to your virility or fertility levels, you will be unable to produce offspring naturally.");
 	addButton(13,"None",applySexualGift,"none","No Sexual Gift","You will not begin with a natural sexual gift.");
 	if(pc.hasVagina()) 
@@ -1506,7 +1506,7 @@ public function applySexualGift(arg:String = "none"):void {
 			pc.createPerk("Extra Ardor",0,0,0,0,"Increases lust gain over time.");
 			break;
 		case "ice cold":
-			pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
+			pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time and improves low libido teasing.");
 			break;
 		case "infertile":
 			pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
@@ -1601,7 +1601,7 @@ public function applyUpbringing(arg:int = 0):void {
 		//Pampered
 		case GLOBAL.UPBRINGING_PAMPERED:
 			pc.willpowerRaw--;
-			pc.credits += 1000;
+			pc.credits += 2000;
 			break;
 		//Athletic
 		case GLOBAL.UPBRINGING_ATHLETIC:
@@ -2278,6 +2278,7 @@ public function gameStartOutro():void
 	shipLocation = "TAVROS HANGAR";
 	generateMap();
 
+	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (false)//if(demo) 
 		addButton(0,"Next",demoOver);
 	else 

@@ -331,7 +331,7 @@ public function bodyShotsWithDel():void
 	if(pc.hasCock()) output("\n\nOh yeah. You’re coming for that ass next.");
 
 	processTime(25);
-	pc.lust(33);
+	pc.changeLust(33);
 	pc.imbibeAlcohol(42);
 	addLoveyDoveWithAlcohol();
 	pc.credits -= 100;
@@ -520,7 +520,7 @@ public function fuckDelsAss():void
 	output("\n\n<i>“Go on,”</i> Del coos, wiggling her hips enticingly as your crown presses into her dark star, practically being drawn in by her well-used hole, <i>“I’m soooo ready for it. Ram it on in!”</i>");
 
 	processTime(21);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",delGetsButtplowedAtKallysPart2,x);
 }

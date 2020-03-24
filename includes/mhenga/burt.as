@@ -207,7 +207,7 @@ public function yesIWantYerCrazyHoarseWeinerBurt():void {
 	output("You smile and reassure Burt that you see nothing wrong with his manmade manhood, reaching out to caress it gently with one hand.");
 	output("\n\nBurt grins, giving a little shiver at the caress, which shows that he can feel through that metal and plastic phallus well enough. Nearly invisible segmented plates built into the design shift and expand, letting the inorganic organ pulse and bounce like a real erection would. His mechanical length is cool to the touch, and undeniably firm, having no organic give or padding to it at all.");
 	output("\n\nBurt grins at you and says, <i>“I’m glad you are taking this all in stride... so, what should we do?”</i>");
-	pc.lust(10);
+	pc.changeLust(10);
 	//[pg]
 	burtSexMenu();
 }
@@ -384,7 +384,7 @@ public function crabbstBlueRibbonPurchase():void {
 			pc.aimMod--;
 			pc.intelligenceMod--;
 			pc.willpowerMod--;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else output("\n\nYou’ve gotten everything from Crabbst you’re going to get.");
 	}
@@ -395,7 +395,7 @@ public function crabbstBlueRibbonPurchase():void {
 		pc.aimMod--;
 		pc.intelligenceMod--;
 		pc.willpowerMod--;
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
@@ -428,7 +428,7 @@ public function buyMeadFromBurt():void {
 			pc.reflexesMod-= .5;
 			pc.intelligenceMod-= .5;
 			pc.willpowerMod-= .5;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else output("\n\nYou’ve gotten as much from the mead as you’re going to get.");
 	}
@@ -439,7 +439,7 @@ public function buyMeadFromBurt():void {
 		pc.aimMod-= .5;
 		pc.intelligenceMod-= .5;
 		pc.willpowerMod-= .5;
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	pc.imbibeAlcohol(10);
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
@@ -467,14 +467,14 @@ public function burtXilErAte():void {
 		if(pc.statusEffectv2("X-Zil-rate") < 10) {
 			pc.addStatusValue("X-Zil-rate",2,5);
 			pc.physiqueMod+=5;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else output("\n\nYou’re as hopped up on X-Zil-rate as you’re going to get.");
 	}
 	else {
 		pc.createStatusEffect("X-Zil-rate",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf booze makes you feel strong... and horny.",false,180);
 		pc.physiqueMod+=5;
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
@@ -514,7 +514,7 @@ public function askBurtAboutHimself():void {
 				pc.aimMod-= .5;
 				pc.intelligenceMod-= .5;
 				pc.willpowerMod-= .5;
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 		}
 		else {
@@ -524,7 +524,7 @@ public function askBurtAboutHimself():void {
 			pc.aimMod-= .5;
 			pc.intelligenceMod-= .5;
 			pc.willpowerMod-= .5;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 	}
 	//Scene 4 (Won’t happen until PC has experienced Three-Dee Rape sex ending)
@@ -652,7 +652,7 @@ public function giveBurtABJ():void {
 	output(", pulling you down his shaft until your lips kiss his medial ring, sending well over half a foot of equine metal down your throat. You don’t choke, and you don’t feel pain, but you can clearly feel the passage, and your hand drifts to your neck, feeling how your neck bulges and expands to accommodate him.");
 	//[Next]
 	processTime(10+rand(3));
-	pc.lust(3);
+	pc.changeLust(3);
 	this.clearMenu();
 	this.addButton(0,"Next",giveBurtABJPartII);
 }
@@ -673,7 +673,7 @@ public function giveBurtABJPartII():void {
 	pc.loadInMouth(chars["BURT"]);
 	//[pg]
 	//[Next] (-1 Will, +5 Lust, Random Sex Exit)
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(10+rand(3));
 	this.clearMenu();
 	this.addButton(0,"Next",randomBurtSexExit);
@@ -1083,7 +1083,7 @@ public function giveBurtAHandyYouSlooooooooooot():void {
 	
 	output("\n\nTaking the encouragement for what it is, you begin to slide your hands up and down his length, able to forget that it is metal and plastic with how naturally it shifts and moves as though made of flesh and blood. You can feel the rise of the medial ring in the center of his cock, like a speedbump for your hands as you work to jerk him off, and each time your grip passes over it he lets out the most adorable groan. Brushing your hands over his flare makes him shiver and arch his hips out towards you, almost thrusting against your grip.");
 	//[pg]
-	pc.lust(5);
+	pc.changeLust(5);
 	this.clearMenu();
 	this.addButton(0,"Next",burtHandyPartDeux);
 }
@@ -1112,7 +1112,7 @@ public function burtHandyPartDeux():void {
 	else output("\n\nYou grab one of Burt’s bar rags, shivering in anticipation of the powerful man’s coming climax. You hear him grunt out, <i>“Oh fuck, [pc.name]....”</i> and press the rag to the top of his flare as you continue to jerk him off, feeling it grow hot and wet as the first surge of his cum flows into it. You smile up at Burt as you catch each pulse in that now sticky and wet rag, polishing his flare with it at the end to leave him clean.");
 	//[pg]
 	processTime(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	this.clearMenu();
 	this.addButton(0,"Next",randomBurtSexExit);
 }

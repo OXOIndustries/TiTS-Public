@@ -706,7 +706,7 @@ public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 		brynn.orgasm();
 	}
 	processTime(30);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0, "Next", move, "514");
 

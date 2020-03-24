@@ -173,7 +173,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		output("\n\nYou vigorously shake your head - no way you’re walking out of this with blue balls. Besides, this cock-craving red needs to see the full breadth of what your [pc.cock] can do. You’d hate for her first time with one to end on a low note, after all.");
 		output("\n\nSeeing your response, the red woman murmurs, <i>“You can’t just cum in the water, right? That’s absolutely not okay!”</i> After a second, she adds a little less sure of herself: <i>“Right?”</i>");
 		output("\n\nYou roll your eyes and tell the first-timer what to do:");
-		pc.lust(500);
+		pc.changeLust(500);
 		processTime(22);
 		clearMenu();
 		//Ride Dick
@@ -218,7 +218,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		output("\n\n<i>“Too much!”</i> the ant pants, trying to whisper but ending up giving you a whorish moan. <i>“Toomuchtoomuch!”</i>");
 		output("\n\nShe seizes up, breath catching in her throat as the pleasure that’s been building up inside her comes to a cataclysmic head. Her breasts spray nectar like a geyser, discharging their lactic load across the stoney poolside. You just squeeze her breasts harder, milking out all that sweet nectar - and keeping the insensate ant-girl writhing with pleasure all through her boobgasm.");
 		output("\n\nWhen she finally calms down, the myr woman is left panting and gasping, leaning heavily back against you. <i>“These... massages... incredible...”</i> she breathes, eyes rolling closed in the afterglow. You grin down at her and start to lick the sweet, thick honey off of your fingers. While you do so, the exhausted ant-girl slips out of your arms and flops down against the pool side, leaving you to clamber out of the pool and go get cleaned up.");
-		pc.lust(20+rand(10));
+		pc.changeLust(20+rand(10));
 		pc.shower();
 		processTime(21);
 		clearMenu();
@@ -443,7 +443,7 @@ public function bathHouseGoldMyrGroup():void
 
 	//choices - include ‘Nothing’ that returns to previous menu
 	processTime(4);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	if(pc.hasCock())
 	{

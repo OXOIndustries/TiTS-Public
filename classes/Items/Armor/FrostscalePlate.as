@@ -8,7 +8,7 @@
 	
 	public class FrostscalePlate extends ItemSlotClass
 	{
-		//Level ??? (???). Balance 2.0
+		//Level 8 (Very Rare) Balance 2.0
 		//constructor
 		public function FrostscalePlate()
 		{
@@ -44,13 +44,14 @@
 			this.defense = 9;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = -2;
+			this.resolve = 3;
+			this.sexiness = 2;
 			this.critBonus = 0;
-			this.evasion = -2;
+			this.evasion = 3;
 			this.fortification = 20;
 			
-			//resistances.burning.resistanceValue = -13.0;
-			resistances.freezing.resistanceValue = 30.0;
+			resistances.kinetic.resistanceValue = 5.0;
+			resistances.freezing.resistanceValue = 33.0;
 			resistances.addFlag(DamageFlag.PLATED);
 			resistances.addFlag(DamageFlag.NULLIFYING);
 			

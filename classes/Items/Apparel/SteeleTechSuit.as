@@ -43,10 +43,11 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 15;
-			this.sexiness = 2;
+			this.shields = 10;
+			this.sexiness = 3;
+			this.resolve = 2;
 			this.critBonus = 0;
-			this.evasion = 2;
+			this.evasion = 5;
 			this.fortification = 0;
 			
 			resistances.electric.resistanceValue = 30.0;

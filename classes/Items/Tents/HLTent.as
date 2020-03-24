@@ -28,7 +28,7 @@ package classes.Items.Tents
 			
 			this.description = "a JoyCo-branded hardlight survival tent";
 			
-			this.tooltip = "While traditional tents are known for their reliability, hardlight tents have come into popularity in the last several centuries, owing to their durability, ability to vacuum-seal themselves to protect against hazards like toxic storms, and surprising lightness. Typical hardlight survival tents weigh no more than the lightest grenades.\n\nThis particular JoyCo model is lighter than most, manufactured for light survival use. Its small power core requires <b>three days</b> to replenish its charge via its miniaturized kinetic generator. To many, this is a major flaw. To explorers who might need to avoid one surprise downpour when they're too far from town, it's perfect.\n\n<b>This item is only usable in hazardous areas.</b>\n<b>Cooldown:</b> </b> 3 days.";
+			this.tooltip = "While traditional tents are known for their reliability, hardlight tents have come into popularity in the last several centuries, owing to their durability, ability to vacuum-seal themselves to protect against hazards like toxic storms, and surprising lightness. Typical hardlight survival tents weigh no more than the lightest grenades.\n\nThis particular JoyCo model is lighter than most, manufactured for light survival use. Its small power core requires <b>three days</b> to replenish its charge via its miniaturized kinetic generator. To many, this is a major flaw. To explorers who might need to avoid one surprise downpour when they're too far from town, it's perfect.\n\n<b>This item is only usable in hazardous areas.</b>\n<b>Cooldown:</b> 3 days.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

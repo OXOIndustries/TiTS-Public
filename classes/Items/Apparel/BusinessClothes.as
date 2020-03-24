@@ -38,9 +38,10 @@ package classes.Items.Apparel
 			this.attack = 3;
 			this.defense = 3;
 			this.shieldDefense = 0;
-			this.sexiness = 3;
+			this.sexiness = 2;
+			this.resolve = 3;
 			this.critBonus = 3;
-			this.evasion = 3;
+			this.evasion = 8;
 			this.fortification = 14;
 			
 			this.version = this._latestVersion;

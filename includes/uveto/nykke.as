@@ -245,7 +245,7 @@ public function nykkeMatesTalk():void
 		output("\n\n<i>“You,”</i> she whimpers, and you feel a number of emotions flood into you through her untrained psionic link with you. Happiness that you’re everything she could want in a partner; lust for you and the offspring she wishes you could give her; but, curiously, there’s also regret and frustration that [frostwyrm.name] has already claimed you, and that she couldn’t have you all to herself.");
 		output("\n\nYour hands trail down your daughter’s scaly, muscled, powerful back, tickling at the crease between her wings. You lean into her and kiss her on the lips, and you linger there far longer than what most would consider ‘parental.’ When you pull away, you tell her that, if she has any <i>other</i> fantasies as to what the perfect mate should be like, you’ll be here to listen.");
 		output("\n\nYou feel something hot, thick, and a little wet prod against your [pc.thigh] at your words, your message clear as could be to her. <i>“Okay, my Qal,”</i> she says breathlessly, barely able to contain her excitement.");
-		pc.lust(10);		
+		pc.changeLust(10);		
 	}
 	else
 	{
@@ -332,7 +332,7 @@ public function nykkeAdventuringTalk():void
 		output("\n\nYou let Nykke entertain herself and her fantasies, up until you feel something hard, hot, and squishy poke against your [pc.thigh]; her own legs grind wantonly against you, until she’s unquestionably humping you. At that, you clear your throat, and she stops everything immediately.");
 		output("\n\n<i>Sorry,</i> she says to you over your psionic connection.");
 		output("\n\nYou don’t chide her, but you remind her: one thing at a time.");
-		pc.lust(10);
+		pc.changeLust(10);
 		str1 = " <b>that’s</b> for sure.";
 	}
 	else
@@ -822,6 +822,6 @@ public function nykkeSexTakeHer(hole:int):void
 }
 public function nykkeFrostwyrmTF():Boolean
 {
-	//once frostwyrm tf is on the game, do the check here
+	if (pc.race() == "frostwyrm") return true;
 	return false;	
 }

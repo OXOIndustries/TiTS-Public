@@ -300,7 +300,7 @@ public function ainaPregShower():void
 	output("\n\nAina grins as she re-dresses, her hair back to its normal ponytail. You feel as refreshed as she looks, ready to face the universe again.");
 	
 	processTime(15 + rand(15));	
-	pc.lust(25 + rand(10));
+	pc.changeLust(25 + rand(10));
 	pc.shower();
 	flags["AINA_DIRTY"] = 0;
 	
@@ -411,7 +411,7 @@ public function ainaPregComfort1():void
 	flags["AINA_COMFORT"] = 2;
 	
 	processTime(100);	
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu,undefined);
@@ -451,7 +451,7 @@ public function ainaPregComfort2():void
 	
 	processTime(20 + rand(10));	
 	eatHomeCooking(30);
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu,undefined);
@@ -502,7 +502,7 @@ public function ainaPregComfort3():void
 	flags["AINA_LAST_DAY_MET"] = days;
 			
 	genericSleep();
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu,undefined);
@@ -605,7 +605,7 @@ public function ainaPregHeatSex():void
 		
 		processTime(10 + rand(15));
 		applyAinaMareMuskEffect();
-		pc.lust(30);
+		pc.changeLust(30);
 	}
 		
 	output("\n\n<i>“You wanna stay and watch a movie? I got the latest senseless action flick,”</i> Aina asks hopefully. You could stay and watch, or head out before it starts.");

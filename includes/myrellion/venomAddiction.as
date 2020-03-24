@@ -68,9 +68,9 @@ public function imbibeVenomEffects(sexed:Boolean = true, combatAttack:Boolean = 
 	{
 		if(!sexed) 
 		{
-			pc.lust(50);
+			pc.changeLust(50);
 		}
-		else pc.lust(1);
+		else pc.changeLust(1);
 		if(rand(4) == 0) pc.slowStatGain("libido",1);
 		if(pc.libido() > pc.taint() * 2) pc.taint(0.5);
 		else if(rand(4) == 0) pc.taint(0.5);
@@ -229,10 +229,10 @@ public function drinkDatRedVenoShitYooooooo(targetItem:RedMyrVenom):void
 	//Note to self: Make PC autodrink red myr venom if withdrawing
 	else
 	{
-		pc.lust(100);
 		output("You can’t hold back any longer. The need is too great, all but controlling you by the time you fish a vial of frothy pink venom out of your pack and pop the cork with shaky, numb fingers. You need it so badly... you need to <i>feel</i> again! In desperation, you fumble the vial up to your lips and drink down, gulping the slushing pink goo as fast as it will pour from the tube.");
 		output("\n\nThe vial clatters to the ground a moment later, falling from your leaden arms as you’re hit with a sunburst of sensation, more powerful than anything you can remember feeling - and that’s just your [pc.tongue] brushing against your teeth. You breathe hard, running your fingers across your [pc.face] as the familiar, comforting warmth of red venom spreads through you, reawakening your body from its lifeless, husk-like reverie.");
 		output("\n\nYour hands roam on auto-pilot across your body, pinching and caressing and fondling every curve and pleasure-point you have.");
+		pc.changeLust(100);
 		imbibeVenomEffects(false);
 		if(!inCombat() && useItemFunction == inventory)
 		{
@@ -350,7 +350,7 @@ public function sluttyMcSlutOral():void
 	output("\n\nAnd just like that, your world explodes in a shockwave of almost-forgotten sensation. You moan, going limp in the red myr woman’s hands as her tongue slathers your mouth with her lusty venom: a full and massive dose that leaves your whole face tingling, arousal spreading like wildfire through you. Your desperate needs changes in the blink of an eye, from needing your hit to need her body for an altogether more pleasurable purpose: you need to <b>fuck</b>!");
 	output("\n\nBut that’s one reward she won’t give you. Before you can come to your senses, the myr pulls out of your embrace and yanks her pants back up with a contented smile, giving you a pat on the cheek that feels almost like a slap. <i>“See you around, spacer,”</i> she grins, adjusting the rifle slung on her shoulder. <i>“If you don’t find one of us to make you her personal little fucktoy first!”</i>");
 	output("\n\nShe gives you a wink and rounds the bend, back onto the street. You sigh and lick your lips, shivering at the forgotten tenderness your venom-highs bring. God damn you needed that... and now you need something to sate your rising lusts.");
-	pc.lust(150);
+	pc.changeLust(150);
 	imbibeVenomEffects();
 	pc.applyPussyDrenched();
 	clearMenu();

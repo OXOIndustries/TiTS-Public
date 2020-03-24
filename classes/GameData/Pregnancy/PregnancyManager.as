@@ -38,6 +38,7 @@
 	import classes.GameData.Pregnancy.Handlers.SiegwulfeEggnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SydianPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SeraSpawnPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.StormGuardPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.ZaaltPregnancyHandler;
@@ -95,6 +96,7 @@
 			PregnancyManager.insertNewHandler(new ZilBullPregnancyHandler());
 			PregnancyManager.insertNewHandler(new AusarPregnancyHandler());
 			PregnancyManager.insertNewHandler(new IlariaPregnancyHandler());
+			PregnancyManager.insertNewHandler(new StormGuardPregnancyHandler());
 			
 		}
 		

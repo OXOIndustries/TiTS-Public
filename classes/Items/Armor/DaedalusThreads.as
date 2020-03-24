@@ -30,7 +30,7 @@ package classes.Items.Armor
 			defense = 4;
 			shieldDefense = 0;
 			shields = 50;
-			sexiness = 8;
+			sexiness = 5;
 			critBonus = 0;
 			evasion = 3;
 			fortification = 0;

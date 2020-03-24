@@ -240,7 +240,6 @@ public function varkSpanksForSkanks():void
 	
 	if (flags["MET_VARK"] == undefined)
 	{
-		pc.lust(30);
 		flags["MET_VARK"] = 1;
 
 		output("Your curiosity gets the better of you, and despite knowing what this feline is undoubtedly capable of, you’re compelled to stay put. You shift a bit nervously as your heart pounds softly in your ears. You don’t know what he plans to do to you, and that makes your gut stir with anticipation.");
@@ -266,6 +265,7 @@ public function varkSpanksForSkanks():void
 		output(" head out, your [pc.butt] is still burning");
 		if (!pc.isAssExposed()) output(" in your [pc.lowerUndergarment]");
 		output(". You feel compelled to cast the occasional glance back at the cave, your stomach tingling as you recount the experience in your head.");
+		pc.changeLust(30);
 	}
 	else if (varkGotCollar())
 	{
@@ -474,13 +474,13 @@ public function varkCollarChoice(accept:Boolean):void
 				output("You hum softly and stroke the collar, luxuriating in the warm, pleasant waves it pushes into your body, and decide it’s not so bad after all. Vark was... no, <i>your master</i> was right all along.");
 				break;
 			default:
-				pc.lust(60);
 				output("You take the collar out of his hand, shivering all over from the electric tingling the stone pumps into your nerves. You look up at him and nod, spurring him to smile in a way that makes your heart leap. <i>“Vark glad. Toy make good choice.”</i> He gently unlatches it, putting it carefully around your bare throat and clasping it. When it’s finally secure, you sit there shivering, the constant contact with the pleasure-inducing stone setting your nerves awash with warmth. He kisses you on the forehead and you sigh, happy to have pleased him.");
 				output("\n\nYou whine quietly at the overwhelming arousal coursing through your veins, spurred by your master’s musk and the stones of your collar. You look up at him pleadingly and he smirks. You can tell quite plainly that he knows what you want. He cups your chin and grips his cum-laden shaft. <i>“Good Toy. Take Reward,”</i> he purrs. A reward? Your master sure is generous. You press forward and wrap your lips around the barbed head of his cock, your [pc.groin] tingling uncontrollably at the taste of his seed. You resist the urge to play with yourself, confident in Master’s ability to get you there; he always does. His paw grips your head as you inhale his wonderful scent,");
 				output(" the dizzying mix of sensations driving you to moan around his fat shaft. He presses eagerly to the back of your throat, a long purr rolling through his belly. You can’t even dream of gagging, of not readily taking every inch of him inside you. He is your generous master, and you will not squander this reward. He grunts and begins to fuck your mouth, his furry balls slapping your chin, surely churning as they prepare your gift. Just the thought that he’ll soon grace you with the taste of his release has you cumming, your thighs and the ground beneath you basted in your fluids as your [pc.groin] " + (pc.isHerm() || pc.hasCocks() || pc.hasVaginas() ? "overload" : "overloads") + " with heat and sensation.");
 				output("\n\n<i>“Good Toy,”</i> he grunts, and you know it to be fact. Your master would never lie to you, and it pleases you to know that he’s satisfied by your efforts. His wants are yours, and as he wants to grace you with his delicious cream, you desire more than anything to receive it. And so, drowning in his musk and grunted praise, you do. Over and over, for hours. Your stomach filling with his bountiful heat, until at last darkness takes you.");
 				pc.loadInMouth(tempVark);
 				pc.loadInMouth(tempVark);
+				pc.changeLust(60);
 
 				nextFunction = varkCollarFuckEpilogue;
 				break;

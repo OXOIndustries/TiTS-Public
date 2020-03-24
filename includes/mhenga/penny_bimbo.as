@@ -104,7 +104,7 @@ public function bimboPennyTalk():void
 		output("\n\nWell then.");
 	}
 	//[Increase PC Lust by 15]
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(3);
 	clearMenu();
 	bimboPennySexMenu();
@@ -453,7 +453,7 @@ public function playWithFlahne():void
 	processTime(25);
 	penny.orgasm();
 	pc.loadInMouth(penny);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

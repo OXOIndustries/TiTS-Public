@@ -1,6 +1,7 @@
 package classes.UIComponents.SideBarComponents 
 {
 	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -118,6 +119,8 @@ package classes.UIComponents.SideBarComponents
 		public function showStatsForCreature(char:Creature, asInit:Boolean = false):void
 		{
 			_xpBar.updateBar(char.XP(), char.XPMax(), asInit);
+			if(char is PlayerCharacter && char.XP() >= char.XPMax()) _xpBar.caption = "XP(MAX)";
+			else _xpBar.caption = "XP";
 			_levelBar.updateBar(char.level, Number.NaN, asInit);
 			_creditsBar.updateBar(char.credits, Number.NaN, asInit);
 		}

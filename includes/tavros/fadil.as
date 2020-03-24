@@ -446,7 +446,7 @@ public function fadilfIsFadone():void
 	output("\n\nThe two of you descend the stairs back into the bar. You turn around and kiss him straight on his lips. Surprised at first he quickly takes control. Grabbing you by your ass and kissing you deep. When your lips part, you’re out of breath and your [pc.pussy] is freely drooling down your thighs. He smiles seductively before sitting down in the empty corner table.");
 
 	//Add some lust
-	pc.lust(15+pc.libido()/10);
+	pc.changeLust(15+pc.libido()/10);
 	IncrementFlag("FADIL_SEXED");
 
 	addButton(0, "Next", move, "ANON'S BAR AND BOARD");
@@ -647,7 +647,7 @@ public function timeForPostFadilHeatNaps(vagIdx:int):void
 	output("\n\nAs you walk bowlegged into the bar you’re met with a mixture of lust, awe, and disapproval from the gaze of the patrons, but you ignore them all since you still have " + fadilDaddy() + " on your mind, and no one in here could measure up to him. Just thinking about him has your pussy drooling again. You shake your head in an attempt to clear your thoughts about the older ausar gentleman but only succeed in making yourself hornier. Before you end up masturbating in front of the bar you meld into the crowd of people and get ready to move on.");
 
 	//raise current lust by 20%
-	pc.lust(15+pc.libido()/10);
+	pc.changeLust(15+pc.libido()/10);
 	IncrementFlag("FADIL_SEXED");
 
 	addButton(0, "Next", mainGameMenu);

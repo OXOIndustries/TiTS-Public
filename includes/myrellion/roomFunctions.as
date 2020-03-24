@@ -127,6 +127,8 @@ public function airFieldCentralBonus():Boolean
 
 public function DMZRandoEventsBonus():Boolean
 {
+	//Vday
+	if(biancaVDayHook()) return true;
 	if(sluttyMcSlutOralBonus()) return true;
 	return false;
 }
@@ -1202,7 +1204,7 @@ public function goWithTheAntOrgy(voluntary:Boolean = true):void
 	output(". Very well. Ithris, Borea, Mystryn, Haedin, and Phorah. You set the top scores in this week’s physical evaluation, so you may ride our entertainment directly, if you wish.”</i> She raises an arm when all five of the named girls step forward. <i>“In that order. No fighting over our guest.”</i>");
 	output("\n\n<i>“Yes ma’am!”</i> The five answer, saluting.");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	var x:int = pc.cockThatFits(1000);
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1246,7 +1248,7 @@ public function antOrgyPartDues(arg:Array):void
 	myrellionSSTDChance(pp);
 	
 	processTime(13);
-	pc.lust(25);
+	pc.changeLust(25);
 	pp.loadInCunt(pc, 0);
 	pc.girlCumInMouth(pp);
 	pc.applyPussyDrenched();
@@ -1365,7 +1367,7 @@ public function antOrgyPartFour(arg:Array):void
 	
 	processTime(33);
 	pc.orgasm();
-	pc.lust(100);
+	pc.changeLust(100);
 	//Red myr dose
 	imbibeVenomEffects(true);
 	pc.girlCumInMouth(pp);

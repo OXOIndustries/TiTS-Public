@@ -58,7 +58,7 @@ public function winVsZil():void {
 		output("The zil tugs on his his boner almost feverishly by this point, throwing back his head and whimpering when amber juices begin to roll out of his concealed crown, beading on his knuckles before dripping free. His wings cease their fluttering and drop him to the ground. Kneeling, he looks up at you eagerly and admits, <i>“I’ve never lost to an alien before. Are you going to " + (pc.hasVagina() ? "breed" : "fuck") + " me?”</i> Regardless of your choice, his essence is flooding the air between you and driving your body to take him up on his offer. What do you do?");
 	}
 	//Raise lust to 33 minimum, menu.
-	if(pc.lust() < 33) pc.lust(33-pc.lust());
+	if(pc.lust() < 33) pc.changeLust(33-pc.lust());
 	clearMenu();
 	//if(pc.hasCock() && pc.shortestCockLength() <= 20) addButton(0,"Buttfuck",buttfuckDefeatedZil);
 	//else addDisabledButton(0,"Buttfuck","Buttfuck","You’ll need a dick shorter than 17\" long to plug this wasp.");
@@ -411,7 +411,7 @@ public function giveTheZilAFootjob():void {
 	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legOrLegs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legOrLegs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i> You grin and give him another push against your sticky " + (pc.hasToes() ? "[pc.toes]" : "[pc.feet]") + " and [pc.legOrLegs], moaning as you feel his agile tongue against your [pc.skinFurScales].");
 	output("\n\nHe dutifully laps up the sticky mess from your [pc.skinFurScales], his dexterous, tube-like organ sucking up the gooey cum even from between your toes, tickling you a bit. Soon your [pc.feet] are slick and clean and you give him a gentle pat on the head, leaving him there as you ready your gear and continue your journey.\n\n");
 	processTime(10+rand(10));
-	pc.lust(5);
+	pc.changeLust(5);
 	CombatManager.genericVictory();
 }
 
@@ -1577,11 +1577,11 @@ public function maleZilPreggomonesEncounter():void
 	if(flags["MET_ZIL_PREGGOMONES"] == undefined) output("Well, that explains your new pheromones and how you know just who this alien is. ");
 	output("You look down to notice his shaft is at full-mast, and his gaze seems to be stricken dumb with lust... and you’re not feeling too different.");
 	output("\n\n<i>“So, mate,”</i> he says, stepping back a bit, <i>“How would you feel about spending a bit of time together like that?”</i>");
+	pc.changeLust(50);
 	output("\n\n");
 	
 	IncrementFlag("MET_ZIL_PREGGOMONES");
 	
-	pc.lust(50);
 	processTime(2);
 	
 	clearMenu();
@@ -1673,11 +1673,11 @@ public function maleZilPreggomonesEncounterNext(response:String = ""):void
 			output("You try to clear your head enough to form a coherent decision, taking a deep breath to empty that musk from your lungs. Then, once you’re back in your own head, you tell the zil that you don’t think you you’re going to be spending any time with your mate today.");
 			output("\n\nYour mate seems a bit disappointed at that, but still smiles all the same. <i>“Of course,”</i> he says, taking a few steps away from you, <i>“I’d offer to escort you back to my village, but it’s obvious you have your own places to be. Stay safe, my mate.”</i>");
 			output("\n\nLike that, he’s gone again, back into the jungle, clearing your mind of that lusty haze. The zil was right though, you do have places to be.");
+			pc.changeLust(15);
 			output("\n\n");
 			
 			processTime(2);
 			// Should add some lust.
-			pc.lust(15);
 			
 			addButton(0, "Next", mainGameMenu);
 			break;

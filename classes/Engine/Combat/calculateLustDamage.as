@@ -43,6 +43,12 @@ package classes.Engine.Combat
 		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
 		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPheromones()) lustDamage.pheromone.damageValue += 1 + rand(attacker.pheromoneLevel());
 
+		// +25% tease damage from furry enemies while under Furpies
+		if (attacker != null && attacker.hasFur() && lustDamage.tease.damageValue > 0 && target != null)
+		{
+			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) lustDamage.tease.damageValue = Math.round(lustDamage.tease.damageValue * 1.25);
+		}
+
 		//Enemies with sexjuice coverings get bonuses against the PC - but not the other way around. PC bonuses handled by PC tease system.
 		if (lustDamage.tease.damageValue > 0 && target is PlayerCharacter)
 		{

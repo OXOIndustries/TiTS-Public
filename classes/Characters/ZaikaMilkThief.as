@@ -224,8 +224,8 @@
 		{
 			//Force like milky & tailgenital. Dislike sweat?
 			sexualPreferences.setRandomPrefs(2 + rand(3),2);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS, sexualPreferences.getRandomLikeFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS, sexualPreferences.getRandomLikesFactor());
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomDislikeFactor());
 			
 			//Set da tid.
@@ -285,8 +285,8 @@
 		}
 		override public function get bustDisplay():String
 		{
-			if(this.hasCock(GLOBAL.TYPE_HUMAN)) return "MILK_THIEF_SMALL";
-			else if(this.hasCock(GLOBAL.TYPE_CANINE)) return "MILK_THIEF_MEDIUM";
+			if(this.breastRows[0].breastRating() == 2) return "MILK_THIEF_SMALL";
+			else if(this.breastRows[0].breastRating() == 8) return "MILK_THIEF_MEDIUM";
 			else return "MILK_THIEF_LARGE";
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -342,7 +342,7 @@
 			if(target.hasAirtightSuit() && target.defense() < 10)
 			{
 				output(" <b>Your airtight equipment isn’t quite so airtight any longer!</b>");
-				createStatusEffect("Corroded Seals",0, 0, 0, 0, false, "DefenseDown", "<b>The acid has degraded your airtight seals</b>. You can swap them out after the fight, but you don't have time for that right now...", true, 0, 0xFFFFFF);
+				target.createStatusEffect("Corroded Seals",0, 0, 0, 0, false, "DefenseDown", "<b>The acid has degraded your airtight seals</b>. You can swap them out after the fight, but you don't have time for that right now...", true, 0, 0xFFFFFF);
 			}
 		}
 		//Ero Gas - make sure it functions similarly to the Ero Gas grenade
@@ -505,9 +505,10 @@
 		{
 			this.createStatusEffect("Stimmypooed");
 			output("<i>“F-f-fucking... making me use my expensive stims,”</i> the milk thief grumbles as her eyes cycle through a half dozen colors. She blinks, and a second later her stance relaxes as her wounds knit closed like magic. Behind her, the rogue’s tail raises high, infused with energy and lust. It twitches hungrily, like a predator on the prowl. <i>“Goddamn waste,”</i> she mumbles, squirming slightly. <i>“I’ll just steal even more of your milk!”</i>");
-			applyDamage(new TypeCollection( { drug: 19 } ), this, target, "minimal");
-			var healing:Number = Math.ceil(this.HPMax() - this.HP());
-			output("(<b>+" + healing + " HP</b>)");
+			this.changeLust(10);
+			this.changeHP(this.HPMax());
+			//output("(<b>+" + healing + " HP</b>)");
+			//applyDamage(new TypeCollection( { drug: 19 } ), this, target, "minimal");
 		}
 		//Antistun (only on 2nd stun turn) (10 energy)
 		//if this.isStunned

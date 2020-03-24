@@ -121,7 +121,7 @@ public function buyADrinkFromCandice(drink:String):void
 	{
 		pc.credits -= 120;
 		pc.imbibeAlcohol(33);
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	processTime(6);
 	if((pc.isSmashed() && rand(4) == 0) || pc.statusEffectv2("Alcohol") >= 100)
@@ -330,7 +330,7 @@ public function stephIrsonEpisode4Part2():void
 	output("\n\n<i>“Tell me about it!”</i> the nyrea smiles, folding her arms behind her back in a way that compels the camera to zoom in on her thrust-out chest, giving you a view of cream-pale flesh and black nipples that are still nice and stiff. <i>“Ugh, I’m so sick of...”</i>");
 	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that’s only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
 	processTime(6);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisode4Part3);
 	addButton(1,"StopWatching",mainGameMenu);
@@ -353,7 +353,7 @@ public function stephIrsonEpisode4Part3():void
 	else output(" totally");
 	output(" could have broken my neck falling like that!”</i>");
 	processTime(6);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisode4Part4);
 	addButton(1,"StopWatching",mainGameMenu);
@@ -371,7 +371,7 @@ public function stephIrsonEpisode4Part4():void
 	output("\n\nSteph struggles feebly against her tentacle restraints, her resistance slowly fading away to limp submission as the tentacles drain her milk and pump her full of their own juices. Her silvery-blue eyes roll back as a particularly meaty tentacle squirms its way into her cunt, spreading her wide over its turgid length. Its bulbous head vanishes, only visible as it bulges her gut with the sheer depth and size of its penetration. She screams in pleasure around the squirming vine, her body convulsing around the twin tentacles. The camera shifts in for a close up of Steph’s pussy, and the trickle of white goop spilling out around the vine - the tentacle creature’s seed, no doubt, filling her womb beyond capacity.");
 	output("\n\nHer whole body goes stiff a second later, drawing the drone around to her big, jiggly backside as a third, smaller vine spreads her cheeks in a desperate bid to get at her last unfilled hole. Its bulbous, cock-like head spurts a thick coat of white spunk over Steph’s ass, using its own cum as lube to worm its way through her clenched behind. She screams again as the vine vanishes inside her, completing the three-way fucking she’s fallen into with a powerful, thigh-drenching orgasm.");
 	processTime(6);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisode4Part5);
 	addButton(1,"StopWatching",mainGameMenu);
@@ -394,7 +394,7 @@ public function stephIrsonEpisode4Part5():void
 	watchStephEpisodeBroadcast("STEPH_COCKED");
 	
 	processTime(6);
-	pc.lust(7);
+	pc.changeLust(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

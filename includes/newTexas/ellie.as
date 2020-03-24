@@ -303,7 +303,7 @@ public function talkToEllieYaFuckingSkank():void
 	{
 		output("\n\nShe smiles at you. <i>“I’ve always got a few minutes for you, [pc.name].”</i> Looking you up and down, she adds, <i>“It doesn’t </i>just<i> have to be talking, though.”</i>");
 		output("\n\nYou battle the urge to clamber over the counter right now, and after a hard-fought few seconds reason wins out. She sits on her reptilian hind end and eyes you with curiosity - and a bit of naked lust. <i>“I’m not doing anything important right now anyway. What’s up?”</i>");
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	else
 	{
@@ -339,7 +339,7 @@ public function buildEllieTalkMenu():void
 	if(flags["ELLIE_OPERATION"] == 1) addDisabledButton(4, "Operation", "Operation", "Ellie’s already had the fertility operation.");
 	else if(flags["ELLIE_OPERATION"] == 2) addButton(4, "Pregnancy", talkToEllieAboutPregnancyButShesActuallyPregnantThisTime, undefined, "Pregnancy", "See how Ellie is fairing with her pregnancy.");
 	else if(flags["ELLIE_OPERATION"] == 3) {
-		if(shipLocation != "TAVROS HANGAR" && (disableExploreEvents() || !leavePlanetOK())) addDisabledButton(4, "VisitNursery", "Visit Nursery", "You are unable to leave with your ship at the moment.");
+		if(shipLocation != "TAVROS HANGAR" && (disableExploreEvents())) addDisabledButton(4, "VisitNursery", "Visit Nursery", "You are unable to leave with your ship at the moment.");
 		else addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "Visit Nursery", "See if Ellie wants to go visit the eggs.");
 	}
 	else if(flags["ELLIE_OPERATION"] == 4) addButton(4, "Kids", askEllieAboutTheKiddos, undefined, "Kids", "Ask Ellie how she and the kids are fairing.");
@@ -411,7 +411,7 @@ public function talkToEllieAboutPheromones():void
 	else if(pc.hasVagina()) output(" Heat washes over your [pc.cunt], and you shift uncomfortably as it begins to drool excitement, totally ready to spread open for the first cock to take it... or a big, thick, reptilian tail...");
 	output(" It takes a force of will not to throw yourself into the leithan girl’s arms. Not that you think she’d mind.");
 
-	pc.lust(33);
+	pc.changeLust(33);
 
 	output("\n\n<i>“I guess I’m a little bit worse than average, though,”</i> Ellie admits, watching your reaction with keen interest, her twin-pupiled eyes wandering across your flushed body. <i>“The Treatment does funny things to non-humans. It makes ausars into big, angry puppies; turns rahn libido up so high they just can’t pry themselves off of any cock they can find, like they’re </i>hungry<i> for it... and me? I guess it decided every day was breeding season, and I’m always putting out these sweet little pheromones... which really just means I get to </i>put out<i> more for the bulls that get a whiff of them!”</i>");
 
@@ -495,7 +495,7 @@ public function talkToEllieAboutTreatment():void
 	else output("\n\nAfter a moment, Ellie adds, <i>“I guess I ought to mention that the Treatment’s permanent. Like, totally permanent. I think the Treatment’s the best thing that ever happened to me - and so does just about everyone who takes it. But, you know, you better be absolutely sure about it before you take it.");
 	if(silly) output(" Or you could save scum I guess. Whatever!");
 	output("”</i>");
-	pc.lust(3);
+	pc.changeLust(3);
 	processTime(11);
 	nephAffection(5);
 	buildEllieTalkMenu();
@@ -537,7 +537,7 @@ public function talkToEllieAboutNewTexas():void
 	else output("a tall glass of milk");
 	output(".");
 	processTime(11);
-	pc.lust(3);
+	pc.changeLust(3);
 	nephAffection(5);
 	//Suckle or back option?
 	clearMenu();
@@ -583,9 +583,9 @@ public function suckleDatCowtaurTeat():void
 	output("\n\n<i>“You’re starting to feel it, huh?”</i> Ellie teases, her free hand gently playing across your ever-more relaxed body. Every brush of her fingers feels like a starburst on your tender flesh - God you’re sensitive now! When her hand moves down your thigh, you nearly feel yourself cumming on the spot - just from the briefest touch. Oh, fuck. <i>“Like I said, my milk will just drive you wild.... Don’t worry about a thing, sweetie, just let me take care of you. I’ll be gentle.”</i>");
 	output("\n\nAs she speaks, her hand slips further up your thigh, fingertips brushing across your [pc.crotch] and sending an electric fire of pleasure up your spine. You almost choke on your current mouthful of milk. Do you let Ellie have her way with you?");
 	pc.exhibitionism(1);
-	pc.lust(90+rand(20));
+	pc.changeLust(90+rand(20));
 	processTime(8);
-	pc.energy(200);
+	pc.changeEnergy(200);
 	pc.milkInMouth(chars["ELLIE"]);
 	//yes/no
 	clearMenu();
@@ -667,7 +667,7 @@ public function getAHandyFromEllie():void
 	if(pc.mf("","chick") == "chick") output(" that she doesn’t share with you, at least. And you’re more than happy to take it");
 	output(".");
 
-	output("\n\nBehind you, several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. Thanks to Ellie’s tender touch and the lacing of her potent, delicious, amazing... pheromones in the air, and now with a dozen bulls filling the little shop with the reek cum and male desire, your own horniness simply cannot abate. Your third orgasm passes with the same intensity of the first, and the sixth, when it comes. Your [pc.balls] seem");
+	output("\n\nBehind you, several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. Thanks to Ellie’s tender touch and the lacing of her potent, delicious, amazing... pheromones in the air, and now with a dozen bulls filling the little shop with the reek of cum and male desire, your own horniness simply cannot abate. Your third orgasm passes with the same intensity of the first, and the sixth, when it comes. Your [pc.balls] seem");
 	if(pc.balls <= 1) output("s");
 	output(" to have an endless supply while you’re attached to Ellie, and your cock never falters from rock-hard attention. Your lover simply strokes you off again and again and again. Eventually she stops bothering to clean her hand off, instead using your copious seed as lube to continue jacking you.");
 
@@ -748,7 +748,7 @@ public function publicUseForBullsByCentaurians():void
 	{
 		output("You desperately want to get off, but the positioning just isn’t working in your favor. Ellie’s hands brush your thighs, caressing your bestial body, but there’s no way she can get a proper reach on your back-mounted genitalia. Frankly, you’re desperate enough now that it doesn’t much matter who sates your lusts.");
 		output("\n\nEllie sees this, and coos appreciatively. <i>“Don’t you worry, sweet thing, I’m sure all these bulls wouldn’t mind giving you a little relief, would they?”</i>");
-		output("\n\nYour attention is drawn behind you, where several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek cum and male desire, you can’t help but give into your slutty nature. With a little whine, you shift your weight up onto the counter and spread your [pc.legOrLegs], giving your [pc.hips] a slutty, and very inviting little wiggle.");
+		output("\n\nYour attention is drawn behind you, where several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek of cum and male desire, you can’t help but give into your slutty nature. With a little whine, you shift your weight up onto the counter and spread your [pc.legOrLegs], giving your [pc.hips] a slutty, and very inviting little wiggle.");
 		output("\n\n<i>“That’s a ‘come and get it,’ boys!”</i> Ellie grins, reaching over to pat the backside of your humanoid half.");
 		output("\n\n<i>“Yes ma’am,”</i> one of the bigger bulls says, leading her herd toward your exposed backside. They make short work of your gear, tossing it aside to leave your bestial half nice and bare and totally ready for them.");
 		if(pc.hasVagina()) output(" Your pussy is dripping with excitement, feminine need drooling to the floor as the bulls gather behind you.");
@@ -794,7 +794,7 @@ public function publicUseForBullsByCentaurians():void
 		else output("ass");
 		output(" stretched wide and drooling his spunk back onto the floor. Which only serves as lube for the next bull to take you, thrusting into your still-tingling passage without a moment’s hesitation. You squeal as you’re penetrated again, but thanks to Ellie’s milk and your own rampant lusts, it’s a cry of pleasure, not pain or even the slightest discomfort. You eagerly thrust your [pc.hips] back against the bull’s tapered bovine cock, shuddering as you feel every inch of animalistic cockflesh slide into your well-fucked hole.");
 		output("\n\n<i>“You take it like a champ, don’t you?”</i> Ellie teases, stroking your [pc.hair], her own voice tinged with little moans of pleasure. <i>“That’s the beauty of being a ‘taur though, isn’t it? We’re built to take big, thick bullcocks all day long, aren’t we, sweet thing?”</i>");
-		output("\n\nYou don’t have the opportunity to answer Ellie through your face full of boob, but your body does the talking for you as you milk another thick, hot wad from a bull. When the third slides into your now sloppily lubed-up hole, your cum again, a wave of pleasure erupting from your bestial back-side and wracking the rest of our body. The lucky bull chuckles as your muscles writhe around his plunging cock, though that just means that it isn’t long before he’s cumming to, flooding your ");
+		output("\n\nYou don’t have the opportunity to answer Ellie through your face full of boob, but your body does the talking for you as you milk another thick, hot wad from a bull. When the third slides into your now sloppily lubed-up hole, your cum again, a wave of pleasure erupting from your bestial back-side and wracking the rest of our body. The lucky bull chuckles as your muscles writhe around his plunging cock, though that just means that it isn’t long before he’s cumming too, flooding your ");
 		if(pc.hasVagina()) output("womb");
 		else output("bowels");
 		output(" with a third load of bullspunk. Another bull instantly takes his place when the third staggers back, letting loose a miniature flood of cum from your abused hole.");
@@ -922,7 +922,7 @@ public function publicUseOopsNo():void
 	
 	output("You desperately want to get off, but the positioning just isn’t working in your favor. Ellie’s hands brush your thighs, caressing your bestial body, but there’s no way she can get a proper reach on your back-mounted genitalia. Frankly, you’re desperate enough now that it doesn’t much matter who sates your lusts.");
 	output("\n\nEllie sees this, and coos appreciatively. <i>“Don’t you worry, sweet thing, I’m sure all these bulls wouldn’t mind giving you a little relief, would they?”</i>");
-	output("\n\nYour attention is drawn behind you, where several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek cum and male desire, you can’t help but give into your slutty nature. With a little whine, you shift your weight up onto the counter and spread your [pc.legOrLegs], giving your [pc.hips] a slutty, and very inviting little wiggle.");
+	output("\n\nYour attention is drawn behind you, where several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek of cum and male desire, you can’t help but give into your slutty nature. With a little whine, you shift your weight up onto the counter and spread your [pc.legOrLegs], giving your [pc.hips] a slutty, and very inviting little wiggle.");
 	output("\n\n<i>“That’s a ‘come and get it,’ boys!”</i> Ellie grins, reaching over to pat the backside of your humanoid half.");
 	output("\n\n<i>“Yes ma’am,”</i> one of the bigger bulls says, leading her herd toward your exposed backside. They make short work of your gear, tossing it aside to leave your bestial half nice and bare and totally ready for them.");
 	if(pc.hasVagina()) output(" Your pussy is dripping with excitement, feminine need drooling to the floor as the bulls gather behind you.");
@@ -968,7 +968,7 @@ public function publicUseOopsNo():void
 	else output("ass");
 	output(" stretched wide and drooling his spunk back onto the floor. Which only serves as lube for the next bull to take you, thrusting into your still-tingling passage without a moment’s hesitation. You squeal as you’re penetrated again, but thanks to Ellie’s milk and your own rampant lusts, it’s a cry of pleasure, not pain or even the slightest discomfort. You eagerly thrust your [pc.hips] back against the bull’s tapered bovine cock, shuddering as you feel every inch of animalistic cockflesh slide into your well-fucked hole.");
 	output("\n\n<i>“You take it like a champ, don’t you?”</i> Ellie teases, stroking your [pc.hair], her own voice tinged with little moans of pleasure. <i>“That’s the beauty of being a ‘taur though, isn’t it? We’re built to take big, thick bullcocks all day long, aren’t we, sweet thing?”</i>");
-	output("\n\nYou don’t have the opportunity to answer Ellie through your face full of boob, but your body does the talking for you as you milk another thick, hot wad from a bull. When the third slides into your now sloppily lubed-up hole, your cum again, a wave of pleasure erupting from your bestial back-side and wracking the rest of our body. The lucky bull chuckles as your muscles writhe around his plunging cock, though that just means that it isn’t long before he’s cumming to, flooding your ");
+	output("\n\nYou don’t have the opportunity to answer Ellie through your face full of boob, but your body does the talking for you as you milk another thick, hot wad from a bull. When the third slides into your now sloppily lubed-up hole, your cum again, a wave of pleasure erupting from your bestial back-side and wracking the rest of our body. The lucky bull chuckles as your muscles writhe around his plunging cock, though that just means that it isn’t long before he’s cumming too, flooding your ");
 	if(pc.hasVagina()) output("womb");
 	else output("bowels");
 	output(" with a third load of bullspunk. Another bull instantly takes his place when the third staggers back, letting loose a miniature flood of cum from your abused hole.");
@@ -1104,7 +1104,7 @@ public function publicUseEnding():void
 	output("\n\nShe sashays away to her business, leaving you to be fucked by the remainder of partygoers. It’s like your wildest dreams are coming true; another bull walks over and occupies your mouth, seeing as it’s already hanging open, moaning and just waiting to be fucked as full of cream as your pussy. Eagerly accepting the stud’s desires, your roll your tongue along the thick vein running down his cock, earning you a pleased grunt. All things considered, looks like you’re gonna be a smash hit on New Texas!");
 	
 	processTime(65);
-	pc.lust(200);
+	pc.changeLust(200);
 	pc.exhibitionism(2);
 	pc.applyCumSoaked();
 	
@@ -1167,7 +1167,7 @@ public function publicUseEndingFinale():void
 	hours = rand(24);
 	processTime(rand(60));
 	pc.credits = 0;
-	pc.lust(200);
+	pc.changeLust(200);
 	
 	badEnd("GAME OVER!");
 }
@@ -1213,7 +1213,7 @@ public function ellieSexScene():void
 	if(pc.hasHair()) output(" and through your hair");
 	output(". Ellie gives you an apologetic smile, saying <i>“Sorry babe. If you couldn’t tell, I needed that...”</i>");
 	output("\n\nThe tip of her tail flicks across your cheek, wiping away a bit of her girl-spunk... only to turn around and drive itself into her twat. Ellie gives a little gasp as her tail sinks into her cum-soaked snatch, spreading her black lips wide open around its thick girth. <i>“Mmm, now what am I going to do with you, sweet thing?”</i> Ellie coos, cupping her tits and wiggling her animalistic hips as she spears herself. Her twin-pupiled eyes regard with you a look of lust and unrestrained desire...");
-	pc.lust(300);
+	pc.changeLust(300);
 	processTime(14);
 	IncrementFlag("ELLIE_SEXED");
 	clearMenu();
@@ -1566,7 +1566,7 @@ public function ellieDoOperation(part:int = 0):void
 				output("\n\n<i>“How long is the trip gonna take?”</i> she asks suddenly, not taking her eyes from the viewport.");
 				output("\n\n<i>“Probably a couple hours,”</i> you say, waving a hand vaguely. <i>“Ish.”</i>");
 				output("\n\n<i>“Well,”</i> she says, turning and gently pushing you onto the bed. <i>“I can think of something to do for a couple hours.”</i>");
-				pc.lust(33);
+				pc.changeLust(33);
 				processTime(30);
 				break;
 				
@@ -1872,7 +1872,7 @@ public function ellieJustLayedMassiveEggsHowIsHerPussyEvenGunnaGripYou():void
 	{
 		output("\n\n<i>“So that’s why there were less bulls around the shop,”</i> you muse. <i>“Is your sex drive still the same?”</i>");
 		output("\n\n<i>“Wanna find out?”</i> Ellie grins, pushing the blankets off herself.");
-		pc.lust(33);
+		pc.changeLust(33);
 	}
 	
 	addButton(0, "Next", ellieLoveFindsAWay, undefined, "", "");
@@ -2222,7 +2222,7 @@ public function ellieTheseKidNamesSuckAss():void
 	output("\n\n<i>“You’d better not,”</i> you warn jokingly, smiling down at your kids. <i>“They’ll never get back to sleep. Although you could probably fit at least two of them between these,”</i> you continue, looping an arm around her shoulders to softly lift one of her giant breasts.");
 	output("\n\n<i>“Oooh,”</i> moans Ellie, leaning into your grip. <i>“What do you say we go celebrate..?”</i>");
 	
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(5);
 	
 	addButton(0, "Next", ellieReallyYoureAlreadyHorny, undefined, "", "");
@@ -2468,7 +2468,7 @@ public function ellieASeparateFunctionToCreateABarrierBetweenKidsAndLewds2():voi
 		output("\n\n<i>“Always happy to help my favorite girl,”</i> you say, rubbing her flank as she rolls onto her side. <i>“You gonna take a nap?”</i>");
 		output("\n\n<i>“Uh huh,”</i> Ellie says sleepily, beckoning you into a tight hug. You give her a kiss and tug the blankets over her, heading out to let her rest.");
 		processTime(30+rand(15));
-		pc.lust(25);
+		pc.changeLust(25);
 	}
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
@@ -2489,7 +2489,7 @@ public function ellieDoesntHavePheromonesAnymore():void
 	output("\n\n<i>“You know it!”</i> Ellie agrees, nodding vigorously. <i>“I kinda miss it, too - being pregnant. Sometimes thinking about it gets me kinda hot,”</i> she admits, tail flicking from side to side. <i>“Like I just can’t wait for you to take me out back and breed your mare with that stud cock until I’m full of spunk... ooh,”</i> she sighs, eyeing you needily and biting her lip. <i>“Whattya say, [pc.name]? Fancy helping your poor little girl in heat?”</i>");
 	
 	processTime(5+rand(4));
-	pc.lust(33);
+	pc.changeLust(33);
 	
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");

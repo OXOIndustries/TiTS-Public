@@ -274,7 +274,7 @@ package classes.GameData
 			lucky.levelLimit = 2;
 			lucky.autoGained = true;
 			lucky.perkName = "Lucky Breaks";
-			lucky.perkDescription = "Enemy attacks will have an extra 10% chance to miss you in combat.";
+			lucky.perkDescription = "Enemy attacks will have an extra 10% chance to miss you in combat, gain some defense from evasion.";
 			insertPerkData(lucky);
 			
 			var lowBlow:PerkData = new PerkData();

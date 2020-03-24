@@ -665,7 +665,7 @@ public function cuddleFisiHLII():void
 	processTime(120+rand(15));
 	if (flags["FISI_HL_PANTIES"] == undefined) flags["FISI_HL_PANTIES"] = 1;
 
-	pc.lust(20);
+	pc.changeLust(20);
 
 	clearMenu();
 	addButton(0, "Next", moveToResidentialLift);
@@ -858,7 +858,7 @@ public function massageFisiYesII():void
 
 	processTime(15+rand(15));
 	if (pc.statusEffectv1("Sore Counter") > 1 ) soreChange( -3);
-	else pc.lust(0, true);
+	else pc.changeLust(0, true);
 
 	clearMenu();
 	addButton(0, "Next", massageFisiYesIII);
@@ -1376,7 +1376,7 @@ public function useMouthFisi():void
 		output("\n\n<i>“Aaahaan! [pc.name]! I-I! Hnnng!”</i> She screams out before a fourth body wracking orgasm claims her. You keep it going, despite your mouth rapidly filling with her tangy assets, until she reaches a fifth, then a sixth orgasm. By the time you’ve lost count of how many climaxes you’ve put her through, the entirety of her body shakes and vibrates madly below you, before falling still. You retract your tongue and finally raise your head from between Fisianna’s legs to find that she has fallen asleep, purring and smiling peacefully as she does so. She must have passed out sometime in the middle of her last orgasm. Chuckling at the cute sight, you climb up her body to plant a kiss to her cheek before pulling the covers over the both of you. Shortly afterwards, you drift off to sleep with your lover, arm in arm.");
 	}
 
-	pc.lust(40);
+	pc.changeLust(40);
 	fisiPrurience(5);
 	processTime(30+rand(15));
 	fisianna.orgasm();
@@ -3386,7 +3386,7 @@ public function goSleepover4():void
 	else output("You strap on your [pc.gear] and silently reflect on your night with Fisianna and her friends.");
 	output(" That night will definitely be one to remember.");
 	
-	pc.lust(10)
+	pc.changeLust(10)
 	setFisiAway(2);
 	processTime(((9 - hours) * 60) + (60 - minutes) + rand(15));
 	sleepHeal();
@@ -3632,7 +3632,7 @@ public function fifthDateFisi():void
 	output("\n\n<i>“W-well... okay.”</i> Fisianna concedes. The bartender turns and walks away to go back behind the bar. She then turns to you with a bright blush and a somewhat sad look on her face.");
 	output("\n\n<i>“U-um, [pc.name]... I’m sorry, but we might have to cut this date a bit short... I-I... I need to get changed after all that. I-I imagine it might be the same case for you too.”</i> Fisianna laughs timidly. She’s right. Ever since that zil’s pheromone attack subsided, your nethers have been feeling especially wet with excess arousal. You reluctantly agree to call the date over for now before the both of you exit the booth and head out of Anon’s. Once the both of you head back up the elevator and arrive at the residential area, you kiss each other goodbye before Fisianna walks home, albeit with an awkward gait likely due to the wetness in her pants. ");
 	
-	pc.lust(20);
+	pc.changeLust(20);
 }
 
 public function sixthDateFisi():void
@@ -3728,7 +3728,7 @@ public function sixthDateMerge():void
 	output("\n\n<i>“Y-yeah... I suppose you’re right. Still, I’ll have to make it up to you sometime, or pay you back. Whichever.”</i> Fisianna shrugs. She then hugs herself tight to you. <i>“Thank you, [pc.name]... for everything.”</i> She meaningfully looks into your eyes and gives you another quick kiss.");
 	output("\n\n<i>“Alright, [pc.name]. I had the most wonderful day with you, but you got me all wet, so I need to wash this off and get to work on another project. I-I would be... up to doing something like this again next time, if you want to, of course. I bet you would though.”</i> Fisianna gives you a wink before separating herself from you and heading towards her bedroom door. Satisfied with opening her up a little sexually, you give a goodbye wave to Fisianna at her bedroom, to which she blows a kiss at you before disappearing behind the door. You help yourself out of her apartment and head back to the plaza with a big smile on your face.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	fisianna.orgasm();
 	setFisiAway();
 	processTime(60 + rand(15));
@@ -3982,7 +3982,7 @@ public function eatOutFisi():void
 	currentLocation = "RESIDENTIAL DECK 13";
 	processTime(30 + rand(25));
 	fisianna.orgasm();
-	pc.lust(33);
+	pc.changeLust(33);
 	addButton(0,"Next",mainGameMenu);
 }
 

@@ -264,7 +264,7 @@ public function coreJack():void
 	output("\n\n<i>“Nooo,”</i> the merc pouts, putting her hands on her hips. You roll the sticky gem in your hand, letting her follow it with her eyes until you slip it into your pack. Roz stares dumbly at you for a moment before pawing at your [pc.leg]. <i>“Gimme that back... please? I’ll, like, do whatever you want ‘n stuff! Pretty please?”</i>");
 	output("\n\nWhat do you say?");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Keep It",keepRozsGooCore,undefined,"Keep It","Keep Roz’s Picardine core. By the way she’s acting, Roz will probably leave to go find a new one if you steal it. You probably won’t see her again!");
 	addButton(1,"Work 4 It",workForItRoz,undefined,"Work 4 It","Make Roz earn her core back - with oral, of course.");
@@ -594,7 +594,7 @@ public function wsanWinsAgainstRoz():void
 	}
 	//[JackHerOut] [Give up]
 	processTime(24);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Jack Her Out",jackDatRozBitchOut,undefined,"Jack Her Out","Get her out of there.");
 	//addDisabledButton(0,"Jack Her Out","Jack Her Out","You can’t reach!");
@@ -737,7 +737,7 @@ public function giveUpToRozBallFilling4():void
 	output("\n\nShe keeps your monstrous horsecock stoppered and bound against your stomach, ensuring nothing escapes until she wants a taste. It’s long enough to protrude a few inches between your front legs and thick enough that even the most fortunately endowed leithan woman would turn you down. The size of your balls changes from day to day, though they’re never anything less than massive and positively churning with thick, hot cum. Your prostate is continually stimulated by a sub-dermal implant, ensuring you never run dry for your mistress.");
 	output("\n\nMost of your days, you’re kept leashed in a containment room, having grown far too large to be housed in regular quarters. You’re practically a cow, just waiting for Roz to milk you. Thankfully, she does so enthusiastically - and often.");
 	processTime(60*49);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",giveUpToRozBallFilling5);
 }
@@ -816,7 +816,7 @@ public function rozGetsGoofukked():void
 		output("\n\n<i>“Oooh, good [pc.girlBoy]!”</i> Roz squeals delightedly, her lips curling upward in a smile even as you violate them. <i>“I can’t </i>wait<i> for all that spunk!”</i>");
 		output("\n\nThe wet slaps of lusty, desperate sex resound in the empty corridor, Roz encouraging you all the while with lewd, whispered invitations to use her body however you like. One of them, in particular, takes your fancy.");
 		processTime(10);
-		pc.lust(100);
+		pc.changeLust(100);
 		clearMenu();
 		addButton(0,"Lips",inflateRozesLips,undefined,"Lips","Inflate Roz’s lips with your helpfully provided biomass.");
 		addButton(1,"Boobs",inflateRozesBoobalages,undefined,"Boobs","Thrust into Roz’s chest and blow her tits up like balloons.");
@@ -1153,7 +1153,7 @@ public function rozsCumReceptacleEnd():void
 	output("\n\nYou cast a glance over your shoulder in time to see Roz’s body shrinking, sucking up the excess goo from her tits and ass and pouring it into you. No amount of clenching muscle or pleading words dissuades Rozenn from her task; if anything, your instinctive resistance only drives her forward faster and hard, fucking herself into your [pc.vagOrAss " + x + "] until there’s nothing left of her outside. Your gut bloats around her, swelling until you look 12 months pregnant or worse. It’s hard to keep standing under the weight, especially when Roz sloshes around, but a voice inside you gets you moving: <i>“C’mon now, back to the docks like a good whore. You got some tricks to turn, or I’m gonna get mighty unpleasant in here!”</i>");
 	output("\n\nNot like you have much fight left in you anyway, at this point. Following the rumbling in your " + (x >= 0 ? "womb":"belly") + ", you stagger back through the mines and towards the dock. All the while, there’s a tingling pleasure spreading from belly to " + (x < 0 ? "butthole":"you pussylips") + " wherever Roz’s goo touched you, like she’s left a thousand little fingers all through your insides to tease you into submission at the slightest misstep. So you do what you’re told, dragging your swollen goo-belly down to the docks.");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",girlyRozLoss2,x);
 }

@@ -72,7 +72,7 @@ public function investigateTheNoiseInZeJungle():void
 	output("\n\nHer moaning starts to get louder as you watch her from the bushes. She’s close, her moaning grows louder and her tits heave rapidly as her arousal crests. With a final loud moan, her gemini cocks fire off thick ropes of cum from her swelling cocktips as she fucks her hand with the all the strength her powerfully muscled serpentine body can provide.");
 	output("\n\nYou realize that you’ve been voyeuring on the naleen for a while now. If you want to try to talk to her, perhaps you should wait a few minutes so she doesn’t realize that you’ve been perving on her.");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Approach",approachTheFutaNaleen,undefined,"Approach","Well, she looks fun!");
 	addButton(1,"Slink Away",slinkAwayFromDatKatSnakePuss,undefined,"Slink Away","Somebody that horny is probably going to get strange ideas about the nature of your visit.");
@@ -249,7 +249,7 @@ public function dickSuckingLossScene():void
 	output("\n\nEventually, the flow of sperm starts to die down, and she slowly pulls her cock out of your throat, leaving a final dollop of cum on your tongue. <i>“Damn, that was great,”</i> she sighs as she rubs her softening cocks against your face.");
 	output("\n\nShe takes a hold of her breast and squeezes some pink liquid onto her cupped hand. <i>“So good that I could go for a second round,”</i> she says with a smirk before drinking the lactic bounty in her hand. The effect is immediate as her cocks spring back to life. <i>“Take a deep breath sweetie, you’ll need it.”</i> she chuckles as she positions herself at your lips again.");
 	processTime(20);
-	pc.lust(4);
+	pc.changeLust(4);
 	pc.loadInMouth(enemy);
 	if(pc.isBimbo()) pc.orgasm();
 	pc.applyCumSoaked();
@@ -411,7 +411,7 @@ public function messUpThatSnake():void
 	pc.createStatusEffect("Naleen_Herm_Disabled");
 	pc.setStatusMinutes("Naleen_Herm_Disabled",24*60);
 	processTime(20);
-	pc.lust(5);
+	pc.changeLust(5);
 	CombatManager.genericVictory();
 }
 

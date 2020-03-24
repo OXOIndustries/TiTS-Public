@@ -23,21 +23,24 @@ public function statOutOmniCollar():void
 		pc.armor.evasion = 5;
 		if(pc.libido() < 33)
 		{
-			pc.armor.defense = 3;
-			pc.armor.sexiness = 7;
-			pc.armor.evasion = 2;
+			pc.armor.defense = 5;
+			pc.armor.evasion = 4;
+			pc.armor.sexiness = 3;
+			pc.armor.resolve = 2;
 		}
 		else if(pc.libido() < 66)
 		{
-			pc.armor.defense = 2;
-			pc.armor.sexiness = 10;
-			pc.armor.evasion = 4;
+			pc.armor.defense = 3;
+			pc.armor.evasion = 8;
+			pc.armor.sexiness = 4;
+			pc.armor.resolve = 1;
 		}
 		else
 		{
 			pc.armor.defense = 1;
-			pc.armor.sexiness = 15;
-			pc.armor.evasion = 6;
+			pc.armor.evasion = 12;
+			pc.armor.sexiness = 5;
+			pc.armor.resolve = 0;
 		}
 	}
 }

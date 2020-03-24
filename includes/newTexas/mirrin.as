@@ -282,8 +282,8 @@ public function askMirrinAboutFreebootie(bonusLust:Boolean = false):void
 	output("\n\nA few seconds later and Mirrin’s finished with her adjustments.");
 	output("\n\n<i>“Ready to get ripped?”</i>");
 
-	if(bonusLust) pc.lust(50);
-	else pc.lust(15);
+	if(bonusLust) pc.changeLust(50);
+	else pc.changeLust(15);
 	processTime(2);
 	//[Train] [Not Now]
 	clearMenu();
@@ -665,7 +665,7 @@ public function repeatableMirrinTraining():void
 		output("\n\n<i>“I could do with some grill, what do you say to food, Steele?”</i>");
 		//PC gains +6 tone, +2 Physique and +1 Willpower. Gains ‘Sore’ and ‘Sweaty’ status effects.
 		processTime(60);
-		pc.lust(50);
+		pc.changeLust(50);
 		pc.modTone(6);
 		pc.slowStatGain("physique",2);
 		pc.slowStatGain("willpower",1);
@@ -785,7 +785,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nHell yeah, tits and steak.");
 		//PC gains +7 tone, +3 Physique and +1 Willpower. Gains ‘Sore’ and ‘Sweaty’ status effects.
 		processTime(60);
-		pc.lust(50);
+		pc.changeLust(50);
 		pc.modTone(7);
 		pc.slowStatGain("physique",3);
 		pc.slowStatGain("willpower",1);
@@ -1424,7 +1424,7 @@ public function talkAboutNewTexas():void
 	output("\n\nShe mimics said droopy face. <i>“Not my problem,”</i> she finishes. You sense that it’s more complicated than that.");
 	output("\n\n<i>“Anyway, up for some exercise?”</i>");
 	processTime(30);
-	pc.lust(10);//Fen note: this is less than 50 because this doesn’t seem like a +50 scene.
+	pc.changeLust(10);//Fen note: this is less than 50 because this doesn’t seem like a +50 scene.
 	flags["MIRRIN_NT_TALKED"] = 1;
 	clearMenu();
 	var momsSpaghetti:String = "";
@@ -1550,7 +1550,7 @@ public function mirrinFirstTImeOneOffSex():void
 	output("\n\n<i>“Goddamn *<i>huff</i>* didn’t think you were such a pushover, Steele...”</i> she teases, licking and sucking on one of her fingers. You <i>really</i> want to say something back to her but your tongue is just a little worn out right now. Your arms splay out behind you as an added sign of defeat.");
 	output("\n\n<i>“I think I know how to handle you, </i>elskan<i>...”</i> she whispers.");
 	processTime(35);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",ohJeezRickMirranIsGonnaFuckYa);
 
@@ -1561,7 +1561,6 @@ public function ohJeezRickMirranIsGonnaFuckYa():void
 {
 	clearOutput();
 	showMirrin(true);
-	pc.lust(100);
 	author("SoAndSo");
 	output("Without any other words, the domineering qilin thrusts her hips toward your face. The largest of her two members - a 16\" python of a horsedick - pushes aggresively against your [pc.lips].");
 	output("\n\n<i>“<b>Suck.</b>”</i>");
@@ -1571,8 +1570,8 @@ public function ohJeezRickMirranIsGonnaFuckYa():void
 	output("\n\nIt hardens, getting a little thicker and <i>much</i> heavier as it fills out your greedy mouth-hole all the more. It’s sheer size prevents you from moving your jaw much but it seems she’s getting by with just the attention from your tongue. You help her along with groans of encouragement, but only to make sure she doesn’t get any rougher with your throat.");
 	output("\n\nAfter teasing, tonguing and pleasing her cockhead for a good few minutes, she pulls it out of your mouth rather abruptly.");
 	output("\n\n<i>“That’s enough... now, turn over.”</i>");
+	pc.changeLust(100);
 	processTime(4);
-	pc.lust(5);
 	clearMenu();
 	IncrementFlag("SEXED_MIRRIN");
 	addButton(0,"Next",firstTimeMirrinSexActual);
@@ -1825,7 +1824,7 @@ public function mirrinYerConfidenceBaaaaaeby():void
 	output("\n\n<i>“So, Steele. [pc.name]... if you want training or just want </i>me<i>, you know where to find me,”</i> she finishes. <i>“I’m going to squat, squat some more, then maybe... give out some autographs.”</i>");
 	output("\n\nWith a kiss on your cheek, she returns to her weights with twice the enthusiasm. You let her get back to it.");
 	processTime(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	flags["MIRRIN_CONFIDENTED"] = 1;
 	//PC returns to the front of the gym. Unlocks [Her Place].
 	clearMenu();
@@ -1943,7 +1942,7 @@ public function mirrinBodyWorship():void
 	output("\n\nHowever, she’s very quickly back on her feet. Giving you a thankful squeeze on the shoulder, she looks right at you.");
 	output("\n\n<i>“Cheers, [pc.name]. I’m gonna need a bit to uhhh, get it back together again,”</i> she breathlessly whispers. She pecks you on the cheek, helping you with your gear. Saying a goodbye, you leave her to clean up her mess.");
 	processTime(120);
-	pc.lust(100);
+	pc.changeLust(100);
 	IncrementFlag("SEXED_MIRRIN");
 	clearMenu();
 	addButton(0,"Next",move,shipLocation);
@@ -2457,7 +2456,7 @@ public function yeahAnalStuff():void
 	}
 	else output("\n\n<i>“Well guys, uh *<i>unffff</i>* mmmmfuck... we’ve stretched this slut pretty good, huh? How bout we *<i>nggshit...</i>* claim this bitch as ours?!”</i>");
 	processTime(30);
-	pc.lust(40);
+	pc.changeLust(40);
 	clearMenu();
 	addButton(0,"Uh oh",uhOhButtmiliation);
 }

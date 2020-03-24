@@ -211,7 +211,7 @@ public function lewdItUpWithTivf():void
 	output("\n\nEventually, Tivf’s dick softens, and the sticky warmth he’s been spreading on you seems to coat every inch of flesh. You should feel sticky, you think to yourself, but Tivf’s fingers glide across you with the same airy ease as ever; perhaps the oil he rubbed into you before alleviates the effects of his cum? Best not to think too deeply about it, and instead enjoy the final moments of the zil boy’s massage.");
 	output("\n\nHe sighs wistfully when he’s done, planting a dainty kiss on each of your shoulder blades before sitting back on his knees. <i>“Rest easy, let my honey invigorate you while you sleep,”</i> he urges. <i>“Rest well.”</i>");
 	pc.applyCumSoaked();
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(20);
 	output("\n\nYou’re almost asleep already...");
 	

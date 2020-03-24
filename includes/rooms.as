@@ -43,6 +43,7 @@ public function buildRooms():void
 	initKimberRooms();
 	initKQRooms();
 	initDhaalRooms();
+	initSteeleBiomedicalRooms();
 	
 	mapper = new Mapper(rooms);
 }

@@ -292,7 +292,7 @@ public function getDrunkWithAlex():void {
 	flags["DRANK_WITH_ALEX"] == undefined ? flags["DRANK_WITH_ALEX"] = 1 : flags["DRANK_WITH_ALEX"]++;
 	flags["LEFT_ALEX_REASON"] = 0;
 	pc.imbibeAlcohol(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0, "His Place", stayAtAlexsPlace, undefined, "His Place", "Well, if he’s offering a place to stay...");
 	addButton(1, "Stay w/ Sel", stayWithSellesyFromDrunkenAlexStupor, undefined, "Stay with Sellesy", "You’ve got everything you need for now; Sellesy can take care of you.");
@@ -512,7 +512,7 @@ public function goDrinkWithAlexPostConfession():void {
 	output("\n\nYou’re not quite sure but you’ve got a nagging feeling that maybe you should get out of here if you’re not looking to get so drunk you do something you might regret...");
 	flags["DRANK_WITH_ALEX"] == undefined ? flags["DRANK_WITH_ALEX"] = 1 : flags["DRANK_WITH_ALEX"]++;
 	pc.imbibeAlcohol(40);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0, "Bail", bailOnAlexDrinks, undefined, "Bail", "Nope. You’re done. You’ve drank too much.");
 	addButton(1, "Keep Drinking", getTotallySmashedWithAlex, undefined, "Keep Drinking", "Fuck it; you’re here to get hammered and you’re going to get totally wasted.");

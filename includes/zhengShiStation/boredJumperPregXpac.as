@@ -1297,7 +1297,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		}		
 		
 		output(" The pheromones do nothing, you want to crawl over her and make her prove how much she wants to fuck you right now, maybe show her how much you feel, too.");
-		pc.lust(30);
+		pc.changeLust(30);
 	}
 	else if (pc.libido() < 33)
 	{
@@ -1306,7 +1306,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		else if (pc.hasVagina()) output(", starting with your [pc.clits].");
 		else if (pc.hasCock()) output(", starting with your [pc.cocks].");
 		else output(".");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	else
 	{		
@@ -1315,7 +1315,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		else if (pc.hasVagina()) output(" your [pc.clits] throbbing and vibrating, helping squeeze out another batch of femslime.");
 		else if (pc.hasCock()) output(" your [pc.cocks] erecting and beginning the process of bubbling out some precum.");
 		else output(" a growing warmth.");
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 		
 	output("\n\nDepthless gasping makes your closeness not as solitary as could otherwise be expected. Laquines, especially this one, are just too damn horny to slow down, even during pregnancy. For a few minutes you try to focus on her heartbeat mixed with your own, but in those moments of fevered concentration you are inevitably distracted by the pulsing in your crotch, and the shunting of blood to");
@@ -1468,7 +1468,7 @@ public function boredJumperPregEncounterDontGoLeave(jumperType:int=0):void
 	output("\n\nWhat will you do?");
 	
 	flags["BJUMPER_TRIED_TO_LEAVE"] = 1;
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	clearMenu();
 	if (pc.isTaur()) addButton(0, "Pet Her", boredJumperPregEncounterGoWithRestPetHer, jumperType, "Pet Her", "Her idea of fun is appealing, but in your current form that just isn’t going to be possible. ‘Course, that’s not going to stop you from showing a little affection.");
@@ -1571,7 +1571,7 @@ public function boredJumperPregEncounterGoWithRestRWH(jumperType:int=0):void
 	output("\n\n<i>“O-kayyy,”</i> she gropes your [pc.ass], hooding her eyes and propping her chin on your shoulder, whispering, <i>“next time, cutie.”</i>");
 	output("\n\nNext time will no doubt come soon, because now that you’ve calmed the horny hare, it doesn’t take long to end up fast asleep on each other’s shoulders. Resting like this isn’t easy... but it certainly is the best place for it. Seconds before peaceful sleep, you satisfy yourself with the thought that you’re right where you need to be, secretly hoping that she may come around in the future, maybe live with you...");
 	
-	pc.lust( -40);
+	pc.changeLust( -40);
 	processTime(60 + rand(60));
 	restHeal();
 	
@@ -3210,8 +3210,9 @@ public function boredJumperPregNurserySceneBabies(arg:Array):void
 		output("\n\nYou reach for your Codex and take a quiet pic of the napping duo, firing it off to their missing parent’s provided address. Surprisingly, you get a near instant response from the laquine pirate:");
 		output(" <i>“" + RandomInCollection(["Ohhh maaan! That’s sooo cute! I was having such a shit day until you sent that, thank you so much!","Holy shit! That’s the best thing I’ve seen all day. Look at how small they are, it’s so cute! And their paws are interlocked omigod. THANK YOU!","Ooohhh, look at those ears, kinda shimmery from this angle! I’m glad they’ve got a soft looking bed, too. Nobody should have to grow up without one. Thanks, babe, you really brightened my day.","Wooah... that’s great! Sorry I can’t talk now, too many-","They’re growing so fast! They look so healthy. Thanks for the pics!"]) + "”</i>");
 	}
-	
-	processTime(10 + ((5 + rand(5)) * babyCnt));
+	var babyTime:Number = 10 + ((5 + rand(5)) * babyCnt);
+	if(babyTime > 300) babyTime = 300;
+	processTime(babyTime);
 	clearMenu();
 	addButton(0, "Next", nurseryVisitLaquine,undefined);
 }

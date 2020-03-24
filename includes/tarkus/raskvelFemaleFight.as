@@ -1142,7 +1142,7 @@ public function watchDatRaskvelEggLayyyy():void
 	output("\n\n<i>“Fffffffuck yesssss!\”</i> the raskvel hisses before losing her voice to less cogent utterances of bliss. She cradles her ");
 	if(flags["RASKVEL_EGG_COUNT"] >= 8) output("slightly ");
 	output("diminished belly with a needy look on her face. <i>“More... more!\”</i> Her lips look even more swollen now, ludicrously engorged and flushed brilliantly purple. They shine invitingly, lacquered with liquid love and begging to be stretched once more. Luckily, they have not long to wait.");
-	pc.lust(10+rand(5));
+	pc.changeLust(10+rand(5));
 	//Few eggs
 	if(flags["RASKVEL_EGG_COUNT"] <= 3) 
 	{

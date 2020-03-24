@@ -157,14 +157,14 @@
 		private function randomise():void
 		{
 			sexualPreferences.setRandomPrefs(3 + rand(3),-1);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, sexualPreferences.getRandomLikeFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, sexualPreferences.getRandomLikesFactor());
 
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS, sexualPreferences.getRandomDislikeFactor());
 			sexualPreferences.setPref(GLOBAL.SEXPREF_NARROW_HIPS, sexualPreferences.getRandomDislikeFactor());
