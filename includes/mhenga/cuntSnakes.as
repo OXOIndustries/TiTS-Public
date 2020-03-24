@@ -389,7 +389,7 @@ public function defeatACuntSnake():void {
 	
 	addButton(0, "Kill It", killACuntSnake);
 	
-	if(pc.lust() >= 33 && pc.hasCock()) {
+	if(pc.hasCock()) {
 		output(" The sight of that juicy snatch");
 		if(hasLure) output(" flicking back and forth");
 		else output(" crawling away");

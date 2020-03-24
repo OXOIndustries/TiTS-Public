@@ -356,159 +356,126 @@ public function vanaePCVictory():void
 
 	// MERGE ALL (HP & LUST)
 
-	if (pc.lust() >= 33)
-	{
-		output("\n\nDo you succumb to your darker, carnal desires and");
-		if (!pc.isAss()) output(" ask to");
-		output(" fuck the other-worldly");
-		if (enemy is HuntressVanae) output(" woman");
-		else output(" maiden");
-		output("? Or do you just leave her be?");
-	}
-	else
-	{
-		output("\n\n<b>You’re not turned on enough to take advantage of your defeated foe.</b>");
-	}
+	output("\n\nDo you succumb to your darker, carnal desires and");
+	if (!pc.isAss()) output(" ask to");
+	output(" fuck the other-worldly");
+	if (enemy is HuntressVanae) output(" woman");
+	else output(" maiden");
+	output("? Or do you just leave her be?");
 	
 	// VANAE HUNTRESS OPTIONS
 	clearMenu();
 
-	if (pc.lust() >= 33)
+	if (enemy is HuntressVanae)
 	{
-		if (enemy is HuntressVanae)
+		// Vaginal
+		if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal", "Vaginal Sex", "Fuck the huntresses pussy.");
+		else
 		{
-			// Vaginal
-			if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal", "Vaginal Sex", "Fuck the huntresses pussy.");
-			else
-			{
-				if (!pc.hasCock()) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "You need a cock to fuck the huntresses vagina.");
-				else if (pc.cockThatFits(enemy.vaginalCapacity(0)) == -1) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "Your cock is simply too big to fuck her vagina.");
-				else addDisabledButton(0, "Vagial Sex", "Vaginal Sex", "Your Tab-As are in the wrong place to fit into her Slot-Bs!");
-			}
+			if (!pc.hasCock()) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "You need a cock to fuck the huntresses vagina.");
+			else if (pc.cockThatFits(enemy.vaginalCapacity(0)) == -1) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "Your cock is simply too big to fuck her vagina.");
+			else addDisabledButton(0, "Vagial Sex", "Vaginal Sex", "Your Tab-As are in the wrong place to fit into her Slot-Bs!");
+		}
 
-			// Tittyfuck
-			if (pc.hasCock() && pc.longestCockLength() >= 3) addButton(1, "Tit Fuck", vanaeVictorySexIntro, "titfuck", "Tit Fuck", "Slide your cock between those juicy tits.");
-			else
-			{
-				if (!pc.hasCock()) addDisabledButton(1, "Tit Fuck", "Tit Fuck", "You need a cock to fuck the huntresses tits.");
-				else if (pc.longestCockLength() < 3) addDisabledButton(1, "Tit Fuck", "Tit Fuck", "Your cock is too short to fuck the huntresses tits.");
-			}
+		// Tittyfuck
+		if (pc.hasCock() && pc.longestCockLength() >= 3) addButton(1, "Tit Fuck", vanaeVictorySexIntro, "titfuck", "Tit Fuck", "Slide your cock between those juicy tits.");
+		else
+		{
+			if (!pc.hasCock()) addDisabledButton(1, "Tit Fuck", "Tit Fuck", "You need a cock to fuck the huntresses tits.");
+			else if (pc.longestCockLength() < 3) addDisabledButton(1, "Tit Fuck", "Tit Fuck", "Your cock is too short to fuck the huntresses tits.");
+		}
 
-			// Requires one cock, any size.
-			// Must have Cock
-			// Must have front or mid genitals.
-			if (pc.hasCock() && pc.genitalSpot < 2) addButton(2, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk", "Squirt N Jerk", "Have the huntress jerk you off with her tentacles whilst dribbling her milk all over you.");
-			else
-			{
-				if (!pc.hasCock()) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "You need a cock to get a milky-jerkbath.");
-				else if (pc.genitalSpot >= 2) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "Your cock’s in the wrong place for a milky-jerkbath.");
-			}
-			
-			// PC gets eaten out
-			if (pc.hasVagina() && pc.genitalSpot < 2) addButton(3, "Cunnilingus", vanaeVictorySexIntro, "cunnilingus", "Cunnilingus", "Have the huntress eat you out.");
-			else
-			{
-				if (!pc.hasVagina()) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You’d need a cunt if you want the huntress to eat you out.");
-				else if (pc.genitalSpot >= 2) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You’d need front-mounted genitals for the huntress to eat you out.");
-			}
+		// Requires one cock, any size.
+		// Must have Cock
+		// Must have front or mid genitals.
+		if (pc.hasCock() && pc.genitalSpot < 2) addButton(2, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk", "Squirt N Jerk", "Have the huntress jerk you off with her tentacles whilst dribbling her milk all over you.");
+		else
+		{
+			if (!pc.hasCock()) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "You need a cock to get a milky-jerkbath.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "Your cock’s in the wrong place for a milky-jerkbath.");
+		}
+		
+		// PC gets eaten out
+		if (pc.hasVagina() && pc.genitalSpot < 2) addButton(3, "Cunnilingus", vanaeVictorySexIntro, "cunnilingus", "Cunnilingus", "Have the huntress eat you out.");
+		else
+		{
+			if (!pc.hasVagina()) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You’d need a cunt if you want the huntress to eat you out.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You’d need front-mounted genitals for the huntress to eat you out.");
+		}
 
-			// 69 whilst getting a blowjob
-			// 4 * 12, min 6", spot 0
-			if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(4, "69 - BJ", vanaeVictorySexIntro, "69bj", "Blowjob 69", "Have the huntress suck your cock whilst you return the favor.");
-			else
-			{
-				if (!pc.hasCock()) addDisabledButton(4, "69 - BJ", "69 - BJ", "You need a cock to partake of a 69 whilst receiving a blowjob.");
-				else if (pc.cockThatFits(217) == -1) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too big for the Vanae to handle.");
-				else if (pc.longestCockLength() < 6) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too short for the Vanae to properly lavish it with the attention it requires.");
-				else if (pc.genitalSpot >= 2) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is in the wrong place to support 69 positions.");
-			}
+		// 69 whilst getting a blowjob
+		// 4 * 12, min 6", spot 0
+		if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(4, "69 - BJ", vanaeVictorySexIntro, "69bj", "Blowjob 69", "Have the huntress suck your cock whilst you return the favor.");
+		else
+		{
+			if (!pc.hasCock()) addDisabledButton(4, "69 - BJ", "69 - BJ", "You need a cock to partake of a 69 whilst receiving a blowjob.");
+			else if (pc.cockThatFits(217) == -1) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too big for the Vanae to handle.");
+			else if (pc.longestCockLength() < 6) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too short for the Vanae to properly lavish it with the attention it requires.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is in the wrong place to support 69 positions.");
+		}
 
-			// 69 whilst getting eaten out
-			if (pc.hasVagina() && pc.genitalSpot < 2) addButton(5, "69 - Cunni", vanaeVictorySexIntro, "69cunni", "Cunnilingus 69", "Eat the huntress out whilst she returns the favor.");
-			else
-			{
-				if (!pc.hasVagina()) addDisabledButton(5, "69 - Cunni", "69 - Cunni", "You need a pussy to partake of a 69 whilst getting eaten out.");
-				else if (pc.genitalSpot >= 2) addDisabledButton(5, "69 - Cunni", "69 - Cunni", "Your pussy is in the wrong place to support 69 positions.");
-			}
+		// 69 whilst getting eaten out
+		if (pc.hasVagina() && pc.genitalSpot < 2) addButton(5, "69 - Cunni", vanaeVictorySexIntro, "69cunni", "Cunnilingus 69", "Eat the huntress out whilst she returns the favor.");
+		else
+		{
+			if (!pc.hasVagina()) addDisabledButton(5, "69 - Cunni", "69 - Cunni", "You need a pussy to partake of a 69 whilst getting eaten out.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(5, "69 - Cunni", "69 - Cunni", "Your pussy is in the wrong place to support 69 positions.");
+		}
 
-			// Two scene versions like 69 - Vag or Anal. Must have Vag to choose Vag version. Female/Herm can choose either version.
-			// NOT vag or ass, so females/herms can get assplay.
-			// No size requisites. Size of tentacle is 2/3rds PC capacity (As she can use the tip or the base). If needed, max out at seven inches girth and 60 inches long.
-			if (pc.hasVagina()) addButton(6, "TentaSex - Vag", vanaeVictorySexIntro, "tentacunt", "Vaginal Tentacle Sex", "Have her put those interesting looking tentacles to work on your pussy.");
-			else addDisabledButton(6, "TentaSex - Vag", "TentaSex - Vag", "You need a pussy in order to get it reamed with the huntresses tentacles.");
-			addButton(7, "TentaSex - Ass", vanaeVictorySexIntro, "tentabutt");
+		// Two scene versions like 69 - Vag or Anal. Must have Vag to choose Vag version. Female/Herm can choose either version.
+		// NOT vag or ass, so females/herms can get assplay.
+		// No size requisites. Size of tentacle is 2/3rds PC capacity (As she can use the tip or the base). If needed, max out at seven inches girth and 60 inches long.
+		if (pc.hasVagina()) addButton(6, "TentaSex - Vag", vanaeVictorySexIntro, "tentacunt", "Vaginal Tentacle Sex", "Have her put those interesting looking tentacles to work on your pussy.");
+		else addDisabledButton(6, "TentaSex - Vag", "TentaSex - Vag", "You need a pussy in order to get it reamed with the huntresses tentacles.");
+		addButton(7, "TentaSex - Ass", vanaeVictorySexIntro, "tentabutt");
 
-			addButton(8, "Milk Bath", vanaeVictorySexIntro, "milkbath");
+		addButton(8, "Milk Bath", vanaeVictorySexIntro, "milkbath");
 
-			// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
-			// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
-			
-			if(pc.hasTail(GLOBAL.TYPE_COCKVINE))
-			{
-				//scene is currently cockvine only; can be tweaked for future suitable (i.e. with own gonads) types
-				addButton(9,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.");
-			}
-			else
-			{
-				if(!pc.hasCock()) addDisabledButton(9,"UseTailCock","Use Tailcock","You don’t have any cocks, let alone parasitic ones.");
-				else addDisabledButton(9,"UseTailCock","Use Tailcock","You don’t have a cock able to parasitize the vanae.");
-			}
-			//Cuff&Fuck
-			cuffNFuckButton(10, enemy);
+		// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
+		// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
+		
+		if(pc.hasTail(GLOBAL.TYPE_COCKVINE))
+		{
+			//scene is currently cockvine only; can be tweaked for future suitable (i.e. with own gonads) types
+			addButton(9,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Let the busty, blind cumslut impregnate herself with your parasitic, vine-spawning tail-cock.");
 		}
 		else
 		{
-			// Cowgirl Virginity Takin'
-			// Cock, it fits 12 * 4, front/mid genitals
-			if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1 && (pc.genitalSpot == 0 || pc.genitalSpot == 1))
-			{
-				addButton(0, "Cowgirl", vanaeVictorySexIntro, "maiden_virginity", "Cowgirl", "Pop her cherry by having her ride your cock, cowgirl style.");
-			}
-			else
-			{
-				if (!pc.hasCock()) addDisabledButton(0, "Cowgirl", "Cowgirl", "You’d need to a cock to allow the Vanae to ride you.");
-				else if (pc.genitalSpot > 1) addDisabledButton(0, "Cowgirl", "Cowgirl", "Your Tab-As are in the wrong place to fit into her Slot-Bs!");
-				else addDisabledButton(0, "Cowgirl", "Cowgirl", "Your cock is simply too big for the Vanae to take.");
-			}
-
-			// No requirements
-			addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
-			
-			if(pc.hasTail(GLOBAL.TYPE_COCKVINE))
-			{
-				addButton(2,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.");
-			}
-			else
-			{
-				if(!pc.hasCock()) addDisabledButton(2,"UseTailCock","Use Tailcock","You don’t have any cocks, let alone parasitic ones.");
-				else addDisabledButton(2,"UseTailCock","Use Tailcock","You don’t have a cock able to parasitize the vanae.");
-			}
-			//Cuff&Fuck
-			cuffNFuckButton(3, enemy);
+			if(!pc.hasCock()) addDisabledButton(9,"UseTailCock","Use Tailcock","You don’t have any cocks, let alone parasitic ones.");
+			else addDisabledButton(9,"UseTailCock","Use Tailcock","You don’t have a cock able to parasitize the vanae.");
 		}
+		//Cuff&Fuck
+		cuffNFuckButton(10, enemy);
 	}
 	else
 	{
-		if (enemy is HuntressVanae)
+		// Cowgirl Virginity Takin'
+		// Cock, it fits 12 * 4, front/mid genitals
+		if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) != -1 && (pc.genitalSpot == 0 || pc.genitalSpot == 1))
 		{
-			// Vaginal
-			addDisabledButton(0, "Vaginal Sex");
-			addDisabledButton(1, "Tit Fuck");
-			addDisabledButton(2, "Squirt n Jerk");
-			addDisabledButton(3, "Cunnilingus");
-			addDisabledButton(4, "69 - BJ");
-			addDisabledButton(5, "69 - Cunni");
-			addDisabledButton(6, "TentaSex - Vag");
-			addDisabledButton(7, "TentaSex - Ass");
-			addDisabledButton(8, "Milk Bath");
-			addDisabledButton(9, "UseTailCock");
+			addButton(0, "Cowgirl", vanaeVictorySexIntro, "maiden_virginity", "Cowgirl", "Pop her cherry by having her ride your cock, cowgirl style.");
 		}
 		else
 		{
-			addDisabledButton(0, "Cowgirl");
-			addDisabledButton(1, "Cunnilingus");
-			addDisabledButton(2, "UseTailCock");
+			if (!pc.hasCock()) addDisabledButton(0, "Cowgirl", "Cowgirl", "You’d need to a cock to allow the Vanae to ride you.");
+			else if (pc.genitalSpot > 1) addDisabledButton(0, "Cowgirl", "Cowgirl", "Your Tab-As are in the wrong place to fit into her Slot-Bs!");
+			else addDisabledButton(0, "Cowgirl", "Cowgirl", "Your cock is simply too big for the Vanae to take.");
 		}
+
+		// No requirements
+		addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
+		
+		if(pc.hasTail(GLOBAL.TYPE_COCKVINE))
+		{
+			addButton(2,"UseTailCock",cockvineTailPlusVanaeVictory,undefined,"Use Tailcock", "Trick the poor, sweet, blind girl into giving her maidenhead to your parasitic tail-cock.");
+		}
+		else
+		{
+			if(!pc.hasCock()) addDisabledButton(2,"UseTailCock","Use Tailcock","You don’t have any cocks, let alone parasitic ones.");
+			else addDisabledButton(2,"UseTailCock","Use Tailcock","You don’t have a cock able to parasitize the vanae.");
+		}
+		//Cuff&Fuck
+		cuffNFuckButton(3, enemy);
 	}
 	
 	addButton(14, "Leave", noThanksTentaSlutImOut);

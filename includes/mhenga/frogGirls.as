@@ -69,7 +69,7 @@ public function frogGirlsEncounter():void
 		output("\n\n");
 		processTime(3);
 
-		if(pc.lust() >= 33 && pc.hasCock()) 
+		if(pc.hasCock()) 
 		{
 			output("It looks like you have two real options. You can either let her ravish you, or you can try to fight her off. The choice is yours.");
 			//[Ravish]**	[Fight]*
@@ -93,7 +93,7 @@ public function frogGirlsEncounter():void
 		//Repeat Encounter
 		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one " + tEnemy.skinTone + " skinned.");
 		if(!pc.hasCock()) output(" It sighs, apparently annoyed that you aren’t male.");
-		if(pc.lust() >= 33 && pc.hasCock()) 
+		if(pc.hasCock()) 
 		{
 			output("\n\nIt looks like you have two real options. You can either let her ravish you, or you can try to fight her off. The choice is yours.");
 			//[Ravish]**	[Fight]*
@@ -148,21 +148,12 @@ public function victoryAgainstTheFrogs():void
 	//[footjob] //(male)	-lets make use of these while we’re at it. Also thighs.
 	//[Facesitting] // (female)- males get the tongue, why shouldn’t girls.
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock()) addButton(0,"Footjob",frogGirlFootJoerb,undefined,"Footjob","Get a footjob from the frog.");
-		else addDisabledButton(0,"Footjob","Footjob","You need a dick in order to be on the receiving end of a footjob.")
-		if(pc.hasVagina()) addButton(1,"Face Sit",femaleVictoryFacesitting,undefined,"Face Sit","Sit on her face and have her put that tongue to work.");
-		else addDisabledButton(1, "Face Sit", "Face Sit", "You need a vagina to properly enjoy sitting on her face.");
-		if(pc.hasCock()) addButton(2,"Fuck Her",penisRouter, [frogGirlsFuckHer, 99999, false, 0],"Fuck Her","Stuff the frog alien. Vigorously.");
-		else addDisabledButton(2,"Fuck Her","Fuck Her","There'll be no good fuckin' <b>without a penis.</b>")
-	}
-	else 
-	{
-		addDisabledButton(0,"Footjob","Footjob","You aren't aroused enough to pursue any kind of sex.");
-		addDisabledButton(1,"Face Sit","Face Sit","You aren't aroused enough to pursue any kind of sex.");
-		addDisabledButton(2,"Fuck Her","Fuck Her","You aren't aroused enough to pursue any kind of sex.");
-	}
+	if(pc.hasCock()) addButton(0,"Footjob",frogGirlFootJoerb,undefined,"Footjob","Get a footjob from the frog.");
+	else addDisabledButton(0,"Footjob","Footjob","You need a dick in order to be on the receiving end of a footjob.")
+	if(pc.hasVagina()) addButton(1,"Face Sit",femaleVictoryFacesitting,undefined,"Face Sit","Sit on her face and have her put that tongue to work.");
+	else addDisabledButton(1, "Face Sit", "Face Sit", "You need a vagina to properly enjoy sitting on her face.");
+	if(pc.hasCock()) addButton(2,"Fuck Her",penisRouter, [frogGirlsFuckHer, 99999, false, 0],"Fuck Her","Stuff the frog alien. Vigorously.");
+	else addDisabledButton(2,"Fuck Her","Fuck Her","There'll be no good fuckin' <b>without a penis.</b>")
 	addButton(14,"Leave", CombatManager.genericVictory);
 }
 

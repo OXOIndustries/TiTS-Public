@@ -94,14 +94,13 @@ public function defeatAMaleNaleen():void {
 	clearMenu();
 	//Ride Him
 	//Requires PC has at least one vagina and not taur
-	if(pc.hasVagina() && pc.lust() >= 33 && !pc.isTaur()) addButton(0,"Ride Him",rideDudeleensWithAPussaaaaah,undefined,"Ride Him","Ride that snake-cat to the ground. Your [pc.vagina] won’t brook anything else.");
-	else addDisabledButton(0,"Ride Him","Ride Him","You need suitable arousal, a vagina, and not to be a taur in order to pursue this action.");
+	if(pc.hasVagina() && !pc.isTaur()) addButton(0,"Ride Him",rideDudeleensWithAPussaaaaah,undefined,"Ride Him","Ride that snake-cat to the ground. Your [pc.vagina] won’t brook anything else.");
+	else addDisabledButton(0,"Ride Him","Ride Him","You need a vagina and not to be a taur in order to pursue this action.");
 	//Get Blown
 	//Requires PC has at least one penis
-	if(pc.hasCock() && pc.lust() >= 33) addButton(1,"Get Blown",getBlownByDudeleen,undefined,"Get Blown","Put the mouthy kitty to work tending to your needs.");
-	else addDisabledButton(1,"Get Blown","Get Blown","You need a penis and to be suitably aroused in order to get a blowjob.");
-	if(pc.lust() >= 33) addButton(2,"Blow Him",maleNaleenSucksPCOff,undefined,"Blow Him","The poor kitty just needed some loving. Now that he’s no longer dangerous, you can send him on his way with a smile...");
-	else addDisabledButton(2,"Blow Him","Blow Him","You’re not really in the mood to hand out blowjobs.");
+	if(pc.hasCock()) addButton(1,"Get Blown",getBlownByDudeleen,undefined,"Get Blown","Put the mouthy kitty to work tending to your needs.");
+	else addDisabledButton(1,"Get Blown","Get Blown","You need a penis in order to get a blowjob.");
+	addButton(2,"Blow Him",maleNaleenSucksPCOff,undefined,"Blow Him","The poor kitty just needed some loving. Now that he’s no longer dangerous, you can send him on his way with a smile...");
 	addButton(3, "Catch Anal",getButtfuckedByDudeleen,undefined,"Catch Anal","Have the naughty kitty plow your ass.");
 
 	addButton(14,"Leave",leaveDefeatedDudeleen);

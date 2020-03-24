@@ -99,8 +99,7 @@ public function burtBarMenu():void {
 	this.clearMenu();
 	this.addButton(0,"Drink",burtDrinkMenu,undefined,"Drink","Check out the drink menu.");
 	this.addButton(1,"Talk",talkToDisBurtGuey,undefined,"Talk","Talk to Burt.");
-	if(pc.lust() >= 33) this.addButton(2,"Sex",burtSex,undefined,"Sex","See if you can get in the bartender’s pants.");
-	else this.addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for sex.");
+	this.addButton(2,"Sex",burtSex,undefined,"Sex","See if you can get in the bartender’s pants.");
 	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.addButton(3,"Collectables?",BurtShopCollectables,undefined,"Collectables?","Ask Burt by what he meant by “collectables.”");
 	else this.addButton(3,"Shop",BurtShopCollectables,undefined,"Shop","Look into selling Burt some of the stuff you’ve found out on Mhen’ga.");
 	this.addButton(14,"Leave",mainGameMenu);

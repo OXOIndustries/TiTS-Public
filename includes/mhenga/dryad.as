@@ -108,53 +108,34 @@ public function dryadMeetingSexMenu():void
 	
 	clearMenu();
 	addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
-	if(pc.lust() >= 33)
+	if (pc.hasVagina()) addButton(1, "Get Fucked", dryadPussy, undefined, "Get Fucked", "Let the girl fuck your pussy.");
+	else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don’t have a pussy for her to fuck.");
+	addButton(2, "Get Reamed", dryadAss, undefined, "Get Reamed", "Let the girl fuck your ass.");
+	if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl’s pussy to get her off.");
+	else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
+	else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don’t have a foot-long dick to fuck her with.");
+	if(pc.hasCuntTail() && pc.tailCuntCapacity() >= pp.cockVolume(0)) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
+	else if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You can’t fit her inside your cunt tail.");
+	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
+	//Dryad Commission – Facefuck/Deepthroat
+	//[SuckMe]
+	if(pc.hasCock()) addButton(5,"Suck Me",dryadFaceFuckSpecial,undefined,"Suck Me", "Make her suck you off. She’s sexed up enough she might just cum from it.");
+	else addDisabledButton(5,"Suck Me","Suck Me","You need a dick for her to suck for this.");
+	//Dryad Anal
+	//Anal (Requires >= 10" length)
+	if(pc.hasCock())
 	{
-		//addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
-		if (pc.hasVagina()) addButton(1, "Get Fucked", dryadPussy, undefined, "Get Fucked", "Let the girl fuck your pussy.");
-		else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don’t have a pussy for her to fuck.");
-		addButton(2, "Get Reamed", dryadAss, undefined, "Get Reamed", "Let the girl fuck your ass.");
-		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl’s pussy to get her off.");
-		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
-		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don’t have a foot-long dick to fuck her with.");
-		if(pc.hasCuntTail() && pc.tailCuntCapacity() >= pp.cockVolume(0)) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
-		else if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You can’t fit her inside your cunt tail.");
-		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
-		//Dryad Commission – Facefuck/Deepthroat
-		//[SuckMe]
-		if(pc.hasCock()) addButton(5,"Suck Me",dryadFaceFuckSpecial,undefined,"Suck Me", "Make her suck you off. She’s sexed up enough she might just cum from it.");
-		else addDisabledButton(5,"Suck Me","Suck Me","You need a dick for her to suck for this.");
-		//Dryad Anal
-		//Anal (Requires >= 10" length)
-		if(pc.hasCock())
-		{
-			if(pc.longestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t long enough for her to be interested.");
-			else addButton(6,"FuckHerAss",dryadAnalFunsies,undefined,"Fuck Her Ass","Put it in her butt and go to town.");
-		}
-		else addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You need a penis in order to fuck her ass.");
-		//Drain the Dryad
-		if (flags["DRYAD_BANGED_PC"] != undefined) 
-		{
-			if(pc.hasVagina() || !pc.isTaur()) addButton(7, "Drain Her", dryadDrain, undefined, "Drain Her", "Let the dryad pump you full.");
-			else addDisabledButton(7,"Drain Her","Drain Her","You need to be bipedal (or at least non-tauric) in order to do this... or have a pussy for her to mount.");
-		}
-		else addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you before you can do this.");
+		if(pc.longestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t long enough for her to be interested.");
+		else addButton(6,"FuckHerAss",dryadAnalFunsies,undefined,"Fuck Her Ass","Put it in her butt and go to town.");
 	}
-	else
+	else addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You need a penis in order to fuck her ass.");
+	//Drain the Dryad
+	if (flags["DRYAD_BANGED_PC"] != undefined) 
 	{
-		//addDisabledButton(0,"Give BJ","Give BJ","You aren’t aroused enough for that.");
-		if (pc.hasVagina()) addDisabledButton(1, "Get Fucked", "Get Fucked", "You aren’t aroused enough for that.");
-		else addDisabledButton(1, "Get Fucked", "Get Fucked", "Even if you were aroused enough, you don’t have a pussy for her to fuck.");
-		addDisabledButton(2,"Get Reamed","Get Reamed","You aren’t aroused enough for that.");
-		if (pc.hasCock() && pc.biggestCockLength() >= 12) addDisabledButton(3,"Fuck Her","Fuck Her","You aren’t aroused enough for that.");
-		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, your dick needs to be at least a foot long to fuck her.");
-		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, you need a dick at least a foot long to fuck her.");
-		if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You aren’t aroused enough for this.");
-		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
-		addDisabledButton(5,"Suck Me","Suck Me","You aren’t aroused enough for this.");
-		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t aroused enough for this.");
-		addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you at least once to do this.");
+		if(pc.hasVagina() || !pc.isTaur()) addButton(7, "Drain Her", dryadDrain, undefined, "Drain Her", "Let the dryad pump you full.");
+		else addDisabledButton(7,"Drain Her","Drain Her","You need to be bipedal (or at least non-tauric) in order to do this... or have a pussy for her to mount.");
 	}
+	else addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you before you can do this.");
 	addButton(14, "Back", dryadMeetingMenu);
 }
 

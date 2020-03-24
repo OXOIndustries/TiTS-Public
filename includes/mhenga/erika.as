@@ -114,13 +114,12 @@ public function erikaMainMenu():void
 	clearMenu();
 	addButton(1,"Talk",erikaTalkMenu);
 	addButton(2, "Buy Drink", erikaBuyDrinkMenu);
-	if (pc.lust() >= 33 && pc.hasGenitals())
+	if (pc.hasGenitals())
 	{
 		if (flags["ERIKA_SEEN_NAKED"] != undefined) addButton(3,"Sex", erikaSexMenu);
 		else addButton(3,"Sex", erikaSexIntro);
 	}
-	else if(pc.lust() >= 33) addDisabledButton(3,"Sex","Sex","You need genitalia to do this!");
-	else addDisabledButton(3,"Sex","Sex","You’re not up for sex right now.");
+	else addDisabledButton(3,"Sex","Sex","You need genitalia to do this!");
 	addButton(0,"Appearance",erikaAppearance);
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -395,12 +394,10 @@ public function erikaBuyDrinkXilErAte():void
 	addDisabledButton(0,"Crabbst");
 	addDisabledButton(1,"Mead");
 	addDisabledButton(2, "X-Zil-rate");
-	if (pc.lust() >= 33 && pc.hasGenitals()) addButton(5, "Public Sex", erikaPublicSex);
-	else if(pc.lust() >= 33) addDisabledButton(5,"Public Sex","Public Sex","You need genitalia to do this!");
+	if (pc.hasGenitals()) addButton(5, "Public Sex", erikaPublicSex);
 	else addDisabledButton(5,"Public Sex","Public Sex","You’re not up for sex right now.");
-	if (pc.lust() >= 33 && pc.hasGenitals()) addButton(6, "To The Ship", erikaTakeHerToShip);
-	else if(pc.lust() >= 33) addDisabledButton(6,"To The Ship","To The Ship","You need genitalia to do this!");
-	else addDisabledButton(6,"To The Ship","To The Ship","You’re not up for sex right now.");
+	if (pc.hasGenitals()) addButton(6, "To The Ship", erikaTakeHerToShip);
+	else addDisabledButton(6,"To The Ship","To The Ship","You need genitalia to do this!");
 	addButton(14,"Back",erikaMainMenu);
 }
 

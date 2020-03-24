@@ -677,8 +677,7 @@ public function syriMorningMenu():void
 	clearMenu();
 	addButton(0,"Talk",talkToSyriRouter);
 	if(syriIsAFuckbuddy()) {
-		if(pc.lust() >= 33) addButton(1,"Sex",syriSexMenu);
-		else addDisabledButton(1,"Sex");
+		addButton(1,"Sex",syriSexMenu);
 		//[Kiss Her]
 		//Morning interactions w/ Syri, must be fuckbuddies
 		addButton(4,"Kiss Her",morningInteractionsWithSyriKissHer);

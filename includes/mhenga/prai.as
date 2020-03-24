@@ -246,7 +246,6 @@
  	//Sex
  	if (flags["PRAI_WHO"] == undefined) addDisabledButton(5, "Locked");
  	else if (flags["PRAI_CUMLIPS"] != undefined) addDisabledButton(5, "Sex", "Sex", "You already tried this, you shouldn’t push your luck."); 
- 	else if (pc.lust() < 33) addDisabledButton(5, "Sex", "Sex", "You aren’t turned on enough for this.")
  	else addButton(5, "Sex", praiSexFirst, variation, "Sex", "You helped her, see if she’s willing to help you.");
  	
  	addButton(14, "Leave", praiLeaveFirst, variation, "", "");

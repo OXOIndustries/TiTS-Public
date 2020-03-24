@@ -274,30 +274,20 @@ public function beatDatCatNaga():void {
 	else output("A master of carnal desire such as you is more than a match for such a lusty huntress. Panting heavily, the alien kitty-naga collapses to the ground, her desire clearly visible through the slick, parted folds of her sex. True to form, though, she shakily rights herself, resting on an elbow with her great big tits on enticing display as one hand dives toward her sex, starting to finger the wanton hole. <i>“You’re so... so sensual, so beautiful. I am at your mercy, off-worlder. My body is yours to command, and I do so hope you can forgive my attack... I have soooo many ways to make it up to you.”</i>\n\n");
 	
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock()) {
-			addButton(0,"Titfuck",naleenTitFuck)
-			if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) addButton(1,"Fuck Her",bendNaleenOver);
-			else addDisabledButton(1,"Fuck Her","Fuck Her","You’re too big to fuck her.");
+	if(pc.hasCock()) {
+		addButton(0,"Titfuck",naleenTitFuck)
+		if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) addButton(1,"Fuck Her",bendNaleenOver);
+		else addDisabledButton(1,"Fuck Her","Fuck Her","You’re too big to fuck her.");
 
-			addButton(4,"Blowjob",pcGetsABlowjobThatTurnsIntoButtSmex,undefined,"Blowjob","You could give into your lust and force the defeated naleen to blow you, although her unusual lower-half might lead to unintended mishaps.");
-		}
-		else {
-			addDisabledButton(0,"Titfuck","Titfuck","You need a penis in order to do this.");
-			addDisabledButton(1,"Fuck Her","Fuck Her","You need a penis in order to do this");
-			addDisabledButton(4,"Blowjob","Blowjob","You need a penis in order to do this.");
-		}
-		if(pc.hasVagina() || pc.hasCock()) addButton(2,"GetTailPeg",obligatorySavinTailPegging);
-		else addDisabledButton(2,"GetTailPeg","GetTailPeg","This scene requires you to have genitals.");
+		addButton(4,"Blowjob",pcGetsABlowjobThatTurnsIntoButtSmex,undefined,"Blowjob","You could give into your lust and force the defeated naleen to blow you, although her unusual lower-half might lead to unintended mishaps.");
 	}
-	else 
-	{
-		addDisabledButton(0,"Titfuck","Titfuck","You aren’t aroused enough for this.");
-		addDisabledButton(1,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
-		addDisabledButton(2,"GetTailPeg","GetTailPeg","You aren’t aroused enough for this.");
-		addDisabledButton(4,"Blowjob","Blowjob","You aren’t aroused enough for this.");
+	else {
+		addDisabledButton(0,"Titfuck","Titfuck","You need a penis in order to do this.");
+		addDisabledButton(1,"Fuck Her","Fuck Her","You need a penis in order to do this");
+		addDisabledButton(4,"Blowjob","Blowjob","You need a penis in order to do this.");
 	}
+	if(pc.hasVagina() || pc.hasCock()) addButton(2,"GetTailPeg",obligatorySavinTailPegging);
+	else addDisabledButton(2,"GetTailPeg","GetTailPeg","This scene requires you to have genitals.");
 	if(pc.isLactating() && pc.milkType == GLOBAL.FLUID_TYPE_MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
 	else addDisabledButton(3,"Breastfeed","Breastfeed","You need to actually be lactating real milk.");
 	

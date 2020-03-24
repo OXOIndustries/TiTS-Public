@@ -38,8 +38,8 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		//[Leave]
 		addButton(14,"Leave",tryToLeaveFemzil);
 		// Sex Options Here
-		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);
-		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
+		if(pc.hasCock() || pc.hasVagina()) addButton(1,"Sex",submitToFriendlyZil);
+		else addDisabledButton(1,"Sex","Sex","You need to have genitals to submit to her sexually.");
 	}
 	//[Repeat] (If PC didn’t fight her last time)
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
@@ -53,7 +53,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		//[Fight her]
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
 		// Sex Options Here
-		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);
+		if(pc.hasCock() || pc.hasVagina()) addButton(1,"Sex",submitToFriendlyZil);
 		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 		addButton(2,"Get Honey",getHoney);
 		//[Leave]

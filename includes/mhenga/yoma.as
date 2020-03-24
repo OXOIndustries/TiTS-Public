@@ -163,7 +163,6 @@ public function yomaMenu(clear:Boolean = false):void
 	addButton(1,"Talk",yomaTalkMenu, true);
 	if (flags["YOMA_TALKED_ABOUT_MASTER"] != 1) addDisabledButton(2, "Sex", "Sex", "You probably should find out who this android belongs to first, unless your kink is lawsuits.");
 	else if (pc.hasStatusEffect("Yoma Sex Disabled")) addDisabledButton(2, "Sex", "Sex", "Yoma doesn’t want to have sex with you right now.");
- 	else if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You aren’t aroused enough for this.")
 	else addButton(2,"Sex",yomaSexMenu);
 
 	if(hours > 3 && hours < 21) addDisabledButton(3, "Hugs", "Hugs", "This scene is only avaible in the evening.");

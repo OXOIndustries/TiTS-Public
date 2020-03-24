@@ -292,8 +292,7 @@ public function zilTwinsMenu(grayout:Boolean = false):void
 	if (grayout) addDisabledButton(0, "Appearance");
 	else addButton(0, "Appearance", zilTwinsAppearance);
 	addButton(1, "Talk", zilTwinsTalk);
-	if(pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You are not aroused enough for this!");
-	else addButton(2, "Sex", zilTwinsFuckmenu, undefined, "Sex", (silly ? "It’s hip to fuck bees!" : "Is there anything better than sex with libidinous twins in public?"));
+	addButton(2, "Sex", zilTwinsFuckmenu, undefined, "Sex", (silly ? "It’s hip to fuck bees!" : "Is there anything better than sex with libidinous twins in public?"));
 	addButton(14, "Leave", mainGameMenu);
 }
 

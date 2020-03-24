@@ -59,18 +59,10 @@ public function buyFromGeoff():void {
 			output("\n\nGeoff doesn’t seem interested in sex with the way you look right now...");
 		}
 
-		if (pc.lust() >= 33)
+		if ((pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == 1) || pc.isFeminine())
 		{
-			if ((pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == 1) || pc.isFeminine())
-			{
-				addButton(3, "Bottom", GeoffRepeatFuck);
-				if (pc.hasCock()) addButton(4, "Top", dudesTopGeoff);
-			}
-		}
-		else
-		{
-			addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for sex.");
-			output("\n\nYou aren’t aroused enough for sex.");
+			addButton(3, "Bottom", GeoffRepeatFuck);
+			if (pc.hasCock()) addButton(4, "Top", dudesTopGeoff);
 		}
 	}
 
@@ -91,15 +83,7 @@ public function talkToGeoff():void {
 		output("\n\n<i>“Oh no, don’t get me wrong, I’m not complaining! I’m not earning as fast as I’d hoped, but it’s great out here. It’s nice to be in a place where the sun’s not coming through a blanket of smog, the people you meet in this job you wouldn’t believe, and the natives here are friendly. Uh. Real friendly.”</i> His eyes glaze slightly, and you have to cough to make him focus back on you. <i>“And Uncle Artie might be... Uncle Artie... but he’s got me doing what I like doing. I love working with my hands, it’s what got me into engineering in the first place. Taking a broken thing apart, working out how it functions and putting it back together so it works, there’s nothing more satisfying than that.”</i> He does sound genuinely impassioned when he says that, gripping the air with his strong but smooth hands as he talks.");
 		processTime(3);
 		this.clearMenu();
-		if(pc.lust() >= 33)
-		{
-			addButton(0,"Flirt",flirtWithGeoff);
-		}
-		else 
-		{
-			output("\n\nIf you were more turned on, you could flirt with him.");
-			this.addDisabledButton(0,"Flirt");
-		}
+		addButton(0,"Flirt",flirtWithGeoff);
 		this.addButton(14,"Back",buyFromGeoff);
 	}
 	else {

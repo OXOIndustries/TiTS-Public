@@ -712,8 +712,8 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	clearMenu();
 	addButton(14,"Back",mainGameMenu);
 	addButton(0,"Talk",friendPennyTalkMenu);
-	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",pennySexFirstTime);
-	else addDisabledButton(1,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
+	if(pc.hasCock() || pc.hasVagina()) addButton(1,"Sex",pennySexFirstTime);
+	else addDisabledButton(1,"Sex","You need a penis or vagina to attempt intercourse with Penny.");
 	if(!drBadgerImprisioned())
 	{
 		if(!pennyRecruited())
@@ -1456,8 +1456,7 @@ public function pennyGirlfriendMenu():void
 {
 	clearMenu();
 	this.addButton(0,"Talk",talkToGirfriendPenny);
-	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
-	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
+	this.addButton(1,"Sex",pennySexMenu);
 	
 	if(!drBadgerImprisioned())
 	{
@@ -3923,8 +3922,7 @@ public function whineToPennyCauseYerABitch():void
 		else
 		{
 			this.addButton(0,"Talk",talkToGirfriendPenny);
-			if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
-			else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
+			this.addButton(1,"Sex",pennySexMenu);
 		}
 		this.addButton(14,"Back",mainGameMenu);
 	}

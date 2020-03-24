@@ -379,8 +379,7 @@ public function thareAbleMenu(menu:String = "intro"):void
 			addButton(0, "Appearance", thareAbleResponse, "appearance");
 			if(menu != "finish") addButton(1, "Bath", thareAbleResponse, "bath", "Bath", "Take a bath and maybe talk to the zil a little as you do.");
 			else addDisabledButton(1, "Bath");
-			if(pc.lust() >= 33) addButton(2, "Fuck", thareAbleMenu, "sex", "Fuck", "Yes. He can be of service.");
-			else addDisabledButton(2, "Fuck", "Fuck", "You are not aroused enough to do this!");
+			addButton(2, "Fuck", thareAbleMenu, "sex", "Fuck", "Yes. He can be of service.");
 			addButton(9, "Sleep", thareAbleResponse, "sleep", "Sleep", "You’re bagged after the jungle trek and meal. No time for anything but a " + sleepTooltip + ".");
 			break;
 		case "talk":

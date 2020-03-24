@@ -180,11 +180,7 @@ public function flahneMenu():void
 	clearMenu();
 	
 	addButton(0,"Talk",talkToFlahne);
-	if(pc.lust() >= 33) addButton(1,"Sex Options",flahneSexMenu);
-	else {
-		output(" You aren’t aroused enough for sex with her right now.");
-		addDisabledButton(1,"Sex Options");
-	}
+	addButton(1,"Sex Options",flahneSexMenu);
 	if(hasACumBubble()) addButton(2,"Cum Bubble",giveFlahneATreatSetup,undefined,"Cum Bubble","Give the rahn a gift of sealed cum.");
 	else addDisabledButton(2, "Locked", "Locked", "You do not have the item required for this scene. Purchasing a Bubble Buddy may be a good place to start...");
 	

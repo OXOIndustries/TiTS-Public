@@ -2430,11 +2430,8 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			pc.maxOutLust();
 			
 			addButton(0, "Next", mainGameMenu);
-			if(pc.lust() >= 33)
-			{
-				output("\n\nYou could probably do something about that lust buildup too...");
-				masturbateButton(1, false, true);
-			}
+			output("\n\nYou could probably do something about that lust buildup too...");
+			masturbateButton(1, false, true);
 			break;
 	}
 }
@@ -3735,9 +3732,8 @@ public function defeatMimbrane():void
 	addButton(0, "Kill It", killDatMimbrane);
 	addButton(14, "Leave", letMimbraneGo);
 
-	if (pc.hasCock() && pc.lust() >= 33) addButton(2, "Mimbrane Fap", useDatMimbraneLikeACondom,undefined,"Mimbrane Fap","Use the mimbrane like a living sextoy. It’s certainly slippery enough.");
-	else if(pc.lust() >= 33) addDisabledButton(2,"Mimbrane Fap","Mimbrane Fap","You need a penis to fap with a mimbrane.");
-	else addDisabledButton(2, "Mimbrane Fap","Mimbrane Fap","You aren’t aroused enough for this.");
+	if (pc.hasCock()) addButton(2, "Mimbrane Fap", useDatMimbraneLikeACondom,undefined,"Mimbrane Fap","Use the mimbrane like a living sextoy. It’s certainly slippery enough.");
+	else addDisabledButton(2,"Mimbrane Fap","Mimbrane Fap","You need a penis to fap with a mimbrane.");
 }
 
 //Let it Go
@@ -4344,33 +4340,14 @@ public function mimbraneMenu():void
 	// Fap/feeding stuff
 	if (hasFeedableMimbranes() && mimbranePrivateLocation())
 	{
-		if (pc.lust() < 33)
-		{
-			// Gendered, not enough lust to fap
-			if (pc.hasCock() || pc.hasVagina())
-			{
-				output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed. However, you aren’t turned on enough to get your juices flowing!");
-			}
-			// Genderless, not enough lust to fap
-			else
-			{
-				output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed. However, you have no means to feed " + (totalMimbs == 1 ? "it" : "them") + "!")
-			}
-
-			addDisabledGhostButton(0, "Penis Feed","Penis Feed","You need to have a dick and the libido to get it up to do this.");
-			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You need to have a pussy and the libido to get it going to do this.");
-		}
-		else
-		{
-			// FAPS
-			output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed.");
-			
-			//[Feed With Cock][Feed With Pussy]
-			if (pc.hasCock()) addGhostButton(0, "Penis Feed", feedMimbranesWithCock, undefined, "Penis Feed", "Feed attached Mimbranes using your penis.");
-			else addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have a penis to use.");
-			if (pc.hasVagina()) addGhostButton(1, "Vaginal Feed", feedMimbranesWithPussy, undefined, "Vaginal Feed", "Feed attached Mimbranes using your vagina.");
-			else addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have a vagina to use for this.");
-		}
+		// FAPS
+		output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed.");
+		
+		//[Feed With Cock][Feed With Pussy]
+		if (pc.hasCock()) addGhostButton(0, "Penis Feed", feedMimbranesWithCock, undefined, "Penis Feed", "Feed attached Mimbranes using your penis.");
+		else addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have a penis to use.");
+		if (pc.hasVagina()) addGhostButton(1, "Vaginal Feed", feedMimbranesWithPussy, undefined, "Vaginal Feed", "Feed attached Mimbranes using your vagina.");
+		else addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have a vagina to use for this.");
 	}
 	else if (hasFeedableMimbranes() && !mimbranePrivateLocation())
 	{
