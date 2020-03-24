@@ -1521,11 +1521,7 @@ public function alissDiscussionsInsteadOfPanties():void
 	addButton(0,"Talk",talkToAliss,undefined,"Talk","Ask Aliss some questions.");
 	if(flags["TIMES_SEXED_ALISS"] != undefined)
 	{
-		if(chars["ALISS"].lust() >= 40) 
-		{
-			if(pc.lust() >= 33) addButton(1,"Sex",sexWithAlissFromMainMenu,undefined,"Sex","Talk the lingerie-wearing lady into a bedroom bout.");
-			else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough for sex with Aliss at the moment.");
-		}
+		if(chars["ALISS"].lust() >= 40) addButton(1,"Sex",sexWithAlissFromMainMenu,undefined,"Sex","Talk the lingerie-wearing lady into a bedroom bout.");
 		else addDisabledButton(1,"Sex","Sex","Aliss doesn’t seem turned on enough for sex.");
 	}
 	else addDisabledButton(1,"Sex","Sex","You don’t know Aliss well enough for sex. Perhaps if you got her to try on a number of slinky items in a row....");

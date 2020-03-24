@@ -87,8 +87,7 @@ public function approachAlexTheFirstTime():void {
 	processTime(1);
 	//[Flirt] [What are you?] [Bail]
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Flirt",flirtWithAlex);
-	else addDisabledButton(0,"Flirt");
+	addButton(0,"Flirt",flirtWithAlex);
 	addButton(1,"WhatAreYou?",askAlexWhatHeIs);
 	addButton(2,"Bail",bailOnAlex);
 }
@@ -124,11 +123,7 @@ public function flirtWithAlex():void {
 	}
 	//[Yes] [No]
 	clearMenu();
-	if(pc.lust() < 33) {
-		output("\n\nYou aren’t really turned on enough to hook up right now.");
-		addDisabledButton(0,"Yes");
-	}
-	else addButton(0,"Yes",alexSexMenu);
+	addButton(0,"Yes",alexSexMenu);
 	addButton(1,"No",noToAlyxSex);
 }
 //[Yes]
@@ -220,8 +215,7 @@ public function repeatApproachAlex():void {
 	}
 	//[Flirt] [What are you?] [Bail Again]
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Flirt",alexSexMenu);
-	else addDisabledButton(0,"Flirt");
+	addButton(0,"Flirt",alexSexMenu);
 	if(flags["ASKED_ALEX_WHAT_HE_IS"] == undefined) addButton(1,"WhatAreYou?",askAlexWhatHeIs);
 	addButton(14,"Leave",bailOnAlexAgain);
 }
@@ -384,32 +378,23 @@ public function alexSexMenu(display:Boolean = true):void {
 	clearMenu();
 	//[Pitch Vaginal]
 	//(Available to all dickhavers)
-	if(pc.lust() >= 33)
+	if(pc.hasCock())
 	{
-		if(pc.hasCock())
-		{
-			addButton(0,"Pitch Vaginal",pitchIntoAlexsBoyPussy);
-			addButton(2,"Frottage",frottageWithAlex);
-		}
-		else {
-			addDisabledButton(0,"Pitch Vaginal");
-			addDisabledButton(2,"Frottage");
-		}
-		if(pc.hasVagina())
-		{
-			//[Catch Vaginal]
-			//(Shoutout to all the cunthavers)
-			addButton(1,"Catch Vaginal",catchVaginalFromAlex);
-		}
-		else addDisabledButton(1,"Catch Vaginal");
-		addButton(3,"Catch Anal",catchAnalFromAlex);
+		addButton(0,"Pitch Vaginal",pitchIntoAlexsBoyPussy);
+		addButton(2,"Frottage",frottageWithAlex);
 	}
 	else {
 		addDisabledButton(0,"Pitch Vaginal");
-		addDisabledButton(1,"Catch Vaginal");
 		addDisabledButton(2,"Frottage");
-		addDisabledButton(3,"Catch Anal");
 	}
+	if(pc.hasVagina())
+	{
+		//[Catch Vaginal]
+		//(Shoutout to all the cunthavers)
+		addButton(1,"Catch Vaginal",catchVaginalFromAlex);
+	}
+	else addDisabledButton(1,"Catch Vaginal");
+	addButton(3,"Catch Anal",catchAnalFromAlex);
 	addButton(14,"Leave",bailOutOnAlex);
 	//Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 	//That’s a good fucking question. This kind of game makes all sense of scale kind of fly out the window for me a bit so I’m not really sure. Call small dicks anything five inches or shorter unless they’re super thick, medium anything from six inches to a foot long, and big anything bigger than that. HUGE is probably something equivalent to being triple- or quadruple-fisted or something? I’d give you numbers but I don’t remember the cockarea equations offhand ever since we stopped assuming dicks were box-shaped, and also don’t want to have to do extensive dick math.

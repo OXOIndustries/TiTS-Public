@@ -65,8 +65,7 @@ public function waltBarMenu():void
 	if(pc.hasGenitals() && flags["WALT_HIMSELF"] != undefined)
 	{
 		addButton(2, "Necklace", waltTalk, "necklace", "Necklace", "Ask Walt about the necklace he’s wearing.");
-		if(pc.lust() < 33) addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for this!");
-		else addButton(3, "Sex", waltSex);
+		addButton(3, "Sex", waltSex);
 	}
 	else if(pc.hasGenitals())
 	{

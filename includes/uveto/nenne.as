@@ -278,11 +278,7 @@ public function talkToNenne():void
 	addButton(1,"The Shop",theShopNenneTalk,undefined,"The Shop","Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?");
 	addButton(2,"Uveto",nenneUvetoTalk,undefined,"Uveto","Ask Nenne what an experienced Korgonne like herself thinks about Uveto, and what opinions she has about the universe, if any.");
 	if(flags["NENNE_FAMILY"] == undefined || flags["NENNE_SHOP_TALK"] == undefined || flags["NENNE_UVETO_TALK"] == undefined) addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
-	else if(pc.hasGenitals())
-	{
-		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
-	}
+	else if(pc.hasGenitals()) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	if(silly) addButton(4,"BellyRub!",nenneBellyRub,undefined,"Belly Rub!","Ask if Nenne knows who a good girl is.");
 	else addDisabledButton(4,"BellyRub!","BellyRub!","You aren’t feeling <i>silly</i> enough for this. Maybe there’s an option somewhere to correct that!");
@@ -345,11 +341,7 @@ public function nenneFamilyTalk():void
 	flags["NENNE_FAMILY"] = 1;
 	// end scene (scene: Nenne’s Family); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
-	if(pc.hasGenitals())
-	{
-		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
-	}
+	if(pc.hasGenitals()) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(0,"Family","Family","You already discussed that.");
 }
@@ -395,11 +387,7 @@ public function nenneBellyRub():void
 	flags["NENNE_BELLY_RUBS"] = 1;
 	// end scene (scene: Belly Rub); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
-	if(pc.hasGenitals())
-	{
-		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
-	}
+	if(pc.hasGenitals()) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(4,"BellyRub!","BellyRub!","You already discussed that.");
 }
@@ -456,11 +444,7 @@ public function theShopNenneTalk():void
 	flags["NENNE_SHOP_TALK"] = 1;
 	// end scene (scene: Nenne’s Shop); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
-	if(pc.hasGenitals())
-	{
-		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
-	}
+	if(pc.hasGenitals()) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(1,"The Shop","The Shop","You already discussed that.");
 }
@@ -509,11 +493,7 @@ public function nenneUvetoTalk():void
 	// end scene (scene: Nenne’s Uveto); grey out all options, including [=Back=], except [=Flirt=]
 	// If Nenne turns out to be popular enough, this should be a decent hook to make her a crewmate in an expansion.
 	processTime(20);
-	if(pc.hasGenitals())
-	{
-		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
-	}
+	if(pc.hasGenitals()) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(2,"Uveto","Uveto","You already discussed that.");
 }

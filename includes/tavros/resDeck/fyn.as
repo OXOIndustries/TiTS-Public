@@ -300,11 +300,7 @@ public function fynMenu():void {
 	addButton(1, "Talk", fynTalk);
 	addButton(2, "Lesson", fynLessons);
 	
-	if(flags["FYN_TALKED_ABOUT_SEX"] == true)
-	{
-		if(pc.lust() >= 33) addButton(3, "Sex", fynSexMenu);
-		else addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for that.");
-	}
+	if(flags["FYN_TALKED_ABOUT_SEX"] == true) addButton(3, "Sex", fynSexMenu);
 	else addDisabledButton(3, "Sex", "Sex", "You don’t know him well enough to suggest that.");
 	
 	addButton(14, "Leave", mainGameMenu);

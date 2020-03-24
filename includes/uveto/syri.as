@@ -29,8 +29,7 @@ public function syriFreezerMenu(outputs:Boolean = true):void
 	clearMenu();
 	addButton(0,"Talk",syriFreezerTalkMenu);
 	if(syriIsAFuckbuddy()) {
-		if(pc.lust() >= 33) addButton(1,"Sex",syriSexMenu,undefined,"Sex","Take Syri back to your place for some intimate PvP experience.");
-		else addDisabledButton(1,"Sex");
+		addButton(1,"Sex",syriSexMenu,undefined,"Sex","Take Syri back to your place for some intimate PvP experience.");
 		if (flags["SYRI_MILOFUCK"] == undefined) addButton(5, "Milodans?", syriFreezerMilodanFuckings, undefined, "Milodans?", "Ask Syri if she’s had any run-ins with the furred denizens of Uveto.");
 	}
 	addButton(2,"Appearance",syriAppearance);

@@ -1561,8 +1561,7 @@ public function shizzyAnnoShipTalk():void
  {
 	clearMenu();
  	addButton(0, "Talk", shizzyGobWagging, undefined, "Talk", (silly ? "Strike up a conversation." : "Whip up some gibber-gabber."));
-	if (pc.lust() >= 33) addButton(1, "Fuck", shizzyFunTimes, undefined, "Fuck", (silly ? "Get down, and maybe a bit dirty." : "Button say what happen. Do biggum. Fucky fucky."));
-	else addDisabledButton(1, "Fuck", "Fuck", "You are not aroused enough for this!");
+	addButton(1, "Fuck", shizzyFunTimes, undefined, "Fuck", (silly ? "Get down, and maybe a bit dirty." : "Button say what happen. Do biggum. Fucky fucky."));
 	addButton(2, "Special", shizzyChefsSpecialties);
 	if (silly) addButton(3, "Appearance", shizzyStareAt, undefined, "Appearance", "OwO");
 	else addButton(3, "Appearance", shizzyStareAt);

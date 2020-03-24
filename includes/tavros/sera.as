@@ -761,29 +761,21 @@ public function seraSexMenu(display:Boolean = false):void
 	}
 	//OPTIONS
 	clearMenu();
-	if(pc.lust() >= 33)
+	if(seraIsMistress())
 	{
-		if(seraIsMistress())
+		addButton(0, "Fuck Me", seraSexXXXRouter);
+		if(pc.hasCock())
 		{
-			addButton(0, "Fuck Me", seraSexXXXRouter);
-			if(pc.hasCock())
-			{
-				if(flags["SERA_INCH_STEAL"] == undefined) addButton(1, "My Cock?", seraInchStealingIntro, "ask her", "Something For Your Cock", "Ask Sera if she can do something with your [pc.cockBiggest].");
-				else addButton(1, "Shrink Me", seraInchStealingIntro, "shrink me", "Shrink Your Cock", "Ask Sera to shrink your [pc.cockBiggest].");
-			}
-			else
-			{
-				if(flags["SERA_INCH_STEAL"] == undefined) addDisabledButton(1,"Locked", "Locked", "You need a penis for this!");
-				else addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You need a penis for this!");
-			}
+			if(flags["SERA_INCH_STEAL"] == undefined) addButton(1, "My Cock?", seraInchStealingIntro, "ask her", "Something For Your Cock", "Ask Sera if she can do something with your [pc.cockBiggest].");
+			else addButton(1, "Shrink Me", seraInchStealingIntro, "shrink me", "Shrink Your Cock", "Ask Sera to shrink your [pc.cockBiggest].");
 		}
-		else addButton(0,"Fuck Me",letSeraFuckYou,undefined);
+		else
+		{
+			if(flags["SERA_INCH_STEAL"] == undefined) addDisabledButton(1,"Locked", "Locked", "You need a penis for this!");
+			else addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You need a penis for this!");
+		}
 	}
-	else
-	{
-		addDisabledButton(0,"Fuck Me","Fuck Me","You aren’t turned on enough for this.");
-		if(seraIsMistress() && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
-	}
+	else addButton(0,"Fuck Me",letSeraFuckYou,undefined);
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
 }

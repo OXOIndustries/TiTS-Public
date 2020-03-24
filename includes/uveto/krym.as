@@ -329,12 +329,8 @@ public function restOfKrym():void
 		//[Fuck Krym] [Not Now]
 		clearMenu();
 		addButton(1,"Not Now",noSexForKrym,undefined,"Not Now","Maybe next time, Krym...");
-		if(pc.lust() >= 33)
-		{
-			if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Krym","Fuck Krym","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
-			else addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
-		}
-		else addDisabledButton(0,"Fuck Krym","Fuck Krym","You aren’t aroused enough for this.");
+		if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Krym","Fuck Krym","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
+		else addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
 	}
 }
 
@@ -595,12 +591,8 @@ public function combatVictoryWithKrymm():void
 
 	krymCombatTrack(true);
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Her","Fuck Her","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
-		else addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
-	}
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
+	if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Her","Fuck Her","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
+	else addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
 
 	addButton(1,"Rest",restOfKrym,undefined,"Rest","Take a rest in the safety of Krym’s camp.");
 	addButton(2,"Use Beacon",useUvetoBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");

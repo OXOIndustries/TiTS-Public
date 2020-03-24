@@ -108,8 +108,7 @@ public function ceriaMenu():void
 	addButton(1,"Styling",hairworkFromCeria,undefined,"Styling","Get your hair lengthened, cut, or dyed!");
 	addButton(2,"Talk",ceriaTalk,undefined,"Talk","Talk to Ceria.");
 	addButton(3,"Appearance",ceriaAppearance,undefined,"Appearance","Take a good look a the elfin proprietor.");
-	if(fuckedCeria() && pc.lust() >= 33) addButton(4,"Sex",ceriseSexApproach,undefined,"Sex","She seems like she’d be into it...");
-	else if(fuckedCeria()) addDisabledButton(4,"Sex","Sex","You aren’t aroused enough for sex right now.");
+	if(fuckedCeria()) addButton(4,"Sex",ceriseSexApproach,undefined,"Sex","She seems like she’d be into it...");
 	else addDisabledButton(4,"Sex","Sex","You’ll need to get to know her first!");
 	addButton(14,"Leave",mainGameMenu);
 }

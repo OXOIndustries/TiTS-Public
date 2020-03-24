@@ -468,12 +468,11 @@ public function defeatFeruze():void
 		else if(pc.hasCock()) addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You don’t have a dick small enough to fit inside her.");
 		else addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You need a penis for this.");
 
-		if(pc.hasVagina()) addButton(1,"Scissor",tribFeruze,undefined,"Scissor","Squeeze your crotch together with Feruze and rub cunts until you’re satisfied.");
-		else addDisabledButton(1,"Scissor","Scissor","You need a vagina for this.");
+	if(pc.hasVagina()) addButton(1,"Scissor",tribFeruze,undefined,"Scissor","Squeeze your crotch together with Feruze and rub cunts until you’re satisfied.");
+	else addDisabledButton(1,"Scissor","Scissor","You need a vagina for this.");
 
-		if(pc.biggestCockVolume() > enemy.vaginalCapacity(0)) addButton(2,"Big Titfuck",cockSelect,[titfuckAndGrindFeruze,90000000,false,enemy.vaginalCapacity(0)],"Big Titfuck","You might be too big to fit inside any of her orifices, but you’re pretty damned sure you could wrap yourself up in those big tits of hers for a good time.");
-		else addDisabledButton(2,"Big Titfuck","Big Titfuck","You need a very large penis for this scene.");
-	}
+	if(pc.biggestCockVolume() > enemy.vaginalCapacity(0)) addButton(2,"Big Titfuck",cockSelect,[titfuckAndGrindFeruze,90000000,false,enemy.vaginalCapacity(0)],"Big Titfuck","You might be too big to fit inside any of her orifices, but you’re pretty damned sure you could wrap yourself up in those big tits of hers for a good time.");
+	else addDisabledButton(2,"Big Titfuck","Big Titfuck","You need a very large penis for this scene.");
 	addButton(14,"Leave",leaveFeruzeAfterWinning);
 }
 

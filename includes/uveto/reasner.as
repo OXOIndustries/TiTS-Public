@@ -203,8 +203,7 @@ public function reasnerMenu():void
 	else addDisabledButton(3,"Rest","Rest","You don’t know her well enough for this.");
 
 	if(flags["BEA_RESTS"] == undefined) addDisabledButton(4,"Make Love","Make Love","You definitely don’t know her well enough for that.");
-	else if((flags["BEA_RELATIONSHIP"] != 2 && pc.lust() >= 66) || (flags["BEA_RELATIONSHIP"] == 2 && pc.lust() >= 50)) addButton(4,"Make Love",makeLoveToBeatrice);
-	else addDisabledButton(4,"Make Love","Make Love","You aren’t turned on enough for that.");
+	else addButton(4,"Make Love",makeLoveToBeatrice);
 	addButton(14,"Leave",leaveAfterBeatrice);
 }
 

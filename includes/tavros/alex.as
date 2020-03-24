@@ -103,8 +103,7 @@ public function approachAlexTheFirstTime():void {
 	processTime(1);
 	//[Flirt] [Bail]
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0, "Flirt",flirtWithAlex, undefined, "Flirt", "A little flirting never hurt anyone, right?");
-	else addDisabledButton(0, "Flirt", "Flirt", "You’re not aroused enough to consider flirting the pretty boy.");
+	addButton(0, "Flirt",flirtWithAlex, undefined, "Flirt", "A little flirting never hurt anyone, right?");
 	addButton(1, "Bail", bailOnAlex, undefined, "Bail", "Excuse yourself and leave the pretty boy.");
 }
 
@@ -425,8 +424,7 @@ public function alexsInteractMenu():void {
 	clearMenu();
 	addButton(0, "Appearance", alexsAppearance, undefined, "Appearance", "Give Alex a good once-over.");
 	addButton(1, "Talk", alexTalkMenu, true, "Talk", "You’d actually like to chat a little bit if he doesn’t mind.");
-	if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You are not aroused enough to consider having some steamy times with the maleherm.");
-	else if (pc.isTaur() || pc.isDrider()) addDisabledButton(2, "Sex", "Sex", "You should come back and ask him when you’ve got two legs instead.");
+	if (pc.isTaur() || pc.isDrider()) addDisabledButton(2, "Sex", "Sex", "You should come back and ask him when you’ve got two legs instead.");
 	else addButton(2, "Sex", alexSexMenu, undefined, "Sex", "You’d like to take him up on that fuckbuddy status he mentioned...");
 	addButton(3, "Drink", goDrinkWithAlexPostConfession, undefined, "Drink", "You know he’ll buy so it’s time to get shitfaced!");
 	addButton(14, "Leave", mainGameMenu);
@@ -593,23 +591,20 @@ public function alexSexMenu(display:Boolean = true):void {
 	clearMenu();
 	//[Pitch Vaginal]
 	//(Available to all dickhavers)
-	if(pc.lust() >= 33)
+	if(pc.hasCock())
 	{
-		if(pc.hasCock())
-		{
-			if (pc.isBiped() && pc.cockThatFits(200) >= 0) addButton(0, "Pitch Vaginal", pitchIntoAlexsBoyPussy, undefined, "Pitch Vaginal", "Pound Alex’s " + (silly ? "ACTUAL BOYPUSSY" : "pussy") + " with everything you got.");
-			else if (pc.cockThatFits(200) < 0) addDisabledButton(0, "Pitch Vaginal", "Pitch Vaginal", "None of your dicks can fit into the maleherm’s pussy!");
-			else addDisabledButton(0, "Pitch Vaginal", "Pitch Vaginal", "You should come back and ask him when you’ve got two legs instead.");
-			//Frottage remains available even to goos and nagas, legacy support.
-			addButton(2, "Frottage", frottageWithAlex, undefined, "Frottage", "Rub your dicks together." + (silly ? " Come on, it’s only gay if the balls touch." : ""));
-		}
-		else {
-			addDisabledButton(0, "Pitch Vaginal", "Pitch Vaginal", "Gotta have a dick to give the maleherm a good pounding.");
-			addDisabledButton(2, "Frottage", "Frottage", "Obviously, you will need to have a penis for a good frotting session.");
-		}
-		if (pc.isBiped()) addButton(1, "Catch", catchAlexsCockSelect, undefined, "Catch", "How about Alex fucks you instead?");
-		else addDisabledButton(1, "Catch", "Catch", "You should come back and ask him when you’ve got two legs instead.");
+		if (pc.isBiped() && pc.cockThatFits(200) >= 0) addButton(0, "Pitch Vaginal", pitchIntoAlexsBoyPussy, undefined, "Pitch Vaginal", "Pound Alex’s " + (silly ? "ACTUAL BOYPUSSY" : "pussy") + " with everything you got.");
+		else if (pc.cockThatFits(200) < 0) addDisabledButton(0, "Pitch Vaginal", "Pitch Vaginal", "None of your dicks can fit into the maleherm’s pussy!");
+		else addDisabledButton(0, "Pitch Vaginal", "Pitch Vaginal", "You should come back and ask him when you’ve got two legs instead.");
+		//Frottage remains available even to goos and nagas, legacy support.
+		addButton(2, "Frottage", frottageWithAlex, undefined, "Frottage", "Rub your dicks together." + (silly ? " Come on, it’s only gay if the balls touch." : ""));
 	}
+	else {
+		addDisabledButton(0, "Pitch Vaginal", "Pitch Vaginal", "Gotta have a dick to give the maleherm a good pounding.");
+		addDisabledButton(2, "Frottage", "Frottage", "Obviously, you will need to have a penis for a good frotting session.");
+	}
+	if (pc.isBiped()) addButton(1, "Catch", catchAlexsCockSelect, undefined, "Catch", "How about Alex fucks you instead?");
+	else addDisabledButton(1, "Catch", "Catch", "You should come back and ask him when you’ve got two legs instead.");
 	addButton(14, "Leave", bailOutOnAlex);
 	//Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 	//That’s a good fucking question. This kind of game makes all sense of scale kind of fly out the window for me a bit so I’m not really sure. Call small dicks anything five inches or shorter unless they’re super thick, medium anything from six inches to a foot long, and big anything bigger than that. HUGE is probably something equivalent to being triple- or quadruple-fisted or something? I’d give you numbers but I don’t remember the cockarea equations offhand ever since we stopped assuming dicks were box-shaped, and also don’t want to have to do extensive dick math.

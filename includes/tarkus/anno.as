@@ -722,8 +722,8 @@ public function earScritchesForAnno():void
 	pc.changeLust(3);
 	//[Sex][Tease]
 	clearMenu();
-	if(pc.lust() >= 33 && (pc.hasCock() || pc.hasVagina())) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
-	else addDisabledButton(0,"Sex","Sex","You need to be turned on enough for sex and have a penis or vagina.");
+	if(pc.hasCock() || pc.hasVagina()) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
+	else addDisabledButton(0,"Sex","Sex","You need to have a penis or vagina.");
 	addButton(1,"Tease",teaseAnno,undefined,"Tease","Tease her like a dog - really pet that bitch.");
 }
 

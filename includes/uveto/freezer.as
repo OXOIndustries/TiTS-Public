@@ -64,11 +64,7 @@ public function hanaMenu(disableFlirt:Boolean = false):void
 	addButton(1, "Talk", hanaTalkMenu);
 
 	if (disableFlirt) addDisabledButton(2, "Flirt", "Flirt", "Better not push your luck....");
-	else
-	{
-		if(pc.lust() >= 33) addButton(2, "Flirt", hanaFlirt);
-		else addDisabledButton(2, "Flirt", "Flirt", "You’re not aroused enough for that!");
-	}
+	else addButton(2, "Flirt", hanaFlirt);
 
 	addButton(14, "Back", mainGameMenu);
 }

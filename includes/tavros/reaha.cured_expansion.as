@@ -568,8 +568,7 @@ public function curedReahaMenu():void
 	clearMenu();
 	addButton(0,"Milk Reaha",milkCuredReaha,undefined,"Milk Reaha","Time to milk your resident cow.");
 	addButton(1,"Appearance",reahaAppearanceCured,undefined,"Appearance","Take a look at your favorite cow.");
-	if(pc.lust() >= 33) addButton(2,"Sex",curedReahaSexApproach,undefined,"Have some bedroom fun with the bovine member of your crew.");
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
+	addButton(2,"Sex",curedReahaSexApproach,undefined,"Have some bedroom fun with the bovine member of your crew.");
 	addButton(3,"Talk",curedReahaTalkShit,undefined,"Talk","Sit and chat with your busty bovine.");
 	//Hug Reaha
 	addButton(4,"Hug",giveYourCuredCowAHug,undefined,"Hug","Give your cow a hug.");
@@ -1747,12 +1746,7 @@ public function giveYourCuredCowAHug():void
 	output("at you. <i>“Man, I needed that. Anything else on your mind, babe, or did you just wanna feel up your favorite pillows for a bit?”</i>");
 	output("\n\nShe gives you a wink and another jiggle of her jugs, all but offering up her chest for your pleasure. Suddenly, you’ve got a serious urge to put down for a nap...");
 	processTime(6);
-	if(pc.lust() >= 33) curedReahaSexMenu();
-	else
-	{
-		clearMenu();
-		addButton(0,"Next",curedReahaApproach);
-	}
+	curedReahaSexMenu();
 }
 
 //Sleepwith

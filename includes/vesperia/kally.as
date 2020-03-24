@@ -462,11 +462,7 @@ public function kallyBarMenu():void
 	else if(pc.isBro()) addDisabledButton(5,"Eat Pussy","Eat Pussy","Something tell you she isn’t going to let you just pick her up and start eating her pussy unless you’ve got the biggest, nicest smelling cock in the bar.");
 	else if(pc.isBimbo()) addDisabledButton(5,"Suck Kally","Suck Kally","She’s still cooling off from your last attempt!");
 	else addDisabledButton(5,"Seduce Kally","Seduce Kally","You’d need to be extremely oversexed to so brazenly seduce Kally - like a bimbo or brute.");
-	if(kallySexedCount() > 0 && pc.hasCock() && pc.cockThatFits(900) >= 0) 
-	{
-		if(pc.lust() >= 33)	addButton(6,"Hotdog&Fuck",kallyHotdogNFuck,undefined,"Hotdog & Fuck","Use her big squishy booty to warm up before taking her to pound town.");
-		else addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","You aren't turned on enough right now.");
-	}
+	if(kallySexedCount() > 0 && pc.hasCock() && pc.cockThatFits(900) >= 0) addButton(6,"Hotdog&Fuck",kallyHotdogNFuck,undefined,"Hotdog & Fuck","Use her big squishy booty to warm up before taking her to pound town.");
 	else if(kallySexedCount() == 0) addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","This isn't the way to begin an intimate relationship with her.");
 	else if(pc.hasCock()) addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","Not even Kally can handle that behemoth.");
 	else addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","You need a penis for this.");

@@ -263,8 +263,7 @@ public function saendrasBarMenu():void
 	//NOTE: Unless otherwise noted, nothing but Sex & Leave will cause the PC to leave; ie, you return to her main menu after each choice made. 
 	
 	addButton(0, "Talk", talkToSaendraAboutStuffAndThings, undefined);
-	if (pc.lust() >= 33) addButton(1, "Sex", saendraSexTalk, undefined);
-	else addDisabledButton(1, "Sex", "Sex", "Probably want to be a little lusty yourself before you go bringing up the topic of sex.");
+	addButton(1, "Sex", saendraSexTalk, undefined);
 	addButton(2, "Appearance", takeAGoodLookAtSaendra, undefined);
 	if (saendraAffection() >= 70)
 	{

@@ -1655,15 +1655,13 @@ public function zilCallgirlSexMenu(isFreebie:Boolean = false):void
 
 	if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] != 2)
 	{
-		if (pc.lust() < 33) addDisabledButton(0, "Rent Her", "Rent Her", "You are not turned on enough for this.");
-		else if (!isFreebie && pc.credits < zilCallgirlPrice()) addDisabledButton(0, "Rent Her", "Rent Her", "You don’t have enough credits!");
+		if (!isFreebie && pc.credits < zilCallgirlPrice()) addDisabledButton(0, "Rent Her", "Rent Her", "You don’t have enough credits!");
 		else if (!pc.hasGenitals()) addDisabledButton(0, "Rent Her", "Rent Her", "You’d need some genitals to fully enjoy the experience...");
 		else addButton(0, "Rent Her", zilCallGirlCall, [true, isFreebie], "Rent Her", "Pay the lovely call girl’s fee and have a little fun.");
 	}
 	else
 	{
-		if (pc.lust() < 33) addDisabledButton(0, "Sex", "Sex", "You are not turned on enough for this.");
-		else if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
+		if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
 		else addButton(0, "Sex", zilCallgirlFatherFreebies, true, "Sex", "Give your little strumpet a good seeing to.");
 		if (flags["ZIL_CALLGIRL_STOPWHORE_DISABLED_UNTIL"] == undefined || flags["ZIL_CALLGIRL_STOPWHORE_DISABLED_UNTIL"] <= GetGameTimestamp()) addButton(3, "Stop Whoring", zilCallgirlStopWhoring, false, "Stop Whoring", zilCallgirlStopWhoringTooltip());
 		else addDisabledButton(3, "Stop Whoring");
@@ -2349,8 +2347,7 @@ public function zheniyaInAppt():void
 	}
 
 	clearMenu();
-	if (pc.lust() < 33) addDisabledButton(0, "Sex", "Sex", "You are not turned on enough for this.");
-	else if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
+	if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
 	else addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
 	addButton(2, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
 	

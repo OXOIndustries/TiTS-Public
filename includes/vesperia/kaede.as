@@ -224,8 +224,7 @@ public function repeatKaedeMenuNewCanadia():void
 	//[Touch Fluffy Tail]
 	addButton(1,"TouchFluffTail",touchKaedesFluffyTailWhosAGoodGirlSheIs,undefined,"Touch Fluffy Tail","Give Kaede’s fluffy ginger tail a little love.");
 	//[Get a Room]
-	if(pc.lust() >= 33) addButton(2,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
-	else addDisabledButton(2,"Get a Room","Get a Room","You aren’t aroused enough for that.");
+	addButton(2,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
 	//[Leave]
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -331,8 +330,7 @@ public function keepTailScritching():void
 	pc.changeLust(15);
 
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
-	else addDisabledButton(0,"Get a Room","Get a Room","You aren’t aroused enough for that.");
+	addButton(0,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
 	addButton(1,"Leave Off",yesThatsEnoughKaede);
 	if(options) addButton(2,"MAX TEASE",maximumTeaseTheSloot,undefined,"MAX TEASE","Let’s see just how much Kaede can really take.");
 	else addDisabledButton(2,"MAX TEASE","MAX TEASE","Looks like you can’t get away with pulling that one off twice...");

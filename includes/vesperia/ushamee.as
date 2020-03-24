@@ -192,8 +192,7 @@ public function mainMenuUsha(intro:Boolean = false):void
 	
 	clearMenu();
 	addButton(0, "Date", dateUsha, undefined, "Date", "Dating a Bugpony.");
-	if (flags["USHA_STATE"] != undefined && pc.lust() >= 33) addButton(1, "Sex", sexUsha, undefined, "Sex", "See if the chief’s up for a roll in the proverbial hay.");
-	else if (pc.lust() < 33) addDisabledButton(1, "Sex", "Sex", "You aren’t turned on enough for this.");
+	if (flags["USHA_STATE"] != undefined) addButton(1, "Sex", sexUsha, undefined, "Sex", "See if the chief’s up for a roll in the proverbial hay.");
 	else addDisabledButton(1, "Sex", "Sex", "You should get to know her a little better.");
 	addButton(14, "Leave", leaveUsha, undefined, "Leave", "Take your leave of the chief.");
 }

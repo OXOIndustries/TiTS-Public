@@ -217,9 +217,7 @@ public function kiroMenu():void
 		addButton(0,"Talk",kiroTalkInKallysBar,undefined,"Talk","You may as well Talk since Kiro’s trying to keep things low-key.");
 		addDisabledButton(1,"Wingman","Wingman","For whatever reason, Kiro doesn’t seem interested in picking up a girl at her sister’s bar.");
 		addDisabledButton(2,"DrinkOff","Drinking Contest","For whatever reason, Kiro doesn’t seem to want to get blitzed out of her mind at her sister’s bar.");
-		if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t really interested in sex at the moment.");
-		else if(kiro.ballDiameter() > 14) addButton(3,"Sex",letsFuckKiro);
-		else addButton(3,"Sex",letsFuckKiro);
+		addButton(3,"Sex",letsFuckKiro);
 
 		//Incest 3sums
 		if(kiroKallyThreesomesAvailable()) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
@@ -246,9 +244,7 @@ public function kiroMenu():void
 		addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
 		addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
 	}
-	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t really interested in sex at the moment.");
-	else if(kiro.ballDiameter() > 14) addButton(3,"Sex",letsFuckKiro);
-	else addButton(3,"Sex",letsFuckKiro);
+	addButton(3,"Sex",letsFuckKiro);
 	if(kiro.ballDiameter() > 7) addButton(4,"Relief BJ",giveKiroSomeRelief,undefined,"Relief BJ","Slink under the concealing surface above and give Kiro’s poor balls the release they so desperately need. Besides, you were a little hungry, weren’t you?");
 	else addDisabledButton(4,"Relief BJ","Relief BJ","Kiro’s balls don’t look swollen enough to need the relief right now, though they are quite large.");
 	if(flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] != undefined && (paigeIsCrew() || (getPlanetName().toLowerCase() == "tavros station" && (hours >= 17 || hours < 9))))

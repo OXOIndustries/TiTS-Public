@@ -592,11 +592,7 @@ public function shadeUvetoBarMenu():void
 	clearMenu();
 	addButton(0, "Talk", talkToShadeAbootStuff, undefined, "Talk", "Chat up Shade.");
 	//Must still be unlocked from Incest/Betrayal path
-	if(shadeIsLover())
-	{
-		if(pc.lust() >= 33) addButton(1,"Sex", askShade4SexOnUveto,undefined, "Sex", "Get into some mischief under the covers.");
-		else addDisabledButton(1, "Sex", "Sex", "You aren’t aroused enough for that.");
-	}
+	if(shadeIsLover()) addButton(1,"Sex", askShade4SexOnUveto,undefined, "Sex", "Get into some mischief under the covers.");
 	addButton(2, "Appearance", shadeAppearance,undefined, "Appearance", "Take a good look at the cat-girl bounty hunter.");
 	addButton(14, "Leave", mainGameMenu);
 }

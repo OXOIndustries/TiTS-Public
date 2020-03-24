@@ -90,14 +90,14 @@ public function winVsBoredJumper():void
 	}
 	//Merge
 	//Now enough lust.
-	if(pc.lust() <= 33)
+	/*if(pc.lust() <= 33)
 	{
 		output("\n\nUnfortunately for her, you’re far too sated to give a shit about giving her the struggle-cuddles she so desires.");
 		
 		clearMenu();
 		addButton(0,"Next",leaveTheBoredJumperAfterWinning);
 		return;
-	}
+	}*/
 	//Enough
 	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
 	

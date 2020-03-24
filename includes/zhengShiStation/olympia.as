@@ -105,11 +105,7 @@ public function meatOlympiasMons(back:Boolean = false):void
 		processTime(2);
 		clearMenu();
 		addButton(0,"Talk",talkToOlympia,undefined,"Talk","She must know a lot about what’s going on here...");
-		if(flags["OLYMPIA_SEXBOT_TALK"] != undefined)
-		{
-			if(pc.lust() >= 33) addButton(1,"Sex",olympiaSexWheee);
-			else addDisabledButton(1,"Sex","Sex","You aren’t in the mood for that.");
-		}
+		if(flags["OLYMPIA_SEXBOT_TALK"] != undefined) addButton(1,"Sex",olympiaSexWheee);
 		else addDisabledButton(1,"Locked","Locked","Maybe talk to her a bit more first?");
 		addButton(2,"Appearance",olympiaAppearance,2);
 		addButton(14,"Leave",mainGameMenu);

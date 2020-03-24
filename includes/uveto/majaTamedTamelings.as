@@ -150,11 +150,7 @@ public function majaMenu():void
 	//[talks](talk with Maja{, and maybe get on her better side}.
 	addButton(3,"Talk",talkToMaja,undefined,"Talk","Talk with Maja" + (!majaTrust() ? ", and maybe get on her better side" : "") + ".");
 	//[sex]({maybe you should get her to trust you before asking about sex./Help Maja out with her own beast.}
-	if(majaTrust()) 
-	{
-		if(pc.lust() >= 33) addButton(4,"Sex",majaSexyTimes,undefined,"Sex","Help Maja out with her own beast.");
-		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.");
-	}
+	if(majaTrust()) addButton(4,"Sex",majaSexyTimes,undefined,"Sex","Help Maja out with her own beast.");
 	else addDisabledButton(4,"Sex","Sex","Maybe you should get her to trust you before asking about sex.");
 	addButton(14,"Leave",mainGameMenu);
 }

@@ -107,7 +107,6 @@ public function approachChrissy():void
 	addButton(1, "Talk", talkChrissy, undefined, "Talk", "Learn a little about Chrissy from the tanuki-girl herself.");
 	addButton(2, "Video Games", playChrissy, undefined, "Video Games", "She likes video games right? Maybe you could play some together.");
 	if (pc.isTaur() || pc.isNaga()) addDisabledButton(3, "Sex", "Sex", "Not Naga or Taur compatible.")
-	else if (pc.lust() < 33) addDisabledButton(3, "Sex", "Sex", "You aren’t turned on enough for this.")
 	else addButton(3, "Sex", sexChrissy, undefined, "Sex", "Ask this cutie if she’d be down for a little fun.");
 	
 	addButton(14, "Leave", mainGameMenu);

@@ -133,8 +133,7 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 	[Appearance]*/
 	clearMenu();
 	addButton(0,"Get Milk",getAGlassOfMilkFromReapersCowsona);
-	if(pc.lust() >= 33) addButton(2,"Sex",sexWithFollowerReaha);
-	else addDisabledButton(2,"Sex");
+	addButton(2,"Sex",sexWithFollowerReaha);
 	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] != undefined)
 	{
 		if (flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] == undefined) addButton(1, "Talk", talkWithFollowerReaha, undefined, "Talk", "Ask Reaha about her reaction to New Texas. You’re probably in for a pretty long talk from the otherwise closed-mouth cow.");
