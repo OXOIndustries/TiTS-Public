@@ -255,16 +255,6 @@ public function commandAndControlBonusiiii():Boolean
 		addButton(0,"Next",mainGameMenu);
 		return true;
 	}
-	else if(pc.lust() < 33)
-	{
-		clearOutput();
-		showName("NOT\nYET...");
-		output("You aren’t really in the mood for a tryst with Brandt. Maybe once your libido has you feeling a little more frisky.");
-		moveTo("I14_CORRIDOR");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-		return true;
-	}
 	//PC enters with Brandt, first time.
 	else if(flags["FIRST_GAST_CC"] == undefined)
 	{
@@ -1632,17 +1622,9 @@ public function kaskaSlammer():void
 		output("\n\n<i>“F-fuck, what are you waiting for?”</i> Kaska drops to her knees, openly fucking herself. Her powerful hips pump her slobbering log of a cock through her tightly-squeezing fingers. Pussy-juice dribbles eagerly across the floor. She licks her lips and bats her eyelashes surprisingly submissively. <i>“Let’s fuck already. You’re fucking hot, and these drugs have me so hard I could cum from a good snuggle.”</i> She cups her tits, pressing them tight around her leaky cock-head. <i>“P-please?”</i>");
 	}
 	//[Dick Fuck] [Cunnilingus] - menu copy/pasted below. New content is directly edited into old scenes.
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,true,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
-		if(pc.hasVagina()) addButton(1,"Cunnilingus",makeKaskaSuchYerCoochLikeABaws,true,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
-		else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
-	}
-	else
-	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
-		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
-	}
+	if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,true,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
+	if(pc.hasVagina()) addButton(1,"Cunnilingus",makeKaskaSuchYerCoochLikeABaws,true,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
+	else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
 	addButton(14,"Never Mind",backOuttaPrisonVisit);
 }

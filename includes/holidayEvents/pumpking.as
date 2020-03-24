@@ -244,12 +244,8 @@ public function defeatThePumpKing():void
 		//[Lock her up]
 	}
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasGenitals()) addButton(0,"Fuck Her",fuckThePumpKing,undefined,"Fuck Her","Get some sexual satisfaction out of this lunatic.");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You’ll need some genitals to do this.");
-	}
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t turned on enough for this.");
+	if(pc.hasGenitals()) addButton(0,"Fuck Her",fuckThePumpKing,undefined,"Fuck Her","Get some sexual satisfaction out of this lunatic.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You’ll need some genitals to do this.");
 	addButton(1,"Lock Her Up",lockUpThatNastyWoman);
 }
 

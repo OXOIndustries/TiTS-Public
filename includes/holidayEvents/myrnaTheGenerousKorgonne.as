@@ -188,8 +188,7 @@ public function myrnaMenu():void
 		&& (flags["MYRNA_GIFT_COUNT"] == undefined || (flags["MYRNA_GIFT_COUNT"] != undefined && flags["MYRNA_GIFT_COUNT"] < 12))) addButton(2,"Gift",getGiftFromMyrna,undefined,"Gift","Receive a present from the generous korgonne!");
 	else if(flags["MYRNA_GIFT_COUNT"] < 12) addDisabledButton(2,"Gift","Gift","Try coming back later for another present!");
 	else addDisabledButton(2,"Gift","Gift","You’ve already received all your season’s greetings.");
-	if(pc.lust() >= 33) addButton(3,"Sex",myrnaSexMenu);
-	else addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for this.");
+	addButton(3,"Sex",myrnaSexMenu);
 }
 public function myrnaLeave():void
 {
