@@ -493,7 +493,6 @@ public function chaurmineMenu(disabledButton:Number = -1):void
 	if(disabledButton == 1) addDisabledButton(1,"Talk","Talk","Maybe you should do something else for a moment.");
 	else addButton(1,"Talk",talkToChaurmine,undefined,"Talk","Find out some more about Chaurmine");
 	if(disabledButton == 2) addDisabledButton(2,"Sex","Sex","Maybe do something else for a bit.");
-	else if(pc.lust() < 33) addDisabledButton(2,"Sex","Sex","You aren’t really in the mood for this.\n\n(Lust 33+ required.)");
 	else if(chaurmineRelationship() < 10) addDisabledButton(2,"Sex","Sex","He doesn’t seem ready for sex yet. Maybe talk to him, get to know him. See if he has any hobbies.");
 	else addButton(2,"Sex",sexWithChaurmine,undefined,"Sex","Take the big brute for a ride.");
 	addButton(14,"Leave",mainGameMenu);

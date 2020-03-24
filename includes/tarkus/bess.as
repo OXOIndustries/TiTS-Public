@@ -1384,10 +1384,6 @@ public function bessFollowerMenu():void
 	{
 		addDisabledButton(3, "Sex", "Sex", "[bess.name] isn’t feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].");
 	}
-	else if (pc.lust() < 33)
-	{
-		addDisabledButton(3, "Sex", "Sex", "You’re not antsy enough for sexytimes.");
-	}
 	else
 	{
 		addButton(3, "Sex", bessSexMenu);

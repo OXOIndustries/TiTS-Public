@@ -378,32 +378,22 @@ public function combatSandWormVictory():void
 			showButtBug(c_swfVariant);
 			author("Preacher");
 			clearMenu();
-			if(pc.lust() < 33)
+			output("Seeing the overly suggestive body shape of the little critter has reminded you of some of your more pressing needs. You’ll salvage what you can from the fight later, right now there may be a way to sate your lust with the little insect.");
+			output("\n\n");
+			
+			//Gives male or female menus depending on swGender.
+			if(c_swfVariant >= 0)
 			{
-				output("Not seeing a reason for any further interaction with the creature, you decide to let it scurry away.");
-				output("\n\n");
-				
-				addButton(0, "Next", mainGameMenu);
+				if(pc.hasCock() && !pc.isTaur()) addButton(0, "Bionahole", sexButtBugBionahole, c_swfVariant, "Bionahole", "Use the female as a temporary bionahole.");
+				else addDisabledButton(0, "Bionahole", "Bionahole", "Use the female as a temporary bionahole. You must have at least one dick and not be tauric.");
+				if(flags["BUTTBUG_SEX_OFFERBUTT"] != undefined || CodexManager.entryViewed("Sand Worms")) addButton(1, "OfferButt", sexButtBugOfferButt, c_swfVariant, "Offer Butt", "Willingly let the female enter your butt. There might be a fight if you already have one inside you, or some other occupant.");
+				else addDisabledButton(1, "OfferButt", "Offer Butt", "You do not know much about the bug to try this.");
 			}
 			else
 			{
-				output("Seeing the overly suggestive body shape of the little critter has reminded you of some of your more pressing needs. You’ll salvage what you can from the fight later, right now there may be a way to sate your lust with the little insect.");
-				output("\n\n");
-				
-				//Gives male or female menus depending on swGender.
-				if(c_swfVariant >= 0)
-				{
-					if(pc.hasCock() && !pc.isTaur()) addButton(0, "Bionahole", sexButtBugBionahole, c_swfVariant, "Bionahole", "Use the female as a temporary bionahole.");
-					else addDisabledButton(0, "Bionahole", "Bionahole", "Use the female as a temporary bionahole. You must have at least one dick and not be tauric.");
-					if(flags["BUTTBUG_SEX_OFFERBUTT"] != undefined || CodexManager.entryViewed("Sand Worms")) addButton(1, "OfferButt", sexButtBugOfferButt, c_swfVariant, "Offer Butt", "Willingly let the female enter your butt. There might be a fight if you already have one inside you, or some other occupant.");
-					else addDisabledButton(1, "OfferButt", "Offer Butt", "You do not know much about the bug to try this.");
-				}
-				else
-				{
-					addButton(0, "Use", sexButtBugUse, undefined, "Use", "Use him to sate your anal desires.");
-				}
-				addButton(14, "Leave", combatSandWormVictoryLeave, c_swfVariant);
+				addButton(0, "Use", sexButtBugUse, undefined, "Use", "Use him to sate your anal desires.");
 			}
+			addButton(14, "Leave", combatSandWormVictoryLeave, c_swfVariant);
 		}
 	})(swfVariant);
 	eventQueue.push(tEventCall);
