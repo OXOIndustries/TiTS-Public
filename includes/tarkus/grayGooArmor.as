@@ -270,18 +270,9 @@ public function grayGooArrivesAtShip():void
 	output("\n\n" + gooArmorInventoryBlurb(new GooArmor(), "obtain"));
 	
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
-		if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
-		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don’t have the proper anatomy for that...");
-	}
-	else
-	{
-		addDisabledButton(0, "Goo Dicks", "Goo Dicks", "You’re not horny enough for that...\n\n<i>(You can access this later in the Masturbate menu while wearing [goo.name].)</i>")
-		if (pc.hasCock()) addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You’re not horny enough for that...\n\n<i>(You can access this later in the Masturbate menu while wearing [goo.name].)</i>")
-		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don’t have the proper anatomy for that...")
-	}
+	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
+	if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+	else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don’t have the proper anatomy for that...");
 	addButton(2, "No Sex", gooFapNope, undefined, "No Sex", "You are not in the mood to sex [goo.name] at this time.");
 }
 
@@ -1020,14 +1011,10 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	gooArmorAddButton(fromCrew, 0, "Talk", gooArmorCrewOption, ["talk", fromCrew], "Talk", "Chat a bit with [goo.name].");
 	if(flags["GOO_ARMOR_CUSTOMIZE"] == undefined) gooArmorAddDisabledButton(fromCrew, 1, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 3 ? " She may be more confident if you are a higher level." : " Maybe try" + ((pc.armor is GooArmor) ? " taking her off first, then" : "") + " talking to her" + (InShipInterior() ? "" : " while in your ship") + " for a bit?"));
 	else gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew], "Customize " + ((pc.armor is GooArmor) ? "Suit" : "Appearance"), ((pc.armor is GooArmor) ? "See if [goo.name] can change how she looks on you." : "See if [goo.name] can change her form for you."));
-	if(pc.lust() >= 33)
-	{
-		if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "Masturbating here would be impossible.");
-		else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
-		else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() < 33 && pc.libido() < 70) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You cannot have sex with [goo.name] at this time!");
-		else gooArmorAddButton(fromCrew, 2, "Sex", gooArmorCrewOption, ["sex", fromCrew], "Sex", "Have some sexy fun-time with [goo.name].");
-	}
-	else gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You are not aroused enough for this.");
+	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "Masturbating here would be impossible.");
+	else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() < 33 && pc.libido() < 70) gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You cannot have sex with [goo.name] at this time!");
+	else gooArmorAddButton(fromCrew, 2, "Sex", gooArmorCrewOption, ["sex", fromCrew], "Sex", "Have some sexy fun-time with [goo.name].");
 	
 	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 7 ? " She may be more confident if you are a higher level." : " Maybe try" + (pc.hasItemByClass(GrayMicrobots, 10) ? "" : " stocking up and") + " carrying some drinkable health items," + ((pc.armor is GooArmor) ? " taking her off," : " and") + " then talking to her" + (InShipInterior() ? "" : " while in your ship") + "?"));
 	else if(pc.HP() >= pc.HPMax()) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "You are already at full health!");

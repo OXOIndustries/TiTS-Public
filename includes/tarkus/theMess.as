@@ -146,14 +146,14 @@ public function approachDCLMenu():void
 {
 	clearMenu();
 	
-	if(pc.hasCock() && pc.lust() >= 33)
+	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 200) >= 0) addButton(0,"Buttsex",buttStretchDelsAnus,undefined,"Buttsex","Take the “free” trapslut out for a spin.");
 		else addDisabledButton(0,"Buttsex","Buttsex","You’re too big to fuck her ass.");
 	}
-	else addDisabledButton(0,"Buttsex","Buttsex","You need to be sufficiently turned on and have a dick to take this trap for a spin.");
-	if(pc.hasVagina() && pc.lust() >= 33) addButton(1,"Face Sit",sitOnDelilahsFace,undefined,"Face Sit","Sit on the trapslut’s face and make her go to work pleasing you.");
-	else addDisabledButton(1,"Face Sit","Face Sit","Sitting on Del’s face requires you have a vagina and be suitably lusty.");
+	else addDisabledButton(0,"Buttsex","Buttsex","You need to have a dick to take this trap for a spin.");
+	if(pc.hasVagina()) addButton(1,"Face Sit",sitOnDelilahsFace,undefined,"Face Sit","Sit on the trapslut’s face and make her go to work pleasing you.");
+	else addDisabledButton(1,"Face Sit","Face Sit","Sitting on Del’s face requires you have a vagina.");
 	addButton(2,"Get Drink",getADrinkFromDCLsButt,undefined,"Get Drink","Ask about purchasing a drink.");
 
 	//Slut Training
@@ -167,7 +167,7 @@ public function approachDCLMenu():void
 		//Hungry tail overrides lust reqs
 		if (pc.hasCuntSnake() && (pc.hasCock() || pc.hasHardLightEquipped()) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
 		//Normal lust reqs
-		else if((pc.hasCock() || pc.hasHardLightEquipped()) && pc.hasCuntTail() && pc.lust() >= 33) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
+		else if((pc.hasCock() || pc.hasHardLightEquipped()) && pc.hasCuntTail()) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
 		else if(!pc.hasCuntTail()) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
 		else if(!(pc.hasCock() || pc.hasHardLightEquipped())) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
 		else addDisabledButton(4,"TailScrew","Tail Screw","You’re not horny enough to fuck Del, and neither is your tail-pussy.");

@@ -284,11 +284,7 @@ public function arbetzMainMenu(light:Boolean = false):void
 	addButton(0, "Talk", arbetzMainOptions, 0);
 	if (flags["PETR_UNLOCKED"] != undefined) addButton(1, "Petr", arbetzPetrShop, undefined, "Petr", "Ask the human boy about buying some swimwear.");
 	if (!pc.hasKeyItem("Arbetz Travel Agency Membership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
-	if (flags["ARBETZ_SEX_UNLOCKED"] != undefined)
-	{
-		if (pc.lust() >= 33) addButton(3, "Sex", arbetzMainOptions, 3);
-		else addDisabledButton(3, "Sex", "Sex", "You are currently not aroused enough for that!");
-	}
+	if (flags["ARBETZ_SEX_UNLOCKED"] != undefined) addButton(3, "Sex", arbetzMainOptions, 3);
 	addButton(5, "Appearance", arbetzMainOptions, 1);
 	if(!light) addButton(14, "Leave", mainGameMenu);
 }

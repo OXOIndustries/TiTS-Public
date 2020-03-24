@@ -123,29 +123,19 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 	clearMenu();
 	if(pc.intelligence() >= 20 || pc.characterClass == GLOBAL.CLASS_ENGINEER) addButton(0,"Reprogram",reprogramGrayGoosForYerPleasure,undefined,"Reprogram","Reprogram the goo into a less harmful form.");
 	else addDisabledButton(0,"Reprogram");
-	if(pc.lust() >= 33)
+	if(pc.hasCock()) 
 	{
-		if(pc.hasCock()) 
-		{
-			addButton(1,"MutualFap",mutualGooMasturbation,undefined,"Mutual Masturbation","It starts out as a blowjob but winds up being so much more!");
-			if(pc.cockTotal() > 1) addButton(2,"MultiFuck",multiCockMayhem,undefined,"Multicock Fuck","Use multiple dicks on her simultaneously.")
-			else addDisabledButton(2,"MultiFuck", "Multicock Fuck", "If only you had more than one cock....");
-		}
-		else
-		{
-			addDisabledButton(1, "MutualFap", "Mutual Masturbation", "If only you had a cock....");
-			addDisabledButton(2, "MultiFuck", "Multicock Fuck", "If only you had a pair of cocks....");
-		}
-		if(pc.hasVagina()) addButton(3,"Catch: DP",divideAndConquerGinasWithGoos,undefined,"Catch: Double Penetration","Get the goo to divide and take you both ways at once!");
-		else addDisabledButton(3,"Catch: DP", "Catch: Double Penetration", "If only you had a vagina....");
+		addButton(1,"MutualFap",mutualGooMasturbation,undefined,"Mutual Masturbation","It starts out as a blowjob but winds up being so much more!");
+		if(pc.cockTotal() > 1) addButton(2,"MultiFuck",multiCockMayhem,undefined,"Multicock Fuck","Use multiple dicks on her simultaneously.")
+		else addDisabledButton(2,"MultiFuck", "Multicock Fuck", "If only you had more than one cock....");
 	}
 	else
 	{
-		output("<b>You aren’t aroused enough to engage in any forms of coitus with the goo.</b>\n\n");
-		addDisabledButton(1,"MutualFap");
-		addDisabledButton(2,"MultiFuck");
-		addDisabledButton(3,"Catch: DP");
+		addDisabledButton(1, "MutualFap", "Mutual Masturbation", "If only you had a cock....");
+		addDisabledButton(2, "MultiFuck", "Multicock Fuck", "If only you had a pair of cocks....");
 	}
+	if(pc.hasVagina()) addButton(3,"Catch: DP",divideAndConquerGinasWithGoos,undefined,"Catch: Double Penetration","Get the goo to divide and take you both ways at once!");
+	else addDisabledButton(3,"Catch: DP", "Catch: Double Penetration", "If only you had a vagina....");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 

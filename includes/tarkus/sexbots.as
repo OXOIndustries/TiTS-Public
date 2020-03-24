@@ -59,19 +59,11 @@ public function encounterASexBot():void
 		if(manbot) output(" Its voice, you notice, has dropped several octaves.");
 		output(" It puts its hand on its hip, its green eyes flickering at you as it pulls its full, gray lips into a serene smile. <i>“Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.”</i>");
 
-		//Lust > 30:
-		if(pc.lust() >= 33) 
-		{
-			output("\n\nThe approach of this creature has been more than slightly unsettling, but you do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
-			//Yes/No
-			clearMenu();
-			addButton(0,"Let It",yesToRobotSexBotFirstTime, tSexBot);
-			addButton(1,"Don't",turnDownRobotSexuals, [true, tSexBot]);
-		}
-		else
-		{
-			turnDownRobotSexuals([false, tSexBot]);
-		}
+		output("\n\nThe approach of this creature has been more than slightly unsettling, but you do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
+		//Yes/No
+		clearMenu();
+		addButton(0,"Let It",yesToRobotSexBotFirstTime, tSexBot);
+		addButton(1,"Don't",turnDownRobotSexuals, [true, tSexBot]);
 	}
 	//Repeat 
 	else
@@ -101,18 +93,10 @@ public function encounterASexBot():void
 		if(manbot) IncrementFlag("MET_SEXBOT_MALE_ON_TARKUS");
 		else IncrementFlag("MET_SEXBOT_FEMALE_ON_TARKUS");
 		
-		//If lust > 30 display (Yes/No)
-		if(pc.lust() >= 33)
-		{
-			output("\n\nYou do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
-			clearMenu();
-			addButton(0,"Let It",voluntaryFuckSexBot, tSexBot);
-			addButton(1,"Don't",turnDownRobotSexuals, [true, tSexBot]);
-		}
-		else
-		{
-			turnDownRobotSexuals([false, tSexBot]);
-		}
+		output("\n\nYou do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
+		clearMenu();
+		addButton(0,"Let It",voluntaryFuckSexBot, tSexBot);
+		addButton(1,"Don't",turnDownRobotSexuals, [true, tSexBot]);
 	}
 	
 	setEnemy(null);
@@ -207,27 +191,24 @@ public function defeatTheSexBot():void
 	sexBotDisplay();
 	output("The sexbot opens its mouth, but instead of its calm tones it instead emits a clatter of clicks, beeps and high vocalizations. Its head flicks to one side in the same motion over and over again before finally with a wheezing, defeated hum it retracts its tentacles and kneels down, hands flat on the floor.");
 	output("\n\n<i>“A serious exception occurred. Entering factory reset,”</i> it says quietly. <i>“Non-reactive safe mode in effect.”</i> It pauses. <i>“Can this unit do anything for you, insert name here?”</i>");
-	//Lust > 30:
-	if(pc.lust() >= 33) {
-		output("\n\nYou look at the docile robo-" + enemy.mf("dude","babe") + " in front of you and consider the offer.");
-	}
+	output("\n\nYou look at the docile robo-" + enemy.mf("dude","babe") + " in front of you and consider the offer.");
 	output("\n\n");
 	clearMenu();
 	//Win Scenes
 	//Consentacles
 	//Requires: Vagina
-	if(pc.hasVagina() && pc.lust() >= 33) addButton(0,"Consentacles",consentaclesVictoryWithDannySexBot);
-	else addDisabledButton(0,"Consentacles","Consentacles","You need at least 33 lust and a vagina for this scene.");
+	if(pc.hasVagina()) addButton(0,"Consentacles",consentaclesVictoryWithDannySexBot);
+	else addDisabledButton(0,"Consentacles","Consentacles","You need a vagina for this scene.");
 	//Blowjob - req pc dick
-	if(pc.hasCock() && pc.lust() >= 33) addButton(1,"Get BJ",blowjobVictoryFromSexbot);
-	else addDisabledButton(1,"Get BJ","Get BJ","You need a penis and at least 33 lust for this scene.");
+	if(pc.hasCock()) addButton(1,"Get BJ",blowjobVictoryFromSexbot);
+	else addDisabledButton(1,"Get BJ","Get BJ","You need a penis for this scene.");
 
 	//Dog E
 	//Requires: Female sexbot, dick
 	if (enemy.mf("", "girl") == "girl")
 	{
-		if (pc.hasCock() && pc.lust() >= 33 && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(2, "DoggyStyle", dogEStyleWithSexBots);
-		else addDisabledButton(2, "DoggyStyle", "Doggy Style", "You need a cock that will fit inside the sexbot and be sufficiently lusty.");
+		if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(2, "DoggyStyle", dogEStyleWithSexBots);
+		else addDisabledButton(2, "DoggyStyle", "Doggy Style", "You need a cock that will fit inside the sexbot.");
 	}
 	
 	if((flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined || flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) && flags["SEXBOT_QUEST_STATUS"] == 1) addButton(4,"Scan",scanASexbot,undefined,"Scan","Scan the sexbot with the GPS triangulator Colenso provided.");

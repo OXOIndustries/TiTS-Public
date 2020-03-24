@@ -133,8 +133,7 @@ public function defeatLGBT():void
 	}
 	clearMenu();
 	//[Satisfaction] [Leave]
-	if(pc.lust() >= 33) addButton(0,"Satisfaction",getSumPleasureWhenYouWinVsLGBT);
-	else addDisabledButton(0,"Satisfaction","Satisfaction","You aren’t quite turned on enough for that.");
+	addButton(0,"Satisfaction",getSumPleasureWhenYouWinVsLGBT);
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 

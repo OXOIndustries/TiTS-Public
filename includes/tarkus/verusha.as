@@ -149,8 +149,7 @@ public function verushaMenu():void
 	else addButton(1,"Talk",talkToVerusha,undefined,"Talk","Talk to her some more, why not?");
 	if(flags["VERUSHA_GROPED"] == undefined) addButton(2,"Grope",gropeVerusha,undefined,"Grope","This is probably a bad idea.");
 	else addDisabledButton(2,"Grope","Grope","Even the galaxies most vapid, air-headed bimbo bunny would know this is a bad idea.");
-	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t turned on enough for that.");
-	else addButton(3,"Sex",sexWithVerusha);
+	addButton(3,"Sex",sexWithVerusha);
 }
 
 //[Talk] (first time only)

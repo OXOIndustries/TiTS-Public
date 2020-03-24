@@ -92,8 +92,7 @@ public function tarkusTransitMenu():void
 	{
 		addDisabledButton(0,"Novahome","Novahome","You’re already at the Novahome scout office.");
 	}
-	if(pc.hasCock() && pc.lust() >= 33) addButton(2,"To Bed",inviteNessaToBed,undefined,"To Bed","Take the kitty to bed.");
-	else if(pc.lust() < 33) addDisabledButton(2,"To Bed","To Bed","You aren’t really aroused enough for that.");
+	if(pc.hasCock()) addButton(2,"To Bed",inviteNessaToBed,undefined,"To Bed","Take the kitty to bed.");
 	else addDisabledButton(2,"To Bed","To Bed","The Kaithrit is only interested in lovers with penises, it seems. For shame.");
 	addButton(14,"Back",mainGameMenu);
 }

@@ -456,18 +456,9 @@ public function defeatFeruze():void
 	output("\n\n");
 	clearMenu();
 	pc.changeLust(10);
-	if(pc.lust() < 33)
-	{
-		addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You aren’t aroused enough for this.");	
-		addDisabledButton(1,"Scissor","Scissor","You aren’t aroused enough for this.");
-		addDisabledButton(2,"Big Titfuck","Big Titfuck","You aren’t aroused enough for this.");
-	}
-	else
-	{
-		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0 && pc.hasCock()) addButton(0,"FuckHerPuss",cockSelect,[fuckFeruzesPussy,enemy.vaginalCapacity(0),false,0],"Fuck Her Puss","Relieve yourself in the most tried and true method known to carbon-based life the universe over.");
-		else if(pc.hasCock()) addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You don’t have a dick small enough to fit inside her.");
-		else addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You need a penis for this.");
-
+	if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0 && pc.hasCock()) addButton(0,"FuckHerPuss",cockSelect,[fuckFeruzesPussy,enemy.vaginalCapacity(0),false,0],"Fuck Her Puss","Relieve yourself in the most tried and true method known to carbon-based life the universe over.");
+	else if(pc.hasCock()) addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You don’t have a dick small enough to fit inside her.");
+	else addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You need a penis for this.");
 	if(pc.hasVagina()) addButton(1,"Scissor",tribFeruze,undefined,"Scissor","Squeeze your crotch together with Feruze and rub cunts until you’re satisfied.");
 	else addDisabledButton(1,"Scissor","Scissor","You need a vagina for this.");
 

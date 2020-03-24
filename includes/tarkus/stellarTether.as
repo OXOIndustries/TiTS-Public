@@ -201,8 +201,7 @@ public function liftStationEngineeringDeckBonusFunc():Boolean
 		output("\n\nThe cat-girl is currently hunched over a workbench, desperately working on the damaged wolf-drone, also named Tam. Apparently. She doesn’t seem to notice you, or care if she does. For the first time, you’re able to get a good look at the crazy kitty: she’s slim but buxom, as is common for her race, with a pair of EE-cups hanging heavily inside her greasy T-shirt, swaying free with her every motion. She’s got a nice, rounded ass, currently sticking straight up in the air as she works, guarded by nothing put a pair of low-riding jean shorts that are doing a poor job of keeping her modest, and a pair of swishing pink tails. It wouldn’t take much to just yank those shorts down and have your way with her... and without any drones left, you doubt she could stop you.");
 		clearMenu();
 		addButton(0,"Knock Out",knockOutTamtam,undefined,"Knock Out","Club her upside the head before she knows what’s going on. It may not be the most honorable choice, but it is the safest.");
-		if(pc.lust() >= 33) addButton(1,"Fuck Her",fuckTamTamIntoUnconscitude,undefined,"Fuck Her","With her ass sticking up in the air like that, she’s practically begging for it. She seems like the type that might prefer that to a conk on the head.");
-		else addDisabledButton(1,"Fuck Her","Fuck Her","You aren’t aroused enough to be interested in this.");
+		addButton(1,"Fuck Her",fuckTamTamIntoUnconscitude,undefined,"Fuck Her","With her ass sticking up in the air like that, she’s practically begging for it. She seems like the type that might prefer that to a conk on the head.");
 		return true;
 	}
 	
@@ -1123,22 +1122,14 @@ public function youBeatUpAnOrcWaytoGo():void
 	output(" as you’re confronted with the lusty captain, a willing thraggen pirate.");
 	processTime(1);
 	clearMenu();
-	if(pc.lust() >= 33)
+	if(pc.hasVagina()) addButton(1,"Girly Fun",thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
+	else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
+	if(pc.hasCock()) 
 	{
-		if(pc.hasVagina()) addButton(1,"Girly Fun",thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
-		else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
-		if(pc.hasCock()) 
-		{
-			if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she’s asking for.");
-			else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn’t handle what you’re packing.");
-		}
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
+		if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she’s asking for.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn’t handle what you’re packing.");
 	}
-	else
-	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren’t turned on enough for sex at the moment.");
-		addDisabledButton(1,"Girly Fun","Girly Fun","You aren’t turned on enough for sex at the moment.");
-	}
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
 	addButton(14,"Leave",leaveDatThragginBootayBehind);
 }
 
@@ -1389,22 +1380,14 @@ public function approachCaptainPostDefeat():void
 		output("\n\n<i>“What do you say, captain?”</i> you grin, looming over the greenskin. <i>“Time to make good on that offer....”</i>");
 	}
 	clearMenu();
-	if(pc.lust() >= 33)
+	if(pc.hasVagina()) addButton(1,"Girly Fun",thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
+	else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
+	if(pc.hasCock()) 
 	{
-		if(pc.hasVagina()) addButton(1,"Girly Fun",thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
-		else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
-		if(pc.hasCock()) 
-		{
-			if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she’s asking for.");
-			else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn’t handle what you’re packing.");
-		}
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
+		if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she’s asking for.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn’t handle what you’re packing.");
 	}
-	else
-	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren’t turned on enough for sex at the moment.");
-		addDisabledButton(1,"Girly Fun","Girly Fun","You aren’t turned on enough for sex at the moment.");
-	}
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
 	addButton(14,"Leave",leaveDaCapnRepeat);
 }
 
@@ -1944,18 +1927,10 @@ public function defeatKaska():void
 	if (!pc.hasKeyItem("Kaska's Detonator")) pc.createKeyItem("Kaska's Detonator",0,0,0,0);
 	processTime(1);
 	//Options
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,undefined,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
-		if(pc.hasVagina()) addButton(1,"Cunnilingus",makeKaskaSuchYerCoochLikeABaws,undefined,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
-		else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
-	}
-	else
-	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
-		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
-	}
+	if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,undefined,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
+	if(pc.hasVagina()) addButton(1,"Cunnilingus",makeKaskaSuchYerCoochLikeABaws,undefined,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
+	else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
 	addButton(14,"Leave",leaveKaskaPostCombat);
 }
 
@@ -1984,18 +1959,10 @@ public function approachUnfuckedKaska():void
 	showName("\nKASKA");
 	output("Kaska, still tugging her length, smiles at your approach. <i>“I should hate you right now, but everything is awesome, and you’re awesome, and I’m so fucking hard, and you can fuck me however you want, just fuck me!”</i> Well... you suppose you could do just that.");
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,undefined,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
-		if(pc.hasVagina()) addButton(1,"Cunnlingus",makeKaskaSuchYerCoochLikeABaws,undefined,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
-		else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
-	}
-	else
-	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this.");
-		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this.");
-	}
+	if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,undefined,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
+	if(pc.hasVagina()) addButton(1,"Cunnlingus",makeKaskaSuchYerCoochLikeABaws,undefined,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
+	else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

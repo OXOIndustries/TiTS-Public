@@ -163,16 +163,8 @@ public function shekkaMainMenu():void
 	else if(flags["SHEKKA_ISSUES"] == 8 && !shekkaRecruited()) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
 	else if(MailManager.isEntryViewed("shekkaFollowerIntroMail") && (flags["SHEKKA_ISSUES"] == undefined || flags["SHEKKA_ISSUES"] == 1)) addButton(1,"Talk",raskvelCureQuestShekkaTalk,undefined,"Talk","Talk with Shekka about the Raskvel.");
 	else addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
-	if(pc.lust() >= 33)
-	{
-		if(flags["TIMES_SEXED_SHEKKA"] == undefined) addButton(2,"Flirt",shekkaFlirtSexMenu,undefined,"Flirt","Flirt with Shekka in hopes of getting some action.");
-		else addButton(2,"Sex",shekkaFlirtSexMenu,undefined,"Sex","See if Shekka is up for some sex.");
-	}
-	else
-	{
-		if(flags["TIMES_SEXED_SHEKKA"] == undefined) addDisabledButton(2,"Flirt","Flirt","You aren’t turned on enough to try for sex right now.");
-		else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough to be interested in sex.");
-	}
+	if(flags["TIMES_SEXED_SHEKKA"] == undefined) addButton(2,"Flirt",shekkaFlirtSexMenu,undefined,"Flirt","Flirt with Shekka in hopes of getting some action.");
+	else addButton(2,"Sex",shekkaFlirtSexMenu,undefined,"Sex","See if Shekka is up for some sex.");
 	addButton(5,"Buy", shekkaShop);
 	addButton(6,"Sell", shekkaShop, true);
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(7,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");

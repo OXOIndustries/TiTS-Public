@@ -95,88 +95,73 @@ public function victoryVsRaskvel():void
 	else output("drops to her knees, the wrench falling by the wayside. She whimpers as her fingers disappear into her sodden box. You can see the moisture glistening on the scales of her legs as she desperately frigs herself, not even caring as she slumps down onto her back.");
 	clearMenu();
 	var btn:int = 0;
-	if(pc.lust() >= 33)
+	output("\n\nDo you do something sexual with her?");
+	if(pc.hasCock())
 	{
-		output("\n\nDo you do something sexual with her?");
-		if(pc.hasCock())
+		if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) 
 		{
-			if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) 
-			{
-				addButton(btn,"DoggyStyle",raskVelBabeGetsDoggieStyled);
-				output(" You could do her doggy style.");
-				btn++;
-			}
-			else 
-			{
-				addDisabledButton(btn,"DoggyStyle");
-				output(" You’re too big to do her doggy style.");
-				btn++;
-			}
-			//Huge Dick Ear Jackoff?
-			if(pc.cockVolume(pc.biggestCockIndex()) > enemy.vaginalCapacity())
-			{
-				addButton(btn,"EarFap",hugeDickEarJackoff);
-				output(" You could put those big ears to work on your big dick.");
-				btn++;
-			}
-			else
-			{
-				addDisabledButton(btn,"EarFap");
-				output(" If only you had a member that was too big for her pussy, then you could use her soft ears to rub one out.");
-				btn++;
-			}
-			//Female Raskvel Anal
-			//[Punish] – Teach her a lesson about defeat.
-			if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(btn,"AnalPunish",punishAFemRaskInTheButtWithFrankensteinApplesOrSomething,undefined,"Anal Punishment","Teach her a lesson about defeat.");
-			else addDisabledButton(btn, "AnalPunish", "Anal Punishment", "You’re just too big to anally punish her.");
-			btn++;
-			
-			//cock worship
-			if (CodexManager.entryViewed("Raskvel")) addButton(btn, "Cock Worship", penisRouter, [raskvelFemaleGetWorshiped, 99999, false, 0], "Cock Worship", "Get the little rask on her knees and servicing your [pc.cockNoun " + rand(pc.cockTotal()) + "]. That way she'll know which " + (pc.isHerm() ? "herm" : "[pc.manWoman]") + " to <b>present her pussy for</b> next time, rather than shaking [pc.himHer] down!");
-			else addDisabledButton(btn, "Get Worshiped", "Get Worshiped", " If you want to take advantage of innate raskvel motivations, you'll <b>need to read up on them.</b>");
-			btn++;
-		}
-		else
-		{
-			output(" Without a dick, you can’t really fuck her, but you’ve still got other options open to you.");
-			addDisabledButton(btn,"DoggyStyle");
-			btn++;
-			addDisabledButton(btn,"EarFap");
-			btn++;
-			addDisabledButton(btn,"AnalPunish");
-			btn++;
-			//cock worship
-			addDisabledButton(btn, "Get Worshiped", "Get Worshiped", "You <b>need a penis</b> to access this scene. Can't have your virility appreciated without the right organ, no?");
-			btn++;
-		}
-		if(pc.hasVagina())
-		{
-			output(" Her face looks like it would fit nicely against your [pc.vaginas].");
-			addButton(btn,"RideHerFace",faceRidingRaskvelLadies);
+			addButton(btn,"DoggyStyle",raskVelBabeGetsDoggieStyled);
+			output(" You could do her doggy style.");
 			btn++;
 		}
 		else 
 		{
-			output(" If you had a pussy, you could ride her face. Sadly, you don’t.");
-			addDisabledButton(btn,"RideHerFace");
+			addDisabledButton(btn,"DoggyStyle");
+			output(" You’re too big to do her doggy style.");
 			btn++;
 		}
-		//Cuff&Fuck
-		cuffNFuckButton(btn, enemy);
+		//Huge Dick Ear Jackoff?
+		if(pc.cockVolume(pc.biggestCockIndex()) > enemy.vaginalCapacity())
+		{
+			addButton(btn,"EarFap",hugeDickEarJackoff);
+			output(" You could put those big ears to work on your big dick.");
+			btn++;
+		}
+		else
+		{
+			addDisabledButton(btn,"EarFap");
+			output(" If only you had a member that was too big for her pussy, then you could use her soft ears to rub one out.");
+			btn++;
+		}
+		//Female Raskvel Anal
+		//[Punish] – Teach her a lesson about defeat.
+		if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(btn,"AnalPunish",punishAFemRaskInTheButtWithFrankensteinApplesOrSomething,undefined,"Anal Punishment","Teach her a lesson about defeat.");
+		else addDisabledButton(btn, "AnalPunish", "Anal Punishment", "You’re just too big to anally punish her.");
+		btn++;
+		
+		//cock worship
+		if (CodexManager.entryViewed("Raskvel")) addButton(btn, "Cock Worship", penisRouter, [raskvelFemaleGetWorshiped, 99999, false, 0], "Cock Worship", "Get the little rask on her knees and servicing your [pc.cockNoun " + rand(pc.cockTotal()) + "]. That way she'll know which " + (pc.isHerm() ? "herm" : "[pc.manWoman]") + " to <b>present her pussy for</b> next time, rather than shaking [pc.himHer] down!");
+		else addDisabledButton(btn, "Get Worshiped", "Get Worshiped", " If you want to take advantage of innate raskvel motivations, you'll <b>need to read up on them.</b>");
 		btn++;
 	}
 	else
 	{
-		output(" <b>You aren’t turned on enough to engage in coitus with the alien babe.</b>");
+		output(" Without a dick, you can’t really fuck her, but you’ve still got other options open to you.");
 		addDisabledButton(btn,"DoggyStyle");
 		btn++;
 		addDisabledButton(btn,"EarFap");
 		btn++;
-		addDisabledButton(btn,"RideHerFace");
-		btn++;
 		addDisabledButton(btn,"AnalPunish");
 		btn++;
+		//cock worship
+		addDisabledButton(btn, "Get Worshiped", "Get Worshiped", "You <b>need a penis</b> to access this scene. Can't have your virility appreciated without the right organ, no?");
+		btn++;
 	}
+	if(pc.hasVagina())
+	{
+		output(" Her face looks like it would fit nicely against your [pc.vaginas].");
+		addButton(btn,"RideHerFace",faceRidingRaskvelLadies);
+		btn++;
+	}
+	else 
+	{
+		output(" If you had a pussy, you could ride her face. Sadly, you don’t.");
+		addDisabledButton(btn,"RideHerFace");
+		btn++;
+	}
+	//Cuff&Fuck
+	cuffNFuckButton(btn, enemy);
+	btn++;
 	output("\n\n");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }

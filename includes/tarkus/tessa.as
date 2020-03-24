@@ -307,7 +307,7 @@ public function whiteWomanTessa():void
 		//Buttons
 		addButton(0,"Appearance",lookAtDatSexyTessa,undefined,"Appearance","Get a good look at her.");
 		addButton(1,"Talk",talkWifDatLizTessa,undefined,"Talk","Engage with her.");
-		if (tessaTrust() >= 70 && flags["TESSA_JOB"]!= undefined && pc.lust() >=33)
+		if (tessaTrust() >= 70 && flags["TESSA_JOB"]!= undefined)
 		{
 			addButton(2,"Flirt",flirtWithTessa,undefined,"Flirt","See where this goes.");
 		}
@@ -328,7 +328,7 @@ public function whiteWomanTessa():void
 		//Buttons
 		addButton(0,"Appearance",lookAtDatSexyTessa,undefined,"Appearance","Get a good look at her.");
 		addButton(1,"Talk",talkWifDatLizTessa,undefined,"Talk","Engage with her.");
-		if (tessaTrust() >= 70 && flags["TESSA_JOB"]!= undefined && pc.lust() >=33)
+		if (tessaTrust() >= 70 && flags["TESSA_JOB"]!= undefined)
 		{
 			addButton(2,"Flirt",flirtWithTessa,undefined,"Flirt","See where this goes.");
 		}
