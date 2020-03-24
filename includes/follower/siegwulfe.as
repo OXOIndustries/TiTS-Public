@@ -351,8 +351,7 @@ public function approachSiegwulfe(arg:Array):void
 	// [Pet] [Fuck] [Appearance] [Take/Stay] [Leave]
 	clearMenu();
 	addButton(0, "Pet", doSiegwulfeAction, ["pet", fromInv], "Pet", "Reward your trusty robotic companion with a pet.");
-	if(pc.lust() >= 33) addButton(1, "Fuck", doSiegwulfeAction, ["fuck", fromInv], ("Fuck " + chars["WULFE"].short), "Or, reward your sexy robotic companion a different way...");
-	else addDisabledButton(1, "Fuck", ("Fuck " + chars["WULFE"].short), "You are not aroused enough for this!");
+	addButton(1, "Fuck", doSiegwulfeAction, ["fuck", fromInv], ("Fuck " + chars["WULFE"].short), "Or, reward your sexy robotic companion a different way...");
 	if(flags["WULFE_ON_SHIP"] == undefined)
 	{
 		if(InShipInterior()) addButton(4, "Stay", doSiegwulfeAction, ["stay", fromInv], "Stay Here, " + chars["WULFE"].short + ".", "Ask [wulfe.name] to stay on your ship.");
@@ -1298,18 +1297,6 @@ public function siegwulfeDomSexButtons(fromInv:Boolean):void
 		addDisabledButton(1, "Get Fucked", "Get Fucked", "That’s not legal here!");
 		if (flags["WULFE_FUCKED"] >= 2) addDisabledButton(1, "Fuck?", "Fuck?", "That’s not legal here!");
 		addDisabledButton(2, "Quickie", "Quickie", "That’s not legal here!");
-	}
-	else if (pc.lust() < 33)
-	{
-		if (flags["WULFE_DOMSEX_UNLOCKED"] != undefined)
-		{
-			addDisabledButton(10, "Get Rutted", "Get Rutted", "You are not aroused enough for this!");
-			addDisabledButton(11, "Rough Rut", "Rough Rut", "You are not aroused enough for this!");
-			addDisabledButton(12, "Request Sex", "Request Sex", "You are not aroused enough for this!");
-		}
-		addDisabledButton(1, "Get Fucked", "Get Fucked", "You are not aroused enough for this!");
-		if (flags["WULFE_FUCKED"] >= 2) addDisabledButton(1, "Fuck?", "Fuck?", "You are not aroused enough for this!");
-		addDisabledButton(2, "Quickie", "Quickie", "You aren’t aroused enough for this either!");
 	}
 	else
 	{

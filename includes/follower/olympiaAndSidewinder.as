@@ -544,9 +544,7 @@ public function olympiaCrewMenu():void
 	clearMenu();
 	addButton(0,"Appearance",olympiaCrewAppearance,0,"Appearance","Take a peep at your engineering sex-bot.");
 	addButton(1,"Talk",olympiaTalkingTimes,undefined,"Talk","Talk to your gynoid.")
-	
-	if(pc.lust() >= 33) addButton(2,"Sex",sexWithOlympia,undefined,"Sex","See if the sexy genius before you is up for a little rest and relaxation...");
-	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for that right now.");
+	addButton(2,"Sex",sexWithOlympia,undefined,"Sex","See if the sexy genius before you is up for a little rest and relaxation...");
 	addButton(3,"Hug",hugOlympia,undefined,"Hug","Olympia looks like she could use a hug...");
 	addButton(4,"Attachments",olympiaAttachments,undefined,"Attachments","Talk to Olympia about any possible aftermarket parts she’s got access to.");
 	addButton(14,"Back",crew);

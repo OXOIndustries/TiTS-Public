@@ -808,8 +808,7 @@ public function paigeMenu():void
 		else if(pc.isPregnant() && pc.bellyRating() >= 90) addDisabledButton(4,"Yoga","Yoga","It’s not a good idea to do extended yoga sessions while you are heavily pregnant!");
 		else addButton(4,"Yoga",paigeAtHomeYoga,undefined,"Yoga","Even though you’re not ‘officially’ a student of hers, you could still try asking Paige if she’s willing to do some yoga.");
 
-		if(pc.lust() >= 33) addButton(5,"Sex",sexWithPaige,undefined,"Sex","You could really do with some release, and something tells you yoga’s not gonna cut it.");
-		else addDisabledButton(5,"Sex","Sex","You’re not aroused enough to have sex with Paige. There are several ways to fix that, of course.");
+		addButton(5,"Sex",sexWithPaige,undefined,"Sex","You could really do with some release, and something tells you yoga’s not gonna cut it.");
 
 		if(currentLocation == "PAIGE_HOUSE")
 		{

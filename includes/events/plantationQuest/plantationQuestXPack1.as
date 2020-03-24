@@ -3069,8 +3069,7 @@ public function mommyQuinnApproach():Boolean
 
 public function quinnMomSexButton(btnSlot:int = 2):void
 {
-	if(pc.lust() < 33) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t aroused enough for this.");
-	else if(quinnBabyAge() < 365)
+	if(quinnBabyAge() < 365)
 	{
 		// Non-handmaiden [Sex] chosen whilst kid present
 		if(quinnBabyActive())

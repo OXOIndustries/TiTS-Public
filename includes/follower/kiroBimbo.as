@@ -86,8 +86,7 @@ public function approachBimboKiroCrew(back:Boolean = false):void
 public function kiroBimboCrewMenu():void
 {
 	clearMenu();
-	if(pc.lust() >= 33) addButton(1,"Sex",bimboKiroSexApproach,undefined,"Sex","Have some sex with your tanuki-pet.");
-	else addDisabledButton(1,"Sex","Sex","You aren't aroused enough right now.");
+	addButton(1,"Sex",bimboKiroSexApproach,undefined,"Sex","Have some sex with your tanuki-pet.");
 	addButton(14,"Back",crew);
 }
 

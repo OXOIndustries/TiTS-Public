@@ -1130,7 +1130,7 @@ public function kiHendersonSteeleTech():void
 	if (flags["KI_VANDERBILTS_SECRET"] == undefined) output(" You wonder what happened to Elenora... she should have come down by now, right?");
 	output(" You sigh, putting a gentle hand on the leithan amazon’s bare flank.");
 
-	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined))
+	if (pc.hasGenitals() && flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
 	{
 		output("\n\nThe gentle hand, though, turns lecherous as time passes. The intense, overwhelming smell and sounds of leithan orgasm become more and more overwhelming, making your [pc.skinFurScales] burn with unbidden desire. No matter how horrifying the parasite inside her is, the naked, climaxing woman holds an animalistic appeal that speaks to your body’s innermost desires. Before you know it, your hand is wandering down the leithan woman’s flank, fingers brushing the dark lips of her engorged sex. They come away matted with thick feminine slime. Your companion gasps, her gray skin flushing with a hint of crimson.");
 
@@ -1178,7 +1178,7 @@ public function kiHendersonSteeleTech():void
 	}
 
 	output("\n\nYou squint, shielding your eyes as the lights consolidate into several flashlights, carried by Steele Tech security personnel, all armed and armored. They look down at you from under HAZMAT visors, shouting for everyone to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm");
-	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined))
+	if (pc.hasGenitals() && flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
 	{
 		output(" when she gets off your crotch");
 		IncrementFlag("FUCKED_CHIEF_NEYKKAR");

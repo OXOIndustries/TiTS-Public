@@ -292,9 +292,7 @@ public function annoFollowerMenu():void
 	addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno’s entire body looks like.");
 	if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn’t interested in whatever you’re considering to be a prize.");
-	
-	if (pc.lust() >= 33) addButton(8, "Sex", annoFollowerSexMenu, undefined, "Sex","Have some sexy fun with Anno.");
-	else addDisabledButton(8, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some ‘entertainment’.")
+	addButton(8, "Sex", annoFollowerSexMenu, undefined, "Sex","Have some sexy fun with Anno.");
 	
 	if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
 	{
@@ -1104,8 +1102,7 @@ public function annoFollowerEarScritches():void
 	processTime(4+rand(2));
 	//[Sex][Tease]
 	clearMenu();
-	if (pc.lust() >= 33) addButton(0, "Sex", annoFollowerEarScritchesSex, undefined, "Sex","Follow that scratch up with some sex.");
-	else addDisabledButton(0, "Sex", "Sex", "You’re not horny enough for that...")
+	addButton(0, "Sex", annoFollowerEarScritchesSex, undefined, "Sex","Follow that scratch up with some sex.");
 	addButton(1, "Tease", annoFollowerEarScritchesTease);
 }
 

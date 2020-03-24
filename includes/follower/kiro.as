@@ -133,8 +133,7 @@ public function kiroCrewMenu():void
 	clearMenu();
 	addButton(0,"Appearance",kiroAppearanceScreen,undefined,"Appearance","Take a look at the fluffy 'nuki.");
 	addButton(1,"Talk",talkToKiro,undefined,"Talk","Sit down with Kiro for a talk.");
-	if(pc.lust() >= 33) addButton(2,"Sex",kiroCrewSexApproach,undefined,"Sex","Kiro has always been a creature of obscene sexual appetite. Just ask, and she'll be down for almost anything.");
-	else addDisabledButton(2,"Sex","Sex","Kiro might be, but you aren't aroused enough for sex right now.");
+	addButton(2,"Sex",kiroCrewSexApproach,undefined,"Sex","Kiro has always been a creature of obscene sexual appetite. Just ask, and she'll be down for almost anything.");
 	addButton(13,"Leave Crew",leaveTheCrewKiro,undefined,"Leave Crew","Ask Kiro to leave the crew temporarily.");
 	addButton(14,"Back",crew);
 }

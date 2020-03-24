@@ -143,8 +143,7 @@ public function erraMenu():void
 	clearMenu();
 	addButton(0,"Appearance",erraAppearance,undefined,"Appearance","Take a good look at the ausar.");
 	addButton(1,"Talk",talkToErra,undefined,"Talk","Talk to Erra about something.");
-	if(pc.lust() >= 33) addButton(2,"Sex",erraSexGOOO,undefined,"Sex","Well, she was certainly open to the idea before, why wouldn’t she be now?");
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
+	addButton(2,"Sex",erraSexGOOO,undefined,"Sex","Well, she was certainly open to the idea before, why wouldn’t she be now?");
 	if(flags["ERRA_D_TALK"] == 1 && flags["ERRA_RELATIONSHIP_TALK"] == 1 && flags["ERRA_PAST_TALK"] == 1) addButton(3,"Public Pet",publicErraPets,undefined,"Public Pet","Get your hands on Erra’s big, beautiful ears.");
 	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for whatever this is.");
 	addButton(14,"Leave",mainGameMenu);

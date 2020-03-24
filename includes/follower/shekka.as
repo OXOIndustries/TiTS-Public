@@ -127,8 +127,7 @@ public function shekkaCrewMenu():void
 	addButton(0,"Appearance",crewShekkaAppearance);
 	addButton(1,"Talk",talkToCrewShekka);
 	addButton(2,"Spend Time",spendTimeWithShekka,undefined,"Spend Time","Spend some leisure time with your rasky crew member.");
-	if(pc.lust() >= 33) addButton(3,"Sex",shekkaCrewSexApproach);
-	else addDisabledButton(3,"Sex","Sex","You aren’t quite in the mood for that.");
+	addButton(3,"Sex",shekkaCrewSexApproach);
 	/*Her menu looks as follows:
 		//Appearance
 		//Talk

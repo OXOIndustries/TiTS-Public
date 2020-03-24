@@ -1572,8 +1572,7 @@ public function doctorBimboBadgerMenu():void
 	//[Talk][Sex]
 	clearMenu();
 	addButton(0,"Talk",talkToDoctorBadger,undefined,"Talk","Try to have a conversation with your newly minted bimbo.");
-	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
+	addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	
 	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	drBadgerFixNymFoeButton(3);

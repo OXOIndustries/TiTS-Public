@@ -45,18 +45,11 @@ public function gigaCeliseRepeatApproach():void
 public function gigaCeliseMenu():void
 {
 	this.clearMenu();
-	if(pc.hasCock() || pc.hasVagina()) {
-		if(pc.lust() < 33) {
-			output("\n\n<b>You aren’t aroused enough to consider any sort of sexual situation with Celise.</b>");
-			this.addDisabledButton(0,"Feed");
-		}
-		else 
-		{
-			if(pc.hasCock() || pc.hasVagina()) this.addButton(0,"Feed",gigaCeliseFeedRouter);
-			else addDisabledButton(0,"Feed","Feed","You need some genitals to feed Celise.");
-		}
+	if(pc.hasCock() || pc.hasVagina()) this.addButton(0,"Feed",gigaCeliseFeedRouter);
+	else {
+		output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
+		addDisabledButton(0,"Feed","Feed","You need some genitals to feed Celise.");
 	}
-	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Shrink",shrinkBackToNormalCelise);
 	if(flags["CELISE_NO_BED_SENPAI"] == true) addButton(3,"Allow Bed",celiseBedToggle,true,"Allow Goo Bed","Allow Celise to approach you before bed if she is in the mood.");
 	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She’ll be at the hangar in Tavros if you ever want her back.");

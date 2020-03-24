@@ -122,13 +122,9 @@ public function pennyCrewMenu():void
 	clearMenu();
 	if(penny.isBimbo()) addButton(0,"Talk",bimboPennyTalk,undefined,"Talk","Talk to Penny.");
 	else addButton(0,"Talk",pennyCrewTalk,undefined,"Talk","Talk to Penny.");
-	if(pc.lust() >= 33) 
-	{
-		if(penny.isBimbo()) addButton(1,"Sex",bimboPennySex,undefined,"Sex","Get naughty with your bimbo.");
-		else if (flags["PENNY_MADE_LOVE"] == undefined && penny.hasCock()) addButton(1,"Sex?",(pennyIsCumSlut() || penny.isBimbo() ? yourFoxCamslutWantsToShowYouHowMuchSheAppreciatesYou : pennyHasADifferentIdeaForToday),(pc.hasVagina() ? 0 : -1),"Sex",("There’s a telling look in Penny’s eyes." + ((pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin) ? " <b>You may not keep your virginity if you ask this.</b>" : " She’ll probably take the lead if you ask.")));
-		else addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
-	}
-	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.");
+	if(penny.isBimbo()) addButton(1,"Sex",bimboPennySex,undefined,"Sex","Get naughty with your bimbo.");
+	else if (flags["PENNY_MADE_LOVE"] == undefined && penny.hasCock()) addButton(1,"Sex?",(pennyIsCumSlut() || penny.isBimbo() ? yourFoxCamslutWantsToShowYouHowMuchSheAppreciatesYou : pennyHasADifferentIdeaForToday),(pc.hasVagina() ? 0 : -1),"Sex",("There’s a telling look in Penny’s eyes." + ((pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin) ? " <b>You may not keep your virginity if you ask this.</b>" : " She’ll probably take the lead if you ask.")));
+	else addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
 	
 	if(!drBadgerImprisioned())
 	{

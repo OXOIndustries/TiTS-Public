@@ -1000,8 +1000,7 @@ public function mitziCrewMenu():void
 	if(pc.getStatusMinutes("Mitzi Dressed") < 120) pc.setStatusMinutes("Mitzi Dressed",120);
 	addButton(0,"Appearance",mitziAppearance);
 	addButton(1,"Talk",talkToMitzi);
-	if(pc.lust() >= 33) addButton(2,"Sex",mitziCrewSexApproach);
-	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for this.");
+	addButton(2,"Sex",mitziCrewSexApproach);
 	addButton(3,"Dress Her",dressMitziUpMenu,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
 	if(flags["CREWMEMBER_SLEEP_WITH"] != "MITZI") addButton(5,"Sleep With",sleepWithToggleMitzi,undefined,"Sleep With","Invite Mitzi to share your bed and get you off in the mornings.");
 	else addButton(5,"NoSleepWith",sleepWithToggleMitzi,undefined,"No Sleep With","Kick Mitzi out of bed so she won’t wake you up with orgasms in the morning.");

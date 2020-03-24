@@ -23,8 +23,7 @@ public function fedQuestBarracksBonus():Boolean
 	else if(flags["FEDERATION_QUEST_GOLD"] >= 2)
 	{
 		output("\n\nA pile of gold myr soldiers are writhing on the floor, moaning and groping at each other. Some are fisting their sister’s rear-mounted slits; others are suckling on honey-laden tits or kissing each other passionately. The whole squad’s devolved into one big, entwined orgy. They’re completely out of it, entranced by lust. You can walk right by them... or you might be able to join in. You doubt they could, or would, stop you.");
-		if(pc.lust() >= 33) addButton(button++, "Join In", function():void{clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();}, undefined, "Join In", "Help yourself to a place in the gold myr orgy sprawling out around you.");
-		else addDisabledButton(button++, "Join In", "Join In", "You aren’t turned on enough for this.");
+		addButton(button++, "Join In", function():void{clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();}, undefined, "Join In", "Help yourself to a place in the gold myr orgy sprawling out around you.");
 	}
 	if(flags["FEDERATION_QUEST_LEVER"] == undefined) addButton(button++, "Search", fedQuestBarracksSearch, undefined, "Search", "Check the barracks for anything useful. ");
 	

@@ -1958,11 +1958,10 @@ public function pcVictoryVsNymFoeMenu():void
 	
 	//[Fuck] [Suck Out] [Harvest] [Leave]
 	if(!pc.hasGenitals()) addDisabledButton(0,"Fuck","Fuck","You need genitalia to do this.");
-	else if(pc.lust() >= 33) {
+	else {
 		if(flags["NYM-FOE_DISASSEMBLED"] != undefined) addDisabledButton(0,"Fuck","Fuck","You can’t sex the nurse when she’s a pile of parts.");
 		else addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
 	}
-	else addDisabledButton(0,"Fuck","Fuck","You’re not up for sex right now.");
 	
 	if(flags["NYM-FOE_DISASSEMBLED"] != undefined) addDisabledButton(1,"Suck Out","Suck Out","You can’t use the nurse when she’s a pile of parts.");
 	else if(pc.hasStatusEffect("Nym-Foe Injections")) addButton(1,"Suck Out",suckOutDatInjectionGoop,undefined,"Get the excess silicone sucked back out of your body.");

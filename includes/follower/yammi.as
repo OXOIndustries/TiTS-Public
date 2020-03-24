@@ -847,41 +847,31 @@ public function flirtWithYammiBruh():void
 public function yammiFollowerSexMenu():void
 {
 	clearMenu();
-	if(pc.lust() >= 33)
+	if(pc.hasCock() || pc.hasHardLightEquipped())
 	{
-		if(pc.hasCock() || pc.hasHardLightEquipped())
-		{
-			//[Anal]
-			addButton(0,"Fuck Her Ass",analWithYammiChoiceWrapper,undefined,"Fuck Her Ass","Bend Yammi over the counter and see about giving this sweet chef some backdoor loving.");
-			//[Vaginal]
-			addButton(1,"Fuck Her Vag",vaginalWithYammiChoiceWrapper,undefined,"Fuck Her Vagina","Get Yammi on her back and fuck her pussy.");
-		}
-		else
-		{
-			addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You require a penis or hardlight-equipped underwear to do this.");
-			addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You require a penis or hardlight-equipped underwear to do this.");
-		}
-		//[Get Oral]
-		//PC needs a twat
-		if(pc.hasVagina())
-		{
-			addButton(2,"Get Licked",getLickedByYamyams,undefined,"Get Licked","Hop up on the counter and give Yammi a taste of your" + (pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY ? " literal" : "") + " honeypot!");
-		}
-		else addDisabledButton(2, "Get Licked", "Get Licked", "You must have a vagina for this.");
-		
-		if (pippaYammiThreesomeCount(0) > 0)
-		{
-			if (!pippaOnShip()) addDisabledButton(3, "Pippa", "Pippa", "Pippa must be on your ship to have a threesome with her and Yammi.");
-			else if ((pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur()) addButton(3, "Pippa", pippaYammiThreesome, undefined, "Pippa", "Have a threesome with Pippa and Yammi.");
-			else addDisabledButton(3, "Pippa", "Pippa", "You must have a cock or hardlight-equipped underwear and not be a taur to have a threesome with Pippa and Yammi.");
-		}
+		//[Anal]
+		addButton(0,"Fuck Her Ass",analWithYammiChoiceWrapper,undefined,"Fuck Her Ass","Bend Yammi over the counter and see about giving this sweet chef some backdoor loving.");
+		//[Vaginal]
+		addButton(1,"Fuck Her Vag",vaginalWithYammiChoiceWrapper,undefined,"Fuck Her Vagina","Get Yammi on her back and fuck her pussy.");
 	}
 	else
 	{
-		addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You’re not aroused enough to be interested in this.");
-		addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You’re not aroused enough to be interested in this.");
-		addDisabledButton(2, "Get Licked", "Get Licked", "You’re not aroused enough to be interested in this.");
-		if (pippaYammiThreesomeCount(0) > 0) addDisabledButton(3, "Pippa", "Pippa", "You’re not aroused enough to be interested in this.");
+		addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You require a penis or hardlight-equipped underwear to do this.");
+		addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You require a penis or hardlight-equipped underwear to do this.");
+	}
+	//[Get Oral]
+	//PC needs a twat
+	if(pc.hasVagina())
+	{
+		addButton(2,"Get Licked",getLickedByYamyams,undefined,"Get Licked","Hop up on the counter and give Yammi a taste of your" + (pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY ? " literal" : "") + " honeypot!");
+	}
+	else addDisabledButton(2, "Get Licked", "Get Licked", "You must have a vagina for this.");
+	
+	if (pippaYammiThreesomeCount(0) > 0)
+	{
+		if (!pippaOnShip()) addDisabledButton(3, "Pippa", "Pippa", "Pippa must be on your ship to have a threesome with her and Yammi.");
+		else if ((pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur()) addButton(3, "Pippa", pippaYammiThreesome, undefined, "Pippa", "Have a threesome with Pippa and Yammi.");
+		else addDisabledButton(3, "Pippa", "Pippa", "You must have a cock or hardlight-equipped underwear and not be a taur to have a threesome with Pippa and Yammi.");
 	}
 	addButton(14,"Back",yammiInTheKitchen);
 }

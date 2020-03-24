@@ -2620,11 +2620,7 @@ public function peacefulQuinnMenu():void
 	if(flags["MET_QUINN"] != undefined) 
 	{
 		if(flags["QUINN_KID_AGE"] != undefined) quinnMomSexButton(2);
-		else if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0)
-		{
-			if(pc.lust() >= 33) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
-			else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
-		}
+		else if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
 		else if(pc.hasCock()) addDisabledButton(2,"Sex","Sex","You’re too big for sex with her.");
 		else addDisabledButton(2,"Sex","Sex","You have no suitable endowments for sex with her.");
 	}

@@ -362,11 +362,7 @@ public function azraMenu():void
 	addButton(2,"Expeditions",azraExpeditionStartup,undefined,"Expeditions","Go on an expedition with Azra.");
 	if(flags["AZRA_MHENGAED"] != undefined && flags["AZRA_MHENGAED"] != 0) addButton(3,"Plant Samples",azraPlantSamples,undefined,"Plant Samples","Personally inspect the fruits of your labors.");
 	else addDisabledButton(3,"Plant Samples","Plant Samples","You have yet to recover any plant samples on an expedition with Azra.");
-	if(!azraProfessional() && flags["AZRA_SEXED"] != undefined)
-	{
-		if(pc.lust() >= 33) addButton(4,"Sex",azraSexApproach);
-		else addDisabledButton(4,"Sex","Sex","You aren’t really interested in sex right now.");
-	}
+	if(!azraProfessional() && flags["AZRA_SEXED"] != undefined) addButton(4,"Sex",azraSexApproach);
 	else addDisabledButton(4,"Sex","Sex","Azra isn’t interested in sex with you right now.");
 	addButton(13,"Leave Crew",talkToAzraAboutLeavingTheCrew);
 	addButton(14,"Leave",crew);

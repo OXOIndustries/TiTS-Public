@@ -299,17 +299,9 @@ public function pcBeatsUpAGryvainCauseTheyreAShit():void
 
 	output("\n\nYou saunter up and pick up her gun, stuffing it into your pack, before looking down at the defeated gryvain and decided what to do with her...");
 	clearMenu();
-	if(pc.lust() >= 33)
-	{
-		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatGryvainShit,undefined,"Fuck Her","This dragon-babe tried to fuck you out of your treasure. Give her a little something to remember you by...");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that will fit inside her or a hardlight strap-on in order to this.");
-		addButton(1,"Ride Cock",rideDatCockAndShit,undefined,"Ride Cock","You see a bulge in her pants. Take this naughty dragon for a ride...");
-	}
-	else
-	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
-		addDisabledButton(1,"Ride Cock","Ride Cock","You aren’t aroused enough for this.");
-	}
+	if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatGryvainShit,undefined,"Fuck Her","This dragon-babe tried to fuck you out of your treasure. Give her a little something to remember you by...");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that will fit inside her or a hardlight strap-on in order to this.");
+	addButton(1,"Ride Cock",rideDatCockAndShit,undefined,"Ride Cock","You see a bulge in her pants. Take this naughty dragon for a ride...");
 	flags["SATELLITE_GRYVAIN_DEFEAT"] = 1;
 	//[Fuck Her] [Ride Cock] [Leave]
 	//PC gets her Heavy Laser Pistol and Shield Amp.

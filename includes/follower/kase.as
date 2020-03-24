@@ -214,9 +214,8 @@ public function kaseCrewMenu():void
 	
 	addButton(0, "Appearance", kaseAppearance, undefined, "Appearance", "Take a look at Kase.");
 	addButton(1, "Talk", kaseCrewTalk, undefined, "Talk", "Have a chat with your kitty boy crewmate.");
-	if(flags["KASE_HEALED"] != undefined && pc.lust() >= 33) addButton(2, "Sex", kaseSex, undefined, "Sex", "See if Kase is down for a little fun.");
-	else if(flags["KASE_HEALED"] == undefined) addDisabledButton(2, "Sex", "Sex", "You can’t do that! This poor kitty’s arm is still broken. You might hurt him!");
-	else addDisabledButton(2, "Sex", "Sex", "You aren’t turned on enough to have sex.");
+	if(flags["KASE_HEALED"] != undefined) addButton(2, "Sex", kaseSex, undefined, "Sex", "See if Kase is down for a little fun.");
+	else addDisabledButton(2, "Sex", "Sex", "You can’t do that! This poor kitty’s arm is still broken. You might hurt him!");
 	if(flags["KASE_STRESS"] == 0) addButton(3, "StressRelief", kaseCrewStressRelief, undefined, "Stress Relief", "Maybe work has gotten Kase a little wound-up. Give him some relief, with your hands.");
 	else addDisabledButton(3, "StressRelief", "Stress Relief", "You already eased his tension.");
 	addButton(4, "Scritches", kaseScritches, undefined, "Scritches", "Pet the pretty kitty.");

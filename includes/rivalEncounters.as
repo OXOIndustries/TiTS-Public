@@ -167,7 +167,7 @@ public function probeReclamationMhenga(response:int = 0):void
 		variableRoomUpdateCheck();
 		generateMapForLocation(currentLocation);
 		
-		if((pc.cockThatFits(600) >= 0 || pc.hasVagina()) && pc.lust() >= 33)
+		if(pc.cockThatFits(600) >= 0 || pc.hasVagina())
 		{
 			output("\n\nNice. Though there’s something else the cute dzaan could do for you if she has the time...");
 			clearMenu();
