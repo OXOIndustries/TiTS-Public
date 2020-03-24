@@ -796,7 +796,7 @@ public function ladyType69WithSellesy():void
 			output("\n\nSellesy lays still for a long while before speaking again. <i>“That was quite devious. I’ll admit that while it wasn’t as filling as my usual ‘fee’, this wasn’t entirely... pointless.”</i> She thrusts her flagging clitorises in the air one final time to emphasize her last word, and then the three stalks separate and retract into her with startling speed. She gets up and dresses herself, then walks out of the room, leaving you alone to sober up from drunkenness and your own unfulfilled desires.");
 			//end, no lust reduction, increase libido");
 			pc.libido(1);
-			pc.lust(10+rand(5));
+			pc.changeLust(10+rand(5));
 			processTime(45);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);

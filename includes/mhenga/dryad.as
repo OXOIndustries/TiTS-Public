@@ -41,8 +41,13 @@ public function getDryadPregContainer():PregnancyPlaceholder
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	pp.cocks[0].cLengthRaw = 14;
-	if (flags["AMBER_EQUILICUM"] != undefined) pp.createPerk("Fixed CumQ",18000,0,0,0);
-	else pp.createPerk("Fixed CumQ", 6000, 0, 0, 0);
+	if (amberThrobbDoses() == 1) pp.cocks[0].cLengthRaw = 19;
+	else if (amberThrobbDoses() == 2) pp.cocks[0].cLengthRaw = 42;
+	var cummies:Number = 6000;
+	if (flags["AMBER_EQUILICUM"] != undefined) cummies += 12000;
+	if(amberThrobbDoses() == 1) cummies += 2000;
+	else if(amberThrobbDoses() == 2) cummies += 5000;
+	pp.createPerk("Fixed CumQ", cummies, 0, 0, 0);
 	if(!pp.hasVagina()) pp.createVagina();
 	pp.shiftVagina(0, GLOBAL.TYPE_EQUINE);
 	pp.vaginas[0].bonusCapacity = 200;
@@ -83,7 +88,7 @@ public function dryadMeeting():void
 	amberEncounterAppend();
 	
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
 	pc.addStatusValue("Dryad Encounters", 1, 1);
@@ -190,7 +195,7 @@ public function dryadBlowjob():void
 	IncrementFlag("DRYAD_BANGED_PC");
 	IncrementFlag("DRYAD_BLEWHER");	
 	pc.loadInMouth(pp);
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(10);
 	clearMenu();
 	addButton(0, "Next", dryadAfterscene);
@@ -274,7 +279,7 @@ public function dryadAss():void
 	IncrementFlag("DRYAD_BANGED_PC");
 	IncrementFlag("DRYAD_ANALEDYOU");
 	pc.loadInAss(pp);
-	pc.lust(30);
+	pc.changeLust(30);
 	if(pc.lustQ() >= 100)
 	{
 		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complementary orgasm. That was quite the experience!");
@@ -651,7 +656,7 @@ public function forceDryadOff():void
 	output("\n\nDamnit. You need to get out of here before you get hard again. Her brilliant smile and eager demeanor are making it difficult, but you sigh and turn away, giving her a wave as you depart.");
 	output("\n\n<i>“Come back any time, babe!”</i> she calls after you. You have a feeling you’ll see her again out in the jungle.");
 	processTime(1);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -869,7 +874,7 @@ public function dryadDrain():void
 	IncrementFlag("DRYAD_BLEWHER");
 	processTime(10);
 	pc.loadInMouth(pp);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	
 	//disable for taurs
@@ -919,7 +924,7 @@ public function dryadDrainThroat():void
 
 	processTime(125);
 	if (pc.isTreated() && pc.hasVagina() && pc.isBimbo()) pc.orgasm();
-	else pc.lust(200);
+	else pc.changeLust(200);
 	pc.loadInMouth(pp);
 	pc.loadInMouth(pp);
 	pc.loadInMouth(pp);

@@ -883,7 +883,19 @@ package classes.Characters
 				removeStatusEffect("Vaginally-Filled");
 				removeStatusEffect("Pussy Pumped");
 			}
-			
+			//Ice Cold & Warm Blooded
+			if(hasPerk("Ice Cold") && libido() >= 50)
+			{
+				removePerk("Ice Cold");
+				createPerk("Warm Blooded",0,0,0,0,"You're too libidinous to be 'Ice Cold' any longer.");
+				AddLogEvent("You're too libidinous to remain 'Ice Cold'. Reduce libido to become 'Ice Cold' once more.\n\n(<b>Perk Changed: 'Ice Cold' is now 'Warm Blooded'.</b>)", "passive", deltaT);
+			}
+			else if(hasPerk("Warm Blooded") && libido() < 50)
+			{
+				createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time and improves low libido teasing.");
+				removePerk("Warm Blooded");
+				AddLogEvent("With your libido under control once more, you're 'Ice Cold' again!\n\n(<b>Perk Changed: 'Warm Blooded' is now 'Ice Cold'.</b>)", "passive", deltaT);
+			}			
 			// Daily changes
 			if (totalDays >= 1)
 			{

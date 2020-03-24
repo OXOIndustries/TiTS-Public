@@ -196,7 +196,7 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	output("\n\n<i>“You felt amazing, tiger,”</i> she comments. <i>“We should do that again sometime.”</i>");
 	output("\n\nIt’s then that she leaves without another word, rapidly disappearing into the landscape.");
 	//No orgasm? +10 lust!
-	pc.lust(10+rand(3));
+	pc.changeLust(10+rand(3));
 	lapinaraEggStuffCheck(2, -1);
 	pc.loadInAss(enemy);
 	processTime(20+rand(4));
@@ -268,7 +268,7 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	output("\n\nShe leaves without another word, rapidly disappearing into the landscape.");
 
 	//No cums for pc. +10 lust. Poor PC.
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(20+rand(4));
 	lapinaraEggStuffCheck(2, x);
 	pc.loadInCunt(enemy,x);
@@ -337,7 +337,7 @@ public function cuntTailFuckLapinaraParasitic():void
 	output("\n\n<i>“That was greaaattt,”</i> she finally speaks up, her voice quivering slightly. <i>“I’d really love it if we could do that again sometime.”</i>");
 	output("\n\nYou might just have to take her up on that offer.\n\n");
 	//Another no-cum. +10 lust
-	pc.lust(+10);
+	pc.changeLust(+10);
 	processTime(20+rand(5));
 	//Feed cunt tail mebbe? Nah...
 	CombatManager.genericVictory();
@@ -706,7 +706,7 @@ public function lapinaraEggStuffEnding2(x:int):void
 	output("\n\nAs you walk, you feel the lapinara anesthetic starting to wear off. You almost double over in shocked pleasure when sensation rushes back like a dam breaking. It feels like an army of microscopic vibrators have invaded your groin, sending confused jolts of joy straight to your unprepared brain. You look back reflexively for the lapinara, but she’s out of sight thanks to the undulating landscape of Tarkus’ wreckage-covered dunes. It’s just as well, otherwise you might have started the process all over again. You crouch down and wait for the pleasure to fade, avoiding the urge to masturbate and make things worse. After a few minutes that seem like hours, you’re back to normal and once again making your way across the junk-strewn sand.");
 
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	// Apply vaginally/anally filled status as appropriate, 1800ml
 	//Fen note: done in prev scene
 	// PC has lapinara egg pregnancy, pregnancyQuantity = 6
@@ -823,7 +823,7 @@ public function lapinaraImpregShitEnding3(x:int):void
 	output("\n\nSome time later, you feel the lapinara anesthetic starting to wear off. Because you know what’s coming, you manage to sit down before the rush of pleasure hits you like an avalanche. The endless vibrations of pleasure have once again invaded your [pc.groin], and there’s nothing to do but sit back and enjoy it. After a few minutes that seem like hours, you’re back to normal and once again making your way across the junk-strewn sand.");
 
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	// Apply vaginally/anally filled status as appropriate, 2400ml
 	//Fen note: done in prev scene.
 	// PC has lapinara egg pregnancy, pregnancyQuantity = 8

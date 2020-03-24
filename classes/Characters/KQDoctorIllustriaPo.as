@@ -145,13 +145,13 @@
 			btnTargetText = "Dr.Po";
 			//this.impregnationType = "LapinaraPregnancy";
 			//kGAMECLASS.zhengShiSSTDChance(this);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR, sexualPreferences.getRandomLikeFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE, sexualPreferences.getRandomLikeFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE, sexualPreferences.getRandomLikesFactor());
 			
 			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, sexualPreferences.getRandomDislikeFactor());
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS, sexualPreferences.getRandomDislikeFactor());

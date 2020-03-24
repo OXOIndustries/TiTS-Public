@@ -725,7 +725,7 @@ public function giannaAppearance():void
 	if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] != undefined) output(" You know from experience that she takes in more silicone there, distributing it through her body to improve her aesthetics.");
 	output("\n\nShe has knees and feet exactly as you would expect. There’s even ten carefully crafted, synth-skin covered artificial toes that wiggle when she walks. They lack nails, but pink-hued depressions conceal that from a distance, looking like painted polish.");
 	
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	clearMenu();
 	addButton(0,"Next",approachGianna,"back");
@@ -773,7 +773,7 @@ public function talkToGianna(display:Boolean = true):void
 				else output("across your head");
 				output(" while she grinds. <i>“Don’t you want a girl that will take care all your needs and serenade you with endless conversation while you come down?”</i> She subtly flexes the pale flesh of that silicone-padded behind. <i>“Why rush into the talk now?”</i>");
 				//Add a good bit of lust and dommy sex option. Bimbos always get dommy sex. Same with super low will characters.
-				pc.lust(20);
+				pc.changeLust(20);
 				//9999
 			}
 			//Positive
@@ -781,7 +781,7 @@ public function talkToGianna(display:Boolean = true):void
 			{
 				output("\n\n<i>“Mmm, we can talk for a while if that’s what you want,”</i> Gianna smiles while stretching to present her [gianna.breasts] to you. <i>“Did you have something on your mind?”</i> She purposefully causes the synthskin on her chest to flush pink, drawing your eyes there once more. <i>“You’re not having trouble focusing, are you?”</i>");
 				//Add option to go directly to dommy sex.
-				pc.lust(15);
+				pc.changeLust(15);
 				//9999
 			}
 			//Slightly Positive
@@ -1699,7 +1699,7 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 	}
 	giannaDisplay();
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	giannaBodyModMenu(false);
 }
 
@@ -1717,7 +1717,7 @@ public function decreaseGiannaBoobs(siliconeReturned:int):void
 		if(giannaPersonality() >= 70)
 		{
 			output(" <i>“Aww, I was just getting used to them! My god, the bulls’ eyes practically pop out of their heads every time they walk by. And you,”</i> she says, sashaying forward to rub them against your [pc.chest], <i>“...you should see the way you look at them when I do this.”</i> She grabs you by the chin and pulls your face up to meet her gaze. <i>“See? But if that’s what you really want, I can take them down a little for you.”</i>");
-			pc.lust(3);
+			pc.changeLust(3);
 		}
 		//Normal
 		else if(giannaPersonality() >= 35)
@@ -1974,7 +1974,7 @@ public function maxGiannaBootyEnd(jerk:Boolean = false):void
 	output("\n\n<i>“What now?”</i>");
 	gianna.buttRatingRaw = 20;
 	//+33 lust
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(3);
 	giannaBodyModMenu(false);
 
@@ -2178,7 +2178,7 @@ public function increaseGiannaLips(siliconeUsed:int):void
 		output("”</i> Pursing her [gianna.lips], she lets her eyelids flutter closed and starts pumping the silicone. You can hear it sloshing through the hose and sloshing through her spine towards its targets. After a moment, the smooth curves ripple and bloat, pulling the synthskin surface so tight that they shine brighter than any lipstick-slathered mouth.");
 		output("\n\nThe pumps wind down a scant few seconds later, leaving the companion with significantly expanded facial assets. She runs her tongue across their expansive surface and moans, <i>“Mmmm... I love the feel of my synthskin’s input resolution shifting.”</i> She sucks her top lip in, then lets it pop out so that she can nibble on the lower one. <i>“Yeah... the cows are gonna be jealous now. I could easily match the biggest of them now, and I don’t need to breathe when I go down on someone.”</i> Blushing, she suggests, <i>“Why don’t we unhook the pump and try these out?”</i>");
 		//+10 lust
-		pc.lust(10);
+		pc.changeLust(10);
 		gianna.lipMod = 3;
 	}
 	//3 - 4 dazzling/exquisitely large to hyper-engorged/constantly pursed
@@ -4463,7 +4463,7 @@ public function coughAtAnnoXGianna():void
 
 	//[Next]
 	processTime(2);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",giannaXAnnoThreesomeGo, x);
 }
@@ -4532,7 +4532,7 @@ public function giannaXAnnoThreesomeGo(x:int):void
 	output("”</i>");
 	output("\n\nAnno looks back over her shoulder in desperation, spreading her legs as wide as they’ll go. <i>“B-b-boss? Puh-please!”</i>");
 	processTime(20);
-	pc.lust(500);
+	pc.changeLust(500);
 	clearMenu();
 	addButton(0,"Next",giannaXAnnoThreesomeGo2, x);
 }

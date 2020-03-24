@@ -319,7 +319,7 @@ public function askJadeAboutHerBigOlTatas():void {
 	output("\n\nShe pirouettes away, rump swaying back and forth with pendulous momentum, thighs kept so close together that you can hear the swish of fur on fur with each step. Her display of willpower does little to hide the reflective sheen trailing down one flexing leg, nor does it conceal the fragrant trail of droplets that have accumulated on the rug behind her, filling her shop with her own feminine odor. Perhaps she pushed herself a little closer to the brink than she meant to. Her shop certainly didn’t seem layered with the smell of a woman in need when you arrived.");
 	output("\n\nFrom behind a ‘staff only’ door, you hear surprisingly unmuffled moans, at first soft, like their creator is trying to stay quiet, but with gradually increasing enthusiasm. Soon, you’re wondering if passersby can hear her dulcet whimpers and cries. You certainly can, and they’re making your own heart beat a little faster in response, but just as you’re considering trying the door yourself, Jade’s ardor peaks. She cries out, thumping against something... perhaps the walls or the floor. You can’t be sure which. There’s some breathy panting, and then Jade emerges, practically glowing. Her skirt looks as perfect as when she left.... Did she masturbate without even touching herself down there?");
 	output("\n\n<i>“[pc.name], I’m up here.”</i> Jade’s downy fingertips catch you under the chin and lift your eyes to hers, forcibly pulling your gaze away from her crotch. She chuckles to herself. <i>“Sorry, I got a little too excited there. Was there something else you wanted to talk about, or did you want to buy something?”</i>");
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(20+rand(10));
 	//Raise lust by 20.
 	talkToJade(false);
@@ -472,7 +472,7 @@ public function jadeGetsAGropeGasm():void {
 	chars["JADE"].orgasm();
 	chars["JADE"].orgasm();
 	chars["JADE"].orgasm();
-	pc.lust(30+rand(10));
+	pc.changeLust(30+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -923,7 +923,7 @@ public function helpJadeWithHerNewNipples():void {
 	output("\n\nYou lose track of time as you watch Jade writhe under your ministrations....");
 	processTime(5);
 	chars["JADE"].orgasm();
-	pc.lust(20+rand(15));
+	pc.changeLust(20+rand(15));
 	clearMenu();
 	addButton(0,"Next",jadesNippleTFEpilogue,true);
 }
@@ -934,10 +934,10 @@ public function watchJadesNewNipplesMolestHer():void {
 	showJade(true);
 	output("Why bother when she seems to be enjoying it so much....");
 	output("\n\nAs Jade opens her mouth in yet another moan, her nipples uncoil from around her boobs and spring back into action, evidently not sated yet. One squirms through the air and plunges boldly into her open mouth, plugging it up and muffling her voice as it forcefeeds itself into her. The other creeps down her belly, almost invisible against the black parts of her fur, and heads for her skirt, worming its way underneath. The lewd bulge it spreads downward through the green fabric, leaving no doubt as its progress, and a muffled cry manages to escape her mouth as it penetrates her. Within seconds of it doing so, she arches her back, her whole body quaking mightily in a second, heavy orgasm, drenching her skirt once more with her female cream.");
-	output("\n\nJade seems to be stuck in nirvana.The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
+	output("\n\nJade seems to be stuck in nirvana. The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
 	processTime(5);
 	chars["JADE"].orgasm();
-	pc.lust(20+rand(15));
+	pc.changeLust(20+rand(15));
 	clearMenu();
 	addButton(0,"Next",jadesNippleTFEpilogue);
 }
@@ -1042,7 +1042,7 @@ public function boobToBoobSexathon():void {
 	output("\n\nYou immediately get to work on peeling off your [pc.gear]. By the time you’re done and turn to look back at Jade, she’s already stripped herself and folded her minimal clothes into a neat pile atop a nearby table.");
 	if(pc.hasCock()) output(" A stirring in your loins giving away your appreciation of her naked form.");
 
-	output("\n\nWith a seductive grin, the deliciously curvy panda girl advances towards you. Her swaying step emphasises the wide, womanly curves of her hips, and you know that from behind the view of her ass must be incredible. Each step towards you reveals tantalising flashes of her little black pussy, however, you certainly don’t feel cheated as she stops in front of you. With a mischievous tilt to her eyes, the buxom morpher reaches out and gently pushes at your [pc.chest]; not hard, but enough that you get what she wants and seat yourself upon the seat.");
+	output("\n\nWith a seductive grin, the deliciously curvy panda girl advances towards you. Her swaying step emphasizes the wide, womanly curves of her hips, and you know that from behind the view of her ass must be incredible. Each step towards you reveals tantalizing flashes of her little black pussy, however, you certainly don’t feel cheated as she stops in front of you. With a mischievous tilt to her eyes, the buxom morpher reaches out and gently pushes at your [pc.chest]; not hard, but enough that you get what she wants and seat yourself upon the seat.");
 
 	output("\n\n<i>“Now that you’re all ready,”</i> she coos, bending forward slightly so that you are staring down the vast canyon of her cleavage, <i>“perhaps you’d be willing to lend me a hand in getting ready myself?”</i> As if in emphasis, her hand darts forward to ");
 	if(pc.hasCock()) output("trail teasingly across [pc.oneCock]");
@@ -1302,7 +1302,7 @@ public function eatMuffDumplings():void
 	output(pc.modThickness(10, true));
 	processTime(20);
 	//Plus 80 lust - FEN: Nope, 30 or 40 is fine.
-	pc.lust(30+rand(11));
+	pc.changeLust(30+rand(11));
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].eastExit);
 }

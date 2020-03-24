@@ -394,7 +394,7 @@ public function uvetoKaedeTease():void
 	flags["KAEDE_UVETO_TEASED"] = 1;
 
 	processTime(10+rand(5));
-	pc.lust(15);
+	pc.changeLust(15);
 
 	uvetoKaedeRootMenu();
 }

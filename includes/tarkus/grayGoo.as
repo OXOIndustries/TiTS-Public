@@ -66,7 +66,7 @@ public function dontDoAnythingFromHardenAttack():void
 		}
 	}
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	CombatManager.continueCombat();
 }
 

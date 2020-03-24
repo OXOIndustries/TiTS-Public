@@ -239,6 +239,12 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_under_table.jpg", mimeType = "image/jpg")]
 			public static const RooUnderTableLick:Class;
 
+			//ROXY
+			[Embed(source = "../../assets/images/imagepack/roxy/masamaki_roxy.png", mimeType = "image/png")]
+			public static const RoxyDoggy:Class;
+			[Embed(source = "../../assets/images/imagepack/roxy/masamaki_roxy_cummy.png", mimeType = "image/png")]
+			public static const RoxyDoggyCummy:Class;
+
 			//SECOP (PUNK)
 			[Embed(source = "../../assets/images/imagepack/secOp/dsan_wall_slut_jumper_thersaadi_laquine_horsecock_1.jpg", mimeType = "image/jpg")]
 			public static const VRWallSlut:Class;
@@ -264,6 +270,8 @@ package classes.Resources
 			//SLYVEREN SLAVEBREAKER
 			[Embed(source = "../../assets/images/imagepack/slavebreaker/mrpink_shoucolor_slyveren_blowjob.png", mimeType = "image/png")]
 			public static const SlavebreakerBJ:Class;
+			[Embed(source = "../../assets/images/imagepack/slavebreaker/slavebreakerPinkVaginalColored_1_regular.png", mimeType = "image/png")]
+			public static const FuckTheSlyveren:Class;
 
 			//TERENSHA
 			[Embed(source = "../../assets/images/imagepack/terensha/DCLZexon_terensha.png", mimeType = "image/png")]

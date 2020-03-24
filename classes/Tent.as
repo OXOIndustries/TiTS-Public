@@ -49,6 +49,7 @@
 			{
 				lastUseAt = kGAMECLASS.GetGameTimestamp();
 				output("You find a relatively clear patch to deploy your " + this.longName + " and bunker down for a solid eight hours...");
+				kGAMECLASS.eventBufferXP();
 				kGAMECLASS.sleep(false);
 				return true;
 			}

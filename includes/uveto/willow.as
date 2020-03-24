@@ -1440,7 +1440,7 @@ public function willowTalk(sceneChoice:int):void
 		output("\n\n<i>“Really!? Thanks! You’re the best, [pc.master]!”</i> She squeals, pulling you into a hug, which mostly consists of smushing your head between her breasts.");
 		output("\n\nYou laugh and slowly extricate yourself from the warm, soft flesh. <i>“Calm down, Willow. You’re making a scene.”</i> You murmur, looking around pointedly.");
 		output("\n\n<i>“Don’t care! You’re the best and I want everyone to know it!”</i> She​ says, though in a lower voice this time and still grinning.");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	
 	addButton(0,"Past",willowDinnerTalk,0);
@@ -1549,7 +1549,7 @@ public function willowGiftItem(sceneChoice:int):void
 		
 		pc.destroyItemByClass(Savicite);
 		willowAffection(10);
-		pc.lust(20);
+		pc.changeLust(20);
 	
 	}
 	//Give Flower
@@ -1845,7 +1845,7 @@ public function willowWearClothes(sceneChoice:int):void
 			output("\n\nHer long tongue worms into your mouth as well, wrapping around your tongue and flicking it around. After a moment, you break the kiss, panting slightly.");
 
 			flags["WILLOW_BUNNY_OUTFIT"] = 1;
-			pc.lust(20);
+			pc.changeLust(20);
 		}
 		//Wear Schoolgirl Outfit	
 		else if (sceneChoice==7)
@@ -1868,7 +1868,7 @@ public function willowWearClothes(sceneChoice:int):void
 			output("\n\nYour ring and pinky finger push themselves into her ass and this finally makes her cum. She squeals loudly, shooting a stream of cum over the bed and your fingers.");
 			output("\n\n<i>“Heh. Just like a virgin schoolgirl.”</i> You say, chuckling as you stand up.");
 
-			pc.lust(30);
+			pc.changeLust(30);
 			flags["WILLOW_SCHOOL_OUTFIT"] = 1;
 		}
 		//Wear Maid Outfit in the bar

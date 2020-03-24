@@ -190,7 +190,7 @@ public function emmyBonusNotes():Boolean
 		{
 			output("\n\nEmmy is here, though instead of looking like an attentive shopkeeper, she’s down on all fours behind the counter, moaning like an ausar cock-addict in heat. She tries to straighten at the sound of the door opening and closing, but collapses once more as the pleasure robs her muscles of strength, pinning her doubtlessly ejaculating member between the floor and her own stomach. Wriggling and drooling, she cums for the better part of a minute, trying (and failing) to apologize for her state a number of times before rolling over and humping the empty air above, giving you a clear view of her grapefruit-sized knot and cum-paunched belly.");
 			output("\n\n<i>“S-sorry about th... [pc.name]!? Oh thank the stars it was just you.”</i> Emmy’s ears straighten, any hint of apologetic look long gone. A knowing, slutty smile has crept into its place. <i>“I hope you enjoyed the show, but next time I’m not forgetting to lock the door!”</i> She jumps up onto her wobbling feet and moves back to the counter, occasionally casting meaningful looks your way. Seems like she could go for another round already.");
-			pc.lust(10);
+			pc.changeLust(10);
 			flags["EMMY_SPECIAL"] = 1;
 		}
 		//Alt chance
@@ -203,7 +203,7 @@ public function emmyBonusNotes():Boolean
 			output("\n\n<i>“Mmm... [pc.name]... How’d you get in. I uh...”</i> She shudders quietly. <i>“I locked the door.”</i>");
 			output("\n\nYou point out that she clearly didn’t.");
 			output("\n\nEmmy looks like she wants to be ashamed but is too blissed out to care. <i>“Guess I better be more careful next time, huh?”</i> Straightening, her pussy audibly squelches around the dildo inside of her, probably packed with two or three more loads than any toy could hope to contain. <i>“J-just let me know if you need anything. Anything at all.”</i> She leans over the counter and raises an ass too heart-shaped to be natural, wagging her tail in your direction. <i>“Anything.”</i>");
-			pc.lust(10);
+			pc.changeLust(10);
 			flags["EMMY_SPECIAL"] = 1;
 		}
 		//Normal Chance
@@ -538,7 +538,7 @@ public function talkToEmmy(arg:Function = undefined):void
 		output("\n\nGrinning, Emmy leads you to the side of the counter and places your hand on her hip. It’s warm. <i>“But you already know me in the biblical sense, don’t you?”</i> She drags your hand up her side to a breast, forcing you to squeeze it. <i>“These breasts...”</i> Her forced grope transitions to the bulging jackal-meat stuffed between her tits, subjecting you hot and heavy thud of her heartbeat through her prick’s many veins. <i>“...this dick...”</i> In short order, you’re cupping her balls and pressing your fingertips into the divot behind. <i>“...and this sopping-wet cunt.”</i>");
 		output("\n\n<i>“Emmy...”</i> you sigh, <i>“I really want to ask you something.”</i>");
 		output("\n\nPouting, the slutty, oversexed hermaphrodite whines, <i>“Okay, okay. Anything you want, sugar-buns.”</i>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	else
 	{
@@ -1014,7 +1014,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	output("\n\nWhat can you do, but agree? Still, there’s got to be a way to win her heart. So long as it doesn’t involve waiting for the heat death of the universe, you can probably manage it.");
 	output("\n\n<i>“Thanks. Why don’t we get bus- I mean do some business. What do you say?”</i>");
 	processTime(12);
-	pc.lust(22);
+	pc.changeLust(22);
 	//Get email a day later starting you on part 2 of the quest.
 	flags["EMMY_EMAIL_TIMER"] = GetGameTimestamp();
 	emmyMainMenu();
@@ -1236,7 +1236,7 @@ public function polyamorousEmmy():void
 	output("\n\nIt’s your turn to grin now. <i>“If they’re into you too, I don’t see why not.”</i>");
 	output("\n\nStraining at the front of her jumpsuit, the jackaless’s swelling boner threatens to rip its way to freedom. Her tongue lolls out in a lusty pant, and Emmy coos, <i>“You... you are special. No wonder you’ve got so many lovers.”</i> She wiggles closer, barely keeping her hands away from her tenting nipples and rigid, canine phallus. <i>“Let me thank you for the flower... and your honesty.”</i>");
 	output("\n\nThe words are music to your ears.");
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	emmyPicksOral();
 }
@@ -1258,7 +1258,7 @@ public function emmyPleased():void
 	output("\n\nEmmy leans forward, squeezing her breasts between her forearms to press her cleavage directly into your view. <i>“Sometime, I’m going to have to get you to tell me what else you think about me is cute... but for right now, I believe I promised my interstellar hero" + pc.mf("","ine") + " a certain reward for [pc.hisHer] efforts.”</i> She bats her eyelashes and licks her lips, staring at your crotch. <i>“We can cross that off the list right now...”</i>");
 	//Sex!
 	processTime(7);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	emmyPicksOral();
 }
@@ -1322,7 +1322,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	flags["EMMY_QUEST"] = 2;
 	//[Go Over][Leave]
 	processTime(22);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Accept Offer",emmyQuickOralPick)
 	addButton(14,"Back",backToEmmyMain);
@@ -1654,7 +1654,7 @@ public function emmyAfterConfessionEmail2():void
 	output("\n\nYou scratch your head and muse, <i>“What about pregnancy?”</i>");
 	output("\n\nPointing to a glowing annotation, Emmy explains, <i>“There’s an optional filter that renders sperm inert. It works on cum from 90% of known species, ausars especially.”</i> Emmy leans in close. <i>“And it comes with an extranet connection. I could give you my code and let you fool with it whenever you wanted. You could make me shudder and cum at any time of day, and I could use it to take the edge off any time I get too hot and heavy.”</i> Rubbing her knees together, Emmy moans. <i>“Like now.”</i>");
 	processTime(6);
-	pc.lust(11);
+	pc.changeLust(11);
 	clearMenu();
 	addButton(0,"Next",emmyAfterConfessionEmail3);
 }
@@ -1686,7 +1686,7 @@ public function inviteEmmyToJoinCrew():void
 	output("\n\nYou briefly wonder whether she’ll rupture her suit, inflate part of it like a condom’s tip, or merely slosh around in her own spunk for the rest of the day, then remember that she’s still waiting for your verdict on the toy.");
 	//Same menu, join crew disabled. 	
 	processTime(1);
-	pc.lust(2);
+	pc.changeLust(2);
 	flags["EMMY_CREW_REQUESTED"] = 1;
 	emmyHarnessPurchaseMenu();
 
@@ -1749,7 +1749,7 @@ public function refuse2buySexToy4Ems():void
 	else output("[pc.belly]");
 	output(", Emmy whorishly moans, <i>“L-let’s close the store a few minutes!”</i>");
 	//Display sex menu with options that get Emmy off.
-	pc.lust(3);
+	pc.changeLust(3);
 	processTime(1);
 	emmySexMenu();
 	addDisabledButton(0,"Get BJ","Get BJ","Emmy wants to get herself off, not service you.");
@@ -1856,7 +1856,7 @@ public function emmyGotHarnessReaction():void
 	//Push button or sex scenes.
 	output("\n\n<b>Emmy’s Herm Harness controls have been added to your Codex!</b>");
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.createStatusEffect("Emmy Special Delay", 0, 0, 0, 0, true, "", "", false, (3 * 60));
 	flags["EMMY_QUEST"] = 6;
 	emmySexMenu();
@@ -2360,7 +2360,7 @@ public function suckEmmysCockDuring69():void
 	else if(pc.cockTotal() + pc.vaginaTotal() >= 2) output("Mmmm, which one?");
 	else output("Mmmm, o-kay...");
 	output("”</i>");
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",emmy69MiddleOfScene,1);
@@ -2392,7 +2392,7 @@ public function lickEmmysPussyDuring69():void
 	else if(pc.cockTotal() + pc.totalVaginas() == 2) output("Mmmm, which one?");
 	else output("Mmmm, you’ll like this.");
 	output("”</i>");
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",emmy69MiddleOfScene,2);
@@ -2451,7 +2451,7 @@ public function emmy69MiddleOfScene(youSuck:int):void
 		output("\n\nWrapping one hand around Emmy’s knot, you give it a firm squeeze, then slide it deeper. You do more than merely suck and squeeze, sliding your fingers all over the sensitive bulb of flesh at her base. Her sheath can’t even escape, not when you slide your pinky into the forgotten folds to rub the hyper-sensitive flesh beneath. The jackaless cries out at that, spurting huge, salt-tinted blobs of pre-cum into your mouth. It’s all you can do to swallow it, but at least her balls are bobbing and pulsating, on the edge of eruption. Her ability to edge you evaporates in the furnace of her own unspent need.");
 	}
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",emmy69OrgasmTime,[youSuck,emmySucks]);
 }
@@ -2643,7 +2643,7 @@ public function emmyCockSlobber():void
 	pc.loadInMouth(chars["EMMY"]);
 	if(flags["EMMY_PRESEX_FUN_TIMER"] == undefined) flags["EMMY_PRESEX_FUN_TIMER"] = GetGameTimestamp();
 	clearHermHarnessStatii();
-	pc.lust(25);
+	pc.changeLust(25);
 	processTime(20+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2720,7 +2720,7 @@ public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 	//35ish min pass
 	processTime(35);
 	//+A lotta lust
-	pc.lust(33);
+	pc.changeLust(33);
 	pc.girlCumInMouth(chars["EMMY"]);
 	pc.girlCumInMouth(chars["EMMY"]);
 	//[Next]
@@ -2815,7 +2815,7 @@ public function pushEmmyMassage():void
 		//raise emmy lust 20 points
 		//Set emmy status “Massaging” for 2 hours. (Makes it so any future slow-fucks cause quick and dirty cums)
 		processTime(4);
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	output2(txt);
 	IncrementFlag("EMMY_MASSAGED");
@@ -2886,7 +2886,7 @@ public function emmySlowFuckHermHarness():void
 			emmy.createStatusEffect("Slow Fucking",0,0,0,0,false,"PlaceholderIcon","Description",false,90);
 		}
 		processTime(10);
-		pc.lust(8);
+		pc.changeLust(8);
 	}
 	//Not there
 	else
@@ -3469,7 +3469,7 @@ public function emmysPantiesGet():void
 	output("\n\n<b>You’ve acquired Emmy’s panties!</b>");
 	pc.createKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3547,7 +3547,7 @@ public function emmyHyperFucksIntro():void
 		output("\n\nEmmy’s just getting started, however. Her other hand gropes your [pc.butt], squeezing your cheeks roughly. <i>“Or we could forget all about putting a load inside me, and put one in you. Wouldn’t that be hot? You with your ass in the air, that big, flopping obscenity dragging on the floor, squeezing out ropes of jizz everytime I press down on your poor, neglected prostate? I wonder if you’ve got a swollen, yummy, cummy one, or a little, hard-to-hit bundle of nerves.”</i> Her fingertip circles your rosebud. <i>“What’ll it be, babe? Do you wanna get milked into my oozy, dripping pussy, or waste it on the floor?”</i>");
 	}
 	processTime(3);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Get Pegged",emmyHyperProstateChampionIIHyperEdition,undefined,"Get Pegged","Let Emmy go hog-wild on your ass and prostate.");
 	addButton(1,"Footjob",hyperFootjorbsForEms,undefined,"Footjob","Have her put her delightful little toes to work on your cock.");
@@ -3688,7 +3688,7 @@ public function helpEmmyCleanToes():void
 	output("\n\nEmmy giggles, and stands, offering you a hand up. <i>“They’re more than clean enough now. You’ve been licking my foot for like five minutes, [pc.name], and I do still have a shop to run.”</i> The hermaphrodite’s eyes twinkle knowingly as she gathers her equipment from the floor. <i>“I’m gonna go freshen up and re-open the place. Let me know when you want to do this again, okay?”</i>");
 	output("\n\nYou just might have to.");
 	processTime(7);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -4074,7 +4074,7 @@ public function emmyHardLightProstateFillerUp():void
 	//do pc orgasm unless pc is horse and dickless, pass time, place pc at entrance to emmy shop
 	processTime(35);
 	if(pc.hasCock() || !pc.isTaur()) pc.orgasm();
-	else pc.lust(10);
+	else pc.changeLust(10);
 	IncrementFlag("EMMY_PROSTATELIGHT");
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].eastExit);

@@ -492,7 +492,7 @@ public function flirtWithPostVacayPerditles():void
 	//[Footjob] //No better job in a sauna 
 	//[Body-shots] //Why stop at one? [Ice-Play] //Kally’s probably got an ice bucket you can borrow
 	processTime(4);
-	pc.lust(3);
+	pc.changeLust(3);
 	perditaSexMenu();
 }
 

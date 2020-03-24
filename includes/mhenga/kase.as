@@ -257,7 +257,7 @@ public function kaseStressRelief():void
 	
 	flags["KASE_STRESS"] = 1;
 	IncrementFlag("KASE_SEXED");
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(15+rand(5));
 	
 	kaseMenu();

@@ -113,3 +113,8 @@ public function kimberPantiesBonus():Boolean
 	}, undefined, "Search", "Might as well see if there’s anything in here worth taking.");
 	return false;
 }
+public function giveGabiPanties():void
+{
+	clearOutput();
+	quickLoot(new GabilaniPanties());
+}

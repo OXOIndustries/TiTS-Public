@@ -63,7 +63,9 @@ package classes.UIComponents.SideBarComponents
 		
 		public function set value(v:*):void
 		{
-			if (!(v is String)) _values.text = String(v);
+			if(v > 1000000000) _values.text = String(Math.round(v/100000000)/10) + "B";
+			else if(v > 1000000) _values.text = String(Math.round(v/100000)/10) + "M";
+			else if(v > 10000) _values.text = String(Math.round(v/100)/10) + "K";
 			else _values.text = v;
 		}
 		
@@ -109,7 +111,10 @@ package classes.UIComponents.SideBarComponents
 			
 			if (_desiredMode == "NOBAR")
 			{
-				value = String(_tGoal);
+				if(_tGoal > 1000000000) value = String(Math.round(_tGoal/100000000)/10) + "B";
+				else if(_tGoal > 1000000) value = String(Math.round(_tGoal/100000)/10) + "M";
+				else if(_tGoal > 10000) value = String(Math.round(_tGoal/100)/10) + "K";
+				else value = String(_tGoal);
 				return;
 			}
 			
@@ -153,7 +158,7 @@ package classes.UIComponents.SideBarComponents
 			
 			if (isNaN(_valueMaxChangeDisplay))
 			{
-				value = String(Math.round(cScale * _tMax));
+				value = Math.round(cScale * _tMax);
 			}
 			else
 			{
@@ -172,8 +177,7 @@ package classes.UIComponents.SideBarComponents
 					_valueMaxChangeDisplay -= _valueChangePerTick;
 					if (_valueMaxChangeDisplay < _tGoal) _valueMaxChangeDisplay = _tGoal;
 				}
-				
-				value = String(Math.round(_valueMaxChangeDisplay));
+				value = Math.round(_valueMaxChangeDisplay);
 			}
 			
 			if (_desiredMode == "BIG")
@@ -485,7 +489,7 @@ package classes.UIComponents.SideBarComponents
 			_progressBar.scaleX = tScale;
 			_maskingBar.scaleX = tScale;
 			
-			value = String(newValue);
+			value = newValue;
 			
 			if (_desiredMode == "BIG")
 			{

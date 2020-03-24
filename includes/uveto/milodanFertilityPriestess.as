@@ -98,7 +98,6 @@ public function GRM44Watch():void
 	author("Savin");
 	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 	
-	pc.lust(25);
 	
 	output("You hide yourself as best you can in the shadows of the tunnel entrance, content to observe the natives’ ritual from afar.");
 	
@@ -130,6 +129,7 @@ public function GRM44Watch():void
 	
 	output("\n\n<i>“What have we here?”</i> she wonders aloud, planting the butt of her staff in the ice beside her. <i>“A dirty little voyeur?”</i>");
 
+	pc.changeLust(25);
 	processTime(15);
 	clearMenu();
 	addButton(0, "Apologize", GRM44Apologize, undefined, "Apologize", "Sorry about the peeping, miss.");

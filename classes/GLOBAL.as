@@ -255,6 +255,7 @@
 		public static const TYPE_HYENA:int									= 89;
 		public static const TYPE_DZAAN:int									= 90;
 		public static const TYPE_ZAIKA:int 									= 91;
+		public static const TYPE_CUNDARIAN:int 								= 92;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -348,6 +349,8 @@
 			"Saurmorian",
 			"Hyena",
 			"Dzaan",
+			"Zaika",
+			"Cundarian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -1185,6 +1188,7 @@
 			"Sex Toy",
 			"Piercing",
 			"Cockwear",
+			"Tent",
 		];
 
 		//CHARACTERS
@@ -1262,6 +1266,7 @@
 		public static const ITEM_FLAG_COCKRING:int 						= 50; //For cockring-type cockwear.
 		public static const ITEM_FLAG_ALCOHOLIC:int						= 51; //For hooch
 		public static const ITEM_FLAG_MEDICINE:int						= 52; //For things that can cure disease, NOT WOUNDS
+		public static const ITEM_FLAG_PRESSURIZED:int					= 53; //maintains internal pressure to protect vs high and low pressure environments
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1315,6 +1320,9 @@
 			"Hoop",
 			"Cocksock",
 			"Cockring",
+			"Alcoholic",
+			"Medicine",
+			"Pressurized",
 		];
 		
 		/**
@@ -1412,10 +1420,10 @@
 			"ERROR ERROR ABORT ABORT"
 		];
 		
-		public static const REALLY_LIKES_SEXPREF:Number = 2;
-		public static const KINDA_LIKES_SEXPREF:Number = 1.3333;
-		public static const KINDA_DISLIKES_SEXPREF:Number = .75;
-		public static const REALLY_DISLIKES_SEXPREF:Number = .5;
+		public static const REALLY_LIKES_SEXPREF:Number = 1.5;
+		public static const KINDA_LIKES_SEXPREF:Number = 1.25;
+		public static const KINDA_DISLIKES_SEXPREF:Number = .8;
+		public static const REALLY_DISLIKES_SEXPREF:Number = .666666666;
 		
 		public static const SEXPREF_VALUES:Array = [REALLY_LIKES_SEXPREF, KINDA_LIKES_SEXPREF, KINDA_DISLIKES_SEXPREF, REALLY_DISLIKES_SEXPREF];
 		

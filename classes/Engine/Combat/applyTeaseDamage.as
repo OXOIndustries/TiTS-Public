@@ -2,8 +2,6 @@ package classes.Engine.Combat
 {
 	import classes.kGAMECLASS;
 	import classes.Creature;
-	import classes.Items.Piercings.GeddaniumRingPiercing;
-	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
@@ -37,18 +35,12 @@ package classes.Engine.Combat
 		{
 			for (var i:int = 0; i < likeAdjustments.length; i++) factor *= likeAdjustments[i];
 		}
-		//Free "really likes" for geddanium rang~
-		if (attacker.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) factor *= 2;
-		if (attacker.hasPiercingOfClass(UrtaniumRingPiercing) && target.hasFur()) factor *= 2;
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
 		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;
 		if (attacker.hasStatusEffect("Body Paint")) factor *= 1.15;
 		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
-		if (attacker.hasFur())
-		{
-			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
-		}
+
 		
 		if (factor > factorMax) factor = factorMax;
 	
@@ -56,18 +48,10 @@ package classes.Engine.Combat
 		if (teaseType == "SQUIRT") bonus += 2;
 		if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 		
-		/* Fen note: cut to move this over to the sexprefs system.
-		var sweatyBonus:int = 0;
-		if(attacker.hasStatusEffect("Sweaty") && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT) > 0) 
-		{
-			//-5 per level normally, so add twice that since we flippin it'
-			sweatyBonus = attacker.statusEffectv1("Sweaty") * 10;
-			//Furries dont benefit quite as much.
-			if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
-		}*/
-		
+
 		// Failed/Miss
-		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus))
+		// OLD: if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus))
+		if(lustCombatMiss(attacker,target,factor))
 		{
 			if(target is HandSoBot)
 			{
@@ -84,41 +68,30 @@ package classes.Engine.Combat
 			else if(teaseType == "SQUIRT") 
 			{
 				output("\n\nYour milk goes wide.");
-				output(" (<b>0</b>)");
-				teaseSkillUp(teaseType);
 			}
 			else if(teaseType == "DICK SLAP")
 			{
 				output("\n\nYour foe looks more annoyed than aroused at your antics as they wipe your girl lube off.");
 				if(kGAMECLASS.silly) output(" You pity them somewhat. Your [pc.cumNoun] has a lot of nutrients in it...");
-				output(" (<b>0</b>)");
-				teaseSkillUp(teaseType);
 			}
 			else if (target is HuntressVanae || target is MaidenVanae)
 			{
 				output("\n\n");
 				output(teaseReactions(0, target));
-				output(" (<b>0</b>)");
-				teaseSkillUp(teaseType);
 			}
 			else if (target is WetraHound)
 			{
 				output("\n\n");
 				kGAMECLASS.wetraHoundAnimalIntellect();
-				output(" (<b>0</b>)");
-				teaseSkillUp(teaseType);
 			}
 			//Enemies with special fail messages
 			else if(target is MaidenVanae || target is HuntressVanae)
 			{
-				output("\n\n" + teaseReactions(0, target) + " (<b>0</b>)");
-				teaseSkillUp(teaseType);
+				output("\n\n" + teaseReactions(0, target));
 			}
 			else if(target is KorgonneFemale)
 			{
 				output("\n\nThe barbarian girl flashes a savage grin, apparently unfazed." + ((kGAMECLASS.silly) ? " <i>“No. So no. Wow. Very no.”</i>" : ""));
-				output(" (<b>0</b>)");
-				teaseSkillUp(teaseType);
 			}
 			else
 			{
@@ -126,34 +99,43 @@ package classes.Engine.Combat
 				if(target.isPlural) output(" resist");
 				else output(" resists");
 				output(" your erotically charged display... this time.");
-				output(" (<b>0</b>)");
-				teaseSkillUp(teaseType);
 			}
+			output(" (<b>L: +<span class='lust'>0</span></b>)");
 		}
 		// Success
 		else
 		{
-			var damage:Number = (10 * ((teaseCount / 100) + 1)) + (attacker.sexiness() / 2);
+			//Sexiness and resolve are 1:1. Willpower and tease skill dont match up even till level 20, making lust more powerful against lower level enemies naturally.
+			//lustDef Stat: level/1.5 + willpower()/4 + resolve()
+			var damage:Number = (10 + attacker.teaseSkill()/4 + attacker.sexiness());
+			trace("Damage: " + damage);
 			damage += attacker.statusEffectv4("Heat");
 			damage += attacker.statusEffectv2("Painted Penis");
 			damage += attacker.statusEffectv2("Painted Tits");
 			if (teaseType == "SQUIRT") damage += 5;
-			if (attacker.hasPheromones()) damage += 1 + rand(4);
-			damage *= (rand(31) + 85) / 100;
-			
+			if (attacker.hasPheromones()) damage += 1 + rand(3);
+			trace("Damage: " + damage);
+						
 			var bonusCap:Number = 0;
 			bonusCap += attacker.statusEffectv3("Painted Penis");
 			bonusCap += attacker.statusEffectv3("Painted Tits");
 			
-			var cap:Number = 15 + (attacker.level * 2) + bonusCap;
-			damage = (Math.min(damage, cap) * factor);
+			//Cap is 30 plus enough to exceed lustDefense but scales higher for foes over 100 maxLust.
+			var cap:Number = Math.round(30 * (target.lustMax()/100)) + target.lustDef();
+			trace("Cap: " + cap)
+			cap += bonusCap;
+			trace("lustMax: " + target.lustMax());
+			trace("lustDef: " + target.lustDef());
+
+			//Figure out damage
+			damage *= factor;
+			damage = (Math.min(damage, cap));
+			trace("Damage: " + damage);
 			
-			//Tease % resistance.
-			if (InCollection(teaseType, ["SQUIRT", "DICK SLAP", "MYR VENOM"])) damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
-			else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
+
 			//Level % reduction
 			var levelDiff:Number = target.level - attacker.level;
-			//Reduce tease damage by 50% for every level down the PC is.
+			//Reduce tease damage by 70% for every level down the attacker is is.
 			if(levelDiff > 0)
 			{
 				for(var z:int = levelDiff; z > 0; z--)
@@ -161,20 +143,22 @@ package classes.Engine.Combat
 					damage *= 0.70;
 				}
 			}
-
-			//Tease armor - only used vs weapon-type attacks at present.
-			//damage -= target.lustDef();
-
-			cap = 30 + bonusCap;
+			trace("Damage: " + damage);
 			//Damage cap
 			if (damage > cap) damage = cap;
+			var hitCapEffect:Boolean = damage == cap;
 			//Damage min
 			if (damage < 0) damage = 0;
-			
-			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-			damage = Math.ceil(damage);
-		
+			trace("Damage: " + damage);
+			//Set it as an actual damage type
+			var damageCollection:TypeCollection = new TypeCollection( { tease: damage } )
+			//Drug-based teases do drug damage instead.
+			if (InCollection(teaseType, ["SQUIRT", "DICK SLAP", "MYR VENOM"])) damageCollection = new TypeCollection( { drug: damage } )
+	
 			output("\n\n");
+			trace("Damage: " + damage);
+			var damageRes:DamageResult = applyDamage( damageCollection , attacker, target, "suppress");
+			trace("DamageRes: " + damageRes.lustDamage);
 			switch(teaseType)
 			{
 				case "SQUIRT":
@@ -207,28 +191,15 @@ package classes.Engine.Combat
 					if(kGAMECLASS.silly) output(" Ha! GOT ‘EM!");
 					break;
 				default:
-					output(teaseReactions(damage,target));
+					output(teaseReactions(damageRes.lustDamage,target));
 					break;
 			}
-			target.lust(damage);
+			outputDamage(damageRes);
+			//9999 output likes/dislikes	
 			
-			var damageResult:DamageResult = new DamageResult();
-			if (damage > 0)
-			{
-				damageResult.lustDamage = damage;
-				damageResult.typedLustDamage.tease.damageValue = damage;
-			}
-			else
-			{
-				damageResult.lustResisted = true;
-			}
-			
-			outputDamage(damageResult);
-			
-			teaseSkillUp(teaseType);
-			
+	
 			// Followups
-			if(target is MyrInfectedFemale && damage >= 10)
+			if(target is MyrInfectedFemale && damageRes.lustDamage >= 10)
 			{
 				//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
 				var stunDur:int = 1 + rand(2);

@@ -11,6 +11,8 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
+	import classes.Items.Accessories.SalamanderDefenseSystem;
+	import classes.Items.Accessories.BimboleumDefenseSystem;
 	
 	/**
 	 * ...
@@ -266,6 +268,14 @@ package classes.Engine.Combat
 		damageResult.lustDamage = Math.round(damageResult.lustDamage);
 		damageResult.totalDamage = Math.round(damageResult.totalDamage);
 
+		//Cool accessory procs!
+		if(damageResult.shieldDamage >= target.shields() && target.hasShields())
+		{
+			if(target.accessory is SalamanderDefenseSystem || target.accessory is BimboleumDefenseSystem)
+			{
+				if(!target.hasStatusEffect("Def Proc")) target.createStatusEffect("Def Proc",1,0,0,0,true,"","",true,0);
+			}
+		}
 		//For tracking shield regeneration for level 10 boopers
 		if(damageResult.shieldDamage > 0 && !target.hasStatusEffect("Shields Damaged")) target.createStatusEffect("Shields Damaged", 0, 0, 0, 0, true, "", "", true, 0);
 

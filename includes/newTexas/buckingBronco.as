@@ -340,7 +340,7 @@ public function grabEmByThePussyTheyllLetYa():void
 	}
 	pc.exhibitionism(1);
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	jamesMenu();
 }
 
@@ -384,7 +384,7 @@ public function fiveFingahAsscount():void
 	//add 40 lust, do anal stretching check, pass 5 minutes, add exhibitionism, return PC to James’s talk menu, if PC got fisted make their next drink free.
 	processTime(5);
 	pc.exhibitionism(1);
-	pc.lust(20);
+	pc.changeLust(20);
 	jamesMenu();
 }
 
@@ -502,7 +502,7 @@ public function drinkAtBuckingBronco(drink:String):void
 			//remove 8 credits, add Leithan Milk status effect with 12 hour duration, return player to bar
 			nPrice = 8;
 			pc.imbibeAlcohol(10);
-			pc.lust(55);
+			pc.changeLust(55);
 			aphrodisiacMilkEffect();
 			break;
 		case "Milktini":
@@ -726,7 +726,7 @@ public function whiskeyCowMooDrink():void
 	pc.exhibitionism(1);
 	payForDrinkAtBuckingBronco(30);
 	processTime(18);
-	pc.lust(20);
+	pc.changeLust(20);
 	IncrementFlag("LIVING_KEGGED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -758,7 +758,7 @@ public function beerBoozeGalGo():void
 	pc.exhibitionism(1);
 	payForDrinkAtBuckingBronco(25);
 	processTime(18);
-	pc.lust(20);
+	pc.changeLust(20);
 	IncrementFlag("LIVING_KEGGED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -810,7 +810,7 @@ public function rumCowDrinkieDrink():void
 	pc.exhibitionism(1);
 	payForDrinkAtBuckingBronco(35);
 	processTime(25);
-	pc.lust(20);
+	pc.changeLust(20);
 	IncrementFlag("LIVING_KEGGED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -958,7 +958,7 @@ public function pheromonesTalkWithSally():void
 	output("\n\n<i>“Gives customers a reason to keep coming back too,”</i> Sally tells you, finally pulling back.");
 	output("\n\nWhew.");
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",backToSallyMain);
 }
@@ -992,7 +992,7 @@ public function sexWithSally():void
 	output("<i>“I’ll take good care of you.”</i>");
 	output("\n\nOh, that sounds wonderful.");
 	processTime(4);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[SuckleFuck] Fuck Sally while you suckle her tits. //Requires a cock.
 	//[SuckleFinger] Have Sally finger you while you suckle her tits. //Requires a vagina.
@@ -1222,7 +1222,7 @@ public function vaginaBronco():void
 
 	//easy reflex + physique check. +15 lust. If this maxes out lust, go to Vaginal Lust Loss scene. If the reflex + physique check fails, go to Stat Loss scene.
 	processTime(6);
-	pc.lust(15);
+	pc.changeLust(15);
 	//[Next]
 	if(pc.reflexes()/2 + rand(20) + 1 < 10 || pc.physique()/2 + rand(20) + 1 < 10)
 	{
@@ -1271,7 +1271,7 @@ public function vaginalBroncoPart2(x:int):void
 	output(". You’re certainly giving the audience reason to watch, and the increasingly violent motions of the mechanical stallion send you higher and higher, treating your [pc.vagina " + x + "] to longer, deeper, and more frequent penetrations, forcing you to moan out in unmistakable pleasure. The vibrations of the dildo you’ve saddled are increasing in intensity with the movements of the Bronco, leaving you practically juicing yourself.");
 	//Moderate reflex + physique check. +30 lust. If this maxes Lust go to Vaginal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene.
 	processTime(10);
-	pc.lust(30);
+	pc.changeLust(30);
 	if(pc.reflexes()/2 + rand(20) + 1 < 17 || pc.physique()/2 + rand(20) + 1 < 17)
 	{
 		clearMenu();
@@ -1322,7 +1322,7 @@ public function vaginalBroncoPart3(x:int):void
 	output(" It’s all just another sensation in the sea of pleasure you’re currently engulfed in.");
 
 	//Difficult reflex + physique check. +45 lust. If this maxes Lust go to Vaginal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene. If both checks pass, go to Vaginal Victory scene.
-	pc.lust(45);
+	pc.changeLust(45);
 
 	if(pc.reflexes()/2 + rand(20) + 1 < 20 || pc.physique()/2 + rand(20) + 1 < 20)
 	{
@@ -1390,7 +1390,7 @@ public function takeAnalBronco():void
 	output("The mechanical stallion’s rocking motions are fairly easy to keep up with for the first ten or so seconds, though the rumbling of the device keeps the dildo gently vibrating, making it a bit hard to concentrate on keeping up with the Bronco’s constantly changing center of gravity. After thirty or so seconds, you are no longer able to keep in sync enough with the Bronco’s motions, causing you to bounce an inch or two off the saddle, creating a rough facsimile of a lover making short, rough thrusts into your ass. It’s an altogether pleasant sensation that makes your pucker clench at the dildo inside you.");
 	//easy reflex + physique check. +15 lust. If this maxes out lust, go to Anal Lust Loss scene. If the reflex + physique check fails, go to Regular Loss scene.
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	//[Next]
 	if(pc.reflexes()/2 + rand(20) + 1 < 10 || pc.physique()/2 + rand(20) + 1 < 10)
 	{
@@ -1441,7 +1441,7 @@ public function broncoAssPart2():void
 	output("You’re certainly giving the audience reason to watch, and the increasingly violent motions of the mechanical stallion send you higher and higher, treating your [pc.asshole] to longer, deeper, and more frequent penetrations, forcing you to moan out in unmistakable pleasure as your intestine is teased by the dildo’s vibrating head. The vibrations of the fake dick you’ve saddled are increasing in intensity with the movements of the Bronco, leaving you on the verge of orgasm.");
 	//Moderate reflex + physique check. +30 lust. If this maxes Lust go to Anal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene.
 	processTime(7);
-	pc.lust(30);
+	pc.changeLust(30);
 	//[Next]
 	if(pc.reflexes()/2 + rand(20) + 1 < 17 || pc.physique()/2 + rand(20) + 1 < 17)
 	{
@@ -1492,7 +1492,7 @@ public function buttBroncoPart3():void
 
 	//Difficult reflex + physique check. +45 lust. If this maxes go to Anal Lust Loss scene. If reflex + physique check fails, go to Regular Loss scene. If both checks pass, go to Anal Win scene.
 	processTime(3);
-	pc.lust(45);
+	pc.changeLust(45);
 	if(pc.reflexes()/2 + rand(20) + 1 < 20 || pc.physique()/2 + rand(20) + 1 < 20)
 	{
 		clearMenu();
@@ -1543,7 +1543,7 @@ public function loseBroncoDuetoStats():void
 	//take PC back to saloon, add big exhibitionist gain
 	pc.exhibitionism(2);
 	processTime(8);
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	fuckingBroncoTrack(false);
 	

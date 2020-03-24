@@ -1193,7 +1193,7 @@ public function redRidingRaskvel():void
 	output(" into the other one’s face. Leisurely you open your eyes to see that the smallest one is still standing there, his mouth slightly ajar and his fat, four inch boy cock standing on end to your performance.");
 	if(pc.lust() >= 66) output(" You need to think of something to do with him before the heat you can feel building irresistibly in your nether regions gets too much to form cogent instructions.");
 
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(13);
 
 	var args:Array = [x,y];
@@ -1704,7 +1704,7 @@ public function stayAroundForBonusRaskbuttSex():void
 	output("\n\n<i>“Please,”</i> he groans, staring up at you blearily. He’s completely under your spell; you idly consider what task to put him to.");
 
 	processTime(6);
-	pc.lust(7);
+	pc.changeLust(7);
 	//[Lick pussy] [Lick feet]
 	clearMenu();
 	addButton(0,"Lick Pussy",lickPussyRaskButt,raskWinner,"Lick Pussy","Put the winner to work on your pussy, where he belongs.");

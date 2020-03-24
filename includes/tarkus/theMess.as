@@ -235,14 +235,14 @@ public function quiveringQuasar():void
 		if(pc.statusEffectv2("Quivering Quasar") < 10) {
 			pc.addStatusValue("Quivering Quasar",2,5);
 			pc.physiqueMod+=5;
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else output("\n\nYou’re about as drunk on Quivering Quasar as you’re going to get.");
 	}
 	else {
 		pc.createStatusEffect("Quivering Quasar",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf alcohol makes you feel stronger - so much so that your maximum physique is temporarily increased.",false,180);
 		pc.physiqueMod+=5;
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	processTime(6);
 	pc.imbibeAlcohol(20);
@@ -275,7 +275,7 @@ public function sexOnAMeteor():void
 	else {
 		pc.createStatusEffect("Sex On a Meteor",0,5,0,0,false,"LustUp","This top-shelf alcohol makes you almost irresistible, but easily aroused as well.",false,180);
 	}
-	pc.lust(15);
+	pc.changeLust(15);
 	pc.imbibeAlcohol(16);
 	processTime(7);
 	clearMenu();
@@ -523,7 +523,7 @@ public function stephIrsonEpisodeTwo():void
 	output("\n\nThe goo and Steph both stare at the huntress’s wrist as it vanishes into the goo-girl’s tit. <i>“Oops. I guess I’m hungry! Oh well! This is gonna be super duper fun, Miss Irson, I promise.”</i>");
 	output("\n\nSteph manages only to let out a panicked scream as a surge of gray goo rushes up her arm, crashing across her body like a tidalwave, pulling her into the main mass of silvery machines. Her voice is silenced as a million micromachines surround her, dragging the show’s host into the googirl’s body until there’s no trace of her left except her ponytail wiggling around behind the goo’s head, dripping with moist micromachines. Giggling to herself, the goo spins around and strikes a pose, now almost perfectly mirroring Steph’s shapely, athletic form (except for a much larger bust and ass), even pouring herself in to fill out the huntress’s clothes.");
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisodeTwoDashTwo);
 }
@@ -586,7 +586,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 		pc.orgasm();
 		timesDelilahSexed(1);
 	}
-	else pc.lust(33);
+	else pc.changeLust(33);
 	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone’s eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>“Experiencing Technical Difficulties”</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
 	output("\n\n<i>“So, you’re gonna edit all that out in post, right?”</i> the goo giggles, just as a commercial comes on.");
 	

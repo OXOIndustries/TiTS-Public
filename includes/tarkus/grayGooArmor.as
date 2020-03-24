@@ -704,7 +704,8 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 	{
 		switch(upgrade)
 		{
-			case "ganrael": if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+			case "ganrael": if (pc.armor.resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+			case "janeria": if (flags["UVETO_DEEPSEALAB_NOVA_UPGRADE"] == 1) hasUpgrade = true; break;
 		}
 	}
 	if(bInv)
@@ -716,6 +717,7 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 				switch(upgrade)
 				{
 					case "ganrael": if(pc.inventory[i].resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+					case "janeria": if (flags["UVETO_DEEPSEALAB_NOVA_UPGRADE"] == 1) hasUpgrade = true; break;
 				}
 			}
 		}
@@ -2053,7 +2055,12 @@ public function gooArmorDetails(showArmorLevel:Boolean = false):String
 		}
 		msg += ".";
 	}
-	if(showArmorLevel) msg += "\n\n<b>Armor Defense:</b> " + pc.armor.defense;
+	if (flags["UVETO_DEEPSEALAB_NOVA_UPGRADE"] == 1) msg += " A shield is being emanated from the armor, a trick learned from an encounter with a janeria.";
+	if (showArmorLevel)
+	{
+		msg += "\n\n<b>Armor Defense:</b> " + pc.armor.defense;
+		msg += "\n\n<b>Armor Shields:</b> " + pc.armor.shields;
+	}
 	
 	return msg;
 }
@@ -2120,20 +2127,28 @@ public function gooArmorCheck(repair:Boolean = false):Boolean
 	// Base stats and upgrades:
 	var baseDefense:Number = 6;
 	var baseSexiness:Number = 5;
+	var baseShields:Number = 0;
+	var baseResElec:Number = -25;
 	// Ganrael
 	if(hasGooArmorUpgrade("ganrael", false))
 	{
 		baseDefense += 2;
 	}
-	
+	if(hasGooArmorUpgrade("janeria", false))
+	{
+		baseShields += 50;
+		baseResElec += 25;
+	}
 	// To repair
 	if(repair)
 	{
 		pc.armor.defense = baseDefense;
 		pc.armor.sexiness = baseSexiness;
+		pc.armor.shields = baseShields;
+		pc.armor.resistances.electric.resistanceValue = baseResElec;
 	}
 	// To check
-	if(pc.armor.defense == baseDefense && pc.armor.sexiness == baseSexiness) return true;
+	if(pc.armor.defense == baseDefense && pc.armor.sexiness == baseSexiness && pc.armor.shields == baseShields && pc.armor.resistances.electric.resistanceValue == baseResElec) return true;
 	return false;
 }
 // Checks and changes armor flags and stats accordingly for exposure.

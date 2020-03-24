@@ -115,7 +115,7 @@ public function joinTheOrgyShit():void
 	output("\n\nYou’ve already got a lot in mind, and all the racy thoughts surfacing in your hormonally charged cortex involve that busy bunny being used as the best fuzzy fuck puppet ever born. Far from being unhappy, she looks <i>very</i> excited to see you stepping over. Good, because you’re about to make her cum her brains out of that [enemy.cock] of hers.");
 	output("\n\nThe only question now: how do you go about that? You could fall in with her and get fucked all the same, using her as leverage, or you could pound her laquine ass until she’s unable to walk.");
 	processTime(15);
-	pc.lust(12);
+	pc.changeLust(12);
 	clearMenu();
 	addButton(0,"Mount Her",mountHerOrgy,undefined,"Mount Her","Get in the middle of the gangbang and on top of the Jumper. Maybe the other slaves can scratch your itch, too?");
 	//addButton(1,"Take Over",,undefined,"Take Over","");
@@ -159,7 +159,7 @@ public function mountHerOrgy():void
 	// PC naga
 	else output("\n\nThe jade gryvain, not to be left out, lifts your [pc.leg] and yanks your scaly coils aside to reach the pirate’s musky nethers. Realizing what she wants, you slither your snake-half under and around the jumper’s body, wrapping her up in your constricting embrace and baring her crotch to the plundering dragon. You feel her rub her cocks against your butt before falling down to the rabbit’s...");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	if(pc.isNaga()) addDisabledButton(0,"Let Her","Let Her","You can’t get reamed with the jumper in your snake form!");
 	else addButton(0,"Let Her",letHerGangbangSlaveStuff,undefined,"Let Her","Let the dragon-slut use your butt while you service the others.");
@@ -365,7 +365,7 @@ public function dontLetHerOrgy():void
 	output("\n\nThe dusky girl in front of you aligns the jumper’s [enemy.cock] with her pussy, and thanks to all the preparation you helpfully provided, nearly takes it to the hilt with a piercing cry of bliss just by falling on it. The [enemy.cockType]-shaped bulge distending her trim tummy is proof of a happy unity. Honey squirts out on your chin and flows down to the jumper’s sloshing sack. While she humps experimentally, squealing around your probing fingers, you have a feeling nobody here is going to last much longer. Including yourself. There are a few ways this could end...");
 
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Inside",slaveOrgyCumInside,undefined,"Inside","Get the jumper to bloat this girl!");
 	addButton(1,"Outside",slaveOrgyCumOutside,undefined,"Outside","Let the jumper cum outside, all over everyone!");
@@ -550,7 +550,7 @@ public function takeOverTheGangbang():void
 	output("\n\nDropping behind the jumper, your [pc.arms] snake under hers. You grope her hot, wet chest, pinching those big, needy nipples for all their worth. She shoves her sweaty hip into your lap, grinding her tight, brown-furred butt into " + (pc.hasCock() ? "your [pc.cocks]":"your techno-strapon") + ". Sandwiched between her wide ass, you let a shaky hand fall to her [enemy.cock], fingers traveling down her foot long prong, around her fuzzy balls and past the puffy lips of her sopping mare-cunt.");
 	output("\n\nWith both hands busy, all she can do is mewl around the saeri cock she fellates so fervently. You press your fingers against every side of her moist tunnel while she grinds against your lap.");
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 
 	addButton(0,"Bun’n’Fly",cockSelect,[bunNFlyGangbangu,enemy.vaginalCapacity(0),true,0],"Bun’ n’ Fly","Fuck the jumper reverse cowgirl and let the saeri go at her pussy while the gryvain & redhead tend to each other.");
@@ -913,7 +913,7 @@ public function leaveDatOrgyBehind():void
 	clearOutput();
 	showJumpyGangbang();
 	output("Shaking your head and yanking your [pc.eyes] off the raw fucking on display, you exhale hard and scamper away from the sexball. You’ve got better things to worry about than a carnal orchestra. The arousing effects of the performance can still be felt and heard, however...");
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -173,7 +173,7 @@ public function TLCForChaurmineOnUveto():void
 	output("\n\nA heavy hand covered in scorching scales runs up your back, drawing a gasp that’s forced into a moan as his hot scale-claws graze your [pc.skinFurScales] - and you realize things are really starting to heat up.");
 
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[Cuddle] Stop the lewds, and just enjoy each other’s’ warmth. // Go to Cuddle
 	addButton(0,"Cuddle",cuddelWithCharmineAfterBeatDown,undefined,"Cuddle","Stop the lewds, and just enjoy each other’s warmth.");
 	//[Get Fucked] Chaurmine takes the reigns. He’ll probably get quite rough, though... // Go to Get Fucked

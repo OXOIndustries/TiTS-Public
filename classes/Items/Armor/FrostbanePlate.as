@@ -8,7 +8,7 @@
 	
 	public class FrostbanePlate extends ItemSlotClass
 	{
-		//Level ??? (???). Balance 2.0
+		//Level 8 (Very Rare) Balance 2.0
 		//constructor
 		public function FrostbanePlate()
 		{
@@ -45,6 +45,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = -2;
+			this.resolve = 5;
 			this.critBonus = 0;
 			this.evasion = -2;
 			this.fortification = 30;

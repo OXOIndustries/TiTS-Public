@@ -335,7 +335,7 @@ public function mirrinBabusTakeOne():void
 	output("\n\n<i>“At least, I uhhh, hope it works. So: who’s riding who?”</i>");
 
 	//PC lust set to max. 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	processTime(13);
 	clearMenu();
@@ -758,7 +758,7 @@ public function PCFinallyGetsToPlayDoctorsAndDragons():void
 		output("\n\nIt’s a quicker trip to Mirrin’s house than usual, the both of you having trouble keeping each other’s hands to themselves. Her security guard greets you as you both reach the house, a knowing smirk on his face.");
 		output("\n\nOnce you’re through the doors and into the main room, the she-dragon pushes you up to the wall with an arm over your shoulder and a palm planted firmly against the surface.");
 		output("\n\n<i>“So now I’m wondering about we do this...”</i> she says with a breathy, smoky voice.");
-		pc.lust(pc.lustMax());
+		pc.changeLust(pc.lustMax());
 		processTime(2);
 		clearMenu();
 		// [Get Preg] ded
@@ -973,7 +973,7 @@ public function mirrinTriesForPregAgainThisTimeWithAdvantage():void
 	output("\n\nA rough palm finds itself on your [pc.cockHead " + cockIdx + "] and then squeezes it. You wince, the strength in her fingers forming a told hold as she yanks your tool around and grinds it against her slightly parted, dripping pussy. At the same time, she guides the flare of her monstrous, 16\" stallion prick against your [pc.cunt " + vagIdx + "]! Oh she’s not really going to try <i>that</i>, right...?!");
 
 	//PC lust set to max. PC gains ‘Breeders Bliss’ and ‘Priapin’ status effects. Brings up cock and vagina selection screen. 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	processTime(11);
 	clearMenu();
@@ -1101,7 +1101,7 @@ public function mirrinAndSteeleRecordAnEducationalVideo(vagIdx:int):void
 	output("\n\n<i>“Ah, before the uhh, next step, you’re going to need some Bliss, hm? Get you nice and... receptive,”</i> she whispers from behind, pressing her thumbs into your back muscles.");
 
 	processTime(23);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	clearMenu();
 	addButton(0,"Sure",mirrinShowsTheWorldHowGirlGetPragnent,vagIdx,"Sure","Anything to guarantee it this time around! Plus it’s going to make you super horny!");
@@ -1315,7 +1315,7 @@ public function neverEnoughMirrinBabies(cockIdx:int):void
 	showMirrin(true);
 	author("SoAndSo");
 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	output("You inhale with all your waning strength, tongue lolling out to the side as you try taking in as much air as possible. With your free hands, you grasp at your overstuffed womb... so hot and full! If those fertility drugs work, then there’s no way you’re not getting pregnant.");
 	output("\n\n...but speaking of.");
 	output("\n\nThroughout all this, [pc.eachCock] " + (pc.hasCock() ? "have" : "has") + " been ignored this entire time. Still painfully erect with priapismic stiffness, you so desperately want to get off even after getting bred into submission by your dragon queen. You reach over your [pc.belly] and grope at [pc.eachCock] with enervated tugs, your insides groaning with all that fresh weight.");
@@ -3268,7 +3268,7 @@ public function drinkSumDragonJuice():void
 	output("\n\nWell...");
 
 	processTime(20);
-	pc.lust(15+pc.libido()/10);
+	pc.changeLust(15+pc.libido()/10);
 	pc.createStatusEffect("MirrinTiddysuckCooldown");
 	pc.setStatusMinutes("MirrinTiddysuckCooldown",24*60);
 	IncrementFlag("MIRRIN_MILKED");

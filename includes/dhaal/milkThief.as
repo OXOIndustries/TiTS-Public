@@ -35,6 +35,7 @@ public function encounterMilkThief():Boolean
 	author("Fenoxo");
 	var tEnemy:ZaikaMilkThief = new ZaikaMilkThief();
 	setEnemy(tEnemy);
+	showName("FIGHT:\nMILK THIEF");
 	showMilkThief();
 	//First time!
 	if(flags["MET_MILK_THIEF"] == undefined)
@@ -47,6 +48,7 @@ public function encounterMilkThief():Boolean
 		else output("Don’t run, Rusher. I’m not going to hurt you - quite the opposite.”</i> The leering alien licks her lips. <i>“I’m going to make you cum so hard that you won’t mind giving me your rich, creamy... mmmilk. Every, single, drop,”</i> she hungrily purrs.");
 		output(" <i>“Don’t mistake my friendliness. <b>This is happening.</b> Make it easy on yourself, and I’ll be easy on you" + (enemy.biggestTitSize() > 8 ? ". So easy for you, baby":"") + ".”</i>");
 		output("\n\nYour Codex chooses this moment to chirp, <i>“Hostile zaika detected! Care should be taken when traveling on Dhaal if lactating!”</i>\n\nPerfect timing, as always.");
+		CodexManager.unlockEntry("Zaika");
 		var lied:Boolean = false;
 		//No boobs& no milk, no new PG: 
 		if(!pc.isLactating() && pc.biggestTitSize() < 1) 
@@ -89,16 +91,29 @@ public function encounterMilkThief():Boolean
 		output("\n\n<b>You’ll have to fight her off!</b>");
 	}
 	//combat
+	
+	clearMenu();
+	addButton(0,"Next",fightMilkThiefForReal,tEnemy);
+	var milkTT:String = "Getting away from an augged-up alien would be hard. Why not see how good milking feels? At least you won't have to fight, just let your body do the work.";
+	if(pc.isBimbo()) milkTT = "Getting milked and feeling good? Awyis! Why can't everyone offer you such a good time?";
+	else if(pc.bovineScore() >= 4 || pc.isTreated()) milkTT = "She's a bit rude but when's the last time you got a proper milking? Why not see how good a zaika can make it?";
+	if(pc.biggestTitSize() >= 1 && pc.isLactating()) addButton(1,"Milk Me",voluntaryMilkingByWilliamSan,undefined,"Milk Me",milkTT);
+	else if(pc.biggestTitSize() >= 1) addDisabledButton(1,"Milk Me","Milk Me","You may have breasts, but they aren't ready for milking.");
+	else addDisabledButton(1,"Milk Me","Milk Me","You need breasts for this.");
+	return true;
+}
+
+public function fightMilkThiefForReal(tEnemy:Creature):void
+{
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(defeatMilkThief);
 	CombatManager.lossScene(milkThiefLossRouter);
 	CombatManager.displayLocation("MILK THIEF");
-	clearMenu();
-	addButton(0,"Next",CombatManager.beginCombat);
-	return true;
+	CombatManager.beginCombat();
 }
+
 //[=Loss Scenes=]
 public function milkThiefLossRouter():void
 {
@@ -245,7 +260,7 @@ public function tribbyTailGalz():void
 	output(", but you let it.");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG) && pc.biggestTitSize() >= 1) output(" It takes too much effort to move it for too little gain, and the salty flavor of your own sweat-dampened cleavage somehow makes the friction between your thighs even more urgent.");
 	else output(" Let her see. It takes too much effort to reel it back in.");
-	output(" You’re going to show this milk thief what it means to fuck to fush a Rusher. You grind harder against her, making her butt bubble out to the sides as its squished against the wall. Let this be her introduction to the UGC.");
+	output(" You’re going to show this milk thief what it means to fuck a Rusher. You grind harder against her, making her butt bubble out to the sides as its squished against the wall. Let this be her introduction to the UGC.");
 	output("\n\nThe coming orgasm will be her orientation.");
 	output("\n\n<i>“N-n-no! It’s too good!”</i> the once-proud zaika says, but as she speaks, you can feel her tail thrusting on its own, perfectly in sync with your hand’s guidance. <i>“Sex with a Peer can’t even be this good! You xeno sluts are g-g-onna break us!”</i> Faster and faster, that rogue organ races. It bumps across your [pc.clits] and flosses through your [pc.vagina]. There’s no missing when it swells with oncoming orgasm.");
 	output("\n\nDo you let her cum there" + (pc.hasCuntTail() ? ", in your tail":"") + ", or stuff it in her mouth?");
@@ -377,8 +392,8 @@ public function cumAsZaikaIs():void
 // reminder to use penisRouter
 
 public function titsSmall():Boolean { return (enemy.breastRows[0].breastRating() == 2); }
-public function titsMed():Boolean { return (enemy.breastRows[0].breastRating() == 2); }
-public function titsBig():Boolean { return (enemy.breastRows[0].breastRating() == 2); }
+public function titsMed():Boolean { return (enemy.breastRows[0].breastRating() == 8); }
+public function titsBig():Boolean { return (enemy.breastRows[0].breastRating() == 33); }
 
 public function fuckHerTailBuddddeh(x:int):void
 {
@@ -454,7 +469,7 @@ public function fuckHerTailBuddddeh(x:int):void
 		output("\n\n<i>“Looks like I’m going to be milking you after all!”</i> The spongy texture of her head drifts forward to spread its lewd, room-temperature moisture across the unyielding surface of your mammoth hardness. <i>“Let’s see how far you make it... and how long you last. One thing I’ve noticed about oversized Rushers is they don’t last! It’d be sooo sad if you couldn’t hold on while doing me, wouldn’t it? Big, strong fighter who can’t keep it up for more than a minute or two...”</i> She giggles; her gives your [pc.cockHead " + x + "] a few love-taps.");
 		if(pc.isBimbo()) output("\n\nPsh! You can last longer than everyone on this planet put together!");
 		else if(pc.isBro()) output("\n\nThe only one needing to worry about stamina is her.");
-		else output("It’s not your endurance that needs to be questioned here.");
+		else output("\n\nIt’s not your endurance that needs to be questioned here.");
 	}
 	// pc Chosen Cock Size <31
 	else if(pc.cocks[x].cLength() < 31)
@@ -493,7 +508,7 @@ public function fuckHerTailBuddddeh(x:int):void
 	else output(" sucks your" + (pc.cocks[x].cLength() >= 31 ? " massive":"") + " bulk into a place where fervent arousal literally pours off the walls");
 	output(".");
 	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) || pc.cocks[x].hasFlag(GLOBAL.FLAG_SPIKED)) output(" Once it’s gobbled up your ardor-fattened cock, the pliant organ begins to pleasure-seize, not expecting the rush of swabbing bliss that would follow within its malleable gullet.");
-	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) output(" Once your tendril-equipped penis is quaffed, her tail immediately ‘regrets’ that decision. Trapped in the thirsty, coiling folds of her oral-like interior, your venomous stingers lash the walls of velvet invitation and introduce her to a world of pleasure that can’t be experienced naturally on Dhaal.");
+	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) output(" Once your tendril-equipped penis is quaffed, her tail immediately ‘regrets’ that decision. Trapped in the thirsty, coiling folds of her oral-like interior, your venomous stingers lash the walls of velvet invitation and introduce her to a world of pleasure that can’t be experienced naturally on Dhaal.");
 	output("\n\nSweat rolls down your brow, droplets beating against your [pc.chestNoun] like a harsh ray of sunlight. Your [pc.hands] tighten as you gasp through clenched teeth. The otherworldly sensations of bucking into the tireless suction of alien tenta-cunt" + (pc.cocks[x].cLength() < 23 ? " as it flails and struggles to clench and squeeze your double-thick boner to the hilt":" thrashing and pumping two or three inches of overwhelming dick into its maw at a time") + " leave you breathless and panting.");
 	// pc Rut
 	if(pc.inRut()) 
@@ -531,8 +546,8 @@ public function fuckHerTailBuddddeh(x:int):void
 	//hasBalls&notuniball:
 	if(pc.balls > 0 && !pc.hasStatusEffect("Uniball")) output(" The motion sets your [pc.sack] to swinging, and it lurches up to slap into the cloaca-maw’s rubbery underlip. In fact, each movement disturbs the musky terrain between scrotum and penis: its involuntary nursings augment the pleasure by a significant factor.");
 	output(" <i>“Ohhh wow.... ");
-	if(titsSmall()) output("For as small as you are, that’s something else! You’re so hard and the throb is... is... Wow!");
-	else if(titsMed()) output("Maybe that’s just the right size! It teases me like it’s gonna go so much further, but it’s only... there! Oomph!");
+	if(pc.cocks[x].cLength() < 7) output("For as small as you are, that’s something else! You’re so hard and the throb is... is... Wow!");
+	else if(pc.cocks[x].cLength() < 14) output("Maybe that’s just the right size! It teases me like it’s gonna go so much further, but it’s only... there! Oomph!");
 	else output("Look at how badly my tail is stretched! It’s never gonna close again! I’ll need to pay out the rump for plasticity mods! And y’know what else? I’m gonna love spending that money just as much as I’m gonna love you breaking me apart!");
 	output("”</i>");
 	output("\n\nGlad to hear it.");
@@ -551,7 +566,7 @@ public function fuckZaikaTailOnWinPart2(x:int):void
 	output("\n\nIt’s because of her tail. That glorious, fat-headed bundle of mind-melting muscle. Its firm innards are squirming, twisting and winding with a frightening quality. Quivering stickiness unbinds like a finger trap, pulling back just enough to emulate the oral suction of a thousand lungs all at once, angled downwind an enlarged vinculum.");
 	if(pc.cockTotal() > 2) output(" The rest of your cocks ‘wap’");
 	else output(" Your other dick ‘plap’s");
-	if(pc.hasCocks()) output(" harmlessly against the poon-balloon’s luscious exterior.");
+	output(" harmlessly against the poon-balloon’s luscious exterior.");
 	output(" Even though you’ve got her pinned against the wall, it makes your [pc.legOrLegs] tremble bonelessly. Those decompressing sucks occur on maddening repeat, and again you chomp to cope, leaving cherry-red marks of your fierce mating behind, not caring where you do it. There’s no telling where her synthetic skin begins and ends, and that stuff is built to take a beating. Some chewing hasn’t marred the artisanal beauty of your latest screw so far.");
 	output("\n\nEvery glob of precum you spurt into her breeding tube joins the lakes of dripping goo coating you in hot, streaming gouts. Simmering shellac washes over your nerve-tender [pc.cockNoun " + x + "] as if it were a sugary treat swishing and swashing in a pair of drooling cheeks. Right on top of the palate and tastefully enjoyed. Your flavor must be the most savory of any who’ve been in there, a hypothesis reinforced by the frequent ‘ulp, ulp, ulp’ swallows of her unresisting cunt-throat. Sometimes you can feel its strokes receding, exposing heated cockflesh to the icy bite of Dhaal’s air. Each time, it retightens a second later, sleeving your phallus in the soothingly warm protection of her");
 	if(pc.cocks[x].cLength() >= 14) output(" sorely-stretched fuck-funnel.");
@@ -656,7 +671,7 @@ public function cummyWithZaikaMilkyThief(x:int, bonusTime:Number, breastfeeding:
 	}
 	else 
 	{
-		output("\n\nStanding on your own after a mating ritual like that seems impossible, but emerging from the limp, cum-flecked orifice{ bigDick: with the sound of a snapping rubber band}, you sputter out a few more ropes onto her body and go soft over a minute of panting convalescence. Once the fatigue on your shoulders eases up a tad, you stumble away from your opponent and get yourself back in order, wiping your [pc.cocksLight] clean with her tail covering before throwing it on her. It lands in her mouth. Further exploration awaits...\n\n");
+		output("\n\nStanding on your own after a mating ritual like that seems impossible, but emerging from the limp, cum-flecked orifice" + (pc.cocks[x].cLength() >= 31 ? " with the sound of a snapping rubber band":"") + ", you sputter out a few more ropes onto her body and go soft over a minute of panting convalescence. Once the fatigue on your shoulders eases up a tad, you stumble away from your opponent and get yourself back in order, wiping your [pc.cocksLight] clean with her tail covering before throwing it on her. It lands in her mouth. Further exploration awaits...\n\n");
 		processTime(10+bonusTime);
 		//Not really in her cunt, but in case of future preggomancy!
 		enemy.loadInCunt(pc,0);
@@ -840,7 +855,6 @@ public function loseAndGetHyperDooooocked():void
 	output("\n\n<i>“So lewd! We only let them come here because they’re top tier tail-drainers, right?”</i> With the audience watching, the cyborg’s words seem to grow crueler by the second. Yet her expression, when she’s looking down at you, seems almost apologetic, like she realizes that things have gotten out of hand but she has no choice but to see it through to the end. She strokes the top side of your [pc.cock " + x + "] while she plows it with faster and faster strokes, barely keeping it together long enough to say, <i>“[pc.HeShe]’s tighter than a virgin! It’s not right how good this feels!”</i>");
 	output("\n\nTrue to her words, you can feel her tail swelling within you, thickening and plumping while it pounds deep. Lurid squelches fill the air as the gasping alien’s eyes roll back. Her chest, ");
 	if(titsSmall()) output("petite as it may be, wobbles slightly as it visibly deflates");
-
 	else if(titsMed()) output("curvaceous and ripe, wobbles as it drops a cup size");
 	else output("jaw-dropping and wobbly, bounces as a cup size vanishes like magic");
 	output(", the liquid within routing downward and suddenly, inside you, pumping a hot load directly into roiling depths.");
@@ -1236,12 +1250,12 @@ public function milkThiefFuckAndMilk2(args:Array):void
 		output("\n\nWhat you do next is heave a gasping squeak. Your whole uncontrollable being is astonished in that second - overcome. It’s not the result of quivering climax or deep, wonderful sex. It’s the ounces of [pc.milk] welling up inside your [pc.breasts]");
 		if(pc.lactationQ() >= 1000) output(", the pints and the liters raging through your ducts. It’s the gallons that burst out into the milker in that inexpressible way");
 		else output(". Thin, squirting arcs of ambrosia worth their weight in gold hoovered up until there’s nothing left to give");
-		output(". There’s no telling where the most stimuli is coming from. You’re pulled to the reaming you’re getting and then back to the hardcore squirting of your bosom, loosing torrents of [pc.milkVisc] [pc.milkGem] fluid in breathtaking salvos.");
+		output(". There’s no telling where the most intense stimulus comes from. You’re pulled to the reaming you’re getting and then back to the hardcore squirting of your bosom, loosing torrents of [pc.milkVisc] [pc.milkGem] fluid in breathtaking salvos.");
 		output("\n\nRight now, every part of your body is being set off; you’re being tugged down two dangerous avenues of pleasure. Her custom milk-machine is relentless and tireless, a machine capable of making longer-lived New Texans into incapacitated husks. It’s so intense that you can’t focus on the pleasure you’re being forced to feel. It’s so powerful that your body refuses to act on autopilot. Is it because of her ero-gas? Is there something more to it?");
 		output("\n\nToo fucked to care, you slip into uneven, oscillating, unseeing euphoria. Rather than try in vain to maintain any sort of cognizance you surrender to her thrusts, the spurts, the jolts and the shocks. Can anyone outside the alley hear you now?");
 		if(pc.isTreated() || pc.bovineScore() >= 3) output(" Can they hear you mooing? Can they hear the cow[pc.boyGirl] being milked and loving every second of it?");
 		else output(" Are you mooing? It’s absurd, but it’s possible.");
-		output(" Each blast of steaming-hot lactation, guzzled up by the zaika’s pump and safely stored in her backpack, is worth a hundred orgasms. Endless [pc.milkFlavor] goodness flows, filling the bandit’s tanks full of mother nutrition. Rich, [pc.milkVisc] [pc.milkNoun], for her and her kind to get drunk and merry on, and for you to enjoy being robbed of.");
+		output(" Each blast of steaming-hot lactation, guzzled up by the zaika’s pump and safely stored in her backpack, is worth a hundred orgasms. Endless [pc.milkFlavor] goodness flows, filling the bandit’s tanks full of motherly nutrition. Rich, [pc.milkVisc] [pc.milkNoun], for her and her kind to get drunk and merry on, and for you to enjoy being robbed of.");
 		if(!pc.isTaur()) 
 		{
 			output("\n\nHer too. Plump amethyst lips seal around " + (pc.totalBreasts() == 2 ? "your free":"a free") + " tit, drawing out [pc.milk] in thirsty drags. Being fucked, being milked, and breastfeeding: three unique experiences coalescing into the most profound pleasure. You don’t have to move, don’t have to think, just hold it together and let yourself be drained.");
@@ -1562,7 +1576,7 @@ public function faceFuckDatBitch(x:int):void
 	output("\n\nSlaver drips from your [pc.cockNoun " + x + "]" + (pc.hasCocks() ? ", and soon from the rest. With one-syllable commands, your meaty collection glistens like recently discovered artifacts":", and with further one-syllable commands, your meat soon glistens like an artifact recently discovered") + ". Your one-night pricksleeve takes hold of your ");
 	//ParseText early and replace instance of <i>“prick”</i> with <i>“cock”</i>: 
 	output(ParseText("[pc.cocksLight]").replace("prick","cock"));
-	output(" with a teasing sensuousness. <i>“Errr... this is fine, right?”</i> she asks, sincerely interested in learning. <i>“Touching it is... satisfying, um, it just feels good to hold. It also tastes good. Its flavor and texture is naish,”</i> purrs the bandit, licking and puffing, earning guttural sounds of pleasant approval");
+	output(" with a teasing sensuousness. <i>“Errr... this is fine, right?”</i> she asks, sincerely interested in learning. <i>“Touching it is... satisfying, um, it just feels good to hold. It also tastes good. Its flavor and texture is naish,”</i> purrs the bandit, licking and puffing, earning guttural sounds of pleasant approval.");
 	output("\n\n<i>“Makesh shense! Aliensh like ushing every hole!”</i>");
 
 	output("\n\nThe savory juices you ");
@@ -1746,7 +1760,7 @@ public function faceFuckDatBitch2(x:int):void
 		output(" It doesn’t take long before a connection is established and your prehensile genitalia docks with hers. Because her cockring remains, fitting past its obstructive seam is a trial by fire for your additional sexy-bit, but with a lot of wriggling and plenty of thrusting (from both parties), the metal bends forwards over the knot of her dimpling cunt-tail’s fat fucking peak and flings off towards the randy, raucous onlookers, whom each laugh and praise your ingenuity. In the span of four thrusts, you’re traveling through the business end of her egg-hole as easily as you do her pronounced esophagus.");
 	}
 	// merge
-	output("\n\nJust as you feel familiar, climactic tightness building in your [pc.knotBallsHilt " + x + "], " + (pc.balls > 0 ? "ball-":"prostate-") + " draining lips bending and bowing around your [pc.cockNoun " + x + "], you dare to face your audience.");
+	output("\n\nJust as you feel familiar, climactic tightness building in your [pc.knotBallsHilt " + x + "], " + (pc.balls > 0 ? "ball-":"prostate-") + "draining lips bending and bowing around your [pc.cockNoun " + x + "], you dare to face your audience.");
 	if(pc.exhibitionism() < 33 && pc.libido() < 33) output(" Creatures of the night stare back, many engaged in porny acts that make you blush, sweat harder. Some are holding up colorful little gadgets, all aimed your way. A flash of white slices your [pc.eyes] - a photo taken. They’re recording this, memorializing it for their future relief!");
 	else output(" Horny daughters of the twilight watch you with unfiltered glee, the trashiest among their highlighted number gyrating in graphically vulgar fashion or screaming obnoxious and unwanted suggestions. That’s not what you focus on though - it’s the cameras. Soul-stealing flashes capture this event in colorful pictures while the other outstretched devices are undoubtedly taking video of this. That makes you throb, <b>powerfully.</b>");
 
@@ -1761,7 +1775,7 @@ public function faceFuckDatBitch2(x:int):void
 		else if(pc.tallness <= 6*12+6) output("wonder-[pc.boyGirl]");
 		else output("giga-[pc.raceCute]");
 		output("?”</i> A friendly voice out to you from a sea of strangers. Leila shoves and bullies her way to the front, codex in paw. <i>“Oh don’t mind me; you do you, ‘captain’!”</i> She casually lifts the gadget, obscuring her toothy grin - yep, she’s recording it too. Of course she would. Once a Jumper, always a Jumper, at least where one’s insatiable appetite for wank material is concerned. <i>“Did you slow down?!”</i> she bellows, tending the [leila.cockType] pole tenting her [leila.uniform]. <i>“Don’t look at me - fuck that slut’s face already! Gimme some good shit to get off to when I don’t have your ass bouncing on my cock!!”</i>");
-		if(9999 == 0) output("\n\nYou’ll deal with that insubordination <i>later.</i>");
+		if(leilaIsCrew()) output("\n\nYou’ll deal with that insubordination <i>later.</i>");
 		else output("\n\nDamnit... that bun is too needy sometimes!");
 	}
 	//Less common crew cameos since they dont have all the cum fun bonus.
@@ -1769,11 +1783,11 @@ public function faceFuckDatBitch2(x:int):void
 	{
 		var crewBlurbs:Array = [];
 		//Kiro Cameo Random :3
-		if(kiroIsCrew()) crewBlurbs.push("Kiro");
+		if(kiroIsCrew() && !kiro.isBimbo()) crewBlurbs.push("Kiro");
 		if(pennyIsCrew() && !penny.isBimbo()) crewBlurbs.push("Penny");
 		if(mitziIsCrew()) crewBlurbs.push("Mitzi");
 		var select2:String = "none";
-		if(crewBlurbs.length > 0) select = RandomInCollection(crewBlurbs);
+		if(crewBlurbs.length > 0) select2 = RandomInCollection(crewBlurbs);
 
 
 		if(select2 == "Kiro") output("\n\n<i>“Oh shit, Angel? Damn...”</i> The familiar, swaggering tones of your favorite law-breaking tanuki caress your ears as she casually barrels through the crowd" + (kiro.ballDiameter() > 14 ? ", nearly dragging her nuts behind":"") + ". Kiro’s bright red eyes fixate on the sight of your spit-slicked cock pounding away at the captive, and she wastes way no time in whipping out her own dick to stroke in unrestrained, hedonistic glory. She leans into the closest, bustiest zaika she can find and whispers something to her, and a second set of hands joins in servicing the kui-tan’s bestial pole. <i>“F-f-fuck her harder!”</i>");
@@ -1809,8 +1823,8 @@ public function inAndOutThatMilkyThiefy(args:Array):void
 	var leilaHere:Boolean = args[1];
 	output("Mindlessly riding your incoming climax, you pump hard and fast through the pink-skinned protein-milker’s pliable mouth, doing your best to remember the goal: in, and out - mark her like an owner their property! Worn like a tailor-made skank, she rocks against you, utterly transfixed by the whims of your [pc.cockType " + x + "] schlong.");
 	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" Your flare billows out into a flat, feral peak, ready to assist in forcing the matter of oral fertilization.");
-	if(pc.balls > 0) output(" Your [pc.Balls] ‘whap" + (pc.balls == 1 ? "s":"") + "’ into her blissed-out face, the spread of her lush, panting fuck-pucker pretty much designed to take this kind of intensely pleasurable beating.");
-	output(" The smells climax creep up and make vague the urgency to orgasm. Fatigue sets in, and you slam against the stretched gape of your cock-whore’s agape mouth");
+	if(pc.balls > 0) output(" Your [pc.balls] ‘whap" + (pc.balls == 1 ? "s":"") + "’ into her blissed-out face, the spread of her lush, panting fuck-pucker pretty much designed to take this kind of intensely pleasurable beating.");
+	output(" The smells of climax creep up and make vague the urgency to orgasm. Fatigue sets in, and you slam against the stretched gape of your cock-whore’s agape mouth");
 	if(pc.hasKnot(x) && pc.cocks[x].cLength() < 18) output(", driving the potent bulk of your [pc.knot " + x + "] to the surging apex");
 	output(".");
 
@@ -1951,7 +1965,7 @@ public function cummiesInsideIsWhereCummiesBelongDonchaKnow(args:Array):void
 	var x:int = args[0];
 	var leilaHere:Boolean = args[1];
 
-	output("It’s always better when someone swallows. Surrendering to your bestial ferocity, you rail the pink-skinned milk-seeker’s malleable maw, absolutely no conscience that you won’t breed her thirsty front suck-hole. Esophageal membranes close around your pistoning phallus like a pussy ready to lock in a mate’s seed. ");
+	output("It’s always better when someone swallows. Surrendering to your bestial ferocity, you rail the pink-skinned milk-seeker’s malleable maw. There's absolutely no chance that you won’t breed her thirsty, front-mounted suck-hole. Esophageal membranes close around your pistoning phallus like a pussy ready to lock in a mate’s seed. ");
 	if(pc.isBro() || pc.isAss()) output(" All the better, you think. You don’t care if she gags or chokes. You just want to cum.");
 	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" Your flare stretches out into hole-stretching readiness, the feral, fleshy mesa primes to ensure fertilization in the carnal velvet of her conquered throat.");
 	if(pc.balls > 0) output(" Your [pc.sack] slaps giddily and gleefully into the cum-slut’s chin, beating rhythmically against lips designed to take intense, brutal couplings like this.");
@@ -1989,7 +2003,7 @@ public function cummiesInsideIsWhereCummiesBelongDonchaKnow(args:Array):void
 	output("\n\n<i>“Guess you xenos have it in you after all! Come by later and we’ll show you how real girls take it!”</i>");
 	output("\n\n<i>“Not bad off-worlder! Really showed that slut did ‘ya!?”</i>");
 	output("\n\n<i>“She’s faking it! Fuck her face again, she’s totally ready for another go!”</i>");
-	output("\n\n{highCum: <i>“Damn! Look how fat she got!! All these rushers are good for the same thing: making skanks fat on spunk! Hahaaa!”</i>");
+	if(cummies >= 3000) output("\n\n<i>“Damn! Look how fat she got!! All these rushers are good for the same thing: making skanks fat on spunk! Hahaaa!”</i>");
 	if(cummies >= 15000) output("\n\n<i>“Not just fat, that bitch won’t be walking for days! Look at the SIZE of that BELLY! I doubt a hydra could do any better!”</i>");
 	// Leila Approached
 	if(leilaHere)
@@ -2039,7 +2053,7 @@ public function zaikasGetCumShoweredToBringMayFlowers(args:Array):void
 	var cummies:Number = pc.cumQ();
 	// pc Normal Cum
 
-	output("\n\nFat threads of [pc.cum] surge from your [pc.cockHeads], bursting with molten force, striping the zaika’s pink-wine flesh in steaming loads of [pc.cumFlavor] semen. Her color-shifting hair gets absolutely drenched by your seed, and by the third and fourth cumshots respectively, you’ve given her some brand new earrings to be proud of. [pc.CumGem] decorations dribble down the cum-slut’s pasted face, while you thrust your hips" + (pc.isTaur() ? " and pump your [pc.cocksLight]":"") +  "for all you’re worth. Grateful for the treats, the vigorously fucked thief opens her palms to catch the spillage and keeps her mouth open, eager for a taste of your [pc.milkNoun " + x + "].");
+	output("\n\nFat threads of [pc.cum] surge from your [pc.cockHeads], bursting with molten force, striping the zaika’s pink-wine flesh in steaming loads of [pc.cumFlavor] semen. Her color-shifting hair gets absolutely drenched by your seed, and by the third and fourth cumshots respectively, you’ve given her some brand new earrings to be proud of. [pc.CumGem] decorations dribble down the cum-slut’s pasted face, while you thrust your hips" + (pc.isTaur() ? " and pump your [pc.cocksLight]":"") + " for all you’re worth. Grateful for the treats, the vigorously fucked thief opens her palms to catch the spillage and keeps her mouth open, eager for a taste of your [pc.milkNoun " + x + "].");
 	if(pc.cumType == GLOBAL.FLUID_TYPE_MILK) output(" Given it IS real milk, in a way, you know that you’re doing her a huge favor right now.");
 	output(" Keeping it all aimed at her is a tough prospect, but if you can’t reward your whore then you’ll definitely be the laughing stock here. That can’t happen!");
 	if(hasBackTentaclesOrCocktail()) output("\n\nWhilst you’re busy up top, your " + (pc.hasCockTail() ?"[pc.cockTail]":"tentacle") + " makes handy work of her tail. Matched with rear-mounted genitalia of your own, her overfucked tail spasms around the alien insertion, a glove bulging with thick [pc.cumVisc] gouts of seed splitting its vice apart. You can spot the spheres of spouted liquid in her tail’s soft muscles, traveling through the serpentine coil and into her egg-duct. Fucking hot.");
@@ -2123,4 +2137,444 @@ public function zaikasGetCumShoweredToBringMayFlowers(args:Array):void
 	pc.orgasm();
 	output("\n\n");
 	CombatManager.genericVictory();
+}
+
+//[+Submit to Milking+]
+// This option should be available to a PC with Breasts who may or may not be lactating. In keeping with the attitude alignments of other Zaika in the Gyre, an offer should be made. If the PC submits, she will tail-cuff them, molest, domme, make treated gals moo, etc.
+// Submitting too many times to milk thieves should lead to getting forcibly TF'd: bigger nipples, boobs, puffy nipple flag added, generally looking more like a dairy slave.
+// PC should be temporarily marked somehow so that other thieves can pick them out; make them known. Maybe using a patch like in Wsan's milk bar, which could mean auto submissions and Bad Ending. Getting added to a milk bar and making it the newest hotness.
+// reminder that I use {titsSmall, titsMed, and titsBig} to differentiate the thieves from controlled to horny to depraved.
+
+	// Add the option [Get Milked] next to the fight option. May need some extra text. Only shows up if the PC is actively lactating!
+
+//[Get Milked]
+	// Tooltip: {bimbo: Getting milked and feeling good? Awyis! Why can't everyone offer you such a good time?/ cowgirl: She's a bit rude but when's the last time you got a proper milking? Why not see how good a zaika can make it?/ else: Getting away from an augged-up alien would be hard. Why not see how good milking feels? At least you won't have to fight, just let your body do the work.}
+	// Sets you up in an alley to be milked. Many submissions put a pleasure patch on the player? Make them more agreeable to milking?
+	// Forced TFs. Nipples puff up, greater lactation, regeneration. Drugs for bigger boobs. Lots of titty worship. Based on horniness level, the Zaika will either make you suck her tail (titsSmall) or (titsMedium) titfuck you while she does the work (and, titsBig, the mouth as well! Lewd!)
+
+//Fen notes:
+	//Requires breasts of B-cup+ - enough to be "really heavy" for bimbos.
+	//Requires able to be milked right now.
+public function voluntaryMilkingByWilliamSan():void
+{
+	clearOutput();
+	showMilkThief(true);
+	author("William");
+
+	// pc Bimbo
+	if(pc.isBimbo())
+	{
+		//submittedToMilkTimes>4:
+		if(milkThiefVolunteerMilkings() >= 3) output("Finally! You’ve been needing this for a while, and you’re not about to turn down a milk lover’s hospitality!");
+		else output("Now that you’ve got someone else bringing it to your attention, you’ve gotta admit, your [pc.breasts] are really heavy! At this point you don’t care (or remember, T-B-H) that she’s being rude and huffy, only that she’s happily willing to take care of a super serious problem for you!");
+		output(" <i>“Sure!”</i> you chirp, grabbing your tits and aiming the [pc.nipples] to your pink ambusher - gosh, it’s so cute that she’s the color of fun! <i>“I’ve got loooots of [pc.milkNoun] if you, like, wanna milk me! I’m really horny now that’cha mention it!”</i> You guess you’re a little too dumbly excited at letting some alien get at your titties, because you squeeze too hard on the [pc.nippleColor] nubs and");
+		if(pc.isChestExposed()) output(" fire off " + (pc.totalNipples() > 2 ? "a salvo of":"two") + " [pc.milkGem] torrents that splatter against the pavement, much to her chagrin");
+		else output(" wetten the front of your [pc.chestCovers] with dark, [pc.milkVisc] splotches, much to her chagrin");
+		output(".");
+
+		output("\n\n");
+		if(titsSmall()) output("<i>“T-That’s great!”</i> she stammers. <i>“But please do not waste any!”</i> she cries, hurrying over to keep you from doing that anymore. <i>“Come with me, my dear milky alien. Let’s get you nice and drained, okay?”</i>");
+		else if(titsMed()) output("<i>“W-Well that’s really nice and all but you’re wasting it! Don’t do that!”</i> she stamps her foot. <i>“Come on, before anyone else notices, okay?”</i>");
+		else output("<i>“Nooo! Don’t waste any of thaaat!”</i> she whines, staggering over to stop you. <i>“Look, let’s just duck into there - see? And <b>then</b> we’ll touch your big milkies, okay?”</i>");
+		output("\n\n<i>“Kaaaay!”</i> you beam.");
+	}
+	// pc Cowgirl
+	else if(pc.isTreated() || pc.bovineScore() >= 4)
+	{
+		//submittedToMilkTimes>4
+		if(milkThiefVolunteerMilkings() >= 3) output("Part of you realizes the inherent danger of acquiescing to a stranger’s demands like this... but it’ll feel good. These girls care about cows like you. They’ve never steered you wrong: each time in her hands has been relaxing and fulfilling.");
+		else output("You’re not ignorant to the dangers of hefting milk around on Dhaal, but... you’re also not ignorant to the pleasures of a good milking. Besides, if it gets this glasses-wearing nerd out of your way without a fight, you’ll be glad to relieve some of this fluid burden to continue on unmolested.");
+		output(" <i>“Alright,”</i> you start, [pc.fingers] swirling around your [pc.nipples], setting your jiggly assets to churning. Boob-based bliss bubbles up in your head right away, all that sloshing [pc.milk] inside fit to burst out. [pc.NippleColor] titflesh engorges, hardening ");
+		if(pc.isChestExposed()) output("into outlined peaks against your [pc.chestCovers].");
+		else output("into captivating pebbles that capture the zaika’s attention.");
+		output("\n\n");
+		if(titsSmall()) output("<i>“Oh, that’s a good cow,”</i> she says with trace condescension. Relaxing, the augged girl trundles forward, glowing eyes atwinkle. <i>“Come on, let’s get you out of sight. If I try milking you right here, everyone will see! And then we’ll be in big trouble.”</i>");
+		else if(titsMed()) output("<i>“That’s what I like to hear, cow[pc.boyGirl]!”</i> the lilac bandit squawks, leaping into your " + (silly ? "DMs":"personal space") + " in one big augmented bound. <i>“Now let’s get you off the street, milk-tank. Cows have lots of fun getting milked, but not when they’re disturbed!”</i>");
+		else output("<i>“Mmyesss, obedient cooowwws!”</i> The neurotic and sexually pent-up creature shimmies about on the spot - you roll your eyes. When they reset, you find that she’s got her head buried in your cleavage. <i>“C’mon milky cow, let’s go empty these big soft milkies...”</i>");
+	}
+	// pc Else
+	else
+	{
+		if(milkThiefVolunteerMilkings() >= 3) output("You’ve given yourself up to these masterful milkers enough times to realize that provoking a fight would be a foolish idea. The scales have fallen from your eyes: they care about milk, and they care deeply about the [pc.boyGirl]s who give it to them. Spending an hour or two cumming your tits and brains out is worth it - every time.");
+		else output("A brawl on Dhaal’s slummy streets is commonplace, but you’re not willing to pick a fight with an alien on her home turf. Least of all with the Gyre’s opportunistic hellions streaming to and fro in your vicinity. As you touch your [pc.breasts], you feel warm in the chest. There’s plenty of [pc.milk] in there to satisfy her. Besides, you’ll likely have a big cum while doing it.");
+		if(pc.isNice()) output("\n\n<i>“Alright,”</i> you raise your [pc.hands] and the proverbial white flag. <i>“If you want to milk me, go ahead.”</i>");
+		else if(pc.isMischievous()) output("\n\n<i>“You got me,”</i> you shrug and sigh. <i>“I’ve got milk - and you can have it. Provided we don’t have to come to blows.”</i>");
+		else output("\n\n<i>“If you try anything, it’s your head,”</i> you grunt, opening your palms. <i>“Milk me, then.”</i>");
+		output("\n\nTaken aback by your submission, the zaika girl smiles and leaps forward, mere inches from colliding with your [pc.face]. ");
+		if(titsSmall()) output("<i>“I’m glad to hear it!”</i> she says. Her big smile is only moderately sinister. <i>“Now, come with me, Rusher. If you don’t want anything bad to happen that is. That isn’t a threat, by the way - look around us. Thieves, one and all! They don’t deserve your milk!”</i>");
+		else if(titsMed()) output("<i>“You’ve made the right choice, alien!”</i> she chimes, rubbing the densely-packed weight of her own bosom, moaning between big vocabulary. <i>“I’ll be sure to ahh... drain you very, very well! And the, mm, expeeerience will be delightful, I’ll make this absolutely pleasurable for you!”</i>");
+		else output("<i>“Awesome! That’s greaaaat!”</i> she giggles, biting the peak of her lower lip and giving you the delirious ‘eye’ over the rim of her sultry glasses. <i>“Once you’ve gotten milked by a zaika, you’ll <b>beg</b> us to keep doing it. Because it feels sooo good, and we handle our cows with care. I’ll make one out of you, and then you’ll see - this isn’t so bad!”</i>");
+		if(milkThiefVolunteerMilkings() >= 3) output("\n\nYou nod affably.");
+		else output("\n\n<i>If she tries anything...</i> you think.");
+	}
+	// merge
+	output("\n\nOnly a few eyes catch you drifting off into an empty alley. Standing between you and freedom, the zaika thief idly taps a thigh with the barrel of her gun, admiring your [pc.fullChest]. Regardless of this situation, you can’t detect an ounce of malice or ill intent in the way she regards your bosom. The girl’s got the face of an eager student excited to study her favorite subject in close detail.");
+
+	// pc Chest Not Exposed
+	if(!pc.isChestExposed())
+	{
+		if(titsSmall() || titsMed()) output("\n\n<i>“Alright, let’s see ‘em!”</i> she chirps; in but a moment you have your [pc.breastsNoun] free from confinement and swaying before her. One of the thief’s fingers reaches gently for a [pc.nipple], prodding it as if flipping a switch. <i>“Niice,”</i> she grins. The incessant stroking picks up until a droplet of [pc.milkNoun] forms and wobbles atop the nail. <i>“Mmmmmmilllk!”</i> she hums. <i>“Life isn’t so bad, not when succulent aliens bring us this kind of treat!”</i>");
+		else output("\n\nBefore you can bring your bust to bear, the big-tiddied thief pushes you against the wall and takes over. Pleasure flutters through you as her " + (pc.biggestTitSize() < 10 ? "larger ":"") + "chest smushes into yours. Within seconds she’s got your [pc.breastsNoun] bouncing in her hands, letting out [pc.milkVisc] trickles of [pc.milkNoun]. <i>“Yeeessss... you’re a milky one, there’s no denying it! I bet you can’t wait for me to empty you!”</i>");
+	}
+	// pc Chest Exposed
+	else
+	{
+		output("\n\n<i>“");
+		if(titsSmall()) output("Ahhh it’s about time!");
+		else if(titsMed()) output("Finally!");
+		else output("C’mere; I can’t wait!");
+		output(" These tits of yours wobbling on every step, I can hear all that milk <b>ssssloshing</b> inside when your weight shifts!! Coy, teasing Rusher-[pc.boyGirl]!”</i>");
+		output("\n\nPushed against the wall, though without harm, you’re unable to stop the breast-fetishist from having her way with your [pc.boobs]. The thief’s breath washes hotly over your [pc.nipplesNoun], thumbs and forefingers closing roughly around the [pc.nippleColor] corks of your tanks and plucking rapid-fire. Meanwhile, a string of spit-soaked kisses are planted on the top of your rack. Having her bust smushing into yours forces a");
+		if(pc.isTaur()) output("whinny");
+		else output("whimper");
+		output(" of pleasure to burst from your lips, along with two [pc.milkColor] torrents of knuckle-coating [pc.milkNoun]. <i>“Myesss, milk, miiilk...!”</i> She goes to lick some up, but yanks back, shaking her head like a wet cat. <i>“First, I milk you. Then I can skim off the top!");
+		if(titsSmall()) output(" You’ll love this, I promise!");
+		else if(titsMed()) output(" You won’t regret this, alien!");
+		else output(" Don’t forget to moo, got it?! That’s important!");
+		output("”</i>");
+	}
+	// merge
+	output("\n\nBrought to the ground, time is stretched by pleasant gropes. The zaika kisses your [pc.nipplesNoun] too many times to count, achieving an instant contact high from the [pc.milkFlavor] residue. ");
+	if(pc.isBimbo()) output("You cry out in encouragement, hot, damp wetness subsuming you above and below.");
+	//cowgirl:
+	else if(pc.isTreated() || pc.bovineScore() >= 4) output("She’s determined to coax a moo out of you, but you refuse to give up that easy. No matter how dreamy she gets over your tits, you’re n-not that... easy!");
+	else output("Breasts meekly out-thrust, you do your best not to make too much noise. Her giddy, relentless molestations make you twitch and gasp as your body weeps liquid excitement.");
+	output(" Your muscles slacken and tighten in quickening cycles, and you heave against the wall, just a set of boobs glad for someone else to take charge.");
+
+	// pc Nipples Inverted
+	if(pc.hasInvertedNipples())
+	{
+		output("\n\n<i>“Oooh, you’ve got the shy nipples, hmm?”</i> the zaika giggles musically. <i>“Let me introduce myself. I want to make a good first impression...”</i> Hot, strangely-scented exhalations pass over your areolae, making it next to impossible to think. Fingers shift tentatively around the [pc.nippleColor] hidey-holes concealing your [pc.nipplesNoun]. The smallest of her digits wiggles its way inside, touching on firm flesh, while the rest massage the surrounding squish back. <i>“Heey little titty! Come on out!”</i> Whatever reluctance those [pc.milkNoun]-taps had is an afterthought when they spring forth, attracting both the neon light and that of her brightly-shining eyes. <i>“Oooohhhhh, so pretty!”</i>");
+	}
+	// pc Dicknipples
+	else if(pc.hasDickNipples()) 
+	{
+		output("\n\n<i>“W-Woah...”</i> the thief, gawks, lovely ministrations slowing to hesitant crawls across maternal flesh. <i>“Why are your tits expanding into tails?”</i> A nervous hand brushes against the tip of your [pc.dickNipple] and her face displays a bristling shock at the subsequent stabbing <b>throb</b> of your obscenely-modded feature. <i>“Hmmm... well, I know you’ve got something in there!”</i> she laughs, twisting the neck until a mind-altering boob-phallus-gasm springs a leak of [pc.milkNoun] that she quickly samples. <i>“Ooh, well, I think there are plenty of girls who’ll like this! I said I’d milk you, and I meant it!”</i>");
+	}
+	// pc Fuckable Nipples (+Lipple Check)
+	else if(pc.hasFuckableNipples())
+	{
+		output("\n\n[pc.NippleColor] wetness parts like fleshy velvet around the augged bandit’s questing fingers. She slips " + (!pc.hasLipples() ? "inside the sensitive cavities":"past the lip-shaped openings") + ", discovering the exotic secrets of your unnatural chest. Her unexpected entrance provoked a long, lusty groan, but it was the abrupt exit that hammered your forebrain. <i>“W-Woah! Nipple-tails!? So wait... there’s uhh, there’s milk in here, right?" + (pc.hasLipples() ? " In these uhhh, mouth things?":"") + " That leakage earlier wasn’t some kind of alien trick was it?”</i> Not the least bit confused, she dives back into your chest-mounted pleasure-passages, understandably concerned that you might have been dishonest earlier. Sure enough, a heavy squirt of [pc.milk] warms her paws and she pulls free from the suckly, squelchy embrace. <i>“Woow, there’s a loooot of potential in that kind of design! We’ve got so much to learn about your kind!”</i>");
+	}
+	// pc Nipples Normal
+	else
+	{
+		output("\n\nThe massage wakes your [pc.nipples], and the round [pc.nippleColor] buds tighten to the lithe creature’s caresses. It’s little surprise that they’re " + (pc.totalNipples() == 2 ? "both":"all") + " throbbing and pulsing, every sumptuous nerve tender from tit-centric arousal. Silky pink fingers coax out moans and whimpers, drawing [pc.milkNoun] up the well. Before you can catch your breath, your mammaries are set to a heavy jiggle that knocks out whatever wind you had left inside. She lets your chest sway there, left-right-left-right, a bit of an up and down wobble, but that’s not what’s getting you: it’s the molten-hot friction glowing at the tips of your " + (pc.isBimbo() ? "fun-bags":"milk-jugs") + ", physical and liquid stimulation swirling without and within respectively.");
+		output("\n\nFuck, she’s good at that...");
+	}
+	// merge
+	// pc Breast Rating <3
+	if(pc.biggestTitSize() < 3)
+	{
+		output("\n\nIn spite of how good it feels to have a true boob lover exploring your body with gentleness and restraint, you can’t help but feel that something’s lacking. Having a sexy girl feeling you up should be cause for celebration, yet the pleasure of it is noticeably subdued. Too small for much more than weak ripples to pass through them, your bust, while exquisitely soft, must disappoint her.");
+		output("\n\n<i>“Aww, what’s wrong?”</i> she queries gently - then it clicks. Her experience in groping across the many cup sizes from outer space gives her an inkling. <i>“Oooooh - feeling a little down? Wishing you had some more? Weeeelll... to be honest, I do too!" + ((pc.isTreated() || pc.bovineScore() >= 4) ? " Cows are supposed to have big, smothering milkers! Still...":" But it’s fine.") + "”</i> The fluid-swollen shapes of your mammaries clap together; you squeak. <i>“You’ve got plenty of sensitivity, and that’s what makes Rushers so hot and attractive! Big boobs, little titties, whatever! They’ve all got milk, so they’re all good!”</i>");
+	}
+	// pc Breast Rating <10
+	else if(pc.biggestTitSize() < 10)
+	{
+		output("\n\nThe milk-seeking thief grabs your [pc.breasts] and lays into them more forcefully than before, licking around your collarbone, her head of hair tickling your [pc.skinFurScales]. The elf-eared cyber-fae cocks her head to the side and kisses you on the shoulder, trailing down to the ampleness of your cleavage, motorboating your shapely chest with pants of wet, drooling desire. Brief and silly though it might have been, you wouldn’t mind a repeat.");
+		output("\n\n<i>“These are my favorite size!”</i> The tone in her voice suggests she’d be jumping for joy were you not sitting down. <i>“I loooove boobs that I can hold onto with my arms. They’re good enough to smother and dive into without drowning me!”</i> Her lips, moist like fresh strawberries, part into a delighted ‘o’, poised to clamp down on a nipple and give a mighty suck. The excruciatingly pleasant way she handles your breasts means she can see the bosomy pleasure connecting to your brain. Those tweaks and clasps make your eyes move further back every time.");
+	}
+	// pc Breast Rating <18
+	else if(pc.biggestTitSize() < 18)
+	{
+		output("\n\nFaced with a titanic amount of boobflesh, the obsessive zaika does the only logical thing: dives headfirst into your high-quality cleavage. Everything above her slender shoulders disappears into your superlative chest, fully embosomed in your [pc.breasts]. Hyperventilations tickle your nervous system with pangs of pure pleasure from the inside, then her tongue slithers out, sliding over veins and heavily-swollen lactic ducts. Her hands busy themselves with the deep softness of your heavenly bust from the outside, squeezing and rubbing and <b>imprinting</b> copious [pc.raceShort] plumpness onto her brain. It’s impossible not to laugh from the reflexive twitches of her elfin ears tickling your [pc.nipples].");
+		output("\n\nComing up for air with a triumphant gasp, the lilac woman shivers languidly, as though she were idly hopping on a trampoline. <i>“You have the BEST boobs ever!! Now, I like ‘em just a bit smaller, but ooohhh this is SUCH a TREAT!”</i> Keeping her squeals down lest she invite an audience, or worse, she rests her chin on the shelf of your enlarged rack, a wistful smile on her face. <i>“I’m so happy you’re letting me milk you! I’ll take all this burden off you and maybe find you again!”</i> She gives you a slow massage to make up for the selfishness, reverently licking the [pc.skinFurScalesColor] topsides of your gorgeously-thick tits. Even her tongue depresses halfway into the mammarian sea.");
+	}
+	// pc Breast Rating Else
+	else
+	{
+		output("\n\nFrom the way the zaika slowly loses herself to frustration and swooning madness, it’d be accurate to say there’s simply too much boob for one girl to control. Hand-smothering breastflesh swaddles the girl’s small but aug-strong limbs up to the elbows - she can heft them just fine, but the filled mass <b>spills</b> like gelatin around her limbs. Eminent plumpness seizes her and she twists and turns under the shuddering mountains of maternity. Pulling back, she changes tactics, letting the big, awkward blimps rest on the ground" + (!pc.isTaur() ? " and hide your [pc.legOrLegs] under immense bosomy weight":", creamy prominence spreading out in the gap between bodies") + ".");
+		output("\n\nEven when settled, the pre-existing, wanton jiggling undulates around your throbbing peaks. Tits dominate your torso and obscure most of your body under all-natural heft. Their weight is difficult enough, but carrying around gallons of [pc.milkNoun] has made them larger than they ought to be. Geez, you really <b>do</b> need milked!");
+		output("\n\n<i>“These are too big! They’re almost unusable, like they should only be set up as displayed trophies! Did you think you’d come here and make big money being the biggest fattest cow ever!? How would anyone just let you walk by?”</i> Seeing her pretty lips formed into a huffy pout is worth the burden of cow-caliber udders like these. <i>“I guess all you have to do is swing your shoulders around and you’ll clear the streets! I better be careful milking these, or my tank will break!”</i> Speaking of tanks, she’s back to desperately trying to heft and control yours, but, again, there’s too much [pc.raceShort] for one zaika to handle! <i>“Hmmf, these are so unwieldy! You need to be mounted in a wall!”</i> Something clicks in her head, and she sighs mournfully. <i>“Ahhh I’m sorry for my rudeness but... mmmm...”</i> Gentle rubs pick back up again, startlingly wonderful in their motions. <i>“I loooove Rushers and their boobies, and yours are just sooooo big they make my brain stop working...”</i>");
+		output("\n\nWobbling tits do have that effect on people.");
+	}
+	// merge
+	output("\n\n<i>“Before I start, I really need a more uhh <b>substantial</b> taste. I just <b>have</b> to know... even if it’s gonna make me dumb and dopey! For science! And uhh, you know, stuff!”</i> As the bespectacled beauty closes in on a nipple like a cat craving cream, you think to yourself there’s no motive behind it other than that she <i>really</i> wants to suckle from your teat.");
+	// pc Lactic Cum && dicknipples
+	if(pc.milkType == GLOBAL.FLUID_TYPE_CUM && pc.hasDickNipples())
+	{
+		output("\n\nGrabbing hold of and giving your nipple-prick a solid jerk, the girl swallows your ‘tail’ between two wet cheeks that suck down on its throbbing skin. Immediately, a spurt from the inner reservoir launches past her smooth, luscious mouth and into her throat. Bending sinuously on the reverse, her lips pop free of the teased organ, smacking together judgmentally. <i>“Hmm - it tastes like cum! Not much milkiness to it at all, buuuut I guess that’s fine! Hydras buy this stuff all the time!”</i>");
+	}
+	// pc Milk (Chocolate)
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
+	{
+		output("\n\nWhile your elfin milker lets out a huffy groan, lung-induced suction slurps the dark cream from your tit, her palate getting a shot of pure decadence in the form of chocolate milk. The circuits against her synthetic corneas flash, like everything behind them closed down spontaneously. Swallowing your treat, she reels back with the dumbest smile ever. <i>“Eye’m... wow... that’sh... grmmmm... woooow... that’s so THICK!”</i> She smacks the side of her head, pulling on an ear. <i>“Why’sh it so good? That’s... I’ve never had that flavor before! Oh my yes, you are DEFINITELY going to get milked of everything!”</i>");
+	}
+	// pc Milk (Strawberry)
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK)
+	{
+		output("\n\nClosing around her chosen nipple, the zaika’s lips perch on your milk-squirting nub and vigorously partake. A deep lungful causes a sort of rupture that sprinkles her entire mouth in sweet, rich decadence. The trouble she has concentrating on the now isn’t just from imbibing narcotic alien lactation - this is her first taste of strawberry milk. <i>“W-Whaaaaat is that stuff!? I’ve... that flavor isn’t natural but it’shhhh incredible! Mmmyes, yesyesyes, I get to bring back super valuable milk! Awright, no more waiting - time to milk you reaaaally gud!”</i>");
+	}
+	// pc Milk (Vanae; Maiden and Huntress - how come there’s two, they’re not different)
+	//Because writers, Will. Because writers. -Fen
+	else if(InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK))
+	{
+		output("\n\nYou’re in no position to warn her of the aphrodisiac qualities lacing your special brand of lactation. Capturing a few errant trickles of [pc.milkColor] goodness, she suckles hard from your mammary peak and learns first-hand that she shouldn’t go around filling her gob with anything that looks tasty. Not only do her augged up eyes simulate a dizzied crossing effect, but her cheeks bloom a beautiful sangria, quivering around an intoxicating rush. Her tongue hangs from her mouth when she recoils. <i>“This stuff makes me!! Urgh... it’sh not jusht milk but... there’s something - a-ha! Alien stims their own milks? Err, you Rushers are making your own milk stims!? Of course! We’re gonna learn all about thish, just... after I milk you!”</i>");
+	}
+	// pc Milk (Leithan)
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
+	{
+		output("\n\nLeithan breastmilk is known in the Core as being alcoholic to non-leithans. You’re not in any rush to warn her of its particular qualities because a mischievous part of you still lurks under all the lust, eager to see the tit-sucking zaika’s reaction. Drunken intoxication strikes her like a meteor - her eyes roll in multiple directions, displaying microscopic circuit networks flashing on the artificial cornea. But then you feel her ragdoll, turning into a boneless pink heap of gelatin. With a surge of life-or-death adrenaline she whips back and wipes her mouth, spitting what she didn’t swallow out. <i>“T-The fuccccccccckkk! That stuff’s WAY TOO STRONG!!”</i> She screams and smacks herself in the head. <i>“OK, WELL, I know I’m not gonna mesh with YOUR milk! This is definitely a label that’ll have girls knocked the hell out when they try it! Gotta handle your milking with special care, hazard titties!”</i>");
+	}
+	// pc Lactic Honey
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY)
+	{
+		output("\n\nShe can already keenly discern the unique nature of your lactation - syrupy, molasses-thick honey, sticky treacles of the stuff sliding down the edges of your [pc.breastsNoun]. Full of wonder, she tenderly samples the alien bounty, rolling her tongue around the nipple before swallowing a globful. Her eyes widen in shock, and she goes at it again, and again before eventually parting. <i>“That’sh... not strong! It’s... got some kind of milk quality to it, gets me all light in the head, but that <b>taste,</b> oof!”</i> One more suck, just for the sake of it. <i>“Wow, this stuff is gonna be hard to milk, but don’t worry - I specialize in unique cases like this!”</i>");
+	}
+	// pc Lactic Sugar Glaze
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_SUGAR)
+	{
+		output("\n\nSeeing her freckles light up from a taste of your ultra-sweet sugar-milk is almost blinding. Actually, they probably shouldn’t do that, but y’never know what kind of augmentations these girls might be loaded with. That aside, she’s already a mindlessly slurping mess, visage wrinkled down around the source of your exceptional treat. <i>“W-Wow that’s... sharp and chilly in a way!”</i> Her lips smack a dozen times, and she can’t quite seem to lick them clean of whatever abnormality is bothering her.");
+	}
+	// pc Lactic Blueberry Yogurt
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT)
+	{
+		output("\n\nNobody could miss the bizarre amalgam of goopy fluid emerging from your [pc.nipplesNoun]. Not quite milk but not quite food, the blueberry-scented substance throws her for a loop when she guzzles it down, quaffing the lactic yogurt in tit-pleasing gulps. It doesn’t have much of a narcotic hit to it, apparently, because she stays there slurping it up for longer than you’d have thought. <i>“You aliens...!”</i> she fondly grins, showing off every tooth in her maw. <i>“...Always full of wonders and new experiences. Where would we even begin to emulate this flavor? I feel like I should take you with me before anyone else gets their sticky hands on your boobies! It has the flavor of stimmed milk without any of the drawbacks, and less of a mental hit... mmm... I won’t waste a single drop!”</i>");
+	}
+	// pc Lactic Nectar (Only thing Gold Antskanks are good for!)
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_NECTAR)
+	{
+		output("\n\nAs your boob-lover dreamily guzzles from your nectar-rich breast, she enters a dreamy, moany, whimpery state that is, honestly, kind of cute. Both of her hands rise to knead your chest, her whole body swooning, changing colors from a head-to-curling-toe blush. The revitalizing nectar churning inside must be to her liking! <i>“I can’t imagine... how...”</i> She laps at your [pc.nipples] like a thirsty animal. <i>“This can’t be right it’s... got almost intoxicating hit to it but it’s... no, it’s like a stim! It gives me energy, makes me feel better! I feel <b>stronger</b> just drinking it. No milk on this planet does that!”</i> A big wide grin blooms across her fetching features. <i>“I’m going to get the highest price for your ‘milk’ - no no, not milk. This is better than milk. Like that thing I think I heard about in a holo once... ambro-sheuh!”</i>");
+	}
+	// pc Milksap
+	else if(pc.milkType == GLOBAL.FLUID_TYPE_MILKSAP)
+	{
+		output("\n\nRadiating curiosity, the glow in her eyes changes hues, dimming the more of your thin, creamy favor she slurps out. She pulls herself away very reluctantly, drifting in a clearly-intoxicated stupor. <i>“This ish... uhmm...”</i> Wiping the residue from her chin with her knuckles, the titty-loving zaika gathers a few droplets on a fingertip for closer inspection. <i>“Whyyy does this taste soooo funny? It’s like uhhh if...”</i> There’s a series of unintelligible grumblings there. <i>“Ugh!”</i> A shake of the head and she brings her milker to bear. <i>“Thish goes down super easy and like uh it’s even stronger than usual milk! Eye’m gunna make everyone go dumb and silly with this, so gimme all you’ve got!”</i>");
+	}
+	// pc Milk (Regular)
+	else
+	{
+		output("\n\nThe zaika delicately plants herself around a tit, sealing her mouth shut and, lungs heaving, sucking hard at your hidden bounty. A fat rope of white milk plasters her upper esophagus in rich, creamy nourishment. The circuits in her eyes... they don’t spark, but some sort of light show plays against the artificial cornea. You can only surmise that’s what it’s like for robot-eyes to go cross. <i>“Yes - yesh!”</i> she slurs. <i>“That’sh the... the good stuff. Yes - huufff! Let’s get... let’s get you milked!”</i>");
+	}
+	// merge
+	output("\n\nFiddling with the back end of her pistol, the plastic-like dome barrel end of it resizes to fit the front of your cup size perfectly. Idle suction pulls at you, light but strong enough to make your eyes roll back for a moment. A mechanical click seals the device to your jug. It’s so comfortably attached that she no longer needs to hold it, but the trigger is yet to be pressed. The zaika closes in on your [pc.lipsChaste], her finger tightening on it. <i>“");
+	if(titsSmall()) output("Thank you very much for this, alien...");
+	else if(titsMed()) output("Just let it happen...");
+	else output("I’m gonna make this very good for you...");
+	output("”</i>");
+	output("\n\nHer lips press against yours, and something clicks.");
+
+	processTime(25);
+	pc.milked(1);
+	clearMenu();
+	addButton(0,"Next",voluntaryMilkingByWilliamSan2);
+}
+
+// sceneTag: PC Lust maximizes
+public function voluntaryMilkingByWilliamSan2():void
+{
+	clearOutput();
+	showMilkThief(true);
+	author("William");
+	output("Your consciousness condenses down to a few tight, wet passages. [pc.Milk] channels through the ducts in your breasts in the direction of a pulsing vacuum, glittering [pc.milkGem] wealth bursting from firmed flesh into the greedy hose’s tubing. The weapon fit to your tit is more powerful than some industrial breast pumps. Every [pc.milkColor] drop inside can be felt individually sliding and pooling, collecting into ropes of thickly-scented richness before being sucked out to feed the tank on her back.");
+	output("\n\nThe machine is not gentle, but she is. Although the rough intensity of this process has blotted out most of Dhaal and your nervous system is a shorted mess of misfiring signals, the zaika girl is there to kiss you and massage your [pc.breasts] in that tender way of hers. It’s a creamy whirl of an experience that goes from somewhat painful to deliciously pleasing. With every tense in your torso, with every circle of her hands beneath your [pc.chestNoun], and between long seconds of therapeutic pashing, you start to feel that there’s something... <i>right</i> about this.");
+
+	//Technically incorrect but done for style IMO -v. Don’t let some amateur forum typoslut tell you different.
+	output("\n\nAbout riding an impossible chain of squirting boobgasms in the hands of someone interested in your pleasure and comfort.");
+
+	output("\n\nLactic heaven. Your head is held against hers so that she can kiss your open, moaning mouth. Your [pc.eyes] have gone back somewhere, scant color visible under the lids. This ‘thief’ isn’t really a thief. Someone who makes you feel this good is surely incapable of harmful intent, and besides, you agreed. Maybe some people would resist, but that’s just because they’ve yet to figure out how good this actually feels. The brain is an adaptable thing, however. When the raw <b>ebbing</b> coalesces into perfect clarity, your thoughts are dominated by the sensations feeding into your [pc.fullChest], occupying the front and back halves of your mind.");
+
+	output("\n\nDampness. Wetness. Slipperiness. You’re abuzz with the pure, peaceful feelings of soaked fingers and moist tongues stroking over your [pc.skinFurScales]. Happiness like this shouldn’t exist, least of all not in some dirty alleyway between dangerous streets, <i>but it does.</i> Each sense-engulfing touch is an illustration of how <i>right</i> the choice you made was. Having that custom-made boob-sucker dangling from your chest, siphoning away everything you’ve got... the realization, the knowledge, it all rams into you then and there.");
+	if(pc.isHerm()) output(" Orgasm practically pounces up from your [pc.cocks] and [pc.pussies], faraway matters to the gushing of [pc.milkVisc] [pc.milkNoun].");
+	else if(pc.hasVagina()) 
+	{
+		output(" [pc.GirlCum] ");
+		if(!pc.isSquirter()) output("spits");
+		else output(pc.girlCumQ() < 1000 ? "squirts":"sprays");
+		output(" from your [pc.pussies] in a sequence desynchronized from the regular gush of [pc.milkVisc] [pc.milkNoun].");
+	}
+	else if(pc.hasCock()) output(" [pc.Cum] arcs from your [pc.cocks] in vibrant, forceful tune to the endless gush of [pc.milkVisc] [pc.milkNoun].");
+	output(" A pair of fingers closes around " + (pc.totalBreasts() > 2 ? "a":"your") + " so-far-unused boob, getting it ready for its upcoming duty.");
+
+	var growBoobs:Boolean = false;
+	var growNipLength:Boolean = false;
+	var growNipWidth:Boolean = false;
+	var boostLactation:Boolean = (rand(2) == 0 || pc.milkMultiplier < 100);
+
+	if(pc.breastRatingUnlocked(0,pc.biggestTitSize()+4))
+	{
+		//below D? 50%
+		if(pc.smallestTitSize() < 4) growBoobs = (rand(2) == 0);
+		//below J? 33%
+		else if(pc.smallestTitSize() < 29) growBoobs = (rand(3) == 0);
+		//Else 20%
+		else growBoobs = (rand(5) == 0);
+	}
+
+	//Niplength:
+	if(pc.nippleLengthRatioUnlocked(pc.nippleLengthRatio+0.25))
+	{
+		//Ratio up to < 2: 50%
+		if(pc.nippleLengthRatio < 2) growNipLength = (rand(2) == 0);
+		//Ratio up to < 3: 33%
+		else if(pc.nippleLengthRatio < 2) growNipLength = (rand(3) == 0);
+		//Ratio up to < 4: 20%
+		else if(pc.nippleLengthRatio < 4) growNipLength = (rand(5) == 0);
+		//else Ratio: 10%		
+		else growNipLength = (rand(10) == 0);
+	}
+
+	//NipWidth
+	if(pc.nippleWidthRatioUnlocked(pc.nippleWidthRatio+0.1))
+	{
+		//Gain: 0.25 if below 2, then 0.1 each.	
+		if(pc.nippleWidthRatio < 2) growNipWidth = (rand(4) == 0);
+		else growNipWidth = (rand(12) == 0);
+	}
+
+	// pc Nipples Getting Puffier/Bigger
+	if(growNipWidth || growNipLength)
+	{
+		output("\n\nEverything in your head should have floated away, but an alarming development shocks you back to cognizance for a few seconds. Just because you can’t see what’s going on doesn’t mean you don’t have plenty of time to familiarize yourself with a change going on in your [pc.nippleNoun]. All this jiggling and jostling has brought you into contact with most of its inner lining, but you distinctly sense the newness of untouched ground. <b>Is your nipple puffing up inside of it?</b> It must be. There’s no other explanation. It could be getting smaller, but there’s no reason for that. Anyway, it’s <b>a lot</b> sexier to consider that your tits are gonna puff up.");
+	}
+	// merge
+	output("\n\nYou nearly choke on something small and capsule-shaped sliding past your uvula and into your gut, a pair of fingers stroking the length of your neck. You’re pretty sure that’s a big cause for concern but the excruciatingly awesome <b>heat</b> that blooms in your chest nukes that anxiety. The wonderful release in your [pc.breasts] magnifies tenfold. You become instantly aware of a greater lactic load sloshing inside the cup of a tireless milk-sucker - you’re lactating even harder, splashing your overtaxed tap. Is that even possible? Whatever. You slip into an ecstatic ditch");
+	if(pc.isBimbo() || (pc.isTreated() || pc.bovineScore() >= 4)) output(" with a happy loud ‘moo!’");
+	output(", only aware of the skill and control that someone else has over your titties.");
+	// pc Breasts Enlarging
+	if(growBoobs)
+	{
+		output("\n\nHeaving, swelling weight carries your [pc.breastsNoun] further down to the nipple-sucker’s tugging whims. There’s no way your breasts are growing; it’s just a blissful illusion. Fingers squeeze tight around rapidly-burgeoning flesh you realize now you didn’t have before - yes! You <b>are</b> getting bigger! Sumptuous mammaries jiggle with each percussive heartbeat, rapidly ballooning in size; the softness is everywhere; new tissue connects and dilates to handle the steady flow of [pc.milk].");
+	}
+	// merge
+	// pc Submitted >4 times
+	if(milkThiefVolunteerMilkings() >= 3)
+	{
+		output("\n\nPuffing up. Getting bigger. Lactating harder - and more. Aren’t you just kidding yourself at this point? <i>You deserve to be milked like this every day of your life.</i> Boobgasms are better than regular... gasms. Whatever they’re called. They’re so shameful and mind-blowing!");
+		output("\n\nIt’s a lot easier to lie back and get hooked up to a machine, have a dozen dirty, filthy fingers massaging out your [pc.milkGem] burden. It’s a win-win: you and they feel good, <b>and</b> you get the satisfaction of knowing you provide them nourishment and recreation. You’d fit right in here on Dhaal, you know it. Hooked into a nice wall or maybe even your own stall, a great, big-tittied reminder that relief is always on hand to those who search for it. The girl all over you would probably help with that.");
+		output("\n\nYou sigh, entirely uncertain. It’d be a big decision. But every time you consider a life of having your boobs practically worshiped, a quartet of feathertips caress their way across your heart. It makes you pant and blush and just <i>so happy</i> that it stops feeling like a bad or dangerous idea and more like a natural calling. Milky [pc.boyGirl]s need to be on-hand for anyone and everyone.");
+	}
+	// merge
+	output("\n\nBeing milked is to enjoy an uninterrupted stream of pleasure. That’s why it comes as a shock when the gun is pulled from your well-drained tit and set firmly on " + (pc.totalBreasts() > 2 ? "the next":"the other") + ".");
+	if(pc.bRows() > 1) output(" She’s got a lot of [pc.raceShort] boob wobbling in front of her, and she’s gonna milk ‘em all!");
+	output(" <i>“Haahhnn...”</i> you groan, the enjoyment restarting all over again, [pc.milk] splashing into a thoroughly soaked drainer-barrel. You don’t feel the least bit sore, not with her there soothing the light aches away, rubbing [pc.milkColor] webs into your areolae.");
+
+	// thief Tits Small (oral)
+	if(titsSmall()) output("\n\nSuddenly, the kiss breaks, but you’re not left alone for long. The zaika’s tenta-tail sweeps across your brow, spilling a thick layer of spunky slime across your [pc.face]. The bulb presses to your [pc.lips] and has little difficulty wiggling its way in with constant, firm pressure. It enters your throat with ease, bulging your windpipe around its mass before gently fucking the hole you once used for food. Sweet, cummy slaver pours down your chin or rolls into your belly: yet more warmth. You suck on it like it’s your favorite flavor of lollipop, the girl’s fat, muscular tail wearing you like its newest sock.");
+	// thief Tits Medium (titfuck)
+	else if(titsMed())
+	{
+		output("\n\nAs the zaika girl breaks the kiss, a fat, lush bulb drools a stream of viscous precum across your [pc.face]. Nestled between your [pc.breasts], the whole of her tail fucks your cleavage, screwing through with solid pumps and noisily rebounding off your flushed  cheeks. The heavy thickness of her spunk-packed bust pressures your bosom into squeezing tighter on the excited organ. There’s too much length of tail to be obscured in any size of tits, and on a lacquer of friction, it bounces your boobies around itself, feeding you small tastes of sweet spunky slime as it slides effortlessly into peaking bliss between your [pc.breastsNoun].");
+	}
+	// thief Tits Big (both)
+	else
+	{
+		output("\n\nWhen the too-horny zaika breaks the kiss, something fat and smooth and muscly jams itself into your open gob. The sexual taste of her carnal fervor spills down your jaw and into your gut, and the desperate organ wastes no time in wearing you like a new sock. The jerky motions of it squirming through your uppermost passage are at odds with the squeezing at your middle; the tendril is nestled square against your chest, trapped in the pillowy softness of your milky titties. Lusty vocalizations fill your ears - hers, yours, one and the same. Wanton enjoyment pounds its way into your gullet, immediately unloading a few ounces of the many gallons weighing her mammoth chest down upon yours. Windpipe bulging around the cumming tail, you suck it for all you’re worth, no match for the combination of pleasures that have transformed you into a squirting dairy slave.");
+	}
+	// merge
+	output("\n\nMusky odor fills your nostrils as the milking reaches a fever pitch. You lose track of what is what, and a gush of overflowing spunk");
+	if(titsSmall() || titsBig()) output(" clogs your throat");
+	else output(" paints your [pc.face] and [pc.breastsNoun] in steaming-hot loads of sperm");
+	output(". The vine rubbing against your insides goes crazy, ");
+	if(titsSmall() || titsBig()) output("driving its stickiness further into your welcoming depths");
+	else output("showering you in oozing bliss");
+	output(".");
+	if(pc.hasGenitals()) 
+	{
+		output(" Timed perfectly with your squirtgasms, your crotch explodes in another grand fireworks display that your lover is happy to see to - that porny tail of hers plunges down and ");
+		if(pc.hasCock()) output("swallows up " + (pc.hasCocks() ? "a":"your") + " dick and gorges itself on [pc.cum]");
+		else if(pc.hasVagina()) output("smashes into " + (pc.hasVaginas() ? "one of your holes":"your pussy") + " without mercy, soon providing you with what you need most to keep churning out fresh spurts of milky goodness.");
+	}
+	output("\n\nShivering spasms contort you in the throes of full-body release; her gun unhooks for a new target. You float in and out of the waking world, unable to focus on any one angle of bliss. Awareness is a thing of the past.");
+	if(pc.libido() >= 66 || pc.isBimbo() || (pc.isTreated() || pc.bovineScore() >= 4)) output(" Good cows like you don’t need it anyway.");
+	output(" Everything dissolves into complete blackness and numbness. Sensations of movement wink out of existence.");
+
+	processTime(60);
+	//[Next]
+	// sceneTag: PC Orgasms
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	// sceneTag: PC Titgasms (reduce milk :)
+	pc.milked(100);
+	// sceneTag: PC Nipples DO Get Fatter (Length and width Ratio +1/+2/+3?)
+	// (Done Below -Fen)
+	// sceneTag: PC Areolae can be Pumped (there’s a flag but it’s vestigial?? Plz check)
+	// (Fen note: Nahhhhhhhh)
+	// sceneTag: PC Breasts can get bigger.
+	// (Fen note: Done below)
+	// sceneTag: PC Lactation Mod can increase by +1 up to, i dunno, +5? +6?
+	if(boostLactation) 
+	{
+		if(pc.milkMultiplier < 100) pc.boostLactation(15);
+		else pc.boostLactation(8);
+	}
+	if(titsSmall() || titsBig()) pc.loadInMouth(enemy);
+	if(titsMed()) pc.applyCumSoaked();
+	pc.taint(2);
+	clearMenu();
+	addButton(0,"Next",voluntaryMilkingByWilliamSan3,[growBoobs,growNipLength,growNipWidth,boostLactation]);
+}
+
+// sceneTag: PC Lust maximizes
+public function voluntaryMilkingByWilliamSan3(args:Array):void
+{
+	clearOutput();
+	showMilkThief(true);
+	author("William");
+
+	var growBoobs:Boolean = args[0];
+	var growNipLength:Boolean = args[1];
+	var growNipWidth:Boolean = args[2];
+	var boostLactation:Boolean = args[2];
+
+	output("Your aching muscles flex and unclench, awakening from dormancy. As you stir, the city’s neverending neon twilight greets you. The Gyre growls all around you, a beast waiting to kill whoever it can just because it can.");
+	output("\n\nBut not you. The zaika who took your milk has graciously made a little hiding spot out of all the items in this alleyway. You’re hemmed in by at least two dumpsters, one trash can, and a blanket that exudes the pungence of some foul industrial cleansing process. Set in front of your feet is a neat pile of all your things.");
+	output("\n\nAfter extricating yourself from the makeshift fort, you check everything and determine it’s all in order... and that you’ve been");
+	if(pc.hasPerk("Ever-Milk")) output(" drained to an excessive degree. The storage space to handle your infinity cream won’t ever be developed!");
+	else output(" completely and utterly milked");
+	output(". There’s a bit of chafing, but overall, you’re doing fine.");
+	//nipplesGotFatter:
+	if(growNipWidth || growNipLength) 
+	{
+		output(" Additionally, you can tell <b>your [pc.nipples] are now ");
+		if(growNipWidth && growNipLength) output("larger");
+		else if(growNipWidth) output("wider");
+		else output("longer");
+		output(".</b> They’re looking fatter and more engorged, and the swelling hasn’t reduced even in a non-aroused state. If you don’t have a good nursing bra, now’s a good time to get one... unless?");
+		if(growNipWidth)
+		{
+			pc.nippleWidthRatio += 0.1;
+		}
+		if(growNipLength)
+		{
+			if(pc.nippleLengthRatio < 2) pc.nippleLengthRatio += 0.25;
+			else pc.nippleLengthRatio += 0.1;
+		}
+	}
+	//Boob bigger
+	if(growBoobs) 
+	{
+		var growAmt:int = rand(4)+1;
+		for(var i:int = 0; i < pc.bRows(); i++)
+		{
+			pc.breastRows[i].breastRating(growAmt);
+		}
+		output("\n\nFrom the first step you take, your equilibrium screams in protest. Adjusting to newfound weight, you discover that whatever drugs the girl had cheeked you have <b>expanded your chesty assets into " + pc.breastCup(pc.biggestTitRow()) + " territory</b>. The smut-glazed mounds heave in a wider orbit, wonderfully sore from extra growth on top of a thorough draining. A cascade of prickling arousal pokes at you from behind their [pc.nippleColor] peaks. You... you almost can’t wait to do something with them now.");
+	}
+	//lactationModIncreased
+	if(boostLactation) 
+	{
+		output("\n\nSomething wet makes you wince before you get back to your journeys. Fresh, warm [pc.milkNoun] at once soothes and glosses your sore nippleflesh. Yet more [pc.milkVisc] [pc.milkColor] bounty starts to leak. Maybe you weren’t as drained as you thought. Maybe it was her drugs...? Whatever the case, you might be one of the more productive ");
+		if(pc.bovineScore() >= 4 || pc.isTreated()) output("cows");
+		else output("milk-" + pc.mf("males","maids"));
+		output(" out there now. Nothing’s ever certain when having pills forced down your throat! <b>You’re lactating even harder!</b>");
+	}
+	output("\n\nExiting out into Dhaal again, ");
+	if(milkThiefVolunteerMilkings() >= 3) output("you honestly can’t wait for another lurking milk bandit to target you. Hopefully your tits will regenerate in time for the next girl to make use of them...");
+	else output("you resolve to try and keep your head should you need to bribe your way past another augmented thief in the night.");
+	
+	//[Next] \\ Back to game
+	// sceneTag: processTime
+	processTime(35);
+	IncrementFlag("MILKTHIEF_V_MILKED");
+	restHeal();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function milkThiefVolunteerMilkings():Number
+{
+	if(flags["MILKTHIEF_V_MILKED"] == undefined) return 0;
+	else return flags["MILKTHIEF_V_MILKED"];
 }

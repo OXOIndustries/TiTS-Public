@@ -45,13 +45,14 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
+			this.resolve = 5;
 			this.critBonus = 0;
-			this.evasion = -3;
-			this.fortification = 13;
+			this.evasion = -4;
+			this.fortification = 11;
 			
 			resistances.burning.resistanceValue = -10.0;
 			resistances.electric.resistanceValue = -10.0;
-			resistances.kinetic.resistanceValue = 7.5;
+			resistances.kinetic.resistanceValue = 10;
 			resistances.addFlag(DamageFlag.PLATED);
 			resistances.addFlag(DamageFlag.MIRRORED);
 			

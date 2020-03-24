@@ -186,6 +186,8 @@ public function tavrosHangarStuff():Boolean
 
 public function merchantThoroughfareBonus():Boolean
 {
+	//Vday
+	if(biancaVDayHook()) return true;
 	if (currentLocation == "9015")
 	{
 		output("A neon sign displaying a pair of scissors sits next to a small store entrance with");

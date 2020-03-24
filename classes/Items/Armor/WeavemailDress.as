@@ -43,13 +43,14 @@
 			this.defense = 8;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 1;
+			this.sexiness = 2;
+			this.resolve = 3;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 			
 			//resistances.kinetic.resistanceValue = 25.0;
-			resistances.freezing.resistanceValue = 19.0;
+			resistances.freezing.resistanceValue = 22.0;
 			//resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.version = _latestVersion;

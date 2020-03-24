@@ -698,7 +698,7 @@ public function laneGonnaFuckYourDetoxinAssUp():void
 	processTime(60);
 	
 	pc.removeAll();
-	pc.lust(100);
+	pc.changeLust(100);
 	var i:int = 0;
 	if(lane.mf("m", "f") == "m")
 	{
@@ -806,7 +806,7 @@ public function laneTakesOverTheSteeleFortuneII():void
 	days += 9 + rand(5);
 	processTime(60);
 	
-	pc.lust(100);
+	pc.changeLust(100);
 	pc.removeAll();
 	pc.armor = new BusinessClothes();
 	pc.credits = 0;
@@ -1774,7 +1774,7 @@ public function suckLanesDick():void
 
 	pc.loadInMouth(lane);
 	lane.orgasm();
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(30);
 
 	// Lust increases by 30; place the PC one square outside of Lane’s Plane
@@ -1861,7 +1861,7 @@ public function munchLanesCarpet():void
 	output("\n\nWhen you’re both presentable again, you leave her room wordlessly. She returns to her desk and immediately starts playing with her codex again as she waits for another client; she doesn’t so much as give you a glance as you leave her hut.");
 
 	lane.orgasm();
-	pc.lust(30);
+	pc.changeLust(30);
 
 	processTime(30);
 
@@ -2030,7 +2030,7 @@ public function fuckedByMaleLane():void
 	lane.orgasm();
 	pc.orgasm();
 
-	if (!pc.hasCock() && !pc.hasVagina()) pc.lust(20);
+	if (!pc.hasCock() && !pc.hasVagina()) pc.changeLust(20);
 
 	clearMenu();
 	addButton(0, "Next", move, "287");

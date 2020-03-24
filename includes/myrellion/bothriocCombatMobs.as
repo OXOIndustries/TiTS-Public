@@ -113,7 +113,7 @@ public function encounterPidemmeBothrioc():void
 			output(" for me? I’ll make it good for you. You know I will.”</i>");
 
 			//If 50+ addiction, ++Lust
-			if (bothriocAddiction() >= 50) pc.lust(5 + rand(5));
+			if (bothriocAddiction() >= 50) pc.changeLust(5 + rand(5));
 			processTime(2);
 
 			if (pc.lust() < pc.lustMax())

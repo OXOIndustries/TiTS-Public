@@ -325,7 +325,7 @@ public function approachBrandySally():void
 		output("\n\nShe quickly turns her attention back to you, patiently awaiting any word from you.");
 	}
 		
-	pc.lust(5);
+	pc.changeLust(5);
 	brandySallyMenu();
 }
 //talk about them
@@ -349,7 +349,7 @@ public function brandySallyTalkThem():void
 	output("\n\nSeems like your mute cow-pal has found herself a nice girlfriend.");
 
 	//set met brandy sally flag		
-	pc.lust(5);
+	pc.changeLust(5);
 	flags["MET_BRANDY_SALLY"] = 1;
 
 }
@@ -457,7 +457,7 @@ public function brandySallyThreesome():void
 		output(", you’re greeted by your rum-titted friend’s voice.");
 		
 		processTime(20);		
-		pc.lust(20);
+		pc.changeLust(20);
 		pc.exhibitionism(2);
 		IncrementFlag("BRANDY_SALLY_THREESOME_CUN");
 	}
@@ -467,7 +467,7 @@ public function brandySallyThreesome():void
 	output("\n\nSmiling, the darker of the two gals gazes back up at you once more, <i>“Hey, once Brandy’s all rested up, I think you should stop by again... I’m sure she’d </i>love<i> to do this again.”</i>");
 	output("\n\nThat sounds like a plan to you, already feeling Sally’s potent scent creeping into your mind again. You figure you better clear out and let the two girls rest, saying your goodbyes before heading back into the Bronco.");
 	
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

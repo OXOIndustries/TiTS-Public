@@ -212,7 +212,7 @@ public function zilBaggedApproach():void {
 	}
 	//Both:
 	//Boost lust slightly
-	pc.lust(8+rand(4));
+	pc.changeLust(8+rand(4));
 	processTime(5);
 	flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] = 1;
 	

@@ -41,6 +41,8 @@
 			else if (arg != 0)
 			{
 				wetnessRaw += arg;
+				if(wetnessRaw > 5) wetnessRaw = 5;
+				if(wetnessRaw < 0) wetnessRaw = 0;
 			}
 			
 			var currWet:Number = wetnessRaw + wetnessMod;

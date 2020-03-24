@@ -1435,6 +1435,7 @@ public function letsFapKaithrit4():void
 	output("\n\n<i>“See you guys next week! Don’t forget to Love, Comment, and Support!”</i> The recording switches off, the orange Champeon promotion flickering in its place. Would you like to learn more?");
 	processTime(6);
 	pc.changeLust(10);
+	CodexManager.unlockEntry("Holodom");
 	champeonOrOffMenu();
 }
 

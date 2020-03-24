@@ -34,6 +34,7 @@ package classes.Items.Apparel
 			defense = 0;
 			shieldDefense = 0;
 			sexiness = 2;
+			this.resolve = 1;
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;

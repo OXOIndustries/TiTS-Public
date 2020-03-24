@@ -47,7 +47,7 @@
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 2;
+			this.fortification = 6;
 			
 			resistances.burning.resistanceValue = -20.0;
 			resistances.kinetic.resistanceValue = 10.0;

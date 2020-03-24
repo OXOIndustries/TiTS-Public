@@ -330,7 +330,7 @@ public function nykke2IntroTalk():void
 	output("\n\nShe looks down, across her stomach, to her still-erect Frostwyrm cock, bobbing in the cold air beneath her. She’s pent up, <i>badly.</i> You can’t say you’re surprised – she hasn’t mated in two-hundred years. In fact, if she’s like [frostwyrm.name], she’s probably a virgin, and you remember how frantically [frostwyrm.name] fucked you when she first brought you back to her lair.");
 	output("\n\n<i>“Please?”</i>");
 	
-	pc.lust(10);	
+	pc.changeLust(10);	
 	processTime(5);
 	clearMenu();
 	addButton(0,"Fuck",nykke2IntroFuck, 1,"Fuck","Nykke seems honest enough, and you can hardly imagine what it’s like to be a two-hundred-year-old-virgin. The poor girl desperately needs someone to rock her world, and who better than you, Certified Frostwyrm Fucker?");
@@ -415,7 +415,7 @@ public function nykke2TalkMenu():void
 	output("\n\nAs subtle as a brick, she uncrosses her legs, giving you an eyeful of her exposed genitals – her Frostwyrm cock poking into the cold breeze of the air, accentuated by a pair of thick, low-hanging, full balls – and crosses them again, the other leg on top of the other.");
 	output("\n\nGreat, now <i>you</i> hope the conversation will take your mind off other things, too.");
 		
-	pc.lust(10);	
+	pc.changeLust(10);	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Mates",nykke2TalkMates,undefined,"Mates","Ask Nykke what qualities her ideal mate should have. Should they be strong, or smart, or just virile enough to give her a legendary clutch?");
@@ -457,7 +457,7 @@ public function nykke2TalkMates():void
 	output("\n\nFor the pleasure of it, you answer matter-of-factly.");
 	output("\n\nShe crosses her legs again. You catch the distinct whiff of her musk in the salty oceanic air as she does so. <i>“Fine,”</i> she says. <i>“I’ll wait a bit more.”</i>");
 		
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5 + rand(5));
 	addDisabledButton(0, "Mates","Mates","You already have a <i>pretty</i> good idea on what Nykke considers to be the perfect mate...");
 }
@@ -534,7 +534,7 @@ public function nykke2TalkAdventuring():void
 	output("\n\nThe psionic vision ends abruptly, and you’re back on cold, unforgiving Uveto, sitting in the snowbank next to Nykke. Her legs and thighs shift against each other, and you can see the beginnings of a half-chub peek from between her thick, muscular thighs. She’s putting in the token effort to hide it, but... you can tell, she wants you to start imagining on your own terms.");
 	output("\n\nWell... it’s working.");
 		
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(10 + rand(5));
 	addDisabledButton(2, "Adventuring","Adventuring","You’ve just talked about this! The idea of traveling the stars and seeing new cultures and peoples is an exciting idea for Nykke. She probably wouldn’t be against going with you some day.");
 }
@@ -571,7 +571,7 @@ public function nykke2TalkBlackScales():void
 	output("\n\nThe sensation of relief comes through much more clearly, now that you’ve given her some perspective on your love for [frostwyrm.name] and the love she had from her own Qim and Qal. You can still sense just a tinge of apprehension, like a tick that refuses to let go, and you’re not certain if you’ll ever be able to get that out of her, but, apart from that, you can tell that Nykke is satisfied with your answer.");
 	output("\n\nShe rests her head against yours, gazing out to the sparkling ocean before you two, and her hand squeezes yours tighter. There are a couple of obvious questions she wants to ask you, but they’re for another time – right now, she just wants to think about her parents.");
 
-	pc.lust(10);		
+	pc.changeLust(10);		
 	processTime(5 + rand(5));
 	addDisabledButton(3, "Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you, and to her own Qim and Qal, it never mattered what she looks like.");
 }

@@ -41,10 +41,12 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 7;
+			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 10;
+			this.evasion = 12;
 			this.fortification = 0;
+
+			resistances.tease.resistanceValue = 12.0;
 			
 			this.version = _latestVersion;
 		}

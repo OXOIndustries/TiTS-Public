@@ -1433,7 +1433,7 @@ public function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
 	output("\n\nShe’s almost ready to pop. The question is, where do you want her sweet, creamy cum to go?");
 
 	processTime(20+rand(10));
-	pc.lust(15+rand(10));
+	pc.changeLust(15+rand(10));
 	//[Swallow] [On You] [On her]
 	clearMenu();
 	addButton(0,"Swallow",swallowAlissSpunk,undefined,"Swallow","Take Aliss’ load into your mouth and stomach, where it belongs.");
@@ -1456,7 +1456,7 @@ public function swallowAlissSpunk():void
 	chars["ALISS"].orgasm();
 	pc.loadInMouth(chars["ALISS"]);
 	fuckedAliss();
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1473,7 +1473,7 @@ public function takeALoadInDaFaceFromAliss():void
 	output("\n\nWhen Aliss slumps backward on the bench, completely spent, you lean back as well, taking a moment to appreciate the feeling of the seed on your [pc.skinFurScales]. Then, using two fingers, you collect some of the cum and swallow it. You lick your cum-stained lips, and then lean forwards, giving Aliss a sloppy, wet kiss that tastes of strawberry and jizz. She giggles and returns it, even going so far as to lick some of her own seed off your face.");
 	output("\n\nAfter a minute or so, Aliss sits up and retrieves a few moist wipes. <i>“Let’s get you washed up, shall we?”</i> You clean yourself as best you can, get dressed, and the two of you head back out into the store.");
 	pc.applyCumSoaked();
-	pc.lust(10);
+	pc.changeLust(10);
 	chars["ALISS"].orgasm();
 	fuckedAliss();
 	processTime(5);
@@ -1492,7 +1492,7 @@ public function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
 	output("\n\nHer cumvein thickens and suddenly a burst of pearlescent white cum erupts from the cock, splattering against her own face. Her eyes widen in surprise, but there’s nothing she can do about it as another jet blasts against her face, then another against her breasts. Blast after blast covers her from face to stomach in creamy goo. You can’t help but giggle as she gulps down any that falls into her mouth. She licks her lips and actually scoops up some more seed with two fingers, letting that dribble into her mouth.");
 	output("\n\nAliss slips forward on the bench, pulling you into a sloppy, salty kiss. Her lips taste of strawberries and cum this time, an altogether not unpleasant taste. Her tongue breaches your mouth, carrying globules of sticky jizz, which you are all too happy to swallow. She breaks the kiss and bites her lip, suddenly looking coy. <i>“Well, dear, I certainly wasn’t expecting that, but I must say... I taste damn good. Perhaps next time you’ll have to get your own full taste.”</i>");
 	output("\n\nShe laughs and the two of your share another messy kiss. After a minute, Aliss retrieves some moist wipes. <i>“Let’s get cleaned up, shall we? Don’t want to look like we were just assaulted by some kind of ghost that left ectoplasm everywhere.”</i> The two of you clean up, get dressed and return to the store proper.");
-	pc.lust(10);
+	pc.changeLust(10);
 	chars["ALISS"].orgasm();
 	fuckedAliss();
 	processTime(5);

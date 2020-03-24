@@ -129,6 +129,7 @@
 		//Holiday shit
 		include "../includes/holidayEvents/2018XmasEvents.as";
 		include "../includes/holidayEvents/2018Krissy.as";
+		include "../includes/holidayEvents/biancaVDay.as";
 		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
@@ -236,6 +237,7 @@
 		include "../includes/events/kiroCrewQuest/rooms.as";
 		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
 		include "../includes/events/kiroCrewQuest/taursuit.as";
+		include "../includes/events/kiroCrewQuest/twinSlutBots.as";
 		include "../includes/events/kiroCrewQuest/victoryEvent.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
@@ -593,6 +595,14 @@
 		include "../includes/uveto/willow.as";
 		include "../includes/uveto/xotchiExpansion.as";
 		
+		//uveto steele biomedical deepsea research facility
+		include "../includes/uveto/steeleBiomedical/janeriaCore.as";
+		include "../includes/uveto/steeleBiomedical/janeriaSpawn.as";
+		include "../includes/uveto/steeleBiomedical/rooms.as";
+		include "../includes/uveto/steeleBiomedical/roomFunctions.as";
+		include "../includes/uveto/steeleBiomedical/steeleBioDeepseaLab.as";
+		include "../includes/uveto/steeleBiomedical/typhon.as";
+		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
 		include "../includes/SSTDs/furpies.as";
@@ -707,7 +717,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.057";
+			version = "0.8.065";
 
 			//temporary nonsense variables.
 			temp = 0;

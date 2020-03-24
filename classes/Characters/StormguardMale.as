@@ -176,7 +176,7 @@
 			this.balls = 4;
 			this.cumMultiplierRaw = 20;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 1;
+			this.cumQualityRaw = 2;
 			this.cumType = GLOBAL.FLUID_TYPE_CUNDARIAN_SEED;
 			this.ballSizeRaw = 12;
 			this.ballFullness = 100;

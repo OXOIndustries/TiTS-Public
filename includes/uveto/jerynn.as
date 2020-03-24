@@ -231,11 +231,11 @@ public function approachJerynn():void
 
 		if (pc.isSubby())
 		{
-			pc.lust(pc.lustMax());
+			pc.changeLust(pc.lustMax());
 		}
 		else
 		{
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 
 		processTime(10);
@@ -300,11 +300,11 @@ public function approachJerynn():void
 
 		if (pc.isSubby())
 		{
-			pc.lust(pc.lustMax());
+			pc.changeLust(pc.lustMax());
 		}
 		else
 		{
-			pc.lust(10);
+			pc.changeLust(10);
 		}
 
 		processTime(10);
@@ -1264,7 +1264,7 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 
 	processTime(40+rand(20));
 	pc.orgasm();
-	pc.lust(pc.lustMax() * 0.4);
+	pc.changeLust(pc.lustMax() * 0.4);
 
 	clearMenu();
 	addButton(0, "Next", jerynnUnderslungShareIV)
@@ -1297,7 +1297,7 @@ public function jerynnUnderslungShareIV():void
 	IncrementFlag("UVETO_JERYNN_RESCUES");
 	flags["UVETO_JERYNN_RESCUE_LAST"] = days;
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	if (hasVagina)
 	{
 		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume(), false);

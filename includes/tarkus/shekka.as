@@ -252,7 +252,7 @@ public function shekkaActuallyFixesEmitters():void
 	output("\n\nBefore you know it, your emitters are fixed and the sassy mechanic is springing off of you. <i>“A pleasure as always, [pc.name]. You be sure and come back to me if you have any more sydian problems, okay?”</i>");
 	output("\n\nYou nod, uncomfortably aware of the residual warmth she left behind while she snaps her welding mask back into place and resumes working.");
 	//+lust
-	pc.lust(5);
+	pc.changeLust(5);
 	//-50creds
 	pc.credits -= 50;
 	//2m pass
@@ -270,7 +270,7 @@ public function turnDownEmitterFixingFromShekka():void
 	output("Finally managing to get a grip on the rambunctious mechanic, you peel her off and lower her to the floor, uncomfortably aware of how her body had been pressing into yours. <i>“Not right now. I might have the credits to spare later, though.”</i>");
 	output("\n\nShekka shrugs and smiles. <i>“Suit yourself. Something else you want?”</i>");
 	//+lust
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(1);
 	//Main menu
 	if(shekkaIsCrew())
@@ -756,7 +756,7 @@ public function talkToShekkaAboutHerself():void
 	}
 	flags["SHEKKA_TALKED_HERSELF"] = 1;
 	processTime(15+rand(5));
-	pc.lust(5+rand(3));
+	pc.changeLust(5+rand(3));
 	clearMenu();
 	addButton(0,"Yes",yesShekkaLetsFuck,undefined,"Yes","Consent to sex with Shekka.");
 	addButton(1,"No",noShekkaLetsNotFuck,undefined,"No","Try to talk your way out of sex with Shekka.");
@@ -1545,7 +1545,7 @@ public function shekkaMilkDranking(inBed:Boolean = false):void
 	output("\n\nWith her big, red, reptilian eyes so close, she can’t help but see the budding beads of [pc.milk] on your [pc.nipples]. You moan as you feel her hot breath on them, your arousal rising even more as she pushes down on your [pc.chest] to pull her face away, squishing your heavy chest against you in the process. The resultant streams of [pc.milk] are enough to pull a laugh from the mechanic as you soak her palms in cream. <i>“");
 	if(!shekkaIsCrew()) output("One of those milky rushers, are you?”</i> she asks with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in my workshop - after I milk you dry that is.”</i>");
 	else output("How great that my captain is a milky rusher!”</i> she cheers with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in " + (!inBed ? "my engine room" : "your bedroom") + " - after I milk you dry that is.”</i>");
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",shekkaMilkDrankingPartII, inBed);
@@ -1865,7 +1865,7 @@ public function vibrateFirstGenSaxbots():void
 	output("\n\n<i>“Aww. That’s. No fun,”</i> Shekka whines with a frown. She can’t hold up for long though, soon returning her attention to the feeling of her cunt being vibrated. Your [pc.vagOrAss] itches with what you can only imagine is jealousy of her <i>“good fortunes.”</i> One thing you can be sure of is that you came out on top, for this choice at least.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu1(0);
 }
@@ -1885,7 +1885,7 @@ public function smoothSexbotFirstGen():void
 	output("\n\n<i>“You win. This round!”</i> you slur between the massive pole’s poundings. She grins smugly as the cocks return to their unaided forms. The reset gives you a moment of rest before the next choice is made, and you’re glad for it. Another minute of that might’ve put you in a bad spot for the competition as a whole.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu1(1);
 }
@@ -1902,7 +1902,7 @@ public function warmSexbotFirstGen():void
 	output("\n\n<i>“Ahhh. So h-hot,”</i> she says quietly, <i>“melting”</i> down to the floor and resting her face against the cool tiles. Her ears jingle softly against the metallic ground. You smile as the slowly spinning cock inside you rotates, but a part of you wants what she’s getting. After a moment, she recovers enough to be back up, searching her remote for an adequate revenge.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu1(2);
 }
@@ -1922,7 +1922,7 @@ public function sexbotTickleFirstGen():void
 	output("\n\nShekka looks like she’s about to speak, but is forced to bite it back as the thrusting pole’s feelers tickle at her pair of clits. You grin, appraising your options for the next choice and waiting for the pleasant chill to wear off. Shekka barely manages to stay on her game, looking incredibly relieved when the machines revert to their normal setting.");
 	processTime(1);
 	chars["SHEKKA"].lust(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu1(3);
 }
@@ -1942,7 +1942,7 @@ public function chillOutShekkaFirstGen():void
 	output("\n\n<i>“I won’t give up that easily!”</i> you tell her with renewed resolve. She grins back, checking over her options. The chilly dicking seems to be giving her more time to think. Perhaps if you play the game again it might not be the best choice to use against her. You return your attention to your remote, hoping you won’t have another mistake like that.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu1(4);
 }
@@ -1961,7 +1961,7 @@ public function wetShekkaFirstGen():void
 	output("\n\n<i>“Keep pressing buttons like that, and I’ll have this in the bag in no time,”</i> Shekka teases with a satisfied smile. You try to think of a retort, but are too busy holding back the itch in your loins. You manage to hold out until the cock reverts to its normal form, but for your victory’s sake you hope there aren’t any more buttons like that.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	sexbotRound(1);
 	sexBotMenu1(5);
 }
@@ -1981,7 +1981,7 @@ public function stimulateShekkaWithFirstGenSaxbot():void
 	output("\n\n<i>“You hanging in there?”</i> you tease the pint-sized mechanic. Shekka looks at you and sticks her tongue out as she jumps from the shock. You see her squeeze one of her B-cup breasts and tweak the nipple, her competitive smile temporarily turning to one of lust. If things keep going this way you might be able to win this game.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu1(6);
 }
@@ -2001,7 +2001,7 @@ public function drillShekkaWithFirstGenSaxbot():void
 	output("\n\n<i>“Thinkin’ of giving up yet?”</i> Shekka taunts playfully, gyrating her hips around the rotating cock inside her. What you wouldn’t give to have something easy like that at the moment. You reign in the coursing lust and appraise your remaining choices. One of these buttons has got to have the rosey scaled mechanic quivering in orgasm.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu1(7);
 }
@@ -2018,7 +2018,7 @@ public function hardSexbotOnShekkaFirstGen():void
 	output("\n\n<i>“Good! So g-good!”</i> she manages as she’s pounded again and again. If you keep this up, victory will be yours in no time. You wiggle your hips against the wet pole pistoning into you, surprised it hasn’t slipped out yet. The pint-sized repair-girl’s focus is broken, and she grips her remote tightly to stop herself from pushing it away. Looks like this round is your victory.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu1(8);
 }
@@ -2041,7 +2041,7 @@ public function stickyUpShekkaFirstGen():void
 	output("\n\nYou barely manage to pull yourself together and return your attention to the remote. You think you can hold on at least until this shivering pleasure cruise is over. The rosey scaled mechanic smiles smugly, jerking back and forth on her sticky fun trip. Hopefully your next choice is a little more effective, and you have time to choose before she’s ready.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu1(9);
 }
@@ -2209,7 +2209,7 @@ public function giveDemAusarCocksAWhorlOnShekkasSexBawts():void
 	output("\n\nYou have no trouble resisting the spiny kitty-cock that tugs on your insides. The smooth tipped barbs aren’t painful, but they certainly aren’t winning any awards in the arousal department. You see your raskvel repairwoman partner look noticeably relieved as the cock inside her returns to the basic dildo shape. You feel yours revert a short time later, and resume your decision making for what to choose next.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu2(0);
 }
@@ -2230,7 +2230,7 @@ public function tentacleShekkaSaxbotMkII():void
 	output("\n\nOnce again you’re reduced to watching the crimson engineer have fun. Part of you hopes she hits the tentacle button at some point during the game. The sight of her cooing as her hole is ravaged by a writhing coil of cock sends a shiver through your body. Once again she’s given you a free opportunity to make your choice.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu2(1);
 }
@@ -2250,7 +2250,7 @@ public function kaithritShekkaSaxbot():void
 	output("\n\n<i>“There! That’s what I want to be feeling right now,”</i> she says as you struggle to find your voice. When you finally find it, it comes out as a quiet moan, and your hands clench the sides of your remote. You survey your options, desperate to get to the next option before you lose the game.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu2(2);
 }
@@ -2267,7 +2267,7 @@ public function humanShekkaSaxbot():void
 	output("\n\n<i>“Human cocks are much better with the person attached. They’re kinda bland without it, especially at this size,”</i> she says as you weather the storming faux goo-cock inside you. You attempt a witty retort, but can’t talk with the flood of liquid metal sloshing through your [pc.vagOrAss]. You hope there aren’t any other buttons quite this tough to resist.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu2(3);
 }
@@ -2287,7 +2287,7 @@ public function horseShekkaSaxbot():void
 	output("\n\nFor now, you’re content to sit and listen to the chorus of moans and jingling ear jewelry coming from your partner. The pint-sized mechanic takes the thick, long rod like a champ. You stretch your muscles and yawn, working out the tension of being relatively still for so long. You peruse your choices as you wait for the current one to finish up.");
 	processTime(1);
 	chars["SHEKKA"].lust(12);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu2(4);
 }
@@ -2307,7 +2307,7 @@ public function shekkaAnemoneBot():void
 	output("\n\n<i>“What are you trying to do? Let me win?”</i> Shekka taunts as she watches you struggle. The knobby cock inside you is much better at its job, and you feel like if this dick had the warmth that it would have on a living thing you’d be a goner already. Your competitor squeezes one of her pert B-cups, rubbing the eggplant-colored nipple enticingly.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu2(5);
 }
@@ -2330,7 +2330,7 @@ public function mendovaShekkaBot():void
 	output("\n\n<i>“If you can’t take it, you should stop going easy on me with your choices,”</i> the rosey-scaled engineer says with a wink. You can only grunt and moan in reply, feeling haggard from the constant dicking. The warm embrace of orgasm looms on the horizon, looking quite inviting.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu2(6);
 }
@@ -2350,7 +2350,7 @@ public function naleenSexBotLetsGo():void
 	output("\n\nBoth of you ride out the pleasure together. Before your eyes haze with lust, you can see that the raskvel repairwoman’s are just as unfocused. For a moment, the room is filled with the sounds of both of your moans, the robo-flesh slapping against your butts, and the jingling of her ears.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(12);
+	pc.changeLust(12);
 	sexbotRound(1);
 	sexBotMenu2(7);
 }
@@ -2370,7 +2370,7 @@ public function lizardShekkaBot():void
 	output("\n\nA silly part of you wishes you had some popcorn to eat while watching the minute mechanic squirm in ecstasy. Her legs tense with every slap on her ample hips, the robots hands holding fast to her squishy tush. Her teeth clench tightly shut as she resists as best she can. You wish the human dick came with the faculties of its origin race. Without the throbbing and pulsing, it’s not much better than a dildo.");
 	processTime(1);
 	chars["SHEKKA"].lust(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	sexbotRound(1);
 	sexBotMenu2(8);
 }
@@ -2390,7 +2390,7 @@ public function gooShekkaBot():void
 	output("\n\n<i>“Is that all you’ve got? This is nothing,”</i> you taunt, somehow managing to bring yourself to a stable state of mind. The smooth-scaled technician recovers as well, but still appears to be having a little trouble as the poundings and massagings of the gooey member whither her defenses.");
 	processTime(1);
 	chars["SHEKKA"].lust(15);
-	pc.lust(10);
+	pc.changeLust(10);
 	sexbotRound(1);
 	sexBotMenu2(9);
 }
@@ -2677,7 +2677,7 @@ public function payShekkaForFunding3():void
 	pc.createStatusEffect("Shekka_Pay_CD");
 	pc.setStatusMinutes("Shekka_Pay_CD",16*60);
 	pc.credits -= 10000;
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",approachShekka,true);
 }
@@ -2710,7 +2710,7 @@ public function shekkaCureTalk():void
 	pc.setStatusMinutes("Shekka_Cure_CD",60*24*7);
 	flags["SHEKKA_ISSUES"] = 6;
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//Next: Jump to Sex Menu
 	shekkaSexMenu();
 }

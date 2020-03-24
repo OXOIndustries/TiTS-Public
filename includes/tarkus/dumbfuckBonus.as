@@ -57,7 +57,7 @@ public function goAheadAndDumbfuck():void
 		output(" as you bite your lip and try to stop yourself. It’s going to be a long, long day.");
 	}
 	//10 lust
-	pc.lust(10);
+	pc.changeLust(10);
 	flags["TIMES_TAKEN_DUMBFUCK"]++;
 	if(pc.hasStatusEffect("Dumbfuck"))
 	{

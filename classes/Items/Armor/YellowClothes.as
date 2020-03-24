@@ -38,8 +38,9 @@ package classes.Items.Armor
 			this.basePrice = 3000;
 			this.shields = 60;
 			this.sexiness = 3;
+			this.resolve = 2;
 			this.critBonus = 0;
-			this.evasion = 12;
+			this.evasion = 16;
 			
 			resistances.electric.resistanceValue = 40.0;
 			

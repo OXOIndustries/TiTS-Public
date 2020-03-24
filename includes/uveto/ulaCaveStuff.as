@@ -588,7 +588,7 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 			output("\n\nYou nod.");
 			output("\n\n<i>“<b>Find sparklerock, awoo in top sparklehole, third from right.</b> I tell whole village you savior.”</i> She kisses you on the nose. <i>“I tell tale of good alien. Very good, weird alien.”</i> Prancing toward the cave’s entrance, the dog-girl giggles nervously. <i>“So weird-fun! Thanking last time! Farewelled!”</i> She spins and totters out into the snow, suddenly unfazed by the cold.");
 			processTime(45);
-			pc.lust(33);
+			pc.changeLust(33);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 		}
@@ -606,7 +606,7 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 			output(", exploring every inch with rapt attention. The touches are inexpert, questing. You get the impression she’s never done something like this before. It still feels good - better than good, in fact. Maybe it’s the intimateness of the situation, the knowledge that it’s just you and this lone Korgonne, seeking a moment of comfort in a cold and joyless wasteland....");
 			output("\n\n...Maybe it’s that scent wafting up from between her legs. If this goes on much longer, you’re going to lose control.");
 			processTime(45);
-			pc.lust(33);
+			pc.changeLust(33);
 			clearMenu();
 			//[Stop] [Fuck]
 			addButton(0,"Stop",stopKorgiPlay);
@@ -620,7 +620,7 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 		else output("Wanna talk some more?");
 		output("”</i>");
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		//ulaTalkMenu();
 		addDisabledButton(0,"Stars/Space","Stars/Space","You just told her about this.");
 	}
@@ -702,7 +702,7 @@ public function ulaCaveLesbo():void
 	if(pc.hasMuzzle()) output(" that your muzzle slips inside, stretching her hymen but not quite breaking it");
 	output(". A thrust of your tongue makes her whimper and quiver.");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",korgiCavePussPart2);
 }
@@ -735,7 +735,7 @@ public function korgiCavePussPart2():void
 	//Merge no new PG!
 	output(" You can scarcely believe how <i>good</i> it feels, how impossible it makes it to think about anything but keeping your tongue moving, sliding in a feedback loop of endless pleasure...");
 	processTime(15);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",korgiCavePussPart3);
 }
@@ -834,7 +834,7 @@ public function korgiCockFuck():void
 	output("\n\n<i>“Should... uh... wa-”</i>");
 	output("\n\nWarmth devours you.");
 	processTime(20);
-	pc.lust(60);
+	pc.changeLust(60);
 	clearMenu();
 	addButton(0,"Next",korgiCockFuck2);
 }

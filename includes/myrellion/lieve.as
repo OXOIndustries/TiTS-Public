@@ -934,7 +934,7 @@ public function lieveVenomToggle():void
 	
 	output("\n\n<i>“You look like you’re feeling good,”</i> Lieve teases, breaking the kiss. <i>“Now, what to do with you...”</i>");
 
-	pc.lust(50);
+	pc.changeLust(50);
 	flags["LIEVE_VENOM_USED"] = 1;
 	
 	processTime(30 + rand(10));

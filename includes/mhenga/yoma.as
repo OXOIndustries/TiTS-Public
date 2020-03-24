@@ -662,7 +662,7 @@ public function yomaSexGiveOral():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasVagina()) pp.createVagina();
 	pc.girlCumInMouth(pp);
-	pc.lust(10);
+	pc.changeLust(10);
 	if (flags["YOMA_SEEN_NAKED"] == undefined) flags["YOMA_SEEN_NAKED"] = 1
 	IncrementFlag("YOMA_TIMES_EATEN_OUT");
 	clearMenu();

@@ -417,7 +417,7 @@ public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	output("rubbing against his glistening, rippling muscles until you reach his face. You cup the sides of his face with your cum-slick fingers, turning it to you as you press your lips against his.");
 	output("\n\nHis eyes struggle to open, and he lets out a muffled protest as your kiss forces his last load into his mouth. He would probably fight if he had any energy left. As it stands, he provides only a moment’s resistance before swallowing his own seed, delivered by your kiss, your tongue forcing it into his mouth, playing with his broad, thick tongue.");
 	output("\n\nWhen you break the kiss, he whimpers briefly before his eyes close, and he passes out, snoring immediately. You grin, rising from your seat on the rust monster, swaying a bit as you shake off the quaking rhythm you’ve been riding for the past half hour. As you leave, you take one last look, nodding in satisfaction at the cum-smeared hulk snoring gently in the junk pile.\n\n");
-	pc.lust(10+rand(10));
+	pc.changeLust(10+rand(10));
 	pc.orgasm();
 	pc.loadInMouth(enemy);
 	processTime(20+rand(5));
@@ -836,8 +836,9 @@ public function mouthfulOfPenniesByFrogalog():void
 	output("\n\nHe tilts your head back, making sure you watch his face as he finishes cumming. Your cheeks flush even more as he smiles approvingly at you. <i>“Good job, slut,”</i> he mutters with a grin. You feel a warm tingle up your spine at his words. <i>“Now, I’m going to take a little nap, and you’re going to clean up while I get some shut-eye.”</i>");
 
 	output("\n\nHe pats your head once, then leans back in his scrap-pile, beginning to snore almost immediately. Still woozy from the experience, you begin to obediently slurp at his absolutely soaked cock. With the sydian asleep, you have time to recover from the mind-bending ordeal his cock instigated. It’s not until you’ve nearly finished licking his cock clean that your head completely clears, and you realize that you should probably go.");
-	output("\n\nAs you gather your things and sneak away, you spy one of the Sydian’s eyes open, watching your clumsy escape. He snorts, but doesn’t seem interested in stopping you.\n\n");
-	pc.lust(40+rand(10));
+	output("\n\nAs you gather your things and sneak away, you spy one of the Sydian’s eyes open, watching your clumsy escape. He snorts, but doesn’t seem interested in stopping you.");
+	pc.changeLust(40+rand(10));
+	output("\n\n");
 	pc.loadInMouth(enemy);
 	processTime(40+rand(10));
 	CombatManager.genericLoss();
