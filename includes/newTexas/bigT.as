@@ -92,8 +92,7 @@ public function bigTMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",talkToBigT,talkToBigT);
-	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBigTMenu,undefined,"Sex","Try for some sexy times with the planetary Governor.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough to try seducing Big T right now.");
+	addButton(1,"Sex",sexWithBigTMenu,undefined,"Sex","Try for some sexy times with the planetary Governor.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

@@ -495,8 +495,7 @@ public function keepWatchingDatTaurSlootPoundHerMilkyMilkMaker():void
 	if(!pc.isTaur())
 	{
 		if(!pc.hasGenitals()) addDisabledButton(0,"Masturbate","Masturbate","You can’t do that without genitals.");
-		else if(pc.lust() >= 33) addButton(0,"Masturbate",masturbateWhileWatchingHaleyHumphumphump,undefined,"Masturbate","Watch the girl chase an orgasm in pursuit of your own.");
-		else addDisabledButton(0,"Masturbate","Masturbate","You are not aroused enough to do that.");
+		else addButton(0,"Masturbate",masturbateWhileWatchingHaleyHumphumphump,undefined,"Masturbate","Watch the girl chase an orgasm in pursuit of your own.");
 	}
 	else addDisabledButton(0,"Masturbate","Masturbate","You can’t reach around to do that.");
 	

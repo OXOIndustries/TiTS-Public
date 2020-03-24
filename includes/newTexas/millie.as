@@ -120,16 +120,12 @@ public function millieMenu():void
 	}
 	if(!pc.isTreated()) addButton(3,"Faux Treat.",treatmentTryouts,undefined,"Faux Treatment","Experience a simulated, temporary version of the female Treatment that will induce lactation. Warning: may cause growth of breast tissue in males and unsexed individuals.");
 	else addDisabledButton(3,"Faux Treat.","Faux Treatment","You’ve already taken the <i>actual</i> Treatment. No need to play with a pale imitation when you’re living the dream.")
-	if(pc.lust() >= 33)
+	if(pc.hasCock())
 	{
-		if(pc.hasCock())
-		{
-			if(pc.cockThatFits(1000) >= 0) addButton(4,"Fuck Millie",fuckMillie,undefined,"Fuck Millie","Get some phallic relief the old fashioned way.");
-			else addDisabledButton(4,"Fuck Millie","Fuck Millie","You’re too big to safely penetrate the cow-girl.");
-		}
-		else addDisabledButton(4,"Fuck Millie","Fuck Millie","You need a penis in order to fuck Millie.");
+		if(pc.cockThatFits(1000) >= 0) addButton(4,"Fuck Millie",fuckMillie,undefined,"Fuck Millie","Get some phallic relief the old fashioned way.");
+		else addDisabledButton(4,"Fuck Millie","Fuck Millie","You’re too big to safely penetrate the cow-girl.");
 	}
-	else addDisabledButton(4,"Fuck Millie","Fuck Millie","You aren’t aroused enough to fuck Millie.");
+	else addDisabledButton(4,"Fuck Millie","Fuck Millie","You need a penis in order to fuck Millie.");
 	addButton(14,"Back",leaveMillieFirstTime);
 }
 

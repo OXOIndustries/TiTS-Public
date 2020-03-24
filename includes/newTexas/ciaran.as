@@ -126,11 +126,7 @@ public function ciaranMainMenu():void
 	addButton(0, "Appearance", ciaranAppearance, undefined, "", "");
 	addButton(1, "Talk", ciaranTalk, undefined, "", "");
 
-	if (pc.femininity >= 60)
-	{ 
-		if (pc.lust() >= 33) addButton(2, "Sex", ciaranSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
-		else addDisabledButton(2, "Sex", "Sex", "You aren’t turned on enough for sex.")
-	}
+	if (pc.femininity >= 60) addButton(2, "Sex", ciaranSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
 	else if (flags["CIARAN_DENIED"] == undefined) addButton(2, "Sex", ciaranNoSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
 	else if (pc.inHeat() && !pc.isNaga() && pc.hasVagina()) addButton(2, "Sex", ciaranHeat, true, "Sex", "Ciaran looks restless. Maybe he’d be willing to make an exception for you as long as you’re in heat?");
 	else addDisabledButton(2, "Sex", "Sex", "Ciaran already turned you down once, and judging from how he looks at you, you’re still not girly enough for his tastes. Don’t make it awkward for both of you.");
@@ -192,11 +188,7 @@ public function ciaranTalkMenu():void
 	if (flags["CIARAN_HOUSE"] != undefined) addButton(6, "His Past", ciaranTalkPast, undefined, "His Past", "He doesn’t really have a New Texas accent. See if he’ll tell you where he’s from.");
 	else addDisabledButton(6, "Locked", "Locked", "You definitely don’t know him well enough yet to ask him about that.");
 
-	if (pc.femininity >= 60)
-	{ 
-		if (pc.lust() >= 33) addButton(7, "Sex", ciaranSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
-		else addDisabledButton(7, "Sex", "Sex", "You aren’t turned on enough for sex.")
-	}
+	if (pc.femininity >= 60) addButton(7, "Sex", ciaranSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
 	else if (flags["CIARAN_DENIED"] == undefined) addButton(7, "Sex", ciaranNoSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
 	else if (pc.inHeat()) addButton(7, "Sex", ciaranHeat, true, "", "Ciaran looks restless. Maybe he’d be willing to make an exception for you as long as you’re in heat?");
 	else addDisabledButton(7, "Sex", "Sex", "Ciaran already turned you down once, and judging from how he looks at you, you’re still not girly enough for his tastes. Don’t make it awkward for both of you.");

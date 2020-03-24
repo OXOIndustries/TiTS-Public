@@ -96,22 +96,14 @@ public function brandyMenu():void
 	addButton(1,"Talk",talkToBrandywhine,undefined,"Talk","Have a pretty one-sided conversation.");
 	//[Sex] Maybe the busty bovine is up for some fun.
 	if(pc.isTaur()) addDisabledButton(2,"Sex","Sex","This is only possible for non-taurs.");
-	else if(pc.lust() >= 33) addButton(2,"Sex",sexWithBrandy,undefined,"Sex","Maybe the busty bovine is up for some fun.");
-	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for that.");
+	addButton(2,"Sex",sexWithBrandy,undefined,"Sex","Maybe the busty bovine is up for some fun.");
 	//[Exhibitionism] Take advantage of Brandy’s past. //Requires that the “Her Mods” scene be done, and a mischievous or hard personality, not taur or naga compatible.
-	if(flags["BRANDY_MODS"] != undefined && !pc.isNice() && !pc.isTaur() && !pc.isNaga()) 
-	{
-		if(pc.lust() >= 33) addButton(3,"Exhibitionism",brandyExhibitionism,undefined,"Exhibitionism","Take advantage of Brandy’s past.");
+	if(flags["BRANDY_MODS"] != undefined && !pc.isNice() && !pc.isTaur() && !pc.isNaga()) addButton(3,"Exhibitionism",brandyExhibitionism,undefined,"Exhibitionism","Take advantage of Brandy’s past.");
 		else addDisabledButton(3,"Exhibitionism","Exhibitionism","You aren’t aroused enough for that.");
-	}
 	else if(flags["BRANDY_MODS"] == undefined) addDisabledButton(3,"Exhibitionism","Exhibitionism","You don’t know enough about her past.");
 	else addDisabledButton(3,"Exhibitionism","Exhibitionism","This is only possible for non-taurs and non-nagas who are of the mischievous or hard personality type.");
 	//[Taur sex] Maybe Brandy can do something special for someone of your stature. //Requires PC to be a taur. 
-	if(pc.isTaur() && pc.hasCock() && pc.cockThatFits(brandyCapacity()) >= 0) 
-	{
-		if(pc.lust() >= 33) addButton(4,"Taur Sex",taurTimeWithBrandy,undefined,"Taur Sex","Maybe Brandy can do something special for someone of your stature.");
-		else addDisabledButton(4,"Taur Sex","Taur Sex","You aren’t aroused enough for that.");
-	}
+	if(pc.isTaur() && pc.hasCock() && pc.cockThatFits(brandyCapacity()) >= 0) addButton(4,"Taur Sex",taurTimeWithBrandy,undefined,"Taur Sex","Maybe Brandy can do something special for someone of your stature.");
 	else addDisabledButton(4,"Taur Sex","Taur Sex","You need to be a tauric creature with a penis that can fit inside Brandy for this.");
 
 	addButton(14,"Leave",mainGameMenu);

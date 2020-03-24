@@ -244,10 +244,7 @@ public function repeatOgramApproach():void
 	else addButton(0,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
 	
 	addButton(1,"Talk",talkToOggy,true);
-	
-	if(pc.lust() >= 33) addButton(2,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
-	else addDisabledButton(2,"Sex","Sex","You aren’t quite aroused enough for sex.");
-	
+	addButton(2,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
 	addButton(14,"Leave",mainGameMenu);
 
 }
@@ -461,8 +458,7 @@ public function approachDatCowGalRepeat():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Talk",talkToAmma,true,"Talk","See if the cow-girl wants to talk about anything.");
-	if(pc.lust() >= 33) addButton(1,"Sex",sexChatWithAmma,undefined,"Sex","See if the lusty cow-girl is up for a quickie.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for sex.");
+	addButton(1,"Sex",sexChatWithAmma,undefined,"Sex","See if the lusty cow-girl is up for a quickie.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

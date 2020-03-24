@@ -154,8 +154,7 @@ public function approachZephyr(approached:Boolean = false):void
 	}
 	clearMenu();
 	addButton(0,"Talk",talkToZephyr,undefined,"Talk","Talk about some stuff, why not?");
-	if(pc.lust() >= 33) addButton(1,"Sex",zephyrSexMenu,undefined,"Sex","Why not?");
-	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for sex.");
+	addButton(1,"Sex",zephyrSexMenu,undefined,"Sex","Why not?");
 	addButton(14,"Back",mainGameMenu);
 }
 

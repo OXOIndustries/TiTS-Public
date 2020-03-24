@@ -83,8 +83,7 @@ public function approachFarmer():void
 		// Options!
 		if(pc.hasItemByClass(VarmintItem,1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you’ve bagged for some cash.");
 		else addDisabledButton(0,"Varmint","Varmint","You haven’t caught any varmints to turn in yet.");
-		if(pc.lust() >= 33) addButton(1,"Flirt",flirtWithCameron,undefined,"Flirt","Flirt with Cameron.");
-		else addDisabledButton(1,"Flirt","Flirt","You don’t really feel like flirting at the moment.");
+		addButton(1,"Flirt",flirtWithCameron,undefined,"Flirt","Flirt with Cameron.");
 		addButton(14,"Back",mainGameMenu);
 	}
 }
@@ -186,12 +185,8 @@ public function flirtWithCameron():void
 		output("\n\n<i>“Good, my folks aren’t here,”</i> he says, visibly relieved. Cam guides you from the living room into his bedroom, a small room with a bed you’ll both only barely fit on and walls decorated with shelf after shelf of miniatures and figurines. <i>“So, uh, what now, [pc.name]?”</i>");
 		processTime(1);
 		clearMenu();
-		if(pc.lust() >= 33)
-		{
-			if(pc.cockThatFits(700) < 0) addDisabledButton(0,"Fuck Him","Fuck Him","You’re too big to fuck his ass.");
-			else addButton(0,"Fuck Him",fuckCameronsButt,undefined,"Fuck Him","Fuck the cow-boy in the ass.");
-		}
-		else addDisabledButton(0,"Fuck Him","Fuck Him","You are not aroused enough for sex.");
+		if(pc.cockThatFits(700) < 0) addDisabledButton(0,"Fuck Him","Fuck Him","You’re too big to fuck his ass.");
+		else addButton(0,"Fuck Him",fuckCameronsButt,undefined,"Fuck Him","Fuck the cow-boy in the ass.");
 		addButton(14,"Back",mainGameMenu);
 		return;
 	}

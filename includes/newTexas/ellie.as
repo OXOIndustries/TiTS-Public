@@ -177,8 +177,7 @@ public function ellieMenu(display:Boolean = true):void
 	addButton(1,"Sell",sellToEllie);
 	addButton(2,"Talk",talkToEllieYaFuckingSkank);
 	addButton(3,"Suckle",suckleDatCowtaurTeat,undefined,"Suckle","Why not? You are thirsty.");
-	if(pc.lust() >= 33) addButton(4,"Sex",ellieSexScene);
-	else addDisabledButton(4,"Sex","Sex","Somehow, you’re still not turned on enough for sex.");
+	addButton(4,"Sex",ellieSexScene);
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -436,8 +435,7 @@ public function talkToEllieAboutPheromones():void
 	}
 	else
 	{
-		if(pc.lust() >= 33) addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
-		else addDisabledButton(0,"Yes","Yes","Somehow, despite the pervasive musk, you aren’t aroused enough for sex.");
+		addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
 		addButton(1,"No",ellieMenu,undefined,"Turn her down for now.");
 	}
 }
@@ -2492,8 +2490,7 @@ public function ellieDoesntHavePheromonesAnymore():void
 	pc.changeLust(33);
 	
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
-	else addDisabledButton(0,"Yes","Yes","Somehow, despite the pervasive musk, you aren’t aroused enough for sex.");
+	addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
 	addButton(1,"No",ellieMenu,undefined,"Turn her down for now.");	
 }
 

@@ -947,8 +947,7 @@ public function talkToQuenton():void
 	if(!pc.hasKeyItem("Ten Ton Gym Membership")) addButton(1,"Life Pass",buyDatLifetimeMembership,undefined,"Life Pass","Ask about purchasing a lifetime membership.");
 	else addDisabledButton(1,"Life Pass","Life Pass","You already have one!");
 	//[Personal] Go to Personal Training {Text: Try to get into Quenton’s workout pants}
-	if(pc.lust() >= 33) addButton(2,"P.Training",quentonPersonalTraining,undefined,"Personal Training","Try to get into Quenton’s workout pants.");
-	else addDisabledButton(2,"P.Training","Personal Training","You are not aroused enough for this.");
+	addButton(2,"P.Training",quentonPersonalTraining,undefined,"Personal Training","Try to get into Quenton’s workout pants.");
 	//[No Thanks] Go to Entrance
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -1809,8 +1808,7 @@ public function lolaPoolApproach():void
 		
 		// [Yep] Go to FloatFuck
 		// [Nope] Go to NoFloatFuck
-		if (pc.lust() < 33) addDisabledButton(0, "Yep", "Yep", "You are not aroused enough for this.");
-		else addButton(0, "Yep", lolaPoolSex, "yep");
+		addButton(0, "Yep", lolaPoolSex, "yep");
 		addButton(1, "Nope", lolaPoolSex, "nope");
 	}
 	else
@@ -1820,8 +1818,7 @@ public function lolaPoolApproach():void
 		
 		// [Yep] Go to FloatFuck {requires penis or strap-on}
 		// [Nope] Go to NoFloatFuck
-		if (pc.lust() < 33) addDisabledButton(0, "Yep", "Yep", "You are not aroused enough for this.");
-		else if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(0, "Yep", lolaPoolSex, "yep");
+		if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(0, "Yep", lolaPoolSex, "yep");
 		else addDisabledButton(0, "Yep", "Yep", "You don’t have the proper equipment to do this!");
 		addButton(1, "Nope", lolaPoolSex, "nope");
 	}
