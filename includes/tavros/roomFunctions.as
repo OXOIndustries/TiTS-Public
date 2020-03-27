@@ -42,23 +42,13 @@ public function exitToShipLocation():Boolean
 	return false;
 }
 
-public function liftMove(destination:String):void
-{
-	clearOutput();
-	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
-	move(destination,false);
-	showLocationName();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-
 public function hangarFloors(bonus:Boolean = false):Array 
 {
 	var floors:Array = [];
-	floors.push(["Hangar", liftMove, "TAVROS LIFT", "Hangar Deck", "the hangar deck"]);
-	floors.push(["Merchant", liftMove, "LIFT: MERCHANT DECK", "Merchant Deck", "the merchant deck"]);
-	floors.push(["Res. Deck", liftMove, "LIFT: RESIDENTIAL DECK", "Residential Deck", "the residential deck"]);
-	floors.push(["Nursery", liftMove, "NURSERYELEVATOR", "Nursery Deck", "the nursery deck"]);
+	floors.push(["Hangar", move, "TAVROS LIFT: TRANSIT", "Hangar Deck", "the hangar deck", "TAVROS LIFT"]);
+	floors.push(["Merchant", move, "LIFT: MERCHANT DECK: TRANSIT", "Merchant Deck", "the merchant deck", "LIFT: MERCHANT DECK"]);
+	floors.push(["Res. Deck", move, "LIFT: RESIDENTIAL DECK: TRANSIT", "Residential Deck", "the residential deck", "LIFT: RESIDENTIAL DECK"]);
+	floors.push(["Nursery", move, "NURSERYELEVATOR: TRANSIT", "Nursery Deck", "the nursery deck", "NURSERYELEVATOR"]);
 	if(bonus)
 	{
 		if(MailManager.isEntryViewed("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", riyaPartyLiftGo, undefined, "Party, Deck 4", "the U.G.C. garrison party"]);
@@ -70,6 +60,49 @@ public function hangarFloors(bonus:Boolean = false):Array
 }
 public function hangarBonus():Boolean 
 {
+	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant, residential, and nursery levels.");
+	
+	var btnSlot:int = 0;
+	
+	addButton(btnSlot++, "Floors", hangarButtonMenu, undefined, "Control Panel", "Ride the elevator to a specific floor.");
+	
+	// Special floors (add when needed)
+	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
+	{
+		output("\n\nYou also have the option to take the lift up to Deck 92 to meet up with Saendra");
+		if(flags["SAENDRA_XPACK1_STATUS"] == 2) output(". You are sure taking your time about it though");
+		output("--whatever she contacted you about, it sounded pretty urgent.");
+		addButton(btnSlot++, "Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Go to Deck 92.");
+	}
+	// Azra encounter
+	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
+	{
+		if(azraBonusProc(btnSlot++)) return true;
+	}
+	
+	// Normal floors
+	var floors:Array = hangarFloors();
+	for(var i:int = 0; i < floors.length; i++)
+	{
+		if(floors[i][5] == currentLocation)
+		{
+			output("\n\n<b>You are currently on " + floors[i][4] + ".</b>");
+			if(floors[i - 1] != null)
+			{
+				addButton(7, "Down", floors[i - 1][1], floors[i - 1][2], floors[i - 1][3], ("Go to " + floors[i - 1][4] + "."));
+			}
+			if(floors[i + 1] != null)
+			{
+				addButton(5, "Up", floors[i + 1][1], floors[i + 1][2], floors[i + 1][3], ("Go to " + floors[i + 1][4] + "."));
+			}
+		}
+	}
+	
+	return false;
+}
+public function hangarBonusTransit():Boolean 
+{
+	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.\n\n");
 	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant, residential, and nursery levels.");
 	
 	var btnSlot:int = 0;
@@ -121,7 +154,7 @@ public function hangarButtonMenu():void
 	
 	for(i = 0; i < floors.length; i++)
 	{
-		if(floors[i][2] == currentLocation) floorIndex = i;
+		if(floors[i][2] == currentLocation || floors[i][5] == currentLocation) floorIndex = i;
 	}
 	for(i = 0; i < floors.length; i++)
 	{
@@ -129,7 +162,7 @@ public function hangarButtonMenu():void
 		{
 			addDisabledButton(btnSlot++, floors[i][0], floors[i][3], "You are already on this floor.");
 		}
-		else if(floors[i][1] != liftMove)
+		else if(floors[i][1] != move)
 		{
 			addButton(btnSlot++, floors[i][0], floors[i][1], floors[i][2], floors[i][3], ("Go to " + floors[i][4] + "."));
 		}
@@ -147,7 +180,7 @@ public function hangarMoveTo(arg:Array):void
 	
 	if(minExtra > 0) processTime(minExtra);
 	
-	liftMove(destination);
+	move(destination);
 }
 
 public function tavrosHangarStuff():Boolean

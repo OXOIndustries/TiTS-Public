@@ -16,10 +16,10 @@ public function riyaXmasPartyInviteText():String
 //Entering party(Should be accessible as a destination(( [Party] )) on the Tavros elevator):
 public function riyaPartyLiftGo():void
 {
-	liftMove("RIYAPARTY");
+	move("RIYAPARTY");
 	
 	clearMenu();
-	addButton(0,"Next",party2018RiyaEntrance);
+	party2018RiyaEntrance();
 }
 public function party2018RiyaEntrance():void
 {

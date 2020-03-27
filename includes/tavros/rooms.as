@@ -141,7 +141,7 @@ public function initTavrosRooms():void
 	//rooms["SHEAR BEAUTY"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.COMMERCE);
 
-	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
+	//104a "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
 	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT:\nMERCHANT";
 	rooms["LIFT: MERCHANT DECK"].description = "";
@@ -154,6 +154,20 @@ public function initTavrosRooms():void
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.LIFTDOWN);
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
+
+	//104b "LIFT: MERCHANT DECK: TRANSIT" Used to display transit text when changing floors
+	rooms["LIFT: MERCHANT DECK: TRANSIT"] = new RoomClass(this);
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].roomName = "LIFT:\nMERCHANT";
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].description = "";
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].planet = "TAVROS STATION";
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].system = "SYSTEM: KALAS";
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].eastExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].moveMinutes = 1;
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].addFlag(GLOBAL.INDOOR);
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].addFlag(GLOBAL.PUBLIC);
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["LIFT: MERCHANT DECK: TRANSIT"].runOnEnter = hangarBonusTransit;
 
 	//105 "TAVROS HANGAR". The Hangar
 	rooms["TAVROS HANGAR"] = new RoomClass(this);
@@ -169,7 +183,7 @@ public function initTavrosRooms():void
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["TAVROS HANGAR"].runOnEnter = tavrosHangarStuff;
 
-	//106"TAVROS LIFT". In The Lift - The Hangar
+	//106a "TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
 	rooms["TAVROS LIFT"].roomName = "LIFT:\nHANGAR";
 	rooms["TAVROS LIFT"].description = "";
@@ -184,6 +198,22 @@ public function initTavrosRooms():void
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.PUBLIC);
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
+	
+	//106b "TAVROS LIFT: TRANSIT" Used to display transit text when changing floors
+	rooms["TAVROS LIFT: TRANSIT"] = new RoomClass(this);
+	rooms["TAVROS LIFT: TRANSIT"].roomName = "LIFT:\nHANGAR";
+	rooms["TAVROS LIFT: TRANSIT"].description = "";
+	rooms["TAVROS LIFT: TRANSIT"].planet = "TAVROS STATION";
+	rooms["TAVROS LIFT: TRANSIT"].system = "SYSTEM: KALAS";
+	rooms["TAVROS LIFT: TRANSIT"].eastExit = "TAVROS HANGAR";
+	rooms["TAVROS LIFT: TRANSIT"].moveMinutes = 1;
+	//rooms["TAVROS LIFT: TRANSIT"].inExit = "LIFT: MERCHANT DECK";
+	//rooms["TAVROS LIFT: TRANSIT"].inText = "ToMerchant";
+	rooms["TAVROS LIFT: TRANSIT"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS LIFT: TRANSIT"].addFlag(GLOBAL.LIFTUP);
+	rooms["TAVROS LIFT: TRANSIT"].addFlag(GLOBAL.PUBLIC);
+	rooms["TAVROS LIFT: TRANSIT"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["TAVROS LIFT: TRANSIT"].runOnEnter = hangarBonusTransit;
 
 	//107 The Dark Chrysalis
 	rooms["DARK CHRYSALIS"] = new RoomClass(this);
@@ -523,6 +553,7 @@ public function initTavrosRooms():void
 	rooms["INESSA"].addFlag(GLOBAL.COMMERCE);
 	rooms["INESSA"].runOnEnter = happyTailsBonus;
 	
+	//Lift: Residential Deck(a)
 	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
 	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL";
 	rooms["LIFT: RESIDENTIAL DECK"].description = "";
@@ -538,6 +569,23 @@ public function initTavrosRooms():void
 	rooms["LIFT: RESIDENTIAL DECK"].addFlag(GLOBAL.PUBLIC);
 	rooms["LIFT: RESIDENTIAL DECK"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["LIFT: RESIDENTIAL DECK"].runOnEnter = hangarBonus;
+	
+	//Lift: Residential Deck(b) Used to display transit text when changing floors.
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"] = new RoomClass(this);
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].roomName = "LIFT:\nRESIDENTIAL";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].description = "";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].planet = "TAVROS STATION";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].system = "SYSTEM: KALAS";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].northExit = "RESIDENTIAL DECK 6";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].southExit = "RESIDENTIAL DECK 2";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].westExit = "";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].eastExit = "";
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].moveMinutes = 1;
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].addFlag(GLOBAL.INDOOR);
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].addFlag(GLOBAL.PUBLIC);
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["LIFT: RESIDENTIAL DECK: TRANSIT"].runOnEnter = hangarBonusTransit;
 	
 	//1002 South Plaza
 	rooms["RESIDENTIAL DECK 2"] = new RoomClass(this);
@@ -922,6 +970,7 @@ public function initTavrosRooms():void
 	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.PUBLIC);
 
 	// Nursery
+	//Nursery Elevator(a)
 	rooms["NURSERYELEVATOR"] = new RoomClass(this);
 	rooms["NURSERYELEVATOR"].roomName = "ELEVATOR:\nNURSERY";
 	rooms["NURSERYELEVATOR"].description = "";
@@ -935,7 +984,22 @@ public function initTavrosRooms():void
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.NURSERY);
-
+	
+	//Nursery Elevator(b): Used to display transit text when changing floors
+	rooms["NURSERYELEVATOR: TRANSIT"] = new RoomClass(this);
+	rooms["NURSERYELEVATOR: TRANSIT"].roomName = "ELEVATOR:\nNURSERY";
+	rooms["NURSERYELEVATOR: TRANSIT"].description = "";
+	rooms["NURSERYELEVATOR: TRANSIT"].runOnEnter = hangarBonusTransit;
+	rooms["NURSERYELEVATOR: TRANSIT"].northExit = "NURSERYE14";
+	rooms["NURSERYELEVATOR: TRANSIT"].planet = "TAVROS STATION";
+	rooms["NURSERYELEVATOR: TRANSIT"].system = "SYSTEM: KALAS";
+	rooms["NURSERYELEVATOR: TRANSIT"].moveMinutes = 1;
+	rooms["NURSERYELEVATOR: TRANSIT"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYELEVATOR: TRANSIT"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYELEVATOR: TRANSIT"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["NURSERYELEVATOR: TRANSIT"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYELEVATOR: TRANSIT"].addFlag(GLOBAL.NURSERY);
+	
 	rooms["NURSERYSTAIRS1F"] = new RoomClass(this);
 	rooms["NURSERYSTAIRS1F"].roomName = "NURSERY:\n1F STAIRWELL";
 	rooms["NURSERYSTAIRS1F"].description = "";
