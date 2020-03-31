@@ -1,141 +1,112 @@
-# Parsers
-Any text between `[ ]` is a `parser`.
+# TiTS New Parser Docs
 
-## Inside a parser
-> `[ (identifier) (arguments) | (results) ]`
+Written by end5.
 
-`identifier` is a list of `identity` separated by `"."`.
+CoC2 is a different game than TiTS, so the parsers will be different.
 
-`identity` is the name of a value. Starting `identity` list is [here](Parsers.md).
+I suggest reading and learning how CoC2 parsers works first, then coming back to this.
 
-`arguments` is a list of `text` or `number` separated by at least one `space` or `tab`. They can include `parsers`.
+[Click here for CoC2 parser documentation](https://www.fenoxo.com/play/CoC2/release/documentation.html)
 
-`results` is a list of `text` separated by `|`. They can include `parsers`.
+Changes listed below.
 
-Examples:
-> `[pc.name]`
-```
-identifier: ("pc", "name")
-arguments: ()
-results: ()
-```
-> `[pc.cockNoun 1]`
-```
-identifier: ("pc", "cockNoun")
-arguments: (1)
-results: ()
-```
-> `[silly|enabled|disabled]`
-```
-identifier: ("silly")
-arguments: ()
-results: ("enabled", "disabled")
-```
-> `[pc.cumQRange 0 100 1000 5000|0~100|100~1000|1000~5000|5000+]`
-```
-identifier: ("pc", "cumQRange")
-arguments: (0, 100, 1000, 5000)
-results: ("0~100", "100~1000", "1000~5000", "5000+")
-```
-> `[syri.cockTypeIs [syri.cockThatFits 43] human canine|a|b|c]`
-```
-identifier: ("syri", "cockTypeIs")
-arguments: (
-    (
-        identifier: ("syri", "cockThatFits")
-        arguments: (43)
-        results: ()
-    ),
-    human,
-    canine
-)
-results: ("a", "b", "c")
-```
+# Change in wording
+Arguments are the values separated by spaces "` `"
 
----
+Results are the values separated by pipes "`|`"
+
+Example: `[pc.cumQRange 0 100 1000 5000|0~100|100~1000|1000~5000|5000+]`
+* Arguments = `0`, `100`, `1000`, `5000`
+* Results = `0~100`, `100~1000`, `1000~5000`, `5000+`
+
+# Arguments
+## New
+Arguments that have spaces in them can be combined by using `()`. For example, `[pc.hasPerk Amazonian Endurance|You are always ready for another round.|You are exhausted.]` would look for the perk `Amazonian` and the perk `Endurance`, but by surrounding them in parenthesis, `[pc.hasPerk (Amazonian Endurance)|You are always ready for another round.|You are exhausted.]`, it instead looks for the perk `Amazonian Endurance`.
+
+Arguments can now be parsers.
+An example `[pc.cockTypeIs [pc.longestCockIndex] human equine tentacle|terran penis|flared cock|squirming tentacle dick]`.
+The first argument of `pc.cockTypeIs` is a number to select which cock you are looking at. `[pc.longestCockIndex]` computes and provides the number of the longest cock.
+
+# Range parsers
+## Changed/New
+Range parsers have been divided into `Range` and `Is`.
+`Range` works the same as before.
+`Is` parsers are written the same as `Range` parser, but instead of computing if a value is between arguments, they compute if the value is one of the arguments.
+A `Is` example would be `[minuteIs 15 30 45|quarter past|half past|quarter to|]` checks if the `minute` is `15`, `30` or `45` and displays `quarter past`, `half past` or `quarter to`.
+
+# Flag Parsers
+## Changed
+Use the `[flagIs `[flag_name_here](FlagList.md)` argument1 argument2 ...|...]`. The arguments can be numbers or text.
+
+# Random Parser
+## New
+The random parser can take an optional number as a argument. That number forces the parser to pick that variation. An example `[rand 1|ceiling|face|chest|floor|...]` would display `ceiling`. Changing the `1` to a `3` would display `chest` instead of `ceiling`.
+
+
+# Other changes
 ## Whitespace
 Newlines following the end of the `result` text are ignored.
-> `Silly mode is [silly`
->
-> `|enabled`
->
-> `|disabled`
->
-> `].` 
+```
+Silly mode is [silly
+|enabled
+
+|disabled
+
+].
+```
+Displays 
 ```
 Silly mode is disabled.
 ```
+
+---
 ## Indentation
 The space between the start of a line and the first `|` determines the amount of indentation for all `results` of that parser. A tab counts as one space.
 
 Example: Two space indentation
-> ```
-> SILLY MODE
-> [silly
->   |==========
->    ENABLED
->   |==========
->    DISABLED
-> ]
+```
+SILLY MODE
+[silly
+  |==========
+   ENABLED
+  |==========
+   DISABLED
+]
+```
+Displays
 ```
 SILLY MODE
 ==========
  ENABLED
 ```
 
----
-## Argument Grouping
-`arguments` can be grouped together using parentheses `( )`. When grouped, `spaces` and `tabs` are included.
+# Removed
+These are either impossible to create or have not been implemented at the time of writing
+* Party "dot" parsers
+* Companions and Existence Parser
+* A/An Parser
+* TPS Parser
+* Plural/Singular Parser
 
-> `[pc.hasPerk (Fecund Figure)|exceptionally wide] hips`
-```
-identifier: ("pc", "hasPerk")
-arguments: ("Fecund Figure")
-results: ("exceptionally wide", "")
-```
----
+# Big List of Parsers
+"char" is a placeholder for a name from the [character name list](Character/Names.md). In combat you can use "attacker", "target" and "enemy".
 
-## Capitalization
-If the first letter of any lowercase `identity` is uppercase, the result will be capitalized. If the first letter of an `identity` is already uppercase, then use `cap`.
+[List of character names](Parsers/Character/Names.md)
 
-> `pc.skinColor` is lowercase, so `pc.SkinColor` will capitalize the result.
+[List of simple character parsers](Parsers/Character/Simple.md)
 
-> `flags.MET_FLAHNE` is uppercase, so use `cap`.
+[List of complex character parsers](Parsers/Character/Complex.md)
 
----
-## Range
-If `Range` is at the end of an `identifier`, then that parser is a range operation.
+[List of other parsers](Parsers/Other.md)
 
-An infinite amount of `number` `arguments` can be used.
+[List of breast cup sizes](Lists/StatusEffectList.md)
 
-If the `value` of the `identifier` is greater than or equal to the first selected `argument` and less than the second selected `argument`, output the `result` at the same position of the first selected `argument`.
+[List of various body types and flags](Lists/NameList.md)
 
+[List of status effects](Lists/StatusEffectList.md)
 
-> `[hourRange 7 10 12|7-9|10-11|12+]`
+[List of perks](Lists/PerkList.md)
 
-```
-if (7 <= hour < 10) then output "7-9"
+[List of key items](Lists/KeyItemList.md)
 
-if (10 <= hour < 12) then output "10-11"
-
-if (12 <= hour) then output "12+"
-```
-> If `hour` is `11` then the output is `10-11` because `11` is greater than `10` and less than `12`.
-
----
-## Is
-If `Is` is at the end of an `identity`, that means this is an equals range operation.
-
-An infinite amount of `text` or `number` `arguments` can be used.
-
-If the `value` of the `identity` equals the `argument`, output the `result` at the same position of the matching `argument`.
-
-> `[hourIs 7 8|You are still asleep|Wake Paige up|Paige is already awake]`
-```
-if (hour equals 7) then output "You are still asleep"
-
-if (hour equals 8) then output "Wake Paige up"
-
-else output "Paige is already awake"
-```
-> If `hour` is equal to `8` then the output is `Wake Paige up`
+[List of flags](Lists/FlagList.md)

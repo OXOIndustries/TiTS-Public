@@ -1,179 +1,201 @@
-# Understanding the language
-### Code Syntax
-> `[ (identifier) (arguments) | (results) ]`
+# How it works
+```ActionScript
+var text: String = "";
 
-`[` starts a parser and `]` ends a parser.
+var parser: Parser = new Parser();
+var parseResult: ParseResult = parser.parse(text);
 
-An `identifier` is a list of `identity` separated by `.` Each `identity` accesses a variable starting with the `Object` that was passed to the `interpreter` on creation.
+var tits: TiTS = new TiTS();
 
-The `arguments` is a list of `String` or `Number` separated by at least one `space` or `tab`.
+var wrapper: TiTSWrapper = new TiTSWrapper(tits);
+var info: TiTSInfo = new TiTSInfo(tits);
 
-The `results` is a list of `String`. They are separated by `|`. They can include a parser.
+var interpreter: Interpreter = new Interpreter();
+var interpretResult: InterpretResult = interpreter.interpret(parseResult.root, wrapper, info);
 
-Examples:
-> `[pc.name]`
-```
-identifier: ["pc", "name"]
-arguments: []
-results: []
-```
-> `[pc.cockNoun 1]`
-```
-identifier: ["pc", "cockNoun"]
-arguments: [1]
-results: []
-```
-> `[silly|enabled|disabled]`
-```
-identifier: ["silly"]
-arguments: []
-results: ["enabled", "disabled"]
-```
-> `[pc.cumQRange 0 100 1000 5000|0~100|100~1000|1000~5000|5000+]`
-```
-identifier: ["pc", "cumQRange"]
-arguments: [0, 100, 1000, 5000]
-results: ["0~100", "100~1000", "1000~5000", "5000+"]
+var codifier: Codifier = new Codifier();
+var codeMap: TiTSCodeMap = new TiTSCodeMap(tits);
+var codeResult = codifier.interpret(parserResult.root, codeMap);
+
 ```
 ---
-## Whitespace
-Newlines following the end of the `result` text are ignored.
-> `Silly mode is [silly`
->
-> `|enabled`
->
-> `|disabled`
->
-> `].` 
+```ActionScript
+var text: String = "";
 ```
-Silly mode is disabled.
-```
----
-## Indentation
-The space between the start of a line and the first `|` determines the amount of indentation for all `results` of that parser. A tab counts as one space.
-
-Example: Two space indentation
-> ```
-> SILLY MODE
-> [silly
->   |==========
->    ENABLED
->   |==========
->    DISABLED
-> ]
-```
-SILLY MODE
-==========
- ENABLED
-```
-
-# Relation between the code and parsers
-The `interpreter` takes in a `Object`. Anything `public` can be used in the text.
-
-In the code, a new TiTSWrapper is passed to the `interpreter`. A Wrapper class is a wrapper around game code to limit access. 
-
-## Visiblity
-The entry point is TiTSWrapper. The interpreter will start evaluating `identifier` here.
-
-> `[silly|enabled|disabled]`
-
-The `silly` is in TiTSWrapper and is `public`, thus it can be used.
-
-> `[pc.cockNoun 1]`
-
-`pc` is in TiTSWrapper and is `public`. It returns a CreatureWrapper.
-`cockNoun` is in CreatureWrapper and is `public`, thus `pc.cockNoun` can be used.
+This is the text that will be parsed.
 
 ---
-## How the interpreter handles data types
----
-### Functions
-`Function` types are evaluated first. They are called with the `arguments` using `apply`.
-> `aFunc.apply(self, arguments)`
-
-or with `call` if `includeResults` is set. More on that in the `FunctionInfo` section.
-> `aFunc.apply(self, arguments, results)`
-
-Examples:
-> `[pc.cockNoun 1]`
+```ActionScript
+var parser: Parser = new Parser();
 ```
-pc.cockNoun(1)
-```
-
-The type of the result of the function call is then used below.
-If the return value is `null`, it will error. 
+This is the `Parser`. It will parse text into an [Abstract Syntax Tree (AST)](https: //en.wikipedia.org/wiki/Abstract_syntax_tree). That tree will be used by the interpreter to produce the result you see on screen.
 
 ---
-### Booleans
-`Boolean` types will not display. They are automatically turned into 
+```ActionScript
+var parseResult: ParseResult = parser.parse(text);
 ```
-if (identifier == true)
-    results[0]
-else if (results.length > 1)
-    results[1]
-else
-    ""
-```
----
-### Numbers
-`Number` types do not display. They select from the `results`. If there are no `results` in the range, use empty string.
-```
-if (num < results.length)
-    results[num]
-else
-    ""
-```
----
-### Other
-`Object`, `null` will display an error.
-
-Anything else will coerced to `String`.
+This is a call to the `parser` passing `text` as an argument. The `parseResult` contains the `root` node of the AST and any `errors`.
 
 ---
-# Adding new parsers
-Anything `public` in TiTSWrapper or subsequent classes will available to the interpreter.
-
-Example:
-1. Open TiTSWrapper.as
-2. Add `public const boobs: String = "(.)(.)";` to the TiTSWrapper class
-3. Compile and open the swf
-4. Type `[boobs]` and see `(.)(.)` in the output
-
-**Make sure what are adding does NOT change game values. Giving writers the power to change game values can and will cause problems.**
-
-## Info
-
-Info classes provide validation and other useful information and must mirror `Wrapper` classes.
-
-If a value has a type of `function`, it will be considered a validator.
-
-If a value has a type of `object`, it will be considered an info object.
+```ActionScript
+var tits: TiTS = new TiTS();
 ```
-{
-    func: // Validator. Function
-    includeResults: // Whether or not to include results. Boolean
+This is the game. There is likely more code to properly initialize the game.
+
+---
+```ActionScript
+var wrapper: TiTSWrapper = new TiTSWrapper(tits);
+```
+This is a wrapper. Its purpose is to be an interface between the game and the interpreter.
+
+Anything `public` in this class is a parser. For example, `[silly|enabled|disabled]` is
+```ActionScript
+public function get silly(): Boolean {
+    if (this.game.gameOptions)
+        return !!this.game.gameOptions.sillyMode;
+    return false;
+}
+```
+The source code to use the parser `[pc.name]` is
+```ActionScript
+// TiTSWrapper.as
+public function get pc(): CreatureWrapper { return this.charDesc["PC"]; }
+
+// CreatureWrapper.as
+public function get name(): String {
+    return this.owner.nameDisplay();
+}
+```
+So the call for the parser `[pc.name]` is `pc.name`
+
+Likewise, the call for the parser `[pc.cockLength 1]` is `pc.cockLength(1)`
+
+These functions do not know about the results.
+
+The call for the parser `[hourIs 7|morning]` is `hourIs(7)`. `morning` is not included in the call because it is a result.
+
+To visualize the parser a bit better, think of `[hourIs 7|morning]` in coding as `selectResult(hourIs(7), ["morning", ""])` or `["morning", ""][hourIs(7)]`.
+
+`hourIs(7)` would return `0` or `1` which would be used to select from `["morning", ""]`. This formula can be used for all the parsers and there is a way to change this functionality mentioned later.
+
+---
+```ActionScript
+var info: TiTSInfo = new TiTSInfo(tits);
+```
+This class contains information about the parsers. It is responsible for checking the arguments and results to make sure they are correct.
+
+The `public` members should mimic the wrapper, if needed.
+```ActionScript
+// TiTSWrapper.as
+public function flagIs(name: String, ... args): Number {
+    return Eval.equals(this.game.flags[name], args);
+}
+
+// TiTSInfo.as
+public function flagIs(args: Array, results: Array): String {
+    if (args.length === 0) return 'needs a flag';
+    return Validators.range(args.slice(1), results);
 }
 ```
 
-### Validation
-> `function(arguments: Array<String or Number>, results: Array<String>): String or null`
+If a parser's return type is a `Boolean`, no check is needed.
+```ActionScript
+// TiTSWrapper.as
+public function get silly(): Boolean {
+    if (this.game.gameOptions)
+        return !!this.game.gameOptions.sillyMode;
+    return false;
+}
 
-This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
+// TiTSInfo.as
+```
+> Return type is `Boolean`, so TiTSInfo does not need the member `silly`.
 
-An example of this would be `cockSimple` in CreatureWrapper. `cockSimple` take in one optional `argument` and no `results`.
+These functions check the arguments and results for problems. If there is a problem, return a `String` stating why, else, return `null`. The function declaration is `(args: Array, results: Array): String`. There are helper functions in `Validators.as`.
+```ActionScript
+// TiTSInfo.as
+public const hourIs: Function = Validators.range;
+
+// Validators.as
+public static function range(args: Array, results: Array): String {
+    if (args.length === 0) return 'needs at least one argument';
+    if (results.length === 0) return 'needs at least one result';
+    if (results.length > args.length + 1) return 'has ' + (results.length - (args.length + 1)) + ' extraneous results';
+    return null;
+}
+```
+> `hourIs` expects at least one argument, one result and amount of results cannot be more the amount of arguments + 1.
+
+
+This is a special case. `rand` wants pick a result, but can't access them. If the info for `rand` is changed to an object that has `includeResults`, the call to `rand` from the interpreter will be different. The function declaration for that call is `(args: Array, results: Array)`.
+
+```ActionScript
+// TiTSWrapper.as
+public function rand(args: Array, results: Array): int {
+    if (args.length === 1 && 0 < args[0] && args[0] <= results.length)
+        return args[0] - 1;
+    else
+        return Math.floor(Math.random() * results.length);
+}
+
+// TiTSInfo.as
+public const rand: Object = {
+    includeResults: true,
+    func: Validators.hasOneOptionalNumberArgManyResults
+}
+```
+
+An example of this change. Starting with the parser `[hourIs 7 12|morning|noon]` and the following code:
+```ActionScript
+// TiTSWrapper.as
+public function hourIs(... args): Number {
+    return Eval.equals(this.game.hours, args);
+}
+
+// TiTSInfo.as
+public const hourIs: Function = Validators.range;
+```
+
+The code equivalent for `[hourIs 7 12|morning|noon]` would look like `hourIs(7, 12)`, but if the info of `hourIs` has the `includeResults`
+
+```ActionScript
+// TiTSInfo.as
+public const hourIs: Object = {
+    includeResults: true,
+    func: Validators.range
+}
+```
+
+`hourIs` would change to the following
+
+```ActionScript
+// TiTSWrapper.as
+public function hourIs(args: Array, results: Array): Number {
+    return Eval.equals(this.game.hours, args);
+}
+```
+
+The code equivalent for `[hourIs 7 12|morning|noon]` would look like `hourIs([7, 12], ["morning", "noon"])`.
+
 
 ---
-### includeResults
-This changes how functions are called.
+```ActionScript
+var interpreter: Interpreter = new Interpreter();
+```
+This is the interpreter. It interprets the AST supplied from the parser.
 
-Normally, they are called `func.apply(self, args)`, but this changes it to `func.call(self, args, results)`.
-
-*Note: `apply` spreads `args` over the paramters. `call` does not spread.*
-
-## CodeMap
 ---
-> `function (identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
+```ActionScript
+var interpretResult: InterpretResult = interpreter.interpret(parseResult.root, wrapper, info);
+```
+The is a call passing the AST from the `parseResult`, the `wrapper` and the `info` to create an `interpretResult`. The `interpretResult` contains the `result` text, the `ranges` of the text or parsers that were used, and any `errors`.
 
-`CodeMap` classes must mirror `Wrapper` classes.
+---
+```ActionScript
+var codifier: Codifier = new Codifier();
+var codeMap: TiTSCodeMap = new TiTSCodeMap(tits);
+var codeResult: InterpretResult = codifier.interpret(parserResult.root, codeMap);
+```
+This interprets the AST from the parser into code.
 
-The functions in these classes transform the `parser` into `code`.
+The public members in the `codeMap` should mimic the wrapper if they have results. For example, `[pc.name]` cannot have results, so it does not need to be in the code map. `[hourIs 7|morning]` can have results, so it does need to be in the code map. There are helper functions in `ToCode`.
