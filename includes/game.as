@@ -2624,7 +2624,7 @@ public function flyTo(arg:String):void
 	resetStepCounters();
 	//Bumped these up here to tack onto the no repair status so it expires after a while.
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
-	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
+	if(paigeIsCrew() && flags["PAIGE_NAVIGATION"] != 2) timeFlown = Math.floor(timeFlown * 0.66);
 	// Pause any docked ship repairs--because the ship is not docked! (Should be removed after flyTo completes);
 	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, timeFlown);
 
@@ -2674,6 +2674,8 @@ public function flyTo(arg:String):void
 			encounterPyrotechZ7();
 			return;
 		}
+		//A lot less fights if Paige is flying safely!
+		else if(paigeIsCrew() && flags["PAIGE_NAVIGATION"] == 2 && rand(4) > 0) {}
 		//Generic Enemy encounters!
 		else if(InCollection(arg,["Tarkus","Myrellion","MyrellionDeepCaves","Mhen'ga","ZhengShi","Uveto"]) && rand(10) == 0)
 		{

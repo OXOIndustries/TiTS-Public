@@ -830,18 +830,20 @@ public function paigeMenu():void
 		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
 	if(flags["PAIGE_GHOSTED"] != -1 && flags["PAIGE_GHOSTED"] != undefined) addButton(8,"Ghost",paigeGhostGhost,undefined,"Ghost","Ask Paige if she’s willing to let her dickgirl passenger take over this time.");
-	
-	if(paigeRecruited())
-	{
-		if(!paigeIsCrew()) addButton(13, "Recruit", paigeCrewToggle, true, "Recruit", "Recruit Paige to your ship.");
-		else addButton(13, "Dismiss", paigeCrewToggle, false, "Dismiss", "Dismiss Paige from your ship.");
-	}
-	
+
 	if (currentLocation == "SHIP INTERIOR")
 	{
 		if (flags["CREWMEMBER_SLEEP_WITH"] == "PAIGE") addButton(9, "Sleep Alone", paigeRegardingTheBed);
 		else if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) addButton(9, "Sleep With", paigeRegardingTheBed, false, "Sleep With Paige", "Ask Paige if she’d be willing to spend the nights with you. In a purely non-sexual way, of course. Purely.");
 		else addDisabledButton(9, "Sleep With", "Sleep With Paige", "You promised someone else that they could share your bed with you! Go and break it off with them first if you want Paige warming your bed at night.");
+	}
+
+	if(paigeIsCrew()) addButton(10,"Navigation",paigeNavigationTalk,undefined,"Navigation");
+	
+	if(paigeRecruited())
+	{
+		if(!paigeIsCrew()) addButton(13, "Recruit", paigeCrewToggle, true, "Recruit", "Recruit Paige to your ship.");
+		else addButton(13, "Dismiss", paigeCrewToggle, false, "Dismiss", "Dismiss Paige from your ship.");
 	}
 	
 	addButton(14,"Leave",leavePaige);
@@ -2479,6 +2481,61 @@ public function crewPaigeEyeholes():void
 	addButton(0,"Next",backToPaigeMenu);
 }
 
+//[=Navigation=]
+// add this button to Paige's talking options when she's a recruit
+public function paigeNavigationTalk():void
+{
+	clearOutput();
+	showPaige();
+
+	// Continue here if it's the first time you select this option
+	// When Paige is first recruited, her default setting should be ‘faster.’
+	if (flags["PAIGE_NAVIGATION"] == undefined)
+	{
+		output("You ask Paige about her skills as a navigator.  Before you brought her onboard, you normally just went by whatever route the computer recommended you take.");
+		output("\n\n<i>“Yep, and those routes will get you there just fine and all, but they don’t account for any celestial bodies between where you are and your destination,”</i> she explains.  <i>“By slingshotting the ship around a moon or a planet’s gravity to build momentum, we can not only get to our destination in half the time, but we’ll also save a bit of fuel.  Modern navigation systems don’t do that; they just give you a route from point A to point B.”</i>  She smiles, stands at attention, and points a thumb to her chest.  <i>“That’s where I come in!”</i>");
+		output("\n\nYou’re no navigator yourself, and you tell her that you never would have thought of that.  <i>“Back when I was a pirate, it was a useful trick for catching up to a target - or getting out of a sticky spot in a hurry.”</i>");
+		output("\n\nShe frowns.  <i>“But, and I’m sure this might come as a surprise to you, space is a pretty big place.  Taking these slingshots or, hell, even just taking the computer’s course, will take you through wild space.  If that’s how I got around when I was a scallywag, you can bet credits to cashews that I’m not the only one that thought of it.”</i>");
+		output("\n\nYou ask her if there’s an alternative.  A slower, safer route, if you want to try and avoid any conflicts.  <i>“Well, like I said, space is really big.  No matter how well-policed any system is, there’s going to be blind spots in their routes and patrols.  Knowing when and where to strike was pretty important in the business.”</i>  She perks up.  <i>“But yes!  There are more commonly-taken routes normally reserved for trade vessels that pirates and other ne’er-do-wells tend to avoid unless they have a plan.  They add a few extra points to our ‘point-A-to-point-B’ journey, but they’re a measure safer than just flying into wild space.”</i>");
+		output("\n\nThat’s all useful information for you to take in.  As your navigator, Paige can either take a faster route that will get you to your destination in half the time, <i>or</i> she can take a safer route that’ll decrease your odds of encountering any undesirables out in space.");
+		output("\n\nWhich would you rather her do?  <b>She’s currently taking the faster option.</b>");
+	}
+	// Continue here on subsequent talks
+	else
+	{
+		output("You tell Paige that you want to talk to her about her navigation.");
+		output("\n\n<i>“Of course, captain!  By your order, <b>I’m currently taking the " + (flags["PAIGE_NAVIGATION"] == 1 ? "fastest":"safest") + " routes available.</b>  What’s on your mind?”</i>");
+	}
+	//[=Faster=][=Safer=]
+	processTime(2);
+	clearMenu();
+	addButton(0,"Faster",paigeNavToggle,true);
+	addButton(1,"Safer",paigeNavToggle,false);
+}
+public function paigeNavToggle(fast:Boolean = true):void
+{
+	clearOutput();
+	showPaige();
+
+	//[=Faster=]
+	if(fast)
+	{
+		output("Perhaps speed will be your safest defense when you’re in the wilderness of outer space.  You tell Paige that you’d like her to take the faster routes.");
+		output("\n\n<i>“You got it!  Going forward, I’ll plan our routes with speed in mind.  We’ll be getting to our next destination in half the time, mark my words!”</i>");
+		output("\n\nShe seems confident.  Is there anything else you’d like with her, while you’re here?");
+		flags["PAIGE_NAVIGATION"] = 1;
+	}
+	//[=Safer=]
+	else
+	{
+		output("Better not to take risks.  It might not be the fastest routes you can take, but you don’t want to risk the safety of your crew or the health of your ship.  You tell Paige that you want her to take the safer routes.");
+		output("\n\n<i>“You got it!  Going forward, I’ll plan our routes with safety in mind.  If we ever run into any pirates, they’ll be some ballsy bastards, that’s for sure.”</i>");
+		output("\n\nShe seems confident.  Is there anything else you’d like with her, while you’re here?");
+		flags["PAIGE_NAVIGATION"] = 2;
+	}
+	processTime(2);
+	paigeMenu();
+}
 //CUE HARDMODE GAINS
 public function hardmodePaigePerkGain():void
 {
