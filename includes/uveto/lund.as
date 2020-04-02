@@ -4126,7 +4126,7 @@ Fucked Off Lund
 
 Scenario: When you tell Lund to Fuck Off upon initially meeting him, he fucks off and becomes a combat encounter. Intended to be hard, and intended that he should be able to beat you with either lust or damage.*/
 
-public function fightLund():void;
+public function lundFight():void;
 {
 	showLund();
 }
