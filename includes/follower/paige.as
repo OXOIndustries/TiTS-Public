@@ -660,7 +660,7 @@ public function yogaHardMode():void
 	}
 	else
 	{
-		output("You tell Paige that you’re not afraid of a little more challenge. She’s gotten you pretty limber and able-bodied at yoga so far, and you’re ready for whatever she can throw at you. <i>“‘Anything,’ you say?”</i> she asks deviously. <i>“I have just the thing in mind for you.");
+		output("You tell Paige that you’re not afraid of a little more challenge. She’s gotten you pretty limber and able-bodied at yoga so far, and you’re ready for whatever she can throw at you. <i>“‘Anything,’ you say?”</i> she asks deviously. <i>“I have just the thing in mind for you.”</i>");
 		output("\n\n<i>“First, lay flat on your back.”</i> You do so on the mat, laying at rest. Unexpectedly, Paige stands over you, her feet against your shoulders. You have a direct line of sight up her naval, to the underside of her breasts, and directly at her crotch");
 		if(pc.hasCock()) output(". You don’t need a view to your own to know the signals you’re now sending out");
 		output(". <i>“I want you to wrap your arms up my legs, your hands against my knees.”</i> This is getting kind of weird and sexy, but you do as she asks.");
@@ -795,7 +795,7 @@ public function paigeMenu():void
 
 	if(flags["PAIGE_TALK_SELF"] != undefined && flags["PAIGE_TALK_SELF"] >= 3) 
 	{
-		if(paigeIsCrew()) addButton(2,"Her Eyes",crewPaigeEyeholes,undefined,"Her Eyes","Ask Paige about her new eyes.");
+		if(!paigeBlind()) addButton(2,"Her Eyes",crewPaigeEyeholes,undefined,"Her Eyes","Ask Paige about her new eyes.");
 		else addButton(2,"Her Eyes",askPaigeAboutHerEyes,undefined,"Her Eyes","Ask Paige about her eyes. She mentioned that she was interested in synthetic implants?");
 	}
 	else addDisabledButton(2,"Locked","Locked","You don’t know enough about her for this.");
