@@ -1862,6 +1862,10 @@
 		{
 			return chars["SYNPHIA"];
 		}
+		public function get lund():Lund
+		{
+			return chars["LUND"];
+		}
 
 		public function testShipCombat():void
 		{
