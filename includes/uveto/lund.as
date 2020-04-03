@@ -4437,12 +4437,13 @@ public function becomingLundsBitch():void
 	else output("<i>“Please your master.”</i>");
 
 	output("\n\nHe spears you on the end of his canid dick with a groan of pleasure, and with equal parts joy and guilt you moan loudly along with him. He’s thick enough to make it hurt a little as you stretch, but you <i>enjoy</i> the pain. It feels like you’re being broken in, as if the dirty little clenches you’re pleasing him with are your body learning what it is to accept him.");
+	pc.holeChange(x,lund.cockVolume(0));
 	output("\n\nYou try your best to sweep the thoughts from your mind and just indulge yourself in the bliss of being taken but meet with little success. Every grunt, every movement he makes just makes your chest swell with what you’re coming to realize is appreciation for the way this strong, rugged korgonne stud ruts you. Just looking at him growl while he plows you has you right on the edge and with only a few savage thrusts, he has you throwing your head back and letting out a feral moan of ecstasy.");
 
 	output("\n\n<i>“Ohhh, stars! N-nnngghh!”</i> you cry out, your");
 	if (pc.isHerm()) output(" squirting slit clamping down on him and caressing his pounding cock while you spurt [pc.cum] all up your [pc.stomach], covering you in your own spunk while he ravages you.");
 	else if (pc.hasVagina()) output(" squirting slit clamping down on him and caressing his pounding cock while you cum around him.");
-	else if (pc.hasCock()) output(" asshole clamping down on him and caressing his pounding cock while your cock{s} spray [pc.cum] up your [pc.stomach], covering you in your own spunk while he ravages you.");
+	else if (pc.hasCock()) output(" asshole clamping down on him and caressing his pounding cock while your cock" + (pc.hasCocks() ? "s":"") + " spray [pc.cum] up your [pc.stomach], covering you in your own spunk while he ravages you.");
 	else output(" asshole clamping down on him and caressing his pounding cock while he ravages you.");
 	output(" <i>“Gghhgh, fuck!”</i>");
 
@@ -4501,65 +4502,143 @@ public function becomingLundsBitch():void
 	pc.orgasm();
 	CombatManager.genericLoss();
 }
+
+//Third
 public function youreLundsBitch():void
 {
 	showLund(true);
+	pc.changeLust(50);
+
+	output("<i>“Again?”</i> Lund sighs theatrically as you slump to the ground, dizzied by his efforts. ");
+	if (!korgiTranslate()) output("<i>“Alien pathetic. Come.”</i>");
+	else output("<i>“You really are pathetic. Come here.”</i>");
+
+	output("\n\nUgh - you might as well get this over with and make it easier on yourself after having lost. You crawl towards his outstretched hand and close your eyes as he smears the lust powder across your upper lip, its effects coursing through your body in a matter of seconds. Your heart quickens, your [pc.lips] part as your breath begins to come quicker, and you gaze up at Lund from all fours as he stands before you.");
+
+	output("\n\n<i>“Oohh, good,”</i> he mutters. ");
+	if (!korgiTranslate()) output("<i>“Alien smart now.”</i>");
+	else output("<i>“You’re getting smarter.”</i>");
+
+	output("\n\nThough your thoughts are obscured by the lust pounding in your chest, you recognize the compliment for what it is - demeaning. Yet that doesn’t stop your");
+	if (pc.isHerm())
+	{
+		output(" [pc.cocks] from growing harder, your [pc.pussies] dripping and clenching");
+		if (!pc.isCrotchExposed()) output(" in your [pc.crotchCoverUnder]");
+		output(" in remembrance of the last time he took you.");
+	}
+	else if (pc.hasCock())
+	{
+		output(" [pc.cocks] from growing harder");
+		if (!pc.isCrotchExposed()) output(" in your [pc.crotchCoverUnder]");
+		output(" and your asshole from instinctively clenching in remembrance of the last time he took you.");
+	}
+	else if (pc.hasVagina()) output(" [pc.pussies] from growing wetter, clenching in remembrance of the last time he took you.");
+	else output(" asshole from instinctively clenching in remembrance of the last time he took you.");
+	output(" If anything, it just makes you hornier. The shame must be showing on your face, because Lund lets out a chuckle.");
+
+	output("\n\n");
+	if (!korgiTranslate()) output("<i>“Alien enjoy being Lund slut?”</i>");
+	else output("<i>“Oh, you enjoy being my slut?”</i>");
+	output(" he asks. ");
+	if (!korgiTranslate()) output("<i>“Know what next?”</i>");
+	else output("<i>“Do you know what comes next, then?”</i>");
+
+	output("\n\nHe shifts his loincloth aside to reveal his growing cock, the bright colors dancing in your eyes as you unconsciously stick your [pc.tongue] out, longing for a taste. Oh, that’s what he meant... of course. Leaning upward, you close your eyes and run your warm, wet tongue along the surface of his nutsack in the hopes of pleasing him, savoring the saltiness of his sweat from the fight.");
+
+	output("\n\n<i>“Yes, yes, good,”</i> Lund murmurs,");
+	if (pc.hasHair()) output(" running a hand through your [pc.hair]");
+	else output(" running a hand over your scalp");
+	output(". <i>“Good bitch.”</i>");
+
+	output("\n\nThat stings more than losing the fight, your eyes narrowing as you direct your intense dislike up at Lund’s grinning countenance while you spread your lips around the arrogant fuck’s bulging balls and suck like a whore. He might have you beaten now, but you’re far from conquered - and besides, the arrangement is mutually beneficial. He gets to blow a thick, massive load into your stomach or your" + (x >= 0 ? " cunt":" asshole") + " and you get the satisfaction of a job well done, not to mention your own orgasms. In fact, if you think about it, you’ve been cumming more and harder than he has.");
+
+	output("\n\n<i>“’Mm noh your bih,”</i> you mumble around his balls, tickling them with your tongue as you kiss the underside of his impressive shaft. <i>“Nnnmm...”</i>");
+	output("\n\nRather than reply, Lund takes ahold of your face under your chin and drags you up to the pointed tip of his cock, your tongue dragging along his cumvein all the way. The moment you’re in position he grabs the sides of your head, slides his fat, hard cock between your stretched-out lips, and starts to slam his hips forward hard enough to make his balls slap your chin. Gurgling in your throat as ten inches of dogcock fills it to excess, you’re thrust back and forth into his fuzzy crotch until you’re dizzy and drooling everywhere, saliva dripping onto your [pc.chest], and all the while all you can think to do is stare up at him.");
+	output("\n\nHe looks like such a <i>stud</i>, and he feels like one too. Why were you even fighting him in the first place? It’s getting harder to remember when you’re being thrown about like a ragdoll, feeling every bit like the tip of his cock is entering your stomach. There was a reason, you’re sure of it, but it’s just-");
+
+	output("\n\n<i>“Nngh!”</i> Lund grunts, pulling you into his groin.");
+	output("\n\nA hot river of seed gushes into your throat, squirting into your stomach as your gagging contractions vigorously milk Lund’s cock, your lips suddenly pulling tight.");
+	output("\n\nIs that his <i>knot</i>?");
+	output("\n\nYou’re helpless to resist as your jaw is obscenely stretched, the enormous protrusions on either side of his thick shaft’s base swelling until they fill your cheeks, your entire mouth now devoted to holding Lund’s cock like a sheath while spunk pumps down your gullet. Eyes wide, you take halting, shallow breaths through your nose while watching Lund grunt and strain in ecstasy, his legs shivering as he empties his load inside you. Fuck, it’s like he’s just <i>using</i> you!");
+
+	output("\n\nAnd yet for some reason you can’t fathom, every spurt of warm seed down the back of your throat brings you closer, and closer, until you realize this is really going to happen. Unable to make a noise, your vocal chords thrum against Lund’s throbbing cumvein as your [pc.hips] begin to buck,");
+
+	if (pc.isHerm())
+	{
+		output(" your puss" + (pc.hasVaginas() ? "ies":"y") + " " + (pc.isSquirter() ? " squirting":" dripping") + " [pc.girlCum] down your inner thighs while your painfully stiff cock" + (pc.hasCocks() ? "s":"") + " spew [pc.cum]");
+		if (!pc.isCrotchExposed()) output(" into your [pc.crotchCoverUnder] and");
+		output(" all over your [pc.legOrLegs]");
+	}
+	else if (pc.hasCock())
+	{
+		output(" your painfully stiff cock" + (pc.hasCocks() ? "s":"") + " spraying [pc.cum]");
+		if (!pc.isCrotchExposed()) output(" into your [pc.crotchCoverUnder] and");
+		output(" down your [pc.thigh]");
+	}
+	else if (pc.hasVagina())
+	{
+		output(" your puss" + (pc.hasVaginas() ? "ies":"y") + " " + (pc.isSquirter() ? " squirting":" dripping") + " [pc.girlCum]");
+		if (!pc.isCrotchExposed()) output(" into your [pc.crotchCoverUnder] and");
+		output(" down your [pc.thigh]");
+	}
+	else output(" your [pc.asshole] clenching as you just about orgasm, your lower half grinding as if impaled on an invisible cock, trying to cum and never quite reaching release");
+	output(". Dazed and confused, you hardly have any idea what’s happening to you until Lund reaches down and taps your [pc.nose].");
+
+	output("\n\n");
+	if (!korgiTranslate()) output("<i>“Alien be here a while,”</i>");
+	else output("<i>“You’re gonna be here for a while,”</i>");
+	output(" he says, grinding his fingers against your nostrils. It’s only now you realize they’re covered in savicite powder, little piles of the stuff that make clouds of dust as he stuffs you full of it. ");
+	if (!korgiTranslate()) output("<i>“Enjoy.”</i>");
+	else output("<i>“Have fun.”</i>");
+
+	output("\n\nYour eyes roll up when immense, thunderous bliss begins to roll through you, radiating from your groin outwards as you start to cum non-stop, fucking the air while you swallow Lund’s cum. Vision fading as the sensations run wild through your body, the last thing you see before you pass out is Lund grinning as he holds you upright to ensure you can keep swallowing.");
+
+	pc.orgasm();
+	pc.orgasm();
+	pc.lust(100);
+	processTime();
+	pc.loadInMouth(lund);
+	clearMenu();
+	addButton(0,"Next",stuckonLundsDickWithYourMouth);
 }
+//[Next]
+public function stuckonLundsDickWithYourMouth():void
+{
+	showName("WAKING\nUP...");
+
+	output("You come to lying on your side, cum bubbling up from your throat before you spit out enormous, sticky wads of Lund’s seed that leave your lips and teeth permeated with his scent. It looks like he spilled a quart of the stuff down your front, too");
+	if (pc.hasCock()) output(" - or maybe that’s yours, it’s hard to tell");
+	output(". Stars, he certainly could have been a little gentler.");
+
+	output("\n\nBut, well... that wasn’t so bad. You roll onto your back and swallow the rest down, noting the blissful warmth radiating from your tummy. He certainly left enough for you to remember him by.");
+
+	output("\n\nThe savicite must still be affecting you.");
+	if (pc.hasCock()) output(" Your dick" + (pc.hasCocks() ? "s are":" is") + " still standing upright, and a shiver runs down your spine when you place a weary hand on " + (pc.hasCocks() ? "one":"it") + ". Just once...");
+	else if (pc.hasVagina()) output(" Your puss" + (pc.hasVaginas() ? "ies are":"y is") + " still hungry for some attention, and a shiver runs down your spine when you place your fingertips on [pc.oneClit]. You’ll just do it once...");
+	else (" You lift one leg up, exposing your asshole and reaching downwards with a couple of fingers. Just a few minutes...");
+
+	output("\n\nYou get back to your [pc.feet] some time later, glancing at your codex before doing a double-take. You were here <i>how</i> long?! You’d better start moving.");
+	output("\n\n");
+
+	IncrementFlag("LUND_LOSS");
+	processTime(60*1.5);
+	for(var i:int = 0; i < 13; i++) { pc.orgasm(); }
+	pc.lust(50);
+	pc.loadInMouth(lund);
+}
+
 public function lundBitcheningFinalized():void
 {
 	showLund(true);
+	var hpLoss:Boolean = false;
+	if (pc.HP() <= 1) hpLoss = true;
+	var x:int = -1;
+	if (pc.hasVagina()) x = pc.tightestVaginaIndex();
 }
 
 /*
 
 
-output("\n\nThird");
-
-output("\n\n<i>“Again?”</i> Lund sighs theatrically as you slump to the ground, dizzied by his efforts. <i>“Alien pathetic. Come.”</i><i>“You really are pathetic. Come here.”</i>}");
-
-output("\n\nUgh - you might as well get this over with and make it easier on yourself after having lost. You crawl towards his outstretched hand and close your eyes as he smears the lust powder across your upper lip, its effects coursing through your body in a matter of seconds. Your heart quickens, your [pc.lips] part as your breath begins to come quicker, and you gaze up at Lund from all fours as he stands before you.");
-
-output("\n\n<i>“Oohh, good,”</i> he mutters. <i>“Alien smart now.”</i><i>“You’re getting smarter.”</i>}");
-
-output("\n\nThough your thoughts are obscured by the lust pounding in your chest, you recognize the compliment for what it is - demeaning. Yet that doesn’t stop your{pc has cock: [pc.cocks] from growing harder{clothed: in your [pc.underGarments]} and your asshole from instinctively clenching in remembrance of the last time he took you./pc has vag: [pc.pussies] from growing wetter, clenching in remembrance of the last time he took you./pc has both: [pc.cocks] from growing harder, your [pc.pussies] dripping and clenching{clothed: in your [pc.underGarments]} in remembrance of the last time he took you./neuter: asshole from instinctively clenching in remembrance of the last time he took you.} If anything, it just makes you hornier. The shame must be showing on your face, because Lund lets out a chuckle.");
-
-output("\n\n<i>“Alien enjoy being Lund slut?”</i><i>“Oh, you enjoy being my slut?”</i>} he asks. <i>“Know what next?”</i><i>“Do you know what comes next, then?”</i>}");
-
-output("\n\nHe shifts his loincloth aside to reveal his growing cock, the bright colors dancing in your eyes as you unconsciously stick your [pc.tongue] out, longing for a taste. Oh, that’s what he meant... of course. Leaning upward, you close your eyes and run your warm, wet tongue along the surface of his nutsack in the hopes of pleasing him, savoring the saltiness of his sweat from the fight.");
-
-output("\n\n<i>“Yes, yes, good,”</i> Lund murmurs,{pc has hair: running a hand through your [pc.hair]/else: running a hand over your scalp}. <i>“Good bitch.”</i>");
-
-output("\n\nThat stings more than losing the fight, your eyes narrowing as you direct your intense dislike up at Lund’s grinning countenance while you spread your lips around the arrogant fuck’s bulging balls and suck like a whore. He might have you beaten now, but you’re far from conquered - and besides, the arrangement is mutually beneficial. He gets to blow a thick, massive load into your stomach or your{pc has puss: cunt/else: asshole} and you get the satisfaction of a job well done, not to mention your own orgasms. In fact, if you think about it, you’ve been cumming more and harder than he has.");
-
-output("\n\n<i>“’Mm noh your bih,”</i> you mumble around his balls, tickling them with your tongue as you kiss the underside of his impressive shaft. <i>“Nnnmm...”</i>");
-
-output("\n\nRather than reply, Lund takes ahold of your face under your chin and drags you up to the pointed tip of his cock, your tongue dragging along his cumvein all the way. The moment you’re in position he grabs the sides of your head, slides his fat, hard cock between your stretched-out lips, and starts to slam his hips forward hard enough to make his balls slap your chin. Gurgling in your throat as ten inches of dogcock fills it to excess, you’re thrust back and forth into his fuzzy crotch until you’re dizzy and drooling everywhere, saliva dripping onto your [pc.chest], and all the while all you can think to do is stare up at him.");
-
-output("\n\nHe looks like such a <i>stud</i>, and he feels like one too. Why were you even fighting him in the first place? It’s getting harder to remember when you’re being thrown about like a ragdoll, feeling every bit like the tip of his cock is entering your stomach. There was a reason, you’re sure of it, but it’s just-");
-
-output("\n\n<i>“Nngh!”</i> Lund grunts, pulling you into his groin.");
-
-output("\n\nA hot river of seed gushes into your throat, squirting into your stomach as your gagging contractions vigorously milk Lund’s cock, your lips suddenly pulling tight.");
-
-output("\n\nIs that his <i>knot</i>?");
-
-output("\n\nYou’re helpless to resist as your jaw is obscenely stretched, the enormous protrusions on either side of his thick shaft’s base swelling until they fill your cheeks, your entire mouth now devoted to holding Lund’s cock like a sheath while spunk pumps down your gullet. Eyes wide, you take halting, shallow breaths through your nose while watching Lund grunt and strain in ecstasy, his legs shivering as he empties his load inside you. Fuck, it’s like he’s just <i>using</i> you!");
-
-output("\n\nAnd yet for some reason you can’t fathom, every spurt of warm seed down the back of your throat brings you closer, and closer, until you realize this is really going to happen. Unable to make a noise, your vocal chords thrum against Lund’s throbbing cumvein as your [pc.hips] begin to buck,{pc has cock: your painfully stiff cock{s} spraying [pc.cum]{clothed: into your underwear and} down your [pc.thigh]/vag: your puss{y/ies}{squirter: squirting/else: dripping} [pc.girlCum]{clothed: into your underwear and} down your [pc.thigh]/both: your puss{y/ies}{squirter: squirting/else: dripping} [pc.girlCum] down your inner thighs while your painfully stiff cocks spew [pc.cum]{clothed: into your underwear and} all over your [pc.legOrLegs]/neuter: your [pc.asshole] clenching as you just about orgasm, your lower half grinding as if impaled on an invisible cock, trying to cum and never quite reaching release}. Dazed and confused, you hardly have any idea what’s happening to you until Lund reaches down and taps your [pc.nose].");
-
-output("\n\n<i>“Alien be here a while,”</i><i>“You’re gonna be here for a while,”</i>} he says, grinding his fingers against your nostrils. It’s only now you realize they’re covered in savicite powder, little piles of the stuff that make clouds of dust as he stuffs you full of it. <i>“Enjoy.”</i><i>“Have fun.”</i>}");
-
-output("\n\nYour eyes roll up when immense, thunderous bliss begins to roll through you, radiating from your groin outwards{non-neuter: as you start to cum non-stop, fucking the air while you swallow Lund’s cum. Vision fading as the sensations run wild through your body, the last thing you see before you pass out is Lund grinning as he holds you upright to ensure you can keep swallowing.");
-
-output("\n\n[Next]");
-
-output("\n\nYou come to lying on your side, cum bubbling up from your throat before you spit out enormous, sticky wads of Lund’s seed that leave your lips and teeth permeated with his scent. It looks like he spilled a quart of the stuff down your front, too{pc has cock: - or maybe that’s yours, it’s hard to tell}. Stars, he certainly could have been a little gentler.");
-
-output("\n\nBut, well... that wasn’t so bad. You roll onto your back and swallow the rest down, noting the blissful warmth radiating from your tummy. He certainly left enough for you to remember him by.");
-
-output("\n\nThe savicite must still be affecting you.{pc has cock: Your dick{s} {is/are} still standing upright, and a shiver runs down your spine when you place a weary hand on it. Just once.../vag: Your pussy is still hungry for some attention, and a shiver runs down your spine when you place your fingertips on your [pc.clit]. You’ll just do it once.../both: Your dick{s} {is/are} still standing upright, and a shiver runs down your spine when you place a weary hand on it. Just once.../neuter: You lift one leg up, exposing your asshole and reaching downwards with a couple of fingers. Just a few minutes...}");
-
-output("\n\nYou get back to your [pc.feet] some time later, glancing at your codex before doing a double-take. You were here <i>how</i> long?! You’d better start moving.");
 
 output("\n\nFourth");
 output("\n\n//routes directly to bad end(s). Lust loss and hp loss have different endings.");
