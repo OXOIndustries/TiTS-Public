@@ -208,11 +208,7 @@ package classes.Characters
 		}
 		override public function get bustDisplay():String
 		{
-			//this.furColor = RandomInCollection(["white","tawny","gray-speckled"]);
-			var colorString:String = "WHITE";
-			if(this.furColor == "tawny") colorString = "TAWNY";
-			else if(this.furColor == "gray-speckled") colorString = "GRAY";
-			return "KORGONNE_MALE_" + colorString;
+			return kGAMECLASS.lundBustString();
 		}	
 		private function randomise():void
 		{
