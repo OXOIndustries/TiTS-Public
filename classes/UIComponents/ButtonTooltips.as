@@ -12,6 +12,7 @@ package classes.UIComponents
 	import flash.geom.Point;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+    import classes.Engine.Interfaces.ParseText;
 	
 	/**
 	 * ...
@@ -201,7 +202,7 @@ package classes.UIComponents
 			
 			// This HAS to be a global ref to the parser
 			
-			if (tt != null) tt = kGAMECLASS.parser.recursiveParser(tt);
+			if (tt != null) tt = ParseText(tt);
 			
 			// If we've got data, display
 			if (tt.length > 0)

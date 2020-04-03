@@ -9597,7 +9597,7 @@
 			}
 			return total;
 		}
-		public function hasSheath(arg: int = 0): Boolean {
+		public function hasSheath(arg: uint = 0): Boolean {
 			if (arg >= cocks.length) return false;
 			if (cocks[arg].hasFlag(GLOBAL.FLAG_SHEATHED)) return true;
 			return false;

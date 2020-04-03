@@ -16,6 +16,7 @@
 	import flash.utils.describeType;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
+	import flash.events.IEventDispatcher;
 	
 	/**
 	 * Generic input manager
@@ -33,7 +34,7 @@
 		public static const CHEATCONTROL:Boolean = true;
 		public static const UNBOUNDKEY:int = -1;
 		
-		private var _stage:Stage;
+		private var _stage:IEventDispatcher;
 		private var _debug:Boolean;
 
 		private var _defaultControlMethods:Object = new Object();
@@ -76,7 +77,7 @@
 		 * @param	stage	Reference to core stage on which to add display objects
 		 * @param	debug	Emit debugging trace statements
 		 */
-		public function InputManager(stage:Stage, debug:Boolean = true)
+		public function InputManager(stage:IEventDispatcher, debug:Boolean = true)
 		{
 			_ignoreKeyPresses = false;
 			_debug = debug;

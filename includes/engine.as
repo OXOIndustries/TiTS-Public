@@ -3,7 +3,7 @@ import flash.ui.Mouse;
 
 public function doParse(script:String, markdown:Boolean = false):String 
 {
-	return parser.recursiveParser(script, markdown);
+	return ParseText(script);
 }
 
 // HTML tag formatting wrappers, because lazy as fuck

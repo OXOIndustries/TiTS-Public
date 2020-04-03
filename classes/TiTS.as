@@ -69,6 +69,10 @@
 	import classes.Items.Upgrades.*;
 
 	import classes.Parser.ParseEngine;
+    import editor.Game.Wrapper.TiTSWrapper;
+    import editor.Game.Info.TiTSInfo;
+    import editor.Lang.Interpret.Interpreter;
+    import editor.Lang.Parse.Parser;
 
 	import classes.DataManager.DataManager;
 	import classes.GameData.*;
@@ -645,6 +649,10 @@
 		public var gameOverEvent:Boolean;
 
 		public var parser:ParseEngine;
+        public const parser2: Parser = new Parser();
+        public const interpreter: Interpreter = new Interpreter();
+        public var titsWrapper: TiTSWrapper;
+        public var titsInfo: TiTSInfo;
 
 		public var dataManager:DataManager;
 		public var userInterface:GUI;
@@ -735,6 +743,8 @@
 			shipLocation = "SHIP HANGAR";
 
 			parser = new ParseEngine(this, TiTS_Settings);
+            titsWrapper = new TiTSWrapper(this);
+            titsInfo = new TiTSInfo(this);
 
 			flags = new Dictionary();
 			
@@ -748,7 +758,7 @@
 			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
-			inputManager = new InputManager(stage, false);
+			inputManager = new InputManager(this, false);
 			setupInputControls();
 			
 			initStephEps();

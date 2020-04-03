@@ -493,7 +493,7 @@ public function bonusCollarAndHelmetHandouts():void
 }
 
 //Fuck You
-//tooltip: You’re gonna kick her ass! Or attempt to at least! Gonna have to use that [pc.class] knowhow to get out of this!
+//tooltip: You’re gonna kick her ass! Or attempt to at least! Gonna have to use that [pc.occupation] knowhow to get out of this!
 public function fuckYouMaike():void
 {
 	clearOutput();
