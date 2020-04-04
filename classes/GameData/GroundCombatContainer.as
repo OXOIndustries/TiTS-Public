@@ -366,6 +366,11 @@ package classes.GameData
 				var stormy:StormguardMale = _hostiles[0];
 				if(stormy.hasStatusEffect("Flying")) addButton(2,"ShootJetpack",stormy.jetpackShot,pc,"Shoot Jetpack","It’s possible you could shoot his jetpack from here. It’s a small target, he’s weaving around and the conditions are wretched, though...");
 			}
+
+			if (hasEnemyOfClass(Lund))
+			{
+				if (flags["LUND_LOSS"] >= 3) addButton(2,"Submit",kGAMECLASS.submitToLundBadEnd,undefined,"Submit","You’re tired of this. Of all of it. Fighting some spunky korgonne on an icy hellworld wasn’t what you expected when you set out on this journey...");
+			}
 			
 			if (hasEnemyOfClass(CommanderHenderson))
 			{
