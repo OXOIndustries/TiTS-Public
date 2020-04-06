@@ -156,7 +156,7 @@ public function defeatTheGenericSexydoll():void
 	//Lust
 	else
 	{
-		output("With a screech of pure desire, [enemy.name] reaches for her crotch and slides bonelessly to the ground. Her shapely thighs scissor open invitingly as she sets to pumping her [enemy.cockNounSimple] like it owes her money, moaning like a " + (enemy.originalRace == "laquine" ? "laquine in heat":"whore in heat") + ". <i>“F-f-fuck! No wonder Mistress Po wants to fuck you!”</i> She shimmies closer, nearly insensate with desire. <i>“I need fucked! I don’t care if it makes me a bad girl and a worse toy. Fuck me, please! I’ll give you as many cums as you want, even let you go after one!”</i> Her eyes are wide, frantic. <i>“Puhleeeaaase? ...use me...”</i>");
+		output("With a screech of pure desire, [enemy.name] reaches for her crotch and slides bonelessly to the ground. Her shapely thighs scissor open invitingly as she sets to pumping her [enemy.cockNounSimple] like it owes her money, moaning like a " + (enemy.originalRace == "laquine" ? "laquine in heat":"whore in heat") + ". <i>“F-f-fuck! No wonder Mistress Po wants to fuck you!”</i> She shimmies closer, nearly insensate with desire. <i>“I need to be fucked! I don’t care if it makes me a bad girl and a worse toy. Fuck me, please! I’ll give you as many cums as you want, even let you go after one!”</i> Her eyes are wide, frantic. <i>“Puhleeeaaase? ...use me...”</i>");
 	}
 	//Earcunt addendum, replaces last line of above victory setups:
 	if(enemy.hasCock(GLOBAL.TYPE_VULPINE))
@@ -1722,7 +1722,8 @@ public function badEndToGenericDollsPart2():void
 	output(" long moments before the real eruptions occur. Hermaphroditic bliss once overwhelming for your overwritten psyche becomes your standard for living. You ravenously indulge, explicitly agreeing with every mental flash.");
 	output("\n\nThe sybarite avatar of hedonism seats herself in your lap, casting aside her previous facade. Her kissing is fiery. Her grinding crotch is molten. You go crazy with a guttural squeal, great gushes of slick, sticky juices smearing your linked bodies in a lurid writhe and wriggle. Her fathomless needs meld with your depthless desires, joining together in the unshakable concatenation of mistress and slave, simultaneously heightening the volcanic sensation of total debauchery.");
 	output("\n\nYou’re absolutely thrilled to have an Owner who cares about prolonging her obedient, hard-cumming pet’s churning ecstasy. In the raucous spaces between explosive orgasm, you only think about obeying, about serving, about all the pleasure you will derive from being <b>hers.</b>");
-	processTime(256);
+	if(!enemy.hasStatusEffect("VR")) processTime(256);
+	else processTime(128);
 	pc.orgasm();
 	pc.orgasm();
 	if(enemy.hasStatusEffect("VR"))
@@ -1770,7 +1771,7 @@ public function badEndToGenericDollsPart3():void
 	output("\n\nWeeks pass you. Months. They’re all spent sprawled in the sheets with your sister dolls. Kiro is always there, and you, the favored of Po’s mastercrafted harem, leads it again. Kiro rails your mouth at lightning speed, stressing the specs of your new PhalloVac jaw. Po is splayed out at the center of her bed, clutching the satin with your dick lodged in her gushing techno-vag. Numbers 2 and 13 are to her sides, taking turns screwing her trachea, playing with one boob each. Numbers 20 and 34 are slamming yours and 65’s pussies respectively.");
 	output("\n\nYou’ve learned how to give it to your Mistress perfectly, how to masterfully conduct the wicked enthusiasm that slathers this entire room in cum and gratification. Every day there is something new to discover and act out, and every night there’s a new routine uploaded to your sex-brain. You personify it, for you serve the embodiment of depravity herself, and at her command experience more sensation and thrill than anyone in the universe ever has.");
 	output("\n\nAnd ever will.");
-	days += 20;
+	if(!enemy.hasStatusEffect("VR")) days += 20;
 	processTime(50);
 	pc.orgasm();
 	pc.changeLust(50);

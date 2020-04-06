@@ -875,8 +875,11 @@ public function twinSlutBotsFemaleBadEnd():void
 	if (pc.isBimbo()) output("but is that really a bad thing?");
 	else output("but an increasingly sizable part of you doesn’t seem to mind that idea.");
 	output(" <i>“After all, we have all the time in the world with this slut!”</i> 18 screams out as her and 17 thrust into you simultaneously.");
-	pc.buttChange(enemy.cockVolume(0));
-	if (!pc.isSexless()) pc.cuntChange(pc.biggestVaginaIndex(), enemy.cockVolume(0));
+	if(!pc.hasStatusEffect("VR_DOLLS"))
+	{
+		pc.buttChange(enemy.cockVolume(0));
+		if (!pc.isSexless()) pc.cuntChange(pc.biggestVaginaIndex(), enemy.cockVolume(0));
+	}
 	output("\n\nYour world shatters as your body is filled with more cock than most living beings should be expected to handle. The fact that your body is able to take all of it is either a miracle or, more likely, the result of the cocktail of chemicals laced in with likely every fluid in these stud’s bodies. The two moan out in sublime pleasure as they sheath themselves into you. As soon as they hit your limits with their first thrust, they pull out and then immediately slam themselves back in. These girls have <i>zero</i> regard for you in all of this!");
 	output("\n\n18 groans and screeches like a wild woman while she rails you, meanwhile 17 has gone eerily quiet. At the same time, your head starts to feel strange, like something’s squeezing down on it. The loud squelching of your hole" + (pc.isSexless() ? "":"s") + " being stretched wildly over and over again slowly gets drown out by an encroaching static-like noise. It gets louder and louder until it becomes the only thing you can hear.");
 	output("\n\nYour head feels light from the constant onslaught of noise. You feel like you’re about to pass out before a faint voice cuts through the static. <i>“Submit,”</i> is the first word that comes through clearly enough to make out. <i>“Submit,”</i> <i>“Slut,”</i> <i>“Cocksleeve,”</i> <i>“Cum junkie,”</i>. More and more words come out, printing themselves onto your brain as your body is reduced to nothing more than a living onahole. The only explanation you can come up with is that one or both of these girls is psionic.");
@@ -895,12 +898,16 @@ public function twinSlutBotsFemaleBadEnd():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	pc.taint(100);
-	pc.loadInMouth(enemy);
-	if (!pc.isSexless()) pc.loadInCunt(enemy,0);
-	pc.loadInAss(enemy);
+	if(!pc.hasStatusEffect("VR_DOLLS"))
+	{
+		pc.taint(100);
+		pc.loadInMouth(enemy);
+		if (!pc.isSexless()) pc.loadInCunt(enemy,0);
+		pc.loadInAss(enemy);
+	}
 	pc.lust(pc.lustMax());
-	processTime(5*60);
+	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(5*60);
+	else processTime(50);
 	clearMenu();
 	addButton(0,"Next",twinSlutBotsFemaleBadEnd2);
 }
@@ -926,10 +933,15 @@ public function twinSlutBotsFemaleBadEnd2():void
 	output("\n\n<i>“You can have her ass. Sister called dibs on the mouth.”</i>");
 	output("\n\nPo chimes in one last time before she leaves, <i>“if you need me, I’ll be laying out the traps for our next guest. A cute little redhead kaithrit-ausar hybrid. She probably thinks she’s all clean after operating legitimately for a few years, but Black Void ties don’t wash off that easy.”</i>");
 	output("\n\nWith that, she walks off, closing the door shut and leaving you at the mercy of your new masters, as well as a familiar, yet twisted face.");
-	processTime(10*60);
+	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(10*60);
+	else processTime(60);
 	pc.orgasm();
-	pc.lust(pc.lustMax());
-	badEnd();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	else
+	{
+		pc.lust(pc.lustMax());
+		badEnd();
+	}
 }
 //Male
 public function twinSlutBotsMaleBadEnd():void
@@ -965,7 +977,7 @@ public function twinSlutBotsMaleBadEnd():void
 		output("\n\n17 moans as she stretches herself out on just your tip. Yet, there’s an underlying hunger in her exhalations as if even your immense cock is just scratching the surface of her ultra-size queen desires.");
 		output("\n\n<i>“Oh yes, [pc.heShe] is <b>impressive</b>! " + (pc.biggestCockLength() < 48 ? "Almost as large as":"Even larger than") + " us, dear sister. You are right, though, why settle for this when [pc.heShe] could be <b>so</b> much bigger!”</i>");
 	}
-	pc.cockChange();
+	if(!pc.hasStatusEffect("VR_DOLLS")) pc.cockChange();
 	output(" 18 slams down onto your face, her soaking, puffy pussy lodging itself into your mouth while her immense ass and balls block any light from reaching you. Her juices leak into your throat unobstructed, the ultra-modded pup-skank’s lower lips so swollen and plump that they’re keeping your mouth pried wide open.");
 	output("\n\nThere’s an earthy-yet-sweet taste to it, almost like salted caramel. You suck it down like an infant at [pc.hisHer] mom’s teat. Each drop fills your body with a kind of sublime, alien warmth that crawls through your body and starts to pool in your crotch. The heat builds until it feels like there’s a pool of magma between your legs with a hot rod of molten iron sticking out. You groan into her muff as your body spasms and shocks run up and down your [pc.cocks].");
 	output("\n\nSuddenly you hear 17 roaring out in pleasure and feel a harsh tightness descend on your [pc.biggestCock]. <i>“Ooooh, it’s amaaaaazing!”</i> a ghostly voice rings in your ear, <i>“sister, let [pc.himHer] see!”</i>");
@@ -992,9 +1004,10 @@ public function twinSlutBotsMaleBadEnd():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	pc.taint(100);
+	if(!pc.hasStatusEffect("VR_DOLLS")) pc.taint(100);
 	pc.lust(pc.lustMax());
-	processTime(5*60);
+	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(5*60);
+	else processTime(50);
 	clearMenu();
 	addButton(0,"Next",twinSlutBotsMaleBadEnd2);
 }
@@ -1014,8 +1027,13 @@ public function twinSlutBotsMaleBadEnd2():void
 	output("\n\nThe blue lady nods and then pulls on a leash she’s been carrying. <i>“Come along, 65, we have a new subject to ‘orientate’. Say goodbye to your friend in there, if you wish.”</i>");
 	output("\n\nAs she leaves, you see a <i>very</i> busty, bimbo tanuki woman step into view. She stares at you for a second, eyes blank and vacant of any thought or feeling. You return with the same coldness, having no idea who she is, with the only thought in your head being a question of if she could take your cock or not. That doesn’t matter now, though. Your mistresses strut back into the room, smelling like the kind of pure, feminine <i>need</i> that makes you forget about anything else.");
 	output("\n\nYou pounce on them and become lost once more in the endless rut that is now your life.");
-	processTime(10*60);
+	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(10*60);
+	else processTime(60);
 	pc.orgasm();
-	pc.lust(pc.lustMax());
-	badEnd();
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	else
+	{
+		pc.lust(pc.lustMax());
+		badEnd();
+	}
 }
