@@ -5,6 +5,7 @@
 	//import classes.Items.Guns.*
 	import classes.Items.Melee.Whip;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Toys.SexdollMiniBossVRProgram;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
