@@ -4189,6 +4189,7 @@ public function initialLundBitchening():void
 	var x:int = -1;
 	if (pc.hasVagina()) x = pc.tightestVaginaIndex();
 
+	IncrementFlag("LUND_SEXED");
 	IncrementFlag("LUND_LOSS");
 	IncrementFlag("LUND_CON_LOSS");
 	output("<i>“Hah,”</i> Lund grunts, sheathing his daggers at his waist before tossing the belt to the side. ");
@@ -4397,6 +4398,7 @@ public function becomingLundsBitch():void
 	var x:int = -1;
 	if (pc.hasVagina()) x = pc.tightestVaginaIndex();
 
+	IncrementFlag("LUND_SEXED");
 	IncrementFlag("LUND_LOSS");
 	IncrementFlag("LUND_CON_LOSS");
 	if (hpLoss) output("Lund doesn’t speak as you topple to the ground groaning, beaten down by the predatory korgonne. Instead he strides over and kneels next to you, shoving a handful of savicite powder into your face while you cough and try to force him away. It doesn’t matter; with your [pc.nose] peppered in the stuff, you can’t help but");
@@ -4539,6 +4541,7 @@ public function youreLundsBitch():void
 	showLund(true);
 	pc.changeLust(50);
 
+	IncrementFlag("LUND_SEXED");
 	IncrementFlag("LUND_LOSS");
 	IncrementFlag("LUND_CON_LOSS");
 	output("<i>“Again?”</i> Lund sighs theatrically as you slump to the ground, dizzied by his efforts. ");
