@@ -4167,7 +4167,7 @@ public function lundVictory():void
 	else output("<i>“You’ll never find me in the storm, but I can find you. I’ll be back, outworlder!”</i>");
 	output("\n\nHe leaps backwards into the storm and though you give determined chase, it’s soon clear the endeavor of pursuing a native through a haze of Uvetan ice and mist is pointless. That fucker, he must have known the storm was coming... maybe next time you can catch him less-prepared.\n\n");
 	flags["LUND_CON_LOSS"] = undefined;
-	addButton(0,"Next",CombatManager.genericVictory);
+	CombatManager.genericVictory;
 }
 
 //Loss scenes
