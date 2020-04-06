@@ -18,6 +18,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.author;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.*;
@@ -37,14 +38,16 @@ package classes.Characters
 			this.originalRace = "korgonne";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "The korgonne raider facing you is a stocky, {furcolor}-furred alien, no more than {height} tall. He wears a thick hide coat with many pockets, and from the fur-lined hood pokes a short, canid nose. His legs are bound in hide wraps, and he stands atop the snow on his large, wide-splayed toes. The pockets of his coat bulge suspiciously... every minute, it seems like he dips into one for a new weapon or tool.";
-			this.customDodge = "The korgonne raider flops backward into a snowdrift, letting the attack pass harmlessly overhead.";
+			this.long = "You’re fighting Lund, the korgonne hunter.\n\nHe’s holding twin daggers and twirling them in his hands, demonstrating an absurd amount of familiarity and skill with his weaponry of choice. From his narrow waist hangs a loincloth, and fastened to it is an array of pouches. It’s clear that he came prepared for this after your apparent slight to his honor.";
+			this.customDodge = "";
 			this.isPlural = false;
 
 			this.meleeWeapon.attackVerb = "strike";
-			this.meleeWeapon.longName = "ulu knife";
+			this.meleeWeapon.longName = "knives";
 			this.meleeWeapon.attackNoun = "slash";
 			this.meleeWeapon.hasRandomProperties = true;
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 3;
+			this.meleeWeapon.addFlag(DamageFlag.PENETRATING);
 
 			this.shield = new ImprovisedShield();
 			this.shield.shields = 55;
@@ -59,34 +62,32 @@ package classes.Characters
 
 			//armorbutt
 			this.armor.longName = "fur-padded hides";
-			this.armor.defense = 2;
+			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
-			
-			//wat shield - randomized below.
-			//this.shield = new ImprovisedShield();
+			this.armor.evasion = 33;
 
-			this.physiqueRaw = 35;
-			this.reflexesRaw = 15;
-			this.aimRaw = 25;
-			this.intelligenceRaw = 12;
-			this.willpowerRaw = 31;
-			this.libidoRaw = 30;
+			this.physiqueRaw = 45;
+			this.reflexesRaw = 45;
+			this.aimRaw = 38;
+			this.intelligenceRaw = 25;
+			this.willpowerRaw = 38;
+			this.libidoRaw = 55;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.level = 7;
-			this.XPRaw = normalXP();
+			this.level = 9;
+			this.XPRaw = bossXP();
 			//Credits set below.
 			this.credits = 100;
-			this.HPMod = -15;
+			this.HPMod = 100;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 25;
 			this.eyeType = GLOBAL.TYPE_KORGONNE;
-			this.eyeColor = "violet";
-			this.tallness = 58; //between 4'6"-5'6" (mid-upper of range in codex)
+			this.eyeColor = "green";
+			this.tallness = 5*12+4; //between 4'6"-5'6" (mid-upper of range in codex)
 			this.thickness = 62;
 			this.tone = 55;
 			this.hairColor = "dirty blonde";
@@ -143,7 +144,7 @@ package classes.Characters
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 13;
+			this.hipRatingRaw = 6;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -154,7 +155,7 @@ package classes.Characters
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 12;
+			this.buttRatingRaw = 6;
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
@@ -162,8 +163,9 @@ package classes.Characters
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			this.cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
 			this.cocks[0].cockColor = RandomInCollection(["blue", "bright blue", "cyan"]);
-
 			this.cocks[0].cType = GLOBAL.TYPE_CANINE;
+			this.cocks[0].knotMultiplier = 2;
+
 			this.vaginas = new Array();
 			this.vaginalVirgin = true;
 			this.analVirgin = true;
@@ -200,57 +202,10 @@ package classes.Characters
 			this.createPerk("Fixed CumQ",250,0,0,0);
 
 			isUniqueInFight = true;
-			btnTargetText = "Korgonne";
-			
-			randomise();
-			kGAMECLASS.uvetoSSTDChance(this);
-			this._isLoading = false;
-		}
-		override public function get bustDisplay():String
-		{
-			return kGAMECLASS.lundBustString();
-		}	
-		private function randomise():void
-		{
-			//sex: male
-			//height: between 4'6"-5'6" (mid-upper of range in codex)
-			this.tallness = 54 + rand(13);
-			//weight: 140-170 lbs (heavy side of codex range)
-			//thickness: 60+ (maybe not as high as the females though)
-			this.thickness = 50+rand(25);
-			//tone: 50-60
-			this.tone = 50+rand(11);
-			//femininity: -60 to -70 (masculine)
-			this.femininity = 20 + rand(10);
-			//skin colors: same as females (according to codex: Tan, pale blue, or chocolate brown with black pigmentation common near the genitals)
-			this.skinTone = RandomInCollection(["tan","pale blue","chocolate brown"]);
-			//hair type: hair (or copy from female)
-			//skin covering: fur/hair
-			//fur/hair colors: same as female (codex: A mixture of white and tawny with black down the back)
-			this.furColor = RandomInCollection(["white","tawny","gray-speckled"]);
-			//ears: 2, canine (triangular and sit atop the head)
-			//arms: 2, furred
-			//legs: 2, furred, digitigrade
-			//face: korgonne (codex: Humanoid in appearance with wide, expressive eyes and a short muzzle capped by a black, moist nose)
-			//eyes: 2, caprine (goat-like pupils)
-			//eye colors: brown, hazel, green
-			this.eyeColor = RandomInCollection(["brown","hazel","green","violet"]);
-			this.long = "The korgonne raider facing you is a stocky, " + furColor + "-furred alien, no more than " + Math.floor(tallness / 12) + "'";
-			if(tallness % 12 != 0) long += tallness%12 + "\"";
-			long += " tall. He wears a thick hide coat with many pockets, and from the fur-lined hood pokes a short, canid nose. His legs are bound in hide wraps, and he stands atop the snow on his large, wide-splayed toes. The pockets of his coat bulge suspiciously... every minute, it seems like he dips into one for a new weapon or tool.";
-
-			//cocks: 1
-			//cock type: korgonne
-			this.cocks[0].cLengthRaw = 10 + rand(5);
-			//cock size: 10-14" long, 1-1.5" thick at shaft
-			//, 3-4" thick at knot when inflated (these are just guesses based on the female's scenes, e.g. using a balled fist as a knot replacement -- please double-check the female's capacity)
-			this.cocks[0].knotMultiplier = 2.5+rand(20)/10;
-			//anal capacity: idk, probably fits own cock range without knot at least
-			//breasts: 2, flat
-			//nipples: 1 per breast, normal type
+			btnTargetText = "Lund";
 
 			//"Hard" level preferences.
-			sexualPreferences.setRandomPrefs(4 + rand(3),2);
+			sexualPreferences.setRandomPrefs(4 + rand(3));
 			
 			//Korg love 'dem hips
 			sexualPreferences.removePref(GLOBAL.SEXPREF_WIDE_HIPS);
@@ -261,297 +216,152 @@ package classes.Characters
 			//old loot from females. Maybe reuse
 			//5% chance of InsulatedCoat
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
-			//5% chance of yappstrapp
-			if(rand(20) == 0) inventory.push(new YappiStrap());
+
 			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			
-			//Temporarily put on these snowbitches till I find a real home for it.
-			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
+			kGAMECLASS.uvetoSSTDChance(this);
+			this._isLoading = false;
 		}
-		//combat A.I. and characteristics:
-		//male korgonne fighting style is dirty and endurance-themed; aims to stun PC and to keep his own shield healthy with shield-drain until PC's shield fails and he can begin applying poison/bleed degen
+		override public function get bustDisplay():String
+		{
+			return kGAMECLASS.lundBustString();
+		}	
+		private function updateDesc():void
+		{
+			//Blurb
+			this.long = "You’re fighting Lund, the korgonne hunter.";
+			this.long += "\n\nHe’s holding twin daggers and twirling them in his hands, demonstrating an absurd amount of familiarity and skill with his weaponry of choice. From his narrow waist hangs a loincloth, and fastened to it is an array of pouches. It’s clear that he came prepared for this after your apparent slight to his honor.";
+			this.long += "\n\n";
+			if (this.HPQ() >= 66 && this.lustQ() < 33) this.long += "He jumps from side to side, bouncing on his paws with his daggers held high. He certainly looks the part of a hunter.";
+			//random if health blurb or lust blurb
+			else if (rand(2) == 0)
+			{
+				if (this.HPQ() >= 33) this.long += "Though you’ve wounded him slightly he persists in bouncing around you, trying to make himself less of a target. He still looks confident, like he knows he can win.";
+				else this.long += "He’s stopped bouncing now that you’ve wounded him severely, but the dogged tenacity in his eyes remains. He circles you, looking for an opportunity.";
+			}
+			else
+			{
+				if (this.lustQ() < 66) this.long += "He bounces around you despite the slight tenting of his loincloth, the pointed tip of his canine cock bringing it upwards and almost revealing his fuzzy nuts. Despite the obvious distraction, he still seems mostly focused on beating you.";
+				else this.long += "His stiffly erect doggycock has pushed the loincloth aside, and he seems to be focused mostly on your sexual assets, his eyes glued to your groin. Even his stance is weaker, belying his utter distraction as he hesitantly circles you.";
+			}
+
+			if (this.hasStatusEffect("Hunter Stance")) this.long += "\n\n<b>He’s watching you for an opening...</b>";
+		}
+		//Actual Fight
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			//need disarmed ability!
-			if(hasStatusEffect("Disarmed"))
+			if (this.hasStatusEffect("Hunter Stance"))
 			{
-				uluKnifing(target);
+				addStatusValue("Hunter Stance", 1, 1);
+				if(statusEffectv1("Hunter Stance") >= 3)
+				{
+					removeStatusEffect("Hunter Stance");
+					createStatusEffect("Stance Cooldown",3);
+				}
 			}
+			if (!this.hasStatusEffect("Hunter Stance") && !this.hasStatusEffect("Stance Cooldown")) hunterStance(target);
 
-			//if korg is <20% HP or >80% lust, small (~25-33%) chance of using suspicious surrender (limit one use per battle and always activates&outputs /after/ PC's action for fidelity)
-			//the turn after a suspicious surrender, /always/ use mercy's reward 'attack' to check whether PC has waited or not
-			if(statusEffectv2("SURPRISE_MUTHA_TRUCKAH") != 1 && (hasStatusEffect("SURPRISE_MUTHA_TRUCKAH") || rand(3) == 0) && (this.HP()/this.HPMax() < 0.2 || this.lust() >= 80 || this.hasStatusEffect("SURPRISE_MUTHA_TRUCKAH")))
-			{
-				suspiciousSurrender(target);
-			}
-			//if PC's shield is up and korgonne's shield is >=40%, korgonne favors knife strike and yappi strap
-			else if(target.shields() > 0 && this.shields()/this.shieldsMax() >= 0.4)
-			{
-				if(rand(3) == 0) yappiStrapAttack(target);
-				else uluKnifing(target);
-			}
-			//if PC is shielded /and/ korgonne's shield is <40%, favor vamp knife charge to maintain shield
-			else if(target.shields() > 0)
-			{
-				if(this.energy() >= 20 && rand(3) != 0) vampKnifeKorg(target);
-				else if(rand(3) == 0) yappiStrapAttack(target);
-				else uluKnifing(target);
-			}
-			//if PC is unshielded, favor pufferfish dart or knife strike depending on which degen status the PC /doesn't/ have (and whether enough energy to dart),  alternate with yappi strap to stun
-			else
-			{
-				//Prioritize missing status!
-				if(this.energy() >= 5 && target.hasStatusEffect("Bleeding") && !target.hasStatusEffect("Poison"))
-				{
-					korgoDartoAttack(target);
-				}
-				else if(!target.hasStatusEffect("Bleeding") && target.hasStatusEffect("Poison"))
-				{
-					uluKnifing(target);
-				}
-				//Neither status or both - random!
-				if(this.energy() >= 5 && rand(2) == 0) korgoDartoAttack(target);
-				else uluKnifing(target);
-			}		
+			if (rand(3) == 0) stabby(target);
+			else if (rand(2) == 0) lundGrapple(target);
+			else tossSavicite (target);
+			updateDesc();
 		}
+
+		//Attacks
+		//Lund should have really high evasion. If you miss an attack while he’s in hunter stance, he counterattacks you (unless this is too hard to code).
 		
-		//attacks:
-		//yappi strap slap
-		//same as female; hits with yappi strap in off-hand for yappi strap damage+effect at yappi strap energy cost
-		//attack noun: ‘lash’ (I think)
-		//Yappi Strap
-		private function yappiStrapAttack(target:Creature):void
+		//Hunter Stance
+		public function hunterStance(target:Creature):void
 		{
-			var damage:TypeCollection
-			//(First time per battle)
-			if(!this.hasStatusEffect("Yappi Strappy"))
+			author("Wsan");
+			//Done on turn 1, lasts 3(?) turns, raises evasion, if you miss him while he’s doing this he stabs the shit out of you. Cooldown of 5-6 turns to allow for 2-3 turns of damage?
+
+			output("Lund takes on some kind of martial stance! It looks like he’s planning on dealing out some serious punishment if you give him the opportunity...\n\n");
+			createStatusEffect("Hunter Stance");
+		}
+		//Counter
+		//done in response (perhaps as an additional action?) to the PC missing. Always hits.
+		public function counterAttack(target:Creature):void
+		{
+			author("Wsan");
+			output("\nSeeing the opportunity arise after you miss your attack, Lund goes on the offensive with a masterful display of skill with his blades!");
+			if (target.shields() > 0) output(" Though your shields crackle and protect you from the brunt of it all, you can tell that would have done some serious damage to you had you been without their aid! Dissatisfied, he leaps backwards and resumes circling you.");
+			else output(" Without the protection of your shields, he overwhelms you with his savagery! Twin daggers jab and pick at your weak points, cutting and slicing before he withdraws by leaping backwards.");
+			applyDamage(meleeDamage(), this, target);
+			applyDamage(meleeDamage(), this, target);
+			if(target.shields() <= 0)
 			{
-				output("The korgonne distracts you with jab feints of his knife until he perceives an opening, then swings his leather thong hard at your midsection!");
-				//(deals kinetic damage)
-				damage = new TypeCollection( { kinetic: (physique()-8) });
-				damageRand(damage, 15);
-				applyDamage(damage, this, target, "minimal");
-				createStatusEffect("Yappi Strappy");
-			}
-			//(Repeat)
-			else
-			{
-				output("The raider charges you, whipping his leather thong and flail through the air like a berserker and trying to score a hit by luck alone!");
-				//(may cause staggered condition condition)
-				//Hit
-				if(!combatMiss(this, target))
-				{
-					damage = new TypeCollection( { kinetic: (physique()+5) });
-					damageRand(damage, 15);
-					applyDamage(damage, this, target, "minimal");
-					if((target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2) && !target.isPlanted())
-					{
-						output("\n<b>You are sent reeling by the blow, staggered.</b>");
-						CombatAttacks.applyStagger(target, 5, true);
-					}
-				}
-				//Miss
-				else
-				{
-					output("\nYou dodge!");
-				}
+				if (!target.hasStatusEffect("Bleeding")) output("\n<b>You’re bleeding!</b>");
+				else output("\n<b>Your bleeding is aggravated further!</b>");
+				CombatAttacks.applyBleed(target, 1, 3, 7);
 			}
 		}
-		//ulu knife strike
-		//costs no energy
-		//punches/lashes with ulu knife in main hand, does kinetic pierce damage plus starts bleeding on PC unless shielded
-		//noun: ‘strike’
-		public function uluKnifing(target:Creature):void
+		//Stabby
+		public function stabby(target:Creature):void
 		{
-			if(hasStatusEffect("Disarmed")) output("The korgonne swipes at you at you with his claws!");
-			//text 1
-			else if(rand(2) == 0) output("The korgonne jumps at you and swings his ulu knife in a chopping downward punch!");
-			//text 2
-			else output("The korgonne rushes in and uppercuts with his ulu knife!");
-			if(!combatMiss(this,target))
+			author("Wsan");
+			output("Lund lowers himself to the ground and dashes at you at an angle, hoping to throw you off as he engages you!");
+			if (!combatMiss(this,target))
 			{
-				var damage:TypeCollection = meleeDamage();
-				if(hasStatusEffect("Disarmed")) damage = new TypeCollection( { kinetic: this.physique()-5 });
-				damageRand(damage, 15);
-				applyDamage(damage, this, target, "minimal");
+				output(" He leaps up from below and strikes at you with his daggers, stabbing and slicing before he pulls back!");
+				applyDamage(meleeDamage().multiply(0.75), this, target);
+				applyDamage(meleeDamage().multiply(0.75), this, target);
 				if(target.shields() <= 0)
 				{
 					if (!target.hasStatusEffect("Bleeding")) output("\n<b>You’re bleeding!</b>");
 					else output("\n<b>Your bleeding is aggravated further!</b>");
-					CombatAttacks.applyBleed(target, 1, 3, 5);
+					CombatAttacks.applyBleed(target, 1, 3, 7);
 				}
 			}
-			else output(" He misses!");
+			else output(" You’re more than ready for him, and deftly avoid every wild attack he makes against you before pulling back!");
 		}
-		//homemade vamp-knife charge
-		//medium-low energy attack (limited uses, say ~20 energy?)
-		//deals kinetic slash damage equal to ulu strike, plus elec damage; hit refills korgonne shields (only ~33-50% as effective at transfer as a commercial blade)
-		//as it is a knife strike, it can also inflict an incidental bleed if it breaches shields, but this is not the purpose of the attack
-		//noun: ‘slash’
-		public function vampKnifeKorg(target:Creature):void
+		//Grapple
+		public function lundGrapple(target:Creature):void
 		{
-			this.energy(-20);
-			output("The korgonne produces a beat-up, bulging battery from one of his pouches and jams it into a compartment in his knife handle; the blade crackles and begins to hum with electricity. He kicks a flurry of snow at you and then darts in, slashing furiously!");
-			//hit/miss text, damage nums, and bleeding notification go here
-			if(combatMiss(this,target)) output(" He misses!");
-			else
+			author("Wsan");
+			output("Lund spins one dagger in the air before jamming it into its sheath, bites down on the handle of the other one, and bounds at you barehanded! Upon crashing into you he immediately tries to grapple you, struggling against your footing on the treacherous ground of Uveto!");
+			if (target.physique() >= 40)
 			{
-				//add elec damage to normal ulu knife damage and restore korg shields by percentage of damage dealt
-				this.meleeWeapon.baseDamage.electric.damageValue = 10;
-				var damage:TypeCollection = meleeDamage();
-				this.meleeWeapon.baseDamage.electric.damageValue = 0;
-				damageRand(damage, 15);
-				//(if hit, restore korg’s shield)
-				if(target.shields() > 0) 
-				{
-					output(" The korgonne’s improvised shield is restored slightly at the expense of your own!");
-					applyDamage(damage, this, target, "minimal");
-					this.shields(Math.ceil(damage.getTotal()/2));
-				}
-				else applyDamage(damage, this, target, "minimal");
-				if(target.shields() <= 0)
-				{
-					if (!target.hasStatusEffect("Bleeding")) output("\n<b>You’re bleeding!</b>");
-					else output("\n<b>Your bleeding is aggravated further!</b>");
-					CombatAttacks.applyBleed(target, 1, 3, 5);
-				}
+				output(" He’s far too weak to possibly succeed, though, and with a vicious swing of your [pc.legOrLegs] you send him catapulting through the air end-over-end. He thuds to the ground with a grunt and springs back up, wiping his mouth off as he collects his daggers and raises them once more.");
+				applyDamage(new TypeCollection( { kinetic: 20 }, DamageFlag.BYPASS_SHIELD ), target, this, "minimal");
 			}
-			output("\nWhen the assault ends, he hurriedly pulls the battery and drops it in the snow. It begins to pop and leak.");
-		}
-		//pufferfish dart
-		//low energy-cost attack (~5-10); chucks fishbone darts coated in toxin
-		//used in place of vamp knife charge when PC’s shields are down, regardless of korg’s shield strength
-		//noun: ‘dart’
-		//on unshielded hit, does small kinetic damage plus medium poison damage and poisons PC if it penetrates shield
-		//if shielded (e.g. if PC used a shield charge booster), does only 1-2 points of kinetic damage
-		public function korgoDartoAttack(target:Creature):void
-		{
-			this.energy(-5);
-			output("The korgonne dips into his back pocket and surreptitiously throws a dart! ");
-			if(rangedCombatMiss(this,target))
+			else if (target.physique() >= 30)
 			{
-				output("You turn aside at the last moment and it sails by!");
+				output(" You grunt in effort as you fight against him but eventually succeed, slamming him into the ground and trying to follow it up before he rolls away and springs to his feet, grabbing his daggers and raising them once more.");
+				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BYPASS_SHIELD ), target, this, "minimal");
 			}
 			else
 			{
-				//(if hit and penetrating a restored shield somehow)
-				if(target.shields() > 0)
-				{
-					output("It pings off your newly regenerated shields!");
-					applyDamage(new TypeCollection ( { kinetic: 3 } ), this, target, "minimal");
-				}
-				else
-				{
-					output("The dart embeds itself in your [pc.skin]!");
-					var damage:TypeCollection = new TypeCollection( { kinetic: 10 });
-					damageRand(damage, 15);
-					applyDamage(damage, this, target, "minimal");
-					//(if poisoned by hit)
-					if(target.shields() <= 0 && target.physique()/2 + rand(20) + 1 < 28)
-					{
-						if (!target.hasStatusEffect("Poison")) output("\n<b>You’re poisoned!</b>");
-						else output("\n<b>More poison courses through you!</b>");
-						CombatAttacks.applyPoison(target, 1, 3, 5);
-					}
-				}
+				output(" Try as you might, you can’t dislodge him, and you soon find yourself surprised as you’re flipped end-over-end onto the ground and he follows it up with a stab of the dagger drawn from the sheath at his waist! He leaps back and drops the other dagger into his free hand, resuming his battle-ready stance.");
+				applyDamage(new TypeCollection( { kinetic: 32 }, DamageFlag.PENETRATING, DamageFlag.BYPASS_SHIELD ), this, target);
 			}
-		}
-		//suspicious surrender
-		//next turn, PC can ‘Wait’ next turn to receive mercy’s reward, below, or ignore and fight continues normally
-		//only used once per fight; if PC cancels by not ‘Wait’ing or the korg plays a trick, it cannot be used again
-		//always outputs /after/ PC’s action text to prevent confusing text order (any problem with this?)
-		public function suspiciousSurrender(target:Creature):void
-		{
-			if(!this.hasStatusEffect("SURPRISE_MUTHA_TRUCKAH"))
-			{
-				output("Dropping to his knees, the korgonne raider raises one paw in submission. He barks, <i>“Mercy! Please... no fight. Maybe I give present?”</i>");
-				output("\n\nHis other paw slips into a large pocket at his hip, but he doesn’t pull it back out. Instead, he continues to watch you, hand in pocket, waiting for your reaction. It’s impossible to read his true intentions in his caprine eyes - <b>you can ‘Wait’ and see what he does, or not.</b>");
-				//queue up mercy’s reward for next turn
-				this.createStatusEffect("SURPRISE_MUTHA_TRUCKAH",0);
-			}
-			//mercy’s reward
-			else
-			{
-				//Flag this bit as being done with. NO MORE MUTHATRUCKS :3
-				setStatusValue("SURPRISE_MUTHA_TRUCKAH",2,1);
-				//used on the turn after a surrender
-				//if PC attacks, korg selects an attack and resumes fighting (if possible, else just default to something)
-				if(statusEffectv1("SURPRISE_MUTHA_TRUCKAH") != 1)
-				{
-					output("When you continue to act, the korgonne grunts in disappointment. <i>“No " + target.mf("mister nice guy","miss nice girl") + "?”</i> he huffs. He pulls his hand from his pocket and resumes his attack!\n");
-					uluKnifing(target);
-					output("\n");
-				}
-				//if PC ‘Waits’, choose from results below (tweak percentages as needed):
-				//25% of dirty trick; korg lashes out with a high-accuracy, very-high-damage strike and the fight continues
-				if(rand(4) == 0)
-				{
-					//dirty trick, 25% chance
-					output("The korgonne looks extremely pleased when you remain still. He sidles up to you, very respectfully, before speaking in a quiet voice. <i>“You nice. This for you... </i>stupid ");
-					//(if PC milodan, kaithrit, or other catrace)
-					if(InCollection(target.raceShort(), ["kaithrit", "milodan", "feline"])) output("cat");
-					else if (InCollection(target.raceShort(), ["ausar", "huskar", "korgonne", "canine", "vulpine", "lupine"])) output("outsider");
-					else output("alien");
-					output("<i>!”</i>");
 
-					output("\n\nHis hand emerges holding the warhead of an anti-ship micromissile! With an awful laugh, he drops it at your feet and dives for cover!");
+			//pc has 40+ str: lund takes some dmg
+			//pc has 30-40 str: lund takes very little dmg
+			//pc has <30 str: pc takes a bunch of dmg
+		}
 
-					//warhead deals big kinetic/burning explosive damage with very high accuracy (if not 100% acc.)
-					//maybe destroy/disable any of PC’s active drones, if supported?
-					//combat continues if PC survives
-					var damage:TypeCollection = new TypeCollection( { burning: 35, kinetic: 50 } );
-					damageRand(damage, 15);
-					applyDamage(damage, this, target, "minimal");
-				}
-				else
-				{
-					//Else end combat and queue up win protocols.
-					this.changeHP(-1000);
-					output("The korgonne raider nods gravely.");
-					this.createStatusEffect("PEACEFUL_WIN");
-					if(rand(3) == 0) setStatusValue("PEACEFUL_WIN",1,2);
-					else setStatusValue("PEACEFUL_WIN",1,1);
-				}
+		//Toss Savicite
+		public function tossSavicite(target:Creature):void
+		{
+			author("Wsan");
+			output("Taking off from a dead stop like he’s competing in a race, Lund practically flies at you while one of his hands drops to his waist. He cuts through the string holding one of the pouches there and takes it up in his other hand, approaching you before throwing powder into the air!");
+			if (!combatMiss(this,target))
+			{
+				output(" Unprepared, you get a lungful of the pink powder and immediately grow hotter, sweating and panting even in the icy Uvetan wilds. It’s Savicite! Damn it, you can feel yourself getting hornier by the second...");
+				output("\n\nBy the time you refocus on the fight, Lund is already ready for the next attack.");
+				applyDamage(new TypeCollection( { tease: 32 } ), this, target);
 			}
+			else output(" You jump back and the powder whirls harmlessly into the air, carried away by a traveling wind. Lund curses at the missed opportunity and readies himself once more, staring you down.");
+			//does lust dmg. Probably a lot of it.
 		}
 	}
 }
-/*Actual Fight
-Blurb
-You're fighting Lund, the korgonne hunter.
+/*
 
-He's holding twin daggers and twirling them in his hands, demonstrating an absurd amount of familiarity and skill with his weaponry of choice. From his narrow waist hangs a loincloth, and fastened to it is an array of pouches. It's clear that he came prepared for this after your apparent slight to his honor.
 
-{Unhurt/unlusted:He jumps from side to side, bouncing on his paws with his daggers held high. He certainly looks the part of a hunter./bit hurt:Though you've wounded him slightly he persists in bouncing around you, trying to make himself less of a target. He still looks confident, like he knows he can win./severely hurt:He's stopped bouncing now that you've wounded him severely, but the dogged tenacity in his eyes remains. He circles you, looking for an opportunity./bit lusted:He bounces around you despite the slight tenting of his loincloth, the pointed tip of his canine cock bringing it upwards and almost revealing his fuzzy nuts. Despite the obvious distraction, he still seems mostly focused on beating you./severe lusted:His stiffly erect doggycock has pushed the loincloth aside, and he seems to be focused mostly on your sexual assets, his eyes glued to your groin. Even his stance is weaker, belying his utter distraction as he hesitantly circles you.}
 
-{Using Hunter Stance:<b>He's watching you for an opening…</b>}
-
-Attacks
-//Lund should have really high evasion. If you miss an attack while he's in hunter stance, he counterattacks you (unless this is too hard to code).
-Hunter Stance
-Lund takes on some kind of martial stance! It looks like he's planning on dealing out some serious punishment if you give him the opportunity…
-
-//Done on turn 1, lasts 3(?) turns, raises evasion, if you miss him while he's doing this he stabs the shit out of you. Cooldown of 5-6 turns to allow for 2-3 turns of damage?
-Counter
-//done in response (perhaps as an additional action?) to the PC missing. Always hits.
-Seeing the opportunity arise after you miss your attack, Lund goes on the offensive with a masterful display of skill with his blades!{shields: Though your shields crackle and protect you from the brunt of it all, you can tell that would have done some serious damage to you had you been without their aid! Dissatisfied, he leaps backwards and resumes circling you./noshields: Without the protection of your shields, he overwhelms you with his savagery! Twin daggers jab and pick at your weak points, cutting and slicing before he withdraws by leaping backwards.}
-
-Stabby
-Lund lowers himself to the ground and dashes at you at an angle, hoping to throw you off as he engages you!{hit: He leaps up from below and strikes at you with his daggers, stabbing and slicing before he pulls back!/miss: You're more than ready for him, and deftly avoid every wild attack he makes against you before pulling back!}
-
-Grapple
-Lund spins one dagger in the air before jamming it into its sheath, bites down on the handle of the other one, and bounds at you barehanded! Upon crashing into you he immediately tries to grapple you, struggling against your footing on the treacherous ground of Uveto!{pc str>40: He's far too weak to possibly succeed, though, and with a vicious swing of your [pc.legOrLegs] you send him catapulting through the air end-over-end. He thuds to the ground with a grunt and springs back up, wiping his mouth off as he collects his daggers and raises them once more./pc str 30-40: You grunt in effort as you fight against him but eventually succeed, slamming him into the ground and trying to follow it up before he rolls away and springs to his feet, grabbing his daggers and raising them once more./pc str<30: Try as you might, you can't dislodge him, and you soon find yourself surprised as you're flipped end-over-end onto the ground and he follows it up with a stab of the dagger drawn from the sheath at his waist! He leaps back and drops the other dagger into his free hand, resuming his battle-ready stance.}
-
-//pc has 40+ str: lund takes some dmg
-//pc has 30-40 str: lund takes very little dmg
-//pc has <30 str: pc takes a bunch of dmg
-
-Toss Savicite
-Taking off from a dead stop like he's competing in a race, Lund practically flies at you while one of his hands drops to his waist. He cuts through the string holding one of the pouches there and takes it up in his other hand, approaching you before throwing powder into the air!{hit: Unprepared, you get a lungful of the pink powder and immediately grow hotter, sweating and panting even in the icy Uvetan wilds. It's Savicite! Damn it, you can feel yourself getting hornier by the second…
-
-By the time you refocus on the fight, Lund is already ready for the next attack./miss: You jump back and the powder whirls harmlessly into the air, carried away by a traveling wind. Lund curses at the missed opportunity and readies himself once more, staring you down.}
-
-//does lust dmg. Probably a lot of it.*/
+*/

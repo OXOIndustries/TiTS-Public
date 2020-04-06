@@ -2483,7 +2483,7 @@ public function enoughCookiesLund4():void
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Alien belly as full as Lund’s after treats of many?");
 	else output("Is your alien stomach as full as mine after so many treats?");
-	output(" he laughs, giving your upturned [pc.ass] another hearty smack. <i>“");
+	output("”</i> he laughs, giving your upturned [pc.ass] another hearty smack. <i>“");
 	if(!korgiTranslate()) output("Treats taste pretty good. Come find Lund when having some more. Can start all over again from beginning.");
 	else output("The treats taste pretty good. Come find me if you ever have any more on you. Then we can start all over again, from the very beginning.");
 	output("”</i>");
@@ -4129,6 +4129,24 @@ Scenario: When you tell Lund to Fuck Off upon initially meeting him, he fucks of
 public function lundFight():void
 {
 	showLund();
+	showName("FIGHT:\nLUND");
+	if (flags["LUND_FOUGHT"] == undefined)
+	{
+		output("\n\nDamn, it’s getting more windy than usual all of a sudden. You’re still making good progress into the blasting chill when you sense that something is... just a little off. Almost imperceptible but it pulls at you until you draw your weapon and turn, scanning the area.");
+
+		output("\n\nYou just barely twist out of the way of a thrown hunting knife, its mineral blade flying not even an inch from your nose. Honing in on the direction it came from you manage to spot something - a gray-furred korgonne skulking towards you holding two more knives in his clenched fists and looking <i>pissed</i>. It’s that little hunter you pushed, Lund!");
+
+		output("\n\nIt doesn’t look like he’s in the mood for conversation. Turning to face him wholly, you steel yourself for the battle. <b>It’s a fight!</b>");
+	}
+	else
+	{
+		output("\n\nDamn, it’s getting more windy than usual all of a sudden. You’re still making good progress into the blasting chill when you sense that almost-familiar oddity amongst the surroundings. There’s no thrown knife this time, only crunching footsteps that come to your ears across the wind while you scan the area for anything amiss.");
+
+		output("\n\nSure enough, within a few moments the object of interest is revealed - a gray-furred korgonne skulking towards you holding two knives in his clenched fists. It’s Lund, and he looks like he still holds a grudge. <b>It’s a fight!</b>");
+	}
+	flags["LUND_FOUGHT"] = 1;
+	lund.HPRaw = lund.HPMax();
+	lund.shieldsRaw = lund.shieldsMax();
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
@@ -4136,7 +4154,8 @@ public function lundFight():void
 	CombatManager.displayLocation("LUND");
 	CombatManager.victoryScene(lundVictory);
 	CombatManager.lossScene(slowlyBecomeLundsBitchYaSlut);
-	CombatManager.beginCombat();
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //Victory scene
@@ -4147,17 +4166,18 @@ public function lundVictory():void
 	if (!korgiTranslate()) output("<i>“Outworlder never find me. Lund be back!”</i>");
 	else output("<i>“You’ll never find me in the storm, but I can find you. I’ll be back, outworlder!”</i>");
 	output("\n\nHe leaps backwards into the storm and though you give determined chase, it’s soon clear the endeavor of pursuing a native through a haze of Uvetan ice and mist is pointless. That fucker, he must have known the storm was coming... maybe next time you can catch him less-prepared.\n\n");
-	addButton(0,"Next",CombatManager.genericVictory)
+	flags["LUND_CON_LOSS"] = undefined;
+	addButton(0,"Next",CombatManager.genericVictory);
 }
 
 //Loss scenes
 //Loss scenes proceed in ordered fashion until you’re bad ended.
 public function slowlyBecomeLundsBitchYaSlut():void
 {
-	if (flags["LUND_LOSS"] < 1 || flags["LUND_LOSS"] == undefined) initialLundBitchening;
-	else if (flags["LUND_LOSS"] < 2) becomingLundsBitch;
-	else if (flags["LUND_LOSS"] < 3) youreLundsBitch;
-	else lundBitcheningFinalized;
+	if (flags["LUND_CON_LOSS"] < 1 || flags["LUND_CON_LOSS"] == undefined) initialLundBitchening();
+	else if (flags["LUND_CON_LOSS"] < 2) becomingLundsBitch();
+	else if (flags["LUND_CON_LOSS"] < 3) youreLundsBitch();
+	else lundBitcheningFinalized();
 }
 
 //First
@@ -4169,9 +4189,19 @@ public function initialLundBitchening():void
 	var x:int = -1;
 	if (pc.hasVagina()) x = pc.tightestVaginaIndex();
 
-	output("<i>“Hah,”</i> Lund grunts, sheathing his daggers at his waist before tossing the belt to the side.");
-	if (hpLoss) output(" <i>“Alien not so tough, huh?”</i>/<i>“Looks like you’re not very tough after all, huh?”</i>");
-	else output(" <i>“Alien not so great with savicite, huh?”</i>/<i>“Not too used to the savicite, are you?”</i>");
+	IncrementFlag("LUND_LOSS");
+	IncrementFlag("LUND_CON_LOSS");
+	output("<i>“Hah,”</i> Lund grunts, sheathing his daggers at his waist before tossing the belt to the side. ");
+	if (hpLoss)
+	{
+		if (!korgiTranslate()) output("<i>“Alien not so tough, huh?”</i>");
+		else output("<i>“Looks like you’re not very tough after all, huh?”</i>");
+	}
+	else
+	{
+		if (!korgiTranslate()) output("<i>“Alien not so great with savicite, huh?”</i>");
+		else output("<i>“Not too used to the savicite, are you?”</i>");
+	}
 
 	if (!hpLoss) output("\n\nYou’re too busy fruitlessly " + (pc.isNude() ? "masturbating":"trying to get your clothes off") + " to respond to him, wholly distracted by the coating of powder across your face and how it’s setting your frazzled mind alight with desire. You need to <i>fuck</i>, to <i>cum</i>, to do <i>anything</i> in order to achieve this explosive release welling within you, and as you see Lund approaching with his stiffening dogcock in hand you realize the easiest way to make it happen. Lying before him, you let Lund sit on your chest and stare at his rigid dick.");
 	else
@@ -4274,7 +4304,7 @@ public function initialLundBitchening():void
 			else output("\n\nYou groan as Lund takes your slick sex with all the gusto he has, pounding his engorged cock inside you with enough force to make you groan out loud. Not even biting your lip can suppress the noises you make and to your annoyance, Lund’s voice in your ear only makes the submission feel all the worse.");
 
 			output("\n\n");
-			if (!korgiTranslate) output("<i>“Alien feel good now?”</i> he snickers. <i>“Little slut.”</i>");
+			if (!korgiTranslate()) output("<i>“Alien feel good now?”</i> he snickers. <i>“Little slut.”</i>");
 			else output("<i>“Now you’re feeling good?”</i> he snickers. <i>“Little slut.”</i>");
 		}
 	}
@@ -4321,7 +4351,7 @@ public function initialLundBitchening():void
 	if (hpLoss) output("Though you wish anything else was the case, y");
 	else output("Y");
 	output("ou follow his instruction to the letter with extreme enthusiasm. Crying out as he plows your mind into bits, you shiver and convulse while");
-	if (pc.isHerm()) output(" your dick" + (pc.hasCocks() ? "s":"") + " jet [pc.cum] all over you underside, every last iota of your seed being milked from them while your puss" + (pc.hasVaginas() ? "ies":"y") (pc.highestWetness() >= 4 ? " squirt":" drool") (pc.hasVaginas() ? "":"s") + " uncontrollably all down your [pc.legs].");
+	if (pc.isHerm()) output(" your dick" + (pc.hasCocks() ? "s":"") + " jet [pc.cum] all over you underside, every last iota of your seed being milked from them while your puss" + (pc.hasVaginas() ? "ies":"y") + " " + (pc.highestWetness() >= 4 ? "squirt":"drool") + "" + (pc.hasVaginas() ? "":"s") + " uncontrollably all down your [pc.legs].");
 	else if (pc.hasCock()) output(" your dick" + (pc.hasCocks() ? "s":"") + " jet [pc.cum] all over you underside, every last iota of your seed being milked from you with precise movements of your captor’s hips.");
 	else if (pc.hasVagina()) output(" your puss" + (pc.hasVaginas() ? "ies":"y") (pc.highestWetness() >= 4 ? " squirt":" drool") (pc.hasVaginas() ? "":"s") + " uncontrollably all down your [pc.legs].");
 	else output(" your ring lovingly massages his cock, fluttering and flexing as the pleasure washes over you.");
@@ -4329,7 +4359,7 @@ public function initialLundBitchening():void
 	output("\n\nHe follows up your performance with his own, thrusting his overwhelmingly large knot into your pliant " + (x >= 0 ? "pussy":"asshole") + " and groaning as he cums, boiling hot seed spurting into your " + (x >= 0 ? "[pc.womb]":"bowels") + ". Shifting above you, he positions himself so that he can pop his knot in and out of your cum-lubed fuckhole and listen to your desperate moans, chuckling all the while.");
 
 	output("\n\n");
-	if (!korgiTranslate) output("<i>“Stupid alien,”</i>");
+	if (!korgiTranslate()) output("<i>“Stupid alien,”</i>");
 	else output("<i>“Stupid offworlder,”</i>");
 	output(" he mutters, inserting himself deep and slow before pulling himself free once more. <i>“Take it in.”</i>");
 
@@ -4347,11 +4377,10 @@ public function initialLundBitchening():void
 	}
 	else
 	{
-		output("\n\n:<i>“Ooohhh, shit,”</i> you sigh, rolling onto your back spreadeagle and feeling hot spunk coursing down your [pc.thighs]. <i>“Mmmnn...”</i>");
+		output("\n\n<i>“Ooohhh, shit,”</i> you sigh, rolling onto your back spreadeagle and feeling hot spunk coursing down your [pc.thighs]. <i>“Mmmnn...”</i>");
 		output("\n\nHe took <i>full</i> advantage of you there, defiling you both in and out - and you couldn’t have loved it more thanks to the savicite. Damn... next time you’ll have to be more careful about taking that stuff in. You’re not sure you want to end up here on the ground again, impaled on Lund’s giant, hard cock while he knots you. Or maybe you do; you’re not sure. Shaking your head as if to clear it, you unsteadily get to your feet and continue onwards, a tad light-headed.");
 	}
 	output("\n\n");
-	IncrementFlag("LUND_LOSS");
 	processTime(35);
 	if (x >= 0)	pc.loadInCunt(lund,x);
 	else pc.loadInAss(lund);
@@ -4368,6 +4397,8 @@ public function becomingLundsBitch():void
 	var x:int = -1;
 	if (pc.hasVagina()) x = pc.tightestVaginaIndex();
 
+	IncrementFlag("LUND_LOSS");
+	IncrementFlag("LUND_CON_LOSS");
 	if (hpLoss) output("Lund doesn’t speak as you topple to the ground groaning, beaten down by the predatory korgonne. Instead he strides over and kneels next to you, shoving a handful of savicite powder into your face while you cough and try to force him away. It doesn’t matter; with your [pc.nose] peppered in the stuff, you can’t help but");
 	else output("Overcome by the savicite, you’re already trying to masturbate by the time Lund kneels next to you with a handful of the stuff. You don’t even try to force him away when he rubs it against your [pc.nose], forcing you to");
 	output(" inhale enough of it to make your head swim and your body hot.");
@@ -4486,7 +4517,7 @@ public function becomingLundsBitch():void
 
 	output("\n\n");
 	if (!korgiTranslate()) output("<i>“Alien come back soon,”</i>");
-	else output("<i>“Keep coming back, slut,”</i>} Lund says, winking at you as he stands.");
+	else output("<i>“Keep coming back, slut,”</i> Lund says, winking at you as he stands.");
 	if (!korgiTranslate()) output("<i>“Lund think get along well.”</i>");
 	else output("<i>“I think we’re getting along well.”</i>");
 
@@ -4495,7 +4526,6 @@ public function becomingLundsBitch():void
 	output("\n\nMaybe next time you can talk him into being gentler.");
 
 	output("\n\n");
-	IncrementFlag("LUND_LOSS");
 	processTime(45);
 	if (x >= 0)	pc.loadInCunt(lund,x);
 	else pc.loadInAss(lund);
@@ -4509,6 +4539,8 @@ public function youreLundsBitch():void
 	showLund(true);
 	pc.changeLust(50);
 
+	IncrementFlag("LUND_LOSS");
+	IncrementFlag("LUND_CON_LOSS");
 	output("<i>“Again?”</i> Lund sighs theatrically as you slump to the ground, dizzied by his efforts. ");
 	if (!korgiTranslate()) output("<i>“Alien pathetic. Come.”</i>");
 	else output("<i>“You really are pathetic. Come here.”</i>");
@@ -4596,7 +4628,7 @@ public function youreLundsBitch():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.lust(100);
-	processTime();
+	processTime(47);
 	pc.loadInMouth(lund);
 	clearMenu();
 	addButton(0,"Next",stuckonLundsDickWithYourMouth);
@@ -4604,6 +4636,8 @@ public function youreLundsBitch():void
 //[Next]
 public function stuckonLundsDickWithYourMouth():void
 {
+	clearOutput();
+	showLund();
 	showName("WAKING\nUP...");
 
 	output("You come to lying on your side, cum bubbling up from your throat before you spit out enormous, sticky wads of Lund’s seed that leave your lips and teeth permeated with his scent. It looks like he spilled a quart of the stuff down your front, too");
@@ -4620,11 +4654,11 @@ public function stuckonLundsDickWithYourMouth():void
 	output("\n\nYou get back to your [pc.feet] some time later, glancing at your codex before doing a double-take. You were here <i>how</i> long?! You’d better start moving.");
 	output("\n\n");
 
-	IncrementFlag("LUND_LOSS");
 	processTime(60*1.5);
 	for(var i:int = 0; i < 13; i++) { pc.orgasm(); }
 	pc.lust(50);
 	pc.loadInMouth(lund);
+	CombatManager.genericLoss();
 }
 
 //Fourth
@@ -4691,8 +4725,8 @@ public function lundBitcheningFinalized():void
 
 		output("\n\nThe savicite is coursing through your veins already, stimulating you to arousal, but you’re desperate to ignore it. Getting to your [pc.feet], you stumble forward as Lund starts you walking. You’re not entirely sure where he’s taking you but you’re not in any shape to stop him, and by now he’s beaten you so many times you’re hardly even inclined to resist.");
 	}
-	pc.changeLust(50);
 	output("\n\nYou set off towards Lund’s home, plodding behind him while he tugs you along on a leash.");
+	pc.changeLust(50);
 	processTime(50);
 
 	//[Next]
@@ -4787,7 +4821,7 @@ public function beLundsBitchForevah(hpLoss:Boolean):void
 		else if (pc.hasVagina()) output(" You orgasm so hard your thighs cramp, your [pc.legs] pulling inwards while Lund pumps your [pc.ass].");
 		else output(" Orgasm wracks your body from top to bottom, radiating outwards from your groin.");
 		output(" God damn it, you’ve never cum so hard in your life!");
-		if (pc.isNeuter()) output(" You hadn’t even realized you still could!");
+		if (pc.isSexless()) output(" You hadn’t even realized you still could!");
 
 		output("\n\n<i>“Fuck! Fuuuuck!”</i> you howl, throwing your head back. <i>“Oh, stars! D-don’t stop!”</i>");
 
@@ -4815,7 +4849,7 @@ public function beLundsBitchForevah(hpLoss:Boolean):void
 	processTime(55);
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",beLundsBitchForevahMore,[lustLoss,x]);
+	addButton(0,"Next",beLundsBitchForevahMore,[hpLoss,x]);
 }
 public function beLundsBitchForevahMore(args:Array):void
 {
@@ -4847,6 +4881,7 @@ public function beLundsBitchForevahMore(args:Array):void
 		if (pc.hasVagina()) output(" spread your wet, dripping pussylips");
 		else output(" spread your asshole");
 		output(" for Lund to fuck. You grunt in effort as he takes you up on the offer, your [pc.thighs] spread so you can take the impact of his groin against your jiggling ass. He places his hands around your [pc.hips] and slams himself into you, fucking your " + (x >= 0 ? "quivering cunt":"squeezing ass") + " so hard you have to bite back your cries of pleasure.");
+		pc.holeChange(x,lund.cockVolume(0));
 
 		output("\n\nYou’ve started seeing how long you can go before you give in and let out long, wailing moans of whorish ecstasy, and though you’ve improved substantially, it doesn’t take long for Lund to shatter your little facade. He pulls you back into him and when you feel his balls smack against your underside you groan in desperate desire. You <b>need</b> to feel those unload in you, to feel the familiar warmth of his cum dripping back out of you and down your legs.");
 		output("\n\n<i>“God, <b>Lund!</b>”</i> you moan, pushing back into him. <i>“Oh! Oh! Uh!”</i>");
@@ -4926,7 +4961,7 @@ public function beLundsBitchForevahMore(args:Array):void
 	processTime(3*24*60+rand(1440));
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",beLundsBitchForevahMost,[lustLoss,x]);
+	addButton(0,"Next",beLundsBitchForevahMost,[hpLoss,x]);
 }
 public function beLundsBitchForevahMost(args:Array):void
 {
@@ -4984,7 +5019,7 @@ public function beLundsBitchForevahMost(args:Array):void
 		output("\n\nThe trek back to the hold is long and filled with opportunities you’re only too eager to capitalize on. You’re <i>filled</i> with whatever this feeling is now, and when your eyes meet your master’s while your [pc.lips] are pressed against his groin you finally realize what it is. You <i>love</i> him, you love this strong, dominant korgonne man, and when he unloads yet another copious load of sticky spunk straight down your throat you’re only too happy to accept your role, closing your eyes and concentrating on the sensation of him pulsing against your tongue.");
 
 		output("\n\nYou are going to");
-		if (pc.hasVagina()) output(" bear this man so many children");
+		if (pc.hasVagina()) output(" bear this man so many children.");
 		else output(" spend so long pleasuring this man when you get back.");
 
 		for(var i:int = 0; i < 1000; i++) { pc.orgasm(); }
@@ -5041,7 +5076,6 @@ public function beLundsBitchForevahMost(args:Array):void
 		else pc.loadInAss(lund);
 	}
 	badEnd();
-	output("\n\nBAD END");
 }
 
 //[Submit] option
@@ -5174,7 +5208,7 @@ public function submitToLundBadEndCont():void
 
 	output("\n\nYou don’t have to wait long.");
 	output("\n\n<i>“Oh, <b>GOD!</b>”</i> you howl, fingernails dragging along the ground as ten inches of dog dick slides into your needy fuckhole. <i>“Uuuunnnhhh!”</i>");
-	output("\n\nThe crowd cheers at your ‘defeat’, but you couldn’t care less. You’re almost sobbing with relief when Lund grips you tighter and begins to pound away at you, his furry balls slapping against your" (vag ? " [pc.clits] hard enough to make you see stars":" underside") + ". You wouldn’t mind spending all day experiencing <i>this</i> sensation, that of finally being rewarded for your obedience and having your master indulge in you.");
+	output("\n\nThe crowd cheers at your ‘defeat’, but you couldn’t care less. You’re almost sobbing with relief when Lund grips you tighter and begins to pound away at you, his furry balls slapping against your" + (vag ? " [pc.clits] hard enough to make you see stars":" underside") + ". You wouldn’t mind spending all day experiencing <i>this</i> sensation, that of finally being rewarded for your obedience and having your master indulge in you.");
 	output("\n\n<i>“Lund,”</i> you pant quietly, tongue hanging from your mouth. <i>“Oohhh, god, Lund!”</i>");
 	output("\n\n<i>“Good " + pc.mf("boy","girl") + ",”</i> he snickers, raising a hand and giving you a spank hard enough to make your ass sting.");
 

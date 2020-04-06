@@ -12,6 +12,7 @@ package classes.GameData
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
 	import classes.Characters.KQTwinA;
+	import classes.Characters.Lund;
 	import classes.Characters.NymFoe;
 	import classes.Characters.NaleenHerm;
 	import classes.Characters.PlayerCharacter;
@@ -628,6 +629,9 @@ package classes.GameData
 				else if (target is PlayerCharacter) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");
 				else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " manage to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");
+
+				//Not in meleeCounterResults because Lund counters only if he's in stance and you miss
+				if (target is Lund && target.hasStatusEffect("Hunter Stance")) (target as Lund).counterAttack(attacker);
 				return false;
 			}
 			
@@ -842,6 +846,8 @@ package classes.GameData
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.getCombatName() + " with your " + attacker.meleeWeapon.longName + ", but just can’t connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + attacker.meleeWeapon.attackNoun + ".");
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " manage" + (target.isPlural ? "" : "s") + " to avoid " + possessive(attacker.getCombatName()) + " " + attacker.meleeWeapon.attackNoun + ".");
+
+				if (target is Lund && target.hasStatusEffect("Hunter Stance")) (target as Lund).counterAttack(attacker);
 				return false;
 			}
 			if (blindMiss(attacker, target, true))

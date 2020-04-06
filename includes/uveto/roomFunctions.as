@@ -25,7 +25,7 @@ public function TundraEncounterBonus():Boolean
 		choices[choices.length] = korgMaleEncounter;
 		choices[choices.length] = korgMaleEncounter;
 		//Told Lund to Fuck Off? Now he's mad!
-		if(lundHostile) choices[choices.length] = lundFight;
+		if(lundHostile()) choices[choices.length] = lundFight;
 		//Essyras/Lurelings
 		choices[choices.length] = marionEncounter;
 		if(stormguardMaleEncounterAvailabale()) 
@@ -1862,4 +1862,4 @@ public function korgiiMineGuardsBonus():Boolean
 {
 	prisonerEitanBonus();
 	return false;
-}
+}
