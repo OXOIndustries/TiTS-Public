@@ -164,6 +164,7 @@ package classes.Characters
 			this.cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
 			this.cocks[0].cockColor = RandomInCollection(["blue", "bright blue", "cyan"]);
 			this.cocks[0].cType = GLOBAL.TYPE_CANINE;
+			this.cocks[0].cLengthRaw = 10;
 			this.cocks[0].knotMultiplier = 2;
 
 			this.vaginas = new Array();
