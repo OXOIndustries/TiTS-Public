@@ -67,6 +67,7 @@
 			this.HPMod = 250;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
+			this.inventory = [new SexdollMiniBossVRProgram()];
 
 			this.femininity = 100;
 			this.eyeType = GLOBAL.TYPE_HUMAN;

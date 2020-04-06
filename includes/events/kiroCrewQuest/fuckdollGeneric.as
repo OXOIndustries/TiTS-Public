@@ -96,7 +96,7 @@ public function genericSexdollEncounter(VR:Boolean = false):void
 		output(", complete with stiffening [enemy.cockNounSimple], squeezably ripe tits, and a smile full of equal parts midnight promises and sexy danger. <i>“There you are! Did you know Mistress Po said I could fuck you as much as I want?”</i> She leans closer, running a glittering ");
 		if(!enemy.hasArmFlag(GLOBAL.FLAG_PAWS)) output("nail");
 		else output("claw");
-		output(" down the expanse of her uncovered bust. <i>“Of course I always wanna fuck.”</i> She pauses, when her digit clips a nipple, forcing it to leap to a crinkled, jutting state. <i>“And you will to!”</i>");
+		output(" down the expanse of her uncovered bust. <i>“Of course I always wanna fuck.”</i> She pauses, when her digit clips a nipple, forcing it to leap to a crinkled, jutting state. <i>“And you will too!”</i>");
 		//max lust
 		if(pc.lust() >= pc.lustMax()) output("\n\nThe mere suggestion is enough to make your " + (pc.hasKnees() ? "knees wobble":"[pc.legOrLegs] threaten to buckle") + ". You’re so fucked! ...At least it’ll feel good.");
 		//Low taint

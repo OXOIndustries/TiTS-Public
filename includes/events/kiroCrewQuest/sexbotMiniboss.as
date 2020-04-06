@@ -7,26 +7,36 @@ public function showKQMiniboss(nude:Boolean = false):void
 }
 
 //Encounter
-public function kqMinibossEncounter():Boolean
+public function kqMinibossEncounter(VR:Boolean = false):Boolean
 {
-	if(flags["KQ_MINIBOSS_DOWNED"] == undefined)
+	if(flags["KQ_MINIBOSS_DOWNED"] == undefined || VR)
 	{
 		flags["KQ_STEP"] = undefined;
 		author("Wsan");
 		showKQMiniboss();
-		output("\n\nYou stop suddenly, becoming aware of movement in the freighter up ahead. The figure doesn’t appear to possess any of your misgivings, approaching you with a mischievous if not outright smug smile across her smooth metallic face. Unarmed - and it is a <i>she</i> despite the hardening futanari cock throbbing between her curvy thighs, from the looks of it - she has feminine features and the commanding presence of a woman in charge, from the way she moves her faux-heeled feet to emphasize her assets to the confidence in her expression. You’re not her first fight.");
-		output("\n\n<i>“Get out of the way,”</i> you say, raising your [pc.weapon].");
-		output("\n\n<i>“Oh, they don’t usually say that,”</i> she says casually, producing a whip from somewhere behind her. <i>“Usually it’s ‘who are you’ then ‘stop, stop’ and eventually ‘harder, harder’. So,”</i> she continues, smiling cruelly as she flexes and uncurls her weapon, <i>“why don’t we skip right to the good part?”</i>");
-		output("\n\n<b>It’s a fight!</b>");
-		//starty combatty
 		var tEnemy:Creature = new KQSexdollMiniboss();
 		setEnemy(tEnemy);
+		if(VR) 
+		{
+			clearOutput();
+			output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, fighting your way through endless, sexy dolls...");
+			enemy.createStatusEffect("VR");
+			enemy.inventory = [];
+			enemy.credits = 0;
+			enemy.XPRaw = 0;
+		}
 		CombatManager.newGroundCombat();
 		CombatManager.setHostileActors(tEnemy);	
 		CombatManager.setFriendlyActors(pc);
 		CombatManager.victoryScene(youDefeatDatSexdollMeanbot);
 		CombatManager.lossScene(loseToKQMiniboss);
 		CombatManager.displayLocation("SEXDOLL");
+		output("\n\nYou stop suddenly, becoming aware of movement in the freighter up ahead. The figure doesn’t appear to possess any of your misgivings, approaching you with a mischievous if not outright smug smile across her smooth metallic face. Unarmed - and it is a <i>she</i> despite the hardening futanari cock throbbing between her curvy thighs, from the looks of it - she has feminine features and the commanding presence of a woman in charge, from the way she moves her faux-heeled feet to emphasize her assets to the confidence in her expression. You’re not her first fight.");
+		output("\n\n<i>“Get out of the way,”</i> you say, raising your [pc.weapon].");
+		output("\n\n<i>“Oh, they don’t usually say that,”</i> she says casually, producing a whip from somewhere behind her. <i>“Usually it’s ‘who are you’ then ‘stop, stop’ and eventually ‘harder, harder’. So,”</i> she continues, smiling cruelly as she flexes and uncurls her weapon, <i>“why don’t we skip right to the good part?”</i>");
+		output("\n\n<b>It’s a fight!</b>");
+		//starty combatty
+		
 		clearMenu();
 		addButton(0,"Next",CombatManager.beginCombat);
 		return true;
@@ -112,8 +122,11 @@ public function loseToKQMiniboss():void
 	}
 	output("\n\n<i>“Unh,”</i> she huffs, shivering while she slowly inserts herself between your " + (pc.hasVagina() ? "[pc.thighs].":"cheeks.") + " <i>“Ooohhhhh...”</i>");
 	output("\n\n<i>“Fuuuck,”</i> you moan over her shoulder while she raises her hips, sinking her turgid cock deeper into your body. <i>“Nnnh...”</i>");
-	if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
-	else pc.buttChange(enemy.cockVolume(0));
+	if(!enemy.hasStatusEffect("VR"))
+	{
+		if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
+		else pc.buttChange(enemy.cockVolume(0));
+	}
 	output("\n\n<i>“Good [pc.boyGirl],”</i> she pants, reaching back with her free hand to undo your restraints. <i>“Nnnggh... won’t be needing these.”</i>");
 	output("\n\nYou surprise yourself a little by finding that she’s right - you <i>don’t</i> need to be held down. With her wet, throbbing prick snug inside your " + (pc.hasVagina() ? "cunt":"ass") + " you don’t need <i>anything</i> - but if she could keep going that would be so nice...");
 	output("\n\n<i>“Nnnh,”</i> she groans, ");
@@ -155,12 +168,15 @@ public function loseToKQMiniboss():void
 	if(!pc.hasCock())
 	{
 		output("\n\nA sudden warmth grows at your crotch and when you look down you find" + (pc.hasVagina() ? " your clit has grown into a thick, heavy nine-inch human cock":" you’ve sprouted a cock, a thick, heavy sixteen-inch rod") + " that looks identical to your lover’s. Below it hangs two balls, plump, heavy, and already surging with seed that eagerly spills from your crown. All you can think about is the hope she might pound you even harder.");
-		pc.createCock();
-		if(pc.hasVagina()) pc.cocks[0].cLengthRaw = 9;
-		else pc.cocks[0].cLengthRaw = 16;
-		pc.balls = 2;
-		pc.ballSizeRaw = 9;
-		pc.taint(5);
+		if(!enemy.hasStatusEffect("VR"))
+		{
+			pc.createCock();
+			if(pc.hasVagina()) pc.cocks[0].cLengthRaw = 9;
+			else pc.cocks[0].cLengthRaw = 16;
+			pc.balls = 2;
+			pc.ballSizeRaw = 9;
+			pc.taint(5);
+		}
 	}
 	else if(pc.hasCocks())
 	{
@@ -198,10 +214,14 @@ public function loseToKQMiniboss():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	pc.taint(100);
-	pc.loadInMouth(enemy);
-	if(x >= 0) pc.loadInCunt(enemy,x);
-	else pc.loadInAss(enemy);
+	if(!enemy.hasStatusEffect("VR"))
+	{
+		pc.taint(100);
+		pc.loadInMouth(enemy);
+		if(x >= 0) pc.loadInCunt(enemy,x);
+		else pc.loadInAss(enemy);
+	}
+	else pc.taint(1);
 	clearMenu();
 	addButton(0,"Next",loseToKQMiniboss2);
 }
@@ -264,7 +284,12 @@ public function loseToKQMiniboss4():void
 	processTime(10*60);
 	pc.orgasm();
 	pc.changeLust(100);
-	badEnd();
+	if(enemy.hasStatusEffect("VR"))
+	{
+		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you’ve suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
+		CombatManager.genericLoss();
+	}
+	else badEnd();
 }
 
 //Player victory
@@ -326,7 +351,7 @@ public function fuckWsansSexdollPussy(x:int):void
 	output("\n\n<i>“Oh, baby,”</i> she moans, eyeing your [pc.cock " + x + "] with the aplomb only a sexbot could manage. <i>“Put it in me and use me.”</i>");
 	output("\n\n<i>“Less speaking,”</i> you grunt, roughly sliding yourself inside her. <i>“Nngh! Fuck!”</i>");
 	output("\n\nTo your surprise you find the inside of her vagina is not only a perfect fit for you but it’s even ribbed, rubbing against your swollen cock in different spots as it slips deeper into her. What isn’t surprising is the way she throws her head back and cums all over your dick with a feral moan, femcum squirting all over your " + (pc.balls > 0 ? "[pc.balls].":"groin.") + " It is what she was designed for, after all, and fuck if she isn’t good at it.");
-	pc.cockChange();
+	if(!enemy.hasStatusEffect("VR")) pc.cockChange();
 	output("\n\nIt’s a good thing you weren’t intending on taking too long in the first place because <i>fuck</i>, the vaginal clenching around you is mindblowing. The protruding bumps inside her welcoming cunt seem like they’re dynamic, never appearing in the same spot twice and ensuring you’re continually stimulated to the utmost of her abilities inside her. Whoever designed this whore did an amazing job of it.");
 	output("\n\nYou lift her legs up, pushing the backs of her knees towards her until her big, curvy ass is in the air and you can fuck her downwards, reaching ");
 	if(pc.cocks[x].cLength() > 15) output("all the way to her padded cervix in one aggressive thrust. The feedback is immediate - she howls in pleasure the moment you prod it, the sensitive flesh all but kissing and suckling on your [pc.cockHead " + x + "]. No wonder they were interested in Kiro.");
@@ -339,10 +364,13 @@ public function fuckWsansSexdollPussy(x:int):void
 	output("\n\nHaving been so thoroughly exposed to her juices, though, you find yourself suffering some minor side effects yourself - <b>your libido has increased</b> and <b>you have gained Taint</b>, courtesy of the bot’s designer.");
 	processTime(20);
 	//boosts taint and libido.
-	enemy.loadInCunt(pc,0);
 	pc.orgasm();
-	pc.taint(4);
-	pc.libido(2);
+	if(!enemy.hasStatusEffect("VR"))
+	{
+		enemy.loadInCunt(pc,0);
+		pc.taint(4);
+		pc.libido(2);
+	}
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -369,7 +397,7 @@ public function fuckSexdollFaceStuff(x:int):void
 	output("\n\n<i>“Mmmm... thanks, baby,”</i> she murmurs, rubbing her stomach. <i>“This’ll get me off for <b>weeks</b>.”</i>");
 	output("\n\nYou shake your head, " + (!pc.isCrotchExposed() ? "clothing yourself ":"") + "and moving on. You don’t have any more time to waste on a walking masturbation sleeve.");
 	processTime(20);
-	enemy.loadInMouth(pc);
+	if(!enemy.hasStatusEffect("VR")) enemy.loadInMouth(pc);
 	pc.orgasm();
 	pc.taint(1);
 
@@ -425,7 +453,7 @@ public function swallowTheDongForYourMinibossGoddess():void
 	output("\n\n<i>“Oh, you came out perfectly,”</i> she sighs quietly, admiring her work, then wincing in pleasure as you lean forward and obediently plant a wet, sloppy kiss with your plump lips and wide tongue right on the crown of her dick. <i>“We just need a few more minor adjustments before you’re ready for the boss... open those legs, beautiful." + (!pc.hasVagina() ? " I’ll take your new pussy’s virginity for you, don’t you worry.":"") + "”</i>");
 	processTime(15);
 	pc.orgasm();
-	pc.taint(100);
+	if(!enemy.hasStatusEffect("VR")) pc.taint(100);
 	pc.changeLust(3000);
 	//routes to bad end follow-ons
 	clearMenu();
@@ -468,8 +496,11 @@ public function rideSexbotDickYouDumbass(x:int):void
 	else if(tighties <= 4) output(" It’s a bit more of a stretch than you’re used to but that only enhances the pleasure, having her big, throbbing cock deep inside your " + (x >= 0 ? "drippy pussy.":"spread-wide asshole."));
 	else output(" Even as stretched as you are she fills out your walls with aplomb, the sensation of having her big, throbbing cock deep inside your " + (x >= 0 ? "sloppy cunt":"experienced asshole") + " making you bite your lower lip hard.");
 	output(" An idea comes to you then.");
-	if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
-	else pc.buttChange(enemy.cockVolume(0));
+	if(!enemy.hasStatusEffect("VR"))
+	{
+		if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
+		else pc.buttChange(enemy.cockVolume(0));
+	}
 	output("\n\n<i>“How long does it take you to cum?”</i> you sigh, wriggling your [pc.hips]. Oh, that’s <i>good</i>.");
 	output("\n\n<i>“I c-cum when my mistress desires it,”</i> she responds, wincing in pleasure.");
 	output("\n\n<i>“Then, as your temporary [pc.master], I’m telling you: don’t cum until I do,”</i> you snarl, bending down to look her in the face. <i>“Understand?”</i>");
@@ -546,11 +577,14 @@ public function catchARoboLoadInsideLikeADoof(x:int):void
 	output("\n\n<i>“Oh, you came out perfectly,”</i> she sighs quietly, admiring her work, then wincing in pleasure as you lean forward and obediently plant a wet, sloppy kiss with your plump lips and wide tongue right on the crown of her dick. <i>“Nnnh. Very good. Let’s get you cleaned up for the boss...”</i>");
 	//route to bad end follow-ons
 	processTime(15);
-	pc.taint(100);
+	if(!enemy.hasStatusEffect("VR")) pc.taint(100);
 	pc.orgasm();
 	pc.changeLust(50);
-	if(x >= 0) pc.loadInCunt(enemy,x);
-	else pc.loadInAss(enemy);
+	if(!enemy.hasStatusEffect("VR"))
+	{
+		if(x >= 0) pc.loadInCunt(enemy,x);
+		else pc.loadInAss(enemy);
+	}
 	pc.loadInMouth(enemy);
 	clearMenu();
 	addButton(0,"Next",loseToKQMiniboss2);

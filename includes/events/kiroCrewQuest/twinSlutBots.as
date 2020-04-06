@@ -874,7 +874,7 @@ public function twinSlutBotsFemaleBadEnd():void
 {
 	showKQTwins(true);
 	author("QuestyRobo");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	output("You fall to the ground, beaten and teased to the last of your resistance. The two modded futa-dolls loom over you, blocking out the light above you with the sheer mass of their genitals. 18 reaches down and pulls you to your knees, putting you at face-level with their crotches.");
 	output("\n\nAs soon as 18’s obscene, twitching bulge fully dominates your sight, the loudspeaker hisses to life, and a familiar, taunting voice makes itself known. <i>“Oh my, it seems my girls were too much for you to handle. It’s a shame your naive heroics didn’t have the skill to back them up. Don’t worry, though, your friend is in good hands. As for you, you belong to my girls now. Even if they were willing to hand you over, I’d be remiss to deny them a plaything after so long. Don’t worry, their methods are not as refined as mine, but their aptitude for doll making is quite impressive. I look forward to reviewing their work after you’re done!”</i> You hear the maniacal doctor chuckling to herself before the feed cuts out.");
 	output("\n\nThere’s a moment of eerie silence after Po’s mocking voice leaves you. Even the two looming sex dolls pause, almost as if they’re waiting for something to happen. The quiet is broken by a faint, hydraulic hiss from both behind you and in front of you. The Twins let out a combined moan as their suits suddenly retract into some unseen devices. Without the tight suit to contain them, the built-up musk from what could be weeks or even months of confinement flows free with the force of a smoke bomb.");
@@ -918,7 +918,7 @@ public function twinSlutBotsFemaleBadEnd():void
 		if (!pc.isSexless()) pc.loadInCunt(enemy,0);
 		pc.loadInAss(enemy);
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(5*60);
 	else processTime(50);
 	clearMenu();
@@ -930,7 +930,7 @@ public function twinSlutBotsFemaleBadEnd2():void
 	showBust("KQ_TWINS","ILLUSTRIA_PO",kiroBustDisplay(true));
 	showName("TWIN\nSEXBOTS");
 	author("QuestyRobo");
-	pc.lust(100);
+	pc.changeLust(100);
 	output("You spend the next... however long fading in and out of consciousness. Usually, you wake up to some strange device injecting something into you while one or both of your mistress’s plows you like the dirty slut you are. Each time it feels better. Each time your body grows larger, rounder, more slutty and perfect for your loving mistresses. The whole time you’re in the same room, being changed and tinkered with like a living science experiment.");
 	output("\n\nEventually, you wake up without any devices or restraints. You get up and wander around the room, trying to get your head together, maybe even remember what happened before you got here. More likely, though, you’ll just end up dropping to your knees and sucking off one of your mistresses again.");
 	output("\n\nSpeaking of which, your two amazing studs saunter in, cocks rock hard and ready for you. They’re not alone, though. Some robot lady and an oddly familiar kui-tan walk in after them.");
@@ -952,7 +952,7 @@ public function twinSlutBotsFemaleBadEnd2():void
 	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave,true);
 	else
 	{
-		pc.lust(pc.lustMax());
+		pc.changeLust(pc.lustMax());
 		badEnd();
 	}
 }
@@ -961,7 +961,7 @@ public function twinSlutBotsMaleBadEnd():void
 {
 	showKQTwins(true);
 	author("QuestyRobo");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	output("The last of your strength fails and you fall to the ground, fully submitting to the two as they loom over you. You feel their attention immediately turn to your [pc.cocks] as ");
 	if (pc.isCrotchExposed()) output("" + (pc.cockTotal() >= 2 ? "they swing":"it swings") + " brazenly in the open air");
 	else output("" + (pc.cockTotal() >= 2 ? "they tent":"it tents") + " your [pc.crotchCover]");
@@ -1018,7 +1018,7 @@ public function twinSlutBotsMaleBadEnd():void
 	pc.orgasm();
 	pc.orgasm();
 	if(!pc.hasStatusEffect("VR_DOLLS")) pc.taint(100);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(5*60);
 	else processTime(50);
 	clearMenu();
@@ -1046,7 +1046,7 @@ public function twinSlutBotsMaleBadEnd2():void
 	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave,true);
 	else
 	{
-		pc.lust(pc.lustMax());
+		pc.changeLust(pc.lustMax());
 		badEnd();
 	}
 }
