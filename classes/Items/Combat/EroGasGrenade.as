@@ -133,7 +133,7 @@
 				//Possible DoT
 				if(!cTarget.isDefeated())
 				{
-					if(attacker.intelligence()/2 + rand(20)+1 >= cTarget.physique()/2 + 10 && !cTarget.hasStatusEffect("AphroGas"))
+					if(attacker.intelligence()/2 + rand(20)+1 >= cTarget.physique()/2 + 10 && !cTarget.hasStatusEffect("Aphro Gas"))
 					{
 						CombatAttacks.applyAphroGas(cTarget, 6, 3);
 						output(" <b>The gas clings to " + cTarget.capitalA + cTarget.uniqueName + "</b>.");
