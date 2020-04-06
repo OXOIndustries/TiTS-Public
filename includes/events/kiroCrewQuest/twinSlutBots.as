@@ -10,20 +10,8 @@ public function showKQTwins(nude:Boolean = false):void
 }
 public function twinSexdollEncounter(VR:Boolean = false):Boolean
 {
-	if(VR) 
-	{
-		clearOutput();
-		author("QuestyRobo");
-		showKQTwins();
-		output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, coming upon two over-endowed, overly lusty dolls...");
-		if(!pc.hasStatusEffect("VR_DOLLS")) pc.createStatusEffect("VR_DOLLS");
-		output("\n\nThe two ausar “twins” that you defeated earlier are still here, still mindlessly rutting against each other. You could take them for a roll in the... floor if you wanted to.");
-		clearMenu();
-		addButton(0, "Twins", twinsRepeatEncounter);
-		return false;
-	}
 	//Maaaybe shouldn't be able to fuck dolls as you're running away with your new crewmate
-	if (flags["KQ_RESCUED"] != undefined)
+	if (!VR && flags["KQ_RESCUED"] != undefined)
 	{
 		if (flags["KQ_TWINS_DOWNED"] != undefined)
 		{
@@ -32,7 +20,7 @@ public function twinSexdollEncounter(VR:Boolean = false):Boolean
 		KQKiroFollowBonusTexts();
 		return false;
 	}
-	else if (flags["KQ_TWINS_DOWNED"] != undefined)
+	else if (!VR && flags["KQ_TWINS_DOWNED"] != undefined)
 	{
 		output("\n\nThe two ausar “twins” that you defeated earlier are still here, still mindlessly rutting against each other. You could take them for a roll in the... floor if you wanted to.");
 		if (flags["KQ_POSTER_LOOT"] != undefined) addButton(0, "Twins", twinsRepeatEncounter);
@@ -45,6 +33,29 @@ public function twinSexdollEncounter(VR:Boolean = false):Boolean
 		author("QuestyRobo");
 		showKQTwins();
 
+		var enemies:Array = [new KQTwinA(), new KQTwinB()];
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(enemies[0],enemies[1]);
+		CombatManager.encounterTextGenerator(twinBotEncText);
+		CombatManager.victoryScene(beatUpTheOverAugmentedTwins);
+		CombatManager.lossScene(loseToTwinsAndFaceTheConsequences);
+		CombatManager.displayLocation("TWIN SEXBOTS");
+
+		if(VR) 
+		{
+			clearOutput();
+			author("QuestyRobo");
+			showKQTwins();
+			output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, coming upon two over-endowed, overly lusty dolls...");
+			if(!pc.hasStatusEffect("VR_DOLLS")) pc.createStatusEffect("VR_DOLLS");
+			enemies[0].inventory = [];
+			enemies[0].credits = 0;
+			enemies[0].XPRaw = 0;
+			enemies[1].inventory = [];
+			enemies[1].credits = 0;
+			enemies[1].XPRaw = 0;
+		}
 		output("\n\nAs you’re traversing the halls of the mad doctor’s facility, you hear the sound of a heavy door opening in the distance. You raise your [pc.weapon] and get ready for any incoming security, only to jump when you hear a message from the loudspeaker.");
 		output("\n\n<i>“Security clearance accepted. Welcome; experiment 17, experiment 18”</i>");
 		output("\n\nAs soon as the message ends, the voice of the good doctor starts coming in over your codex. <i>“Apologies for that commotion. It’s just The Twins breaking out of their cell again.”</i>");
@@ -56,13 +67,7 @@ public function twinSexdollEncounter(VR:Boolean = false):Boolean
 		output("\n\nThe smaller one grunts again, eliciting a response from her companion, who seems to be able to understand her in some way. <i>“I know, sister. I like [pc.himHer] too! So rare to see someone new, someone so... unmoulded... Oh, the ideas I have for [pc.himHer]!”</i>");
 		output("\n\nThe smaller sister grunts again. <i>“Oh my, such debauchery, sister! I don’t know how I’ll contain myself until we’ve beaten [pc.himHer] into submission!”</i> Her cock bulges in its latex confines but remains well-contained by the sturdy material. A thick spray of pre fires out the end, seemingly unimpeded by the coverings. Her sister follows suit, just as aroused despite her silence. <i>“Guuuuh! Do you see how horny we are? Wouldn’t it just be so nice to come be our personal fuck-toy? Mother won’t give us another after we broke the last one!”</i>");
 		output("\n\nThe two start moving toward you, a feral, dangerous hunger in the eyes that you can actually see. You didn’t come here to be made into a fuck-doll by a pair of lab rats! You draw your [pc.weapon] and get ready to fight.");
-		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyActors(pc);
-		CombatManager.setHostileActors(new KQTwinA, new KQTwinB);
-		CombatManager.encounterTextGenerator(twinBotEncText);
-		CombatManager.victoryScene(beatUpTheOverAugmentedTwins);
-		CombatManager.lossScene(loseToTwinsAndFaceTheConsequences);
-		CombatManager.displayLocation("TWIN SEXBOTS");
+		
 		clearMenu();
 		addButton(0,"Next",CombatManager.beginCombat);
 		return true;
@@ -136,14 +141,14 @@ public function twinsRepeatEncounter():void
 	else addButton(14,"Leave",mainGameMenu);
 }
 
-public function vrLeave():void
+public function vrLeave(lose:Boolean = false):void
 {
 	clearOutput();
 	showName("LOGGING\nOUT...");
 	output("With the simulation complete, it’s time to return to the real world...");
 	pc.removeStatusEffect("VR_DOLLS");
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if (!lose) CombatManager.genericVictory();
+	else CombatManager.genericLoss();
 }
 //Victory
 //All sex scenes give large amounts of taint.
@@ -388,11 +393,15 @@ public function runATrainOfHyperSluts(x:int):void
 	//Code note: make sure the parsers BEFORE growth are parsed before growth is applied and the parsers for post-growth are applied after the stat changes are made. It’ll be nicely noticeable if you jump a size category from the enlargement. -Fen
 	processTime(45);
 	pc.orgasm();
-	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	if(pc.hasStatusEffect("VR_DOLLS"))
+	{
+		clearMenu();
+		addButton(0,"Next",vrLeave);
+	}
 	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
-		clearOutput();
+		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
 }
@@ -840,7 +849,11 @@ public function suckDemTwinDicks():void
 		flags["USED_SNAKEBYTE"] = 1;
 	}
 	for(var y:int = 0; y < 12 ; y++) { pc.orgasm(); }
-	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0, "Next", vrLeave);
+	if(pc.hasStatusEffect("VR_DOLLS"))
+	{
+		clearMenu();
+		addButton(0, "Next", vrLeave);
+	}
 	else if (inCombat()) CombatManager.genericVictory();
 	else 
 	{
@@ -853,7 +866,7 @@ public function loseToTwinsAndFaceTheConsequences():void
 {
 	//Herms have a 50% chance of either end triggering
 	if (pc.isHerm() && rand(2) == 0) twinSlutBotsMaleBadEnd();
-	else if (pc.hasCock()) twinSlutBotsMaleBadEnd();
+	else if (pc.hasCock() && !pc.isHerm()) twinSlutBotsMaleBadEnd();
 	else twinSlutBotsFemaleBadEnd();
 }
 //Female
@@ -936,7 +949,7 @@ public function twinSlutBotsFemaleBadEnd2():void
 	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(10*60);
 	else processTime(60);
 	pc.orgasm();
-	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave,true);
 	else
 	{
 		pc.lust(pc.lustMax());
@@ -1030,7 +1043,7 @@ public function twinSlutBotsMaleBadEnd2():void
 	if(!pc.hasStatusEffect("VR_DOLLS")) processTime(10*60);
 	else processTime(60);
 	pc.orgasm();
-	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave);
+	if(pc.hasStatusEffect("VR_DOLLS")) addButton(0,"Next",vrLeave,true);
 	else
 	{
 		pc.lust(pc.lustMax());

@@ -262,7 +262,7 @@
 			else
 			{
 				output(", but when they touch you, they fill you with prickling warmth. As she retreats, you see gleaming steal needles painlessly retracting into the tips of her digits. Whatever she drugged you with feels good...");
-				//applyDamage(new TypeCollection( { drug: 12+rand(3) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 12+rand(3) } ), this, target, "minimal");
 			}
 		}
 		//Fingerfuck (exposed crotches only)

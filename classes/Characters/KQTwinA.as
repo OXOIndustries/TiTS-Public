@@ -280,7 +280,7 @@ package classes.Characters
 				output("\n\nDespite your best efforts to fight her off, she manages to stick you with the medical-grade weapons, injecting their contents into your body. Heat starts to build there, slowly spreading out as your body fills with lust! At the same time, you feel yourself become heavier, more sluggish like the poison is numbing your muscles.");
 				applyDamage(new TypeCollection( { drug: 12 } ), this, target, "minimal");
 				
-				if (pc.hasStatusEffect("VR_DOLLS")) target.taint(1);
+				if (!target.hasStatusEffect("VR_DOLLS")) target.taint(1);
 				if(!target.hasStatusEffect("Injected")) 
 				{
 					target.createStatusEffect("Injected",5,3,0,0,false,"Icon_DrugVial","An injected aphrodisiac. Excites over time. It should fade eventually.",true,0);
@@ -305,7 +305,7 @@ package classes.Characters
 			{
 				output("\n\nThe force of the blast splatters against you like a high-powered firehose, nearly knocking you off of your [pc.footOrFeet]. She cakes it onto you, layer after layer clinging to your unprepared body like hot glue. It overloads all of your senses; sight, smell, touch, the works. By the time it’s done, you feel like you’re more cum than [pc.race]. It feels like it’s seeping into your pores, delivering some faint but effective aphrodisiac into your blood, making your heart race and blood rocket to your crotch.");
 				if (target.isBimbo() || target.isCumSlut()) output(" Of course, you take the time to lick up as much yummy cummy as possible. Can’t, like, fight on an empty stomach!");
-				if (target.hasStatusEffect("VR_DOLLS")) target.applyCumSoaked();
+				if (!target.hasStatusEffect("VR_DOLLS")) target.applyCumSoaked();
 				applyDamage(new TypeCollection( { tease: 12+rand(3) } ), this, target, "minimal");
 			}
 		}
