@@ -8,7 +8,12 @@ public function taursuitsBonusFunz(VR:Boolean = false):void
 {
 	author("Wsan");
 	showTaursuit();
-	output("\n\nYou approach a hallway when you hear an extremely out of place sound in the relative silence of the freighter");
+	if(VR) 
+	{
+		clearOutput();
+		output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, fighting your way through endless, sexy dolls...");
+	}
+	else output("\n\nYou approach a hallway when you hear an extremely out of place sound in the relative silence of the freighter");
 	if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" - one you happen to know quite well yourself");
 	output(". The sound of hooved feet, clacking metallically from around the corner. The rhythm is steady and plodding, like a machine, and you’re already braced for a fight when the ‘opponent’ trundles around the corner.");
 
@@ -403,7 +408,7 @@ public function moreTaursuitTFFun(VR:Boolean = false):void
 	processTime(60);
 	for(i = 0; i < 15; i++) { pc.orgasm(); }
 	clearMenu();
-	if(enemy.hasStatusEffect("VR"))
+	if(VR)
 	{
 		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you’ve suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
 	}
@@ -524,9 +529,10 @@ public function toZeBadEndTaurButt():void
 	if(enemy.hasStatusEffect("VR"))
 	{
 		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you’ve suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
+		pc.orgasm();
 		CombatManager.genericLoss();
 	}
-	badEnd();
+	else badEnd();
 }
 
 //Victory scene

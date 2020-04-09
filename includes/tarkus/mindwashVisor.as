@@ -93,8 +93,9 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
 		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"KQ:Sexdoll",genericSexdollEncounter,true,"Kiro Quest: Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's sexbots have to offer!");
 		if(pc.hasKeyItem("VR Program: The Twins")) addButton(button++,"KQ:Twins",twinSexdollEncounter,true,"Kiro Quest: Twins Encounter","Experience what it's like to play with the twins.");
-		if(pc.hasKeyItem("Advanced Sexdoll Virtual Reality Program")) addButton(button++,"KQ:AdvSexdoll",kqMinibossEncounter,true,"Kiro Quest: Advanced Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's advanced sexbot has to offer!");
+		if(pc.hasKeyItem("Advanced Sexdoll Virtual Reality Program")) addButton(button++,"KQ:A. Sexdoll",kqMinibossEncounter,true,"Kiro Quest: Advanced Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's advanced sexbot has to offer!");
 		if(pc.hasKeyItem("Po Virtual Reality Program")) addButton(button++,"KQ:Dr Po",poVRIntro,undefined,"Kiro Quest: Doctor Po Encounter","Experience battling with (and indulging in) everything Doctor Po has to offer!");
+		if(pc.hasKeyItem("Taursuit Virtual Reality Program")) addButton(button++,"KQ:TaurSuit",taursuitsBonusFunz,true,"Kiro Quest: Doctor Po Encounter","Experience encountering the tricky taursuit once more!");
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -354,8 +355,9 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
 		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"KQ:Sexdoll",genericSexdollEncounter,true,"Kiro Quest: Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's sexbots have to offer!");
 		if(pc.hasKeyItem("VR Program: The Twins")) addButton(button++,"KQ:Twins",twinSexdollEncounter,true,"Kiro Quest: Twins Encounter","Experience what it's like to play with the twins.");
-		if(pc.hasKeyItem("Advanced Sexdoll Virtual Reality Program")) addButton(button++,"KQ:AdvSexdoll",kqMinibossEncounter,true,"Kiro Quest: Advanced Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's advanced sexbot has to offer!");
-		if(pc.hasKeyItem("Po Virtual Reality Program")) addButton(button++,"KQ:Dr Po",poVRIntro,undefined,"Kiro Quest: Doctor Po Encounter","Experience battling with (and indulging in) everything Doctor Po has to offer!");
+		if(pc.hasKeyItem("Advanced Sexdoll Virtual Reality Program")) addButton(button++,"KQ:A. Sexdoll",kqMinibossEncounter,true,"Kiro Quest: Advanced Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's advanced sexbot has to offer!");
+		if(pc.hasKeyItem("Po Virtual Reality Program")) addButton(button++,"KQ:Dr Po",poVRIntro,undefined,"Kiro Quest: Doctor Po Encounter","Experience battling with Doctor Illustria Po once more!");
+		if(pc.hasKeyItem("Taursuit Virtual Reality Program")) addButton(button++,"KQ:TaurSuit",taursuitsBonusFunz,true,"Kiro Quest: Doctor Po Encounter","Experience encountering the tricky taursuit once more!");
 		return;
 	}
 	
