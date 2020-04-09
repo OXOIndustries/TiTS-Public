@@ -99,15 +99,19 @@ public function encounterDatPoBitchBaybeee():Boolean
 	if(kiro.isBimbo()) addButton(2,"Leave Kiro",screwSavinKiro,undefined,"Leave Kiro","You’re too late. You might as well go home.");
 	return true;
 }
-
+public function poVRIntro():void
+{
+	clearOutput();
+	output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, fighting your way against the insidious Doctor Po...");
+	clearMenu();
+	addButton(0,"Next",fightDatScientisto,true);
+}
 public function fightDatScientisto(VR:Boolean = false):void
 {
 	var tEnemy:Creature = new KQDoctorIllustriaPo();
 	setEnemy(tEnemy);
 	if(VR) 
 	{
-		clearOutput();
-		output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, fighting your way against the insidious Doctor Po...");
 		enemy.createStatusEffect("VR");
 		enemy.inventory = [];
 		enemy.credits = 0;
@@ -624,35 +628,39 @@ public function badEndToDatPo2():void
 public function badEndToDatPo3():void
 {
 	// TF Kiro
-	var kiroTFHour:int = (flags["KQ_LAST_HOUR_TF"] == undefined ? 0 : flags["KQ_LAST_HOUR_TF"]);
-	if(kiroTFHour < 18)
+	//No TFing Kiro in VR
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		kiro.createPerk("MinCumQ",2000);
-	}
-	if(kiroTFHour < 24)
-	{
-		kiro.createPerk("Ever-Milk",5000);
-	}
-	if(kiroTFHour < 30)
-	{
-		kiro.breastRows[0].breastRatingRaw += 17;
-	}
-	if(kiroTFHour < 36)
-	{
-		kiro.vaginas[0].bonusCapacity += 100;
-		kiro.ass.bonusCapacity += 100;
-	}
-	if(kiroTFHour < 42)
-	{
-		kiro.lipMod++;
-		kiro.breastRows[0].breastRatingRaw += 16;
-	}
-	if(kiroTFHour < 48)
-	{
-		kiro.lipMod++;
-		kiro.createPerk("Ditz Speech");
-		kiro.vaginas[0].bonusCapacity += 150;
-		kiro.ass.bonusCapacity += 150;
+		var kiroTFHour:int = (flags["KQ_LAST_HOUR_TF"] == undefined ? 0 : flags["KQ_LAST_HOUR_TF"]);
+		if(kiroTFHour < 18)
+		{
+			kiro.createPerk("MinCumQ",2000);
+		}
+		if(kiroTFHour < 24)
+		{
+			kiro.createPerk("Ever-Milk",5000);
+		}
+		if(kiroTFHour < 30)
+		{
+			kiro.breastRows[0].breastRatingRaw += 17;
+		}
+		if(kiroTFHour < 36)
+		{
+			kiro.vaginas[0].bonusCapacity += 100;
+			kiro.ass.bonusCapacity += 100;
+		}
+		if(kiroTFHour < 42)
+		{
+			kiro.lipMod++;
+			kiro.breastRows[0].breastRatingRaw += 16;
+		}
+		if(kiroTFHour < 48)
+		{
+			kiro.lipMod++;
+			kiro.createPerk("Ditz Speech");
+			kiro.vaginas[0].bonusCapacity += 150;
+			kiro.ass.bonusCapacity += 150;
+		}
 	}
 	
 	clearOutput();
@@ -681,7 +689,7 @@ public function badEndToDatPo3():void
 	output("\n\n<i>“Oh thank you, Mistress!”</i> Kiro cheers, shifting down " + (pc.legCount == 1 ? "to your [pc.leg]":"between your [pc.legs]") + " in a hurry.");
 
 	//No puss, no new PG
-	if(!pc.hasVagina()) pc.createVagina();
+	if(!pc.hasVagina())
 	{
 		output(" <i>“Umm, in the ass, Mistress?”</i> Kiro seems uncertain, like fucking your ass would be a presumptuous breach of command. It almost hurts to hear. Why isn’t your ass good enough for her to fuck?");
 		output("\n\nDoctor Po smirks. <i>“No, pet - in the pussy. Here.”</i> Her eyes flicker for a moment, and the debilitating arousal inside you seems to crawl through your veins, pooling in a crotch that suddenly feels too hot and too sweaty. You can feel your loins being squeezed between your thighs, plump and increasingly sensitive, driving you to writhe against your restraints. A wave of warm, wet heat envelops them, making you groan in inexplicable delight. Those squirming motions feel better than ever around your nethers, and after a moment, you realize you can hear the sound of your new, soaked pussy squelching with your motions.");
@@ -695,14 +703,17 @@ public function badEndToDatPo3():void
 	output("\n\nIt feels like you’re being split in half, but in a good way. With each inch Kiro powers into your " + (pc.fertility() <= 0 ? "in":"") + "fertile channel, you become increasingly aware of just how elastic you can be... and just how hot this gorgeous alien babe is. This isn’t just sex, it’s <b>fucking</b>. You can tell by the short, savage strokes she’s using to drill deeper inside your honeypot, pausing just long enough for her veiny monstrosity to produce a fresh dollop of lubrication in preparation. There’s no room for thoughts of resistance when you’re this <b>full</b> and <b>proper fucked</b>.");
 	
 	//Cunchange ½ kirovol.
-	if(!pc.hasVagina())
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		pc.createVagina();
-		pc.setNewVaginaValues(0);
+		if(!pc.hasVagina())
+		{
+			pc.createVagina();
+			pc.setNewVaginaValues(0);
+		}
+		pc.vaginas[0].wetnessRaw += 5;
+		pc.boostGirlCum(15);
+		pc.cuntChange(0, (kiro.cockVolume(0) * 0.5));
 	}
-	pc.vaginas[0].wetnessRaw += 5;
-	pc.boostGirlCum(15);
-	pc.cuntChange(0, (kiro.cockVolume(0) * 0.5));
 	
 	output("\n\n<b>She stretches you out.</b>");
 	output("\n\nKiro’s medial ring slips inside with an audible ‘pop,’ and you wonder if you’ll get to hear that on every stroke. There’s something hot about that idea - of being stretched to the absolute limit by someone you’ll never entirely adjust to, your pussy ruined by size and friction until you crave nothing but more of the same... Sparks of ecstasy flare behind your eyes, and you wonder what you were thinking about... until Kiro plows home again, and you’re nothing but flesh and misfiring nerves, stretched into taut ecstasy.");
@@ -720,15 +731,18 @@ public function badEndToDatPo3():void
 	output("\n\nAnd lick, heedless of how your [pc.belly] balloons with Kiro’s successive load or just how tired your tongue is getting. That discomfort is nothing next to the pleasure of sex.");
 	processTime(65);
 	
-	for(var i:int = 0; i < 15; i++)
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		pc.orgasm();
-		pc.loadInCunt(kiro, 0);
-		pc.loadInMouth(enemy);
+		for(var i:int = 0; i < 15; i++)
+		{
+			pc.orgasm();
+			pc.loadInCunt(kiro, 0);
+			pc.loadInMouth(enemy);
+		}
+		pc.changeLust(pc.lustMax());
+		pc.intelligence(-5);
+		pc.willpower(-5);
 	}
-	pc.changeLust(pc.lustMax());
-	pc.intelligence(-5);
-	pc.willpower(-5);
 	
 	clearMenu();
 	addButton(0,"Next",badEndToDatPo4);
@@ -764,13 +778,16 @@ public function badEndToDatPo4():void
 		output(", but looks can be deceiving. They feel so much different now - so much readier to be <b>suckled</b> and drained. Each tube-filling [pc.milkNoun]-torrent feels like nothing but pleasure and relief. Soreness is a thing of the past. There is only the sublime, calming enjoyment of getting your titties tugged on.\n\nWould it feel better of Miss Po was doing it? Or Kiro? What if they were both there, sucking on your big fat slut-tits? You realize midway through your next milking-gasm that it doesn’t really matter who does it as long as <i>somebody</i> or <i>something</i> is latched on.");
 	}
 	
-	if(pc.biggestTitSize() >= 1)
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		pc.milkMultiplier += 100;
-		// Perk "Eve-Milk"
-		// v1: Minimum milkQ produced
-		pc.createPerk("Ever-Milk", 5000, 0, 0, 0, "Fluid produced from lactation is always on tap and will never run dry. Ever.");
-		if(pc.milkFullness < 100) pc.milkFullness = 100;
+		if(pc.biggestTitSize() >= 1)
+		{
+			pc.milkMultiplier += 100;
+			// Perk "Eve-Milk"
+			// v1: Minimum milkQ produced
+			pc.createPerk("Ever-Milk", 5000, 0, 0, 0, "Fluid produced from lactation is always on tap and will never run dry. Ever.");
+			if(pc.milkFullness < 100) pc.milkFullness = 100;
+		}
 	}
 	
 	//Merge no new PG.
@@ -782,15 +799,18 @@ public function badEndToDatPo4():void
 	else output("[pc.cocks] that seem quite happy to stay exactly where they are");
 	output(". Besides, you can get up when you’ve had enough milking. Right now, it’s more fun to grope your tits and pry them apart while you’re cumming, all so you can watch the jets of [pc.cumNoun] spurting from your cartoonishly engorged cock" + (pc.hasCocks() ? "s":"") + ".");
 	
-	if(!pc.hasCock())
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		pc.createCock();
-		pc.setNewCockValues(0);
+		if(!pc.hasCock())
+		{
+			pc.createCock();
+			pc.setNewCockValues(0);
+		}
+		if(pc.ballFullness < 100) pc.ballFullness = 100;
+		pc.ballEfficiency += 9;
+		pc.refractoryRate += 15;
+		pc.cumMultiplierRaw += 100;
 	}
-	if(pc.ballFullness < 100) pc.ballFullness = 100;
-	pc.ballEfficiency += 9;
-	pc.refractoryRate += 15;
-	pc.cumMultiplierRaw += 100;
 	
 	output("\n\nAnd as that orgasm fades into gentle contentment, you realize you’re still hard and drippy. Why not stay for another one? There’s no hurry now that Kiro’s already been turned into an agreeable walking fucktoy. You’re free now. Free to luxuriate in the enhanced sensations your body gives you. Free to think about how good Illustria’s pussy tastes and how badly you want to suck on her tits. Maybe if you called her Mistress like Kiro does. Maybe then she’d let you fuck her.");
 	output("\n\nYou’ll have to get good at begging.");
@@ -804,8 +824,11 @@ public function badEndToDatPo4():void
 		pc.orgasm();
 	}
 	pc.changeLust(pc.lustMax());
-	pc.intelligence(0, true);
-	pc.willpower(0, true);
+	if(!enemy.hasStatusEffect("VR")) 
+	{
+		pc.intelligence(0, true);
+		pc.willpower(0, true);
+	}
 	
 	clearMenu();
 	addButton(0,"Next",badEndToDatPo5);
@@ -813,11 +836,12 @@ public function badEndToDatPo4():void
 
 public function badEndToDatPo5():void
 {
-	moveTo("GAME OVER");
+	if(!enemy.hasStatusEffect("VR")) moveTo("GAME OVER");
 	clearOutput();
 	showZodee();
 	//days += 5;
-	processTime((5*24*60) + rand(247));
+	if(!enemy.hasStatusEffect("VR")) processTime((5*24*60) + rand(247));
+	else processTime(rand(247));
 	author("Fenoxo");
 	output("When Illustria loses you and Kiro in a bet, you’re understandably crestfallen. You loved Mistress Po with all your heart. She was always so nice to you and Kiro, making sure you got to spend most of your day cumming with the other slutty herms in her collection.");
 	output("\n\nAll that worry vanishes when your new Owner, Mistress Zo’dee, tells you to calm down and relax.");
@@ -831,22 +855,25 @@ public function badEndToDatPo5():void
 public function badEndToDatPo6():void
 {
 	//days += 10;
-	processTime((10*24*60) + rand(182));
+	if(!enemy.hasStatusEffect("VR")) processTime((10*24*60) + rand(182));
+	else processTime(rand(182));
 	clearOutput();
 	showZodee();
 	author("Fenoxo");
 	output("Life with Mistress Zo’dee is a lot different than life with Mistress Po. For one, Zo’dee doesn’t have nearly as many toys for you to play with, and she even lets her android boss you around too. Her ship is far smaller, and she insists on feeding you a diet composed almost entirely of Kiro’s cum, not that you mind. It’s certainly done wonders for your [pc.butt], plumping it out even more than Mistress Po’s treatments.");
 	
-	pc.buttRatingRaw += 5;
+	if(!enemy.hasStatusEffect("VR")) pc.buttRatingRaw += 5;
 	
 	output("\n\nIt’s not all bad though. You get to share a bunk with Kiro every night, and Mistress Zo’dee insists that you arrange yourselves so that your face is buried in the tanuki’s crotch every evening so that you can quietly suck each other off when you’re too horny to sleep, which is a lot of the time, now that you think about it. As a well-trained fuckdoll, you know that you’ll have plenty of time to rest while your Mistress is out getting rich. As long as you’re there with a wet cunt and a smiling mouth for her to fill with eggs and spunk, she’s happy to have you onboard.");
 	output("\n\nAnd making Mistress happy makes you happy.");
 	output("\n\nJust today, she told you she wanted you to spend the day sucking Kiro’s cock, ‘to really stretch out that slut jaw of yours,’ and it’s working fabulously.");
 	output("\n\nYou blink away the mask of cum covering your [pc.eyes] and twist the corners of your mouth into a smile. Kiro looks so happy when your nose brushes against her musky sheath. If you weren’t absolutely stuffed with dick and cum, you might even confess your love for the dolled-up kui-tan.");
 	output("\n\nYou can always communicate your love via sex anyhow. It’s almost as natural as breathing. Besides, <b>you and Kiro are crewmates now. Mission accomplished!</b>");
-	pc.changeLust(pc.lustMax());
+	if(!enemy.hasStatusEffect("VR")) pc.changeLust(pc.lustMax());
+	else pc.orgasm();
 	//BAD END :3
-	badEnd();
+	if(!enemy.hasStatusEffect("VR")) badEnd();
+	else addButton(0,"Next",vrLeave,true);
 }
 
 //Defeat Illustria Po
@@ -904,9 +931,10 @@ public function endPo():void
 	showName("IT’S\nOVER");
 	author("Fenoxo");
 	output("Doctor Po’s body proves more durable than you thought, but you succeed in your task all the same. It leaves a queasy feeling in your gut.");
-	flags["KQ_PO_DEAD"] = 1;
+	if(!enemy.hasStatusEffect("VR")) flags["KQ_PO_DEAD"] = 1;
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave)
 }
 
 //Fuck Pussy
@@ -920,7 +948,7 @@ public function fuckPosCunt(x:int):void
 	//Crotch revealed:
 	if(pc.isCrotchExposed()) output("Glad you’ve left your [pc.cocks] swinging free, you advance on the fallen doctor " + (!pc.isErect() ? "with rapidly stiffening intent":"full of firm, desirous intent") + ".");
 	//Covered:
-	else output("\n\nShucking your [pc.crotchCovers], you whip out your [pc.multiCocks] in record time" + (!pc.isErect() ? " and advance with slow, stiffening strokes.":" and advance with the sort of throbbing tumescence that makes a minute of waiting last an eternity."));
+	else output("Shucking your [pc.crotchCovers], you whip out your [pc.multiCocks] in record time" + (!pc.isErect() ? " and advance with slow, stiffening strokes.":" and advance with the sort of throbbing tumescence that makes a minute of waiting last an eternity."));
 	//Merge
 	output("\n\n<i>“");
 	if(flags["KQ_LAST_HOUR_TF"] == undefined || flags["KQ_LAST_HOUR_TF"] < 12) output("Oh, now you have time to screw around. I see,");
@@ -1022,7 +1050,8 @@ public function pussyFuckPoEpilogue():void
 	output("Despite absorbing such a monstrous climax, Illustria Po looks barely winded when you deign to climb off her.");
 	output("\n\nFortunately, she has an ample supply of handcuffs to keep her out of your way while you rescue your friend.");
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave);
 }
 
 
@@ -1103,12 +1132,13 @@ public function faceFuckOlIllustriusPozilla(x:int):void
 
 	output("\n\nUtterly satisfied, you sigh and start making ready to get on with your business. A quick search turns up enough analog handcuffs to keep her bound. With any hope, she’ll stay out of the way and learn to enjoy a new facet of her sexuality. Taking a page out of Kiro’s book, you briefly turn back to take a pic of the cum-splattered doctor before leaving." + (!kiro.isBimbo() ? " The tanuki will definitely like this.":"") + " It’s going to be such a fond memento.");
 	processTime(35);
-	enemy.loadInMouth(pc);
+	if(!enemy.hasStatusEffect("VR")) enemy.loadInMouth(pc);
 	pc.taint(1);
 	pc.orgasm();
 	IncrementFlag("KQ_FUCKED_PO");
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave);
 }
 
 //Suck Tiddy - dumb boyes get mouthful of libido-maxing mutagenic futa goo
@@ -1186,9 +1216,10 @@ public function sukkSumTidBooooooiFromDatMadDocOnKQ():void
 	}
 	output(" orgasm. Riding that climactic high makes it easy to forget about how you got here, or why you’re sucking a rapidly emptying teat like your life depends on it, or why you’d want to do something besides swallow Illustria’s blissy boobmilk.");
 	processTime(60);
-	pc.milkInMouth(enemy);
+	if(!enemy.hasStatusEffect("VR")) pc.milkInMouth(enemy);
 	pc.orgasm();
-	pc.taint(5);
+	if(!enemy.hasStatusEffect("VR")) pc.taint(5);
+	else pc.taint(1);
 	clearMenu();
 	addButton(0,"Next",drinkSomeBoobMilkFromPoWhatCouldGoWrongPart2);
 }
@@ -1212,26 +1243,30 @@ public function drinkSomeBoobMilkFromPoWhatCouldGoWrongPart2():void
 	else if(tids <= 40) tidGrow = 6;
 	else tidGrow = 4;
 	tidGrow += rand(4);
-	for(var i:int = 0; i < pc.bRows(); i++)
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		pc.breastRows[i].breastRatingRaw += tidGrow;
+		for(var i:int = 0; i < pc.bRows(); i++)
+		{
+			pc.breastRows[i].breastRatingRaw += tidGrow;
+		}
 	}
 	output("\n\nNow all you have to do is get <b>your newly embiggened " + pc.breastCup(0) + "s</b> properly arranged");
-	if(pc.lipRating() < 5)
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		if (pc.femininity < pc.femininityMax())
+		if(pc.lipRating() < 5)
 		{
-			pc.modFem(50);
+			if (pc.femininity < pc.femininityMax()) pc.modFem(50);
+			if(pc.lipRating() < 5) pc.lipMod++;
+			output(", check out <b>your enhanced lips</b> in your Codex’s camera");
 		}
-		if(pc.lipRating() < 5) pc.lipMod++;
-		output(", check out <b>your enhanced lips</b> in your Codex’s camera");
 	}
 	output(", figure out if you want to keep being a <b>good girl</b> forever, double-check Illustria’s bindings, and get out of here before you wind up as some kind of doll.");
 
 	processTime(5);
 	IncrementFlag("KQ_FUCKED_PO");
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave);
 }
 
 //Sit on Face (standard girl PC getting a quick ‘gasm)
@@ -1296,18 +1331,21 @@ public function sitOnPosFaceYaSloot(x:int = 0):void
 	else output("months");
 	output(".");
 	processTime(45);
-	enemy.girlCumInMouth(pc);
+	if(!enemy.hasStatusEffect("VR")) enemy.girlCumInMouth(pc);
 	pc.orgasm();
 	pc.taint(1);
 	//TF CITY!
-	if(!pc.isSquirter()) 
+	if(!enemy.hasStatusEffect("VR")) 
 	{
-		pc.vaginas[x].wetnessRaw += 2;
-		if(pc.isSquirter()) output("\n\n<b>You are now a squirter!</b>");
+		if(!pc.isSquirter()) 
+		{
+			pc.vaginas[x].wetnessRaw += 2;
+			if(pc.isSquirter()) output("\n\n<b>You are now a squirter!</b>");
+		}
+		else if(pc.vaginas[x].wetnessRaw < 5) pc.vaginas[x].wetnessRaw = 5;
+		if(pc.girlCumQ() < 1000) pc.boostGirlCum(15);
+		else pc.boostGirlCum(2);
 	}
-	else if(pc.vaginas[x].wetnessRaw < 5) pc.vaginas[x].wetnessRaw = 5;
-	if(pc.girlCumQ() < 1000) pc.boostGirlCum(15);
-	else pc.boostGirlCum(2);
 	IncrementFlag("KQ_FUCKED_PO");
 	clearMenu();
 	addButton(0,"Next",poEatsOutThePCPartDuesEx);
@@ -1321,7 +1359,8 @@ public function poEatsOutThePCPartDuesEx():void
 	output("Despite working so hard to give you a monstrous climax, Illustria Po looks barely winded when you deign to climb off her.");
 	output("\n\nFortunately, she has an ample supply of handcuffs to keep her out of your way while you rescue your friend.");
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave);
 }
 
 //Huge Dickings (The one only Fen cares about)
@@ -1370,7 +1409,8 @@ public function hyperBoiEpiloguesForPo():void
 	author("Fenoxo");
 	output("Restraining her properly requires locating old style, analog handcuffs, but once she’s had a good cum and been properly bound, Illustria becomes much easier to handle.");
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave);
 }
 
 //Leave
@@ -1393,7 +1433,8 @@ public function skipTownOnPosAssAfterWinning():void
 		output("\n\nYour reasons are your own, and she’ll have to live with the sting of this defeat for the rest of her days.");
 	}
 	clearMenu();
-	addButton(0,"Next",postPoOptionsWinRouting);
+	if(!enemy.hasStatusEffect("VR")) addButton(0,"Next",postPoOptionsWinRouting);
+	else addButton(0,"Next",vrLeave);
 }
 
 public function postPoOptionsWinRouting():void
