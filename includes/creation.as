@@ -48,7 +48,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
 		case "doll": cheatFunc = Cheats.SexdollEncounter; break;
 		case "ardiaschoice": cheatFunc = Cheats.ArdiaLetsYouChoose; break;
-		case "kqvrgoodness": cheatFunc = Cheats.KQVRgoodness; break;
+		case "kqvrgoodness": cheatFunc = Cheats.KQVRGoodness; break;
 		
 		// Treatment
 		case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;

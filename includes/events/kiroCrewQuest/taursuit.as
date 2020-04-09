@@ -4,7 +4,7 @@ public function showTaursuit():void
 	showName("CENTAUR\nSUIT");
 	showBust("TAURSUIT");
 }
-public function taursuitsBonusFunz():void
+public function taursuitsBonusFunz(VR:Boolean = false):void
 {
 	author("Wsan");
 	showTaursuit();
@@ -14,7 +14,7 @@ public function taursuitsBonusFunz():void
 
 	output("\n\nIt’s... half a centaur. There’s no other way to describe it. The creature has four hollow hooved legs, a front and a back half, and absolutely nothing above them. It looks a little bit like a tauric exosuit, but it seems to be moving well enough on its own. If nothing else, it possesses autonomy.");
 
-	if(!(pc.legType == GLOBAL.TYPE_EQUINE && pc.hasLegFlag(GLOBAL.FLAG_HOOVES) && pc.legCount == 4))
+	if(!(pc.legType == GLOBAL.TYPE_EQUINE && pc.hasLegFlag(GLOBAL.FLAG_HOOVES) && pc.legCount == 4) || VR)
 	{
 		output("\n\nIt stops at the junction of the hallway and you imagine in your mind’s eye a deer sniffing the air, considering its options. It begins turning, wobbling unsteadily, and you raise your [pc.rangedWeapon] as it orients itself towards you. Instead of charging, though, it takes a halting step forward towards you. Then another, and another. You’re not wholly certain of its intentions, but given that it exists on this accursed ship, it’s <i>probably</i> hostile in some form or another.");
 		//[Fight!] [Pet?]
@@ -22,8 +22,8 @@ public function taursuitsBonusFunz():void
 		//set up all the combat jizz here.
 		
 		clearMenu();
-		addButton(0,"Fight",startTaursuitFite,undefined,"Fight","There’s no way this thing isn’t out to harm you somehow!");
-		addButton(1,"Pet",petTheTaursuit,undefined,"Pet","Maybe you could try petting the thing...");
+		addButton(0,"Fight",startTaursuitFite,VR,"Fight","There’s no way this thing isn’t out to harm you somehow!");
+		addButton(1,"Pet",petTheTaursuit,VR,"Pet","Maybe you could try petting the thing...");
 	}
 	else
 	{
@@ -36,10 +36,17 @@ public function taursuitsBonusFunz():void
 	}
 	IncrementFlag("KQ_MET_TAURSUIT");
 }
-public function startTaursuitFite():void
+public function startTaursuitFite(VR:Boolean = false):void
 {
 	var tEnemy:Creature = new Taursuit();
 	setEnemy(tEnemy);
+	if(VR) 
+	{
+		enemy.createStatusEffect("VR");
+		enemy.inventory = [];
+		enemy.credits = 0;
+		enemy.XPRaw = 0;
+	}
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
 	CombatManager.setFriendlyActors(pc);
@@ -51,7 +58,7 @@ public function startTaursuitFite():void
 
 //[Pet?]
 //tooltip:Maybe you could try petting the thing...
-public function petTheTaursuit():void
+public function petTheTaursuit(VR:Boolean = false):void
 {
 	clearOutput();
 	showTaursuit();
@@ -60,13 +67,13 @@ public function petTheTaursuit():void
 	output("\n\nThey grope at your hand, stroking your arm like little cilia. It seems to want to draw you in deeper...");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Resist",resistTheTaursuit,undefined,"Resist","Pull your arm back. No way you’re letting this happen!");
-	addButton(1,"Submit",submitToTheTaursuit,undefined,"Submit","Let yourself be guided into the taursuit.");
+	addButton(0,"Resist",resistTheTaursuit,VR,"Resist","Pull your arm back. No way you’re letting this happen!");
+	addButton(1,"Submit",submitToTheTaursuit,VR,"Submit","Let yourself be guided into the taursuit.");
 }
 
 //[Resist]
 //tooltip:Pull your arm back. No way you’re letting this happen!
-public function resistTheTaursuit():void
+public function resistTheTaursuit(VR:Boolean = false):void
 {
 	clearOutput();
 	showTaursuit();
@@ -74,12 +81,12 @@ public function resistTheTaursuit():void
 	output("You pull your arm back from the taursuit’s grasp, drawing its apparent ire! It seems like it <i>really</i> wanted you to join it, and now it’s angry!\n\n<b>It’s a fight!</b>");
 	processTime(1);
 	clearMenu();
-	addButton(0,"Fight",startTaursuitFite,undefined,"Fight","There’s no way this thing isn’t out to harm you somehow!");
+	addButton(0,"Fight",startTaursuitFite,VR,"Fight","There’s no way this thing isn’t out to harm you somehow!");
 }
 
 //[Submit]
 //tooltip:Let yourself be guided into the taursuit.
-public function submitToTheTaursuit():void
+public function submitToTheTaursuit(VR:Boolean = false):void
 {
 	clearOutput();
 	showTaursuit();
@@ -91,12 +98,12 @@ public function submitToTheTaursuit():void
 	else output(" Already your [pc.legOrLegs] " + (pc.legCount > 1 ? "have":"has") + " been wrapped in the shimmering metallic “skin” of the suit and you’re left contemplating fully committing to the experience.");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",getTFedByTheTaursuit);
+	addButton(0,"Next",getTFedByTheTaursuit,VR);
 }
 
 //TF scene
 //No willpower check but no bad end either.
-public function getTFedByTheTaursuit():void
+public function getTFedByTheTaursuit(VR:Boolean = false):void
 {
 	clearOutput();
 	showTaursuit();
@@ -175,10 +182,11 @@ public function getTFedByTheTaursuit():void
 	//pc has multiple vaginas, no cock:
 	else if(pc.hasVaginas() && !pc.hasCock())
 	{
-		output(" A groan erupts from your throat as you realize it’s shifted its attentions back to your hind half. Your pussies suddenly tighten up and clench impossibly hard, instantly sending you to the brink of imminent orgasm while you grit your teeth and grunt, but then they tighten even further and suddenly their sensation is <i>gone</i>, like they’ve vanished completely. Your momentary dismay is replaced by sudden, eye-rolling bliss when you realize all of their sensitivity was transferred back into the main article, [pc.girlCum] dripping steadily from between its lips while the suit rubs you right between them.");
+		output(" A groan erupts from your throat as you realize it’s doing something to you - a protrusion rapidly sprouts from between your hindlegs, throbbing and hardening until there’s no doubt about what’s back there - an enormous cock, long and thick enough that you’d be hanging between your legs were it not currently being masturbated by the suit around you. Panting and moaning, you’re brought right to the edge of orgasm and stopped short as the suit’s influence creeps upwards once more, pressing down beneath your asshole.");
+		output("\n\nA groan erupts from your throat as you realize it’s shifted its attentions back to your hind half. Your pussies suddenly tighten up and clench impossibly hard, instantly sending you to the brink of imminent orgasm while you grit your teeth and grunt, but then they tighten even further and suddenly their sensation is <i>gone</i>, like they’ve vanished completely. Your momentary dismay is replaced by sudden, eye-rolling bliss when you realize all of their sensitivity was transferred back into the main article, [pc.girlCum] dripping steadily from between its lips while the suit rubs you right between them.");
 		if(pc.vaginas[0].type != GLOBAL.TYPE_EQUINE)
 		{
-			output("\n\nRemaining pussy not equine:A groan erupts from your throat as you realize it’s not done with you - not even close. You feel the suit grip your pussy lips and lightly pull and to your surprise, you feel them not stretch but <i>inflate</i>, expanding until having them rub together is not only a blissfully pleasant experience but an inevitability, one that’s sure to keep you on the edge.");
+			output("\n\nA groan erupts from your throat as you realize it’s not done with you - not even close. You feel the suit grip your pussy lips and lightly pull and to your surprise, you feel them not stretch but <i>inflate</i>, expanding until having them rub together is not only a blissfully pleasant experience but an inevitability, one that’s sure to keep you on the edge.");
 			if(pc.vaginas[0].looseness() > 1) output(" Then the suit pulls inwards and you let out a grunt as you feel yourself inexplicably tighten up, as if you’re about to cum, and it takes you a few seconds to realize the change is permanent.");
 			if(!pc.vaginas[0].hymen) output(" Strangely enough, it feels like you’re a virgin again... in fact, maybe you are!");
 		}
@@ -187,15 +195,16 @@ public function getTFedByTheTaursuit():void
 	//pc has one vagina, no cock:
 	else if(!pc.hasCock() && pc.hasVagina())
 	{
+		output(" A groan erupts from your throat as you realize it’s doing something to you - a protrusion rapidly sprouts from between your hindlegs, throbbing and hardening until there’s no doubt about what’s back there - an enormous cock, long and thick enough that you’d be hanging between your legs were it not currently being masturbated by the suit around you. Panting and moaning, you’re brought right to the edge of orgasm and stopped short as the suit’s influence creeps upwards once more, pressing down beneath your asshole.");
 		if(!pc.vaginas[0].type != GLOBAL.TYPE_EQUINE) 
 		{
-			output(" A groan erupts from your throat as you realize it’s not done with you - not even close. You feel the suit grip your pussy lips and lightly pull and to your surprise, you feel them not stretch but <i>inflate</i>, expanding until having them rub together is not only a blissfully pleasant experience but an inevitability, one that’s sure to keep you on the edge.");
+			output("\n\nA groan erupts from your throat as you realize it’s not done with you - not even close. You feel the suit grip your pussy lips and lightly pull and to your surprise, you feel them not stretch but <i>inflate</i>, expanding until having them rub together is not only a blissfully pleasant experience but an inevitability, one that’s sure to keep you on the edge.");
 			if(pc.vaginas[0].looseness() > 1) output(" Then the suit pulls inwards and you let out a grunt as you feel yourself inexplicably tighten up, as if you’re about to cum, and it takes you a few seconds to realize the change is permanent.");
 			if(!pc.vaginas[0].hymen) output(" Strangely enough, it feels like you’re a virgin again... in fact, maybe you are!");
 		}
 		else
 		{
-			output(" A groan erupts from your throat as you realize it’s not done with you - not even close. You feel the suit pull your pussylips inwards and you let out a grunt as you feel yourself inexplicably tighten up, as if you’re about to cum, and it takes you a few seconds to realize the change is permanent.");
+			output("\n\nA groan erupts from your throat as you realize it’s not done with you - not even close. You feel the suit pull your pussylips inwards and you let out a grunt as you feel yourself inexplicably tighten up, as if you’re about to cum, and it takes you a few seconds to realize the change is permanent.");
 			if(!pc.vaginas[0].hymen) output(" Strangely enough, it feels like you’re a virgin again... in fact, maybe you are!");
 		}
 	}
@@ -249,14 +258,14 @@ public function getTFedByTheTaursuit():void
 	output(" You can’t help but think they’d be perfectly suited to wrapping around the head of a big, fat cock.");
 	output("\n\nStars, you’re still so <i>fucking</i> horny! Trying to move your hindquarters in protest, you find - as the membrane of the suit draws taut against your upper face - they can move! Barely. You grind out an <i>inch</i> of progress, receiving a little shock of pleasure that travels up your sensitive flared head and into your underside. Oh... that feels amazing. You’re going to try even harder...");
 
-	taursuitBaseTFs();
+	if (!VR) taursuitBaseTFs();
 	processTime(20);
 	pc.changeLust(100);
 	clearMenu();
-	addButton(0,"Next",moreTaursuitTFFun);
+	addButton(0,"Next",moreTaursuitTFFun,VR);
 }
 
-public function taursuitBaseTFs():void
+public function taursuitBaseTFs(VR:Boolean = false):void
 {
 	//removes mimbranes
 	removeMimbranes();
@@ -349,7 +358,7 @@ public function taursuitBaseTFs():void
 	IncrementFlag("KQ_TAURSUIT_TF");
 }
 
-public function moreTaursuitTFFun():void
+public function moreTaursuitTFFun(VR:Boolean = false):void
 {
 	clearOutput();
 	showTaursuit();
@@ -366,13 +375,16 @@ public function moreTaursuitTFFun():void
 	if(hasTits) output(" Your breasts are growing larger by the moment, swelling outwards with added mass until they’re so heavy it feels like they’ve increased by at least a couple of cup sizes.");
 	else output(" You’re growing breasts! They swell and swell with every passing second, the added flesh pushing your nipples forward until they’re jutting right out and your breasts are shaking with the force of your thrusts.");
 
-	//No breasts - Give DD cup tits
-	//Had breasts - Give 2 cup sizes
-	for(i = 0; i < pc.bRows(); i++)
+	if (!VR)
 	{
-		if(pc.breastRows[i].breastRatingRaw < 0) pc.breastRows[i].breastRatingRaw = 0;
-		if(!hasTits) pc.breastRows[i].breastRatingRaw += 5;
-		else pc.breastRows[i].breastRatingRaw += 2;
+	//No breasts - Give DD cup tits
+		//Had breasts - Give 2 cup sizes
+		for(i = 0; i < pc.bRows(); i++)
+		{
+			if(pc.breastRows[i].breastRatingRaw < 0) pc.breastRows[i].breastRatingRaw = 0;
+			if(!hasTits) pc.breastRows[i].breastRatingRaw += 5;
+			else pc.breastRows[i].breastRatingRaw += 2;
+		}
 	}
 	output("\n\nThe longer it goes on the more you get used to it until you’re humping the suit like a rabid beast, panting and moaning as the skin stretches around your fat, throbbing prick and cum spurts from both your cock and your cunt. It all comes to a head when, with a strained, desperate gasp, you shove your hips forward and realize your fat dick is no longer contained. The suit is gone, leaving you with nothing but your new form. A flood of thick spunk gushes across the floor of the freighter as you wilfully empty your [pc.balls], groaning in joy.");
 	output("\n\nWhen at last you sigh in contentment and look down to inspect yourself, you’re stopped by the odd sensation of your hair brushing against your bare back - was it always this long? Reaching back, you realize you now have long hair, tied into a ponytail somehow. The suit seems to have done its final job up here; you can feel that your face’s structure has changed");
@@ -380,14 +392,21 @@ public function moreTaursuitTFFun():void
 	if(pc.femininity > 90) output(" slightly, too.");
 	else output(", too, to make you more feminine.");
 	//Femininity less than 90 - Increase femininity to 90
-	if(pc.femininity < 90) pc.femininity = 90;
-	pc.fixFemininity();
+	if (!VR)
+	{
+		if(pc.femininity < 90) pc.femininity = 90;
+		pc.fixFemininity();
+	}
 	output("\n\nYou take a step forward and listen to the clinking of your [pc.feet] against the ground - it’s a nice sound, rhythmic and loud. You’ve only gone a few feet when you suddenly realize - <i>where’s your gear?</i>");
 	output("\n\nYou spin back around and there, scarcely more than a plastic sheet at this point, is the ‘expended’ taursuit. It’s certainly not autonomous any more. Contained within it are your belongings, thankfully dry and unharmed. You’re not entirely certain how that works but then again, you’re not certain how <i>anything</i> on this ship works - you’re not going to question it.");
 	output("\n\nRe-equipping your gear and checking through your inventory, you carry on, newly inspired and confident in your new form. You give a silent thank-you to the taursuit’s remains and remind yourself - you’ll have to check out a mirror later.");
 	processTime(60);
 	for(i = 0; i < 15; i++) { pc.orgasm(); }
 	clearMenu();
+	if(enemy.hasStatusEffect("VR"))
+	{
+		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you’ve suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
+	}
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -409,19 +428,22 @@ public function lostCombatTFStuff():void
 	clearOutput();
 	showTaursuit();
 	author("Wsan");
-	//If you have high enough willpower, takes you to New Body Continuation
-	taursuitBaseTFs();
-	//No breasts - Give DD cup tits
-	if(pc.biggestTitSize() < 1) pc.breastRows[0].breastRatingRaw = 5;
-	//Had breasts - Give 2 cup sizes
-	else pc.breastRows[0].breastRatingRaw += 2;
-	for(var i:int = 0; i < pc.bRows(); i++)
+	if (!enemy.hasStatusEffect("VR"))
 	{
-		if(i > 0) pc.breastRows[0].breastRatingRaw += 2;
+		//If you have high enough willpower, takes you to New Body Continuation
+		taursuitBaseTFs();
+		//No breasts - Give DD cup tits
+		if(pc.biggestTitSize() < 1) pc.breastRows[0].breastRatingRaw = 5;
+		//Had breasts - Give 2 cup sizes
+		else pc.breastRows[0].breastRatingRaw += 2;
+		for(var i:int = 0; i < pc.bRows(); i++)
+		{
+			if(i > 0) pc.breastRows[0].breastRatingRaw += 2;
+		}
+		if(pc.femininity < 90) pc.femininity = 90;
+		pc.fixFemininity();
+		//If you suck, go to the bad end
 	}
-	if(pc.femininity < 90) pc.femininity = 90;
-	pc.fixFemininity();
-	//If you suck, go to the bad end
 
 	//New Body Continuation
 	if(pc.willpower()/2 + rand(20) + 1 >= 20 + pc.taint()/3)
@@ -499,6 +521,11 @@ public function toZeBadEndTaurButt():void
 	output("\n\nShe slowly extricates herself from your grip while you exit the milker, assuming a standing position behind her as she crosses her legs and seats herself at a nearby console.");
 	output("\n\n<i>“Let’s see,”</i> she says, drawing her data slate out. <i>“Perpetual vibrator against your prostate... drug-induced enlargement procedures... hmm. I wonder if having your pussy fucked increases your output at all... worth investigating a potential link there... need to remodel the tanks to handle the maximal load...”</i>");
 	output("\n\nYou stay silent as you lovingly watch your mistress tap away at the slate, making adjustments and crossing things out as she decides your pathway for you. You’re sure, no matter what she picks out for you, you’ll be overjoyed to assist her. In the end, that’s all that really matters - doing everything and anything she might desire of you.");
+	if(enemy.hasStatusEffect("VR"))
+	{
+		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you’ve suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
+		CombatManager.genericLoss();
+	}
 	badEnd();
 }
 

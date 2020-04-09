@@ -1,6 +1,11 @@
 ﻿package classes 
 {
 	import classes.Characters.PlayerCharacter;
+	import classes.Items.Toys.PoVRProgram;
+	import classes.Items.Toys.SexdollMiniBossVRProgram;
+	import classes.Items.Toys.SexdollVRProgram;
+	import classes.Items.Toys.TaursuitVRProgram;
+	import classes.Items.Toys.TwinsVRProgram;
 	import classes.Items.Miscellaneous.ZilRation;
 	import classes.Resources.StatusIcons;
 	import classes.Engine.Interfaces.*;
