@@ -42,7 +42,7 @@ package classes.Items.Toys
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("You can now access a simulated combat scenario with compatible VR devices.");
-				kGAMECLASS.pc.createKeyItem("Po Virtual Reality Program");
+				kGAMECLASS.pc.createKeyItem("VR Program: Doctor Illustria Po");
 			}
 			else
 			{
