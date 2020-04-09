@@ -214,7 +214,6 @@
 			//Needlefingers
 			choices.push(needlefingers);
 			//Fingerfuck (exposed crotches only)
-			/*
 			if(target.isCrotchExposedByArmor())
 			{
 				if(target.hasVagina()) choices.push(fingerfuckAttack);
@@ -230,7 +229,6 @@
 			if(this.energy() >= 33) choices.push(aphrospray);
 			//Recharge (Refills her inner goo. refills energy. Only happens if PC stunned and below 100%)
 			if((target.hasStatusEffect("Stun") || target.hasStatusEffect("Stunned")) && this.energy() < 100) choices.push(rechargeDatBot);
-			*/
 
 			//Illustria acts
 			choices[rand(choices.length)](target);
