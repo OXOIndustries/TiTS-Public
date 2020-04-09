@@ -438,7 +438,7 @@ public function sixtyNineKorgoborgo(args:Array):void
 	if(flags["USED_SNAKEBYTE"] != undefined) output("the ribbed muscles of your slutty neck clenching tight to his prick, blowing his mind away with unparalleled oral pleasure. All you have to do is squeeze his knot - something you can do with your enhanced jaw capacity - and every drop will find its way to your stomach");
 	//bimboTreated:
 	else if(pc.isBimbo() && pc.isTreated()) output("moaning happily around his prick, thrilled that you’re blessed with the absence of a gag reflex! You’re so close to cumming now, all you’d have to do is squeeze his knot");
-	else if(pc.canDeepthroat()) output("athrill that you don’t have a gag reflex");
+	else if(pc.canDeepthroat()) output("a thrill that you don’t have a gag reflex");
 	//gag:
 	else output("chest tightening up and tears welling in your eyes as you do");
 	output(".");

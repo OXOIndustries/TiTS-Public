@@ -5,6 +5,7 @@
 	import classes.Items.Melee.Whip;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Toys.SexdollMiniBossVRProgram;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -68,6 +69,7 @@
 			this.HPMod = 250;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
+			//this.inventory = [new PoVRProgram()];
 
 			this.femininity = 100;
 			this.eyeType = GLOBAL.TYPE_HUMAN;

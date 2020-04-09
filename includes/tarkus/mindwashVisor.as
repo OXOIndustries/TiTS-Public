@@ -94,6 +94,7 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"KQ:Sexdoll",genericSexdollEncounter,true,"Kiro Quest: Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's sexbots have to offer!");
 		if(pc.hasKeyItem("VR Program: The Twins")) addButton(button++,"KQ:Twins",twinSexdollEncounter,true,"Kiro Quest: Twins Encounter","Experience what it's like to play with the twins.");
 		if(pc.hasKeyItem("Advanced Sexdoll Virtual Reality Program")) addButton(button++,"KQ:AdvSexdoll",kqMinibossEncounter,true,"Kiro Quest: Advanced Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's advanced sexbot has to offer!");
+		if(pc.hasKeyItem("Po Virtual Reality Program")) addButton(button++,"KQ:Dr Po",fightDatScientisto,true,"Kiro Quest: Doctor Po Encounter","Experience battling with (and indulging in) everything Doctor Po has to offer!");
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -354,6 +355,7 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"KQ:Sexdoll",genericSexdollEncounter,true,"Kiro Quest: Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's sexbots have to offer!");
 		if(pc.hasKeyItem("VR Program: The Twins")) addButton(button++,"KQ:Twins",twinSexdollEncounter,true,"Kiro Quest: Twins Encounter","Experience what it's like to play with the twins.");
 		if(pc.hasKeyItem("Advanced Sexdoll Virtual Reality Program")) addButton(button++,"KQ:AdvSexdoll",kqMinibossEncounter,true,"Kiro Quest: Advanced Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's advanced sexbot has to offer!");
+		if(pc.hasKeyItem("Po Virtual Reality Program")) addButton(button++,"KQ:Dr Po",fightDatScientisto,true,"Kiro Quest: Doctor Po Encounter","Experience battling with (and indulging in) everything Doctor Po has to offer!");
 		return;
 	}
 	

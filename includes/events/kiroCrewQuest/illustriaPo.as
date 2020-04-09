@@ -100,10 +100,19 @@ public function encounterDatPoBitchBaybeee():Boolean
 	return true;
 }
 
-public function fightDatScientisto():void
+public function fightDatScientisto(VR:Boolean = false):void
 {
 	var tEnemy:Creature = new KQDoctorIllustriaPo();
 	setEnemy(tEnemy);
+	if(VR) 
+	{
+		clearOutput();
+		output("You load the program and smile as you are shuffled to an artificial reality on a current of perfectly programmed electrons. You find yourself back in time, trying to rescue Kiro, fighting your way against the insidious Doctor Po...");
+		enemy.createStatusEffect("VR");
+		enemy.inventory = [];
+		enemy.credits = 0;
+		enemy.XPRaw = 0;
+	}
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
 	CombatManager.setFriendlyActors(pc);
@@ -882,9 +891,10 @@ public function spankPosNastyAss():void
 	}
 	else addDisabledButton(3,"Sit On Face","Sit On Face","You lack the vagina required for this scene.");
 	addButton(5,"End Her",endPo,undefined,"End Po","This is final. If you do this, Po dies, and the galaxy is a safer place. Yet the act of finishing a fallen foe may indelibly stain your soul for life.\n\nDo you dare?");
-	addButton(14,"Leave",skipTownOnPosAssAfterWinning,undefined,"Leave","You’ve won. Free your friend and go home.");
+	if(!enemy.hasStatusEffect("VR")) addButton(14,"Leave",skipTownOnPosAssAfterWinning,undefined,"Leave","You’ve won. Free your friend and go home.");
+	else addButton(14,"Leave",vrLeave);
 	//Queue real combat victory:
-	eventQueue.push(victoryEndWrap);
+	if(!enemy.hasStatusEffect("VR")) eventQueue.push(victoryEndWrap);
 }
 
 //End Her
@@ -992,10 +1002,13 @@ public function fuckPosCunt(x:int):void
 	output("[pc.CumNoun] and feminine fluids wash out in a crotch-bathing wave.");
 	if(!pc.hasKnot(x)) output(" <b>You’re at least " + num2Text(grows) + " inches longer</b>... and the leftover pussyjuice grants you a little bit more size on top of that.");
 	processTime(45);
-	enemy.loadInCunt(pc,0);
-	pc.taint(2);
+	if(!enemy.hasStatusEffect("VR"))
+	{
+		enemy.loadInCunt(pc,0);
+		pc.taint(2);
+	}
 	IncrementFlag("KQ_FUCKED_PO");
-	pc.cocks[x].cLengthRaw += grows;
+	if(!enemy.hasStatusEffect("VR")) pc.cocks[x].cLengthRaw += grows;
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",pussyFuckPoEpilogue);
@@ -1498,6 +1511,39 @@ public function defeatedPoFinalOutro(newScreen:Boolean = false):void
 	else output(" It wouldn’t do to have one of Po’s surviving pets turn the security back on.");
 	//Actual victory here?
 	addButton(0,"Next",move,rooms[currentLocation].northExit);
+	addButton(4,"Search",searchPoComputer,undefined,"Search Computer","Maybe you can find something interesting...");
+}
+
+//Search computer and find her VR program
+public function searchPoComputer():void
+{
+	clearOutput();
+	if (silly) showName("OWO\nWHAT’S THIS?");
+	showName("WHAT’S\nTHIS?");
+	output("You take a brief moment to search through the " + (flags["KQ_PO_DEAD"] == undefined ? "defeated":"late") + "doctor’s computer and come across something interesting... A VR program of some sort?");
+	poSalvageMenu();
+}
+//Ripped from pexigaquest loot
+public function downloadPoVR():void
+{
+	clearOutput();
+	
+	output("After a couple minutes, you have the VR program downloaded onto a holodisk.");
+	flags["PO_VR_PROGRAM_LOOTED"] = 1;
+	output("\n\n");
+	itemScreen = poSalvageMenu;
+	lootScreen = poSalvageMenu;
+	useItemFunction = poSalvageMenu;
+	itemCollect([new PoVRProgram()]);
+}
+public function poSalvageMenu():void
+{
+	clearMenu();
+	
+	if(flags["PO_VR_PROGRAM_LOOTED"] != undefined) addDisabledButton(0,"Download","Download","You’ve already downloaded this program");
+	else addButton(0,"Download",downloadPoVR,undefined,"Download","A VR program of some sort.");
+
+	addButton(14,"Leave",move,rooms[currentLocation].northExit,"Leave","Time to get out of here.");
 }
 
 public function victoryEndWrap():void
