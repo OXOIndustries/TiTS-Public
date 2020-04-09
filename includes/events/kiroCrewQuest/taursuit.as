@@ -507,6 +507,8 @@ public function youBeatUpATaursuit():void
 {
 	showTaursuit();
 	author("Wsan");
+	//enemy encounter isn't common, so it shouldn't be too rare to drop this
+	if (!enemy.hasStatusEffect("VR") && rand(2) == 0) enemy.inventory = [new TaursuitVRProgram()];
 	output("The taursuit crumples to the floor in a pathetic heap, folding in on itself like a crumpling tin can. You give it a nudge with your [pc.foot] - yeah, it’s definitely inactive. It looks like a dilapidated coat. You’d almost feel sorry for it were it not clearly some kind of autonomous weapon designed to take in intruders and change them in potentially horrific fashion.");
 	output("\n\nAs it is, you decide to just leave it alone. Maybe it will wobble back to life on its own later, but you’ll be sure not to be around by then. Besides, it’s learned its lesson.\n\n");
 	processTime(3);

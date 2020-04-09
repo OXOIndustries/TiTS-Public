@@ -10,9 +10,9 @@ package classes.Items.Toys
 	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
 	
-	public class PoVRProgram extends ItemSlotClass
+	public class TaursuitVRProgram extends ItemSlotClass
 	{
-		public function PoVRProgram()
+		public function TaursuitVRProgram()
 		{
 			this._latestVersion = 1;
 			
@@ -20,14 +20,14 @@ package classes.Items.Toys
 			this.stackSize = 1;
 			this.type = GLOBAL.GADGET;
 			
-			this.shortName = "Po VR";
-			this.longName = "Doctor Po VR program";
+			this.shortName = "TaurS VR";
+			this.longName = "taursuit VR program";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a virtual reality program for fighting Doctor Po";
+			this.description = "a virtual reality program for fighting a taursuit";
 			
-			this.tooltip = "Using this item will unlock a virtual reality version of the fight with Doctor Illustria Po.";
+			this.tooltip = "Using this item will unlock a virtual reality version of a taursuit.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -42,7 +42,7 @@ package classes.Items.Toys
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("You can now access a simulated combat scenario with compatible VR devices.");
-				kGAMECLASS.pc.createKeyItem("Po Virtual Reality Program");
+				kGAMECLASS.pc.createKeyItem("Taursuit Virtual Reality Program");
 			}
 			else
 			{

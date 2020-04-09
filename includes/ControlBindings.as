@@ -389,6 +389,13 @@
 			Cheats.ArdiaLetsYouChoose();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"KQ VR Unlocks",
+		"Unlock all VR programs from KiroQuest",
+		function():void {
+			Cheats.KQVRGoodness();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -416,6 +423,7 @@
 	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
 	inputManager.BindCheatSequence("Sexdoll Encounter", "doll");
 	inputManager.BindCheatSequence("Ardia DM7+ Sex Choice", "ardiaschoice");
+	inputManager.BindCheatSequence("KQ VR Unlocks", "kqvrgoodness");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

@@ -142,6 +142,17 @@
 			kGAMECLASS.currentLocation = "KQ N32";
 			//kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
 		}
+		public static function KQVRGoodness():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff(true);
+			var lootArray:Array = [new SexdollVRProgram(), new SexdollMiniBossVRProgram(), new TwinsVRProgram(), new TaursuitVRProgram(), new PoVRProgram()];
+			kGAMECLASS.itemCollect(lootArray);
+		}
 		public static function SJWMode():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
