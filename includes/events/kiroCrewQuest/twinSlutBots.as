@@ -149,6 +149,7 @@ public function vrLeave(lose:Boolean = false):void
 	pc.removeStatusEffect("VR_DOLLS");
 	if (!lose) CombatManager.genericVictory();
 	else CombatManager.genericLoss();
+	queueReturnAllItems(true, true);
 }
 //Victory
 //All sex scenes give large amounts of taint.
