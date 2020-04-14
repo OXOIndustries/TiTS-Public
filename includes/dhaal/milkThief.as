@@ -81,7 +81,7 @@ public function encounterMilkThief():Boolean
 	//Repeat
 	else if(enemy.biggestTitSize() <= 8)
 	{
-		output("\n\nAnother zaika milk thief plummets down from the rooftops, confidently raising her cream-sucking sex-toy of a weapon before she has a chance to stand back up. <i>“Hold it, Rusher. You’re not going anywhere.”</i> The tank on her back whirs, no doubt readying some kind of fluid-based chemical attack. <i>“Make this easy on us both. Let me fill up on all that milk you’ve got and I’ll give you a nice orgasm for the trouble!" + (enemy.biggestTitSize() > 8 ? " Maybe even two, because I’m so nice!":"") + "”</i>");
+		output("\n\nAnother zaika milk thief plummets down from the rooftops, confidently raising her cream-sucking sex-toy of a weapon before she has a chance to stand back up. <i>“Hold it, Rusher. You’re not going anywhere.”</i> The tank on her back whirs, no doubt readying some kind of fluid-based chemical attack. <i>“Make this easy on us both. Let me fill up on all that milk you’ve got and I’ll give you a nice orgasm for the trouble!" + (enemy.biggestTitSize() == 8  ? " Maybe even two, because I’m so nice!":"") + "”</i>");
 		output("\n\n<b>Time to defend yourself!</b>");
 	}
 	//Repeat huge tid variant
