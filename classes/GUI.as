@@ -171,6 +171,8 @@
 			// Set the initial state of the main buttons
 			this.mainMenuButton.Activate();
 			this.dataButton.Activate();
+			
+			this.refreshTextStyles();
 		}
 		
 		/**
@@ -1583,20 +1585,17 @@
 				(_currentModule as GameTextModule).endScrollText();
 			}
 		}
-		
-		public function refreshFontSize(fSize:int):void
+
+		public function refreshTextStyles():void
 		{
-			// Get the main text module
-			var module:GameTextModule = this._availableModules["PrimaryOutput"];
+			var styleSheet:StyleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
+			var wordsStyle:Object = styleSheet.getStyle(".words");
 			
-			// Get the stylesheet from the text display
-			var cStyle:StyleSheet = module.mainTextField.styleSheet;
+			wordsStyle.fontSize = kGAMECLASS.gameOptions.fontSize;
+			wordsStyle.leading = kGAMECLASS.gameOptions.fontLeading;
 			
-			if (cStyle.getStyle(".words").fontSize != fSize)
-			{
-				cStyle.setStyle(".words", { fontFamily: "Lato", fontSize: fSize, color: "#FFFFFF", marginRight: 5 } );
-				module.mainTextField.styleSheet = cStyle;
-			}
+			// Applies the styles by mutating the global gMainTextCSSStyleSheet.
+			styleSheet.setStyle(".words", wordsStyle);
 		}
 		
 		public function getMainTextField():TextField

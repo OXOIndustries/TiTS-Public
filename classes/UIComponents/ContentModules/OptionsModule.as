@@ -4,7 +4,7 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.ContentModuleComponents.DoubleSelectControl;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.ContentModuleComponents.OptionsControlToggle;
-	import classes.UIComponents.ContentModuleComponents.OptionsTextSizeControl;
+	import classes.UIComponents.ContentModuleComponents.OptionsTextControl;
 	import fl.containers.ScrollPane;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -91,7 +91,7 @@ package classes.UIComponents.ContentModules
 			
 			bustControl.configure("Advanced character image settings.", "Define who your preferred artists are for character image displays. You can override the displayed bust on a per-character basis by clicking on the cog icon displayed near the character portaits left of the game screen whenever it is displayed.", "Primary Artist:", "primaryBustArtist", GLOBAL.SELECTABLE_ARTISTS, "Secondary Artist:", "secondaryBustArtist", GLOBAL.SELECTABLE_ARTISTS);
 			
-			addFontSizeControl();
+			addTextControl();
 		}
 		
 		/**
@@ -112,14 +112,14 @@ package classes.UIComponents.ContentModules
 			tC.configure(d, nA, pA, nB, pB);
 		}
 		
-		private function addFontSizeControl():void
+		private function addTextControl():void
 		{
-			var fsC:OptionsTextSizeControl = new OptionsTextSizeControl();
-			_controls.push(fsC);
-			_controlsContainer.addChild(fsC);
+			var tC:OptionsTextControl = new OptionsTextControl();
+			_controls.push(tC);
+			_controlsContainer.addChild(tC);
 			
-			if (_pC != null) fsC.y = _pC.y + _pC.height + 10;
-			_pC = fsC;
+			if (_pC != null) tC.y = _pC.y + _pC.height + 10;
+			_pC = tC;
 		}
 		
 		public function updateDisplay():void

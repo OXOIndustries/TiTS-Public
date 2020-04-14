@@ -19,6 +19,7 @@ package classes.GameData
 			sillyMode = false;
 			debugMode = false;
 			fontSize = 18;
+			fontLeading = 0;
 			combineDamageValueOutput = false;
 			colourDamageValueOutput = true;
 			saveNotesToggle = true;
@@ -70,6 +71,7 @@ package classes.GameData
 		
 		// FontSize
 		public var fontSize:int;
+		public var fontLeading:int;
 		
 		public var combineDamageValueOutput:Boolean;
 		public var colourDamageValueOutput:Boolean;

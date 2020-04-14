@@ -2071,7 +2071,7 @@
 			kGAMECLASS.resetStepCounters();
 			
 			// Trigger an attempt to update display font size
-			kGAMECLASS.refreshFontSize();
+			kGAMECLASS.userInterface.refreshTextStyles();
 			
 			if (kGAMECLASS.currentLocation == "CREATION")
 			{
