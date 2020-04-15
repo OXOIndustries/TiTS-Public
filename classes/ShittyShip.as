@@ -775,5 +775,31 @@ package classes {
 			this.energy(this.shipPowerGen());
 			if (target == null) return;
 		}
+
+		// has the ship some kind of turret?
+		public function shipHasATurret(): Boolean {
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i].hasFlag(GLOBAL.ITEM_FLAG_TURRET)) return true;
+			}
+			return false;
+		}
+
+		// find the most expensive turret
+		public function shipMostExpensiveTurretIndex(): int {
+			var idx:int = -1;
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i].hasFlag(GLOBAL.ITEM_FLAG_TURRET))
+				{
+					if (idx == -1) idx = i;
+					if(inventory[i].basePrice > inventory[idx].basePrice)
+					{
+						idx = i;
+					}
+				}
+			}
+			return idx;
+		}
 	}
 }
