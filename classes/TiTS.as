@@ -1146,11 +1146,6 @@
 			userInterface.addDisabledButton(slot);
 		}
 		
-		public function refreshFontSize():void
-		{
-			userInterface.refreshFontSize(gameOptions.fontSize);
-		}
-		
 		public function levelUpHandler(e:Event = null):void
 		{
 			if ((pc as PlayerCharacter).short.length == 0) return;
