@@ -560,7 +560,7 @@ public function takeSomeEggs(x:int = -1):void
 {
 	clearOutput();
 	showRenvra(true);
-	output("You desperately shake your head. You’re not to keen on the idea of playing mother to Ren’s offspring just now!");
+	output("You desperately shake your head. You’re not too keen on the idea of playing mother to Ren’s offspring just now!");
 	output("\n\nShe grunts, but nods. <i>“Fine. I won’t force it on you. More than enough myr clamouring for my spunk as it is. But you’re getting a bellyful of my eggs, though. Consider it a tax for getting my hopes up.”</i>");
 	output("\n\nFair trade, you suppose....");
 	//Go to egg-laying scene, above.
