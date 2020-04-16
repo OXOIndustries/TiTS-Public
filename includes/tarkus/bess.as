@@ -1092,7 +1092,7 @@ public function verifyBessModel(jailbreaking:Boolean = false):void
 	if (jailbreaking && flags["BESS_OWNS_JBKIT"] > 1) output("\n\nWithin a moments notice, [bess.name] is suspended in mid air again, engulfed by some kind of semi-transparent, light-refractive hardlight field. After a bit, the usual holographic console appears in front of you.");
 	else {
 		output("\n\nAll of a sudden, [bess.heShe] is suspended in mid air and out of nowhere, a huge bubble of light engulfs [bess.hisHer] body. The last you see is [bess.hisHer] surprised face before [bess.heShe] is completely covered in a sheet of semi-transparent, light-refractive energy.");
-		output("\n\nYou walk up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with " + indefiniteArticle(pc.finger()) + " and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
+		output("\n\nYou [pc.walk] up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with " + indefiniteArticle(pc.finger()) + " and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
 		output("\n\nBefore you could figure out an alternate means of bypassing the shield, a holographic console appears in front of you.");
 	}
 	output("\n\n<i>“Welcome to the JoyCo Personal Maintenance App.”</i> A soothing electronic female voice announces.");
@@ -1626,9 +1626,10 @@ public function bessFunctionsMenu():void
 	addButton(5, "BodyShape", talkToBessAboutBodyShape, undefined, "Body Shape", "Ask [bess.name] to change [bess.hisHer] body shape, such as muscle tone, hip, and ass size.");
 	addButton(6, "Genitals", talkToBessAboutGenitals, undefined, "Genitals", "Ask [bess.name] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.");
 	addButton(7, "Cum", talkToBessAboutCum, undefined, "Cum Flavor", "Ask [bess.name] to change [bess.hisHer] cum flavors.");
-	addButton(8, "Clothing", talkToBessAboutClothes, undefined, "Clothing", "Ask [bess.name] to change [bess.hisHer] clothing or accessories.");
-	if (flags["BESS_OWNS_JBKIT"] >= 1) addButton(9, "Model", verifyBessModel, true, "Model", "Change [bess.name] from Bess-13 to Ben-14 or vice versa.");
-	else addDisabledButton(9, "Model", "Model", "You need a Jailbreaking Kit to change the model of [bess.name].");
+	addButton(8, "Clothing", talkToBessAboutClothes, undefined, "Clothing", "Ask [bess.name] to change [bess.hisHer] clothing.");
+	addButton(9, "Accessories", talkToBessAboutDoodads, undefined, "Accessories", "Ask [bess.name] to change [bess.hisHer] body accessories.");
+	if (flags["BESS_OWNS_JBKIT"] >= 1) addButton(10, "Model", verifyBessModel, true, "Model", "Change [bess.name] from Bess-13 to Ben-14 or vice versa.");
+	else addDisabledButton(10, "Model", "Model", "You need a Jailbreaking Kit to change the model of [bess.name].");
 	
 	// I couldn't find any scenes relating to these... anywhere
 	//addButton(10, "JoyCord", talkToBessAboutJoyCord);
@@ -1981,7 +1982,7 @@ public function talkToBessAboutHair():void
 	clearOutput();
 	bessHeader();
 
-	output("<i>“You’d like to change something about my hair, "+ bessPCName() +"? What in particular..?”</i>");
+	output("<i>“You’d like to change something about my [bess.hair], "+ bessPCName() +"? What in particular..?”</i>");
 
 	clearMenu();
 	if (bess.hairLength > 0) addButton(0, "Color", talkToBessAboutHairColor);
@@ -3815,7 +3816,7 @@ public function talkToBessAboutClothes():void
 		}
 	}
 
-	output("You ask [bess.name] to open [bess.hisHer] closet so that you can select a new outfit and accessories for [bess.himHer]. [bess.HeShe] shows you all the clothes that [bess.heShe] owns.");
+	output("You ask [bess.name] to open [bess.hisHer] closet so that you can select a new outfit for [bess.himHer]. [bess.HeShe] shows you all the clothes that [bess.heShe] owns.");
 
 	// Bess always has access to "Nude". Others are bought from the JoyCo catalog. many of these are new additions (See Clothing Additions section towards the end of the document).
 
@@ -3827,16 +3828,12 @@ public function talkToBessAboutClothes():void
 //	addButton(0, "Outfits", talkToBessAboutOutfits, undefined, "Outfits", "Change [bess.hisHer] armor, outfit or clothing.");
 //	addButton(1, "U. Tops", talkToBessAboutUpperUndergarments, undefined, "Underwear Tops", "Change [bess.hisHer] upper undergarment.");
 //	addButton(2, "U. Bottoms", talkToBessAboutLowerUndergarments, undefined, "Underwear Bottoms", "Change [bess.hisHer] lower undergarment.");
-	addButton(0, "Ears", talkToBessAboutEars, undefined, "Ears", "Change [bess.hisHer] ears.");
-	addButton(1, "Horns", talkToBessAboutHorns, undefined, "Horns", "Change [bess.hisHer] horns.");
-	addButton(2, "Tails", talkToBessAboutTails, undefined, "Tails", "Change [bess.hisHer] tail.");
-	addButton(3, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] wings.");
-	addButton(4, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] accessories.");
 
-	addButton(5, "Wear Clothes", bessWhatOutfitToWear, undefined, "Wear Clothes", "Change [bess.hisHer] clothes.");
-	addButton(6, "Give Clothes", bessGiveClothes, undefined, "Give Clothes", "Hand over some of your clothes to [bess.hisHer].");
-	addButton(7, "ReturnClothes", bessWhatOutfitToReturn, undefined, "Return Clothes", "Take back some clothes from [bess.hisHer].");
-	addButton(8, "DestroyClothes", bessWhatOutfitWillToDestroy, undefined, "Destroy Clothes", "Get rid of some of [bess.hisHer] clothes.");
+	addButton(0, "Wear Clothes", bessWhatOutfitToWear, undefined, "Wear Clothes", "Change [bess.hisHer] clothes.");
+	addButton(1, "Give Clothes", bessGiveClothes, undefined, "Give Clothes", "Hand over some of your clothes to [bess.hisHer].");
+	addButton(2, "ReturnClothes", bessWhatOutfitToReturn, undefined, "Return Clothes", "Take back some clothes from [bess.hisHer].");
+	addButton(3, "DestroyClothes", bessWhatOutfitWillToDestroy, undefined, "Destroy Clothes", "Get rid of some of [bess.hisHer] clothes.");
+	addButton(4, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] equipment.");
 
 	addButton(14, "Back", bessFunctions);
 }
@@ -4388,6 +4385,23 @@ public function setBessOutfit(classT:Class):void
 	bessFunctionsMenu();
 }
 */
+
+public function talkToBessAboutDoodads():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] to open [bess.hisHer] closet so that you can select new accessories for [bess.himHer]. [bess.HeShe] shows you all the items that [bess.heShe] owns.");
+
+	clearMenu();
+	addButton(0, "Ears", talkToBessAboutEars, undefined, "Ears", "Change [bess.hisHer] [bess.ears].");
+	addButton(1, "Horns", talkToBessAboutHorns, undefined, "Horns", "Change [bess.hisHer] [bess.horns].");
+	addButton(2, "Tails", talkToBessAboutTails, undefined, "Tails", "Change [bess.hisHer] [bess.tail].");
+	addButton(3, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] [bess.wings].");
+
+	addButton(14, "Back", bessFunctions);
+}
+
 public static const BESS_ACS_EAR:uint = 0;
 public static const BESS_ACS_HORNS:uint = 1;
 public static const BESS_ACS_TAIL:uint = 2;
@@ -4403,10 +4417,13 @@ public function talkToBessAboutEars():void
 		{l: "Bovine", v: GLOBAL.TYPE_BOVINE, bType: BESS_ACCSET_BOVINE},
 		{l: "Canine", v: GLOBAL.TYPE_CANINE, bType: BESS_ACCSET_CANINE},
 		{l: "Feline", v: GLOBAL.TYPE_FELINE, bType: BESS_ACCSET_FELINE},
+
 		{l: "Vulpine", v: GLOBAL.TYPE_VULPINE, bType: BESS_ACCSET_VULPINE},
 		{l: "Elfin", v: GLOBAL.TYPE_SYLVAN, bType: BESS_ACCSET_ANGEL},
 		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
+		{l: "Demonic", v: GLOBAL.TYPE_DEMONIC, bType: BESS_ACCSET_DEMONIC},
 		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
+
 		{l: "Mouse", v: GLOBAL.TYPE_MOUSE, bType: BESS_ACCSET_MOUSE},
 		{l: "Bunny", v: GLOBAL.TYPE_LAPINE, bType: BESS_ACCSET_BUNNY}
 	];
@@ -4427,7 +4444,7 @@ public function talkToBessAboutEars():void
 		}
 	}
 
-	addButton(14, "Back", talkToBessAboutClothes);
+	addButton(14, "Back", talkToBessAboutDoodads);
 }
 
 public function talkToBessAboutHorns():void
@@ -4458,7 +4475,7 @@ public function talkToBessAboutHorns():void
 		}
 	}
 
-	addButton(14, "Back", talkToBessAboutClothes);
+	addButton(14, "Back", talkToBessAboutDoodads);
 }
 
 public function talkToBessAboutTails():void
@@ -4499,7 +4516,7 @@ public function talkToBessAboutTails():void
 		}
 	}
 
-	addButton(14, "Back", talkToBessAboutClothes);
+	addButton(14, "Back", talkToBessAboutDoodads);
 }
 
 public function talkToBessAboutWings():void
@@ -4530,7 +4547,7 @@ public function talkToBessAboutWings():void
 		}
 	}
 
-	addButton(14, "Back", talkToBessAboutClothes);
+	addButton(14, "Back", talkToBessAboutDoodads);
 }
 
 public function setBessAccessory(opts:Array):void
@@ -4605,10 +4622,16 @@ public function setBessAccessory(opts:Array):void
 		}
 		else
 		{
-			if (bType == BESS_ACCSET_KITSUNE) bess.tailCount = 9;
-			else bess.tailCount = 1;
-
-			output("<b>[bess.name] now has [bess.tails]!</b>");
+			if (bType == BESS_ACCSET_KITSUNE) 
+			{
+				bess.tailCount = 9;
+				output("<b>[bess.name] now has [bess.tails]!</b>");
+			}
+			else
+			{
+				bess.tailCount = 1;
+				output("<b>[bess.name] now has " + indefiniteArticle(bess.tailDescript()) + "!</b>");
+			}
 		}
 	}
 
@@ -4627,7 +4650,7 @@ public function talkToBessAboutItems():void
 	else if (!bessKatana()) addButton(1, "Katana", talkToBessUseKatana, undefined, "Katana", "Have [bess.name] carry a katana.");
 	else addButton(1, "Katana", talkToBessNoKatana, undefined, "Katana", "Have [bess.name] put [bess.hisHer] katana away.");
 
-	addButton(14, "Back", talkToBessAboutClothes);
+	addButton(14, "Back", talkToBessAboutDoodads);
 }
 
 public function talkToBessWearGlasses():void
@@ -4829,14 +4852,14 @@ public function bessBuyShitAccessories():void
 	output("\nCanine Set (Allows [bess.name] to set Canine Tail and Ears) - 250 Creds");
 	output("\nFeline Set (Allows [bess.name] to set Feline Tail and Ears) - 250 Creds");
 	output("\nVulpine Set (Allows [bess.name] to set Vulpine Tail and Ears) - 250 Creds");
-	output("\nBunny Set (Allows [bess.name] to set Leporine Tail, Ears) - 250 Creds");
+	output("\nBunny Set (Allows [bess.name] to set Leporine Tail and Ears) - 250 Creds");
 	output("\nBee Set (Allows [bess.name] to set Bee Wings) - 250 Creds");
 	output("\nDraconic Set (Allows [bess.name] to set Draconic Ears, Tail, Wings and Horns). - 500 Creds");
 	output("\nDemonic Set (Allows [bess.name] to set Demonic Ears, Tail, Wings and Horns) - 500 Creds");
-	output("\nShark Set (Allows [bess.name] to set Shark Ears and Tail) - 250 Creds");
+	output("\nShark Set (Allows [bess.name] to set a Shark Tail) - 250 Creds");
 	output("\nDeer Set (Allows [bess.name] to set Deer Ears, Tail and Horns) - 250 Creds");
 	output("\nMouse Set (Allows [bess.name] to set Mouse Ears and Tail) - 250 Creds");
-	output("\nAngel Set (Allows [bess.name] to set Angel/White Feathered Wings) - 500 Creds");
+	output("\nAngel Set (Allows [bess.name] to set Angel/White Feathered Wings and Elfin Ears) - 500 Creds");
 	output("\nKitsune Set (Allows [bess.name] to set nine Vulpine tails) - 500 Creds");
 
 	clearMenu();
@@ -7675,7 +7698,7 @@ public function bessEvent6():void
 	}
 	else
 	{
-		output("You’re walking down the ship corridors, when once again, [bess.name] leaps out of nowhere, ambushing you once more.");
+		output("You’re [pc.walking] down the ship corridors, when once again, [bess.name] leaps out of nowhere, ambushing you once more.");
 		
 		output("\n\n<i>“Told you I don’t give up! So, you prepared to answer my questions now...?”</i> [bess.name] asks, holopad and touchpen in hand.");
 		
@@ -7901,7 +7924,7 @@ public function bessEvent7DontDrink():void
 	{
 		output("\n\nWhile you’re sure that drinking it is the nice thing to do, you simply can’t bring yourself to smell it - let alone drink it - without feeling like you’re going to hurl.");
 
-		output("\n\n<i>“Sorry [bess.name], but there’s just some things I’m not willing to do - like swallow chopped up animal cock. Call it a small quirk of mine,”</i> you apologize as you try and move away from the awful smell, sure that if [bess.heShe] brings it too close you won’t be able to keep your stomach from rebelling.");
+		output("\n\n<i>“Sorry [bess.name], but there’s just some things I’m not willing to do - like swallow chopped up animal cock. Call it a small quirk of mine,”</i> you apologize as you try and [pc.move] away from the awful smell, sure that if [bess.heShe] brings it too close you won’t be able to keep your stomach from rebelling.");
 
 		output("\n\nFor every step you take back, [bess.name] takes a step forward. <i>“...But can’t you just give it a little try? I worked really hard on it, "+ bessPCName() +"!”</i> [bess.HeShe] "+ bess.mf("charmingly smiles", "sweetly bats her synthetic lashes") +", but you just can’t bring yourself to do it.");
 
@@ -8373,7 +8396,7 @@ public function bessEvent11():void
 	{
 		flags["BESS_EVENT_11_TIMES"]++;
 
-		output("You’re walking around the [pc.ship] when you notice [bess.name] looking at [bess.hisHer] holopad. There’s a wistful look in [bess.hisHer] eyes. After a while, [bess.heShe] puts the pad down and walks off.");
+		output("You’re [pc.walking] around the [pc.ship] when you notice [bess.name] looking at [bess.hisHer] holopad. There’s a wistful look in [bess.hisHer] eyes. After a while, [bess.heShe] puts the pad down and walks off.");
 		
 		output("\n\nCurious, you pick it up and take a look. It’s the same data you’ve seen before - a list of cheap, synth paper books available from an extranet bookstore. [bess.HeShe] keeps looking at them, even though [bess.heShe] doesn’t have a " + (isAprilFools() ? "dogecoin" : "credit") + " to [bess.hisHer] name.");
 		
@@ -10491,7 +10514,7 @@ public function bessEvent28GoAfter():void
 	
 	output("\n\nWhat you also see is [bess.name] tied up with [bess.hisHer] arms behind [bess.hisHer] back and legs bound. There are three people standing around [bess.himHer] with guns cocked at [bess.hisHer] head. It seems they are waiting for you - you can’t really shoot them down without hitting [bess.name] as well.");
 	
-	output("\n\nLanding the ship, you set the guns to aim at them and grab a remote switch. When you walk out, you lift it high in the air, informing them that if they make a move you’ll blow them sky high.");
+	output("\n\nLanding the ship, you set the "+ shits["SHIP"].inventory[shits["SHIP"].shipMostExpensiveTurretIndex()].longName +" to aim at them and grab a remote switch. When you walk out, you lift it high in the air, informing them that if they make a move you’ll blow them sky high.");
 	
 	output("\n\nOne of the kidnappers, a female Ausar, pokes the barrel of [bess.hisHer] gun against [bess.name]’s temple. <i>“Same goes for [bess.himHer], "+ pc.mf("Mr.", "Miss") +" Steele. Make one false move and we’ll splatter this bot’s brains all over the ground. Got it?”</i> Seems like it’s a stalemate; at least for the moment.");
 	
@@ -10499,7 +10522,7 @@ public function bessEvent28GoAfter():void
 	
 	output("\n\n<i>“Yes, we know who you are, "+ pc.mf("Mr.", "Miss") +" Steele. Surprised? We represent an individual who has a vested interest in your cousin finishing the race first. Apparently, not everyone was a fan of the way your old man did things.”</i> The female Ausar - clearly the leader - informs you. <i>“...And we’ve been paid quite a pretty sum to make sure that happens. Considering you’re dumb enough to fall for a tin can, I can see exactly why they don’t want you in charge of Steele Industries.”</i>");
 	
-	output("\n\n<i>“See, at first glance this looks like a stalemate. You’ve got your cannons, and we’ve got your lover, you fucking toaster head. We’re not out here by chance, this is a warning - we’re taking it and flying out of here.”</i>");
+	output("\n\n<i>“See, at first glance this looks like a stalemate. You’ve got your "+ shits["SHIP"].inventory[shits["SHIP"].shipMostExpensiveTurretIndex()].longName +", and we’ve got your lover, you fucking toaster head. We’re not out here by chance, this is a warning - we’re taking it and flying out of here.”</i>");
 	
 	output("\n\n<i>“Blow us up, you blow [bess.himHer] up too. Follow us and we’ll blow [bess.hisHer] fucking artificial brains out. Continue chasing after the treasure and getting in your dear cousin’s way? We’ll definitely blow [bess.hisHer] skull open. You feel me, friend?”</i>");
 	
@@ -10610,7 +10633,7 @@ public function bessEvent28PartII():void
 		output("\n\nAs you move for [bess.name], they take off, leaving [bess.hisHer] behind as they fly up into the sky in their trash bucket.");
 	}
 
-	output("\n\nYou can see the pirate ship attempting to escape the area, and you remember you are holding the remote for the " +shits["SHIP"].inventory[shits["SHIP"].shipMostExpensiveTurretIndex()].longName +". You could blow them clean out of the sky right now; do you?");
+	output("\n\nYou can see the pirate ship attempting to escape the area, and you remember you are holding the remote for the "+ shits["SHIP"].inventory[shits["SHIP"].shipMostExpensiveTurretIndex()].longName +". You could blow them clean out of the sky right now; do you?");
 
 	//[Yes] [No]
 	clearMenu();
