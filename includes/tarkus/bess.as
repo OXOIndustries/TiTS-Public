@@ -4422,8 +4422,9 @@ public function talkToBessAboutEars():void
 		{l: "Elfin", v: GLOBAL.TYPE_SYLVAN, bType: BESS_ACCSET_ANGEL},
 		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
 		{l: "Demonic", v: GLOBAL.TYPE_DEMONIC, bType: BESS_ACCSET_DEMONIC},
-		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
+		{l: "Shark", v: GLOBAL.TYPE_SHARK, bType: BESS_ACCSET_SHARK},
 
+		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
 		{l: "Mouse", v: GLOBAL.TYPE_MOUSE, bType: BESS_ACCSET_MOUSE},
 		{l: "Bunny", v: GLOBAL.TYPE_LAPINE, bType: BESS_ACCSET_BUNNY}
 	];
@@ -4856,7 +4857,7 @@ public function bessBuyShitAccessories():void
 	output("\nBee Set (Allows [bess.name] to set Bee Wings) - 250 Creds");
 	output("\nDraconic Set (Allows [bess.name] to set Draconic Ears, Tail, Wings and Horns). - 500 Creds");
 	output("\nDemonic Set (Allows [bess.name] to set Demonic Ears, Tail, Wings and Horns) - 500 Creds");
-	output("\nShark Set (Allows [bess.name] to set a Shark Tail) - 250 Creds");
+	output("\nShark Set (Allows [bess.name] to set a Shark Ears and Tail) - 250 Creds");
 	output("\nDeer Set (Allows [bess.name] to set Deer Ears, Tail and Horns) - 250 Creds");
 	output("\nMouse Set (Allows [bess.name] to set Mouse Ears and Tail) - 250 Creds");
 	output("\nAngel Set (Allows [bess.name] to set Angel/White Feathered Wings and Elfin Ears) - 500 Creds");
