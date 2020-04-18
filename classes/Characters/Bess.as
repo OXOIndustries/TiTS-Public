@@ -112,6 +112,7 @@ package classes.Characters
 			vaginas = [new VaginaClass()];
 			(vaginas[0] as VaginaClass).type = GLOBAL.TYPE_SYNTHETIC;
 			(vaginas[0] as VaginaClass).vaginaColor = "silvery";
+			(vaginas[0] as VaginaClass).hymen = false;
 			
 			cocks = [];
 			

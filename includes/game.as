@@ -1134,6 +1134,7 @@ public function isFollowerMale(followerName:String = ""):Boolean
 	switch(followerName)
 	{
 		case "Bess-13":
+		case "Ben-14": return (chars["BESS"].mf("m", "f") == "m"); break;
 		case "Dane":
 		case "Eitan":
 		case "Kase": return true; break;
