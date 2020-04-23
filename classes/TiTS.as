@@ -688,6 +688,9 @@
 		// Game data
 		private var _perkDB:Perks;
 		public function get perkDB():Perks { return _perkDB; }
+		
+		private var originalFrameRate:uint = stage.frameRate;
+		private var standbyFrameRate:uint = 8;
 
 		public function TiTS()
 		{
@@ -780,6 +783,9 @@
 			clearMenu();
 
 			addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			
+			this.stage.nativeWindow.addEventListener(Event.ACTIVATE, windowActivateHandler);
+			this.stage.nativeWindow.addEventListener(Event.DEACTIVATE, windowDeactivateHandler);
 		}
 		
 		/* Try to safely report errors to the user
@@ -922,6 +928,14 @@
 			}
 			
 			var tw:Tween = new Tween(whatTheFuck, "x", None.easeNone, start, end, 12, false); 
+		}
+		
+		private function windowActivateHandler(e:Event):void {
+			this.stage.frameRate = this.originalFrameRate;
+		}
+		
+		private function windowDeactivateHandler(e:Event):void {
+			this.stage.frameRate = this.standbyFrameRate;
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state
