@@ -2577,7 +2577,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["TARKUS_DESTROYED"] == undefined && flags["TARKUS_TAXI_STOP_UNLOCKED"] != undefined) output2(", The Lift");
 			}
 			// The Stellar Tether
-			if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
+			if((flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined) || spoiler)
 			{
 				output2("\n<b><u>The Stellar Tether</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -2587,12 +2587,14 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Tarkus destroyed by pirates of the <i>Tarasque</i>, Completed");
 					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
-				else output2(" <i>In progress...</i>");
+				else if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined) output2(" <i>In progress...</i>");
+				else if(spoiler) output2(" not started");
 				if(flags["MITZI_RESCUED"] != undefined)
 				{
 					output2("\n<b>* " + ((flags["MITZI_DISABLED"] != undefined || flags["MITZI_GOODBAD"] != undefined) ? "Mitzi" : "Gabilani Technician") + ":</b> Rescued her");
 					if(flags["MITZI_DISABLED"] == undefined && flags["MITZI_GOODBAD"] == undefined) output2(" " + prettifyMinutes(GetGameTimestamp() - flags["MITZI_RESCUED"]) + " ago");
 				}
+				else if(spoiler) output2("\n<b>* Mitzi:</b> not rescued");
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
@@ -2600,30 +2602,38 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
+					else if(spoiler) output2(", didn't take Tam-wolf");
 				}
+				else if(spoiler) output2("\n<b>* Tam:</b> not met");
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
 					output2("\n<b>* Defenses:</b>");
 					if(flags["ROCKET_PODS_HACKED"] != undefined) output2(" Hacked rocket pods");
-					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked passed rocket pods");
+					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked past rocket pods");
 					else output2(" Destroyed rocket pods");
 				}
+				else if(spoiler) output2("\n<b>* Defenses:</b> not encountered");
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
 					output2("\n<b>* Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
+					else if(spoiler) output2(", didn't fuck her");
 				}
+				else if(spoiler) output2("\n<b>* Kaska:</b> not met");
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
 					output2("\n<b>* Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
+					else if(flags["DICKFUCKED_CAPN_KHORGAN"] == undefined && flags["LESBOED_KHORGAN"] == undefined && spoiler) output2 (", didn't fuck her");
 				}
+				else if(spoiler) output2("\n<b>* Capt. Khorgan:</b> haven't defeated her");
 				// Resources
 				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* Resources:</b> Platinum 190 taken");
+				else if(spoiler) output2("\n<b>* Resources:</b> Platinum 190 not taken");
 				// Bomb
 				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* Time-Bomb Countdown:</b> " + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
 			}
