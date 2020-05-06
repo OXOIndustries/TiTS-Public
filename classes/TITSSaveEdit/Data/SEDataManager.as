@@ -221,7 +221,8 @@ package classes.TITSSaveEdit.Data
 						classInstance: "classes.GameData::GameOptions",
 						debugMode: false,
 						easyMode: false,
-						sillyMode: false
+						sillyMode: false,
+						spoilerMode: false
 					},
 					daysPassed: 0,
 					currentMinutes: 0,
