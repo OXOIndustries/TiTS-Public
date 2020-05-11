@@ -2525,7 +2525,7 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Mhen'ga
-		if(flags["RIVALCONFIGURED"] != undefined && (showID == "Mhen'ga" || showID == "All"))
+		if((flags["RIVALCONFIGURED"] != undefined || spoiler) && (showID == "Mhen'ga" || showID == "All"))
 		{
 			output2("\n<b><u>Mhen’ga</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2547,7 +2547,7 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Tarkus
-		if(tarkusCoordinatesUnlocked() && (showID == "Tarkus" || showID == "All"))
+		if((tarkusCoordinatesUnlocked() || spoiler) && (showID == "Tarkus" || showID == "All"))
 		{
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2588,13 +2588,13 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
 				else if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined) output2(" <i>In progress...</i>");
-				else if(spoiler) output2(" not started");
+				else if(spoiler) output2(" Not started");
 				if(flags["MITZI_RESCUED"] != undefined)
 				{
 					output2("\n<b>* " + ((flags["MITZI_DISABLED"] != undefined || flags["MITZI_GOODBAD"] != undefined) ? "Mitzi" : "Gabilani Technician") + ":</b> Rescued her");
 					if(flags["MITZI_DISABLED"] == undefined && flags["MITZI_GOODBAD"] == undefined) output2(" " + prettifyMinutes(GetGameTimestamp() - flags["MITZI_RESCUED"]) + " ago");
 				}
-				else if(spoiler) output2("\n<b>* Mitzi:</b> not rescued");
+				else if(spoiler) output2("\n<b>* Mitzi:</b> Not rescued");
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
@@ -2602,9 +2602,9 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
-					else if(spoiler) output2(", didn't take Tam-wolf");
+					else if(spoiler) output2(", Didn't take Tam-wolf");
 				}
-				else if(spoiler) output2("\n<b>* Tam:</b> not met");
+				else if(spoiler) output2("\n<b>* Tam:</b> Not met");
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
@@ -2613,24 +2613,24 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked past rocket pods");
 					else output2(" Destroyed rocket pods");
 				}
-				else if(spoiler) output2("\n<b>* Defenses:</b> not encountered");
+				else if(spoiler) output2("\n<b>* Defenses:</b> Not encountered");
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
 					output2("\n<b>* Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
-					else if(spoiler) output2(", didn't fuck her");
+					else if(spoiler) output2(", Didn't fuck her");
 				}
-				else if(spoiler) output2("\n<b>* Kaska:</b> not met");
+				else if(spoiler) output2("\n<b>* Kaska:</b> Not met");
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
 					output2("\n<b>* Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
-					else if(flags["DICKFUCKED_CAPN_KHORGAN"] == undefined && flags["LESBOED_KHORGAN"] == undefined && spoiler) output2 (", didn't fuck her");
+					else if(flags["DICKFUCKED_CAPN_KHORGAN"] == undefined && flags["LESBOED_KHORGAN"] == undefined && spoiler) output2 (", Didn't fuck her");
 				}
-				else if(spoiler) output2("\n<b>* Capt. Khorgan:</b> haven't defeated her");
+				else if(spoiler) output2("\n<b>* Capt. Khorgan:</b> Haven't defeated her");
 				// Resources
 				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* Resources:</b> Platinum 190 taken");
 				else if(spoiler) output2("\n<b>* Resources:</b> Platinum 190 not taken");
@@ -2640,7 +2640,7 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Myrellion
-		if(myrellionCoordinatesUnlocked() && (showID == "Myrellion" || showID == "All"))
+		if((myrellionCoordinatesUnlocked() || spoiler) && (showID == "Myrellion" || showID == "All"))
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2648,6 +2648,7 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Coordinates received");
 				if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
+				else if(spoiler) output2(", Probe not reclaimed");
 			}
 			else output2(" <i>In progress...</i>");
 			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1 && flags["TAIVRA_NEW_THRONE"] == undefined)
@@ -2707,11 +2708,16 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him from Taivra");
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
+				else if(spoiler)
+				{
+					output2("\n<b>* [rival.name]:</b> Not seen");
+					output2("\n<b>* Dane:</b> Not seen");
+				}
 			}
 			mainCount++;
 		}
 		// Zheng Shi
-		if(zhengCoordinatesUnlocked() && (showID == "Zheng Shi" || showID == "All"))
+		if((zhengCoordinatesUnlocked() || spoiler) && (showID == "Zheng Shi" || showID == "All"))
 		{
 			output2("\n<b><u>Zhèng Shi Station</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2719,6 +2725,8 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Coordinates received");
 				if(9999 == 0) output2(", Reclaimed probe");
+				else if(9999 == 9999 && spoiler) output2(", Probe not reclaimable yet");
+				else if(spoiler) output2(", Probe not reclaimed");
 			}
 			else output2(" <i>In progress...</i>");
 			if(flags["ZHENG_SHI_PASSWORDED"] != undefined)
@@ -2730,7 +2738,9 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>Unknown</i>, Access denied");
 			}
 			if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined) output2("\n<b>* <i>Sidewinder</i>, Loot, Jumper’s Suit:</b> Taken");
+			else if(spoiler) output2("\n<b>* <i>Sidewinder</i>, Loot, Jumper’s Suit:</b> Not taken");
 			if(flags["ZHENG_SHI_GALOMAX"] == undefined) output2("\n<b>* <i>Sidewinder</i>, Loot, Galomax:</b> Taken");
+			else if(spoiler) output2("\n<b>* <i>Sidewinder</i>, Loot, Galomax:</b> Not taken");
 			if(flags["FERUZE_ZHENG_OUTCOME"] != undefined)
 			{
 				// Rival
@@ -2747,7 +2757,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["FERUZE_CAME_INSIDE"] != undefined) output2("\n<b>* Feruze, Times You Came Inside Her:</b> " + flags["FERUZE_CAME_INSIDE"]);
 				if(flags["FERUZE_BIG_DICK_TITFUCKED"] != undefined) output2("\n<b>* Feruze, Times Titfucked:</b> " + flags["FERUZE_BIG_DICK_TITFUCKED"]);
 			}
-
+			else if(spoiler)
+			{
+				output2("\n<b>* [rival.name]:</b> Not seen");
+				output2("\n<b>* Feruze:</b> Not seen");
+			}
 			mainCount++;
 		}
 		// Nothing recorded
@@ -2778,6 +2792,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_BUSINESS_SETUP"] != undefined && (days - flags["SERA_BUSINESS_SETUP"] > 0)) output2("\n<b>* Sera, Days Since Opened Business:</b> " + (days - flags["SERA_BUSINESS_SETUP"]));
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Bitchening</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Sera: Disco 3000
 			if(flags["SERA_PARTY_INVITE"] != undefined)
 			{
@@ -2794,12 +2813,18 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_SALARY_PAID"] != undefined && flags["SERA_SALARY_DATE"] != undefined) output2("\n<b>* Time Since Last Salary Payment:</b> " + prettifyMinutes(GetGameTimestamp() - flags["SERA_SALARY_DATE"]));
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Disco 3000</u></b>");
+				output2("\n<b>* Status:</b> Haven't been invited");
+			}
 			// Riya Quest
-			if(flags["RIYA_QUEST_RESULT"] != undefined)
+			if(flags["RIYA_QUEST_RESULT"] != undefined || spoiler)
 			{
 				output2("\n<b><u>RiyaQuest</u></b>");
 				output2("\n<b>* Status:</b>");
-				switch(flags["RIYA_QUEST_RESULT"])
+				if(flags["RIYA_QUEST_RESULT"] == undefined && spoiler) output2(" Not started");
+				else switch(flags["RIYA_QUEST_RESULT"])
 				{
 					case -1: output2(" Did not follow Riya, Completed"); break;
 					case 1: output2(" Followed Riya, Helped Riya with raid, Completed"); break;
@@ -2810,9 +2835,10 @@ public function displayQuestLog(showID:String = "All"):void
 			//Host Shukuchi
 			if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined)
 			{
-				output2("\n<b><u>" + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 2 ? "Tavros Mafia?" : "Host Shukuchi") + "</u></b>");
+				output2("\n<b><u>" + (flags[("SHUKUCHI_TAVROS_ENCOUNTER"] < 2 || !spoiler) ? "Tavros Mafia?" : "Host Shukuchi") + "</u></b>");
 				output2("\n<b>* Status:</b>");
-				switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
+				if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] == undefined && spoiler) output2(" Not seen");
+				else switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
 				{
 					case undefined: output2(" Tracking"); break;
 					case 1: output2(" Paid the Host"); break;
@@ -2855,8 +2881,13 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" Broken");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Prostate Milker</u></b>");
+				output2("\n<b>* Status:</b> Not broken");
+			}
 			// The Treatment
-			if(CodexManager.entryViewed("The Treatment"))
+			if(CodexManager.entryViewed("The Treatment") || spoiler)
 			{
 				output2("\n<b><u>The Treatment</u></b>");
 				output2("\n<b>* Status:</b> ");
@@ -2889,7 +2920,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Varmint Wranglin'
-			if(flags["MET_CAMERON"] != undefined)
+			if(flags["MET_CAMERON"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Varmint Wranglin’</u></b>");
 				output2("\n<b>* Varmints Captured, Total:</b> ");
