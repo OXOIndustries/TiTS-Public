@@ -2967,7 +2967,13 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(", Failed");
 				else output2(", <i>In progress...</i>");
 				if(flags["FUCK_LILLIES_USED"] != undefined) output2("\n<b>* Fuck Lillies, Times Sexed:</b> " + flags["FUCK_LILLIES_USED"]);
+				else if(spoiler) output2("\n<b>* Fuck Lillies, Times Sexed:</b> 0");
 				sideCount++;
+			}
+			else if(spoiler) 
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// The Forge Machina
 			if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined)
@@ -2978,6 +2984,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["ROBOT_QUEST_COMPLETE"] == 1) output2(" Robot found, Return to Carl");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Forge Machina</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Penny's Recruitment
 			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined || flags["PENNY_BIMBO_RECRUITED"] != undefined)
@@ -3009,7 +3020,13 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PQUEST_ZILTRAP_RESULTS"] == 1) output2(", Defeated them by health");
 					if(flags["PQUEST_ZILTRAP_RESULTS"] == 2) output2(", Defeated them by lust");
 				}
+				else if(spoiler) output2("\n<b>* Ziltraps:</b> Haven't seen them");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Penny’s Recruitment</u></b>");
+				output2("\n<b>* Status: Not started</b>");
 			}
 			// Penny's Zil Problem
 			if(flags["MET_PENNY"] != undefined)
@@ -3019,6 +3036,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["ZIL_PROBLEM_DEALT_WITH"] != undefined) output2(" Completed");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Penny’s Zil Problem</u></b>");
+				output2("\n<b>* Status:</b> Penny not met");
 			}
 			// Plantation Quest
 			if(flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start"))
@@ -3068,6 +3090,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PQ_DIPLO_FAILS"] != undefined) output2(" Failed " + (flags["PQ_DIPLO_FAILS"] == 1 ? "once" : (flags["PQ_DIPLO_FAILS"] + " times")));
 				}
 				if(flags["PQ_TOOK_AMBER"] != undefined) output2("\n<b>* Amber Idol:</b> Taken");
+				else if(spoiler) output2("\n<b>* Amber Idol:</b> Not aken");
 				if(flags["PQUEST_WATERFALLED"] != undefined)
 				{
 					output2("\n<b>* Kane:</b> Met him");
@@ -3079,20 +3102,28 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated him");
 				}
+				else if(spoiler) output2("\n<b>* Kane:</b> Not met");
 				if(flags["PQ_SECURED_LAH"] || flags["PQ_BEAT_LAH"] != undefined)
 				{
 					output2("\n<b>* R.K. Lah:</b> Met him");
 					if(flags["PQ_BEAT_LAH"] == 1) output2(", Defeated him");
 					if(flags["PQ_BEAT_LAH"] == -1) output2(", Defeated by him");
 				}
+				else if(spoiler) output2("\n<b>* R.K. Lah:</b> Not met");
 				if(flags["PQ_RESOLUTION"] != undefined)
 				{
 					output2("\n<b>* Quinn:</b> Met her");
 					if(flags["PQ_LET_QUINN_GO"] != undefined) output2(", Let her go");
 				}
+				else if(spoiler) output2("\n<b>* Quinn:</b> Not met");
 				if(flags["PQ_NALEENED"] != undefined) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> " + flags["PQ_NALEENED"]);
-
+				else if(spoiler) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> 0");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Plantation Quest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// The Pollen Dance
 			if(flags["QUINNFEST_COMPLETE"] != undefined || flags["QUINNFEST_TALKED"] != undefined)
@@ -3153,8 +3184,12 @@ public function displayQuestLog(showID:String = "All"):void
 						case 1: output2(" You comforted her with some much needed emotional support."); break;
 					}
 				}
-
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Pollen Dance</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Pump-King
 			if(flags["PUMPKING_COMPLETION"] != undefined || MailManager.isEntryViewed("pumpking_alert"))
@@ -3180,6 +3215,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PUMPKING_FUCKED"] != undefined) output2(", Sexed her");
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Pump-King</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Pyrite Satellite Recovery
 			if(flags["SATELLITE_QUEST"] != undefined)
@@ -3208,7 +3248,13 @@ public function displayQuestLog(showID:String = "All"):void
 						case 1: output2(" Defeated her in combat"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Gryvain Agent:</b> Not met");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Pyrite Satellite Recovery</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Zil Capture
 			if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined)
@@ -3232,8 +3278,12 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Zil Capture</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 		}
-
 		if(showID == "Tarkus" || showID == "All")
 		{
 			// Azra's Expeditions
@@ -3258,6 +3308,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 4: output2(", Fed her"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Double Gray Goo:</b> Not met");
 				if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKDOOR_HACKED"] != undefined || flags["AZRA_TARKUS_SKIP"] != undefined)
 				{
 					output2("\n<b>* Bunker:</b>");
@@ -3274,6 +3325,7 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" Visited");
 					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped past");
 				}
+				else if(spoiler) output2("\n<b>* Bunker:</b> Not visited");
 				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
 				{
 					output2("\n<b>* Pregnant Rask Guard:</b> Met her");
@@ -3285,6 +3337,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 3: output2(", She ate you out"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Pregnant Rask Guard:</b> Not met");
 				if(flags["SYDIAN_QUEEN_RESULT"] != undefined)
 				{
 					output2("\n<b>* Sydian Queen:</b> Met her");
@@ -3298,7 +3351,17 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["AZRA_RASK_PC_SUCKED"] != undefined) output2(", Sucked his dick");
 					if(flags["AZRA_RASK_ORGIED"] != undefined) output2(", Sexed him in raskvel orgy");
 				}
+				else if(spoiler)
+				{
+					output2("\n<b>* Sydian Queen:</b> Not met");
+					output2("\n<b>* Azaphel:</b> Not met");
+				}
 				sideCount++;
+			}
+			else if(spoiler) 
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Dr. Badger's Job
 			if(flags["BADGER_QUEST"] != undefined)
@@ -3329,6 +3392,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Badger Quest</u></b>");\
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Pexiga Uplift, aka Bimbo Quest II: The Search For More Bimbos
 			if(flags["PEXIGA_TALKED"] != undefined)
 			{
@@ -3355,6 +3423,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
+				else if(spoiler) output2("\n<b>* Nym-Foe:</b> Not met");
 				if(flags["NYM-FOE"] >= 2) output2(", Defeated her");
 				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
 				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
@@ -3379,6 +3448,7 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" Seen it"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Doll Maker:</b> Not met");
 				if(flags["DOLLMAKER_FIXED"] != undefined) output2(", Fixed it");
 				if(flags["DOLLMAKER_ACTIVATED"] != undefined) output2(", On guard");
 				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone) || flags["DOLLMAKER_LOOT_IQBGONE"] != undefined)
@@ -3391,8 +3461,13 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					else if(pc.hasItemByClass(IQBGone)) output2(", In possession");
 				}
-
+				else if(spoiler) output2("\n<b>* IQ B-Gone:</b> Not looted");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Pexiga Uplift</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Doll Maker Repair
 			if(flags["DOLLMAKER_DISASSEMBLED"] >= 4)
@@ -3463,6 +3538,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["DECK13_ARMORY_ENTERED"] != undefined) output2(", Entered armory");
 					if(flags["DECK13_TAKEN_PISTOL"] != undefined || flags["DECK13_TAKEN_RIFLE"] != undefined) output2(", Looted armory");
 					if(flags["DECK13_SAMPLES_TAKEN"] != undefined) output2("\n<b>* Deck 13, Gray Goo Samples Taken:</b> " + flags["DECK13_SAMPLES_TAKEN"]);
+					else if(spoiler) output2("\n<b>* Deck 13, Gray Goo Samples Taken:</b> 0");
 					if(flags["DECK13_CREW_TALK"] != undefined) output2("\n<b>* Nova:</b> Met her, Found out about her crew");
 					if(flags["GRAY_PRIME_DEFEATED_VIA_HP"] != undefined)
 					{
@@ -3481,6 +3557,11 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Ghost Deck</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Colenso's Conspiracy Theories
 			if(flags["SEXBOT_QUEST_STATUS"] != undefined)
@@ -3527,6 +3608,13 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Hnngularity</u></b>");
+				output2("\n<b>* Sexbots Scanned:</b> 0");
+				output2("\n<b>* Sexbot Factory:</b> Active");
+				output2("\n<b>* Hand So:</b> Active");
+			}
 			// Kimber Quest
 			if(flags["KIMBER_QUEST"] != undefined || flags["KIMBER_OFFER"] != undefined)
 			{
@@ -3542,8 +3630,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["KIMBER_QUEST_GOT_PANTIES"] != undefined) output2("\n<b>* Gabilani Panties:</b> Taken");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Kimber’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Lane's Illegal Activity
-			if(flags["MET_LANE"] != undefined)
+			if(flags["MET_LANE"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Lane’s Hypnotism</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -3607,6 +3700,11 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Shekka Quest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 		}
 
