@@ -607,10 +607,10 @@ public function chooseHeight():void {
 	output("<i> child, then? Very well. How tall should [pc.heShe] grow up to be? Please, give it in Imperial inches.”</i>");
 	output("\n\nVictor raises an eyebrow and quips, <i>“Seriously? Inches? What is this, the 20th century?”</i>");
 	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i>");
-	output("\n\n<b>Please give your character’s height in inches. For reference, 72 inches is about six feet tall or 182 centimeters.</b>");
+	output("\n\n<b>Please give your character’s height in " + UnitSystem.literalInches() + ", between " + UnitSystem.displayHeightInInches(raceHeightMin(pc.originalRace)) + " and " + UnitSystem.displayHeightInInches(raceHeightMax(pc.originalRace)) + "." + (UnitSystem.isSI() ? "" : " For reference, 72 inches is about six feet tall.</b>"));
 	
 	displayInput();
-	userInterface.textInput.text = String(averageHeight());
+	userInterface.textInput.text = String(formatFloat(UnitSystem.lengthInInches(averageHeight()), 0));
 	output("\n\n\n");
 	//[Height Box]
 	clearMenu();
@@ -674,15 +674,15 @@ public function applyHeight(confirm:Boolean = false):void {
 	
 	// Non-number and over-limit fails
 	if(isNaN(Number(userInterface.textInput.text))) {
-		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
+		output("Choose a height using numbers only, please. And remember, the value should be given in " + UnitSystem.literalInches() + ".");
 		fail = true;
 	}
-	else if(Number(userInterface.textInput.text) < heightMin) {
-		output("Choose a height at or above " + heightMin + " inches tall, please.");
+	else if(Number(userInterface.textInput.text) < UnitSystem.lengthInInches(heightMin)) {
+		output("Choose a height at or above " + UnitSystem.displayHeightInInches(heightMin) + " tall, please.");
 		fail = true;
 	}
-	else if(Number(userInterface.textInput.text) > heightMax) {
-		output("Choose a height at or below " + heightMax + " inches tall, please.");
+	else if(Number(userInterface.textInput.text) > UnitSystem.lengthInInches(heightMax)) {
+		output("Choose a height at or below " + UnitSystem.displayHeightInInches(heightMax) + " tall, please.");
 		fail = true;
 	}
 	if(fail) {
@@ -696,7 +696,8 @@ public function applyHeight(confirm:Boolean = false):void {
 	}
 	
 	if(confirm) {
-		pc.tallness = Number(userInterface.textInput.text);
+		var tallness:Number = Number(userInterface.textInput.text);
+		pc.tallness = UnitSystem.isSI() ? UnitSystem.centimeterToInch(tallness) : tallness;
 		if(stage.contains(userInterface.textInput)) 
 			removeInput();
 		chooseThickness();
@@ -705,29 +706,27 @@ public function applyHeight(confirm:Boolean = false):void {
 	
 	var stringInput:String = userInterface.textInput.text;
 	var newTallness:Number = Number(stringInput);
-	var newFeet:Number = Math.floor(newTallness/12);
-	var newInches:Number = (Math.round((newTallness - (newFeet * 12)) * 1000)/1000);
-	var newCentimeters:Number = (newTallness * 2.54);
-	var newMeters:Number = (newCentimeters)/100;
 	
-	output("You chose " + newTallness + " inch" + (newTallness == 1 ? "" : "es"));
-	if(newTallness >= 12)
-	{
-		output(" (");
-		if(newFeet > 0)
-		{
-			output(newFeet + " f" + (newFeet == 1 ? "oo" : "ee") + "t");
-			if(newInches > 0) output(" and ");
-		}
-		if(newInches > 0) output(newInches + " inch" + (newInches == 1 ? "" : "es"));
-		output(")");
+	output("You chose ");
+	if (UnitSystem.isSI()) {
+		 output(newTallness + " centimeters");
 	}
-	if(newCentimeters >= 0)
-	{
-		output(", or " + (Math.round(newCentimeters * 1000)/1000) + " centimeters");
-		if(newMeters >= 0)
+	else {
+		var newFeet:Number = Math.floor(newTallness/12);
+		var newInches:Number = (Math.round((newTallness - (newFeet * 12)) * 1000)/1000);
+
+		output(newTallness + " inches");
+
+		if(newTallness >= 12)
 		{
-			output(" (" + (Math.round(newMeters * 1000)/1000) + " meters)");
+			output(" (");
+			if(newFeet > 0)
+			{
+				output(newFeet + " f" + (newFeet == 1 ? "oo" : "ee") + "t");
+				if(newInches > 0) output(" and ");
+			}
+			if(newInches > 0) output(newInches + " inch" + (newInches == 1 ? "" : "es"));
+			output(")");
 		}
 	}
 	output(". Is this correct? If not, input a new value to retry.");
@@ -1220,15 +1219,15 @@ public function chooseYourJunkSize():void {
 		case "half-suula": cLengths = [10, 11, 12, 13, 14]; break;
 	}
 	
-	output(num2Text(cLengths[0]) + " to " + num2Text(cLengths[cLengths.length - 1]));
+	output(num2Text(UnitSystem.lengthInInches(cLengths[0])) + " to " + num2Text(UnitSystem.lengthInInches(cLengths[cLengths.length - 1])));
 	
 	for (i = 0; i < cLengths.length; i++)
 	{
-		addButton(i, (String(cLengths[i]) + "\""), applyJunkSize, cLengths[i]);
+		addButton(i, UnitSystem.displayLengthInInchesShort2(cLengths[i]), applyJunkSize, cLengths[i]);
 	}
 	addButton(13,"Whatever",applyJunkSize,cLengths[rand(cLengths.length)]);
 	
-	output(" inches. How long do you want it?”</i>");
+	output(" " + UnitSystem.literalInches() + ". How long do you want it?”</i>");
 	if(cLengths[cLengths.length - 1] >= 9) output(" He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	
 	//NEW (cont.)
@@ -2048,7 +2047,7 @@ public function takeCelise():void {
 		output("\n\nYour " + pc.legOrLegs() + " wobble");
 		if(pc.legCount == 1) output("s");
 		output(" from the sensation assaulting you, and you grab hold of the shelf for support, watching the emerald blob slide across the floor until it squishes up against you. Celise gushes, <i>“Ohh, look at it! It’s nice and hard and veiny and it tastes so good inside me! Thank you for deigning to feed me... " + pc.short + ", was it?”</i>");
-		output("\n\nYou nod and try to stay upright. Fluid weight roils around your " + pc.cockDescript(x) + " with slow, gentle undulations, tickling every square inch of its surface with perfect pressure. Somehow, despite its glorious slipperiness, there’s just enough friction for your body to make your nerves fire one after the other, forcing your internal muscles to flutter and squeeze fat drops of pre-cum into the goo-girl’s wrist. She arches her back to raise her titanic breasts into her arm, absorbing her own elbow, forearm, and then wrist, drawing your dick deep into her swollen teat. You gasp and drip a bit more freely in response.");
+		output("\n\nYou nod and try to stay upright. Fluid weight roils around your " + pc.cockDescript(x) + " with slow, gentle undulations, tickling every square " + UnitSystem.literalInch() + " of its surface with perfect pressure. Somehow, despite its glorious slipperiness, there’s just enough friction for your body to make your nerves fire one after the other, forcing your internal muscles to flutter and squeeze fat drops of pre-cum into the goo-girl’s wrist. She arches her back to raise her titanic breasts into her arm, absorbing her own elbow, forearm, and then wrist, drawing your dick deep into her swollen teat. You gasp and drip a bit more freely in response.");
 		output("\n\n<i>“Yum! Even your pre-cum is tasty. Can I just keep milking that out of you, or would you rather I get you off? Unless you can cum hard enough to make my tit turn white, I think I’d prefer the former,”</i> Celise giggles as her arm exits out the bottom of her tit, appearing to hold it up, though it’s made of the same material as the jiggling, gelatinous mammary. Her free hand is buried to the wrist in her gooey undercarriage, pumping low and slow into a massive, over-engorged honeypot.");
 		output("\n\nYou grunt in pleasure and pain as your ardor builds to an unmanageable boil, aching to burst out, to explode deep into Celise’s gooey, delicious tit. Her controlled motions seem intent on holding you there forever. She teases you to the precipice and backs off again and again, devouring the hot, liquid pleasure that " + pc.eachCock() + " releases whenever you get particularly close. You can’t take it anymore!");
 		output("\n\nLetting go of the shelf, you grab hold of her massive tit in both hands");

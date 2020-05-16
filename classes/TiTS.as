@@ -96,6 +96,8 @@
 	
 	import flash.display.StageScaleMode;
 
+	import classes.Units.UnitSystem;
+
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
 	{		
