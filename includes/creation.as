@@ -1223,7 +1223,7 @@ public function chooseYourJunkSize():void {
 	
 	for (i = 0; i < cLengths.length; i++)
 	{
-		addButton(i, UnitSystem.displayLengthInInchesShort2(cLengths[i]), applyJunkSize, cLengths[i]);
+		addButton(i, UnitSystem.displayInchesShort2(cLengths[i]), applyJunkSize, cLengths[i]);
 	}
 	addButton(13,"Whatever",applyJunkSize,cLengths[rand(cLengths.length)]);
 	
