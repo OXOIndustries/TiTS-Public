@@ -4285,7 +4285,7 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Uveto" || showID == "All")
 		{
 			// Drone Hunting
-			if(flags["MET_NAYNA"] != undefined)
+			if(flags["MET_NAYNA"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Drone Hunting</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4298,13 +4298,13 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["DRONED_UVIP V14"] != undefined) naynaDrones++;
 					if(flags["DRONED_UVIP X34"] != undefined) naynaDrones++;
 					if(flags["DRONED_UVIP L28"] != undefined) naynaDrones++;
-
 					if(naynaDrones >= 5) output2(" Completed");
 					else output2(" <i>In progress...</i>");
 					if(naynaDrones > 0) output2("\n<b>* Weather Drones Collected:</b> " + naynaDrones);
 				}
 				else output2(" <i>Not yet accepted...</i>");
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
+				else if(spoiler) output2("\n<b>* Weather Drones Turned In:</b> 0");
 				sideCount++;
 			}
 			// Fertility Ritual
@@ -4318,6 +4318,11 @@ public function displayQuestLog(showID:String = "All"):void
 					case 1: output2(", Took idol"); break;
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Milodan Ritual</u></b>");
+				output2("\n<b>* Status:</b> Haven't seen ritual");
 			}
 			// Mrs. Reasner
 			if(flags["BEA_QUEST"] != undefined)
@@ -4335,6 +4340,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				if(flags["BEA_SAVCOUNT"] != undefined) output2("\n<b>* Savicite Sold to " + flags["BEA_TITLE"] + ", Total:</b> " + flags["BEA_SAVCOUNT"]);
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Refueling the <i>S.S. Inexorable</i></u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Tuuva Expedition
 			if(flags["TUUVA_50AFF"] != undefined)
@@ -4354,12 +4364,18 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Tuuva’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			//Syri Quest
-			if(flags["SYRIQUEST_STATE"] != undefined)
+			if(flags["SYRIQUEST_STATE"] != undefined || spoiler)
 			{
 				output2("\n<b><u>SyriQuest</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
+				if(flags["SYRIQUEST_STATE"] == undefined) output2(" Not started");
+				else if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
 				else if(flags["SYRIQUEST_STATE"] == 0) output2(" <i>Syri possibly fired from Pyrite job?</i>");
 				else if(flags["SYRIQUEST_STATE"] >= 3) output2(" Accepted");
 				else output2(" <i>In progress...</i>");
@@ -4382,7 +4398,8 @@ public function displayQuestLog(showID:String = "All"):void
 					output2("\n<b>* Living Onahole:</b> Taken");
 					if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2) output2(", Given to Syri");
 				}
-				if(flags["MET_SCHORA"] != undefined)
+				else if(spoiler) output2("\n<b>* Living Onahole:</b> Not taken");
+				if(flags["MET_SCHORA"] != undefined || spoiler)
 				{
 					var schoraName:String = "";
 					if(flags["MET_SCHORA"] > 3 || flags["SYRIQUEST_STATE"] >= 21)
@@ -4402,16 +4419,13 @@ public function displayQuestLog(showID:String = "All"):void
 						case 3: output2(" Met her"); break;
 						case 4: output2(" Met her, Sexed her nicely"); break;
 						case 5: output2(" Met her, Sexed her roughly"); break;
+						default: output2(" Not met"); break;
 					}
 				}
-				if(flags["MET_TORRA"] != undefined)
-				{
-					output2("\n<b>* Researcher:</b> Met and sexed her");
-				}
-				if(flags["SYRIQUEST_STATE"] >= 8)
-				{
-					output2("\n<b>* Dr. Calnor:</b> Met him");
-				}
+				if(flags["MET_TORRA"] != undefined) output2("\n<b>* Researcher:</b> Met and sexed her");
+				else if(spoiler) output2("\n<b>* Researcher:</b> Not met");
+				if(flags["SYRIQUEST_STATE"] >= 8) output2("\n<b>* Dr. Calnor:</b> Met him");
+				else if(spoiler) output2("\n<b>* Dr. Calnor:</b> Not met");
 				if(flags["SYRIQUEST_STATE"] >= 10)
 				{
 					output2("\n<b>* Valden:</b> Met him");
@@ -4429,6 +4443,7 @@ public function displayQuestLog(showID:String = "All"):void
 						}
 					}
 				}
+				else if(spoiler) output2("\n<b>* Valden:</b> Not met");
 				sideCount++;
 			}
 			if(flags["WARGII_PROGRESS"] != undefined || flags["WARGII_SETUP"] != undefined)
