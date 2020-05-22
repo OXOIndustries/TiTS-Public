@@ -4446,7 +4446,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(spoiler) output2("\n<b>* Valden:</b> Not met");
 				sideCount++;
 			}
-			if(flags["WARGII_PROGRESS"] != undefined || flags["WARGII_SETUP"] != undefined)
+			if(flags["WARGII_PROGRESS"] != undefined || flags["WARGII_SETUP"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Warg’ii Hold</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4473,17 +4473,25 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(flags["WARGII_PROGRESS"] == 2) output2(", <i>In progress...</i>");
 					output2("\n<b>* Influence:</b> " + wargiiScore() + " %");
 					if(flags["WARGII_FIGHTS_RAN"] != undefined) output2("\n<b>* Combat, Retreats, Total:</b> " + flags["WARGII_FIGHTS_RAN"]);
+					else if(spoiler) output2("\n<b>* Combat, Retreats, Total:</b> 0");
 					if(flags["WARGII_FIGHTS_WON"] != undefined) output2("\n<b>* Combat, Victories, Total:</b> " + flags["WARGII_FIGHTS_WON"]);
-					if(flags["WARGII_HEIDRUN_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_HEIDRUN"] == undefined ? "Korgonne Merchant" : "Heidrun") + ":</b> Saved Her");
+					else if(spoiler) output2("\n<b>* Combat, Victories, Total:</b> 0");
+					if(flags["WARGII_HEIDRUN_SAVED"] != undefined) output2("\n<b>* " + ((flags["MET_HEIDRUN"] == undefined && !spoiler) ? "Korgonne Merchant" : "Heidrun") + ":</b> Saved her");
+					else if(spoiler) output2("\n<b>* Heidrun:</b> Not saved");
 					if(flags["WARGII_NENNE_SAVED"] != undefined) output2("\n<b>* Nenne:</b> Saved Her");
-					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_LUND"] == undefined ? "Male Korgonne" : "Lund") + ":</b> Saved Him");
-					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_TUUVA"] == undefined ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved Her");
+					else if(spoiler) output2("\n<b>* Nenne:</b> Not saved");
+					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + ((flags["MET_LUND"] == undefined && !spoiler) ? "Male Korgonne" : "Lund") + ":</b> Saved him");
+					else if(spoiler) output2("\n<b>* Lund:</b> Not saved");
+					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + ((flags["MET_TUUVA"] == undefined && !spoiler) ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved her");
+					else if(spoiler) output2("\n<b>* Tuuva:</b> Not saved");
 					if(flags["WARGII_MAJA_SAVED"] != undefined)
 					{
-						output2("\n<b>* " + (flags["MET_MAJA"] == undefined ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved Her");
+						output2("\n<b>* " + ((flags["MET_MAJA"] == undefined && !spoiler) ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved her");
 						if(flags["WARGII_MAJA_SAVED"] >= 2) output2(", Saved her animals");
 					}
-					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + (flags["KIONA_MET"] == undefined ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved Her");
+					else if(spoiler) output2("\n<b>* Maja:</b> Not saved");
+					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + ((flags["KIONA_MET"] == undefined && !spoiler) ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved her");
+					else if(spoiler) output2("\n<b>* Kiona:</b> Not saved");
 				}
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;
