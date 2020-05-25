@@ -64,8 +64,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Current Race:</b> " + StringUtil.toTitleCase(pc.race()));
 		}
 		else output2("\n<b>* Race:</b> " + StringUtil.toTitleCase(pc.originalRace));
-		output2("\n<b>* Height:</b> " + prettifyLength(pc.tallness));
-		output2("\n<b>* Weight:</b> " + prettifyWeight(pc.fullBodyWeight()));
+		output2("\n<b>* Height:</b> " + UnitSystem.displayPreciseLengthShort2(pc.tallness));
+		output2("\n<b>* Weight:</b> " + UnitSystem.displayWeightShort(pc.fullBodyWeight()));
 		output2("\n<b>* Sex:</b> ");
 		if(pc.genderTextOverride() != "") output2(pc.genderTextOverride());
 		else if(pc.hasCock() && !pc.hasVagina()) output2("Male");
@@ -108,7 +108,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(exposureVisible > 0) output2(", " + exposureVisible + " Visible");
 		if(exposurePhysical > 0) output2(", " + exposurePhysical + " Exposed");
 		output2("\n<b>* Exhibitionism:</b> " + formatFloat(pc.exhibitionism(), 1) + "/100");
-		output2("\n<b>* Carry Threshold:</b> " + prettifyWeight(pc.bodyStrength()));
+		output2("\n<b>* Carry Threshold:</b> " + UnitSystem.displayWeightShort(pc.bodyStrength()));
 		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");
 		// Head
 		output2("\n<b><u>Head</u></b>");
@@ -129,7 +129,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Beard, Length:</b>");
 			if(pc.beardLength > 0.125)
 			{
-				output2(" " + prettifyLength(pc.beardLength));
+				output2(" " + UnitSystem.displayPreciseLengthShort2(pc.beardLength));
 				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style:</b> " + StringUtil.toDisplayCase(pc.beardStyles()));
 			}
 			else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Short, Fur");
@@ -147,7 +147,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Hair, Length:</b>");
 			if(pc.hairLength > 0.125)
 			{
-				output2(" " + prettifyLength(pc.hairLength));
+				output2(" " + UnitSystem.displayPreciseLengthShort2(pc.hairLength));
 				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style:</b> " + StringUtil.toDisplayCase(pc.hairStyle));
 			}
 			else output2(" Shaved");
@@ -156,7 +156,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else output2(" None");
 		if(pc.hasAntennae()) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
 		output2("\n<b>* Ears:</b>");
-		if(pc.hasLongEars()) output2(" " + prettifyLength(pc.earLength) + ",");
+		if(pc.hasLongEars()) output2(" " + UnitSystem.displayPreciseLengthShort2(pc.earLength) + ",");
 		if(pc.earFlags.length > 0)
 		{
 			for(i = 0; i < pc.earFlags.length; i++)
@@ -198,11 +198,11 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasStatusEffect("Horn Bumps")) output2(" Horn Bumps");
 			else
 			{
-				if(InCollection(pc.hornType, GLOBAL.TYPE_DEER, GLOBAL.TYPE_DRYAD)) output2(" 2, " + prettifyLength(pc.hornLength) + ", " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
+				if(InCollection(pc.hornType, GLOBAL.TYPE_DEER, GLOBAL.TYPE_DRYAD)) output2(" 2, " + UnitSystem.displayPreciseLengthShort2(pc.hornLength) + ", " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
 				else
 				{
 					output2(" " + pc.horns + ",");
-					if(pc.hornLength > 0) output2(" " + prettifyLength(pc.hornLength) + ",");
+					if(pc.hornLength > 0) output2(" " + UnitSystem.displayPreciseLengthShort2(pc.hornLength) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.hornType]);
 				}
 			}
@@ -290,8 +290,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2(GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
 			if(pc.hasTailCunt()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[2]);
-			if(pc.hasTailCock()) output2("\n<b>* Tail, Genital Volume:</b> " + prettifyVolume(pc.tailCockVolume()));
-			if(pc.hasTailCunt()) output2("\n<b>* Tail, Genital Capacity:</b> " + prettifyVolume(pc.tailCuntCapacity()));
+			if(pc.hasTailCock()) output2("\n<b>* Tail, Genital Volume:</b> " + UnitSystem.displayVolumeShort(pc.tailCockVolume()));
+			if(pc.hasTailCunt()) output2("\n<b>* Tail, Genital Capacity:</b> " + UnitSystem.displayVolumeShort(pc.tailCuntCapacity()));
 		}
 		if(pc.hasGenitals())
 		{
@@ -313,7 +313,7 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 			if(pc.breastRows.length > 1)
 			{
-				output2("\n<b>* Breasts, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("breast")) + ", total");
+				output2("\n<b>* Breasts, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("breast")) + ", total");
 				if(pc.weightQ("breast") > 0) output2(" (" + pc.weightQ("breast") + " %)");
 			}
 			if(pc.hasNipples())
@@ -334,8 +334,8 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b><u>Lactation</u></b>");
 				output2("\n<b>* Milk, Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType]);
 				output2("\n<b>* Milk, Capacity:</b> " + formatFloat(pc.milkFullness, 1) + " %");
-				output2("\n<b>* Milk, Current" + ((pc.breastRows.length == 1) ? "" : ", Total") + ":</b> " + mLs(Math.round(pc.lactationQ(99))));
-				output2("\n<b>* Milk, Max" + ((pc.breastRows.length == 1) ? "" : ", Total") + ":</b> " + mLs(pc.milkCapacity(99)));
+				output2("\n<b>* Milk, Current" + ((pc.breastRows.length == 1) ? "" : ", Total") + ":</b> " + UnitSystem.displayLitersShort(Math.round(pc.lactationQ(99))));
+				output2("\n<b>* Milk, Max" + ((pc.breastRows.length == 1) ? "" : ", Total") + ":</b> " + UnitSystem.displayLitersShort(pc.milkCapacity(99)));
 				output2("\n<b>* Milk, Production Training:</b> " + formatFloat(pc.milkMultiplier, 1) + " %");
 				output2("\n<b>* Milk, Production Bonus:</b> " + Math.round(pc.milkRate*100)/10 + " %");
 			}
@@ -360,11 +360,11 @@ public function statisticsScreen(showID:String = "All"):void
 						if(pc.breastRows[x].breastRatingMod != 0 && pc.siliconeRating("tits") != 0) output2("\n<b>* Breast, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("tits"), 3));
 						if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating:</b> " + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 						if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating:</b> " + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
-						output2("\n<b>* Breast Row, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("breast", x)));
+						output2("\n<b>* Breast Row, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("breast", x)));
 						if(pc.weightQ("breast", x) > 0) output2(" (" + pc.weightQ("breast", x) + " %)");
 					}
 					output2("\n<b>* Areola:</b> " + " " + StringUtil.toDisplayCase(pc.areolaFlagDescript(x)));
-					output2("\n<b>* Areola, Size:</b> " + prettifyLength(pc.nippleWidth(x)));
+					output2("\n<b>* Areola, Size:</b> " + UnitSystem.displayPreciseLengthShort2(pc.nippleWidth(x)));
 					output2("\n<b>* Nipple, Type:</b> " + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
 					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type:</b> " + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
@@ -372,18 +372,18 @@ public function statisticsScreen(showID:String = "All"):void
 					{
 						if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 						{
-							output2("\n<b>* Nipple, Length, Flaccid:</b> " + prettifyLength(pc.nippleLength(0)));
-							output2("\n<b>* Nipple, Length, Erect:</b> " + prettifyLength(pc.nippleLength(0) * pc.dickNippleMultiplier));
+							output2("\n<b>* Nipple, Length, Flaccid:</b> " + UnitSystem.displayPreciseLengthShort2(pc.nippleLength(0)));
+							output2("\n<b>* Nipple, Length, Erect:</b> " + UnitSystem.displayPreciseLengthShort2(pc.nippleLength(0) * pc.dickNippleMultiplier));
 						}
-						else output2("\n<b>* Nipple, Length:</b> " + prettifyLength(pc.nippleLength(x)));
+						else output2("\n<b>* Nipple, Length:</b> " + UnitSystem.displayPreciseLengthShort2(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");
 					}
 					if(pc.hasPiercedNipples(x)) output2("\n<b>* Nipple Piercing:</b> " + StringUtil.toDisplayCase(pc.breastRows[x].piercing.longName));
 					if(pc.breastRows[x].breasts != 1) output2(" each");
 					if(pc.breastRows.length != 1)
 					{
-						output2("\n<b>* Milk, Current:</b> " + mLs(Math.round(pc.lactationQ(x))));
-						output2("\n<b>* Milk, Max:</b> " + mLs(pc.milkCapacity(x)));
+						output2("\n<b>* Milk, Current:</b> " + UnitSystem.displayLitersShort(Math.round(pc.lactationQ(x))));
+						output2("\n<b>* Milk, Max:</b> " + UnitSystem.displayLitersShort(pc.milkCapacity(x)));
 					}
 				}
 			}
@@ -403,8 +403,8 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.balls <= 0)
 			{
 				//output2(", Prostate");
-				output2("\n<b>* Prostate, Volume:</b> " + prettifyVolume(pc.ballVolume(), 1));
-				output2("\n<b>* Prostate, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("testicle")));
+				output2("\n<b>* Prostate, Volume:</b> " + UnitSystem.displayVolumeShort(pc.ballVolume()));
+				output2("\n<b>* Prostate, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("testicle")));
 				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
 			}
 			else if(pc.balls > 0)
@@ -420,12 +420,12 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.getStatusTooltip("Special Scrotum") != "") output2(", " + StringUtil.toDisplayCase(pc.getStatusTooltip("Special Scrotum")));
 				}
 				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
-				output2("\n<b>* Testicle, Size:</b> " + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
+				output2("\n<b>* Testicle, Size:</b> " + UnitSystem.displayPreciseLengthShort2(pc.ballDiameter()) + " across, " + UnitSystem.displayPreciseLengthShort2(pc.ballSize()) + " around");
 				if(pc.ballSizeMod != 1) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.ballSizeMod, 3)) + ")");
 				if(pc.balls != 1) output2(", each");
-				output2("\n<b>* Testicle, Volume:</b> " + prettifyVolume(pc.ballVolume(), 1));
+				output2("\n<b>* Testicle, Volume:</b> " + UnitSystem.displayVolumeShort(pc.ballVolume()));
 				if(pc.balls != 1) output2(", each");
-				output2("\n<b>* Testicle, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("testicle")));
+				output2("\n<b>* Testicle, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("testicle")));
 				if(pc.balls != 1) output2(", total");
 				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
 			}
@@ -434,7 +434,7 @@ public function statisticsScreen(showID:String = "All"):void
 			else output2(" Taken");
 			if(pc.cocks.length > 1)
 			{
-				output2("\n<b>* Penis, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("penis")));
+				output2("\n<b>* Penis, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("penis")));
 				if(pc.cocks.length > 1) output2(", total");
 				if(pc.weightQ("penis") > 0) output2(" (" + pc.weightQ("penis") + " %)");
 			}
@@ -444,9 +444,9 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.ballSizeRaw > 0 && pc.perkv1("'Nuki Nuts") > 0) output2(" " + formatFloat(pc.ballFullness + ((pc.perkv1("'Nuki Nuts")/pc.ballSizeRaw) * 100), 1) + " %");
 			else output2(" " + formatFloat(pc.ballFullness, 1) + " %");
 			output2("\n<b>* Cum, Quantity Modifier:</b> " + Math.round(pc.cumMultiplier()*1000)/10 + " %");
-			output2("\n<b>* Cum, Current Internal:</b> " + mLs(pc.currentCum()));
-			output2("\n<b>* Cum, Probable Ejaculation:</b> " + mLs(Math.round(pc.cumQ())));
-			output2("\n<b>* Cum, Max:</b> " + mLs(pc.maxCum()));
+			output2("\n<b>* Cum, Current Internal:</b> " + UnitSystem.displayLitersShort(pc.currentCum()));
+			output2("\n<b>* Cum, Probable Ejaculation:</b> " + UnitSystem.displayLitersShort(Math.round(pc.cumQ())));
+			output2("\n<b>* Cum, Max:</b> " + UnitSystem.displayLitersShort(pc.maxCum()));
 			output2("\n<b>* Refractory Rate:</b> " + Math.round(pc.refractoryRate*1000)/10 + " %");
 			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
 			else
@@ -471,25 +471,25 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType]);
-					output2("\n<b>* Length, Flaccid:</b> " + prettifyLength(pc.cLengthFlaccid(x)));
-					output2("\n<b>* Length, Current:</b> " + prettifyLength(pc.cLengthFlaccid(x, true)));
-					output2("\n<b>* Length, Erect:</b> " + prettifyLength(pc.cLength(x)));
-					output2("\n<b>* Thickness:</b> " + prettifyLength(pc.cThickness(x)));
+					output2("\n<b>* Length, Flaccid:</b> " + UnitSystem.displayPreciseLengthShort2(pc.cLengthFlaccid(x)));
+					output2("\n<b>* Length, Current:</b> " + UnitSystem.displayPreciseLengthShort2(pc.cLengthFlaccid(x, true)));
+					output2("\n<b>* Length, Erect:</b> " + UnitSystem.displayPreciseLengthShort2(pc.cLength(x)));
+					output2("\n<b>* Thickness:</b> " + UnitSystem.displayPreciseLengthShort2(pc.cThickness(x)));
 					output2("\n<b>* Thickness, Ratio Modifier:</b> " + Math.round(pc.cocks[x].cThicknessRatio()*1000)/10 + " %");
-					output2("\n<b>* Girth:</b> " + prettifyLength(pc.cGirth(x)));
+					output2("\n<b>* Girth:</b> " + UnitSystem.displayPreciseLengthShort2(pc.cGirth(x)));
 					if(pc.hasKnot(x))
 					{
-						output2("\n<b>* Knot Thickness:</b> " + prettifyLength(pc.knotThickness(x)));
-						output2("\n<b>* Knot Girth:</b> " + prettifyLength(pc.knotGirth(x)));
+						output2("\n<b>* Knot Thickness:</b> " + UnitSystem.displayPreciseLengthShort2(pc.knotThickness(x)));
+						output2("\n<b>* Knot Girth:</b> " + UnitSystem.displayPreciseLengthShort2(pc.knotGirth(x)));
 					}
 					if(pc.cockVolume(x, false) != pc.cockVolume(x))
 					{
-						output2("\n<b>* Volume, Physical:</b> " + prettifyVolume(pc.cockVolume(x, false)));
-						output2("\n<b>* Volume, Effective:</b> " + prettifyVolume(pc.cockVolume(x)));
+						output2("\n<b>* Volume, Physical:</b> " + UnitSystem.displayVolumeShort(pc.cockVolume(x, false)));
+						output2("\n<b>* Volume, Effective:</b> " + UnitSystem.displayVolumeShort(pc.cockVolume(x)));
 					}
-					else output2("\n<b>* Volume:</b> " + prettifyVolume(pc.cockVolume(x)));
-					output2("\n<b>* Capacity:</b> " + prettifyVolume(pc.cockCapacity(x)));
-					output2("\n<b>* Weight:</b> " + prettifyWeight(pc.bodyPartWeight("penis", x)));
+					else output2("\n<b>* Volume:</b> " + UnitSystem.displayVolumeShort(pc.cockVolume(x)));
+					output2("\n<b>* Capacity:</b> " + UnitSystem.displayVolumeShort(pc.cockCapacity(x)));
+					output2("\n<b>* Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("penis", x)));
 					if(pc.weightQ("penis", x) > 0) output2(" (" + pc.weightQ("penis", x) + " %)");
 					if(pc.hasCockPiercing(x)) output2("\n<b>* Piercing:</b> " + StringUtil.toDisplayCase(pc.cocks[x].piercing.longName));
 					if(pc.hasCocksock(x)) output2("\n<b>* Sock:</b> " + StringUtil.toDisplayCase(pc.cocks[x].cocksock.longName));
@@ -512,11 +512,11 @@ public function statisticsScreen(showID:String = "All"):void
 				//if(pc.vaginas.length != 0) output2(",");
 				//output2(" " + pc.totalClits() +" Clit");
 				//if(pc.totalClits() != 1) output2("s");
-				if(pc.clitLength != 0) output2("\n<b>* Clitoris, Length:</b> " + prettifyLength(pc.clitLength));
+				if(pc.clitLength != 0) output2("\n<b>* Clitoris, Length:</b> " + UnitSystem.displayPreciseLengthShort2(pc.clitLength));
 				if(pc.totalClits() != 1) output2(", each");
 				if(pc.vaginas.length > 1)
 				{
-					output2("\n<b>* Clitoris, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("clitoris")));
+					output2("\n<b>* Clitoris, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("clitoris")));
 					if(pc.totalClits() != 1) output2(", total");
 					if(pc.weightQ("clitoris") > 0) output2(" (" + pc.weightQ("clitoris") + " %)");
 				}
@@ -527,7 +527,7 @@ public function statisticsScreen(showID:String = "All"):void
 			// Girlcum Stats
 			output2("\n<b>* Girlcum, Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
 			output2("\n<b>* Girlcum, Quantity Modifier:</b> " + Math.round(pc.girlCumMultiplier()*1000)/10 + " %");
-			output2("\n<b>* Girlcum, Probable Ejaculation:</b> " + mLs(pc.girlCumQ()));
+			output2("\n<b>* Girlcum, Probable Ejaculation:</b> " + UnitSystem.displayLitersShort(pc.girlCumQ()));
 			// Fertility
 			if(pc.fertility() <= 0) output2("\n<b>* Fertility:</b> Infertile");
 			else
@@ -558,11 +558,11 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Hymen:</b>");
 					if(pc.vaginas[x].hymen) output2(" Virgin");
 					else output2(" Taken");
-					if(pc.vaginas[x].bonusCapacity == 0) output2("\n<b>* Capacity:</b> " + prettifyVolume(pc.vaginalCapacity(x)));
+					if(pc.vaginas[x].bonusCapacity == 0) output2("\n<b>* Capacity:</b> " + UnitSystem.displayVolumeShort(pc.vaginalCapacity(x)));
 					else
 					{
-						output2("\n<b>* Capacity, Bonus:</b> " + prettifyVolume(pc.vaginas[x].bonusCapacity));
-						output2("\n<b>* Capacity, Effective:</b> " + prettifyVolume(pc.vaginalCapacity(x)));
+						output2("\n<b>* Capacity, Bonus:</b> " + UnitSystem.displayVolumeShort(pc.vaginas[x].bonusCapacity));
+						output2("\n<b>* Capacity, Effective:</b> " + UnitSystem.displayVolumeShort(pc.vaginalCapacity(x)));
 					}
 					output2("\n<b>* Looseness Level, Current:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Looseness Level, Minimum:</b> " + formatFloat(pc.vaginas[x].minLooseness, 3));
@@ -571,7 +571,7 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.vaginas[x].clits > 0)
 					{
 						output2("\n<b>* Clitoris:</b> " + pc.vaginas[x].clits);
-						output2("\n<b>* Clitoris, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("clitoris", x)));
+						output2("\n<b>* Clitoris, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("clitoris", x)));
 						if(pc.vaginas[x].clits != 1) output2(", total");
 						if(pc.weightQ("clitoris", x) > 0) output2(" (" + pc.weightQ("clitoris", x) + " %)");
 					}
@@ -602,12 +602,12 @@ public function statisticsScreen(showID:String = "All"):void
 		else output2("\n<b>* Belly, Size Rating:</b>");
 		output2(" " + formatFloat(pc.bellyRating(), 3));
 		if(pc.bellyRatingMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.bellyRatingMod, 3)) + ")");
-		output2("\n<b>* Belly, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("belly")));
+		output2("\n<b>* Belly, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("belly")));
 		if(pc.weightQ("belly") > 0) output2(" (" + pc.weightQ("belly") + " %)");
 		if(pc.hasBellyPiercing()) output2("\n<b>* Belly Piercing:</b> " + StringUtil.toDisplayCase(pc.bellyPiercing.longName));
-		if(pc.statusEffectv1("Orally-Filled") > 0) output2("\n<b>* Cumflation, Oral:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Orally-Filled")] + ", " + mLs(Math.round(pc.statusEffectv1("Orally-Filled"))));
-		if(pc.statusEffectv1("Anally-Filled") > 0) output2("\n<b>* Cumflation, Anal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Anally-Filled")] + ", " + mLs(Math.round(pc.statusEffectv1("Anally-Filled"))));
-		if(pc.statusEffectv1("Vaginally-Filled") > 0) output2("\n<b>* Cumflation, Vaginal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Vaginally-Filled")] + ", " + mLs(Math.round(pc.statusEffectv1("Vaginally-Filled"))));
+		if(pc.statusEffectv1("Orally-Filled") > 0) output2("\n<b>* Cumflation, Oral:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Orally-Filled")] + ", " + UnitSystem.displayLitersShort(Math.round(pc.statusEffectv1("Orally-Filled"))));
+		if(pc.statusEffectv1("Anally-Filled") > 0) output2("\n<b>* Cumflation, Anal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Anally-Filled")] + ", " + UnitSystem.displayLitersShort(Math.round(pc.statusEffectv1("Anally-Filled"))));
+		if(pc.statusEffectv1("Vaginally-Filled") > 0) output2("\n<b>* Cumflation, Vaginal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Vaginally-Filled")] + ", " + UnitSystem.displayLitersShort(Math.round(pc.statusEffectv1("Vaginally-Filled"))));
 		if(!pc.hasVagina() || pc.fertility() <= 0)
 		{
 			output2("\n<b>* Incubation, Speed Modifier:</b> " + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
@@ -714,7 +714,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Butt, Size Rating:</b> " + formatFloat(pc.buttRating(), 3));
 		if(pc.buttRatingMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.buttRatingMod, 3)) + ")");
 		if(pc.buttRatingMod != 0 && pc.siliconeRating("butt") != 0) output2("\n<b>* Butt, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("butt"), 3));
-		output2("\n<b>* Butt, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("butt")));
+		output2("\n<b>* Butt, Weight:</b> " + UnitSystem.displayWeightShort(pc.bodyPartWeight("butt")));
 		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
 		if(pc.buttTone() != pc.tone) output2("\n<b>* Butt, Tone:</b> " + pc.toneMin() + "/" + pc.buttTone() + "/" + pc.toneMax());
 		output2("\n<b>* Anus:</b> 1,");
@@ -729,11 +729,11 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
 		else output2(" Taken");
-		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity:</b> " + prettifyVolume(pc.analCapacity()));
+		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity:</b> " + UnitSystem.displayVolumeShort(pc.analCapacity()));
 		else
 		{
-			output2("\n<b>* Anus, Capacity, Bonus:</b> " + prettifyVolume(pc.ass.bonusCapacity));
-			output2("\n<b>* Anus, Capacity, Effective:</b> " + prettifyVolume(pc.analCapacity()));
+			output2("\n<b>* Anus, Capacity, Bonus:</b> " + UnitSystem.displayVolumeShort(pc.ass.bonusCapacity));
+			output2("\n<b>* Anus, Capacity, Effective:</b> " + UnitSystem.displayVolumeShort(pc.analCapacity()));
 		}
 		output2("\n<b>* Anus, Looseness Level:</b> " + formatFloat(pc.ass.looseness(), 3));
 		output2("\n<b>* Anus, Wetness Level:</b> " + formatFloat(pc.ass.wetness(), 3));
@@ -5150,7 +5150,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["SAEN_X_SERA_THREESOME"] > 0) output2(" (with threesome discount)");
 					}
 				}
-				if(StatTracking.getStat("milkers/sera milker") > 0) output2("\n<b>* Breast Milker, Fluid Milked:</b> " + mLs(Math.round(StatTracking.getStat("milkers/sera milker"))));
+				if(StatTracking.getStat("milkers/sera milker") > 0) output2("\n<b>* Breast Milker, Fluid Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("milkers/sera milker"))));
 				if(flags["MET_CHRYSALIS_DRONE"] != undefined) output2("\n<b>* Mods4U Drone:</b> Met it");
 				output2("\n<b>* Sera:</b> Met her");
 				if(flags["SERA_NO_SEX"] == 1) output2(", Pissed off at you indefinitely");
@@ -5173,7 +5173,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(", Vented her frustrations");
 				}
 				output2("\n<b>* Sera, Skin Tone:</b> " + StringUtil.toDisplayCase(chars["SERA"].skinTone));
-				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length:</b> " + prettifyLength(36 + seraInchGain()));
+				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length:</b> " + UnitSystem.displayPreciseLengthShort2(36 + seraInchGain()));
 				if(fuckedSeraBefore())
 				{
 					if(chars["SERA"].hasCock())
@@ -5512,7 +5512,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["USED_NURSERY_COMPUTER"] != undefined) output2("\n<b>* Computer:</b> Used");
 				if(StatTracking.getStat("nursery/milk milked") > 0)
 				{
-					output2("\n<b>* Milking Room, Fluid Milked:</b> " + mLs(Math.round(StatTracking.getStat("nursery/milk milked"))));
+					output2("\n<b>* Milking Room, Fluid Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("nursery/milk milked"))));
 				}
 				if(flags["BRIGET_MET"] != undefined)
 				{
@@ -5740,12 +5740,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("milkers/breast milker uses") > 0)
 				{
 					output2("\n<b>* Milker, Breast, Times Used:</b> " + StatTracking.getStat("milkers/breast milker uses"));
-					output2("\n<b>* Milker, Breast, Fluid Milked:</b> " + mLs(Math.round(StatTracking.getStat("milkers/milk milked"))));
+					output2("\n<b>* Milker, Breast, Fluid Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("milkers/milk milked"))));
 				}
 				if(StatTracking.getStat("milkers/prostate milker uses") > 0)
 				{
 					output2("\n<b>* Milker, Prostate, Times Used:</b> " + StatTracking.getStat("milkers/prostate milker uses"));
-					output2("\n<b>* Milker, Prostate, Cum Milked:</b> " + mLs(Math.round(StatTracking.getStat("milkers/cum milked"))));
+					output2("\n<b>* Milker, Prostate, Cum Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("milkers/cum milked"))));
 					if(flags["NT_TAILCOCK_MILKINGS"] != undefined) output2("\n<b>* Milker, Prostate, Times Used with Parasitic Tail-Cock:</b> " + flags["NT_TAILCOCK_MILKINGS"]);
 				}
 				// Brynn
@@ -5776,7 +5776,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["CARRIE_BLOWJOBBED"] != 1) output2(" " + flags["CARRIE_BLOWJOBBED"] + " times");
 					}
 					if(flags["CARRIE_SMALLCOCK_SUX"] != undefined) output2(", Sucked your small cock");
-					if(StatTracking.getStat("milkers/cum jarred") > 0) output2("\n<b>* Carrie, Cum Jarred:</b> " + mLs(Math.round(StatTracking.getStat("milkers/cum jarred"))));
+					if(StatTracking.getStat("milkers/cum jarred") > 0) output2("\n<b>* Carrie, Cum Jarred:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("milkers/cum jarred"))));
 					if(flags["CAMERON_MILKED"] != undefined) output2("\n<b>* Carrie, Times fucked her and Cameron:</b> " + flags["CAMERON_MILKED"]);
 					if(flags["CORA_SUCKED"] != undefined)
 					{
@@ -5878,7 +5878,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_BY_HALEY"] != undefined) output2(", Fucked by her");
 					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker:</b> " + flags["USED_MILKER"]);
 					if(StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins") > 0) output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
-					if(StatTracking.getStat("haley milker/cum milked") > 0) output2("\n<b>* Haley, Milking Competition, Your Cum Milked:</b> " + mLs(Math.round(StatTracking.getStat("haley milker/cum milked"))));
+					if(StatTracking.getStat("haley milker/cum milked") > 0) output2("\n<b>* Haley, Milking Competition, Your Cum Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("haley milker/cum milked"))));
 					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize:</b> " + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
 				}
 				// Millie milks!
@@ -7297,7 +7297,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(pc.keyItemv1("Gildenmere Pass") >= 1) output2(" Allowed access");
 				else output2(" <i>Ask Lyralla for an entrance pass.</i>");
 				if(flags["THOLLUM_TOURED"] != undefined) output2(", Taken tour");
-				if(flags["MUSHROOM_TRACKER"] != undefined && flags["MUSHROOM_TRACKER"] > 0) output2("\n<b>* Mushroom Garden, Fluids Collected:</b> " + mLs(flags["MUSHROOM_TRACKER"]));
+				if(flags["MUSHROOM_TRACKER"] != undefined && flags["MUSHROOM_TRACKER"] > 0) output2("\n<b>* Mushroom Garden, Fluids Collected:</b> " + UnitSystem.displayLitersShort(flags["MUSHROOM_TRACKER"]));
 				if(flags["MUSH_SEEN"] != undefined) output2("\n<b>* Mushroom Garden, Growth Level:</b> " + flags["MUSH_SEEN"]);
 				// Yarasta
 				if(flags["MET_YARASTA"] != undefined) output2("\n<b>* Yarasta:</b> Met her");
@@ -8903,7 +8903,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Spunk Bunker</u></b>");
 				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
-				if(StatTracking.getStat("spunk bunker/cum milked") > 0) output2("\n<b>* Services, Cock-Milker, Cum Milked:</b> " + mLs(Math.round(StatTracking.getStat("spunk bunker/cum milked"))));
+				if(StatTracking.getStat("spunk bunker/cum milked") > 0) output2("\n<b>* Services, Cock-Milker, Cum Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("spunk bunker/cum milked"))));
 				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
 				variousCount++;
 			}
@@ -8970,7 +8970,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Services, Sperm Donation Bay, Times Donated:</b> " + flags["BREEDWELL_TIMES_DONATED"]);
 					if(flags["BREEDWELL_DONATION_LOCKED"] != undefined) output2(", Locked");
 					else if(flags["BREEDWELL_DONATION_USED"] != undefined && (flags["BREEDWELL_DONATION_USED"] < days)) output2(", Last used " + ((days - flags["BREEDWELL_DONATION_USED"] == 1) ? "yesterday" : ((days - flags["BREEDWELL_DONATION_USED"]) + " days ago")));
-					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + mLs(Math.round(StatTracking.getStat("breedwell/cum milked"))));
+					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("breedwell/cum milked"))));
 				}
 				variousCount++;
 			}
@@ -9282,7 +9282,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["KIRO_DRINKING_CONTEST_RESULTS"] < 0) output2(" Lost against her");
 				if(StatTracking.getStat("contests/kiro drinkoff losses") + StatTracking.getStat("contests/kiro drinkoff wins") > 0) output2("\n<b>* Kiro, Drinking Contest, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/kiro drinkoff wins") + "/" + StatTracking.getStat("contests/kiro drinkoff losses") + ", of " + (StatTracking.getStat("contests/kiro drinkoff losses") + StatTracking.getStat("contests/kiro drinkoff wins")) + " games");
 			}
-			output2("\n<b>* Kiro, Testicle Size:</b> " + prettifyLength(chars["KIRO"].ballDiameter()) + " across, " + prettifyLength(chars["KIRO"].ballSize()) + " around, each");
+			output2("\n<b>* Kiro, Testicle Size:</b> " + UnitSystem.displayPreciseLengthShort2(chars["KIRO"].ballDiameter()) + " across, " + UnitSystem.displayPreciseLengthShort2(chars["KIRO"].ballSize()) + " around, each");
 			if(kiroSexed())
 			{
 				output2("\n<b>* Kiro, Sexual Organs:</b> " + listCharGenitals("KIRO"));
@@ -9708,8 +9708,8 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(StatTracking.getStat("joyco/milk milked") + StatTracking.getStat("joyco/cum milked") > 0)
 		{
 			output2("\n<b><u>Contributions</u></b>");
-			if(StatTracking.getStat("joyco/milk milked") > 0) output2("\n<b>* JoyCo, Milk Fluid Milked:</b> " + mLs(Math.round(StatTracking.getStat("joyco/milk milked"))));
-			if(StatTracking.getStat("joyco/cum milked") > 0) output2("\n<b>* JoyCo, Cum Fluid Milked:</b> " + mLs(Math.round(StatTracking.getStat("joyco/cum milked"))));
+			if(StatTracking.getStat("joyco/milk milked") > 0) output2("\n<b>* JoyCo, Milk Fluid Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("joyco/milk milked"))));
+			if(StatTracking.getStat("joyco/cum milked") > 0) output2("\n<b>* JoyCo, Cum Fluid Milked:</b> " + UnitSystem.displayLitersShort(Math.round(StatTracking.getStat("joyco/cum milked"))));
 		}
 		// Sexploration: Porny Smuts
 		if(flags["LETS_FAP_ARCHIVES"] != undefined || flags["STEPH_WATCHED"] != undefined)

@@ -29,6 +29,7 @@ package classes.GameData
 			tempHideRoomAndSceneNames = false;
 			seasonalOverridePreferences = { };
 			samePageLog = false;
+			siUnits = false;
 		}
 		
 		public var primaryBustArtist:String = "SHOU";
@@ -77,6 +78,9 @@ package classes.GameData
 		public var overwriteToggle:Boolean;
 		public var authorToggle:Boolean;
 		public var vendorToggle:Boolean;
+
+		// Display lengths, volumes, weight, etc. in the International System of Units
+		public var siUnits:Boolean;
 	}
 
 }

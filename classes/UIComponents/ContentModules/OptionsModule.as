@@ -82,6 +82,8 @@ package classes.UIComponents.ContentModules
 			addMultiToggleControl("Toggle whether log events get their own page.", "Same Page", "samePageLog", null, null);
 			
 			addMultiToggleControl("Basic character image settings.", "Busts", "bustsEnabled", "Fallback", "bustFallbacks");
+
+			addMultiToggleControl("Toggle International System of Units.", "SI Units", "siUnits", null, null);
 			
 			var bustControl:DoubleSelectControl = new DoubleSelectControl();
 			_controls.push(bustControl);
