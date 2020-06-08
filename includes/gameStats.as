@@ -4497,7 +4497,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			//deepsea biomedical facility
-			if(flags["UVETO_DEEPSEALAB_QUEST"] != undefined)
+			if(flags["UVETO_DEEPSEALAB_QUEST"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Steele Biomedical Deepsea Research Facility</u></b>");
 				output2("\n<b>* Status:</b> ");
@@ -4507,10 +4507,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 3) output2("Cleared Facility");
 				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 4) output2("Cleared Facility, Returned to surface, Waiting for reward");
 				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 5) output2("Complete");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == undefined && spoiler) output2("Not started");
 				sideCount++;
 			}
 			//Frostwyrm TF quest
-			if(flags["LESSAU_FROSTWYRM_QUEST"] != undefined)
+			if(flags["LESSAU_FROSTWYRM_QUEST"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Frostwyrm Sample Gathering</u></b>");
 				output2("\n<b>* Status:</b> ");
@@ -4518,6 +4519,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 1) output2("Gathered blood sample");
 				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 2) output2("Gave blood sample to Dr Lessau, Waiting for results");
 				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 3) output2("Complete");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == undefined && spoiler) output2("Not started");
 				sideCount++;
 			}
 		}
@@ -4525,7 +4527,7 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Canadia" || showID == "All")
 		{
 			// Kiro Picardine Quest (Requires Kiro!)
-			if(flags["KIRO_KALLY_PICARDINE_QUEST"] != undefined && flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
+			if((flags["KIRO_KALLY_PICARDINE_QUEST"] != undefined && flags["RESCUE KIRO FROM BLUEBALLS"] == 1) || spoiler)
 			{
 				output2("\n<b><u>Kally’s Picardine</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4563,7 +4565,7 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Poe A" || showID == "All")
 		{
 			// The Masque
-			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined || spoiler)
 			{
 				output2("\n<b><u>The Masque</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4579,18 +4581,23 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					output2(" Completed");
 				}
-				else
+				else if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 				{
 					output2(" Invite received from ‘Wet & Waiting’");
 					if(isHalloweenish()) output2(", <i>In progress...</i>");
 					else output2(", <i>Out of season...</i>");
+				}
+				else if(spoiler) 
+				{
+					output2(" Not started");
+					if(!isHalloweenish()) output2(", <i>Out of season...</i>");
 				}
 				sideCount++;
 			}
 		}
 
 		// Nothing recorded
-		if(sideCount == 0)
+		if(sideCount == 0 && !spoiler)
 		{
 			output2("\n<b><u>Not Available</u></b>");
 			output2("\n* <i>No side mission data has been logged");
