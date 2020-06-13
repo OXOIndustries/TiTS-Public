@@ -344,6 +344,7 @@ public function sydianFemalePCLossHasCock():void
 
 		processTime(30+rand(15));
 		enemy.loadInCunt(pc, 0);
+		sydianFemaleSimplePreg();
 		pc.orgasm();
 		enemy.orgasm();
 	}
@@ -522,11 +523,12 @@ public function femSydianGentleFuck():void
 		else output(" <i>“Pah. You’re making a mistake, but whatever.”</i>");
 		output(" You release her hand and she blinks stupidly when you bid her goodbye. <i>“We probably won’t meet again.”</i>");
 
-		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.\n\n");
+		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.");
 		//end, raise lust some, pass small time
 
 		processTime(7+rand(3));
-		pc.lust(10);
+		pc.changeLust(10);
+		output("\n\n");
 		pc.addNice(2);
 
 		clearMenu();
@@ -598,6 +600,7 @@ public function femSydianGentleFuck():void
 
 			processTime(30+rand(15));
 			enemy.loadInCunt(pc, 0);
+			sydianFemaleSimplePreg();
 			pc.orgasm();
 			enemy.orgasm();
 		}
@@ -853,6 +856,7 @@ public function femSydianCallOthers():void
 
 		processTime(30+rand(15));
 		enemy.loadInCunt(pc, 0);
+		sydianFemaleSimplePreg();
 		pc.orgasm();
 	}
 	else
@@ -944,7 +948,7 @@ public function femSydianCallOthers():void
 		processTime(30+rand(15));
 		if (!pc.isAss() || pc.isTaur() || (!pc.hasCock() && !pc.hasVagina()))
 		{
-			pc.lust(20+rand(5));
+			pc.changeLust(20+rand(5));
 		}
 		else
 		{
@@ -1025,16 +1029,21 @@ public function femSydianGiveThrob():void
 	var cumQ:Number = pc.cumQ();
 	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity()) < 0)
 	{
-		var v:int = pc.cuntThatFits(enemy.cockVolume(0, true));
-		if (v < 0) pc.biggestVaginaIndex();
-
+		var v:int = -1;
+		
+		if(pc.hasVagina())
+		{
+			v = pc.cuntThatFits(enemy.cockVolume(0, true));
+			if (v < 0) pc.biggestVaginaIndex();
+		}
+		
 		output("\n\n<i>“What is this? My beautiful body...”</i> the sydian whimpers, in a tiny voice.");
 		
 		output("\n\n");
 		if (pc.isBimbo() || pc.isBro())
 		{
 			output("<i>“Like, you should try putting it in a hot little");
-			if (pc.hasVagina()) output(" pussy");
+			if (v >= 0) output(" pussy");
 			else output(" ass");
 			output(" before you judge,”</i> you flirt,");
 		}
@@ -1083,16 +1092,16 @@ public function femSydianGiveThrob():void
 		else if (pc.isNude()) output(" immediately positions herself to spear you on her new tool.");
 		
 		output("\n\n");
-		if (pc.hasLegs() && !pc.isTaur() && pc.hasVagina())
+		if (pc.hasLegs() && !pc.isTaur() && v >= 0)
 		{
 			output("You spread your thighs to expose her desire’s object, and watch her eyes become glazy and her cock hard as iron. ");
 		}
 		output("Her glans bumps your");
-		if (pc.hasVagina()) output(" labia");
+		if (v >= 0) output(" labia");
 		else output(" asshole");
 		output(", leaving behind a kiss of cum; the sydian’s shoulders tremble from your heat, and her expression of utter concentration is adorable. One push and her cock slides into you, carrying half its last load in with it.");
-		if ((pc.hasVagina() && pc.vaginas[v].looseness() <= 1) || pc.ass.looseness() <= 1) output(" Even slicked by copious cum, she has to fight to hilt her dick in your [pc.vagOrAss "+v+"]. The girl groans as tight flesh wrings her hard cock, and stops to recover so she doesn’t blow.");
-		else if ((pc.hasVagina() && pc.vaginas[v].looseness() <= 3) || pc.ass.looseness() <= 3) output(" Her cock fits perfectly in your [pc.vagOrAss "+v+"], and the sydian pauses to savor her first penetration.");
+		if ((v >= 0 && pc.vaginas[v].looseness() <= 1) || pc.ass.looseness() <= 1) output(" Even slicked by copious cum, she has to fight to hilt her dick in your [pc.vagOrAss "+v+"]. The girl groans as tight flesh wrings her hard cock, and stops to recover so she doesn’t blow.");
+		else if ((v >= 0 && pc.vaginas[v].looseness() <= 3) || pc.ass.looseness() <= 3) output(" Her cock fits perfectly in your [pc.vagOrAss "+v+"], and the sydian pauses to savor her first penetration.");
 		else
 		{
 			output(" Your [pc.vagOrAss "+v+"] is so well-used that she overestimates her force and bumps into your");
@@ -1101,10 +1110,10 @@ public function femSydianGiveThrob():void
 			output(". She meets your eyes and colors, embarrassed but loving the sensations.");
 		}
 		output(" The spent jizz soaking into her crotch splats against your");
-		if (pc.hasVagina()) output(" pussy");
+		if (v >= 0) output(" pussy");
 		else output(" butt");
 		output(" with a wet smack, smearing you with warmth, and the rest on her penis remains inside, licked off by your");
-		if (pc.hasVagina())
+		if (v >= 0)
 		{
 			output(" greedy, quavering quim.");
 			pc.cuntChange(v, enemy.cockVolume(0, true), true, true);
@@ -1116,17 +1125,17 @@ public function femSydianGiveThrob():void
 		}
 		
 		output("\n\nWhen the virgin has had enough of reverence, she begins to thrust. Her first pushes are sloppy and free-form, like bad art, until she latches onto your [pc.hips]. Aphrodisiac wicks into your [pc.legFurScales] and when the sydian sees you react, she smiles again. She pulls on one antenna, gathering enzyme for you and leaving a little streak of silver cum behind on the bristles. Your breath catches when the laden hand comes to rest on");
-		if (pc.hasVagina()) output(" your [pc.clit]");
+		if (v >= 0) output(" your [pc.clit]");
 		else output(" the small of your back");
 		output(", shooting heat up your spine, and hers follows when your [pc.vagOrAss "+v+"] clamps down from the arousal. Your hips jerk by themselves, pushing back against her cum-lubricated fuck while she shivers and tries to stretch the session. It barely works, and her cute moans go higher and higher as she picks up unintentional speed. Your [pc.vagOrAss "+v+"] burns with need for release, and her aphrodisiac touch dances along your body, tensing the muscles and bringing you to climax.");
 		
 		output("\n\n<i>“Oh... yess...”</i> she moans, sawing into you like a senseless rutting beast. The sydian grunts, and something hot touches a deep place in your");
-		if (pc.hasVagina()) output(" vagina");
+		if (v >= 0) output(" vagina");
 		else output(" rectum");
 		output(". Her orgasm is on, and the second stroke dumps into you, a hot tongue of sperm");
-		if (pc.hasVagina()) output(" pressing for entrance to your womb");
+		if (v >= 0) output(" pressing for entrance to your womb");
 		output(". You shudder as three and four baste your insides, picturing the slivery slime spilling from her. The sydian’s eyes roll and her head lolls on her neck, and watching her enjoy you as hot semen pours in sets off your own pleasure. The poor girl practically melts when your climaxing");
-		if (pc.hasVagina()) output(" cunt");
+		if (v >= 0) output(" cunt");
 		else output(" hole");
 		output(" attacks her sensitive cock, falling on top of you while the last strokes meander out.");
 		//female orgasm, reduce lust, put sydian load x2 in PC’s cunt
@@ -1135,7 +1144,8 @@ public function femSydianGiveThrob():void
 
 		for (var i:int = 0; i < 2; i++)
 		{
-			pc.loadInCunt(enemy, v);
+			if(v >= 0) pc.loadInCunt(enemy, v);
+			else pc.loadInAss(enemy);
 			enemy.orgasm();
 			pc.orgasm();
 		}
@@ -1215,6 +1225,7 @@ public function femSydianGiveThrob():void
 
 		processTime(30+rand(15));
 		enemy.loadInCunt(pc, 0);
+		sydianFemaleSimplePreg();
 		pc.orgasm();
 		enemy.orgasm();
 		//pc.loadInMouth(enemy);
@@ -1522,6 +1533,7 @@ public function femSydianFuck():void
 	//end; reduce lust, pass time
 	processTime(30+rand(15))
 	enemy.loadInCunt(pc, 0);
+	sydianFemaleSimplePreg();
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -1614,4 +1626,39 @@ public function sydianPregnancyEnds():void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+//This returns your preg score on a scale of 0-99999, or 0%-99.999%
+public function sydianFemaleKnockupChance():int
+{
+	var vir:Number;
+	var chance:Number = -.356; //base 30%
+	var cumQ:Number = pc.cumQ();
+	
+	if(pc.virility() == 0 || enemy.fertility() == 0 || chance == 0) return 0;
+	
+	vir = (pc.virility() + enemy.fertility());
+	
+	//increase base virility by cum volume up to a max of +2 (at a certain point the rest is just excess and will never get near the egg and is irrelevant for preg chance)
+	//plus this keeps player virility more important than volume for large preg change increases
+	if (cumQ >= 2000) vir += 2;
+	else if (cumQ > 0) vir += cumQ / 1000;
+	
+	vir = vir / 2;
+	
+	return (1 - Math.exp(chance * vir)) * 10000;
+}
+//simple preg function, steele will not ever know how many kids or met them, but they are out there...
+public function sydianFemaleSimplePreg():void
+{
+	var chance:Number;
+		
+	if (pc.virility() == 0) chance = 0;
+	else chance = sydianFemaleKnockupChance();
+	//rand returns 0 to 9999, chance returns 0 to 9999, 0 chance will never result in pregnancy obviously
+	if(rand(10000) < chance)
+	{
+		//succesful impregnation
+		IncrementFlag("SYDIAN_FEMALE_PREG");
+		pc.clearRut();
+	}
 }

@@ -255,7 +255,7 @@ public function ciaranTalkHobbies():void
 		output("He gives you a meaningful stare after that last sentence, his arms spread in a welcoming gesture as his pheromones practically pour off of him.");
 		output("\n\n" + (pc.hasPheromones() ? "Smells" : "Looks") + " like the ausar is propositioning you. Do you want to have sex with him now?");
 		
-		pc.lust(33);
+		pc.changeLust(33);
 		clearMenu();
 		addButton(0, "Yes", ciaranSex, undefined, "", "");
 		addButton(1, "No", ciaranTalkHobbiesNo, undefined, "", "");
@@ -265,7 +265,7 @@ public function ciaranTalkHobbies():void
 		output("\n\nHe eyes you for a very brief moment before shaking his head and smiling ruefully. <i>“I think I’d rather we continue our pleasant little chat for now though.”</i> He winks and smiles at you somewhat apologetically.");
 		output("\n\nWell, at least he let you down easy.");
 		
-		pc.lust(15);
+		pc.changeLust(15);
 		ciaranTalkMenu();
 		addDisabledButton(1, "Hobbies", "Hobbies", "You just talked about this.");
 	}
@@ -775,7 +775,7 @@ public function ciaranSpanks():void
 	output("\n\nYou blush in embarrassment and squirm with unfulfilled need. Your loins are burning with arousal right now, but Ciaran is enjoying ignoring you. You see him look at your dilemma out of the corner of his eye from time to time with a smirk. Groaning in frustration, you storm off, horny beyond all belief and with a butt too sore to sit on. And you wouldn’t have it any other way.");
 	
 	processTime(10);
-	pc.lust(pc.lustMax() - pc.lust());
+	pc.changeLust(pc.lustMax() - pc.lust());
 	pc.exhibitionism(2);
 	
 	IncrementFlag("CIARAN_SPANK");
@@ -1352,7 +1352,7 @@ public function ciaranSexualHarass():void
 	output("\n\nYou say your own farewell to Ciaran and watch him storm off after his tormentor, which you’re pretty sure is exactly what she wanted him to do. Seeing someone as aggressive and dominant as Ciaran made so submissive so easily makes you wonder what Ms. Kittie could do to you. You couldn’t help but notice a few other things as well, like the fact that Ciaran said “in public” specifically, or that they’re are on a first name basis with each other. The two of them also kiss with far more passion than you’d expect in a normal client-customer transaction. You can only wonder how far their relationship goes beyond just madam and john.");
 	
 	processTime(20 + rand(5));
-	pc.lust(40);
+	pc.changeLust(40);
 	pc.createStatusEffect("Ciaran Disabled", 0, 0, 0, 0, true, "", "", false, 4*60);
 	pc.createStatusEffect("Kithran Disabled", 0, 0, 0, 0, true, "", "", false, 4*60);
 	

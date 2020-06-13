@@ -749,7 +749,7 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 		output("!”</i> the [enemy.furColor]-furred Jumper calls out to you, prompting you to turn - which takes some effort with the weight in your gut.");
 		if (multiJumper) output(" <i>“Gosh, you trying to get knocked up by the whole gang? I can tell I’m not the only one whose been down there, ‘ya cute, heavy slut!”</i>");
 		
-		output("\n\nBefore you make it all the way around, you’re hugged tight by a busty, athletic bunny, both of her rubber-encased hands pawing posessively at your tummy.");
+		output("\n\nBefore you make it all the way around, you’re hugged tight by a busty, athletic bunny, both of her rubber-encased hands pawing possessively at your tummy.");
 		if (newPreg) output(" <i>“Looks like you’re a proud mom again!");
 		else output(" <i>“Lookin a little bigger than before.");
 		if (samePreg) output(" I see you’re sharin’ the burden now!");
@@ -1095,9 +1095,13 @@ public function boredJumperPregEncounterGoWith(arg:Array):void
 		else if (sceneNum == 2) output(", eyes on your bunny-bulged womb.");
 		else output(", bumping her bunny-bulged womb into yours.");
 		
-		output("\n\n<i>“Hey, I may not be able to stop in, but that’s not like I can never do it someday! Here,”</i> she hands you a hastily scrawled note, containing an email address. <i>“Send me some pics when they’re born, ‘kay?”</i> You pocket it, telling her that’ll be the first thing you do, and then she looks far more horny than before.");
-		if (sceneNum >= 2) output(" <i>“Maybe some pics of that momma belly you’ve got too... Naked, preferably!”</i>");
-		else output(" <i>“Maybe some pics of you yourself... Naked, preferably!”</i>");
+		output("\n\n<i>“Hey, I may not be able to stop in, but that’s not like I can never do it someday! Here,”</i> she hands you a hastily scrawled note, containing an email address. <i>“Send me");
+		if (sceneNum == 1) output(" a message sometime so I can reply with some baby");
+		else output(" some");
+		output(" pics when they’re born, ‘kay?”</i> You pocket it, telling her that’ll be the first thing you do, and then she looks far more horny than before. <i>“Maybe some pics of");
+		if (sceneNum >= 2) output(" that momma belly you’ve got too");
+		else output(" you yourself");
+		output("... Naked, preferably!”</i>");
 		
 		output("\n\nYou playfully pinch her arm in response.");
 	}
@@ -1293,7 +1297,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		}		
 		
 		output(" The pheromones do nothing, you want to crawl over her and make her prove how much she wants to fuck you right now, maybe show her how much you feel, too.");
-		pc.lust(30);
+		pc.changeLust(30);
 	}
 	else if (pc.libido() < 33)
 	{
@@ -1302,7 +1306,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		else if (pc.hasVagina()) output(", starting with your [pc.clits].");
 		else if (pc.hasCock()) output(", starting with your [pc.cocks].");
 		else output(".");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	else
 	{		
@@ -1311,7 +1315,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		else if (pc.hasVagina()) output(" your [pc.clits] throbbing and vibrating, helping squeeze out another batch of femslime.");
 		else if (pc.hasCock()) output(" your [pc.cocks] erecting and beginning the process of bubbling out some precum.");
 		else output(" a growing warmth.");
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 		
 	output("\n\nDepthless gasping makes your closeness not as solitary as could otherwise be expected. Laquines, especially this one, are just too damn horny to slow down, even during pregnancy. For a few minutes you try to focus on her heartbeat mixed with your own, but in those moments of fevered concentration you are inevitably distracted by the pulsing in your crotch, and the shunting of blood to");
@@ -1464,7 +1468,7 @@ public function boredJumperPregEncounterDontGoLeave(jumperType:int=0):void
 	output("\n\nWhat will you do?");
 	
 	flags["BJUMPER_TRIED_TO_LEAVE"] = 1;
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	clearMenu();
 	if (pc.isTaur()) addButton(0, "Pet Her", boredJumperPregEncounterGoWithRestPetHer, jumperType, "Pet Her", "Her idea of fun is appealing, but in your current form that just isn’t going to be possible. ‘Course, that’s not going to stop you from showing a little affection.");
@@ -1567,7 +1571,7 @@ public function boredJumperPregEncounterGoWithRestRWH(jumperType:int=0):void
 	output("\n\n<i>“O-kayyy,”</i> she gropes your [pc.ass], hooding her eyes and propping her chin on your shoulder, whispering, <i>“next time, cutie.”</i>");
 	output("\n\nNext time will no doubt come soon, because now that you’ve calmed the horny hare, it doesn’t take long to end up fast asleep on each other’s shoulders. Resting like this isn’t easy... but it certainly is the best place for it. Seconds before peaceful sleep, you satisfy yourself with the thought that you’re right where you need to be, secretly hoping that she may come around in the future, maybe live with you...");
 	
-	pc.lust( -40);
+	pc.changeLust( -40);
 	processTime(60 + rand(60));
 	restHeal();
 	
@@ -1753,12 +1757,12 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	var kok2:int = pc.biggestCockIndex2();
 	if (kok2 < 0) kok2 = 0;
 	
-	output("Falling to your side, you grip the laquine’s latex-girded thigh and lift it into the air, making it clear how you’ll have her.<i>“");
-	if (pc.isBimbo()) output(" Can’t hurt the kids now! How ‘bout you turn over and lean into me, hunny bunny?");
-	else if (pc.isBro()) output(" This will be easier for the both of us. Turn over, babe, and let me give you the filling you need.");
-	else if (pc.isNice()) output(" This will be safer... and I’ll be able to give you the filling you deserve.");
-	else if (pc.isMischievous()) output(" Can’t go hurtin’ our kids. Go on, turn over a bit, and you’ll get just what you need sweetheart.");
-	else output(" I’m not going to put the kids in danger. Turn over, and let me take care of the rest.");
+	output("Falling to your side, you grip the laquine’s latex-girded thigh and lift it into the air, making it clear how you’ll have her. <i>“");
+	if (pc.isBimbo()) output("Can’t hurt the kids now! How ‘bout you turn over and lean into me, hunny bunny?");
+	else if (pc.isBro()) output("This will be easier for the both of us. Turn over, babe, and let me give you the filling you need.");
+	else if (pc.isNice()) output("This will be safer... and I’ll be able to give you the filling you deserve.");
+	else if (pc.isMischievous()) output("Can’t go hurtin’ our kids. Go on, turn over a bit, and you’ll get just what you need sweetheart.");
+	else output("I’m not going to put the kids in danger. Turn over, and let me take care of the rest.");
 	output("”</i>");
 	
 	output("\n\n<i>“No problem!”</i> she cheers, turning to her right and pressing her spine into you. Your [pc.cocksLight] nestle into the underside of her half-emptied sack, slip-and-sliding between her powerfully muscled and rubber-clad legs, just inches away from her sopping wet scent box. Warm, wet rabbit ears drape over your");
@@ -1804,9 +1808,9 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	}
 	else if (pc.cockCanSting(kok)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	
-	output("\n\n<i>“Yesss... Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido.<i>“");
-	if (boredJumperKnowsSteelesName(jumperType)) output(" [pc.name],");
-	output(" I... I can’t describe what I’m feeling!”</i> She looks to you, drooling and heaving with a glimmer in her eyes. <i>“Can you go slow at first? Let’s just...”</i>");
+	output("\n\n<i>“Yesss... Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido. <i>“");
+	if (boredJumperKnowsSteelesName(jumperType)) output("[pc.name], ");
+	output("I... I can’t describe what I’m feeling!”</i> She looks to you, drooling and heaving with a glimmer in her eyes. <i>“Can you go slow at first? Let’s just...”</i>");
 	
 	output("\n\nYou silence her, knowing exactly what to do.");
 	output("\n\nA crisp gasp floats from the laquine’s lips when you pull back for the first time. The raw heat and vivid texture of her moist nethers almost compels you to cum. Vision realigning, you pull back from her pheromone-box until only");
@@ -3206,8 +3210,9 @@ public function boredJumperPregNurserySceneBabies(arg:Array):void
 		output("\n\nYou reach for your Codex and take a quiet pic of the napping duo, firing it off to their missing parent’s provided address. Surprisingly, you get a near instant response from the laquine pirate:");
 		output(" <i>“" + RandomInCollection(["Ohhh maaan! That’s sooo cute! I was having such a shit day until you sent that, thank you so much!","Holy shit! That’s the best thing I’ve seen all day. Look at how small they are, it’s so cute! And their paws are interlocked omigod. THANK YOU!","Ooohhh, look at those ears, kinda shimmery from this angle! I’m glad they’ve got a soft looking bed, too. Nobody should have to grow up without one. Thanks, babe, you really brightened my day.","Wooah... that’s great! Sorry I can’t talk now, too many-","They’re growing so fast! They look so healthy. Thanks for the pics!"]) + "”</i>");
 	}
-	
-	processTime(10 + ((5 + rand(5)) * babyCnt));
+	var babyTime:Number = 10 + ((5 + rand(5)) * babyCnt);
+	if(babyTime > 300) babyTime = 300;
+	processTime(babyTime);
 	clearMenu();
 	addButton(0, "Next", nurseryVisitLaquine,undefined);
 }
@@ -4239,7 +4244,7 @@ public function boredJumperPregPregnancyEnds():void
 				if (dblBirth) output("\n\n<i>“Do I really have to feed all of them? Eesh...”</i> she grumbles, but you can tell she doesn’t mind. The bunny-mom brings your combined litters to her [enemy.nippleColor] nipples, letting them suckle until they tire. Once the snoozing children are put down, she brings up the next one in line to her bosom.");
 				else output("\n\n<i>“Can’t believe you’ve got no milk for your kids!”</i> the Jumper grouses, sitting noisily near you. <i>“Don’t worry, was prepared just in case you gave birth to a bunch!”</i> She produces a few plastic bottles filled with creamy white milk. You can venture a few guesses as to where they came from, but you’d also rather not. All that matters is the kids are getting their first meal.");
 			}
-			output("\n\nOnce your babies have fed, they fall fast asleep. You and your lawless lover can finally relax, finally breathe. The hardest part of all of this is over, and now you you can spend the time together petting, stroking, caressing, and chatting about the lovely miracles you’ve made possible. Rich feelings of happiness and ecstatic fantasies fill your mind, thinking about what they’ll be like grown up, who they might become, what they might do...");
+			output("\n\nOnce your babies have fed, they fall fast asleep. You and your lawless lover can finally relax, finally breathe. The hardest part of all of this is over, and now you can spend the time together petting, stroking, caressing, and chatting about the lovely miracles you’ve made possible. Rich feelings of happiness and ecstatic fantasies fill your mind, thinking about what they’ll be like grown up, who they might become, what they might do...");
 		}
 		else if (numChildren >= 9 && numChildren <= 16)
 		{

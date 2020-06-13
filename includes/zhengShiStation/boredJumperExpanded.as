@@ -239,7 +239,7 @@ public function suckDatBun():void
 	// Merge
 	output("\n\nThe laquine’s hips shift and she wraps her legs around your sides, bringing you closer to her hazy crotch, only getting you more and more turned on. Your [pc.tongue] sticks out the bottom of your lower lip, massaging her bulging urethra while you bob up and down on her thick tool, savoring the ambrosial taste of a sexy pirate fuckbunny. Your first movements are soft and replete with sexy kisses, setting a rhythm that will quicken only when your lungs are ready for it. One [pc.hand] drops to the herm’s weighty nads, dripping with sweat and pre, to cup and knead her heavy testes. You smirk at the edge of your mouth hearing - and seeing - the bunny woman arch back and cry out in wild pleasure.");
 	output("\n\nHer [enemy.eyeColor] eyes meet with yours, shining with adoration, her cute face begging you for more and more. <i>“Yeah, yeah! That’s awesome, cutie, keep going! You’re just the best ever, I’m sorry I attacked you!”</i>");
-	output("\n\nJust seeing her [enemy.cock] so <i>hard</i> and <i>stiff</i> makes you wriggle thinking about doing more with it... Irregardless, you may be the one between her legs, but her orgasm is yours to decide, and she knows just what you’re capable of if she doesn’t submit to your methodical ministrations. You pull her dribble-happy cock free of your lips with a wet pop, breathing over her warm, quivering [enemy.cockNounSimple] shaft. You lower your nose to the vast field of ballsflesh again, jerking and squeezing her rod with one [pc.hand] and caressing her fuzzy thigh in the other. Your fingers wring sweat from her [enemy.furColor] fur until it pools and sizzles down her muscular thigh onto the rocks where it evaporates, the laquine cooing in lustful delirium every second.");
+	output("\n\nJust seeing her [enemy.cock] so <i>hard</i> and <i>stiff</i> makes you wriggle thinking about doing more with it... Regardless, you may be the one between her legs, but her orgasm is yours to decide, and she knows just what you’re capable of if she doesn’t submit to your methodical ministrations. You pull her dribble-happy cock free of your lips with a wet pop, breathing over her warm, quivering [enemy.cockNounSimple] shaft. You lower your nose to the vast field of ballsflesh again, jerking and squeezing her rod with one [pc.hand] and caressing her fuzzy thigh in the other. Your fingers wring sweat from her [enemy.furColor] fur until it pools and sizzles down her muscular thigh onto the rocks where it evaporates, the laquine cooing in lustful delirium every second.");
 	output("\n\n[pc.Face] burrowed in her nuts, you kiss and gently nibble on the slut-bunny’s balls, giving her [enemy.cock] a vigorous jerking the whole time. Your right hand darts to your aroused crotch, ");
 	if(pc.hasCock()) output("[pc.eachCock]");
 	else if(pc.hasVagina()) output("[pc.eachVagina]");
@@ -251,7 +251,7 @@ public function suckDatBun():void
 	output("\n\nYou nearly gag around her foot long prick, not because of her size, but because of the sheer amount of pre flowing down your burning throat. Tears form at the edge of your eyes attempting to hilt her, a stoic effort to get more of the taste you now desire at a deeper level. Despite how sensitive she is, you manage to take her all the way, your nose submerged in her pheromone-laden abdomen. You hold for a moment before pulling back. A giggle rumbles up from your abused throat; you suppress your gag reflex and torment her just a bit longer with the prospect of filling your stomach with cum.");
 	output("\n\nFeeling the building pressure in her supple, creasing sack nuzzling your palm, you know she’s about to <i>explode</i>. The only question you have now... where does she get to cum? You’ll be walking funny if she bloats your belly, but it’d be just as fun to watch her surf on the veritable tide of cum boiling inside her balls. Whilst you feverishly fellate her, a vial filled with cyan liquid slips from one of her bags and plinks against the warm rocks below, giving you one <i>very</i> special idea...");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Inside",insideTheWunderbun,undefined,"Inside","Let her cum inside, feeding you the fruits of your labor.");
 	addButton(1,"Outside",jerkOnYouYaDegenerate,undefined,"Outside","Watch her cum all over herself. And you!");
@@ -314,7 +314,7 @@ public function jerkOnYouYaDegenerate():void
 	output("\n\nRibbons of laquine love drip and fall on your head as the slut-bunny is positively drenched in her own torrential downpour. She flops back with a loud <i>THUD</i> and lets out a long, stinging sigh as her smooth, fuzzy sack is depleted.");
 	output("\n\n<i>“I didn’t think I could cum that much... <i>“G... geez... You really like playing the long game, huh cutie?”</i> the laquine hoarsely asks. <i>“Gosh... you have the best mouth everrrrr... You make all the slaves feel soooo uselesssss...”</i>");
 	output("\n\nAlthough sexual spillage still drips from your every limb, your head is perfectly clear after your orgasms subside. Unlike her, you can still move your legs!");
-	output("\n\n<i>“I can’t moooooveeee!”</i> she whines, her arms making limp attempts to reach out to you. <i>“But I guess that’s I get losing to you, huh?”</i>");
+	output("\n\n<i>“I can’t moooooveeee!”</i> she whines, her arms making limp attempts to reach out to you. <i>“But I guess that’s what I get losing to you, huh?”</i>");
 	output("\n\n<i>“Thinking of losing again?”</i> you coyly ask.");
 	output("\n\nShe grins as you take your material reward from her defenseless form. <i>“No way! I hate getting edged! Even though this was worth it, I’d rather just have some sweaty sex!”</i>");
 	output("\n\nTaking her compliment, you yank your well-earned chit from her. Still broiling in bunny batter, you turn to leave, the pitiful laquine’s groans carrying on even as the minutes go by.");
@@ -495,7 +495,7 @@ public function loseToJumpersStartBadEndsByWill():void
 	// Merge
 	output("\n\n<i>“Mmmm, I like the sound of that, and I like the sound of your mouth too,”</i> the perky pirate purrs. <i>“Let’s do it!”</i>");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",loseToJumpersStartBadEndsByWill2);
 }
@@ -639,7 +639,7 @@ public function fourthLossToBoredJumperBadEndProggo():void
 	else output("\n\nThe jumper hops up on your back and yanks on the chain, telling you in a sing song voice to get going. The pain of degradation soon replaces that of her grinding against your spine.");
 
 	processTime(20);
-	pc.lust(150);
+	pc.changeLust(150);
 	clearMenu();
 	addButton(0,"Next",fourthLossToBoredJumperBadEndProggo2);
 }
@@ -754,7 +754,7 @@ public function fourthLossToBoredJumperBadEndProggo4():void
 	showBoredJumper(true);
 	author("William");
 	output("When you wake, you have no idea where you are. Gently, your mind reasserts itself and you stagger upward on trembling limbs, lying on your hip. You groan and scan your surroundings carefully, feeling like you just woke up from a long dream. You become mindful of the dried cum all over your body. Your knuckles and knees are scraped with blood and covered in soot." + (!pc.isNude() ? " You’re naked, too, and you frantically look around for your clothes and other gear.":""));
-	output("\n\nWhat happened to you is now vivid in your mind. You feel around your neck, happy that the collar isn’t there anymore... but also a little... mournful? Aimless? Irregardless, you seem to be back where you’d lost to the laquine who bandied you about like a pet. Your belongings are scattered around the tunnel. You quickly collect everything to find that you’re only short a few credits, thankfully.");
+	output("\n\nWhat happened to you is now vivid in your mind. You feel around your neck, happy that the collar isn’t there anymore... but also a little... mournful? Aimless? Regardless, you seem to be back where you’d lost to the laquine who bandied you about like a pet. Your belongings are scattered around the tunnel. You quickly collect everything to find that you’re only short a few credits, thankfully.");
 	output("\n\nAfter gathering yourself, you shiver thinking about the laquines again. Their presence alone is having a deleterious effect on your willpower, not to mention the drug they’ve been using to sap you of free thinking. You’re not sure if they were joking about taking you as a slave for themselves, or if they were merely jesting about a bet based on you. Whether or not those threats were flaccid, you can’t help but think that a life of obedience to one of those fuckbunnies doesn’t sound half bad... Yes...");
 	output("\n\nNo! You shake your head with a low-growl, feeling an aching arousal the longer you conjure their short-muzzled countenances, the shapes of their bestial cocks, their luscious breeding figures-");
 	output("\n\nYou hurry away, soaked with the aftermath of your debauched tribulations, contemporaneous feelings of longing, desire, fear, and nervousness hounding your steps. It shakes you that, in some part of your mind, you <i>want</i> to be a slave to them, nothing but an eager, obedient ball-slut that-");
@@ -795,7 +795,7 @@ public function badEndToThatJumperFinally():void
 		output("\n\n<i>“Oh come on, what kinda answer is that? Wandering around a station like this... I think... you’ve just been looking for a good cock, haven’t you? That’s why you were so belligerent! You just wanted someone to take care of you, right? And not like the <i>Vipers</i>.”</i> The rabbit puts an arm around you, licking your cheek possessively, whispering into your [pc.ear], <i>“So you’re not a slave, but you <i>wanted</i> to be one, is that it? And not just any slave...”</i>");
 		output("\n\nShe glances down, then guides your [pc.hand] to her prominent bulge. <i>“You just wanted this, right?”</i>");
 		processTime(20);
-		pc.lust(100);
+		pc.changeLust(100);
 		clearMenu();
 		addButton(0,"Yes!!",yesToBeingHorseJumpersSlut,undefined,"Yes!!","That’s <i>exactly</i> what you want! What you <i>need</i>!");
 		addButton(1,"Wait...",waitToBeAHorseJumperSlut,undefined,"Wait...","No... you’re not a slave! ...Right?");
@@ -807,7 +807,7 @@ public function badEndToThatJumperFinally():void
 		output("\n\n<i>“You won’t be needing this stuff anymore. Allll right! Time to go!”</i>");
 		output("\n\nThe [enemy.furColor] furred rabbit puts a paw on your shoulder and digs through a concealed pouch on the back of her wide hip. She soon reveals another vial: you’re sure it’s the same drug as before and you brace for the worst. The second it clicks and hisses against your neck, your vision darkens immediately. The tranquilizing payload works fast, and your last sight of her is that ubiquitous laquine grin.");
 		processTime(15);
-		pc.lust(25);
+		pc.changeLust(25);
 		clearMenu();
 		if(enemy.hasCock(GLOBAL.TYPE_CANINE)) addButton(0,"Next",jumperDogGangsPet);
 		else if(enemy.hasCock(GLOBAL.TYPE_FELINE)) addButton(0,"Next",badEndToCatJumpey);

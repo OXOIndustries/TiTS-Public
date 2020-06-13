@@ -127,7 +127,7 @@ public function becomeACapnChair():void
 	output("\n\nTeyaal snorts, <i>“Sure, dear, have fun.”</i>");
 	output("\n\n<i>“You clearly are,”</i> the younger dragon huffs. She closes the hatch behind her as she leaves you at her mother’s utter mercy.");
 	processTime(25);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",docTeyaalBadEndPart2);
 }

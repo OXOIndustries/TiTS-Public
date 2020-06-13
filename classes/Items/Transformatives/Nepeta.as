@@ -86,7 +86,7 @@ package classes.Items.Transformatives
 			if (target.legCount == 2 && target.legType == GLOBAL.TYPE_HUMAN)
 			{
 				// nop
-				// slightly nicer way to organise the condition checks
+				// slightly nicer way to organize the condition checks
 			}
 			else if (target.legCountUnlocked(2) && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 			{
@@ -126,7 +126,11 @@ package classes.Items.Transformatives
 			
 			for (var bi:int = 0; bi < target.breastRows.length; bi++)
 			{
-				if (target.breastRows[bi].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL && target.nippleTypeUnlocked(bi, GLOBAL.NIPPLE_TYPE_NORMAL)) tfs.push(nipTF);
+				if (target.breastRows[bi].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL && target.nippleTypeUnlocked(bi, GLOBAL.NIPPLE_TYPE_NORMAL)) 
+				{
+					//Dont stack the TF multiple times.
+					if(tfs.indexOf(nipTF) == -1) tfs.push(nipTF);
+				}
 			}
 			
 			if (target.hasCock() && !target.hasVagina())
@@ -370,7 +374,7 @@ package classes.Items.Transformatives
 				bGain = 1 + rand(bGain / 2);
 				target.breastRows[0].breastRatingRaw += bGain;
 
-				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>.");
+				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>");
 			}
 		}
 		

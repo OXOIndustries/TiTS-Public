@@ -1231,7 +1231,7 @@ public function analRedButtStuffMcStuffinButts():void
 	if(enemy.short != "Briha") output("the ");
 	output("[enemy.name], ");
 	if(pc.HP() > 0 && pc.lust() < pc.lustMax() && inCombat()) output("pull her to her feet, ");
-	output("and turn her on the spot. Without warning, you you pull down her camo pants and underwear, and she lets out a cry of surprise.");
+	output("and turn her on the spot. Without warning, you pull down her camo pants and underwear, and she lets out a cry of surprise.");
 
 	output("\n\n<i>“W-what are you planning...”</i> She breathlessly asks. Without answering, you pull out [pc.oneCock] and grind it between her bare red buttocks. Her muscular butt feels divine against your [pc.sheath " + x + "], clenching it instinctively.");
 	output("\n\nAs you grind against ");
@@ -2645,7 +2645,7 @@ public function stealDildoScene(gold:Boolean):void
 		addButton(1,"Give Orgasm",giveLysAnOrgasm,undefined,"Give Orgasm","Give her an orgasm with one dildo in her pussy... and one in her butt.");
 	}
 	processTime(13);
-	pc.lust(10);
+	pc.changeLust(10);
 }
 
 //Give Orgasm - Briha version
@@ -2700,7 +2700,7 @@ public function giveOrgasmToBriha():void
 	}
 	//end, increase lust, time, add key item ‘Fed. Vibrator’ (you can name the dildoes whatever you like) if not present
 	processTime(6);
-	pc.lust(5);
+	pc.changeLust(5);
 	//Dildo go!
 	giveMyrDildo("red");
 	IncrementFlag("RED_DILDOED");
@@ -2787,7 +2787,7 @@ public function teaseBrihaWithDildoStealAsshole():void
 		output("\n\nThe myr stares at you, knowing the rules of the engagement. You back away slowly with the fake cock wibbling in your hand, taunting her until you turn a corner - at which point you could swear you hear a sound like two very wet fish being rubbed together.");
 	}
 	//end, increase lust, time, add key item ‘Fed. Vibrator’ if not present, add extra misch point or half-point for denying? (may be too many)
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	pc.addHard(1);
 	//red dildo get
@@ -2868,7 +2868,7 @@ public function giveLysAnOrgasm():void
 	}
 	//end, increase lust, time, add key item ‘G. Republic Dildo’ if not present
 	processTime(7);
-	pc.lust(10);
+	pc.changeLust(10);
 	//add gold dildo
 	giveMyrDildo("gold");
 	IncrementFlag("GOLD_DILDOED");
@@ -2946,7 +2946,7 @@ public function teaseLysVersion():void
 	}
 	//end, increase lust, time, add key item ‘G. Republic Dildo’ if not present, add extra misch point/half-point?
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	//dildoget!
 	giveMyrDildo("gold");
 	IncrementFlag("GOLD_DILDOED");
@@ -3338,7 +3338,7 @@ public function giveFlowerToLys():void
 	output("\n\n<i>“What will you do with me?”</i> asks your vulnerable lover.");
 	processTime(7);
 	IncrementFlag("GAVE_LYS_FLOWER");
-	pc.lust(10);
+	pc.changeLust(10);
 	//if tailcock hasn’t been satisfied recently (commented for now because TC do not require sating)
 	if(9999 == 0 && pc.hasTailCock())
 	{

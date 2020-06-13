@@ -389,7 +389,7 @@ public function spitRoastRaskvelTimesRedux():void
 	}
 	//merge
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",raskOrgyPart2Redux,route);
 }
@@ -658,7 +658,7 @@ public function fuckTheSydianQueenRedux(x:int):void
 	output("\n\nWith a shivering cry, the fourth raskvel orgasms, unable to keep fucking his peer without losing himself to intense excitement, shooting back out in a rocket trail of backed-up cum. You, however, don’t stop buggering poor Azaphel, reaching deep into his delicious tightness, until he’s lying quivering in a lake of his own cum, his balls shrunk down to grape size. And when you slowly withdraw out of his thoroughly gaped hole, relishing the warm texture sliding up it, your [pc.cock " + x + "] is still rock-hard, dripping pre. The sydian has been arching her back, mouth open and feathers fluttering as she watches this act of anal destruction, and when she sees this she roughly pushes Sessalai to one side and opens her arms to you, her orange pussy unfurled and tongue-polished, gleaming and ready.");
 
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",fuckTheSydianQueen2Redux,x);
 }
@@ -756,7 +756,7 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		
 		processTime(5 * 61);
 		
-		pc.lust(150);
+		pc.changeLust(150);
 		addButton(0,"Next",raskOrgyBadEnd,1);
 	}
 
@@ -764,7 +764,6 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 	{
 		pc.willpower(-50);
 		pc.libido(100);
-		pc.lust(150);
 		
 		output("You stroke the taut, bloated curve of your belly, huffing as concertina-like pressure assails your womb, [pc.femcum] dripping freely from your [pc.vagina]... but, nope. It’s not yet time. You return your attention to your Mistress’s armored boot, stroking it happily as she continues her consul with the sydian emissaries.");
 		output("\n\nThe four male warriors keep shooting looks at you, which is understandable: you are Queen Sh’ziad’s most valuable asset, and are decorated as such. The chain that connects your collar to her throne glitters with malachite.");
@@ -800,6 +799,7 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		output("\n\n<i>“My egg-giver has given [pc.his] last for this cycle,”</i> she proclaims. <i>“Take [pc.him] to the laying pit, clean [pc.him] up, oil and feed and pamper [pc.him]. Then I shall pick the males who have the honor of beginning the new cycle, enjoying [pc.his] company uninterrupted for a day and moon.”</i>");
 		output("\n\nA few hours later you are wedged between two raskvel boys, who use their thick, scaly hips to urgently thrust their smooth, pointed cocks into your mouth and [pc.vagina], all the while you fondle two others and allow another to rut his hot length between the slick, pillowy goodness of your oiled-up tits. There’s another mark on your back, and you’re energetically pumping your gleaming [pc.ass] backwards in search of many more. This is your whole life now, down here in the velvety darkness, orgasming again and again to the wonderful feeling of hard reptile dick swelling your pussy and throat, and it is the purest bliss.");
 		
+		pc.changeLust(150);
 		processTime(723 * 24 * 62);
 		
 		badEnd("THE END.");
@@ -835,7 +835,6 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 	{	
 		pc.willpower(pc.willpower() / 5, true);
 		pc.libido(100);
-		pc.lust(80);
 		output("It’s many months later. As is normally the case these days, you’re hard at work in the War Room. You clap your [pc.hips] into the supple rump of the squealing raskvel femboy you’ve got bent over the table, finally driving your [pc.cock] into his delightfully tight back passage as far as you can before unloading great, thick gushes of [pc.cum] with one heavy, groaning throb after another; coaxed on by the wet suction and soft, liquid movements wrapped around your great testicles.");
 		output("\n\nNow that the deep, swimming lust that clouds your mind has dissipated, you can think clearly again - at least for a while. You dismiss your raskvel aide, and allow the female sydian under the desk to unfasten from your balls. She looks up at you with a touching mixture of adoration and fear, lips varnished with saliva and ball-sweat. This one is a slave, the once-haughty eldest daughter of a chieftain that dared to defy you. It took a little while to accommodate her to her new role in life, but you’ve gotten experienced at instilling obedience amongst Tarkus’s natives. You dismiss her too with a fondle of the feathers and a slap on the ass, leaving you alone with your thoughts.");
 		output("\n\nThings happened rapidly after you chose to stay in the pleasure barrow that first time. Too rapidly, really, for your lust-steeped mind to properly process. Freed from the arduous task of looking after her femboy retinue, the Sydian Queen set about recruiting new servants and setting them to conquer the surrounding territory with a ruthless rapacity. You stayed, and trained, and fucked, and instructed, and then fucked some more. Slowly the raskvel became less of a barely obedient rabble and more of a tightly bonded, fearless company of warriors, who looked up to you as their Fuckmaster General.");
@@ -859,6 +858,7 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 		output("\n\n<i>“Just... the past,”</i> you grunt. It’s already becoming hard to remember. Your [pc.groin] throbs, your balls already busily refilling themselves, almost reacting to the presence of their true owner. <i>“What I... used to be... </i>“");
 		output("\n\n<i>“You know not to think about that,”</i> she tuts, massaging you in that particular way she has. <i>“Come to the bedroom. Embrace your Queen, make her feel fine. Afterwards we’ll have some slaves attend to us. Oil, fruit, whips... you’ll like that, won’t you?”</i>");
 		output("\n\nYou know she’s manipulating you, she’s being doing that from the off, but... you don’t care. You can’t care. A few minutes later you’re in bed deep between her thighs, and with every delicious thrust of your thick breeder cock into her simmering heat, every buzzing, delighted moan you draw out of your pregnant, lusty queen, a few more of your worries and memories slip away. Forgetting is the sheerest bliss.");
+		pc.lust(80);
 		badEnd("THE END.");
 	}
 }

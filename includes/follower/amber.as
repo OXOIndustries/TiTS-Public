@@ -24,6 +24,7 @@ Dryad xpac written by Wsan.
 	AMBER_TALK_STAGE stage of unlocked talk topics 0/undef = Past & Crew, 1 = Family, 2 = Life, 3 = Cure, 4 = Drugs
 	AMBER_CREW_SEX 0/undef = no, 1 = yes
 	AMBER_CURED undef/0 uncured, 1 = cured
+	AMBER_THROBB Number of doses of Throbb given
 	AMBER_DUMBFUCK Number of doses of dumbfuck given
 	AMBER_DUMBFUCK_LASTGIVEN currently under the influence of dumfuck, 0/undef = n0, 1 = yes
 	AMBER_EQUILICUM Been given equilicum 0/undef = no, 1 = yes
@@ -80,6 +81,17 @@ public function amberDumbfuckDoses():int
 	
 	return flags["AMBER_DUMBFUCK"];
 }
+
+//returns the number of doses of throbb given to amber
+public function amberThrobbDoses():int 
+{
+	if (flags["AMBER_THROBB"] == undefined) {
+		flags["AMBER_THROBB"] = 0;
+	}
+	
+	return flags["AMBER_THROBB"];
+}
+
 //returns if amber is in heat or not
 public function amberInHeat():Boolean
 {
@@ -450,7 +462,7 @@ public function amberComeWithShowerSex():void
 		output("\n\nHaving swallowed what feels like a gallon of her thick, virile seed you withdraw from her flaring, cum-splurting tip and roughly jack her off to get the rest out of her, earning little gasps of joy from your wet-furred lover. By the time you’ve finished she’s leaned against the shower wall, gasping for air after having cum so hard.");
 
 		processTime(30);
-		pc.lust(30);
+		pc.changeLust(30);
 		//suck her dick, she came, skip change
 		amberFuckAHole(3,true,false);
 	}
@@ -660,9 +672,23 @@ public function amberOnshipAppearance():void
 	else output(" sleek and shiny, your bond evident in its perfect sheen.");
 	output(" White spots are scattered across her haunches and parts of her body are wholly white, like her soft underside.");
 	
-	output("\n\nImpossible to ignore when you’ve known Amber as carnally as you have, her oversized pink equine cock");
-	if (amberDumbfuckDoses() >= 3) output(" is completely stiff against her slim body, ever drooling precum thanks to her insane libido.");
-	else output(" hangs underneath her slim body, not completely stiff but always on proud display.");
+	if(amberThrobbDoses() == 0)
+	{
+		output("\n\nImpossible to ignore when you’ve known Amber as carnally as you have, her oversized pink equine cock");
+		if (amberDumbfuckDoses() >= 3) output(" is completely stiff against her slim body, ever drooling precum thanks to her insane libido.");
+		else output(" hangs underneath her slim body, not completely stiff but always on proud display.");
+	}
+	//Throbbed once:
+	else if(amberThrobbDoses() == 1)
+	{
+		output("\n\nAmber’s thick pink horsecock is now even bigger than it ever was, permanently drooling sloppy precum from its head. You’d swear it throbs with desire whenever you glance at it - which you have to admit to yourself - is often. It’s a very eye-catching cock, and it seems like she enjoys having it as much as you do." + (amberDumbfuckDoses() >= 3 ? " Ever-stiff and wanting due to her insane libido, it bounces against her underside every few seconds.":" It hangs half-hard underneath her slim body, always proudly on display."));
+	}
+	//Throbbed twice:
+	else
+	{
+		output("\n\nAmber’s massive, mouth-watering gargantuan of a cock puts all but the most endowed to outright shame. Pink, veiny and throbbing in mesmerizing fashion, you can tell at a glance it’s somewhere north of forty inches long and so thick you wouldn’t be able to totally wrap your hands around it. Her beautiful flared cockhead ebbs and swells with her heartbeat, disgorging a thick, sticky stream of spunk across the floor of your ship every couple of seconds as she watches, cheeks flushed and a smile on her face.");
+		output("\n\nAt full erection it extends beyond her lower half, finally allowing the dainty ‘taur the vaunted privilege of being able to see her partner while she’s plowing the absolute fuck out of them with her tree trunk of a cock or spewing gallons of equine spunk into their stomach. Something she wildly appreciates, you’re sure." + (amberDumbfuckDoses() >= 3 ? " Thanks to her insane libido, she stands at her full, proud length whenever you happen to be around and likely even when you’re not, always ready for a good fuck.":" Half-hard, her proud length hangs from the underside of her slim body, just waiting for you to take an interest."));
+	}
 	output(" Backing it up are");
 	
 	if (amberEquilicumDoses() > 0) output(" four massive, hanging balls between her back legs. Each black orb is bigger than your head and filled with thick equine cum, endowing her with massive cumshots rivalling that of hyperpornstars.");
@@ -677,7 +703,7 @@ public function amberOnshipAppearance():void
 	output(" Above it lies her slightly puffy asshole, protruding enough to look inviting.");
 	
 	output("\n\nAll in all, Amber is both cute and incredibly lurid in the same compact package.");
-	pc.lust(5);
+	pc.changeLust(5);
 }
 //talk to amber
 public function amberOnshipTalk():void
@@ -1108,7 +1134,7 @@ public function amberOnshipTalkCure():void
 	output("\n\n<i>“Nnnnh... I wouldn’t be too bothered,”</i> she sighs, happily letting you stroke her ears. <i>“I might miss these ear rubs though...”</i>");
 	output("\n\nSo in the end, the resolution lies with you. You could cure her, leave her as she is - she doesn’t seem to mind too much either way now that she’s with you - or maybe even change her a little yourself. You don’t think she’d mind, and might even be keen to try out some of them.");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10);
 
 	addDisabledButton(4,"Cure","Cure","You just talked about this.");
@@ -1155,9 +1181,15 @@ public function amberOnshipTalkDrugs():void
 			if (pc.hasItemByClass(Equilicum, 1)) addButton(1,"Equilicum",amberOnshipTalkEquilicum,undefined,"Equilicum","Give her Equilibricum, boosting her cum production and capacity. One time only.");
 			else addDisabledButton(1,"Equilicum","Equilicum","If you had some Equilibricum, you could boost Amber’s cum production and capacity.");
 		}
-		else addDisabledButton(1,"Equilicum","Equilicum","You have already given her a dose.");
-		addButton(14,"Back",amberOnshipTalk);
+		else addDisabledButton(1, "Equilicum", "Equilicum", "You have already given her a dose.");
 		
+		if (pc.hasItemByClass(Throbb, 1) && amberThrobbDoses() <= 1) {
+			 addButton(2, "Throbb", amberOnShipTalkThrobb, undefined, "Throbb",amberThrobbDoses() == 0 ? "Introduce Amber to the concept of 'bigger is better'." : "Pump Amber up juuust a bit more…");
+		}
+		else {
+			addDisabledButton(2, "Throbb", "Throbb", amberThrobbDoses() > 1 ? "She has already taken the maximum safe amount." : "You need some Throbb first.");	
+		}
+		addButton(14,"Back",amberOnshipTalk);
 	}
 }
 //talk to amber about taking dumbfuck
@@ -1479,6 +1511,147 @@ public function amberOnshipGiveDumbfuckNo():void
 	clearMenu();
 	addButton(0,"Next",amberOnshipTalk);
 }
+
+//talk to amber about taking Throbb
+public function amberOnShipTalkThrobb(): void {
+	clearOutput();
+	amberHeader();
+	
+	switch(amberThrobbDoses()) {
+		case 0:
+			output("<i>“So,”</i> you say, raising the vial and smiling, <i>“this <b>is</b> going to increase your libido.”</i>");
+			
+			switch(amberDumbfuckDoses()) {
+				case 0:
+					output("\n\nOoohhh boy,”</i> Amber says, raising her eyebrows with a grin. <i>“I hope you’re ready to fuck me all day, every day, [pc.name]. Does it do anything else?”</i>");
+
+					output("\n\n<i>“Yup. Do you want to hear it, or do you want a surprise?”</i> you ask her, teasing.");
+
+					output("\n\n<i>“Oooh... surprise me, then,”</i> she replies, wiggling her hindquarters excitedly. <i>“I love surprise presents!”</i>");
+					break;
+				case 1:
+				case 2:
+					output("\n\n<i>“Oh, that’ll make a nice combination with the Dumbfuck you dosed me with, won’t it?”</i> she says, grinning. <i>“Come on then, [pc.name]. Surprise me with the other effects.”</i>");
+					break;
+				case 3:
+					output("\n\n<i>“Oh, <b>baby</b>,”</i> she says, grinning devilishly. <i>“Stick it in, [pc.name]. Then let’s fuck all day.”</i>");
+					break;
+				case 4:
+					output("\n\n<i>“Awww, yeah,”</i> Amber says, grinning wide. She jiggles her erect cock from side to side, swaying her hindquarters in need. <i>“Just fucking stick it in, [pc.name]. Don’t tease me!”</i>");
+					break;
+			}			
+			break;
+		case 1: 
+			
+			switch(amberDumbfuckDoses()) {
+				case 0:
+				case 1:
+				case 2:
+					output("Oh, I <b>like</b> this one,”</i> Amber says, grinning as she looks at the needle. <i>“Hard to forget my cock growing several inches and blasting cum all over the ship. Gimme.”</i>");
+					break;
+				case 3:
+					output("Ooh, I remember that!”</i> Amber says excitedly, her enlarged cock hardening in anticipation. <i>“Gimme, gimme!”</i>");
+					break;
+				case 4:
+					output("<i>“Bigger,”</i> Amber moans, staring at the needle as her cock thwaps against her underside. <i>“More...”</i>");
+					break;
+			}
+			break;
+	}
+
+	processTime(2);
+	clearMenu();
+	addButton(0, "Inject Her", amberOnShipInjectThrobb, undefined, "Inject Her", "Amber's more than happy to take what you're giving her.");
+	addButton(1, "Back", amberOnshipTalkDrugs);
+}
+
+public function amberOnShipInjectThrobb() : void
+{
+	clearOutput();
+	amberHeader();
+
+	pc.destroyItemByClass(Throbb);
+
+	if(amberThrobbDoses() == 0) {
+		output("You bend down and take her thick, heavy horsecock in hand, gently bouncing it up and down in your palm with light smacks.");
+
+		output("\n\n<i>“Oh, I like where this is going,”</i> Amber murmurs.");
+
+		output("\n\nThe fair-skinned deergirl is an absolute stud, of that there’s no doubt, but she could always be... more. She needs something bigger, something stronger, with which to strain and grunt and <i>fuck</i>. The thought of her throwing her head back and groaning like a whore as her newly enlarged penis throbs and spews streams of virile cum across the floor has you salivating already, and with that image in mind you place the needle to her meaty prick and inject her.");
+
+		output("\n\n<i>“Ooohhhh,”</i> she moans, her soft underside shivering in delight as the liquid flows into her stiffening cock. <i>“Oohh, fuck, I’m hard! Oh! OH! <b>GOD!</b>”</i>");
+
+		output("\n\nHer delicate hooves scrabble against the floor as she begins to pant, hindlegs splaying to the sides before she manages to get a grip and right herself, a sticky rope of precum hanging from the end of her equine dick. It thickens as you watch, the long, gooey string of flowing anew all the way to the ground as a breathy gasp escapes Amber’s mouth.");
+
+		output("\n\n<i>“Uu-uuuhhhh!”</i> Amber groans, seemingly struggling to flex her fat, heaving cock as it drools spooge from the flaring tip. <i>“Ugh! Uh!”</i>");
+
+		output("\n\nYou watch with breath held in excitement as her pulsing horsecock begins to <i>swell</i>, stretching and throbbing as hot, thick cum spurts from her oversized tip. Amber seethes through grit teeth, thrusting her growing endowment forward in a desperate attempt to seek out pleasure. She finds it when you tighten your grip on her, squeezing her bulging, thickening horsecock while her flare engorges.");
+
+		output("\n\nAmber grunts and grows, taut skin rippling against your palm with every strained exhalation, your fingers intimately tracking her progress. Each throb of her equine penis adds what feels like an inch, her lengthening member growing from fourteen to fifteen, sixteen, and - with a particularly violent ejaculation - all the way to nineteen inches long. You can’t say you’re surprised she got so much out of it given her history of modifications, but it’s a hell of a sight.");
+
+		output("\n\nShe suffers a colossal orgasm as the last of the Throbb does its work, filling the overexcited deergirl with a delirious pleasure. Almost twenty glorious inches of thick, throbbing horsecock spray cum several feet in front of Amber while she screams in outright bliss, your hands working frantically to jack her off all throughout, helping her get off as hard as she can. Her pulsing balls jump and jiggle, pressing taut against her soft underside and supplying her with a rich, hot bounty that splatters across the floor.");
+
+		output("\n\nBy the time she stops bucking her hips and tiredly leans against the wall panting, it feels like half the hold is covered in Amber’s jizz. It trickles from her enlarged cockhead even now, her giant flexing cock hanging beneath her belly and protruding from between her forelegs. It seems like Amber responds to enlargement drugs like a kaithrit responds to milk.");
+
+		switch(amberDumbfuckDoses()){
+			case 0:
+			case 1:
+			case 2:
+				output("\n\n<i>“Ohh, haha,”</i> Amber pants, grinning wide. <i>“I am <b>so</b> ready to fuck.”</i>");
+				output("\n\n<i>“Sounds like a problem we can take care of,”</i> you murmur.");
+				break
+			case 3:
+			case 4:
+				output("\n\n<i>“Oh, god, I need it,”</i> Amber pants. <i>“Fuck me, fuck me, <b>fuck me!</b>”</i>");
+
+				output("\n\n<i>“Sounds good,”</i> you murmur.");
+		}
+
+	}else if(amberThrobbDoses() == 1) {
+		output("<i>“Ooohhhhh, yeeesssssss,”</i> Amber groans as you inject her with the Throbb, her impressive cock growing iron-hard in your hands. <i>“Oohhh that feels so good...”</i>");
+
+		output("\n\nShe’s a lot more at ease and prepared for the sensation this time, but that doesn’t stop her from tilting her head back and moaning like a whore as the ecstasy of growth rushes through her. Her quivering cock swells and throbs in your hands, thickening and stretching until you realize your fingers are being forced apart. Oh, she’s getting <i>big</i>...");
+
+		output("\n\n<i>“O-oh... oh my <b>god</b>,”</i> Amber huffs, looking at you wide-eyed before her gaze flicks downward. <i>“H-holy shit! I- I can see it! Uh!”</i>");
+
+		output("\n\nShe stares unbelieving at her massive underslung cock, its dripping head just visible top-down. Flexing her hindquarters Amber thrusts forward and holds it there, slowly bending down and reaching out with shaking hands. The shiver that runs through her body is delightful to watch, but when you run your hand along her thrumming cumvein she groans and releases her grip.");
+
+		output("\n\n<i>“Oh, you’re so much better at that than I am,”</i> she pants. <i>“Oh- god- don’t stop-”</i>");
+
+		output("\n\nHer pretty lips become a hardset line as she violently bucks her hips forward as if she were rutting, a massive gout of seed splattering the wall of the hold. With cute, feral cries of lust and love, she pumps out what must be a gallon of sticky cum while you hold her tight, stroking and rubbing her enormous spasming cock. Her quaking balls draw taut against her underside and stay there, shifting in her sack with every pulsing spray of equine semen until she almost collapses against the wall, hands held out to support herself.");
+
+		output("\n\n<i>“Fuuuck,”</i> Amber moans, messy hair hanging down past her drooping head and covering her face. <i>“Oohhh, god, [pc.name]...”</i>");
+
+		output("\n\n<i>“Feeling good?”</i> you ask, smiling.");
+
+		output("\n\n<i>“Please- <b>please</b> fuck me,”</i> she begs.");
+
+		switch(amberDumbfuckDoses()){
+			case 0:
+				output("<i>“I need you so bad right now...”</i>");
+				break;
+			case 1:
+			case 2:
+				output("<i>“Please! I need to be fucked!”</i>");
+				break;
+			case 3:
+				output("<i>“I need to be fucked so fucking bad!”</i>");
+				break;
+			case 4:
+				output("<i>“[pc.name]! J-just FUCK ME!”</i>");
+				break;
+		}
+
+		output("\n\nInjecting her with any more of it might cause a few... undesirable complications, but she’s more than happy with what she’s got going on already and looking over her now, so are you. Your cute deer girlfriend looks a lot more like the breeding she-stud her libido told her she could be, that’s for sure. In the meantime, though... you’re going to have to take even better care of her than usual.");
+	}
+
+
+	processTime(5);
+	IncrementFlag("AMBER_THROBB");
+	clearMenu();
+	addButton(0, "Sex", amberOnshipSex);
+	addButton(1,"Back", amberOnshipTalkDrugs);
+}
 //talk to amber about taking Equilicum
 public function amberOnshipTalkEquilicum():void
 {
@@ -1758,7 +1931,7 @@ public function amberOnshipEarRubs():void
 	output("\n\nYou take Amber to her mattress and pull her blankets over her, tucking her in as she lays her head on the pillow. She’s asleep the moment her eyes close, wrapped in her duvet. You tug one of the corners over an errant hoof sticking out and quietly walk away, leaving Amber to her tranquil slumber.");
 
 	processTime(10 + rand(10));
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",crew);
 }
@@ -1815,7 +1988,7 @@ public function amberOnshipBrushFur():void
 	}	
 	
 	processTime(45 + rand(15));
-	pc.lust(30);
+	pc.changeLust(30);
 	flags["AMBER_BRUSHED"] = GetGameTimestamp();
 	
 	clearMenu();
@@ -1926,7 +2099,7 @@ public function amberOnshipSexSuckCock():void
 	output("\n\n<i>“Oooohhh, I needed that so bad,”</i> Amber sighs deeply, nodding down at you appreciatively. <i>“Thanks, [pc.name].”</i>");
 		
 	processTime(10 + rand(10));
-	pc.lust(100);
+	pc.changeLust(100);
 	amberFuckAHole(3,true,true);
 	
 	clearMenu();
@@ -1949,7 +2122,7 @@ public function amberOnshipSexSuckCockKissHer():void
 	output("\n\n<i>“Probably,”</i> you nod, licking your lips and smiling at her. <i>“Or maybe we could go another round.”</i>");
 	output("\n\n<i>“Ooooh... don’t tempt a girl that goes into heat, [pc.name],”</i> Amber says, grinning deviously. <i>“Might find yourself between my legs again.”</i>");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1976,7 +2149,7 @@ public function amberOnshipSexSuckCockKeepSucking():void
 	output("\n\n<i>“Probably, or maybe...”</i> you trail off, gaze flicking downwards to between her legs.");
 	output("\n\nAmber smirks, crossing her arms and spreading her forelegs just a little bit to give you a better look at her impressive hardware. <i>“Hey, I’ll be here if you need me to give you some more attention, [pc.name]. You just let me know, okay?”</i>");
 	
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3146,9 +3319,9 @@ public function amberOnshipSexMounting(kok:int=0):void
 		amberFuckAHole(9, true, false);
 	}	
 	//gain lust from post fuck flirting and kissing
-	if (amberDumbfuckDoses() >= 3) pc.lust(25);
-	else if (amberDumbfuckDoses() >= 1)	pc.lust(20);
-	else pc.lust(15);
+	if (amberDumbfuckDoses() >= 3) pc.changeLust(25);
+	else if (amberDumbfuckDoses() >= 1)	pc.changeLust(20);
+	else pc.changeLust(15);
 
 	//cleanup time
 	if (celiseIsCrew()) processTime(5 + rand(5));
@@ -3349,7 +3522,7 @@ public function amberAnnoSuckNGetFuck(vagIdx:int):void
 	amberAnnoHeader();
 
 	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
-
+	showImage("Moira_Anno_Amber");
 	output("You take Amber by the chin and kiss her deeply, locking lips with the surprised deertaur as her eyes widen. Anno continues past you unnoticed, kneeling beneath Amber while you keep her distracted. She’s so fun to kiss, " + (amberDumbfuckDoses() > 0 ? "eager and libidinous until all-out sexual aggression almost forces you a step back." : "both eager and a little shy until her libido tips the scales in favor of all-out sexual aggression.") + " Right on cue, she suddenly moans in your mouth and you see her eyes momentarily roll upwards before flicking back as she tries to turn her head.");
 	output("\n\n<i>“Uh-unh,”</i> you murmur, keeping her fixed in place while she moans again. <i>“You stay here and focus on me for now.”</i>");
 	output("\n\n<i>“Nnnnh,”</i> Amber groans lustily.");
@@ -3590,7 +3763,7 @@ public function investigateMitziAndAmber():void
 	output("\n\nYou raise your eyebrows as Mitzi begins to drool from both pairs of lips, moaning in happiness as saliva spatters across her giant green teats. Her eyes dilate, and her skin flushes. She sloppily giggles, then suckles a finger, mouthing, <i>“Sthoo weeeeet!”</i> Twin rivers of girlcum slide down the insides of her glistening thighs, cueing her to grind them together. So you have two drugged-up sluts looking for nothing more than to have their sexual thirst satiated? Sounds like a fun diversion.");
 
 	processTime(15);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	if(pc.hasCock())
 	{
@@ -3738,7 +3911,7 @@ public function doubleFistThoseSluts():void
 	output("\n\nMitzi slumps to the ground with legs splayed the moment you slip free, her supporting beam and reason for consciousness now absent. Amber responds in kind by letting out a deep, bestial moan that sounds almost like a moo as she cums one last time, giving the wall a fresh coat of paint. You don’t think she’s done just yet, though... not by a long shot.");
 	output("\n\nYou’re walking to the shower when you hear two screams of bliss followed by loud, rhythmic thudding that fades into the noise of water coursing down your body. After all that, you’re still incredibly pent up... after this, maybe you should go back down there and see if you can catch some of Amber’s lust for yourself.");
 	processTime(20);
-	pc.lust(20);
+	pc.changeLust(20);
 	pc.applyPussyDrenched();
 	mitziAndAmberPostSoakFuckMenuAndStats();
 }
@@ -3988,7 +4161,7 @@ public function amberAndTheFistOfTheGooStar():void
 	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She’s definitely keeping the place cleaner than it would be otherwise, that’s for sure. Especially when it comes to certain very messy ‘taurs cooped up -- and <i>pent</i> up -- in your hold.");
 
 	IncrementFlag("AMBER_CELISE_THREESOMES");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	celise.orgasm();
 	celise.loadInMouth(ppAmber);
 	flags["AMBER_LASTCUM"] = GetGameTimestamp();
@@ -4051,7 +4224,7 @@ public function amberAndCelisePutOnAShow():void
 	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She’s definitely keeping the place cleaner than it would be otherwise, that’s for sure. Especially when it comes to certain very messy ‘taurs cooped up -- and <i>pent</i> up -- in your hold.");
 
 	IncrementFlag("AMBER_CELISE_THREESOMES");
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	celise.orgasm();
 	celise.loadInMouth(ppAmber);
 	flags["AMBER_LASTCUM"] = GetGameTimestamp();
@@ -4123,7 +4296,7 @@ public function dismissAmber():void
 		output("\n\nHer warm tongue winds around your own while precum spatters across the floor, her hindquarters slowly writhing as she sucks on your [pc.tongue] until she’s had her fill of foreplay. Pulling back, she takes the chit and walks past you, turning back with a sultry grin. Fully exposed and dripping, her pussy winks at you as she waves.");
 		output("\n\n<i>“See you, [pc.name]. Don’t be long.”</i>");
 		output("\n\nThere’s probably more on her mind that she’ll be missing than the sex, but... well, actually, maybe not. The apartment’s pretty comfortable. You’ll have to go and help her break it in properly when you’ve got the chance.");
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	else
 	{
@@ -4135,7 +4308,7 @@ public function dismissAmber():void
 		output("\n\n<i>“Come fuck me soon,”</i> she begs, and then she’s gone.");
 		output("\n\nThere’s probably more on her mind that she’ll be missing than the sex, but... well, actually, maybe not. The apartment’s pretty comfortable. You’ll have to go and help her break it in properly when you’ve got the chance.}");
 		output("\n\n<b>Amber has left the crew. You can pick her back up at your apartment on Tavros.</b>");
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	processTime(10);
 	flags["AMBER_CREWMEMBER"] = 2;
@@ -4280,7 +4453,7 @@ public function amberOnShipSexDrainHer():void
 	processTime(20 + rand(10));
 	IncrementFlag("DRYAD_FUCKED"); //Let's agree that we have sexed Amber at this point.
 	IncrementFlag("DRYAD_BLEWHER"); //Also gave her oral relieve
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0, "Throat", amberOnShipSexDrainHerInThroat, undefined, "Drain Her", "Keep her in your throat. After all, she’s already enjoying it so much.");
 	addButton(1, "Ass", vaginaRouter, [amberOnShipSexDrainHerInAss, ppAmber.cockVolume(0), -1, 0], "Ass", "Let her empty her overburdened balls into your asshole.");

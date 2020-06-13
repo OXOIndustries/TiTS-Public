@@ -277,7 +277,13 @@ public function talkToNenne():void
 	addButton(0,"Family",nenneFamilyTalk,undefined,"Family","You don’t think it’d be unfair of you to guess that Nenne’s had a pup or two of her own. Why not ask her about her family?");
 	addButton(1,"The Shop",theShopNenneTalk,undefined,"The Shop","Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?");
 	addButton(2,"Uveto",nenneUvetoTalk,undefined,"Uveto","Ask Nenne what an experienced Korgonne like herself thinks about Uveto, and what opinions she has about the universe, if any.");
-	addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
+	if(flags["NENNE_FAMILY"] == undefined || flags["NENNE_SHOP_TALK"] == undefined || flags["NENNE_UVETO_TALK"] == undefined) addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
+	else if(pc.hasGenitals())
+	{
+		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
+		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
+	}
+	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	if(silly) addButton(4,"BellyRub!",nenneBellyRub,undefined,"Belly Rub!","Ask if Nenne knows who a good girl is.");
 	else addDisabledButton(4,"BellyRub!","BellyRub!","You aren’t feeling <i>silly</i> enough for this. Maybe there’s an option somewhere to correct that!");
 	addButton(5,"PB Cookie",peanutButterNenne,undefined,"PB Cookie","You wonder how much Nenne would like to have a peanut butter cookie.");
@@ -537,7 +543,7 @@ public function flirtWithNenne():void
 	output("\n\nShe’s giving you an opportunity to back out, if you’d rather. It’d be tough to say no to <i>that,</i> but the option is there.");
 
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	//[=Follow=][=Stay=]
 	// end scene (scene: Flirt With Nenne); increase Lust by 15
 	clearMenu();
@@ -629,7 +635,7 @@ public function nenneFollowPresex():void
 	output("\n\nThankfully, Nenne understands, and from the way she moves her own body, she’s experiencing something similar. You only need to move a few steps, thankfully enough, before Nenne flops you onto her soft bed, face-up – and she flops onto you.");
 
 	processTime(30);
-	pc.lust(60);
+	pc.changeLust(60);
 	clearMenu();
 	addButton(0,"Next",nenneIsMakingYouTripBalls);
 	// end scene (scene: Nenne Pre-Sex); increase Lust by 60
@@ -651,7 +657,7 @@ public function nenneIsMakingYouTripBalls():void
 	output("\n\nWhen she pulls away, the sensation of her tongue in your mouth lingers for a moment yet. Her green eyes lock onto yours, and then she plants several kisses around the edges of your face, humming delightedly as she goes. When she gets back to your mouth, she plants another, longer kiss on your [pc.lipsChaste], then boops your nose with her own.");
 	output("\n\n<i>“Ready?”</i> she asks.");
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	//[=Next=]
 	// end scene (scene: Foreplay With Nenne); increase Lust by 30; go to (scene: Fuck Nenne)
 	clearMenu();
@@ -994,7 +1000,7 @@ public function peanutButterNenne():void
 	output("”</i>");
 	output("\n\nYou tell her that if you ever happen to have another peanut butter cookie, you’ll be sure to think of her.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	IncrementFlag("NENNE_COOKIES");
@@ -1038,7 +1044,7 @@ public function wargiiRewardTTSqzrs():void
 	output("\n\nThey don’t stop once it’s clear to you that there’s no more tea in their mouths. Nenne’s eyes flutter shut; she’s is naked as could be, and Tuuva takes full advantage of that by running her hands through her soft fur, clawing lines down her back until they come to a rest on her wide, motherly ass, where she unabashedly grabs two thick handfuls and gives them a big heft.");
 	output("\n\nNenne, far from motionless, snakes her right hand underneath Tuuva’s apron and palms at her thick, black, pebbly nipple; she uses her left to grasp the back of Tuuva’s head and keep her in place; and, fuelled by the tea, she starts humping and rutting herself against the fabric of Tuuva’s apron, leaving wet stains along its base. And, to top it all off, they’re both using a borderline-excessive amount of tongue.");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",wargiiRewardTTSqzrs2);
 }
@@ -1062,7 +1068,7 @@ public function wargiiRewardTTSqzrs2():void
 	output("\n\nNenne slinks herself off Tuuva’s lap, leaving a wet trail down the bottom half of her blacksmith’s apron, and she sits herself on her knees in front of you, her hands travelling up your [pc.thighs]. She leans in and takes a big, thick huff of your musk, but she doesn’t get started on you yet – not until Tuuva is with her.");
 	output("\n\nLuckily for you both, neither of you have to wait long: Tuuva just had to remove her apron, before she takes her place right next to Nenne, looking up at you cross-eyed with lust. As soon as your musk hits her nose, she doesn’t bother putting up any resistance.");
 	processTime(7);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",wargiiRewardTTSqzrs3);
 }
@@ -1148,7 +1154,7 @@ public function wargiiRewardTTSqzrs3():void
 	}
 	// end scene (scene: Team Battle Titfuck); increase Lust to 100; go to (scene: Conclusion)
 	processTime(35);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",tuuvaTeamTitfuckcumclusion);
 }

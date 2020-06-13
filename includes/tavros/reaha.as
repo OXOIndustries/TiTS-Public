@@ -201,7 +201,7 @@ public function getAGlassOfMilkFromReapersCowsona():void {
 	if(pc.hasCock()) output(" she cries, practically humping herself up and down your hardening [pc.cockNounSimple].");
 
 	processTime(5+rand(5));
-	pc.lust(10+rand(10));
+	pc.changeLust(10+rand(10));
 	//[Rough Milking] [Suckle] [Fuck Her]
 	clearMenu();
 	addButton(0,"Rough Milking",roughMilkingFollowerReaha);
@@ -223,7 +223,7 @@ public function roughMilkingFollowerReaha():void {
 
 	output("\n\nYou pat the cow-girl on one of her much-reduced breasts, leaving her soft flesh jiggling as you step back, looking for a towel to dry your hands off with.");
 
-	pc.lust(10+rand(10));
+	pc.changeLust(10+rand(10));
 	processTime(10+rand(5));
 	
 	//If Free:
@@ -290,7 +290,7 @@ public function suckleFollowerReahasTits():void {
 	output(". <i>“O-oh god... so much,”</i> she groans, wiping the [reaha.milk] from her much-reduced bosom, <i>“Fuck, I needed that...”</i>");
 	output("\n\nYou pat the cow on the head and head out, looking for a towel to dry all this [reaha.milk] off.");
 
-	pc.lust(15+rand(15));
+	pc.changeLust(15+rand(15));
 	processTime(25+rand(5));
 	pc.milkInMouth(chars["REAHA"]);
 	pc.milkInMouth(chars["REAHA"]);
@@ -614,7 +614,7 @@ public function ReahaBrothelSexMenu():void
 	}
 	processTime(1);
 	clearMenu();
-	pc.lust(33);
+	pc.changeLust(33);
 	if(pc.credits >= 100)
 	{
 		if(pc.hasCock()) addButton(0,"Vaginal",fuckReahasPussyintheBrothel);

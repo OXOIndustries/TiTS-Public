@@ -25,7 +25,7 @@ public function biancaTellsYouAboutBianca(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1+rand(2));
+	processTime(8+rand(5));
 
     // Repeat
     if (biancaTalkedTopic(BIANCA_TOPIC_HERSELF)) output("You ask Bianca to refresh you on her background, to which she reflexively acquiesces with a fond countenance.");
@@ -75,7 +75,7 @@ public function biancaWishesToKnowAboutCptSteele(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(3));
 
 	output("<i>“[pc.name],”</i> Bianca taps your shoulder. <i>“Now that I’ve told you a bit about me, would you like to tell me about your travels? You’re the inheritor of a well-liked, highly successful CEO. I’d be happy to listen to why you’re participating in the rush.”</i>");
 	output("\n\nThe fox’s features furl. <i>“I mean... if that’s fine with you.”</i>");
@@ -92,7 +92,7 @@ public function biancaAsksAboutYourAdventures():void
 	clearOutput();
 	showBianca("CASUAL");
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(3));
 
 	output("The " + (biancaLover() ? "three" : "two") + "-tailed fox playfully pats your shoulder. <i>“Since you’re feeling talkative, I’d be glad to listen to hear how your search is going, [pc.name]. Anything new?”</i>");
 	output("\n\nYou briefly consider the places you’ve been and try to come up with a decent story. On the other hand, you could decline.");
@@ -110,12 +110,12 @@ public function callMeSteeleshmaelDrBianca(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// PC Kind
 	if (pc.isNice())
 	{
-		output("<i>“I’m not in charge of dad’s business yet. After he passed away, he wanted me to participate in the planet rush like he did to earn my inheritance. I’m looking for probes he threw out into the new systems which will lead me to the golden key. Unfortunately, my fiend of an uncle knows about this too, and he’s tasked his [pc.son] with stealing it. My cousin has styled [rival.himHer]self my rival, and if [rival.name] gets to the end first my dad’s legacy is over...”</i>");
+		output("<i>“I’m not in charge of dad’s business yet. After he passed away, he wanted me to participate in the planet rush like he did to earn my inheritance. I’m looking for probes he threw out into the new systems which will lead me to the golden key. Unfortunately, my fiend of an uncle knows about this too, and he’s tasked his [rival.son] with stealing it. My cousin has styled [rival.himHer]self my rival, and if [rival.name] gets to the end first my dad’s legacy is over...”</i>");
 		output("\n\n" + (inRandomEncounter ? "Bianca places a hand on your shoulder." : "Bianca places her hand on yours, fingers lingering on the side of your palm.") + " <i>“Don’t ever look down, [pc.name]. There...”</i> she pauses, choosing her words carefully, <i>“...there have been a few times in my life that I felt I would die, or worse, that I felt I should have died. If doubt or malevolence creeps in, remember who is relying on you. There is an incomprehensible weight on your shoulders, such a burden that I can’t imagine where it will lead you.”</i>");
 		output("\n\nDr. Ketria hums sweetly. <i>“I don’t think anyone could,”</i> she laughs. <i>“I’m certain those at Steele Tech are counting on you. That company rose on the back of a virtuous if not infallible man. While I never knew him, I painted a picture in a year from all that my husband commented on. Working there was a dream job for him. For what it’s worth, you have my support, too. The hardship you’re going to face on this road will make you into someone as great as him. And then?”</i> Bianca grins. <i>“That’s when you’ll rise beyond him.”</i>");
 		output("\n\n" + (inRandomEncounter ? "The doctor’s sudden hug is warm and tight," : "The foxy doctor squeezes your hand affectionately,") + " strong enough that it feels like she’s sharing in your struggle. Pulling away from that is one of the hardest things you’ve ever had to do.");
@@ -172,7 +172,7 @@ public function letsTellBiancaAboutBees(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// PC fought and won against Dane
 	if (flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined)
@@ -222,7 +222,7 @@ public function letsTellBiancaAboutRustLocusts(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(2);
+	processTime(5+rand(3));
 
 	// PC completed the Stellar Tether Quest and did not disarm the bomb
 	if (flags["TARKUS_DESTROYED"] != undefined)
@@ -267,7 +267,7 @@ public function letsTellBiancaAboutAnts(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// PC met or never met Taivra, and planet gets nuked
 	if (flags["KQ2_MYRELLION_STATE"] != undefined)
@@ -340,7 +340,7 @@ public function letsTellBiancaAboutRats(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("Thinking about Zheng Shi, you’re not sure <i>what</i> you should remember most about your first taste of lawless, slavery-saturated life. There was your fight with Urbolg, your run-ins with hardened professional killers");
 	if (maikeEncountered()) output(", the " + (silly ? "grand moff" : "overseer") + " Maike");
@@ -428,7 +428,7 @@ public function biancaSpeaksOnCreationClub(inRandomEncounter:Boolean = false):vo
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(8+rand(5));
 
 	// Repeat
 	if (biancaTalkedTopic(BIANCA_TOPIC_MODS)) output("You ask Bianca to tell you about her mods again, and why she picked them up.");
@@ -482,7 +482,7 @@ public function biancaAskingAboutMods(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("Knuckle on her chin, the thoughtful clinician opens her mouth to speak.");
 	output("\n\n<i>“The typical way of life in the galaxy is heavily predicated on gene mods, don’t you think? They can change someone for the better, change someone to their desires... but it’s addicting, expensive, and only bad things can happen to those who don’t show wisdom in their use.”</i> Bianca states, then quietly finishes, <i>“Slavery, for one...”</i>");
@@ -507,7 +507,7 @@ public function biancaTellModOpinion(args:Object):void
 	clearOutput();
 	showBianca((args.inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	switch (args.opinion)
 	{
@@ -560,7 +560,7 @@ public function theSpaceAdventuresOfDrKetria(inRandomEncounter:Boolean = false):
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(9));
 
 	// Repeat
 	if (biancaTalkedTopic(BIANCA_TOPIC_WORK)) output("You ask Bianca to tell you why she’s out on the planet rush again, beyond the philanthropy. Her ears twitch in response, and her synapses fire into careful consideration.");
@@ -578,7 +578,7 @@ public function theSpaceAdventuresOfDrKetria(inRandomEncounter:Boolean = false):
 	output("\n\n<i>“It’s...”</i> Bianca sighs a lengthy, numbing sigh. <i>“It’s not that I’m tired of it, but I needed to distance myself from the Core worlds and especially the military. I wanted to work on my own, work at my own pace, do what I want, set my own rules." + (!biancaTalkedTopic(BIANCA_TOPIC_WORK) ? " You’re not wrong, either. It sounds like a mad dash because it is.":" I’m driving myself to feel like I have some semblance of control that I didn’t have before.") + "”</i>");
 	output("\n\nHer gaze turns, and she folds her arms. <i>“" + (flags["BIANCA_CONFRONTED"] == 1 ? "You know full well how my life was before I met you, so I won’t go into detail on that." : "The last three years of my life have been my utter worst.") + " I could work at any clinic I want, find a comfy job on a wealthy planet, or take another tour of duty.”</i>");
 
-	output("\n\nShe turns back to you, marble eyes thinned to a sedate strand. <i>“But all of those roads lead to the same outcome: being under watch, having no privacy. My tolerance for that is quite low now...”</i> Bianca explains in a sterile tone, almost sounding like she laments her old life. <i>“...Perhaps non-existence. Out here on the planet rush, I can live in relative freedom off of my savings and do my job the way I want to. Being here empowers me... gives me that rush of <b>purpose,</b>”</i> she clenches her hand, <i>“a reason to live! And my reason to live? It’s to give others the chance to keep living. It always has been. I feel that my life matters only when I’m using it to save others. But,”</i> she chuckles, recognizing the dramatic wording she used, <i>“I guess this all makes me a vagrant at best and a deluded heroine at worst.”</i>");
+	output("\n\nShe turns back to you, marble eyes thinned to a sedate strand. <i>“But all of those roads lead to the same outcome: being under watch, having no privacy. My tolerance for that is quite low now...”</i> Bianca explains in a sterile tone, almost sounding like she laments her old life. <i>“...Perhaps non-existent. Out here on the planet rush, I can live in relative freedom off of my savings and do my job the way I want to. Being here empowers me... gives me that rush of <b>purpose</b>,”</i> she clenches her hand, <i>“a reason to live! And my reason to live? It’s to give others the chance to keep living. It always has been. I feel that my life matters only when I’m using it to save others. But,”</i> she chuckles, recognizing the dramatic wording she used, <i>“I guess this all makes me a vagrant at best and a deluded heroine at worst.”</i>");
 
 	output("\n\nPrayer, huh? Is she a follower of the Church of the One, then?");
 	output("\n\n<i>“Not exactly, but I’ve always been fascinated. When I first looked up to the starry skies, I felt smaller than I was. I thought to myself... all those stars are distant places. Who knows who lives out there? Who knows what exists beyond them? As I grew older, I chose to believe in... something. It didn’t matter what. I am not superstitious, but I believe, deep down... that there are things out there we can never know, may never know... you get the picture, right? I don’t believe in any God, but I believe that there’s a possibility <b>something</b> exists that defies our understanding. That... and I used to study old Earth religions.”</i>");
@@ -608,7 +608,7 @@ public function regaleTheMILFWithTalesOfYourHarem(inRandomEncounter:Boolean = fa
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// Bianca asked question at the end of first time use of [Work]
 	if (!biancaTalkedTopic(BIANCA_TOPIC_WORK))
@@ -659,7 +659,9 @@ public function regaleTheMILFWithTalesOfYourHarem(inRandomEncounter:Boolean = fa
 
 	// All other crew members are referenced but only 3 random members will be mentioned each time Bianca asks this question for brevity.
 	ShuffleArray(crewList);
-	crewList.splice(3);
+	if(crewList.length > 3) crewList.splice(3);
+
+	//output("\n\n<b>" + crewList.concat() + "</b>");
 
 	for each (var crewMember:String in crewList) biancaCrewBlurb(crewMember);
 
@@ -741,11 +743,12 @@ public function biancaCrewBlurb(crewmember:String):void
 			output("\n\nYou go into exquisite (and sometimes gratuitous) detail about the dishes you’ve seen Yammi able to whip up. Bianca’s thoughtless drooling almost makes you laugh.");
 			output("\n\n<i>“Would it be okay if I came by once in a while..?”</i> Bianca whispers. <i>“No, no, it’s fine. I may be running around all day but I don’t know if I could work off some of those meals on cardio alone.”</i>");
 			output("\n\nYou both laugh.");
+			break;
 		// Varmint
 		case "varmint":
 			output("\n\nThere was a little bugger you picked up on New Texas and <i>accidentally</i> forgot to deal with. <i>“This one’s a bit of an odd story. While on New Texas I sort of went back to my ship with one of the varmints still tied up. That was a bad idea.”</i>");
 			output("\n\nBianca starts laughing at you, until she realizes that was a wee bit callous. <i>“And what did you do after that?”</i>");
-			output("\n\n<i>“I sought the help of an expert of course! I met with Natalie Irson and she helped me tame the creature. Now it’s a loyal, rock-eating guard dog. Emphasis on dog.”</i>");
+			output("\n\n<i>“" + (flags["NATALIE_TAMES_VARMINT"] != undefined ? "I sought the help of an expert of course! I met with Natalie Irson and she helped me tame the creature. Now it’s a loyal, rock-eating guard dog." : "I bought a leash on the extranet to make sure it wouldn’t run off and make trouble. Now it’s an obedient guard dog.") + " Emphasis on dog.”</i>");
 			output("\n\n<i>“Try to be careful in the future, [pc.name],”</i> she whispers to you.");
 			break;
 		// Mitzi (must tell Bianca about the Stellar Tether stuff via ’Yourself’)
@@ -772,7 +775,7 @@ public function biancaCrewBlurb(crewmember:String):void
 			// PC has Nova on them
 			if (hasGooArmorOnSelf())
 			{
-				output("\n\n[nova.name] chimes in before you can say anything. <i>“I’m on [pc.name]’s crew!”</i> The nanobot gel makes herself known, " + (pc.armor is GooArmor ? "head peeking up around yours" : "slithering out of your pack") + ". <i>“I’m [goo.name], and [pc.name]’s been the bestest friend ever! We go on so many adventures and we’re always having fun and I’m learning so much!”</i>");
+				output("\n\n[goo.name] chimes in before you can say anything. <i>“I’m on [pc.name]’s crew!”</i> The nanobot gel makes herself known, " + (pc.armor is GooArmor ? "head peeking up around yours" : "slithering out of your pack") + ". <i>“I’m [goo.name], and [pc.name]’s been the bestest friend ever! We go on so many adventures and we’re always having fun and I’m learning so much!”</i>");
 				output("\n\nR-Right. You explain to the bemused doctor how you met [goo.name]. After helping the original crew of Novahome, she had appeared, and has been a helpful presence on your journey. She functions as an adaptable suit of armor and a companion all in one, bound together by insatiable curiosity and quick thinking. To be honest, you can’t wait to see what else she learns on your journey.");
 				output("\n\n<i>“Interesting...”</i> Bianca waves to the bubbly goo-girl. <i>“I admit, I don’t know what to say about that, but I’m glad you’ve met someone else you can trust.”</i>");
 				output("\n\nThat’s an understatement when it comes to [goo.name]...");
@@ -985,7 +988,7 @@ public function chattingAboutMiscWithAFoxyDoc(inRandomEncounter:Boolean = false)
 			output("\n\nThere’s the click of a holo-selfie being snapped.");
 			output("\n\nBefore you even finish blinking and coping, she withdraws and hides her hands behind her back. <i>“Hee hee, that’s for future reference...”</i>");
 			output("\n\nA-All she had to do was ask... wait, what are you thinking? That <i>is</i> how she asks for something!");
-			pc.lust(5+pc.libido()/10);
+			pc.changeLust(5+pc.libido()/10);
 			break;
 		// rand 5 (rut or heat, leads to sex options at >=51 familiarity. NO BACK OUT)
 		case 4:
@@ -1104,7 +1107,7 @@ public function whoDidBiancaComeFrom(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(11+rand(3));
 
 	// Repeat
 	if (biancaTalkedTopic(BIANCA_TOPIC_PARENTS)) output("You ask Bianca to tell you about her childhood again. <i>“Can do, [pc.name].”</i> She sets down her drink and articulates her thoughts.");
@@ -1143,7 +1146,7 @@ public function biancaWishesToKnowAboutVictor(inRandomEncounter:Boolean = false)
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("<i>“Say,”</i> Bianca looks to you, <i>“What were your parents like, [pc.name]? If not your mother, certainly you remember a lot about your father?”</i>");
 	// pc Kind
@@ -1188,7 +1191,7 @@ public function whyIsSheTheOneTheyCallFluffgood(inRandomEncounter:Boolean = fals
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(11+rand(3));
 
 	// Repeat:
 	if (biancaTalkedTopic(BIANCA_TOPIC_DOCTOR)) output("You ask Bianca to tell you why she became a doctor again, to which she gives you a cute smile.");
@@ -1234,7 +1237,7 @@ public function convinceBiancaYoureNotASpaceHobo(inRandomEncounter:Boolean = fal
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("Bianca’s sly grin nudges at you before her voice, which has already sanitized itself of gloom. <i>“So, what did you decide for your career in your earlier life, [pc.name]? I would hope your father offered you <b>some</b> reasonable starting points.”</i>");
 	// pc Mercenary
@@ -1252,7 +1255,7 @@ public function convinceBiancaYoureNotASpaceHobo(inRandomEncounter:Boolean = fal
 	{
 		output("\n\n<i>“You could say that,”</i> you reply with a sly, widening grin. <i>“Dear old dad gave me a few unique suggestions but there’s one I took to like I was born for it. " + (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE ? "I learned to earn everything in life from very early on and I was used to moving around from house to house, so it’s no surprise I guess that I ended up learning the traits of" : "I learned to get used to moving around and enjoying every bit of rest I could, since I chose to become") + " a... smuggler. It might sound bad, but I inspected all cargo and never ran dangerous goods, though some were definitely illegal to own or to use. Or both.”</i>");
 		output("\n\n<i>“Is that so, [pc.name]? Imagine the headlines, hee hee. The [pc.son] of Steele Tech’s founder, the inheritor of the company, little more than a black market courier! Oh, you must have some tales!”</i>");
-		output("\n\nYou have one, in fact. Cutting your teeth as a quick-witted, agile, ‘doesn’t stay in one place too long’ kind of [pc.guyGirl] wasn’t as routine as being a merc or mentally oriented as being a geek. Relying on gut instinct was the name of the game. Being aware, alert, street smart, space smart... all sorts of things. It’s not for the faint of heart, and not for poor decision makers");
+		output("\n\nYou have one, in fact. Cutting your teeth as a quick-witted, agile, ‘doesn’t stay in one place too long’ kind of [pc.guyGirl] wasn’t as routine as being a merc or mentally oriented as being a geek. Relying on gut instinct was the name of the game. Being aware, alert, street smart, space smart... all sorts of things. It’s not for the faint of heart, and not for poor decision makers.");
 		output("\n\nBut you’re digressing: you ran with a small time gang once, and they had plans for the entire system. Long story short, you explain to the strangely young and enraptured looking Bianca how you rolled with them, how you learned the tricks of your trade... then made out like a bandit when they got too big for their britches. When they started getting into more and more dangerous games, you got out, putting their leadership in jail and making off with most of the earnings from a recent job.");
 		output("\n\n<i>“Oh, it sounds like such an adventure! Maybe someday I’ll get to see you being cool for myself?”</i>");
 		output("\n\nReally? ‘Cool’? What’s gotten into her?");
@@ -1288,7 +1291,7 @@ public function askBiancaAboutTheDoctorsKits(inRandomEncounter:Boolean = false):
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	if (!biancaTalkedTopic(BIANCA_TOPIC_CHILDREN))
 	{
@@ -1338,7 +1341,7 @@ public function biancaWonderingAboutTheNextSteeles(inRandomEncounter:Boolean):vo
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("After a pregnant pause, Bianca makes a light ‘Ahh’ noise and turns to you. <i>“If you don’t mind me asking... do you think you’ll want to have kids someday, [pc.name]? You’re young but you stand to inherit the means to provide for them easily enough. From a financial perspective anyway.”</i>");
 	output("\n\nThat’s a good question. Your dad was a sex hound who probably had a lot of bastard children out there you may or may not meet.");
@@ -1381,7 +1384,7 @@ public function tellBiancaAboutYerFutureKiddos(kiddos:int):void
 	clearOutput();
 	showBianca("CASUAL");
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	if (kiddos == 3)
 	{
@@ -1464,7 +1467,7 @@ public function biancaAndHerFamily(inRandomEncounter:Boolean):void
 		output("\n\nBut what about her daughter? Cecily. She has her still, right? And she’s still wearing a ring, too.");
 		output("\n\nBianca looks at her finger and squints. <i>“This isn’t the ring Dian gave me. I gave that to Cecily. Two years after the incident I was able to marry again. My daughter is grown up and pursuing her goals. For the time being, I’ve asked them not to contact me. Three years is a long time, I understand, but I don’t have the strength to face that part of me yet.”</i>");
 		output("\n\nYou nod slowly, unsure of what else to say.");
-		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?");
+		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?”</i>");
 		output("\n\nUntil next time.... Sauntering off, Bianca disappears into the night.");
 		output("\n\nHopefully her words ring true.");
 		// Bianca disappears two days
@@ -1475,7 +1478,6 @@ public function biancaAndHerFamily(inRandomEncounter:Boolean):void
 
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
-
 	}
 	// Repeat, (ONLY after [Confront]ing Bianca)
 	else
@@ -1522,7 +1524,7 @@ public function optimisticResponseToThisSpaghetti(inRandomEncounter:Boolean):voi
 	output("\n\nBianca gestures thoughtfully, a nod of the head and a casting of the eye. <i>“Forgiveness is hard, especially when the other person thinks they are unstoppable. But you’re right, [rival.heShe] is relying on someone else’s strength. When that’s gone...”</i>");
 	output("\n\nOnly time will tell.");
 	processTime(3);
-	biancaTalkEndMenu(false);
+	biancaTalkEndMenu(inRandomEncounter);
 }
 
 //[Distrust]
@@ -1537,7 +1539,7 @@ public function distrustBiancaSpaghetti(inRandomEncounter:Boolean):void
 	output("\n\nYour doctor nods quietly, knowing this is your battle. She takes a sip from her glass and comments, <i>“Distrust can be worse than decision sometimes, [pc.name]. When you make your judgment, do so with resolve.”</i>");
 	output("\n\nYou will. Oh, you will.");
 	processTime(3);
-	biancaTalkEndMenu(false);
+	biancaTalkEndMenu(inRandomEncounter);
 }
 
 //[No Chance]

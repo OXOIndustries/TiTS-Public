@@ -41,8 +41,13 @@ public function getDryadPregContainer():PregnancyPlaceholder
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	pp.cocks[0].cLengthRaw = 14;
-	if (flags["AMBER_EQUILICUM"] != undefined) pp.createPerk("Fixed CumQ",18000,0,0,0);
-	else pp.createPerk("Fixed CumQ", 6000, 0, 0, 0);
+	if (amberThrobbDoses() == 1) pp.cocks[0].cLengthRaw = 19;
+	else if (amberThrobbDoses() == 2) pp.cocks[0].cLengthRaw = 42;
+	var cummies:Number = 6000;
+	if (flags["AMBER_EQUILICUM"] != undefined) cummies += 12000;
+	if(amberThrobbDoses() == 1) cummies += 2000;
+	else if(amberThrobbDoses() == 2) cummies += 5000;
+	pp.createPerk("Fixed CumQ", cummies, 0, 0, 0);
 	if(!pp.hasVagina()) pp.createVagina();
 	pp.shiftVagina(0, GLOBAL.TYPE_EQUINE);
 	pp.vaginas[0].bonusCapacity = 200;
@@ -83,7 +88,7 @@ public function dryadMeeting():void
 	amberEncounterAppend();
 	
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
 	pc.addStatusValue("Dryad Encounters", 1, 1);
@@ -190,7 +195,7 @@ public function dryadBlowjob():void
 	IncrementFlag("DRYAD_BANGED_PC");
 	IncrementFlag("DRYAD_BLEWHER");	
 	pc.loadInMouth(pp);
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(10);
 	clearMenu();
 	addButton(0, "Next", dryadAfterscene);
@@ -274,7 +279,7 @@ public function dryadAss():void
 	IncrementFlag("DRYAD_BANGED_PC");
 	IncrementFlag("DRYAD_ANALEDYOU");
 	pc.loadInAss(pp);
-	pc.lust(30);
+	pc.changeLust(30);
 	if(pc.lustQ() >= 100)
 	{
 		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complementary orgasm. That was quite the experience!");
@@ -651,7 +656,7 @@ public function forceDryadOff():void
 	output("\n\nDamnit. You need to get out of here before you get hard again. Her brilliant smile and eager demeanor are making it difficult, but you sigh and turn away, giving her a wave as you depart.");
 	output("\n\n<i>“Come back any time, babe!”</i> she calls after you. You have a feeling you’ll see her again out in the jungle.");
 	processTime(1);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -869,7 +874,7 @@ public function dryadDrain():void
 	IncrementFlag("DRYAD_BLEWHER");
 	processTime(10);
 	pc.loadInMouth(pp);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	
 	//disable for taurs
@@ -919,7 +924,7 @@ public function dryadDrainThroat():void
 
 	processTime(125);
 	if (pc.isTreated() && pc.hasVagina() && pc.isBimbo()) pc.orgasm();
-	else pc.lust(200);
+	else pc.changeLust(200);
 	pc.loadInMouth(pp);
 	pc.loadInMouth(pp);
 	pc.loadInMouth(pp);
@@ -1095,7 +1100,7 @@ public function dryadDrainPussy():void
 		output("\n\nA shuddering moan in your ear is all the warning you get before a veritable river of warm spunk begins to pump into you, bathing your womb in equine seed. You bite your lower lip as you try to retain control of your limbs, but it’s no use. Your sopping wet cunt spasms and spurts all over the dryad’s monstrous cock, and your legs buckle once more. This time, she follows you down, lying on top of you like so much insensate deadweight while her balls work overtime to glaze your insides.");
 		output("\n\n<i>“Oohhh, you’re fucking amazing,”</i> the dryad pants when she finally gets her words back, hindlegs still squeezing your flanks while she works every heavy rope of jizz out of her cock. <i>“You’re such a sexy bitch I’m still hard - feel it?”</i>");
 		output("\n\nShe wiggles her hips, and you do. She must be <i>really</i> turned on to cum once and still be rock hard - you wonder if you’re really draining her at all, but that thought flies away when the dryad presses her dick against your womb and licks your ear. Distracting you with little kisses and nibbles down your neck, she slowly begins fucking your pussy all over again.");
-		output("\n\n<i>“Nnnh, ohhh fuck,”</i> she breathes in your ear, hindlegs scrabbling to squeeze your flanks and keep you sat in place. <i>“Your pheromones are- nngh - it’s like you have </i>these<i>,”</i> she says, sliding a sweaty finger across your [pc.lips], <i>“wrapped around my balls, enticing me to keep going!”</i>");
+		output("\n\n<i>“Nnnh, ohhh fuck,”</i> she breathes in your ear, hindlegs scrabbling to squeeze your flanks and keep you seated in place. <i>“Your pheromones are- nngh - it’s like you have </i>these<i>,”</i> she says, sliding a sweaty finger across your [pc.lips], <i>“wrapped around my balls, enticing me to keep going!”</i>");
 		output("\n\nYou purse your lips and gently suckle her finger, eliciting a moan from your lover. It tastes of salt, but more importantly it tastes of her. Like passion and need. Reaching back, you caress her soft, flushed cheek even as she caves your pussy inwards with long, deep strokes. Pushed over the edge, she responds by shifting her grip upwards and turning you towards her, kissing you with the savage desire you’ve come to know from her.");
 		output("\n\nShe cums like that, moaning into your mouth even as her tongue desperately entwines with your own, eyes squeezed tightly shut while her hot spunk surges into you load by load. She grabs at your [pc.breasts], squeezing your [pc.nipples] as if she just can’t get enough of your body. When she finally finishes emptying herself into you what feels like a century later, she parts her lips from yours with a gasp and a thread of drool, chest heaving hard.");
 		output("\n\nShe stares into your eyes until her breathing is under control, then slowly, haltingly brings her hands up to your face. Eyeing your lips, she brings herself closer and seals them with a soft, deep kiss, the kind you think would leave her freckled face blushing were her cock not buried a foot deep inside your pussy.");

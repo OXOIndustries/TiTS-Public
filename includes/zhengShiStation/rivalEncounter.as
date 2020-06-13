@@ -76,7 +76,7 @@ public function cousinEncounterBonus():Boolean
 		if(pc.hasKeyItem("Teyaal’s Key Card")) 
 		{
 			output("\n\n<b>You have the keycard. You can enter the ship at any time.</b> (Enter ship via the ‘North’ button.)");
-			addButton(6,"North",enterShip);
+			addButton(6,"North",enterSidewinder);
 		}
 		else addDisabledButton(6,"North","North","You’ll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
 	}
@@ -455,7 +455,7 @@ public function defeatFeruze():void
 	//menu here
 	output("\n\n");
 	clearMenu();
-	pc.lust(10);
+	pc.changeLust(10);
 	if(pc.lust() < 33)
 	{
 		addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You aren’t aroused enough for this.");	

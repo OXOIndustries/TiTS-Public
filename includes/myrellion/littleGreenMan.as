@@ -70,7 +70,7 @@ public function lirielIntroOptions(response:int = 0):void
 		if (pc.isBimbo())
 		{
 			output("It takes you a second to remember that you actually don’t want her big, thick cock filling your [pc.asshole] but when you recall that little tidbit, you pull away from the woman with all the indignation you can muster... which isn’t much considering how horny you are.");
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else if (!pc.isAss())
 		{
@@ -116,7 +116,7 @@ public function lirielIntroOptions(response:int = 0):void
 		}
 		
 		processTime(2);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.createStatusEffect("Liriel Intro Buttfuck");
 		
 		addButton(0, "Next", lirielButtSex, false);
@@ -327,7 +327,7 @@ public function lirielTalkResponse(arg:Array):void
 				output("\n\nYou start off by telling Liriel that you are one sexy " + pc.mfn("guy","gal","person") + " and then laugh. Seeing the obvious for herself, she laughs with you. You recall how she wanted to pound your sweet ass when she first laid eyes on you - and with a sexy bum like yours, who can blame her? You’ve got one nice keister. Everyone should want a piece of you. Oh, and lastly you give her your name, almost forgetting that important piece of information. How else would she know what to scream during sex should the two of you have any?");
 				output("\n\nLiriel smiles big as she reaches down and rubs her now erect length while saying, <i>“I can definitely see that.”</i> with a soft, sexual note in her horny voice. Well, that’s something you can both agree on!");
 				
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 			else if (pc.isNice())
 			{

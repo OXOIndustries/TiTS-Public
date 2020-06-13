@@ -127,6 +127,8 @@ public function airFieldCentralBonus():Boolean
 
 public function DMZRandoEventsBonus():Boolean
 {
+	//Vday
+	if(biancaVDayHook()) return true;
 	if(sluttyMcSlutOralBonus()) return true;
 	return false;
 }
@@ -1107,9 +1109,9 @@ public function runningFromAntsmex():void
 		else output("flagpoles.");
 		flags["LAST_ANT_ORGY"] = 2;
 		processTime(2);
-		pc.energy(-15);
-		pc.HP(-5);
-		pc.lust(45);
+		pc.changeHP(-5);
+		pc.changeLust(45);
+		pc.changeEnergy(-15);
 		clearMenu();
 		addButton(0,"Next",goWithTheAntOrgy, false);
 	}
@@ -1202,7 +1204,7 @@ public function goWithTheAntOrgy(voluntary:Boolean = true):void
 	output(". Very well. Ithris, Borea, Mystryn, Haedin, and Phorah. You set the top scores in this week’s physical evaluation, so you may ride our entertainment directly, if you wish.”</i> She raises an arm when all five of the named girls step forward. <i>“In that order. No fighting over our guest.”</i>");
 	output("\n\n<i>“Yes ma’am!”</i> The five answer, saluting.");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	var x:int = pc.cockThatFits(1000);
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1219,7 +1221,7 @@ public function antOrgyPartDues(arg:Array):void
 	var voluntary:Boolean = arg[0];
 	var x:int = arg[1];
 	
-	output("Some unspoken signal goes through the horde of armored ant-girls, and as the first lucky lady steps over you, a dozen of the aroused ant-girls advance. Your lover-to-be smiles down at you, then lowers herself down so that her crotch sits on your chest and [pc.oneCock] has no choice but to slide up and into her descending abdomen, filling the air with the sloppy, wet-sounding ‘squish’ of penetration. Another, exponentially more decadent sound fills the air but a second later: all twelve of the eager myr maidens mounting their substitute members. Some do it from behind, facing away from you as they watch you being taken. Others face forward, pressing their breasts against one another, shading you beneath a quartet of sapphic kisses.");
+	output("Some unspoken signal goes through the horde of armored ant-girls, and as the first lucky lady steps over you, a dozen of the aroused ant-girls advance. Your lover-to-be smiles down at you, then lowers herself down so that her crotch sits on your chest and [pc.oneCock] has no choice but to slide up and into her descending abdomen, filling the air with the sloppy, wet-sounding ‘squish’ of penetration. Another, exponentially more decadent sound fills the air but a second later: all twelve of the eager myr maidens mounting their substitute members. Some do it from behind, watching you being taken before facing away. Others face forward, pressing their breasts against one another, shading you beneath a quartet of sapphic kisses.");
 	pc.cockChange();
 	output("\n\nMoans fill the air, and you feel the first flecks of honey spattering against your skin. At first, it’s mere droplets from your lover’s excessively lubricated slot, but then you feel others on your [pc.legs], your arms, and even your [pc.face]. You knew Gildenmere had a mostly female army, but you had no idea how horny intensive training would leave them - how it would make them so wet and ready that their quivering snatches would be dribbling honey, dumping out little micro-squirts from the mere sight of a penis-packing star-walker. You might care more if their sex juices didn’t resemble a slicker version of honey, or if you weren’t ");
 	if(pc.cockVolume(x) < 1000) output("hilted");
@@ -1246,7 +1248,7 @@ public function antOrgyPartDues(arg:Array):void
 	myrellionSSTDChance(pp);
 	
 	processTime(13);
-	pc.lust(25);
+	pc.changeLust(25);
 	pp.loadInCunt(pc, 0);
 	pc.girlCumInMouth(pp);
 	pc.applyPussyDrenched();
@@ -1365,7 +1367,7 @@ public function antOrgyPartFour(arg:Array):void
 	
 	processTime(33);
 	pc.orgasm();
-	pc.lust(100);
+	pc.changeLust(100);
 	//Red myr dose
 	imbibeVenomEffects(true);
 	pc.girlCumInMouth(pp);
@@ -1384,7 +1386,7 @@ public function antOrgyPartFive(arg:Array):void
 	var voluntary:Boolean = arg[0];
 	var x:int = arg[1];
 	
-	output("You’re still tongue-fucking the same greedy girl a half-hour later. Two more vaginas have graced your [pc.cock " + x + "] since, but it shows no sign of flagging. Nor should it. You can’t imagine yourself being any less hard or ready to fuck than these women’s other toys. It’s sweet, not just in the smell and the taste of their gloriously delectible cum, but in the raw experience of it - the wonderfully improbable gestalt of a horde of women on your fingers, mouth, and cock, surrounding you and bathing you in the scintillating scent of their wanton need.");
+	output("You’re still tongue-fucking the same greedy girl a half-hour later. Two more vaginas have graced your [pc.cock " + x + "] since, but it shows no sign of flagging. Nor should it. You can’t imagine yourself being any less hard or ready to fuck than these women’s other toys. It’s sweet, not just in the smell and the taste of their gloriously delectable cum, but in the raw experience of it - the wonderfully improbable gestalt of a horde of women on your fingers, mouth, and cock, surrounding you and bathing you in the scintillating scent of their wanton need.");
 	output("\n\nYou’re aware of yourself cumming a few more times, feeling the pleasant contractions at molten eruptions repeatedly, but you never seem to come down from them. Especially not when more venom is drizzled between the gilded cunt on your face and your tongue, forcing you to drink more down. Your fingers feel just as good as your cock, thrusting in and out, pumping and humping and squelching in the beautiful entrances to these pretty privates’ privates.");
 	output("\n\nOver and over, your [pc.cock " + x + "] experiences new vaginas. Far more than five girls mount you, and the poles must have seen at least two hundred different cunts, but there are always more to use you, always more slits, clits, and tits.");
 	output("\n\nYou serve them as best you are able. Even when your muscles ache and your [pc.cocks] ");

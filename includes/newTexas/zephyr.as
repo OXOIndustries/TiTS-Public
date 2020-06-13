@@ -410,7 +410,7 @@ public function overDeskButtCatch():void
 	output("”</i>");
 	
 	//[Next]
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",getFuckedByZephyrII, [ppZephyr, x, fits, cow, capacity]);
@@ -499,7 +499,7 @@ public function getFuckedByZephyrII(args:Array):void
 	else output("entrance");
 	output("? How can you do anything but let your body press itself against the cow-girl’s muscled thighs? You do what comes naturally, relaxing to try and let her enter you in her entirety.");
 	//[Next]
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",getFuckedByZephyrIII, [ppZephyr, x, fits, cow, capacity]);
@@ -545,7 +545,7 @@ public function getFuckedByZephyrIII(args:Array):void
 	output("-stuffing cock and return to feeling like an empty, horny husk.");
 
 	//[Next]
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",getFuckedByZephyrIV, [ppZephyr, x, fits, cow, capacity]);
@@ -926,7 +926,7 @@ public function zephyrsShittasticJobstory():void
 		}
 	}
 	//+10 lust
-	pc.lust(11);
+	pc.changeLust(11);
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -952,7 +952,7 @@ public function cuntTailPlusZephyrIntro():void
 	output("\n\n<i>“Space?”</i> you ask, curious about the cow-girl’s show of strength.");
 	output("\n\n<i>“For you to get on your knees,”</i> she says, rolling her eyes. <i>“If you want me to fuck your tail, we’re doing it my way.”</i>");
 	output("\n\nYou blink, taking a moment to process that statement. This may not have been what you were expecting. Do you back out, or follow her orders?");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(2);
 	clearMenu();
 	addButton(0,"Chicken Out",chickenOutOnZephyrTailfuck);
@@ -1034,7 +1034,7 @@ public function obeyAndLetZephyrFuckYerTail():void
 	output("\n\nWhen she finally does start to pick up the pace, all you can do is shudder. Yes! This is it! This is what you’ve been wanting for what seems like an eternity. You can feel the heavy throb of her dick in your tail cunt, radiating out through you like a second heartbeat. Her knot is starting to swell, too, growing larger inside you with every stroke of her dick. You lick your lips, drooling at the thought of that soon filling up your cunt, knotting it tight.");
 	output("\n\n<i>“Oh fuck, oh yeah, such a good fucktoy!”</i> she pants, digging her heels down against your ass. You squeak, eyes rolling back in your head as the pain of her heels heightens the pleasure crashing through you. Your whole tail is slick with your own juices, and Zephyr’s all but thrashing in her chair, her muscular hips bucking up and down as she pumps your tail like a piston around her dick. Her dick-that’s the only thought filling your mind right now. You need it. You need it exploding cum inside you. You need to satisfy Zephyr.");
 	processTime(20);
-	pc.lust(40);
+	pc.changeLust(40);
 	clearMenu();
 	addButton(0,"Next",getTailFuckedByZephyrSauce);
 }
@@ -1045,7 +1045,7 @@ public function getTailFuckedByZephyrSauce():void
 	showZephyrDeets();
 	author("Frogapus");
 	output("With a howl of pleasure, she jams your tail down against her dick, shoving her massive knot inside it. You answer with a squeal of your own, ignore the pain of her grapefruit-sized knot stretching out your tail cunt, eyes wide in pleasure as she pumps a hot jet of cum deep into your tail. Her grip around your tail doesn’t let go, and she keeps it locked around your base, her hand sliding up and down its length, jacking herself off through your tail cunt. When she shoot another small load of cum inside you, you quiver, seeing fireworks as pleasure erupts throughout your body.");
-	pc.lust(30);
+	pc.changeLust(30);
 	output("\n\nShe leans back in her chair, breathing heavily, the thickness of her knot a dull ache at the end of your tail. It takes a few minutes for her breathing to steady, and for you to start registering anything but the pleasure of your tail feeding on her expended cum.");
 	output("\n\n<i>“Phew! I needed that,”</i> she says, still somewhat breathlessly.");
 	output("\n\n<i>“I... I...</i>“ you breathe, trying to form a sentence. Thoughts slowly surface in your brain, bobbing up out of the depths of bliss. <i>“I wanna...”</i> you say slowly, reaching your hand down your front, towards your thighs.");
@@ -3149,7 +3149,7 @@ public function talkToZephAboutHerself():void
 	
 	output("\n\n<i>“Don’t mind if I do...”</i> Zephyr says, spreading her powerful, muscular thighs.");
 
-	pc.lust(20+rand(5));
+	pc.changeLust(20+rand(5));
 	processTime(10+rand(5));
 
 	clearMenu();

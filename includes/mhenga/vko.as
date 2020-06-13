@@ -388,7 +388,7 @@ public function payVKoForHealing(cost:int):void
 	else output("as the horse that you so resemble");
 	output(".");
 	processTime(8+rand(5));
-	pc.HP(pc.HPMax());
+	pc.changeHP(pc.HPMax());
 	approachVKo(false);
 }
 //Negatory to healing:
@@ -846,15 +846,15 @@ public function agreeToElectroStim():void
 	//if vagina:
 	if(pc.hasVagina())
 	{
-		output("\n\nNext she procures a ");
-		if(pc.vaginaTotal() == 2) output("pair of ");
-		else if(pc.vaginaTotal() > 2) output("some ");
-		output("terran-looking rubber dildo");
+		output("\n\nNext she procures a");
+		if(pc.vaginaTotal() == 2) output(" pair of");
+		else if(pc.vaginaTotal() > 2) output(" few");
+		output(" terran-looking rubber dildo");
 		if(pc.vaginaTotal() > 1) output("es");
-		output(". And after a quick check to make sure you’re moist enough, she inserts ");
-		if(pc.vaginaTotal() == 1) output("it ");
-		else output("each of them ");
-		output("into your [pc.vaginas].");
+		output(". And after a quick check to make sure you’re moist enough, she inserts");
+		if(pc.vaginaTotal() == 1) output(" it");
+		else output(" each of them");
+		output(" into your [pc.vaginas].");
 	}
 	//if balls:
 	if(pc.balls > 1)
@@ -1104,7 +1104,7 @@ public function agreeToVKoBoobSucks():void
 	output(", you roll your neck and shoulders, smiling in pleasure at the feeling of relief that comes from being drained of your heavy load - it feels so good to have lightened your burden. Gathering your things, you reapply your top and leave the clinic.");
 	StatTracking.track("joyco/milk milked", milkQ);
 	processTime(45+rand(10));
-	pc.lust(rand(10)+1);
+	pc.changeLust(rand(10)+1);
 	pc.milked(pc.milkFullness);
 	//(Possibly give the PC’s milk back, bottled and useable as an item?)
 	//(Only if you want Fen.)

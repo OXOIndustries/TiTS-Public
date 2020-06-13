@@ -45,9 +45,12 @@ package classes.Items.Apparel
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
+			this.resolve = 5;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 2;
 			this.fortification = 0;
+
+			resistances.tease.resistanceValue = 20.0;
 			
 			this.version = _latestVersion;
 		}

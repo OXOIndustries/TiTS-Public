@@ -47,8 +47,6 @@ public function approachRenvra():void
 	//First Meeting
 	if(flags["MET_RENVRA"] == undefined)
 	{
-		//+Lust 
-		pc.lust(3);
 		flags["MET_RENVRA"] = 1;
 		output("You approach the angry-looking Scarlet Federation soldier behind the counter and ask if she’s the officer in charge here.");
 		output("\n\n<i>“Officer?”</i> she snorts contemptuously, <i>“I work for a living, " + pc.mf("mister","missy") + "!”</i>");
@@ -72,6 +70,8 @@ public function approachRenvra():void
 		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(",”</i> she says, and you think she just might be sincere.");
 		else if(pc.isBimbo()) output(".”</i> You’re starting to get the feeling she doesn’t like you very much. What a meanie....");
 		else output(".”</i>");
+		//+Lust 
+		pc.changeLust(3);
 	}
 	else
 	{
@@ -275,7 +275,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	//elseif no dick:
 	else output(" <i>“Ready to take this big bastard, spacer?”</i> she teases, stroking her massive prick.");
 
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(4);
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"FuckHerButt",buttFuckRenvra,undefined,"Buttfuck Her","Flop Renvra’s oversized cock out of the way and sink your dick in her tight ass.");
@@ -508,7 +508,7 @@ public function getEggsInShit(x:int = -1):void
 	
 	processTime(14);
 	flags["RENVRA_SEXED"] = 1;
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -548,7 +548,7 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 	renvra.orgasm();
 	
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	flags["RENVRA_SEXED"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -995,7 +995,7 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 	
 	//Put PC back at ship tile.
 	clearMenu();
-	addButton(0, "Next", move, "SHIP INTERIOR");
+	addButton(0, "Next", enterShip);
 }
 
 //Fuck her Urethra
@@ -1231,7 +1231,7 @@ public function fuckRenvrasUrethra():void
 			else output(" Still, a small part of you wonders if pregnancy might be worth it just to masturbate with the drug-covered toy in your hand.");
 		}
 		//end, big lust gain, pass time
-		pc.lust(50+rand(25));
+		pc.changeLust(50+rand(25));
 		processTime(13);
 		//improve odds of fertilized eggs in next Renvra laying by ~30% and adjust dialogue
 		if(renvra.cumQualityRaw < 8) renvra.cumQualityRaw += 3;
@@ -1358,7 +1358,7 @@ public function makeRenvraBegYouSillyBillySlut():void
 	output("\n\n<i>“So you </i>need<i> me to stop pinning your arms?”</i>");
 	output("\n\nRenvra winces as your weighted words finally sink through. <i>“Yes...”</i> she says, biting her cruel tongue. <i>“Please.”</i>");
 	processTime(16);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Finish Her",mortalKombatFINISHHER,undefined,"Finish Her","Jack the half-myr’s egg-cock to climax.");
 	addButton(1,"Deny Her",denyDatMyrBitchYo,undefined,"Deny Her","Prevent the half-myr from climaxing, causing her eggs to swim in her backed-up cum.");
@@ -1405,7 +1405,7 @@ public function mortalKombatFINISHHER():void
 	flags["MADE_RENVRA_BEG"] = 1;
 	flags["RENVRA_SEXED"] = 1;
 	renvra.orgasm();
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1438,7 +1438,7 @@ public function denyDatMyrBitchYo():void
 	//raise Renvra’s egg fertility to 100% for next layin
 	//disable ‘Make the Bitch Beg’ and enable ‘Double Trouble’, adjust dialogue in sex menu prompt/egging scene as above, also possibly disable Savin’s ‘Buttfuck Her’ if you want
 	renvra.cumQualityRaw = 100;
-	pc.lust(-8);
+	pc.changeLust(-8);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

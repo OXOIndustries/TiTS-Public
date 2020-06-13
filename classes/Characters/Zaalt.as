@@ -244,7 +244,7 @@
 			if (!hasStatusEffect("No Weaponry"))
 			{
 				if (!hasStatusEffect("Nade Cooldown")) attacks.push( { v: doFlashGrenade, w: 10 } );
-				if (!hasStatusEffect("Nade Cooldown")) attacks.push( { v: doGasGrenade, w: 10 } );
+				if (!hasStatusEffect("Nade Cooldown") && !target.hasStatusEffect("Gassed")) attacks.push( { v: doGasGrenade, w: 10 } );
 				attacks.push( { v: doPsiBlade, w: 10 } );
 			}
 			

@@ -348,7 +348,7 @@
 						output("to find that your penis has changed into an smoothly contoured tube. The head is now a tapered point, and downy-soft fins ring the base. <b>You have a shark cock now!</b>");
 						pc.shiftCock(i,GLOBAL.TYPE_SHARK);
 						pc.libido(1);
-						pc.lust(5);
+						pc.changeLust(5);
 					}
 					else output("\n\n" + pc.cockTypeLockedMessage());
 					changes++;
@@ -401,7 +401,7 @@
 						if(pc.hasPlumpPussy(ii)) output("puffy ");
 						output("lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a gray shark vagina!</b>");
 						pc.shiftVagina(ii,GLOBAL.TYPE_SHARK);
-						pc.lust(20);
+						pc.changeLust(20);
 						pc.libido(2);
 					}
 					else output("\n\n" + pc.vaginaTypeLockedMessage());

@@ -141,9 +141,9 @@ public function tittysnackWithIrellia(queenOffered:Boolean = false):void
 	//Buff max energy by 40 for 2 days.
 	pc.createStatusEffect("Royal Nectar",40,0,0,0,false,"Charmed","Irellia’s nectar has you feeling far peppier than normal.",false,2880)
 	//Fill energy.
-	pc.energy(pc.energyMax());
+	pc.changeEnergy(pc.energyMax());
 	//+20 lust.
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	irelliaMenu();
 }
@@ -653,7 +653,7 @@ public function fuckIrelliasFrontGina():void
 
 	output("\n\nThe Queen is barely capable of speech, so she answers with a contented hum at first. Her breath is still coming hot and fast, and you swear she’s smiling with her eyes closed. When she finally speaks, it’s part breathy whisper, part exhausted panting. <i>“Gooood... Keep going...”</i> She grabs your [pc.butt] and squeezes, teasing your [pc.asshole] with one slippery digit. <i>“I want you to cum inside.”</i>");
 	output("\n\nYou languidly thrust while considering. It’d feel way better to cum inside, but she’d look damned sexy painted [pc.cumColor] with [pc.cumNoun]. Either way, you’ve got a lot of fucking to give this queen before you’re ready to blow.");
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(11);
 	clearMenu();
 	addButton(0,"Inside",cumInsideIrellia,x);
@@ -1067,7 +1067,7 @@ public function quadTittyFuckIrellia():void
 
 	output("\n\nThe sound of your [pc.cockBiggest] thwacking into place between her numerically superior breasts carries through her private chambers like the ring of an announcement bell. Irellia’s servants, who had been studiously avoiding the tryst in the center of the room, cannot help but look, watching their monarch’s busts bounce and jiggle around the gigantic rod resting inbetween. They quickly cast their eyes back down, blushing. The scent of damp pussy in the air strengthens, though it seems too omnipresent to be the queen alone.");
 	processTime(9);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",quadTitfuckPartDues);
 }

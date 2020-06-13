@@ -3,13 +3,13 @@
 //Milo Boss
 //Milodan War-Alpha
 //Comes with standard lacky sidekick
-//7’ tall
+//8’2" tall
 //Shield Tech Spec.
 //Accessory is shield bracers (slightly worse than feruzes)
 //Wears Pyrite Heavy Industries jumpsuit (red/white)
 //White fur, blue (open to change on this) mohawk
 //Violet eyes
-//Blue cat/dog hybrid dick - knot + nubs & apple-sized balls
+//Black cat/dog hybrid dick - knot + nubs & apple-sized balls
 //At 100% lust, suit splits open with the force of his erection... and his lust max raises to 200. PHASE 2 BOIS!
 //HP defeats also give him a boner, but no phase 2 fight happens (can use phase 2 bust for post-combat winscreen)
 //Poison Gas grenade
@@ -45,7 +45,7 @@ public function fightTheWarAlphaBooooi():void
 	clearOutput();
 	showWarAlpha(false,"MILODANMALE");
 	author("Fenoxo");
-	output("Ula bursts through the seven foot tall beast-man’s thighs the moment his attention is entirely on you, dashing through the curtain and around the corner before anyone can so much as make a grab for her tail. <i>“" + (korgiTranslate() ? "I’ll get help! Save the Chief!":"Help finding! Save Chief!") + "”</i>");
+	output("Ula bursts through the eight foot tall beast-man’s thighs the moment his attention is entirely on you, dashing through the curtain and around the corner before anyone can so much as make a grab for her tail. <i>“" + (korgiTranslate() ? "I’ll get help! Save the Chief!":"Help finding! Save Chief!") + "”</i>");
 	output("\n\n<i>“Should I go after her, Alpha?”</i> the henchman asks, coming to stand beside his commander.");
 	output("\n\nThe mohawked ‘alpha’ shakes his head dismissively. <i>“She has nowhere to run. Once we yank this thorn from our collective paws, it’ll only be a matter of time before I can have a sample of her.”</i> He shivers. <i>“That bitch smells better than mulled wine.”</i> Yanking a modern-style plasma pistol from a well-worn leather holster, her says, <i>“This won’t take long.”</i>");
 	processTime(2);
@@ -251,6 +251,7 @@ public function pcBeatsUpAMilo():void
 	showName("\nVICTORY!");
 	var enemiess:Array = CombatManager.getHostileActors();
 	while(enemiess.length > 1) CombatManager.removeHostileActor(enemiess[1]);
+	flags["WAR_ALPHA_DEFEAT_METHOD"] = (enemy.HP() <= 1 ? 1 : 2);
 
 	author("Fenoxo");
 	output("With the war alpha " + (enemy.HP() <= 1 ? "downed and cursing ineffectively":"splayed out on his back and jerking off harmlessly") + ", you have a moment to catch your breath - no more than a moment, though.");
@@ -368,6 +369,7 @@ public function wargiiHoldEpilogue4():void
 	//Set location back to normal
 	currentLocation = "KORGII B12";
 	removeUvetoCold();
+	flags["WARGII_OVER_TIMESTAMP"] = GetGameTimestamp();
 	if(score >= 90) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol(), new KordiiakHideArmor());
 	else if(score >= 50) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol());
 	else 

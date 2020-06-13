@@ -91,11 +91,21 @@ public function GlacialRiftEncounterBonus():Boolean
 			}
 			choices.push(chaurmineChasmShit);
 		}		
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
+		if(flags["UVGR_SAVICITE_IDOL"] != undefined)
 		{
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
+		}
+		if(MailManager.isEntryViewed("joyco_uveto_hazmat_advisory"))
+		{
+			choices.push(encounterMilodanFutazon);
+			choices.push(encounterMilodanFutazon);
+		}
+		if(pc.level >= 10 && flags["MET_MILODAN_FUTAZON"] != undefined)
+		{
+			choices.push(encounterMilodanBruiser);
+			choices.push(encounterMilodanBruiser);
 		}
 		//Run the event
 		choices[rand(choices.length)]();
@@ -455,7 +465,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 		{
 			baseDamage *= 0.5;
 		}
-		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES))
+		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES) && tPC.race() != "frostwyrm")
 		{
 			baseDamage *= 1.25;
 		}
@@ -778,8 +788,8 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	output(" and make for your gear....");
 
 	removeUvetoCold();
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 	moveTo("UVI H32");
 
 	processTime(30);
@@ -893,7 +903,7 @@ public function tankKannonBiopic():void
 	output("\n\nThe announcer’s voice returns, boasting, <i>“We’ve recovered the original upload of Tank’s infamous first outing. Stay tuned for its first holo-broadcast airing, and please remember that Erotic History is intended for viewers above the age of consent!”</i>");
 	//[Next]
 	processTime(8);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Watch",watchTankBlowFirstPornLoad);
 	addButton(14,"Back",mainGameMenu);
@@ -927,7 +937,7 @@ public function watchTankBlowFirstPornLoad():void
 	output("\n\nGrunting fitfully, he thrusts one last time, shooting a rope of nut-butter thick enough to impregnate a small colony worth of ausar into his lover’s new lake of a bathroom and sags, panting.");
 	output("\n\n<i>“Mmmm,”</i> you hear him and his cohort groan at the same time, just before the feed cuts.");
 	processTime(18);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",watchTankBlowFirstLoadEpilogue);
 }
@@ -1000,7 +1010,7 @@ public function uvetoIrson2():void
 	output("\n\nThe camera drone buzzes around, sweeping from one side of the vigorous gang-bang to the other. Several bare furry asses are pounding away at Steph, making her ample curves jiggle obscenely. She moans and gasps, bucking against the many bodies writhing overtop her. Her tail, at least, seems quite happy with its predicament, thrusting deep into the unlucky dog-boy’s ass to the same rhythm that he’s pounding his knot over and over into Steph’s pussy with. He can’t find purchase in her gaping, sodden fuck-hole - even a turgid canid bitch-breaker can’t plug her plump gray pussy.");
 	output("\n\nYou’re treated to long, lusty minutes of furry bodies humping away at the show’s host, fucking her into the dusty snow. Eventually, Steph stops struggling and starts moaning lustily, gripping at the fluffy bodies on top of her and slurping her way up and down the shaft in her mouth. Her hips wiggle and thrust back against the dick trying and failing to knot her, right up until the poor pup grunts and shudders, and the camera drone dutifully zooms in to watch a waterfall of creamy white spurt out around his knot. Steph gasps and giggles, reaching down to pet the korgonne between his low-tucked ears... until she gets distracted by a sudden eruption of puppy-cream between her soles, and then another into the pillowy depths of her cleavage. A little geyser of milk squirts out of her silvered nipples as the two top-mounted korgonne work themselves over the edge, leaving Steph an insensate, moaning mess. She’s not far behind them now!");
 	processTime(8);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",uvetoIrson3);
 }
@@ -1023,10 +1033,10 @@ public function uvetoIrson3():void
 	output("\n\n<i>“What are you - aahh! I can’t... So good!”</i>");
 	output("\n\nThe way she’s babbling, you feel like somehow you’re only getting half the conversation. Is the microphone busted?");
 	output("\n\n<i>“Okay! Okay!”</i> Steph gasps, flopping back. She gives a nervous look between the feral beast overtop her and the camera drone. Biting her lip, Steph hooks her hands under her legs and curls herself up at the monster, presenting her still-stuffed pussy to it like an eager whore. The drake growls, shifting its massive weight to reveal a dick every bit as massive and reptilian as you’d expect from such a monster, peeking out of a deep-seated slit in its hide quarters. It grows and grows, from a tapered tip already as big as your fist to a tree-trunk shaft that throbs with bestial desire.");
-	output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 	//First time only!:
 	if(flags["STEPH_DARGONED"] == undefined)
 	{
+		output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 		output("\n\n<i>“S-should we cut the feed?”</i> a man asks. <i>“That thing-”</i>");
 		output("\n\nA woman answers coldly, <i>“No! Keep the drone online!”</i>");
 		output("\n\nHuh? Are you getting some sort of interference... or is chatter from the studio bleeding onto the video?");
@@ -1061,7 +1071,7 @@ public function uvetoIrson3():void
 	
 	watchStephEpisodeBroadcast("STEPH_DARGONED");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1578,7 +1588,7 @@ public function encounterSavicite(choice:String = "encounter"):void
 		output(". Your Codex beeps a confirmation of what you already knew: this is savicite, a psionically-active local mineral, valuable as a fuel source. Could be worth something back at Irestead...");
 		
 		processTime(1);
-		pc.lust(5);
+		pc.changeLust(5);
 		
 		clearMenu();
 		addButton(0, "Take It", encounterSavicite, "take it");
@@ -1843,5 +1853,11 @@ public function korgiiThroneRoomBonus():Boolean
 		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula’s rise to power, and she’s even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there’s paperwork to be done.");
 		return ulaRoomBonusFunc();
 	}
+	return false;
+}
+
+public function korgiiMineGuardsBonus():Boolean
+{
+	prisonerEitanBonus();
 	return false;
 }

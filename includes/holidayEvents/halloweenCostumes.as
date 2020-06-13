@@ -717,7 +717,7 @@ public function amazonTFShitApplied():void
 	pc.reflexes(-3);
 	pc.aim(-2);
 	if(pc.tallness+12 <= 84) pc.tallness = 84;
-	else if(pc.tallness+12 <= 132) pc.tallness += 12;
+	else if(pc.tallness+12 <= 120) pc.tallness += 12;
 	pc.cumQualityRaw += .2;
 	pc.fertilityRaw += .2;
 	if(pc.breastRows[0].breastRatingRaw < 17 && pc.breastRows[0].breastRatingRaw + 5 > 17) pc.breastRows[0].breastRatingRaw = 17;
@@ -810,7 +810,7 @@ public function chooseToBeMissChief():void
 	output(" taller than anybody else on the streets! Well, that just makes your costume all the more convincing, and you find yourself pushing through the crowd of little guys and littler ladies, most of whom seem like they’re the perfect size to just bury in your cleavage and walk off with, like a pillaging conqueror claiming her prize. Where’d they get all these short people from?");
 
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	pc.libido(1);
 
 	//[Next]
@@ -875,7 +875,7 @@ public function barbariannaCosplay():void
 
 	output("\n\nOh man, you have got the stuff tonight. You love how much extra confidence this badass body’s giving you... and you love the way everyone’s staring in awe even more. You give the many, many people scoping you out a big, strong smile and decide what to do:");
 	processTime(23);
-	pc.lust(30);
+	pc.changeLust(30);
 	pc.libido(1);
 	//[Hotel Room] [Party Hard]
 	clearMenu();
@@ -953,7 +953,7 @@ public function partyHardWivSavin():void
 	output("\n\nBut that’s not getting this hot piece of dragon ass into your ship. You pull her off the wall and throw her over your shoulder, firmly securing her legs and making sure she’s got easy access to your backside, before striding towards the exit. She cries in delight, grabbing your butt in both hands and yelling, <i>“Screw the princess, I guess you’re rescuing this slutty dragon instead!”</i>");
 
 	output("\n\n<i>“So lame!”</i> you tease back, grabbing the first cab that passes by and chucking her in. You give the drone pilot your parking stub and tell it to floor it. The same weird foam shoots out as it accelerates, but not before you’ve pinned your draconic mate to the seat and resumed a hot and heavy session of kisses and gropes that last you all the way back to the vast parking lot to the east.");
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(85);
 	//[Next]
 	clearMenu();
@@ -1248,7 +1248,7 @@ public function horseBodyGoooo():void
 	output("\n\nYou lean back over your tauric hindquarters and brush your hands against your own fur, discovering with some surprise that you can actually feel the contact of your fingers against your bestial hide. How such a feat is possible is beyond you, but you have little time to ponder the mystery. Holiday’s hands plant themselves on either side of your happily swishing tail and shove you toward the door.");
 	output("\n\n<i>“Get your shit on, show pony. I’ve got better things to watch than you trying to dance.”</i> Holiday smacks your ass again for good measure.");
 	output("\n\nYou’re uncomfortably aware of just how close she came to your equine anus and wait... is that a... do you have a... ?");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(15);
 	//[Horsecock] [Horsecunt] [Both]
 	clearMenu();
@@ -1309,7 +1309,7 @@ public function taurStreetAdventure(config:int = 1):void
 	output(" overwhelm the ghostly sensation from your half-forgotten crotch.");
 	output(" The stares don’t help either. Everywhere you go, there are eyes on you, admiring your costume and your body, probing your horsey crotch with inquisitive stares, wondering just how real your simulated equipment would feel. You have a hunch it would feel very, very real.");
 
-	pc.lust(50);
+	pc.changeLust(50);
 	//Horsecock!
 	if(config == 1)
 	{
@@ -1369,7 +1369,7 @@ public function taurBarAdventures(config:int = 1):void
 	else output("not when your cunt is promising you the world in exchange for a little penetration.");
 
 	output("\n\nYou order a drink without really paying much attention. Whatever the cutie behind the bar brings you, it’s strong enough to make your head swim and the colors at the edge of your vision bleed apart into miniature rainbows. You slam the transparent aluminum cup down once you finish and wish it made the more satisfying clink a glass vessel would produce.");
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(6);
 	clearMenu();
 	//TRANSFORMSHIT HERE
@@ -1499,7 +1499,7 @@ public function femaleTaurLadySex():void
 	output("\n\n<i>“So " + (daneIsRivalBodyguard ? "long" : "thick") + "...”</i> you whimper.");
 	output("\n\nPushing you away, Dane grunts in irritation. <i>“Are you always this brazen? You could have saved us both a bunch of time, back on Mhen’ga...?”</i> He looks around, noting two girls beside you already scissoring and grinding, feeding each other drinks. <i>“Screw it. When in Terran space, do as the Terrans do.”</i>");
 	processTime(33);
-	pc.lust(200);
+	pc.changeLust(200);
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",ladyTaursFuckDane,daneIsRivalBodyguard);
@@ -1595,7 +1595,7 @@ public function finalLadyTaurCostumeEpilogue(daneIsRivalBodyguard:Boolean):void
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasCock()) output(", biologically female");
 	output(" centaur now.</b>");
-	pc.lust(50);
+	pc.changeLust(50);
 	halloweenShipMove();
 	IncrementFlag("TAURFUCKED_DANE");
 	clearMenu();
@@ -1642,7 +1642,7 @@ public function taurDickSexScene():void
 	output("\n\nMa’andi laughs airily, drunk on her own heat and who knows what else. Her tail caresses the underside of your turgid beast-cock. <i>“But which one of us gets to be a mommy first?”</i>");
 	output("\n\nWhich one will have the honor of receiving your prime load?");
 	processTime(10);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	//[Ma’andi] [Sa’andi]
 	addButton(0,"Ma’andi",fuckLeithansAsTaur,"Ma'andi","Ma’andi","She’s the one in the black spandex getup.");
@@ -1738,7 +1738,7 @@ public function maleTaurCostumeFinale():void
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
 	output(" centaur now.</b>");
-	pc.lust(50);
+	pc.changeLust(50);
 	halloweenShipMove();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1811,7 +1811,7 @@ public function maleTaurSubCostumeFinale():void
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
 	output(" centaur now.</b>");
-	pc.lust(50);
+	pc.changeLust(50);
 	halloweenShipMove();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1890,7 +1890,7 @@ public function buyDatSpoidahCostumeNext():void
 
 	processTime(55);
 	pc.libido(1);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",spiderCostumePart2);
 }
@@ -2762,7 +2762,7 @@ public function shortSwordTakingTimeNext():void
 
 	output("\n\n<i>“See, only a woman would feel that good from having their ass penetrated.”</i> She thrusts in and out your ass with her fingers, constantly hitting your prostate with each push in. Her other hand grabs your tiny balls and strokes you off at the same time. The amount of pleasure you are feeling forces you to thrust your womanly hips in the air and hold it, your back arched tightly and fingers gripping the sheets firmly. She taunts and teases you, bringing you to the edge and then stopping.");
 
-	output("\n\nIt’s not until you you can’t control your voice at all from the pleasure that she orders you to cum. She intensifies her stroking and directs your tool so you spurt a pathetic amount of fluid onto your face. You collapse on the bed, panting, and Asys stands at the foot of the bed. <i>“Don’t pass out now. We’ve only been focusing on you. It’s time for sissy’s mother to have a little fun with her girl.”</i>");
+	output("\n\nIt’s not until you can’t control your voice at all from the pleasure that she orders you to cum. She intensifies her stroking and directs your tool so you spurt a pathetic amount of fluid onto your face. You collapse on the bed, panting, and Asys stands at the foot of the bed. <i>“Don’t pass out now. We’ve only been focusing on you. It’s time for sissy’s mother to have a little fun with her girl.”</i>");
 
 	output("\n\nYou look up, tired and confused. She only responds by pulling her shorts down. Underneath you see compression underwear, helping keep a large bulge hidden. She tugs her panties down, and up pops up her own large dick. At your current size, her eight-inch long and two-inch thick monster put yours to shame. She moves it around hypnotically and it makes you drool, mesmerized.");
 
@@ -2913,7 +2913,7 @@ public function stealTheBlackCatCostume():void
 	author("Adjatha");
 	showHoliday();
 	output("A case full of Not For Sale? Why, it’s just what you wanted! These things tend to be priceless, which is just another way of saying ‘free.’ But first, to direct Ms. Holiday’s attention elsewhere...");
-	output("\n\nCraning your neck, you hold a palm to your ear. <i>“Is that a siren?”</i> you ask, idly. Holiday raises an eyebrow, you you catch a twitch of movement in her eyes as she glances back at the entrance.");
+	output("\n\nCraning your neck, you hold a palm to your ear. <i>“Is that a siren?”</i> you ask, idly. Holiday raises an eyebrow and you catch a twitch of movement in her eyes as she glances back at the entrance.");
 	output("\n\n<i>“How odd,”</i> you continue. <i>“What could they be looking for? Probably just rounding up some drunks,”</i> you conclude with a shrug.");
 	output("\n\n<i>“Yeah... probably,”</i> the pale-skinned nurse agrees, hand reaching down to her side as if checking for a firearm. Finding only her own hip, the devilishly-dressed vendor chews her lower lip.");
 	output("\n\n<i>“You know, I think I forgot something in the backroom,”</i> she announces, taking long strides across the storage floor. As she leaves, her tail whips back and forth in agitation, curling around the door frame as she moves out of sight.");
@@ -2988,7 +2988,7 @@ public function goToPartyAsBondageKitty():void
 	output(" More than a few give stinging slaps to your [pc.ass] while others give your costume’s tail a tug, provoking an orgasmic moan from you but never quite dislodging the plug. As some leave, new onlookers take their places and you paw playfully at each, purring and encouraging them to greater and greater audacity as they lustfully fawn over you.");
 
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",prowlingAboutAsBondageKitty);
 }
@@ -3009,7 +3009,7 @@ public function prowlingAboutAsBondageKitty():void
 	output("\n\nA moaning cry filters into the silent room from some back room and it occurs to you that this is a different sort of club from the one you at first assumed. It takes another look around before you notice a number of empty, steel briefcases, just like the one you got from Holiday. You should probably ask about that but...");
 	output("\n\nGinger gives you a look that drives all of the blood in your head south. You’ll worry about the other costumes later.");
 	processTime(34);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",kittyPlaytime);
 }
@@ -3298,7 +3298,7 @@ public function buyDatNaughtyNurse():void
 	output("\n\nA white hat in an ancient-looking style completes the ensemble. It pinches your scalp as you get it situated, but a few accents remain, begging for your attention. The first is a stylish belt with a comically undersized first-aid kit, intended to be worn on your hip. It has no latch or opening. The only notable feature is a button that causes a condom to slide out of a slot in the side when pressed - evidence of the kind of medical help you’ll be giving tonight. <i>Protection is an important at these kind of events.</i>");
 	output("\n\nThe last accent is a pair of garters ringed with holsters for medipens of blue-tinted fluid. Block lettering declares them to be “Knotty Boosters.” At least the typos are consistent. You suspect you’ll be a real hit with the ausars in the crowd tonight....");
 	processTime(25);
-	pc.lust(35);
+	pc.changeLust(35);
 	clearMenu();
 	addButton(0,"Next",dressedInKnotSuccess);
 }
@@ -3475,7 +3475,7 @@ public function knottyPartyI():void
 	//TO ZE NEXT PART
 	processTime(25);
 	pc.orgasm();
-	pc.lust(40);
+	pc.changeLust(40);
 	clearMenu();
 	addButton(0,"Next",knottyPartyII);
 }
@@ -3513,7 +3513,7 @@ public function knottyPartyII():void
 	output("\n\nTwo women, both in dire need of medical attention. Do you try to help the abused rodenian try to find her way back to normalcy, or stop the rampaging hell-hound before she kills someone?");
 
 	processTime(55);
-	pc.lust(40);
+	pc.changeLust(40);
 	clearMenu();
 	//[Rodenian] [Hellhound]
 	addButton(0,"Hellhound",knottyNurseHellhound);
@@ -3536,7 +3536,7 @@ public function knottyNurseHellhound():void
 	output("\n\n<i>“Hrmmph!”</i> the hellhound growls, springing up into the air only to slam back down a moment later, cunt fluttering beautifully. <i>“You call this a dick?”</i> She slaps you across the face, hard, mid-thrust. <i>“I can barely notice it.”</i> Reaching behind her, she grabs a fistful of your balls and gives a threatening squeeze. <i>“You think these little nuggets are going to please me?”</i> The pressure rises until the ausar grows bored of seeing you squirm and turns to your [pc.nipples], barely concealed by the slutty uniform. <i>“You’re more fun to torment than fuck.”</i> Hundreds of pound of well-muscled fuck-beast settle on top of you. <i>“Let’s see how long it takes you to bruise...”</i>");
 	//[Next]
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",knottyNurseHellhoundII);
 }
@@ -3643,7 +3643,7 @@ public function knuttyNurseRodenianII():void
 	output("\n\nYou could try to re-establish her old name, re-name her yourself, or let her live the rest of her life as ‘Toy,’ now and forever.");
 
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Old Name",knuttyNurseRodenianIII,"nice");
 	addButton(1,"Suzy",knuttyNurseRodenianIII,"mischievous");
@@ -3926,7 +3926,7 @@ public function wearCockvineBikini():void
 	output("\n\n<i>“Sorry, couldn’t resist. Now get out and get fucked, cockvine whore,”</i> she insults with a, you assume, good-natured grin. You roll your eyes at her and head out, but not before teasing her with a shimmy of your hips, <i>“Such a tease. Don’t do anything I wouldn’t do!”</i>");
 	
 	processTime(16);
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	clearMenu();
 	addButton(0, "Next", cockvineBikiniNext);
@@ -3949,7 +3949,7 @@ public function cockvineBikiniNext():void
 	output("\n\nYou should probably head back to Holiday and get her to sort this mess out. Although, this might just be a temporary mod like those girls with wings you saw before. In that case, wouldn’t it be more fun to mingle? What do you do?");
 	
 	processTime(45);
-	pc.lust(25);
+	pc.changeLust(25);
 	
 	// Tails
 	pc.removeTails();
@@ -4028,7 +4028,7 @@ public function cockvineBikiniEvent(response:String = ""):void
 				output("\n\nYou feel your muscles move, yet again of their own accord, and a cockvine turned tail slithers into your view. They’re just temporary, so why not indulge a little? There should be time to join the party. You turn to head back and join the depravity no doubt taking place, but pause when you see someone approaching. They’re clearly feminine and very obviously stacked just from the look of their silhouette. You squint and see that she is dressed as a laquine. Were it not for her human face, you’d think she is one.");
 				output("\n\nYou decide to approach her and see if the rumors you’ve heard about laquines are true.");
 				
-				pc.lust(5);
+				pc.changeLust(5);
 			}
 			else
 			{
@@ -4037,7 +4037,7 @@ public function cockvineBikiniEvent(response:String = ""):void
 				output("\n\nShe could practically pass for one, if her face was less human. Though she still has a fine coat of violet fur with a thicker mass adorning her head, which is the color of moss. You eye her up and down and notice that she seems to be in a similar predicament as you, for her legs are clenched together and she looks uneasy. Did she get her costume from Holiday too?");
 				output("\n\nYou decide to investigate and approach her. Maybe even see if everything you’ve heard about laquines is true.");
 				
-				pc.lust(25);
+				pc.changeLust(25);
 			}
 			
 			processTime(12);
@@ -4134,7 +4134,7 @@ public function cockvineBikiniEvent(response:String = ""):void
 			output("\n\nAnd if Lila or yourself gets pregnant from this... better still.");
 			
 			processTime(24);
-			pc.lust(1000);
+			pc.changeLust(1000);
 			flags["LILA_VIRGINITY_TAKEN"] = 1;
 			
 			addButton(0, "Next", cockvineBikiniEvent, "lila cum");
@@ -4330,7 +4330,7 @@ public function cockvineBikiniEvent(response:String = ""):void
 			}
 			
 			processTime(36);
-			pc.lust(1000);
+			pc.changeLust(1000);
 			
 			addButton(0, "Next", cockvineBikiniEvent, "mingle cum");
 			break;
@@ -4478,7 +4478,7 @@ public function cockvineBikiniEvent(response:String = ""):void
 			
 			applyMutantDryadTF();
 			processTime(5);
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			addButton(0, "Next", mainGameMenu);
 			break;

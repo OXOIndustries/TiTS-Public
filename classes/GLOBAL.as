@@ -253,7 +253,10 @@
 		public static const TYPE_XHELARFOG:int								= 87;
 		public static const TYPE_SAURMORIAN:int								= 88;
 		public static const TYPE_HYENA:int									= 89;
-		public static const TYPE_VENARIAN:int								= 90;
+		public static const TYPE_DZAAN:int									= 90;
+		public static const TYPE_ZAIKA:int 									= 91;
+		public static const TYPE_CUNDARIAN:int 								= 92;
+		public static const TYPE_VENARIAN:int								= 93;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -346,6 +349,9 @@
 			"Xhelarfog",
 			"Saurmorian",
 			"Hyena",
+			"Dzaan",
+			"Zaika",
+			"Cundarian",
 			"Venarian",
 		];
 		
@@ -381,6 +387,7 @@
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
 			TYPE_HYENA,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -412,6 +419,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -1024,6 +1032,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_JANERIA,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -1158,6 +1167,7 @@
 		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
 		public static const PIERCING:int 								= 18; // Used for piercings
 		public static const COCKWEAR:int 								= 19; // Used for cockwear
+		public static const TENT:int 									= 20; // Used for tents
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",
@@ -1180,6 +1190,7 @@
 			"Sex Toy",
 			"Piercing",
 			"Cockwear",
+			"Tent",
 		];
 
 		//CHARACTERS
@@ -1247,7 +1258,7 @@
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
 		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
 		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
-		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_BURSTSHOT:int 					= 43; //For weapons that fire thrice.
 		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
 		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
@@ -1255,6 +1266,9 @@
 		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
 		public static const ITEM_FLAG_COCKSOCK:int 						= 49; //For cocksock-type cockwear.
 		public static const ITEM_FLAG_COCKRING:int 						= 50; //For cockring-type cockwear.
+		public static const ITEM_FLAG_ALCOHOLIC:int						= 51; //For hooch
+		public static const ITEM_FLAG_MEDICINE:int						= 52; //For things that can cure disease, NOT WOUNDS
+		public static const ITEM_FLAG_PRESSURIZED:int					= 53; //maintains internal pressure to protect vs high and low pressure environments
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1308,6 +1322,9 @@
 			"Hoop",
 			"Cocksock",
 			"Cockring",
+			"Alcoholic",
+			"Medicine",
+			"Pressurized",
 		];
 		
 		/**
@@ -1405,10 +1422,10 @@
 			"ERROR ERROR ABORT ABORT"
 		];
 		
-		public static const REALLY_LIKES_SEXPREF:Number = 2;
-		public static const KINDA_LIKES_SEXPREF:Number = 1.3333;
-		public static const KINDA_DISLIKES_SEXPREF:Number = .75;
-		public static const REALLY_DISLIKES_SEXPREF:Number = .5;
+		public static const REALLY_LIKES_SEXPREF:Number = 1.5;
+		public static const KINDA_LIKES_SEXPREF:Number = 1.25;
+		public static const KINDA_DISLIKES_SEXPREF:Number = .8;
+		public static const REALLY_DISLIKES_SEXPREF:Number = .666666666;
 		
 		public static const SEXPREF_VALUES:Array = [REALLY_LIKES_SEXPREF, KINDA_LIKES_SEXPREF, KINDA_DISLIKES_SEXPREF, REALLY_DISLIKES_SEXPREF];
 		
@@ -1460,6 +1477,8 @@
 			"LILIRURU",
 			"MANIACPAINT",
 			"MISSBEHAVIOR",
+			"MOIRA",
+			"NOLIMIT",
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
@@ -1471,6 +1490,8 @@
 			"FUBMISTRESS",
 			"JAYFIREGROWLITHE",
 			"YOHSL",
+			"R4",
+			"DEIMACOS",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1501,6 +1522,8 @@
 			"LiliRuru",
 			"ManiacPaint",
 			"MissBehavior",
+			"Moira",
+			"No Limit",
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
@@ -1512,6 +1535,8 @@
 			"FubMistress",
 			"JayfireGrowlithe",
 			"YohSL",
+			"R4",
+			"Deimacos",
 		];
 		
 		// These are what show up in the options menu combo boxes

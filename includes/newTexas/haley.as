@@ -61,16 +61,16 @@ public function firstTimeMeetingHaley():void
 	if(!pc.isTreated())
 	{
 		output("\n\nWhat really catches your attention (for better or worse), though, is her balls. They are <i>huge</i>, hanging between her legs like scaled watermelons jostling in a bag. You can practically hear them pumping cum through her cock over her frustrated groans and exhalations, but they never seem to shrink. It takes a few seconds for you to realize you’ve just been watching her wreck this machine.");
+		pc.changeLust(10);
 	}
 	//Treated femPC
 	else if(pc.isBimbo())
 	{
 		output("\n\nYour mouth hangs open, your eyes stuck to her massively swollen balls swinging between her legs. They hang suspended by her scaled sack, each thrust making them sway tantalizingly in front of you like delicious, gropeable melons. You can almost hear them pumping cum through her cock over her frustrated groans and exhalations, but they never seem to shrink. It takes a few seconds for you to realize you’ve just been standing here visualizing the nonstop throb and flow of cum through her overtaxed cock. The poor girl obviously needs some help, and there’s nothing you’re better at than helping someone blow their load.");
-		pc.lust(5);
+		pc.changeLust(15);
 	}
 	processTime(1);
 	//[Back out] [Greet] [WatchMore]
-	pc.lust(10);
 	clearMenu();
 	addButton(0,"Greet",greetDatTaurBitch,undefined,"Greet","Say hi.");
 	addButton(1,"Watch More",keepWatchingDatTaurSlootPoundHerMilkyMilkMaker,undefined,"Watch More","Watch the amazonian leithan girl fuck the milker.");
@@ -104,7 +104,7 @@ public function greetDatTaurBitch():void
 	output("\n\n<i>“A long story short – gene mods. I’m actually not even originally leithan; I always wanted to be a breeding stud, fucking broodmares into submission, but, well... Somewhere along the way the mods kind of got away from me.”</i> She sighs. <i>“Even the sturdiest of cows here can’t handle how much cum I produce for too long, and that’s only the ones I can fit into in the first place. It’s really just Ellie, and being blown up like a blimp tends to be counter-productive when you’re trying to run a shop. Not to mention that it just... never ends. Again, thanks to the gene mods. So I’m pretty much shit out of luck.”</i>");
 	output("\n\nWhat exactly did she use? You note that even as the two of you are talking, her cock is still throbbing and wobbling underneath her, spraying long ropes of jizz across the hay-strewn floor of the stall. It doesn’t look like she even notices.");
 	output("\n\n<i>“Well, the ones that actually give me trouble are the kui-tan mods. I don’t even remember how many I took; it was kind of a blur, really. What I do know is that I’m not allowed to use the regular milker,”</i> she grumbles, <i>“on account of flooding the ranch too many times. So, that’s why I’m here. Why are <i>you</i> here?”</i>");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(3);
 	//[Leave] [Help]
 	clearMenu();
@@ -141,7 +141,7 @@ public function offerToHelpHaleyShedSomeWeight():void
 	output("You explain you thought you could help her out with her problem. She eyes you critically.");
 	output("\n\n<i>“You? What makes you think...”</i>");
 	output("\n\nHer voice trails off as her gaze roves over your body from top to bottom. You can tell she’s thinking about burying her cock in you, filling you with spunk until you’re choking it up like you’re an overfull sex toy. The flow of spunk splattering across the floor increases until it looks like she’s cumming, her pants coming faster as the floor underneath her just gets wetter and wetter.");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(3);
 	//PC non-taur Male:
 	if(!pc.isTaur() && pc.hasCock())
@@ -489,7 +489,7 @@ public function keepWatchingDatTaurSlootPoundHerMilkyMilkMaker():void
 	else if(!pc.hasCock() && pc.hasVagina()) output(" induce a lusty heat in your [pc.vaginas], the rhythm of your breathing unconsciously matching her animalistic thrusts.");
 	else output(" make you lustful, the rhythm of your breathing unconsciously matching her animalistic thrusts.");
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(14,"Leave",leaveAfterWatchingHaleyABit,undefined,"Leave","Get outta dodge and clear your head.");
 	if(!pc.isTaur())
@@ -1175,7 +1175,7 @@ public function haleyEllieVoyeurEncounter():void
 	}
 	if (!pc.hasCock() && pc.hasVagina()) output(" [pc.OnePussy] is instantly soaking wet, dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
 	if (pc.hasCock() && pc.hasVagina()) output(" [pc.OneCock] is instantly raging hard, the pre forming at its tip complementing [pc.onePussy] dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
-	pc.lust(50);
+	pc.changeLust(50);
 	output(" When you acclimate to the pink fuzz blanketing your brain, you take a proper look inside the stall. There’s two leithans in the room, one being dominantly mounted by the other. It’s Ellie and Haley!");
 	output("\n\nEllie groans loud and low, her lust echoing through the room as Haley slowly squeezes her tits. Little streams of milk leak out between Haley’s fingers, dripping down Ellie’s massive breasts and running down her tummy. Haley squeezes again, harder this time, her fingers cruelly sinking into Ellie’s flesh. Ellie throws her head back and cries out in orgasmic pleasure, rivers of her milk spattering the ground below her. Haley takes the opportunity to kiss her, slowly moving from face to neck as Ellie pants under her.");
 	
@@ -1616,7 +1616,7 @@ public function offerSelfToHaley():void
 	output("\n\n<i>“You know- mmf,”</i> Haley whispers, pressing her lips to yours once more and sucking on your [pc.tongue] before pulling back, gazing at you with eyes aflame. <i>“You know what we’re going to be doing the whole time, right? You can still pull out now, [pc.name]... ‘cuz I won’t.”</i>");
 	output("\n\nYou can’t say no to <i>that</i>...");
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",beHaleysMilker);
 }
@@ -1862,7 +1862,7 @@ public function haleyKeepsBadEndingYouLikeYouWanted():void
 
 	processTime(9*60+30);
 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0, "Next", haleyHasUnsurprisinglyBrokenYou);
 }
@@ -2223,7 +2223,7 @@ public function haleyWinBet():void
 	IncrementFlag("HALEY_BETS");
 	IncrementFlag("HALEY_BETS_WON");
 	processTime(30);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	clearMenu();
 	if (pc.isTaur() || !pc.hasCock())

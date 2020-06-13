@@ -257,9 +257,9 @@ public function bizzyGoLeave():void
 			throw new Error("This shouldn’t ever be called!");
 			break;
 		case 1: bizzyStage1Leave(); break;
-		case 2: bizzyStage2Leave(); break;
-		case 3: bizzyStage3Leave(); break;
-		case 4: bizzyStage4Leave(); break;
+		case 2: bizzyStage1Leave(); break;
+		case 3: bizzyStage2Leave(); break;
+		case 4: bizzyStage3Leave(); break;
 		case 5: bizzyStage4Leave(); break;
 	}
 }
@@ -577,7 +577,7 @@ public function bizzyBoobyRubs(fromItem:Boolean = false):void
 
 	}
 
-	pc.lust(45);
+	pc.changeLust(45);
 
 	IncrementFlag("BIZZY_BOOBY_RUBBED");
 
@@ -731,7 +731,8 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		else output(" [pc.cock]");
 		output(" seizing up and then pulsing thick surges of cum into her, delivering by one ardent thrust of your [pc.hips] after another. Bizzy coos with joy, mouth open and savoring it, as you");
 		if (cumQ <= 1500) output(" fill her with [pc.cum]");
-		else output(" plump out her belly with another hefty delivery of [pc.cum], soon spurting and spewing out from her thoroughly packed cunt all over the couch.");
+		else output(" plump out her belly with another hefty delivery of [pc.cum], soon spurting and spewing out from her thoroughly packed cunt all over the couch");
+		output(".");
 
 		output("\n\nYou relax against her when you’re done, feeling gently steamed, stroking her silky hair and fondling her");
 		if (flags["BIZZY_PORN_STUDIO"] == 1) output(" flat chest");
@@ -974,7 +975,7 @@ public function bizzyStage5Fondle():void
 	output(". You spend a little while just feeling her, rolling her cute nipples between your fingers enjoying the little sighs and mewls of pleasure you work out of your pet pussy. She’s grinning at you dopily, as if she’s just received a hefty dose of Nepeta, when you finally let her go.");
 
 	processTime(5+rand(3));
-	pc.lust(33);
+	pc.changeLust(33);
 
 	addDisabledButton(0, "Fondle");
 }
@@ -1248,7 +1249,7 @@ public function bizzyStage4Fondle():void
 	
 	output("\n\nThey’re unmistakeable, that’s for sure, clearly marking her out as a pet bimbo, a porn star, or both. You spend a little while just feeling her, rolling her cute nipples between your fingers enjoying the little sighs and mewls of pleasure you work out of your pet pussy. She’s grinning at you dopily, as if she’s just received a hefty dose of Nepeta, when you finally let her go.");
 
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(5+rand(5));
 
 	addDisabledButton(0, "Fondle");
@@ -1276,7 +1277,7 @@ public function bizzyStage4Camshow():void
 	flags["BIZZY_SHOW_PLAN"] = 1;
 
 	processTime(10+rand(5));
-	pc.lust(15);
+	pc.changeLust(15);
 
 	bizzyStage4Menu();
 	addDisabledButton(1, "Camshow");
@@ -1339,7 +1340,7 @@ public function bizzyStage3Breasts():void
 	clearOutput();
 	showBizzyBust();
 
-	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - I need three doses, this time. I’ve gotta do something </i>spectacular<i>.”</i>");
+	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - <b>I need three doses, this time.</b> I’ve gotta do something </i>spectacular<i>.”</i>");
 
 	//[Fondle] [Give] [Back]
 	clearMenu();
@@ -1402,7 +1403,7 @@ public function bizzyStage3GiveItem():void
 	
 	output("\n\nShe shoves the other two popsicles into her mouth simultaneously, fucking her face with them. Obscene sounds echo off the walls as she descends once again on the icy, dripping phallus, a sound of total abandon leaving her stuffed, stretched mouth.");
 
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(5);
 
 	pc.destroyItemByClass(Tittyblossom, 3);
@@ -1432,7 +1433,7 @@ public function bizzyStage3GiveItemNext():void
 	
 	output("\n\n<i>“This is... incredible,”</i> the kaithrit says finally, turning a big beam to the camera. <i>“Look at me! Oooohhhh, I can’t wait for my owner to play with me... and to play with them for all of you. The things I could do with these... that could be done to me...”</i> she loses herself in an erotic reverie, eyes closed as she pulls at her nipples, turning them into those incredible, finger-sized, fawn erections again. <i>“I cannot wait. Thank you to everyone for watching - I hope you got many, many orgasms out of watching me becoming a monster titty kitty. Until next time, guys... this has been the Business with Bizzy.”</i>");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	processTime(10+rand(5));
 
 	clearMenu();
@@ -1493,7 +1494,7 @@ public function bizzyStage3Fondle():void
 	
 	output("\n\nYou can understand that - they’re a temptation, from whichever angle you approach them. And they’re a good size, for a camwhore. You spend a little while just feeling her, rolling her cute nipples between your fingers enjoying the little sighs and mewls of pleasure you work out of your pet pussy. She’s grinning at you dopily, as if she’s just received a hefty dose of Nepeta, when you finally let her go.");
 
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(5);
 
 	addDisabledButton(0, "Fondle");
@@ -1518,7 +1519,7 @@ public function bizzyStage3Camshow():void
 	
 	output("\n\nYou spend a little time browsing Bitch.tv and sort of see why. Bizzy is no longer cutely amateur, but is also not the heavy duty pros who have crews, extreme bodies, situations and money to work with. There probably needs to be a serious commitment made if she’s going to join the real stars of camwhoring.");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10+rand(5));
 
 	bizzyStage3Menu();
@@ -1621,7 +1622,7 @@ public function bizzyBreastsGiveItemStage2():void
 	
 	output("\n\nShe draws it back until the blunt tip is pressed against her pursed lips, then pushes it inside, cheeks hollowing, spearing it back and forth into her mouth, pleasuring the thing. She moans as she does it, a little drool of purple making its way down her pale chin. Fucking... Void. No wonder the viewer count is still escalating rapidly.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	
 	pc.destroyItemByClass(Tittyblossom);
@@ -1646,7 +1647,7 @@ public function bizzyBreastsGiveItemStage2Next():void
 	
 	output("\n\n<i>“Titty kitty.”</i> She reads the most frequently used phrase in the chat log, and laughs. <i>“Yeah... I guess I am, aren’t I? A titty kitty.”</i> She strokes her DD-cups, with a bite of her lip. <i>“But they could be bigger, couldn’t they? Why should we stop here? I am what I am... a titty kitty. And it feels so gooooood...”</i> she tails off into a croon, her twin tails curling as she pinches her nipples, making them stand out like cherries. <i>“...well, we’ll see. If I keep doing the business for my owner. If I keep getting subscribers. Until next time, guys... you’ve been watching the Business with Bizzy.”</i>");
 
-	pc.lust(50);
+	pc.changeLust(50);
 	processTime(15);
 
 	clearMenu();
@@ -1664,7 +1665,7 @@ public function bizzyBreastsGiveItemStage2II():void
 	
 	output("\n\nShe leans back on her knees, so you can admire her bazonkas, big, natural tits that bestride her lithe form. She flushes with pleasure when you tell her she looks great.");
 	
-	output("\n\n<i>“Thank you,”</i> she coos, deeper arousal colors her expression. <i>“Those viewer figures... we HAVE to do it again. How about next time, you get me three doses, and I take them all at the same time?”</i> She bites her lip, transported by the idea. She rocks her booty backwards and forwards on you, soft, warm pressure on your [pc.groin].");
+	output("\n\n<i>“Thank you,”</i> she coos, deeper arousal colors her expression. <i>“Those viewer figures... we HAVE to do it again. How about next time, <b>you get me three doses</b>, and I take them all at the same time?”</i> She bites her lip, transported by the idea. She rocks her booty backwards and forwards on you, soft, warm pressure on your [pc.groin].");
 	
 	output("\n\n<i>“You’ll let your pet titty kitty see to you now, won’t you? She did so good for you today, and... she wants to thank you, for everything you’ve done for her...”</i>");
 
@@ -1684,7 +1685,7 @@ public function bizzyStage4Leave():void
 
 	output("\n\nWith some reluctance, you tear yourself away from Bizzy and head for the door.");
 
-	output("\n\n<i>“Aww. But you’ll come back soon, won’t you?”</i> She twists her high-heeled toe in the carpet as she sees you out. <i>“There’s always some more business for you to be taking care of here... <i>“");
+	output("\n\n<i>“Aww. But you’ll come back soon, won’t you?”</i> She twists her high-heeled toe in the carpet as she sees you out. <i>“There’s always some more business for you to be taking care of here...”</i>");
 
 	processTime(3+rand(3));
 
@@ -1703,7 +1704,7 @@ public function bizzyStage2Leave():void
 	
 	output("\n\nWith some regret you plop Bizzy down on the couch next to you, and tell her you can’t hang around. But she’s to keep working that business of hers, and you’ll be back soon enough to see how she’s doing.");
 	
-	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering, other hand once again marvelling at the heft and weight of her new boobs. <i>“<b>Three doses, this time</b>. I - I can’t wait to take some more.”</i>");
+	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering, other hand once again marvelling at the heft and weight of her new boobs. <i>“<b>Three doses, this time.</b> I - I can’t wait to take some more.”</i>");
 
 	processTime(3+rand(3));
 
@@ -1726,7 +1727,7 @@ public function bizzyStage2Fondle():void
 	
 	output("\n\nYou can understand that - they’re a temptation, from whichever angle you approach them. Still small for a porn actress, though. You spend a little while just feeling her, rolling her cute nipples between your fingers enjoying the little sighs and mewls of pleasure you work out of your pet pussy. She’s grinning at you dopily, as if she’s just received a hefty dose of Nepeta, when you finally let her go.");
 
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(5);
 
 	addDisabledButton(0, "Fondle");
@@ -1751,7 +1752,7 @@ public function bizzyStage2Camshow():void
 	
 	output("\n\nBizzy’s Business has a subscriber count in the tens of thousands now. Still very much a lowballer, but she’s doing pretty well for someone who’s just emerged on the scene. She easily supports herself, at this point.");
 
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(10+rand(6));
 
 	bizzyStage2Menu();
@@ -1845,7 +1846,7 @@ public function bizzyStage1Camshow():void
 	output("\n\nBizzy’s Business is a nice little homemade channel, for sure. It’s certainly not going to be making you any money in its current state, though.");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	addDisabledButton(1, "Camshow");
 }
@@ -1910,7 +1911,7 @@ public function bizzyBreastsGiveItemStage1(foundItem:Class):void
 		output("\n\n<i>“Ooh. You did it, you guys. You’re actually going to make me to do this,”</i> she says, with just the right amount of coquettish hesitancy. She slides the purple popsicle into view with a big smile. <i>“Bizzy’s owner was so pleased with her this week, [pc.he] got her a treat. She only had to beg a lil bit for it! And now...”</i> She takes the wrapper off, manipulating the camera so light gleams off the icy gene-mod. <i>“...Bizzy’s going to get some boobies. And you’re all gonna get to watch them come in.”</i>");
 
 		processTime(5);
-		pc.lust(10);
+		pc.changeLust(10);
 		
 		pc.destroyItemByClass(Tittyblossom);
 
@@ -1951,7 +1952,7 @@ public function bizzyBreastsGiveItemStage1Next():void
 	output("\n\n<i>“I have boobies, you guys!”</i> she exclaims, one last time. She grins slyly. <i>“They could be a lil bigger though, don’t you think?”</i> She laughs at the explosion of comments in the feed this precipitates. <i>“Maybe I’ll put on another, even better show, sometime soon. I’ll need to get more subscribers if that’s gonna happen... prove to my owner it’s worth the effort. Well... see you guys. Thanks so much for watching. I’ve gotta go report to my owner. [pc.He]’s gonna want to, you know...”</i> she giggles, massaging her tits. <i>“...try me out.”</i>");
 	
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	
 	flags["BIZZY_PORN_STUDIO"] = 2;
 	
@@ -1993,7 +1994,9 @@ public function bizzyStage1Leave():void
 
 	output("With some regret you plop Bizzy down on the couch next to you, and tell her you can’t hang around. But she’s to keep working that business of hers, and you’ll be back soon enough to see how she’s doing.");
 
-	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering, other hand once again marvelling at the heft and weight of her new boobs. <i>“I - I can’t wait to take some more.”</i>");
+	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering");
+	if(flags["BIZZY_PORN_STUDIO"] == 2) output(", other hand once again marvelling at the heft and weight of her new boobs. <i>“I - I can’t wait to take some more.”</i>");
+	else output(".");
 
 	processTime(3+rand(3));
 
@@ -2016,7 +2019,7 @@ public function bizzyStage1Fondle():void
 	
 	output("\n\nYou don’t know; there’s something to be said for the understated, pretty elegance of an A cup, and certainly they’re nice and sensitive going off the kaithrit’s sighs and hums. Clearly though they’re the object of deep insecurity for her, and they’re not exactly what a porn actress needs.");
 
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(5);
 
 	addDisabledButton(0, "Fondle");
@@ -2213,7 +2216,7 @@ public function bizzyTalent(opts:Object):void
 	output("\n\nIt is noticeable that once the subject turns to sex, all of the kaithrit’s awkwardness seems to evaporate.");
 
 	processTime(5);
-	pc.lust(10+rand(5));
+	pc.changeLust(10+rand(5));
 
 	//[Please Me] added to options
 	opts.showPleaseMe = true;

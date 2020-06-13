@@ -32,7 +32,7 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "Johr is a lean, muscular human male with green eyes, blonde hair and pale skin. He has a certain air about him; the air of someone who always comes out on top, always succeeds, always gets what he wants, and knows it on every possible level. His smug aura mocks you.\n\nA few of his trainees surround you, ready to help at a moment's notice!";
+			this.long = "Johr is a lean, muscular human male with green eyes, blonde hair and pale skin. He has a certain air about him; the air of someone who always comes out on top, always succeeds, always gets what he wants, and knows it on every possible level. His smug aura mocks you.\n\nA few of his trainees surround you, ready to help at a moment’s notice!";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.customDodge = "Johr pivots away!";
 			this.isPlural = false;

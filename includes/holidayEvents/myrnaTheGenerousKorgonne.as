@@ -166,7 +166,7 @@ public function repeatMyrnaEncounter():void
 	}
 	removeUvetoCold();
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	myrnaMenu();
 }
 
@@ -288,7 +288,7 @@ public function myrnaMyrnaTalk():void
 	//+10 lust.
 	flags["MYRNA_MYRNA_TALK"] = 1;
 	processTime(6);
-	pc.lust(10);
+	pc.changeLust(10);
 	addDisabledButton(1,"Myrna","Myrna","You just spoke to her about that!");
 }
 
@@ -374,7 +374,7 @@ public function getGiftFromMyrna():void
 			output("\n\n<i>“Come again next day! May have more for you!”</i> Myrna yips happily.");
 			output("\n\n");
 			quickLoot(new Savicite());
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		else
 		{
@@ -442,7 +442,7 @@ public function getGiftFromMyrna():void
 		output("\n\n(<b>Gained Key Item: Panties - Myrna’s</b>.)");
 
 		processTime(8);
-		pc.lust(10);
+		pc.changeLust(10);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -632,7 +632,7 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 		if(silly) output("ruff.");
 		else output("rough.");
 		output("\n\nYou double your grip on the charitable korgonne’s ears and lift her head up slightly from your [pc.cockBiggest]. A soft murr resonates from her bountiful chest to her snout, likely in appreciation for you deciding to take charge. With a shove of your hips, you once again pull her in as deep as you can, relishing the feeling of her maw enveloping all of your cockmeat. Myrna flattens her tongue and wraps it around your phallus with as much surface area as it will allow, providing an almost secondary cocksheath inside of her mouth. Not without a groan of ecstasy escaping your lips, you lift once again before crashing her head back down, steadily building a rhythm of your own.");
-		output("\n\nSoon, you work to a blistering pace, literally face-fucking her. Myrna never once balks or backs down, taking it all like a champ. Her emerald eyes barely leave your face and her smile never fades, delighting in the fact that she’s giving you this much pleasure. Looking past her pistoning head, you observe that her furred panties are pulled down to her knees. One of her hands works busily underneath of her, creating a small puddle of her sweet girl-juices. Not only does the sight alone of this spurns you on, but her natural pheromones are at the strongest that you’ve smelled yet. With newfound fervor, you quickly work yourself to orgasm before you realize it.");
+		output("\n\nSoon, you work to a blistering pace, literally face-fucking her. Myrna never once balks or backs down, taking it all like a champ. Her emerald eyes barely leave your face and her smile never fades, delighting in the fact that she’s giving you this much pleasure. Looking past her pistoning head, you observe that her furred panties are pulled down to her knees. One of her hands works busily underneath of her, creating a small puddle of her sweet girl-juices. Not only does the sight alone of this spur you on, but her natural pheromones are at the strongest that you’ve smelled yet. With newfound fervor, you quickly work yourself to orgasm before you realize it.");
 		output("\n\nWith a final thrust, you force your [pc.hips] into the canine’s mouth, making her take you as deep as her awaiting gullet allows");
 		if(pc.hasKnot(pc.biggestCockIndex())) output(", knot and all");
 		output(" before the first jet of cum escapes your [pc.cockHeadBiggest]. The moment your jism hits the back of her throat, her eyes widen for a split second before narrowing in focus. A second throb, rapidly followed by a third joins in. Her throat, having little time to adjust, gulps down your ");
@@ -762,7 +762,7 @@ public function fuckMyrna(x:int):void
 	else output("\n\n<i>“Okay, am ready! Usually use toy on self, but thinking, do alien want? Maybe fun for both?”</i> the korgonne asks breathlessly, waving the glowing phallus in front of you enticingly. The closer she holds it to you, the warmer and tinglier you feel, especially to your already aroused loins. It looks like she’s giving you the choice on who gets to use her special toy.");
 	processTime(20);
 	pc.milkInMouth();
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Yourself",useMyrnasDildoOnYou,x);
 	addButton(1,"Myrna",putDildoInMyrnasAss,x);
@@ -797,7 +797,7 @@ public function useMyrnasDildoOnYou(x:int):void
 
 	output("\n\n<i>“Good job! Can begin now!”</i> Myrna exclaims while turning around to shirk off her emerald panties. While she slides them off, you can’t help but be entranced by her shapely bottom. Her off-white buns jiggling freely once past their confines while her long tail swishes gaily, further enhancing the effect. Her plump pussy lips shine in the dancing lights of the nearby fire. A soft blush of pink covers them, and a thin string of femlube connects her vulva to her undergarment. Her mons themselves are a bright red, much like her nose and mouth. When she finally slips her panties to her ankles, she carelessly kicks them aside and pushes her posterior onto your lap.");
 
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",fuckMyrnaContinuation,[x,y]);
 }
@@ -833,7 +833,7 @@ public function putDildoInMyrnasAss(x:int):void
 	output("\n\nOnce you slide it all the way to the base, knot and all, a soft sigh of relief escapes Myrna’s lips. She turns her head, giving you a wide smile in appreciation before planting her bottom onto your lap. A weird mix of a grunt and moan escapes out of your mouth on impact; the base of her dildo sending another jolt of pleasure through you when it brushes against your pelvis.");
 
 	//merge scene. Variations depending on which scene is being branched from.
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",fuckMyrnaContinuation,[x,-2]);

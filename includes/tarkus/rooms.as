@@ -121,7 +121,7 @@ public function initTarkusRooms():void
 	rooms["207"] = new RoomClass(this);
 	rooms["207"].roomName = "\nNOVAHOME";
 	rooms["207"].description = "Here in the central tunnel of the Nova, the ceiling is at least forty feet tall, and the walls are wide enough to handle a football field. This vessel could easily match the biggest dreadnaughts in the terran navy pound for pound, but it’s obvious from its unique internal structure that it was not a ship meant for war. Whatever its original purpose, the raskvel have turned it into their home. Metallic structures have sprung up on all sides, though the central part of the tunnel remains clear, leading east and west from here. A maintenance corridor to the north leads back toward the hangar.";
-	rooms["207"].runOnEnter = undefined;
+	rooms["207"].runOnEnter = biancaVDayHook;
 	rooms["207"].northExit = "206";
 	rooms["207"].eastExit = "208";
 	rooms["207"].westExit = "210";

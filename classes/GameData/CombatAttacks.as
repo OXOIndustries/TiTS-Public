@@ -7,8 +7,11 @@ package classes.GameData
 	import classes.Characters.CyberPunkSecOp;
 	import classes.Characters.GrayGoo;
 	import classes.Characters.DrCalnor;
+	import classes.Characters.JaneriaCore;
+	import classes.Characters.JaneriaSpawn;
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
+	import classes.Characters.KQTwinA;
 	import classes.Characters.NymFoe;
 	import classes.Characters.NaleenHerm;
 	import classes.Characters.PlayerCharacter;
@@ -17,6 +20,7 @@ package classes.GameData
 	import classes.Characters.SandWorm;
 	import classes.Characters.Shizuya;
 	import classes.Characters.StormguardMale;
+	import classes.Characters.ZaikaMilkThief;
 	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -692,6 +696,7 @@ package classes.GameData
 			{
 				kGAMECLASS.quadommeDoubleTeam(attacker, target, true);
 			}
+			if (target is KQTwinA && target.hasStatusEffect("Gonna Gangbang")) (target as KQTwinA).interruptGangbang();
 			
 			return true;
 		}
@@ -773,9 +778,9 @@ package classes.GameData
 					if(npcShooter == "Mitzi" && rand(3) == 0) 
 					{
 						var mitziTexts:Array = [];
-						if(kGAMECLASS.mitzi.canLactate()) mitziTexts.push("The vibrations from firing " + weapon.description + " into " + target.getCombatName() + " release rivers of milk from Mitzi's straining nipples.");
+						if(kGAMECLASS.mitzi.canLactate()) mitziTexts.push("The vibrations from firing " + weapon.description + " into " + target.getCombatName() + " release rivers of milk from Mitzi’s straining nipples.");
 						if(kGAMECLASS.flags["MITZI_SOAKED"] != undefined) mitziTexts.push("Mitzi squirts <i>everywhere</i> while firing off " + weapon.description + " at " + target.getCombatName() + ".");;
-						mitziTexts.push("Mitzi's here to shoot " + weapon.description + " at " + target.getCombatName() + " and drink cum... and she's all out of cum!");
+						mitziTexts.push("Mitzi’s here to shoot " + weapon.description + " at " + target.getCombatName() + " and drink cum... and she’s all out of cum!");
 						mitziTexts.push(("Mitzi creams herself from the vibrations caused by unloading " + weapon.description + " into " + target.getCombatName() + "!"));
 						output(mitziTexts[rand(mitziTexts.length)]);
 					}
@@ -919,6 +924,7 @@ package classes.GameData
 				target.createStatusEffect("KANE MELEE PREP");
 			}
 			if (target is DrCalnor) (target as DrCalnor).counterHook(attacker, special);
+			if (target is KQTwinA && target.hasStatusEffect("Gonna Gangbang")) (target as KQTwinA).interruptGangbang();
 
 			return true;
 		}
@@ -1388,7 +1394,18 @@ package classes.GameData
 				applyDamage(dmg, attacker, target, "minimal");
 			}
 		}
-		
+		//laser version of the basic drone
+		public static function SteeletechLaserSentryAttack(attacker:Creature, target:Creature):void
+		{
+			if (attacker is PlayerCharacter) output("Your");
+			else output(StringUtil.capitalize(possessive(attacker.getCombatName()), false));
+			output(" laser drone repeatedly zaps ");
+			if (target is PlayerCharacter) output("you");
+			else output(target.getCombatName());
+			output(".");
+			var dmg:TypeCollection = new TypeCollection( { burning: attacker.untypedDroneDamage() * 1.1 }, DamageFlag.LASER);
+			applyDamage(dmg, attacker, target, "minimal");
+		}
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output(kGAMECLASS.varmintPetName("Your pet") + " hoots and hisses at " + target.getCombatName() + ",");
@@ -1535,9 +1552,12 @@ package classes.GameData
 		}
 		public static function applyGassed(target:Creature, tooltip:String = ""):void
 		{
-			target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
-			target.aimMod -= 5;
-			target.reflexesMod -= 5;
+			if(!target.hasStatusEffect("Gassed"))
+			{
+				target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
+				target.aimMod -= 5;
+				target.reflexesMod -= 5;
+			}
 			if(tooltip != "") target.setStatusTooltip("Gassed", tooltip);
 		}
 		public static function applyGrapple(target:Creature, chance:int = 30, apply:Boolean = false, tooltip:String = ""):void
@@ -1839,6 +1859,12 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " fire" + (attacker.isPlural ? "" : "s") + " a paralyzing shock at you!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " fire" + (attacker.isPlural ? "" : "s") + " a paralyzing shock at " + target.getCombatName() + "!");
 			
+			if (target is JaneriaSpawn || target is JaneriaCore)
+			{
+				output("\nHowever " + target.getCombatName() + " absorbs the electricity and it seems to strengthen it.");
+				target.shields(25);
+				return;
+			}
 			if (attacker.bimboIntelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10)
 			{
 				output("\nThe effect is immediate! ");
@@ -1871,8 +1897,8 @@ package classes.GameData
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon() && !target.hasBlindImmunity())
 			{
 				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
-				else if (attacker is PlayerCharacter) output("<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>");
-				else output("<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
+				else if (attacker is PlayerCharacter) output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>");
+				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
 				applyBlind(target, 3);
 			}
@@ -2100,6 +2126,13 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You attempt to wirelessly hack the shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "!");
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to wirelessly hack your shield!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempt" + (attacker.isPlural ? "" : "s") + " to wirelessly hack the shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "!");
+			
+			if (target is JaneriaSpawn || target is JaneriaCore)
+			{
+				output("\nHowever " + target.getCombatName() + " absorbs the electrical surge and it seems to strengthen it.");
+				target.shields(25);
+				return;
+			}
 			
 			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.bimboIntelligence() / 1.5) } ), 15);
 			d.addFlag(DamageFlag.ONLY_SHIELD);
@@ -2957,6 +2990,11 @@ package classes.GameData
 					}
 				}
 			}
+			if(target is ZaikaMilkThief)
+			{
+				if(!target.hasStatusEffect("MeleeHit")) target.createStatusEffect("MeleeHit");
+				return false;
+			}
 			return false;
 		}
 		//SHIP SPECIAL ATTACKS!
@@ -2982,3 +3020,4 @@ package classes.GameData
 	}
 
 }
+

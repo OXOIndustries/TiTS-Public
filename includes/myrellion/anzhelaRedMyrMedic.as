@@ -489,7 +489,7 @@ public function leaveAnzhelasTalkMenu():void
 	// PC loses one hour of time.
 	// PC is restored of energy and loses 20 lust due to Scova.
 	pc.energy(100);
-	pc.lust(20);
+	pc.changeLust(20);
 	// Go to Hospital Room and out of Anzhela menu.
 
 	clearMenu();
@@ -601,8 +601,8 @@ public function firstAidWithAnn():void
 	// Heal the PC fully!
 	// Increase lust by 10!
 	// Return to core Anzhela menu.
-	pc.HP(pc.HPMax());
-	pc.lust(10);
+	pc.changeHP(pc.HPMax());
+	pc.changeLust(10);
 	anzhelaMenu();
 }
 

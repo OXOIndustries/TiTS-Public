@@ -34,7 +34,7 @@ package classes.Characters
 			a = "the ";
 			capitalA = "The ";
 			//(Pump-king should be a melee fight; should use a sword and shield. High kinetic/electric resistance, weak against teases(but not ridiculously weak), especially against characters with dicks over 8in. Should be a hard fight, but of course not impossible. Reward should be her suit of armor and suitable xp. Armor should be high-end stuff, high kinetic/electric resistance.)
-			this.long = "The ‘Pump-king’ is a woman standing about 6’3 in full gothic plate armor, a pumpkin with expertly carved holes for the eyes and mouth sitting where her head should be. The holes in the pumpkin glow with hellish fury, even brighter now that you’ve raised her ire. The metal of her armor is so black it almost seems to absorb light, with two gold inlaid carved pumpkins on either breast, glittering ruby eyes and mouths full of silver teeth flashing in the flickering light of her torches.";
+			this.long = "The ‘Pump-king’ is a woman standing about 6\' 3\" in full gothic plate armor, a pumpkin with expertly carved holes for the eyes and mouth sitting where her head should be. The holes in the pumpkin glow with hellish fury, even brighter now that you’ve raised her ire. The metal of her armor is so black it almost seems to absorb light, with two gold inlaid carved pumpkins on either breast, glittering ruby eyes and mouths full of silver teeth flashing in the flickering light of her torches.";
 			this.customBlock = "";
 			this.customDodge = "The Pump-king backsteps out of the way.";
 			this.isPlural = false;

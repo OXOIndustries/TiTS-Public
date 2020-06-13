@@ -207,7 +207,9 @@ public function reahaAppearanceCured():void
 	output("\n\nNo longer bound and chained in Beth’s dungeon, Reaha’s able to keep herself milked down enough to stay nice and mobile, though she’s still extraordinarily busty by any human standard. Her breasts are nice and full of [reaha.milk], and Reaha’s more than happy to show her bountiful rack off to you at the slightest provocation, milking herself in the ship’s common areas or pressing them up against you");
 	if(!reaha.isNude()) output(" through her clothes");
 	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty " + chars["REAHA"].breastCup(0) + "s, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
-	output("\n\nShe has a loose, wet pussy tucked between her legs and a [reaha.asshole] between the cheeks of her [reaha.ass], right where it belongs.");
+	output("\n\nShe has a loose, wet pussy tucked between her legs and ");
+	output(indefiniteArticle(ParseText("[reaha.asshole]")));
+	output(" between the cheeks of her [reaha.ass], right where it belongs.");
 	curedReahaMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
 }
@@ -531,7 +533,7 @@ public function stayWithMeCureCow():void
 	output("\n\nMaybe you ought to take her up on that right away...");
 	//+30 Lust. Set Reaha to <i>“Free.”</i>
 	processTime(4)
-	pc.lust(30);
+	pc.changeLust(30);
 	flags["REAHA_DEBT_FREED"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -760,7 +762,7 @@ public function talkToReahaFamily():void
 		output("\n\n<i>“I don’t know... maybe I ought to write them. Or at least Mia. I’ve barely said a word to any of them since I left. Could have at least answered their mail...”</i>");
 
 		processTime(8);
-		pc.lust(4);
+		pc.changeLust(4);
 		pc.milkInMouth(reaha);
 		//[Encourage] [Discourage]
 		clearMenu();
@@ -1287,7 +1289,7 @@ public function buttFuckReahaSlooot():void
 	output("\n\nYou manage to shift aside at just the right moment, getting clear as Reaha screams, throwing her head back as her tits bounce and spurt, spraying streaks of [reaha.milkColor] across the bed and bulkhead. Her ass clenches powerfully around your fingers, trying to milk them like a big, fat cock. You answer in kind, pushing yourself deeper until you’re practically fisting the horny slut, pushing in as far as you can through her quivering hole’s well-lubed channel. <i>“Yeah, yeah! Just like that! Just... like... oh, god!”</i> she cries, and suddenly her body seems to convulse against itself, another, more potent orgasm overtaking the first. Her teats rocket to a steady stream, arcing her [reaha.milk] across the cabin to smear wetly on the bulkhead opposite her.");
 	output("\n\n<i>“You know you’re gonna have to clean that up,”</i> you tease, still wrist-deep in Reaha’s ass as she slumps back against the wall, breathing hard. She makes a weak moan in answer, knees buckling under the strain of her massive orgasm. You pull her back against your [pc.chest], letting the [reaha.milk]-laden slut lean against you for a moment, her whole body twitching in the aftershock. But you only hold her for a minute - just enough to stroke her long strawberry hair with a gently soothing word while you decide how to get your fun, now that she’s all lubed up and ready for you...");
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	//[Go Rough] [Go Gentle]
 	addButton(0,"Go Rough",goddamnSavinsAsslust,x,"Go Rough","Tie Reaha up and pound her asshole.");
@@ -1506,7 +1508,7 @@ public function rideCuredReahasStrapon():void
 	else output("I guess,”</i>");
 	output(" you say. Now, what to do with it...");
 	processTime(6);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[Be Submissive] [Be Dominant]
 	addButton(0,"Be Submissive",curedReahaFucksASubbyPCsButt,undefined,"Be Submissive","Take the passive role, and let Reaha fuck you as she pleases.");
@@ -1738,7 +1740,7 @@ public function giveYourCuredCowAHug():void
 		output(". <i>“Just say the word and I’ll take care of that for you...”</i>");
 	}
 	//Combine, else; +10 Lust
-	pc.lust(10);
+	pc.changeLust(10);
 	output("\n\nAfter a long moment, Reaha steps back and takes your hands in hers, smiling ");
 	if(pc.tallness > reaha.tallness + 4) output("up ");
 	else if(pc.tallness > reaha.tallness - 4) output("down ");
@@ -2336,7 +2338,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		//Butt Up
 		else if(reaha.buttRatingRaw < 18)
 		{
-			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around around grabbing her own ass. Her eyes go wide and she teeters forward and back, rocking on her heels. You try and ask what’s wrong, but the cow-girl just start giggling and thrusts her hindquarters out at you. A glance immediately shows what’s up: her already-ample ass is ");
+			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around grabbing her own ass. Her eyes go wide and she teeters forward and back, rocking on her heels. You try and ask what’s wrong, but the cow-girl just start giggling and thrusts her hindquarters out at you. A glance immediately shows what’s up: her already-ample ass is ");
 			if(!reaha.isCrotchGarbed()) output("jiggling with newfound weight");
 			else output("straining her [reaha.lowerGarment] even more than usual");
 			output(". She’s definitely packing a little more junk in her trunk!");
@@ -2369,7 +2371,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		output("\n\nDon’t mind if you do...");
 		output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 		output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//Junk in the Trunk
 	if(item is JunkTrunk)
@@ -2380,7 +2382,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		{
 			output("\n\n<i>“Oh, want a little more cushion for the pushin’, babe?”</i> Reaha giggles, taking the pill and rolling it between her fingers. <i>“Well, if that’s what you’re into... I wouldn’t mind making sure you’ve got the softest cow money can buy to snuggle up with. Bottoms up!”</i>");
 			output("\n\nShe swallows the pill with a swig of her own titty-milk to wash it down. It only takes a moment for the microsurgeons to go to work:");
-			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around around grabbing her own ass. She moans, groping her hefty rear as it fills out moment after moment, eventually thrusting her flanks out at you for inspection: a glance immediately shows what’s up: her already-ample ass is ");
+			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around grabbing her own ass. She moans, groping her hefty rear as it fills out moment after moment, eventually thrusting her flanks out at you for inspection: a glance immediately shows what’s up: her already-ample ass is ");
 			if(!reaha.isCrotchGarbed()) output("jiggling with newfound weight");
 			else output("straining her [reaha.lowerGarment] even more than usual");
 			output(". She’s definitely packing a little more junk in her trunk!");
@@ -2421,7 +2423,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nSeeing what’s coming, you quickly start thrusting, pumping a second finger in along with the first and drilling them deep into Reaha’s ass. She clenches down with a soft, almost spongy grip, moistened by cream and some sort of new anal lubricant. Meanwhile, her quim sputters and drools, cumming without so much as a touch to her actual sex. Hell, not even her tits: this is all anal, beginning to end. You give the lusty bovine a slap on the rump and keep thrusting until she’s ridden her climax out and slumps weakly off your finger, collapsing into her bunk with an audible <i>“Oof!”</i> and a long, low moan.");
 			output("\n\n<i>“Gimme a sec to catch my breath and we can really test this out...”</i> Reaha murmurs, reaching a hand back to circle her plump butt. <i>“If a finger can do that... unf.”</i>");
 			processTime(10);
-			pc.lust(10);
+			pc.changeLust(10);
 			pc.destroyItemByReference(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();
@@ -2443,7 +2445,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nGrinning, you release her and step back, admiring your work. Reaha’s asshole is plump, black, and utterly bestial - it looks like it would belong more on a randy leithan than a humanoid girl, and the sheer thickness of it keeps her asscheeks spread just a little, showing off her donut-like tailhole for anyone to see.");
 			output("\n\nIt takes a moment for Reaha to catch her breath after that. When she does, she rights herself and turns to you with a look of wanton, unabashed desire on her blushing face. <i>“I need you. Right now. Please, [pc.name].”</i>");
 			processTime(10);
-			pc.lust(10);
+			pc.changeLust(10);
 			pc.destroyItemByReference(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_PUMPED);
 			reaha.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);

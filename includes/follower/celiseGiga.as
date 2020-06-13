@@ -22,6 +22,7 @@ public function gigaCeliseTransform():void
 		output("\n\n<i>“So good,”</i> she sighs with a shudder as she completes the changes. The emerald goo-girl stands at twelve feet tall, looking down at you with a dazed smile, the tips of her smaller tendrils brushing eagerly against your body.");
 	}
 	flags["GIGACELISE"] = 1;
+	showCelise();
 	processTime(9);
 	gigaCeliseMenu();
 }
@@ -64,6 +65,7 @@ public function gigaCeliseMenu():void
 public function shrinkBackToNormalCelise():void
 {
 	clearOutput();
+	flags["GIGACELISE"] = undefined;
 	showCelise();
 	author("Gardeford");
 	output("You tell Celise you want her to return to her normal form. The beryl beauty looks saddened for a moment, but nods.");
@@ -73,7 +75,6 @@ public function shrinkBackToNormalCelise():void
 	output(", assuring her that you might be up for trying it again sometime, and even if you don’t you’ll be sure to feed her plenty in this form. The viridian venus grins at the prospect, giggling at your touch. Her FF-cups return with jiggly vigor, emerald nipples sinking back into the gooey expanses along with the last of the many tendrils.");
 
 	output("\n\n<i>“All done!”</i> she exclaims as her body finishes reverting.");
-	flags["GIGACELISE"] = undefined;
 	clearMenu();
 	addButton(0,"Next",celiseFollowerInteractions);
 }
@@ -357,20 +358,30 @@ public function celiseKiroFunSekritShit():void
 	//first time
 	if(flags["KIRO_CELISE_3SOME"] == undefined)
 	{
-		output("You ");
-		if(pc.isNice()) output("smile happily");
-		else output("grin devilishly");
-		output(", telling Kiro that you’ve found the perfect person to vent her desires into, and that person is waiting for her on your ship.");
-		output("\n\n<i>“Who is it? ‘Perfect’ sounds a little too good to be true,”</i> Kiro says with an incredulous tone. <i>“The last time someone offered me something perfect, I nearly wound up in a cell!”</i>");
-		//[tell] [dont tell]
-		clearMenu();
-		addButton(1,"Don’t Tell",dontTellKiroShit,undefined,"Don’t Tell","Don’t give away the surprise.");
-		addButton(0,"Tell",tellKiroShit,undefined,"Tell","Tell Kiro!");
+		if(!kiroIsCrew())
+		{
+			output("You ");
+			if(pc.isNice()) output("smile happily");
+			else output("grin devilishly");
+			output(", telling Kiro that you’ve found the perfect person to vent her desires into, and that person is waiting for her on your ship.");
+			output("\n\n<i>“Who is it? ‘Perfect’ sounds a little too good to be true,”</i> Kiro says with an incredulous tone. <i>“The last time someone offered me something perfect, I nearly wound up in a cell!”</i>");
+			//[tell] [dont tell]
+			clearMenu();
+			addButton(1,"Don’t Tell",dontTellKiroShit,undefined,"Don’t Tell","Don’t give away the surprise.");
+			addButton(0,"Tell",tellKiroShit,undefined,"Tell","Tell Kiro!");
+		}
+		else
+		{
+			output("You suggest that you have the perfect person onboard for Kiro to play with - exactly the right kind of girl for loving absurd cumshots.");
+			output("\n\n<i>“It’s Celise isn’t it?”</i> Kiro guesses with a naughty grin. <i>“Galotians love me.”</i>");
+			clearMenu();
+			addButton(0,"Next",crewKiroCeliseThreesomeFirstTimeIntro);
+		}
 	}
 	//repeat
 	else
 	{
-		output("\n\nYou tell Kiro that if she wouldn’t mind a little exercise Celise wouldn’t mind draining her again. The kui-tan perks up immediately, wildly enthused at the prospect of getting to make use of your living cum-dump once more. She follows you to your ship with her fluffy tail swishing the floor behind you and her cock swelling. You lead her through the halls until you find the corner Celise has situated herself in. The galotian perks up when she sees you, and perks up even further when she sees the well endowed kui-tan.");
+		output("\n\nYou tell Kiro that if she wouldn’t mind a little exercise Celise wouldn’t mind draining her again. The kui-tan perks up immediately, wildly enthused at the prospect of getting to make use of your living cum-dump once more. " + (!kiroIsCrew() ? "She follows you to your ship with her fluffy tail swishing the floor behind you and her cock swelling. You lead her through the halls until you find the corner Celise has situated herself in.":"She watches over your shoulder as you summon Celise, waiting with heavy breaths and a stiffened cock.") + " The galotian perks up when she sees you, and perks up even further when she sees the well endowed kui-tan.");
 		properKiroSceneTimeLetsGo();
 	}
 }
@@ -412,14 +423,19 @@ public function celiseXKiroFirstTimeIntroEpilogue():void
 	
 	properKiroSceneTimeLetsGo();
 }
-
+public function crewKiroCeliseThreesomeFirstTimeIntro():void
+{
+	clearOutput();
+	output("Summoning Celise doesn't take very long - good given Kiro's aggressively horny state.");
+	properKiroSceneTimeLetsGo();
+}
 //merge
 public function properKiroSceneTimeLetsGo():void
 {
 	moveTo("SHIP INTERIOR");
 	
 	showName("KIRO\nAND CELISE");
-	showBust("KIRO","CELISE");
+	showBust(kiroBustDisplay(true),"CELISE");
 	author("Gardeford");
 	output("\n\n<i>“Uhh,”</i> says Kiro when she sees the giant forest of tentacles beneath Celise’s upper body, <i>“");
 	if(flags["KIRO_CELISE_3SOME"] == undefined) output("Are you sure she can handle me? There’s a lot of captain for her to handle, goo body or no.");
@@ -446,17 +462,17 @@ public function properKiroSceneTimeLetsGo():void
 	output("\n\nThe lime-colored goo-girl appears to notice this as well, because a smile forms on her face akin to that of a lottery winner. She pulls the insensate tanuki away from her fervent kissing in order to brush Kiro’s fuzzy cheeks with viscous thumbs. Her hands guide the senseless girl to one of her comparatively small C-cup breasts. Kiro begins to mindlessly suckle at the pine-green nipple, and Celise moans softly. The cock-milking tunnel extends a thinner tube, which connects with her nipples. Small streams of jizz travel up these ducts, and out through the holes at the end. Kiro’s suckling brings the liquid directly into her mouth, and Celise continues to happily breastfeed the pirate her own sexual juices.");
 	output("\n\nThe suckling quickly creates a vicious cycle. The more she drinks, the fuller her rapidly growing balls get. Neither one of the girls seems to care much about this fact: you certainly don’t, either. Kiro gradually begins to regain her senses, and she detaches from the cum leaking nipples. Celise seems slightly disappointed, but doesn’t stop her as she pulls the goo-girl into an embrace so tight that her DD-cups squash the other girl’s C-cups nearly flat. Kiro grasps at the thick thighs that imprison her cock and pulls the thick meat out of its undulating trap until just the flare is almost popping out. By the look in Kiro’s eyes you think she wouldn’t be able to remove the flare without losing her senses a second time. Instead she gets a firm hold on the pair of hips and drives her equine member home, all the way to the hilt.");
 	output("\n\nThe sheath surrounding Kiro’s ballsack begins to lose coherency as Celise is fucked silly by the ravenous tanuki. Some of the tentacles try to assist with the fucking, but after having been filled with a steady flow of cum before, the goo-girl is having trouble controlling her longer appendages. It’s all she can do to hang on to Kiro for dear life as she receives the pounding of a lifetime.");
-	output("\n\nThe two of them shout in simultaneous orgasm. You can see Kiro’s horsecock bulge with its load before it floods the emerald girl’s body. Kiro continues to fuck and rut into Celise until her balls are back to their regular size, by which time the normally bright and verdantly colored goo girl looks more like a giant splash of green-tinged spooge. Kiro lies out cold in the literal puddle of fuck, smiling wistfully as small tentacles pet various parts of her furry body. You wait there patiently, helping Kiro towel off and get redressed once she wakes.");
-	output("\n\nThe two of you travel to the station together before parting ways. You leave Celise to digest her gigantic meal for the time being while you ponder what to do next.");
+	output("\n\nThe two of them shout in simultaneous orgasm. You can see Kiro’s horsecock bulge with its load before it floods the emerald girl’s body. Kiro continues to fuck and rut into Celise until her balls are back to their regular size, by which time the normally bright and verdantly colored goo girl looks more like a giant splash of green-tinged spooge. Kiro lies out cold in the literal puddle of fuck, smiling wistfully as small tentacles pet various parts of her furry body. You wait there patiently, helping Kiro towel off and get re-dressed once she wakes.");
+	if(!kiroIsCrew()) output("\n\nThe two of you travel to the station together before parting ways. You leave Celise to digest her gigantic meal for the time being while you ponder what to do next.");
+	else output("\n\nThe two of you leave Celise to digest her meal.");
 	//kiro orgasm ballshrank shit
 	kiro.orgasm();
 	//(pass 3 hours)(lust raise +40)
 	processTime(160+rand(20));
-	pc.lust(40);
+	pc.changeLust(40);
 	//Lets keep count, whynot?
 	IncrementFlag("KIRO_CELISE_3SOME");
-	
-	currentLocation = shipLocation;
+	if(!kiroIsCrew()) currentLocation = shipLocation;
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -632,6 +632,7 @@ public function nurseryKidsDormsFunc():Boolean
 	ainaBabyBlurbs();
 	nurseryLaquineBlurbs();
 	mirrinBabyBlurbs();
+	stormguardBabyBlurbs();
 	var button:Number = 0;
 	button = nurseryKidsDormsButtonAdjustment(zilBabyBonus(button));
 	button = nurseryKidsDormsButtonAdjustment(milodanPlayOptions(button));
@@ -640,6 +641,7 @@ public function nurseryKidsDormsFunc():Boolean
 	button = nurseryKidsDormsButtonAdjustment(zephyrKidsOption(button));
 	button = nurseryKidsDormsButtonAdjustment(nurseryLaquineOptions(button));
 	button = nurseryKidsDormsButtonAdjustment(mirrinKidsOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(stormguardKidsOptions(button));
 	button = nurseryKidsDormsButtonAdjustment(makiusKidsNursery(button));
 	return false;
 }

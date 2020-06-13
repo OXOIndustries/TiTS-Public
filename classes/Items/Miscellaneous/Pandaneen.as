@@ -190,7 +190,7 @@
 							}
 							target.cocks[x].cLengthRaw += .25;
 							changes++;
-							target.lust(4+rand(4));
+							target.changeLust(4+rand(4));
 						}
 						else if ((!target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && !target.hasPerk("Hung")) || (!target.cockLengthUnlocked(x, target.tallness / 12 * 3) && target.hasPerk("Hung")))
 						{
@@ -207,7 +207,7 @@
 							else kGAMECLASS.output("\n\nStarting slowly, your [pc.cock " + x + "] warms, slowly getting hotter and hotter. You grab hold of it, hefting its warm weight and feeling it thicken in your grip. You get a little girthier over a few moments, then it stops.");
 							changes++;
 							target.cocks[x].cThicknessRatioRaw += 0.1;
-							target.lust(5+rand(4));
+							target.changeLust(5+rand(4));
 						}
 						
 						//Balls swell up to apple sized (rating == 3) (rarely)
@@ -253,7 +253,7 @@
 								kGAMECLASS.output(" will be sure to make your orgasms a little more productive.</b>");
 							}
 							changes++;
-							target.lust(7+rand(3));
+							target.changeLust(7+rand(3));
 						}
 						else if (target.balls > 0 && ((!target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (!target.ballSizeUnlocked(6) && target.hasPerk("Bulgy"))))
 						{
@@ -287,7 +287,7 @@
 							else 
 							{
 								kGAMECLASS.output("\n\nPleasant warmth rolls over your [pc.chest] like waves massage oil, tingling in all the right ways. You can’t help but heft one and smile at how great they feel. Surprisingly, there’s more weight in your hand than you remember. Your breasts have grown.");
-								target.lust(3+rand(2));
+								target.changeLust(3+rand(2));
 								target.breastRows[0].breastRatingRaw++;
 							}
 							changes++;
@@ -352,7 +352,7 @@
 								if(y > 1) kGAMECLASS.output(", and it keeps going");
 								kGAMECLASS.output(", not stopping until you’re " + num2Text(Math.round((target.cocks[x].cLength() + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
 							}
-							target.lust(5+rand(10));
+							target.changeLust(5+rand(10));
 							target.cocks[x].cLengthRaw += y;
 							changes++;
 						}
@@ -375,7 +375,7 @@
 								target.cocks[x].cThicknessRatioRaw = 1.7;
 							}
 							changes++;
-							target.lust(3+rand(3));
+							target.changeLust(3+rand(3));
 						}
 						else if (!target.cockThicknessUnlocked(x, 1.7))
 						{
@@ -530,7 +530,7 @@
 							target.clitLength -= y;
 							if(target.clitLength < .5) target.clitLength = .5;
 							changes++;
-							target.lust(10+rand(5));
+							target.changeLust(10+rand(5));
 						}
 						else if (!target.clitLengthUnlocked(0.5))
 						{
@@ -574,7 +574,7 @@
 						kGAMECLASS.output("\n\nYour [pc.tails] convulse uncontrollably, twisting together into one tangled knot. Then, lava-hot heat envelops the whole mass, dropping you to your [pc.knees] in agony. Underneath the pain, you can feel them fusing together into a single [pc.tail]. A growl slips escapes you as you recover, wondering why you decided to take this stuff.");
 						target.tailCount = 1;
 						changes++;
-						target.lust(-3);
+						target.changeLust(-3);
 					}
 					//Single tail becomes small panda tail
 					else if((target.tailCount == 0 || (target.tailCount == 1 && target.tailType != GLOBAL.TYPE_PANDA)) && target.tailTypeUnlocked(GLOBAL.TYPE_PANDA) && changes < changeLimit)

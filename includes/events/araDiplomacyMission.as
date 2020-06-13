@@ -91,7 +91,7 @@ public function bothriocQuestTalk():void
 		output("\n\n<i>“I obey, " + ara.mfn("master", "mistress", "master-mistress") + ",”</i> you say automatically, sheerest bliss filling your mind as you sound the syllables.");
 		output("\n\n<i>“I know you do.”</i> Two chitinous fingertips touch the nape of your neck, and you cannot help but keen with pleasure.");
 		
-		pc.lust(30);
+		pc.changeLust(30);
 		
 		// Goto [Yes] path, + Lust
 		addButton(0, "Next", bothriocQuestTalkNext, ["yes", addiction]);

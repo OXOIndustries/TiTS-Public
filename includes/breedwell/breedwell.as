@@ -638,7 +638,7 @@ public function breedwellInduction(response:String = ""):void
 				output("\n\nRelaxed and slightly light-headed now, you don’t mind that walking alongside Quaelle necessitates going at an arthritic pace.");
 				processTime(2);
 				// +Lust
-				pc.lust(5);
+				pc.changeLust(5);
 				// goto pods intro
 				addButton(0, "Next", breedwellInduction, "pods intro");
 			}
@@ -662,7 +662,7 @@ public function breedwellInduction(response:String = ""):void
 				output("\n\nRelaxed and slightly light-headed now, you don’t mind that walking alongside Quaelle necessitates going at an arthritic pace.");
 				processTime(2);
 				// +Lust
-				pc.lust(5);
+				pc.changeLust(5);
 				// goto semen intro
 				addButton(0, "Next", breedwellInduction, "semen intro");
 			}
@@ -691,7 +691,7 @@ public function breedwellInduction(response:String = ""):void
 			output("\n\nRelaxed and slightly light-headed now, you don’t mind that walking alongside Quaelle necessitates going at arthritic pace.");
 			processTime(2);
 			// +Lust
-			pc.lust(5);
+			pc.changeLust(5);
 			// goto pods intro
 			addButton(0, "Next", breedwellInduction, "pods intro");
 			break;
@@ -700,7 +700,7 @@ public function breedwellInduction(response:String = ""):void
 			output("\n\nRelaxed and slightly light-headed now, you don’t mind that walking alongside Quaelle necessitates going at arthritic pace.");
 			processTime(2);
 			// +Lust
-			pc.lust(5);
+			pc.changeLust(5);
 			// goto semen intro
 			addButton(0, "Next", breedwellInduction, "semen intro");
 			break;
@@ -718,7 +718,7 @@ public function breedwellInduction(response:String = ""):void
 			output("\n\nShe presses a button on the monitor, and the view changes to what is evidently the small room the loo’rahn just disappeared into. She has her skirt down, her big bum pointing up to the camera, and she is absolutely pounding the petite, green-scaled ovir you saw in the catalogue with her long, bulging ovi-dick. The ovir is naked and in a strange harness-like contraption that fixes her into the wall, holding her legs backwards, her arms out to the side and completely exposing her pussy. You can’t really tell more details than that because she’s smothered in over-stimulated, jiggly orange gel - except for her head, which is just about poking up above the loo’rahn’s shirt-covered boobs. Her face is a rictus of sexual delirium.");
 			processTime(5);
 			// +Lust
-			pc.lust(5);
+			pc.changeLust(5);
 			// <pb>
 			addButton(0, "Next", breedwellInduction, "pods next");
 			break;
@@ -734,7 +734,7 @@ public function breedwellInduction(response:String = ""):void
 			output("\n\n<i>“It’s all repackaged into advertisements and erotica for Tamani,”</i> Quaelle says, knitting her fingers and gazing at you with her brilliant, eerie eyes. <i>“It’s the principle way they’re paying for this station - and you, of course. You’ll become quite famous, shiverous Steele! Emmm, if you agree to keep coming back. Return surrogates get popular, and so get paid more. Different grades. We’ll talk about it later.”</i>");
 			processTime(9);
 			// +Lust
-			pc.lust(5);
+			pc.changeLust(5);
 			// <pb>
 			addButton(0, "Next", breedwellInduction, "pods done");
 			break;
@@ -779,7 +779,7 @@ public function breedwellInduction(response:String = ""):void
 			output("\n\nThere are monitors fixed below the window, and Quaelle presses one on. You are treated to a view inside one of the cubicles. A well-built dober-sar is clutching two handles fixed into the wall and thrusting his brown, thoroughbred hips into a pink, synthetic hole in the wall, similar in appearance to the New Texan cockmilker. His red, bulging knot bumps against it again and again, his thick cock rooting deep inside.");
 			processTime(5);
 			// +Lust
-			pc.lust(5);
+			pc.changeLust(5);
 			// <pb>
 			addButton(0, "Next", breedwellInduction, "semen next");
 			break;
@@ -791,7 +791,7 @@ public function breedwellInduction(response:String = ""):void
 			output("\n\n<i>“Not bad,”</i> adjudges the roehm, watching the ausar slowly stagger back, wobbly-legged. <i>“But I’m sure you could give us soooo much more, couldn’t you, fulbullent Steele? I know you could!”</i>");
 			processTime(9);
 			// +Lust
-			pc.lust(5);
+			pc.changeLust(5);
 			// <pb>
 			addButton(0, "Next", breedwellInduction, "semen done");
 			break;
@@ -1144,8 +1144,8 @@ public function breedwellApproachPod():void
 	
 	// Intros
 	// If Lust <31 set to 31, otherwise ++Lust
-	if(pc.lust() < 33) pc.lust(33, true);
-	else pc.lust(15);
+	if(pc.lust() < 33) pc.changeLust((33-pc.lust()));
+	else pc.changeLust(15);
 	
 	// First
 	if(flags["BREEDWELL_TIMES_BRED"] == undefined)
@@ -2097,7 +2097,7 @@ public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
 	else
 	{
 		output(" armfuls, lapfuls and a " + (InShipInterior() ? "bed" : "floor") + " full of rahn babies. You hope Breedwell knew what they were doing when they hired you - there’s enough here to form a small colony on their own! The wailing has mostly stopped, and the tiny gel girls are waving their plump little limbs and cooing in bafflement at the big wide world they are now in, the ones you can’t fit onto your arms and lap pawing at you for attention. They are the cutest goddamn things.");
-		if(numEggs > 10) (" You are a broodmother par excellence, and you are soon fully and happily involved in what you should be doing. You suckle " + num2Text(numEggs) + " of them at a time, hungry mouths attached to your [pc.nipples] whilst you simultaneously clean and play with others, making them giggle by tickling their bare soles, skillfully switching between them so that each gets at least a little of mom’s time.");
+		if(numEggs > 10) output(" You are a broodmother par excellence, and you are soon fully and happily involved in what you should be doing. You suckle " + (numEggs > pc.totalNipples() ? (num2Text(pc.totalNipples()) + " of them at a time") : "all of them at once") + ", hungry mouths attached to your [pc.nipples] whilst you simultaneously clean and play with others, making them giggle by tickling their bare soles, skillfully switching between them so that each gets at least a little of mom’s time.");
 	}
 	
 	processTime(45 + rand(11));
@@ -2199,3 +2199,4 @@ public function rahnBreedwellBirthSteele(numEggs:int = 2):void
 
 
 
+

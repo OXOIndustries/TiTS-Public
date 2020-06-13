@@ -41,6 +41,9 @@ public function buildRooms():void
 	eventWhorizonInitRooms();
 	initWargiiRooms();
 	initKimberRooms();
+	initKQRooms();
+	initDhaalRooms();
+	initSteeleBiomedicalRooms();
 	
 	mapper = new Mapper(rooms);
 }

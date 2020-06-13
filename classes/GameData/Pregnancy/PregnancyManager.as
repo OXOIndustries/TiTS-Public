@@ -3,6 +3,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Handlers.AusarPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BoredJumperPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BreedwellRahnPregnancyHandler;
@@ -14,6 +15,7 @@
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;
 	import classes.GameData.Pregnancy.Handlers.FrostwyrmPregnancy;
+	import classes.GameData.Pregnancy.Handlers.IlariaPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.KorgonnePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LahPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
@@ -36,6 +38,7 @@
 	import classes.GameData.Pregnancy.Handlers.SiegwulfeEggnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SydianPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SeraSpawnPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.StormGuardPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.ZaaltPregnancyHandler;
@@ -91,6 +94,10 @@
 			PregnancyManager.insertNewHandler(new LDCShockHopperPregnancyHandler());
 			PregnancyManager.insertNewHandler(new MirrinPregnancyHandler());
 			PregnancyManager.insertNewHandler(new ZilBullPregnancyHandler());
+			PregnancyManager.insertNewHandler(new AusarPregnancyHandler());
+			PregnancyManager.insertNewHandler(new IlariaPregnancyHandler());
+			PregnancyManager.insertNewHandler(new StormGuardPregnancyHandler());
+			
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

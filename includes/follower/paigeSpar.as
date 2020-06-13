@@ -231,7 +231,7 @@ public function yield2Paige():void
 	flags["PAIGE_SPAR_RESULT"] = "yield";
 	//[=Next=]
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.removeStatusEffect("PAIGE_SPAR");
 	// place PC one square outside of Paige's Yoga Class
 	// end scene (scene: Yield)
@@ -265,7 +265,7 @@ public function loseToPaige():void
 	output("\n\n<i>“Let it be known that I’m merciful in victory,”</i> she says, ironically accentuating her statement with a tight pinch, making you wince. <i>“I’m going to fuck you, [pc.name], and it’s going to be exhausting.”</i> She licks her lips, examining your body as she toys with it. <i>“But I’ll let you decide how I do it. It’s the least I can do for my little, mmmm, my little victim.”</i>");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Oral=][=Vaginal=][=Anal=]
 	// end scene (scene: Fair Fight – Loss)
 	addButton(0,"Oral",FFLO,undefined,"Oral","Take it in the mouth. Since you lost the fight and this isn’t about you, Paige probably won’t return the favor.");
@@ -361,7 +361,7 @@ public function FFLO():void
 	pc.applyPussyDrenched();
 	pc.girlCumInMouth(paige);
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	output("\n\n");
 	clearMenu();
 	addButton(0,"Next",paigeExitWrapper);
@@ -451,7 +451,7 @@ public function FFLV():void
 	processTime(20);
 	if(pc.hasCock()) pc.orgasm();
 	soreDebuff(3);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",paigeExitWrapper);
 }
@@ -518,7 +518,7 @@ public function FFLA():void
 
 	// end scene (scene: FFLA); increase Lust by 50; place PC one square outside of Paige’s Yoga Class or back to the ship’s main menu; inflict Sore and Blue Balls on the PC
 	processTime(30);
-	pc.lust(50);
+	pc.changeLust(50);
 	soreDebuff(3);
 	if(!pc.hasStatusEffect("Blue Balls")) pc.applyBlueBalls();
 	clearMenu();
@@ -628,7 +628,7 @@ public function FFWO():void
 	output("; she’s immediately into it. You could tell her as much, if you wanted – or you could try to fill the role of dominant and verbally put her in her place.");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Congratulate",FFWOC,args);
 	addButton(1,"Berate",FFWOB,args);
@@ -685,7 +685,7 @@ public function FFWV():void
 	//[=Gently=][=Roughly=]
 	// end scene (scene: FFWV)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Gently",FFWVG,args);
 	addButton(1,"Roughly",FFWVR,args);
@@ -717,7 +717,7 @@ public function FFWA():void
 	//[=Get Ready=][=Raw=]
 	// end scene (scene: FFWA)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Get Ready",FFWAGR,args);
 	addButton(1,"Raw",FFWAR,args);
@@ -779,7 +779,7 @@ public function FFWOC(args:Array):void
 	//[=Enjoy It=][=Reciprocate=]
 	// end scene (scene: FFWOC)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Enjoy It",FFWOEI,args);
 	addButton(1,"Reciprocate",FFWOR,args);
@@ -827,7 +827,7 @@ public function FFWOB(args:Array):void
 	output("\n\nYou could keep thinking of things to say – Paige is clearly okay, and then some, with you being a rude dominant – but your mind goes blank as you focus on the sensation of her working you over. Suddenly, you’re struck with inspiration: why use words when actions work so much better?");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Reciprocate=][=Titfuck=]
 	// end scene (scene: FFWOB)
 	clearMenu();
@@ -864,7 +864,7 @@ public function FFWVG(args:Array):void
 	output("\n\nIs that all? She likes it when her champions are a little more assertive? Well, that’s pretty easy to do.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Kiss Her=][=Own Her=]
 	// end scene (scene: FFWVG)
 	clearMenu();
@@ -908,7 +908,7 @@ public function FFWVR(args:Array):void
 	//[=Don’t Care=][=Own Her=]
 	// end scene (scene: FFWVR)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Don’t Care",FFWVDC,args);
 	addButton(1,"Own Her",FFWVOH,args);
@@ -941,7 +941,7 @@ public function FFWAGR(args:Array):void
 	pc.cockChange();
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Act Casual=][=Own Her=]
 	// end scene (scene: FFWAGR)
 	clearMenu();
@@ -972,7 +972,7 @@ public function FFWAR(args:Array):void
 	output(" Paige sighs in delight and consigns herself to you, ready to take whatever you have planned for you. Which begs the question: just what <i>do</i> you have planned, now that you’re cock-deep in her ass?");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Own Her=][=Just Give ‘Er=]
 	// end scene (scene: FFWAR)
 	clearMenu();
@@ -1023,7 +1023,7 @@ public function FFWOEI(args:Array):void
 	else output("<i>“You’re making me feel bad that I won’t have anything tasty to reward you with.”</i> Despite your words, you’re pumping against her face all the fiercer. <i>“Oh well. I’m sure you’ll survive.”</i>");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: FFWOEI); go to (scene: FFWOE)
 	clearMenu();
@@ -1060,7 +1060,7 @@ public function FFWOR(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FFWOR); go to (scene: FFWOE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FFWOE,args);
 }
@@ -1123,7 +1123,7 @@ public function FFWOTR(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FFWOTR); go to (scene: FFWOE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FFWOE,args);
 }
@@ -1160,7 +1160,7 @@ public function FFWVKH(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FFWVKH); go to (scene: FFWVE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FFWVE,args);
 }
@@ -1209,7 +1209,7 @@ public function FFWVOH(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FFWVOH); go to (scene: FFWVE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FFWVE,args);
 }
@@ -1247,7 +1247,7 @@ public function FFWVDC(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FFWVDC); go to (scene: FFWVE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FFWVE,args);
 }
@@ -1282,7 +1282,7 @@ public function FFWAAC(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FFWAAC); go to (scene: FFWAE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FFWAE,args);
 }
@@ -1322,7 +1322,7 @@ public function FFWAOH(args:Array):void
 	output("\n\n<i>“We’ll work on that later,”</i> you say as you stop denying your own body its pleasure. With one more thrust, you’re at the limit, and your [pc.cum] starts its short journey from your body to hers.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: FFWAOH); go to (scene: FFWAE)
 	clearMenu();
@@ -1349,7 +1349,7 @@ public function FFWAJGE(args:Array):void
 	output("; Paige must have cum, satiated with your abuse. Somewhere in your head, you’re proud of yourself that you managed to please your woman, but the primal, lizard-like part of your brain is concerned only with your own pleasure. It just so <i>happens</i> that the feelings, sounds, and scents that come about with Paige’s orgasm helps in bringing yours around....");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: FFWAJGE); go to (scene: FFWAE)
 	clearMenu();
@@ -1370,7 +1370,7 @@ public function FFWOE(args:Array):void
 	if(InCollection("FFWOTR", args)) output("You grunt out to the air. <i>“Paige,”</i> you say gruffly, but then you don’t finish your sentence. She’ll figure it out on her own.");
 
 	// Continue here if the PC is male
-	if(pc.hasCock() && !pc.hasVagina())
+	if(pc.hasCock())
 	{
 		output("\n\nYour [pc.cock] bloats, your cum shooting up your tube ");
 		//if {not FFWOTR}
@@ -1450,7 +1450,7 @@ public function FFWOE(args:Array):void
 	output("\n\nYou agree wholeheartedly.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Next=]
 	// end scene (scene: FFWOE); reduce Lust to 0; place PC one square outside Paige’s Yoga Class, or put them in the ship’s main menu
 	pc.orgasm();
@@ -1545,4 +1545,4 @@ public function FFWAE(args:Array):void
 	output("\n\n");
 	clearMenu();
 	addButton(0,"Next",paigeExitWrapper);
-}
+}

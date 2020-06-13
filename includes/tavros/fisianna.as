@@ -665,7 +665,7 @@ public function cuddleFisiHLII():void
 	processTime(120+rand(15));
 	if (flags["FISI_HL_PANTIES"] == undefined) flags["FISI_HL_PANTIES"] = 1;
 
-	pc.lust(20);
+	pc.changeLust(20);
 
 	clearMenu();
 	addButton(0, "Next", moveToResidentialLift);
@@ -858,7 +858,7 @@ public function massageFisiYesII():void
 
 	processTime(15+rand(15));
 	if (pc.statusEffectv1("Sore Counter") > 1 ) soreChange( -3);
-	else pc.lust(0, true);
+	else pc.changeLust(0, true);
 
 	clearMenu();
 	addButton(0, "Next", massageFisiYesIII);
@@ -887,8 +887,8 @@ public function massageFisiYesIII():void
 	output(", you stretch and find yourself completely loose and limber, fully ready to tackle whatever challenge comes your way.");
 	output("\n\n<i>“Please don’t be afraid to ask me to do this for you again if you feel hurt in any way, [pc.name]. I would, as always, be more than happy to make sure you’re at least in tip-top shape.”</i> Fisianna assures you, affection full in her voice. With a final kiss and a wave goodbye, you head out of her apartment and onto the street in front of it. After that massage, how could you <i>not</i> want another one?");
 
-	pc.HP(pc.HPMax());
-	pc.energy(pc.energyMax());
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
 
 	currentLocation = "RESIDENTIAL DECK 13";
 	IncrementFlag("FISI_TIMES_MASSAGED");
@@ -1376,7 +1376,7 @@ public function useMouthFisi():void
 		output("\n\n<i>“Aaahaan! [pc.name]! I-I! Hnnng!”</i> She screams out before a fourth body wracking orgasm claims her. You keep it going, despite your mouth rapidly filling with her tangy assets, until she reaches a fifth, then a sixth orgasm. By the time you’ve lost count of how many climaxes you’ve put her through, the entirety of her body shakes and vibrates madly below you, before falling still. You retract your tongue and finally raise your head from between Fisianna’s legs to find that she has fallen asleep, purring and smiling peacefully as she does so. She must have passed out sometime in the middle of her last orgasm. Chuckling at the cute sight, you climb up her body to plant a kiss to her cheek before pulling the covers over the both of you. Shortly afterwards, you drift off to sleep with your lover, arm in arm.");
 	}
 
-	pc.lust(40);
+	pc.changeLust(40);
 	fisiPrurience(5);
 	processTime(30+rand(15));
 	fisianna.orgasm();
@@ -2420,7 +2420,7 @@ public function appearanceFisi():void
 	showFisi();
 	
 	output("In the bright lights of the plaza, you are able to discern more of Fisianna’s features than you could back in Anon’s Bar. Upon noticing you starting to stare her down in an analytical manner, Fisianna’s ears twitch in surprise before gradually drooping lower on each side of her head in embarrassment, her cheeks flushing a subtle pink as she averts her gaze towards the ground. <i>“Um... [pc.name]? Y-you’re kinda... staring at me ah... really hard.”</i> she squeaks, barely audible to you.");
-	output("\n\nFisianna stands at roughly 5\' 0\" in height. At first glance she looks similar to a full kaithrit; however, she has white fuzzy paws on the ends of her hands and feet which are kept bare, exposing the exquisitely plush pink pads on the underside of them. The fur at her bracelet adorned wrists gradually fade into an orange and white striped hue as her fur trails close to her elbows, making her look very similar to a terran tabby cat. Her legs also follow a similar pattern; the fur on them tracks up to her knees and stops there, though her legs have a more animalistic bend at the ankles, making them digitigrade in appearance. Fisianna seems to have done quite a job matching her hair color to her fur, further accentuating the tabby cat look with ass length hair of orange with white highlights. She also has the same two cat tails that kaithrit sport which are covered with the same orange and white striped fur. Fisianna’s tails seem a bit longer than usual kaithrit tails, not to mention hers seem to be able to move in a more precise manner, making them almost as dextrous as third and fourth arms. She sports the natural litheness and flexibility of a cat, with a trim body to match. Fisianna’s skin is smooth and lightly tanned where she does not have fur.");
+	output("\n\nFisianna stands at roughly 5\' 0\" in height. At first glance she looks similar to a full kaithrit; however, she has white fuzzy paws on the ends of her hands and feet which are kept bare, exposing the exquisitely plush pink pads on the underside of them. The fur at her bracelet-adorned wrists gradually fades into an orange and white striped hue as her fur trails close to her elbows, making her look very similar to a terran tabby cat. Her legs also follow a similar pattern; the fur on them tracks up to her knees and stops there, though her legs have a more animalistic bend at the ankles, making them digitigrade in appearance. Fisianna seems to have done quite a job matching her hair color to her fur, further accentuating the tabby cat look with ass length hair of orange with white highlights. She also has the same two cat tails that kaithrit sport which are covered with the same orange and white striped fur. Fisianna’s tails seem a bit longer than usual kaithrit tails, not to mention hers seem to be able to move in a more precise manner, making them almost as dextrous as third and fourth arms. She sports the natural litheness and flexibility of a cat, with a trim body to match. Fisianna’s skin is smooth and lightly tanned where she does not have fur.");
 	output("\n\nFisianna looks purely female by appearance, with fairly luscious eyelashes shadowing her golden feline eyes. She has supple peach colored lips with high feminine cheeks and a soft jaw line that could melt almost anyone’s heart whenever she manages a smile. On top of her head, blending in with her hair she has triangular feline ears with an abundance of fluffy white hairs bordering the inside and pink inner ear skin. Her button nose appears slightly pinker than the rest of her visage.");
 	output("\n\nIn terms of apparel Fisianna is sporting a black hooded and sleeveless vest trimmed with white fur at the hood area. Her vest is open, allowing you to view a light purple T-shirt that clings rather tightly to her form with a logo of a pixelated orange head of what you assume is a cat’s. Your curiosity gets the better of you as you look at the cat emblem, leaving you to guess what is underneath. Her bust size seems rather modest at what you guess are C-cups at the least. Your eyes trailing further down, you see Fisianna is wearing a cute pair of blue jeans that adorned with a tablet-like device on her hip. Her pants end with a bell-bottom-like hem, which drapes over her slightly enlarged foot paws. She has a pronounced feminine figure by the way her shirt and jeans hug her hips and butt, but nothing anywhere near as extreme as some of the things you’ve seen before. ");
 	if (flags["FISI_SEX_NUMBER"] != undefined) output("Underneath those jeans you know she is wearing a cute pair of white, lacy cat patterned panties. These panties cover a small, thin love trail of orange fur that tracks down to her pink, wet, human vagina. She is also wearing a matching bra of white lacy cloth with the same paw print pattern that covers her perky hand-cuppable breasts with peach colored areola and inverted nipples that pop out at her most aroused state.");
@@ -3192,8 +3192,8 @@ public function goMovies():void
 				output("\n\n<i>“Hey Aya! I didn’t think we would see you here. Were you about to catch a movie yourself?”</i> Fisianna asks Aya, all the while eyeing the snacks in the avian’s arms.");
 				output("\n\n<i>“Yeah, I was as a matter of fact! I was going to go see this great sci-fi comedy, <i>“Blubber”</i>. It’s about this scientist that’s too super busy with his experiments to pay attention to their loved ones, and they wind up modding this galotian to be super bouncy. Hey! If you two wanna, would you like to come watch it with me? I’ll share my snaaaacks!”</i> Aya asks elatedly while attempting to wave the bag of popcorn in her arms enticingly, sending even more popcorn kernels falling to the floor.");
 				output("\n\n<i>“Ooooh, I have always wanted to see that one! I’ve heard Jay Williams was hilarious in this movie!”</i> Fisianna smiles excitedly. <i>“I think I’m sold Aya! How about you, [pc.name]?”</i> She asks while grabbing the box of nachos out of Aya’s arms, which unburdens her load by a little.");
-				output("\n\nSeeing as it would be two versus one on any adverse decision you would make anyways, you are inclined to agree with the two girls. You grab the popcorn out of Aya’s arms so she won’t spill anymore, leaving her with the soft drinks. The three of you walk over to the ticket vendor to pay for your movie tickets. Aya steps in front with her bundle of soft drinks and offers to pay for your tickets, which you and Fisianna gratefully thank her. Afterwards, you head towards one of the screening rooms. Once inside, you observe that the room is already very crowded. It must be a very popular movie! The three of you manage find seats in the middle of the room despite this, and Aya passes her extra drinks to you and Fisianna once everyone settles down in their chairs. Your group sits through about ten minutes of previews for other movies before the main attraction starts.");
-				output("\n\nThroughout the entirety of the movie, the room is bursting with laughter at the scientist’s shenanigans. At one particular point in the film, the scientist mods a graviball with part of the galotian’s “blubber-like” like cellular structure. They send it careening across a room, knocking an innocent passerby out cold. Aya laughs so hard at this that she accidentally squeezes the soft drink bottle in her hand and sends its contents flying backwards onto an unfortunate laquine behind her. She gasps and apologises profusely with the lagomorph. You turn a sideways glance towards Fisianna, who meets your gaze halfway with a knowing smile, afterwhich the two of you muffle your laughter the best that you are able to. The rest of the movie runs on uneventfully from then on. When the " + (isAprilFools() ? "closing titles" : "ending credits") + " roll, the three of you make your way out of the screening room and into the theater lobby.");
+				output("\n\nSeeing as it would be two versus one on any adverse decision you would make anyways, you are inclined to agree with the two girls. You grab the popcorn out of Aya’s arms so she won’t spill anymore, leaving her with the soft drinks. The three of you walk over to the ticket vendor to pay for your movie tickets. Aya steps in front with her bundle of soft drinks and offers to pay for your tickets, which you and Fisianna gratefully thank her for. Afterwards, you head towards one of the screening rooms. Once inside, you observe that the room is already very crowded. It must be a very popular movie! The three of you manage find seats in the middle of the room despite this, and Aya passes her extra drinks to you and Fisianna once everyone settles down in their chairs. Your group sits through about ten minutes of previews for other movies before the main attraction starts.");
+				output("\n\nThroughout the entirety of the movie, the room is bursting with laughter at the scientist’s shenanigans. At one particular point in the film, the scientist mods a graviball with part of the galotian’s “blubber-like” like cellular structure. They send it careening across a room, knocking an innocent passerby out cold. Aya laughs so hard at this that she accidentally squeezes the soft drink bottle in her hand and sends its contents flying backwards onto an unfortunate laquine behind her. She gasps and apologises profusely with the lagomorph. You turn a sideways glance towards Fisianna, who meets your gaze halfway with a knowing smile, after which the two of you do your best to muffle your laughter. The rest of the movie runs on uneventfully from then on. When the " + (isAprilFools() ? "closing titles" : "ending credits") + " roll, the three of you make your way out of the screening room and into the theater lobby.");
 				output("\n\n<i>“Ah... that movie was great! I think I’m gonna grow abs from laughing so hard!”</i> Aya remarks as she wipes tears of mirth from her eyes.");
 				output("\n\n<i>“Hehe, yeah! That movie was a lot better than I was expecting! I wonder if they’ll make a second?”</i> Fisianna wonders while she throws her nacho box away into the nearby trash can.");
 				output("\n\n<i>“Hopefully so! If they do come out with a sequel, you two will be the first people I invite to come see it with me!”</i> Aya exclaims excitedly.");
@@ -3386,7 +3386,7 @@ public function goSleepover4():void
 	else output("You strap on your [pc.gear] and silently reflect on your night with Fisianna and her friends.");
 	output(" That night will definitely be one to remember.");
 	
-	pc.lust(10)
+	pc.changeLust(10)
 	setFisiAway(2);
 	processTime(((9 - hours) * 60) + (60 - minutes) + rand(15));
 	sleepHeal();
@@ -3603,7 +3603,7 @@ public function fifthDateFisi():void
 	}
 	else
 	{
-		output("\n\nWith a great deal of willpower, you are able to shake off the tantalizing smell coming from the masterbating bee. Right before the zil’s long tongue can reach Fisianna’s lips, you yank the catgirl backwards, while with your free hand you give the brazen interloper a good punch across his face. He reels from the blow and falls out of the side of the booth and onto the floor. The smell of pheromones suddenly becomes much less intense and you can see that Fisianna has snapped out of her lust-addled state. The zil has shock, anger, and pain written all over his face as he struggles and fails to straighten up and sheathe his penis inside of his pants.");
+		output("\n\nWith a great deal of willpower, you are able to shake off the tantalizing smell coming from the masturbating bee. Right before the zil’s long tongue can reach Fisianna’s lips, you yank the catgirl backwards, while with your free hand you give the brazen interloper a good punch across his face. He reels from the blow and falls out of the side of the booth and onto the floor. The smell of pheromones suddenly becomes much less intense and you can see that Fisianna has snapped out of her lust-addled state. The zil has shock, anger, and pain written all over his face as he struggles and fails to straighten up and sheathe his penis inside of his pants.");
 		output("\n\n<i>“You... you were supposed to be helpless before my sweet scent. Nobody asked you to interfere, you asshole.”</i> The zil curses as he glowers at you. Words cannot describe the rage you are feeling at this bee ruining your date with Fisianna. Despite this, you ");
 		if (pc.isNice())
 		{
@@ -3632,7 +3632,7 @@ public function fifthDateFisi():void
 	output("\n\n<i>“W-well... okay.”</i> Fisianna concedes. The bartender turns and walks away to go back behind the bar. She then turns to you with a bright blush and a somewhat sad look on her face.");
 	output("\n\n<i>“U-um, [pc.name]... I’m sorry, but we might have to cut this date a bit short... I-I... I need to get changed after all that. I-I imagine it might be the same case for you too.”</i> Fisianna laughs timidly. She’s right. Ever since that zil’s pheromone attack subsided, your nethers have been feeling especially wet with excess arousal. You reluctantly agree to call the date over for now before the both of you exit the booth and head out of Anon’s. Once the both of you head back up the elevator and arrive at the residential area, you kiss each other goodbye before Fisianna walks home, albeit with an awkward gait likely due to the wetness in her pants. ");
 	
-	pc.lust(20);
+	pc.changeLust(20);
 }
 
 public function sixthDateFisi():void
@@ -3728,7 +3728,7 @@ public function sixthDateMerge():void
 	output("\n\n<i>“Y-yeah... I suppose you’re right. Still, I’ll have to make it up to you sometime, or pay you back. Whichever.”</i> Fisianna shrugs. She then hugs herself tight to you. <i>“Thank you, [pc.name]... for everything.”</i> She meaningfully looks into your eyes and gives you another quick kiss.");
 	output("\n\n<i>“Alright, [pc.name]. I had the most wonderful day with you, but you got me all wet, so I need to wash this off and get to work on another project. I-I would be... up to doing something like this again next time, if you want to, of course. I bet you would though.”</i> Fisianna gives you a wink before separating herself from you and heading towards her bedroom door. Satisfied with opening her up a little sexually, you give a goodbye wave to Fisianna at her bedroom, to which she blows a kiss at you before disappearing behind the door. You help yourself out of her apartment and head back to the plaza with a big smile on your face.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	fisianna.orgasm();
 	setFisiAway();
 	processTime(60 + rand(15));
@@ -3982,7 +3982,7 @@ public function eatOutFisi():void
 	currentLocation = "RESIDENTIAL DECK 13";
 	processTime(30 + rand(25));
 	fisianna.orgasm();
-	pc.lust(33);
+	pc.changeLust(33);
 	addButton(0,"Next",mainGameMenu);
 }
 

@@ -256,7 +256,7 @@ public function offerPyroPupperSex():void
 		output("\n\n<i>“Oh, fuck it,”</i> she mutters, her tight little panties dropping to the floor to reveal a glistening pink pussy already dripping with need. <i>“I’m so fucking pent-up in space and you’re the first person I’ve seen in three days. But I’ll tell you now,”</i> she continues, lowering her voice to a murmur as she grabs your " + (!pc.isChestExposed() ? "collar":"shoulder") + " and " + (pc.isTaur() ? "pulls you up":"mounts your pelvis") + ", <i>“if you don’t fuck my <b>brains</b> out I’m leaving with your money anyway.”</i>");
 	}
 	processTime(4);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",pyroPupSexRouter);
 }
@@ -380,7 +380,7 @@ public function genericVariantUnoForPyroPup2():void
 		new CoronaFlamer().loadInCunt(pc,0);
 		pc.orgasm();
 	}
-	else pc.lust(10);
+	else pc.changeLust(10);
 	output("\n\n");
 	CombatManager.genericLoss();
 }
@@ -513,7 +513,7 @@ public function pyroPup2GenericSex2():void
 		output("\n\nYou manage to get yourself out of the shower and into your bed as she collects her clothes and leaves, giving you a wink and a wave. You might not have cum but you have to admit you feel something about the way that woman... fucked you. She’s good at what she does...");
 		output("\n\nYou lie in bed catching your breath as you feel the pirate’s ship detach from yours. She’s gone now, but you have a feeling you’ll run into her again.");
 		processTime(30);
-		pc.lust(100);
+		pc.changeLust(100);
 	}
 	output("\n\n");
 	IncrementFlag("PYROTECH_LOSSFUCKS");

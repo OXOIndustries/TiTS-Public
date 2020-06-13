@@ -195,7 +195,6 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "LORELEI", Lorelei);
 	prepChar(justUpdate, "VELTA", Velta);
 	prepChar(justUpdate, "BIANCA", Bianca);
-	prepShip(justUpdate, "SHIP", Casstech);
 	prepChar(justUpdate, "KIONA", Kiona);
 	prepChar(justUpdate, "NYKKE", Nykke);
 	prepChar(justUpdate, "VAHN", Vahn);
@@ -204,6 +203,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "FOCALOR", Focalor);
 	prepChar(justUpdate, "OLYMPIA", Olympia);
 	prepChar(justUpdate, "MAKIUS", Makius);
+	
+	prepShip(justUpdate, "SHIP", Casstech);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)
@@ -224,6 +225,7 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 	if (!justUpdate || (justUpdate && chars[index] == undefined))
 	{
 		var objInst:Object = new classT();
+		if (!objInst.neverSerialize) objInst.preCache();
 		chars[index] = objInst;
 		charDict[objInst] = index;
 	}
@@ -233,6 +235,7 @@ public function prepShip(justUpdate:Boolean, index:String, classT:Class):void
 	if (!justUpdate || (justUpdate && shits[index] == undefined))
 	{
 		var objInst:Object = new classT();
+		if (!objInst.neverSerialize) objInst.preCache();
 		shits[index] = objInst;
 		shitDict[objInst] = index;
 	}

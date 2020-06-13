@@ -455,7 +455,7 @@ public function yarastaIntroduction(nextScenes:*):void
 	output(" <i>“Very pleased to meet you. I’m Yarasta, a prefect at the thollum.”</i>");
 
 	output("\n\n<i>“[pc.name],”</i> you respond, taking the proffered hand.");
-	if(pc.isBimbo()) output(" <i>“Um, did you you say ‘perfect’?”</i>");
+	if(pc.isBimbo()) output(" <i>“Um, did you say ‘perfect’?”</i>");
 	else output("<i>“Did you say ‘prefect’?”</i>");
 
 	if(pc.myrScore() >= 4) output("\n\nYarasta looks quite confused as you shake hands. The police at your side elucidates. <i>“[pc.HeShe]’s an offworlder.”</i>");
@@ -1999,7 +1999,7 @@ public function doYarastaDoggieStyle():void
 	else output("dirty paving-stone floor");
 	output(", stuck on autopilot by lust. Drool spills from her half-closed mouth, dislodged by your frenzied ");
 	if(x >= 0) output("[pc.cockNounSimple " + x + "]-");
-	else if(x == -1) output("[pc.tailCockLight]-");
+	else if(x == -1) output("[pc.tailCock]-");
 	else output("pelvic ");
 	output("strokes, and her vagina convulses with a second orgasm. Her stress and responsibilities have been completely obliterated in her mind, leaving nothing but sex, sex, sex. Your own brain is so red-hued and feral with the act that you almost don’t hear her over your approaching climax.");
 

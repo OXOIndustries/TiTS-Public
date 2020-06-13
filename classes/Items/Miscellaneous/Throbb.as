@@ -133,7 +133,7 @@
 				kGAMECLASS.output("\n\nThe room tilts slightly on its axis, and you move your head to compensate, aware that the Throbb must be doing this but bound by your body’s traitorous senses to experience it all the same. Your [pc.skin] flushes hotly a moment later, fed by the rapid-fire hammering of your accelerating heartbeat. A slow moan slips out between your lips as your thoughts invariably slip into sexual musings, wondering how horny this is going to make you or if you’ll need to fuck six times a day just to function. That idea has more and more appeal; you briefly consider injecting yourself with more when your better sense asserts itself. This stuff has you panting with lust and has undoubtedly supercharged your libido!");
 				pc.libido(10);
 				pc.taint(5);
-				pc.lust(50+rand(10));
+				pc.changeLust(50+rand(10));
 				changes++;
 			}
 			//<= 50 libido get boosted by 7
@@ -142,7 +142,7 @@
 				kGAMECLASS.output("\n\nA slutty, whorish sounding moan slips out of your [pc.lips] before you can stop it. You didn’t even feel it coming, but you can tell why you made it now. Your whole body is burning up with lust, carried aloft on a wave of crimson, pulsating desire that pumps through your very veins, making your eyes cross and your tongue loll from you from your mouth. A simpering, needful whimper follows on the heels of the moan as you become completely, irrevocably aroused, too turned on to function in any sane manner. You’re certain it’s given your libido a bump, not that you mind. It’s just another excuse to fuck, after all.");
 				pc.libido(7);
 				pc.taint(3);
-				pc.lust(75+rand(10));
+				pc.changeLust(75+rand(10));
 				changes++;
 			}
 			//<= 75 libido get boosted by 5!
@@ -155,7 +155,7 @@
 				//+100+rand(10) lust
 				pc.libido(5);
 				pc.taint(2);
-				pc.lust(100);
+				pc.changeLust(100);
 				changes++;
 			}
 			//Else libido get boosted by 3!
@@ -169,7 +169,7 @@
 				kGAMECLASS.output(". Every single inch of your [pc.skin] feels tingly and sensitive, and you break out into a sweat regardless of the ambient temperature. You’re hot, inside and out, fiendishly aroused by the Throbb. You wonder just how much fucking hornier it can get you. It’s kind of hard to think straight with how turned on you are right now, but you have a hard time caring. It feels so good, and you’re going to get so big and sexy!");
 				pc.libido(3);
 				pc.taint(1);
-				pc.lust(100);
+				pc.changeLust(100);
 				changes++;
 			}
 			//GROWTH! REQUIRES DICK!
@@ -209,14 +209,14 @@
 			}
 			
 			//Grow balls from nothing!
-			if(pc.ballsUnlocked(2) && pc.balls == 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
+			if(pc.ballsUnlocked(2) && pc.balls <= 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nJust when you’re getting into the chemical arousal that’s coursing through you, your gut twists, and nausea threatens to overwhelm you. Something is squeezing down on you painfully hard! You check, but there’s nothing there aside from your hand massaging your embiggened phallus. Closing your eyes, you try to identify the source of your discomfort. The tightness shifts lower, sliding down and granting you relief at last. You open your eyes to see something entirely unexpected - a small scrotum with two lumps inside. <b>You have grown testicles!</b>");
 				pc.balls = 2;
 				pc.ballSizeRaw = 3;
 				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 3;
 				changes++;
 			}
-			else if (!pc.ballsUnlocked(2))
+			else if (!pc.ballsUnlocked(2) && pc.balls <= 0)
 			{
 				kGAMECLASS.output(pc.ballsLockedMessage());
 			}
@@ -244,7 +244,7 @@
 				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>Your [pc.balls] got bigger!</b>");
 				changes++;
 			}
-			else if (!pc.ballSizeUnlocked(newBallSize))
+			else if (!pc.ballSizeUnlocked(newBallSize) && pc.balls > 0)
 			{
 				kGAMECLASS.output(pc.ballSizeLockedMessage());
 			}

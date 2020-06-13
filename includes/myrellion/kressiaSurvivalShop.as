@@ -250,7 +250,7 @@ public function discountFlirtsFromPolyants():void
 		output("\n\n<i>“She’s even talked about watching me get milked! That’s the thing about reds: after you peel away their uptight shell, they’re just as lusty as any of us golds. Maybe even more so,”</i> she states quietly, giving you a salacious wink.");
 		output("\n\n<i>“So, " + pc.mf("Mister","Miss") + " Steele. What did you have in mind?”</i>");
 		processTime(4);
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	//Repeat
 	//choose sex from the main shop menu
@@ -266,7 +266,7 @@ public function discountFlirtsFromPolyants():void
 		output("\n\n<i>“Just let me close up shop and we can talk ‘business,’”</i> Shiare replies, sauntering over to the door and flipping a small wooden sign before locking it. The curvaceous honeypot’s body language shifts as she turns, giving you a seductive grin as she returns to your side.");
 		output("\n\n<i>“Well, " + pc.mf("Mister","Miss") + " Steele. What did you have in mind?”</i>");
 		processTime(4);
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	survivalShopSexMenu();
 }
@@ -632,7 +632,7 @@ public function antPowerOverwhelming():void
 		output(".");
 		//(pass 2 hours, +40 lust)
 		processTime(120);
-		pc.lust(40);
+		pc.changeLust(40);
 	}
 	//repeat
 	else
@@ -647,7 +647,7 @@ public function antPowerOverwhelming():void
 		output("\n\nYou take the device back, leaving the two to their shared affections. Maybe some place out there a similar connection waits for you.");
 		//(pass 2 hours, +20 lust)
 		processTime(120);
-		pc.lust(20);
+		pc.changeLust(20);
 	}
 	IncrementFlag("ANT_PANTIES_SHARED");
 	IncrementFlag("DISCOUNT_SEXED_SURVIVAL_SHOP");

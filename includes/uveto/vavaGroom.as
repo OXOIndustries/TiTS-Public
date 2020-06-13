@@ -281,7 +281,9 @@ public function vavaGroomRoleResponse(response:String = ""):void
 			
 			// [Anno] [Erra] [Sera] [Reaha] [Multiple] [In Waiting]
 			clearMenu();
-			if(pets.length > 0)
+			var havePetBlurbs:Boolean = (pets.length > 0);
+			if(pets.length == 1 && pets[0] == "Bimbo Pexiga") havePetBlurbs = false;
+			if(havePetBlurbs)
 			{
 				for(i = 0; i < pets.length; i++)
 				{
@@ -593,7 +595,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 	{
 		case 0:
 			output("Oh, why not. You tap your credit stick against the holo-pad Estie proffers you, and Cruff walks you into one of the rooms adjoining the cargo bay.");
-			output("\n\nA pleasant herbal smell engulfs you as you enter. Warm light suffuses here too, and the walls crawl with dark green vines. Are they real? The rustle of leaves and sounds of a deep, sultry jungle surely can’t be. About twenty plush pads of various sizes float in the middle of the room, like a giant, untethered mobile.");
+			output("\n\nA pleasant herbal smell engulfs you as you enter. Warm light suffuses the room, and the walls crawl with dark green vines. Are they real? The rustle of leaves and sounds of a deep, sultry jungle surely can’t be. About twenty plush pads of various sizes float in the middle of the room like a giant, untethered mobile.");
 			output("\n\n<i>“If you could");
 			if(!pc.isNude()) output(" take your outer garments off and");
 			output(" make yourself comfortable, Steele,”</i> says Cruff, examining a glittering array of clippers and combs on a table as Estie walks in with an armful of bottles.");
@@ -613,7 +615,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			
 			processTime(12);
 			//+ Lust
-			pc.lust(35);
+			pc.changeLust(35);
 			pc.credits -= 1000;
 			
 			// PC not 100% HP:
@@ -632,7 +634,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			break;
 		case 1:
 			output("<i>“Stage 2,”</i> growls Cruff softly.");
-			if(!pc.isTaur()) output(" You are slightly shaken out of your reverie as the pads underneath you rearrange themselves so that you are slid back into the upright seated position.");
+			if(!pc.isTaur()) output(" You are shaken out of your reverie as the pads underneath you rearrange themselves so that you are slid back into the upright seated position.");
 			output(" The pads serving as arm rest stretch out, allowing Estie to take hold of one of your hands and apply a file to the");
 			if(pc.hasArmFlag(GLOBAL.FLAG_HOOVES)) output(" hooves");
 			else if(pc.hasClawedHands()) output(" claws");
@@ -653,7 +655,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 				{
 					if(pc.tailCount == 1) output(" Estie seems utterly unfazed by the flagrantly sexual nature of it; she briskly cleans and oils it from tail to tip, making the thing thrum with arousal.");
 					else output(" Estie seems utterly unfazed by the flagrantly sexual nature of them; she briskly cleans and oils them from tail to tip, making them thrum with arousal.");
-					pc.lust(15);
+					pc.changeLust(15);
 				}
 				else
 				{
@@ -665,7 +667,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			if(pc.hasHair() && pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) output("Your head is dipped in warm water, and then Cruff sets about it with comb and brush. ");
 			// Animal ears/elf ears:
 			if(pc.hasLongEars() || pc.hasEmoteEars()) output("You don’t know if he spends an inordinate amount of time stroking behind your [pc.ears] on purpose - tightening his focus down until he’s applying just the right amount of pressure to make tingles run up your spine - but it’s intensely, almost shamefully pleasurable.");
-			output("\n\nEstie scrapes away the cream on your face, and finally they both stand back to allow mechanical arms to reach down from the ceiling and blast you from all sides with warm, dry air.");
+			output("\n\nEstie scrapes away the cream on your face, and they both stand back to allow mechanical arms to reach down from the ceiling and blast you from all sides with warm, dry air.");
 			if((pc.hasHair() && pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) || pc.hasPartFur() || pc.hasPartFeathers()) output(" Cruff closes in for one last careful brushing.");
 			output(" Finally, Estie takes the eye pads off, and both of them come around to hold up mirrors to your face and back, swiveling them so you can see everything.");
 			
@@ -875,7 +877,7 @@ public function vavaGroomEroticTraining(response:String = ""):void
 			processTime(12);
 			
 			// ++Lust
-			pc.lust(35);
+			pc.changeLust(35);
 			
 			// [pb]
 			clearMenu();

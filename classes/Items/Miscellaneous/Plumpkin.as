@@ -83,7 +83,7 @@
 			}
 			
 			useEffect(target);
-			if(addStat > 0) target.energy(addStat);
+			if(addStat > 0) target.changeEnergy(addStat);
 			
 			return false;
 		}

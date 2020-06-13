@@ -160,6 +160,7 @@
 			var v:VaginaClass = vaginas[0];
 			v.wetnessRaw = 3;
 			v.loosenessRaw = 3;
+			v.bonusCapacity += 75;
 			
 			//balls
 			this.balls = 0;
@@ -310,7 +311,7 @@
 				output("The temptress unleashes a pair of darts directly at " + (target.getCombatName()));
 				if(!rangedCombatMiss(this, target)) 
 				{
-					output(", slamming them into " + target.mfn("his","her","its") + " chest. " + StringUtil.toTitleCase(getCombatName()) + " looks at them in confusion before going stiff, paralyzed.");
+					output(", slamming them into " + target.mfn("his","her","its") + " chest. " + StringUtil.toTitleCase(target.getCombatName()) + " looks at them in confusion before going stiff, paralyzed.");
 					CombatAttacks.applyParalyze(target, 2);
 				}
 				else output(", who nimbly dodges them.");

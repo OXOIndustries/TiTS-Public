@@ -1172,7 +1172,6 @@ public function initZhengRooms():void
 	rooms["ZSF I22"].moveMinutes = 1;
 	rooms["ZSF I22"].runOnEnter = foundryLoungeBonus;
 	rooms["ZSF I22"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF I22"].addFlag(GLOBAL.NPC);
 
 	rooms["ZSF G22"] = new RoomClass(this);
 	rooms["ZSF G22"].roomName = "BREAK\nROOM";
@@ -2444,6 +2443,7 @@ public function initZhengRooms():void
 	rooms["ZSR N33"].moveMinutes = 3;
 	//rooms["ZSR N33"].runOnEnter = null;
 	rooms["ZSR N33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR N33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR P33"] = new RoomClass(this);
@@ -2458,6 +2458,7 @@ public function initZhengRooms():void
 	rooms["ZSR P33"].moveMinutes = 3;
 	//rooms["ZSR P33"].runOnEnter = null;
 	rooms["ZSR P33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR P33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR P33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR R33"] = new RoomClass(this);
@@ -2472,6 +2473,7 @@ public function initZhengRooms():void
 	rooms["ZSR R33"].moveMinutes = 3;
 	//rooms["ZSR R33"].runOnEnter = null;
 	rooms["ZSR R33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR R33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR R33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR T33"] = new RoomClass(this);
@@ -2486,6 +2488,7 @@ public function initZhengRooms():void
 	rooms["ZSR T33"].moveMinutes = 3;
 	//rooms["ZSR T33"].runOnEnter = null;
 	rooms["ZSR T33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR T33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR T33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR N23"] = new RoomClass(this);
@@ -2500,6 +2503,7 @@ public function initZhengRooms():void
 	rooms["ZSR N23"].moveMinutes = 3;
 	//rooms["ZSR N23"].runOnEnter = null;
 	rooms["ZSR N23"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N23"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR N23"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR N25"] = new RoomClass(this);
@@ -2514,6 +2518,7 @@ public function initZhengRooms():void
 	rooms["ZSR N25"].moveMinutes = 3;
 	//rooms["ZSR N25"].runOnEnter = null;
 	rooms["ZSR N25"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N25"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR N25"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L25"] = new RoomClass(this);
@@ -2528,6 +2533,7 @@ public function initZhengRooms():void
 	rooms["ZSR L25"].moveMinutes = 3;
 	//rooms["ZSR L25"].runOnEnter = null;
 	rooms["ZSR L25"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L25"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L25"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR J25"] = new RoomClass(this);
@@ -2542,6 +2548,7 @@ public function initZhengRooms():void
 	rooms["ZSR J25"].moveMinutes = 3;
 	//rooms["ZSR J25"].runOnEnter = null;
 	rooms["ZSR J25"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR J25"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR J25"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR J23"] = new RoomClass(this);
@@ -2556,6 +2563,7 @@ public function initZhengRooms():void
 	rooms["ZSR J23"].moveMinutes = 3;
 	//rooms["ZSR J23"].runOnEnter = null;
 	rooms["ZSR J23"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR J23"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR J23"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR J41"] = new RoomClass(this);
@@ -2570,6 +2578,7 @@ public function initZhengRooms():void
 	rooms["ZSR J41"].moveMinutes = 3;
 	//rooms["ZSR J41"].runOnEnter = null;
 	rooms["ZSR J41"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR J41"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR J41"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L41"] = new RoomClass(this);
@@ -2584,6 +2593,7 @@ public function initZhengRooms():void
 	rooms["ZSR L41"].moveMinutes = 3;
 	//rooms["ZSR L41"].runOnEnter = null;
 	rooms["ZSR L41"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L41"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L41"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR N41"] = new RoomClass(this);
@@ -2598,6 +2608,7 @@ public function initZhengRooms():void
 	rooms["ZSR N41"].moveMinutes = 3;
 	//rooms["ZSR N41"].runOnEnter = null;
 	rooms["ZSR N41"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N41"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR N41"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR J33"] = new RoomClass(this);
@@ -2612,6 +2623,7 @@ public function initZhengRooms():void
 	rooms["ZSR J33"].moveMinutes = 3;
 	//rooms["ZSR J33"].runOnEnter = null;
 	rooms["ZSR J33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR J33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR J33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR H33"] = new RoomClass(this);
@@ -2626,6 +2638,7 @@ public function initZhengRooms():void
 	rooms["ZSR H33"].moveMinutes = 3;
 	//rooms["ZSR H33"].runOnEnter = null;
 	rooms["ZSR H33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR H33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR H33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR F33"] = new RoomClass(this);
@@ -2641,6 +2654,7 @@ public function initZhengRooms():void
 	rooms["ZSR F33"].moveMinutes = 3;
 	rooms["ZSR F33"].runOnEnter = bonusHolosharkFun;
 	rooms["ZSR F33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR F33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR F33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR D33"] = new RoomClass(this);
@@ -2655,6 +2669,7 @@ public function initZhengRooms():void
 	rooms["ZSR D33"].moveMinutes = 3;
 	//rooms["ZSR D33"].runOnEnter = null;
 	rooms["ZSR D33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR D33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR D33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L31"] = new RoomClass(this);
@@ -2669,6 +2684,7 @@ public function initZhengRooms():void
 	rooms["ZSR L31"].moveMinutes = 3;
 	//rooms["ZSR L31"].runOnEnter = null;
 	rooms["ZSR L31"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L31"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L31"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L29"] = new RoomClass(this);
@@ -2683,6 +2699,7 @@ public function initZhengRooms():void
 	rooms["ZSR L29"].moveMinutes = 3;
 	//rooms["ZSR L29"].runOnEnter = null;
 	rooms["ZSR L29"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L29"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L29"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L27"] = new RoomClass(this);
@@ -2698,6 +2715,7 @@ public function initZhengRooms():void
 	rooms["ZSR L27"].moveMinutes = 3;
 	//rooms["ZSR L27"].runOnEnter = null;
 	rooms["ZSR L27"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L27"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L27"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L35"] = new RoomClass(this);
@@ -2712,20 +2730,22 @@ public function initZhengRooms():void
 	rooms["ZSR L35"].moveMinutes = 3;
 	//rooms["ZSR L35"].runOnEnter = null;
 	rooms["ZSR L35"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L35"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L35"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L37"] = new RoomClass(this);
 	rooms["ZSR L37"].roomName = "CRIMSON\nPATH";
-	rooms["ZSR L37"].description = "A kiosk sits propped against the eastern wall, filled with strange-looking headphones. Its signage declares them to be “hedon-guard” headphones, and the price is listed as “free for Rat’s Raiders, via DNA-scan.” There’s a spot to place a thumb for testing, and a slot for the strange devices to dispense into, assuming the user’s packing suitably rodenian DNA. Half the racks still hold headphones, the rest already dispensed to mouse-folk in need of a bit of aural protection - or in need of the few credits they can make flipping them elsewhere.";
+	rooms["ZSR L37"].description = "A kiosk sits propped against the eastern wall, filled with strange-looking headphones. Its signage declares them to be “hedon-guard” headphones, and the price is listed as “free for Rat’s Raiders, via DNA-scan.” There’s a spot to place a thumb for testing, and a slot for the strange devices to dispense into, assuming the user’s packing suitably rodenian DNA. Half the racks still hold headphones, the rest already dispensed to mouse-folk in need of a bit of aural protection - or in need of the few credits they can make flipping them elsewhere.\n\nYou notice what appears to be a... storefront? Albeit a rather shady looking one. It’s just a door with a sign that says <b>“SELL HERE”</b>...";
 	rooms["ZSR L37"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L37"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L37"].northExit = "ZSR L35";
-	rooms["ZSR L37"].eastExit = "";
+	rooms["ZSR L37"].eastExit = "ZSR N37";
 	rooms["ZSR L37"].southExit = "ZSR L39";
 	rooms["ZSR L37"].westExit = "";
 	rooms["ZSR L37"].moveMinutes = 3;
 	//rooms["ZSR L37"].runOnEnter = null;
 	rooms["ZSR L37"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L37"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L37"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L39"] = new RoomClass(this);
@@ -2740,6 +2760,7 @@ public function initZhengRooms():void
 	rooms["ZSR L39"].moveMinutes = 3;
 	//rooms["ZSR L39"].runOnEnter = null;
 	rooms["ZSR L39"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L39"].addFlag(GLOBAL.PUBLIC);
 	//rooms["ZSR L39"].addFlag(GLOBAL.HAZARD);
 	
 	rooms["ZSR F35"] = new RoomClass(this);
@@ -2797,6 +2818,7 @@ public function initZhengRooms():void
 	rooms["ZSR H31"].runOnEnter = enteringTreasureNovaBonus;
 	rooms["ZSR H31"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR H31"].addFlag(GLOBAL.FOREST);
+	rooms["ZSR H31"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZSR J31"] = new RoomClass(this);
 	rooms["ZSR J31"].roomName = "\nSLOTS";
@@ -2811,6 +2833,7 @@ public function initZhengRooms():void
 	//rooms["ZSR J31"].runOnEnter = null;
 	rooms["ZSR J31"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR J31"].addFlag(GLOBAL.FOREST);
+	rooms["ZSR J31"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZSR J29"] = new RoomClass(this);
 	rooms["ZSR J29"].roomName = "GAME\nFLOOR";
@@ -2826,6 +2849,7 @@ public function initZhengRooms():void
 	rooms["ZSR J29"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR J29"].addFlag(GLOBAL.NPC);
 	rooms["ZSR J29"].addFlag(GLOBAL.FOREST);
+	rooms["ZSR J29"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZSR H29"] = new RoomClass(this);
 	rooms["ZSR H29"].roomName = "\nAQUARIUS";
@@ -2841,6 +2865,7 @@ public function initZhengRooms():void
 	rooms["ZSR H29"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR H29"].addFlag(GLOBAL.COMMERCE);
 	rooms["ZSR H29"].addFlag(GLOBAL.FOREST);
+	rooms["ZSR H29"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZSR J27"] = new RoomClass(this);
 	rooms["ZSR J27"].roomName = "CASINO\nGATE";
@@ -2855,6 +2880,7 @@ public function initZhengRooms():void
 	rooms["ZSR J27"].runOnEnter = enteringTreasureNovaBonus;
 	rooms["ZSR J27"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR J27"].addFlag(GLOBAL.FOREST);
+	rooms["ZSR J27"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZSR H27"] = new RoomClass(this);
 	rooms["ZSR H27"].roomName = "\nLOUNGE";
@@ -2869,6 +2895,7 @@ public function initZhengRooms():void
 	//rooms["ZSR H27"].runOnEnter = null;
 	rooms["ZSR H27"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR H27"].addFlag(GLOBAL.FOREST);
+	rooms["ZSR H27"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZSR PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSR PLACEHOLDER"].roomName = "\n";
@@ -2894,4 +2921,15 @@ public function initZhengRooms():void
 	rooms["ZSR LORELEI"].runOnEnter = enterLoreleisHouse;
 	rooms["ZSR LORELEI"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR N31"] = rooms["ZSR LORELEI"];
+
+	rooms["ZSR N37"] = new RoomClass(this);
+	rooms["ZSR N37"].roomName = "";
+	rooms["ZSR N37"].description = "";
+	rooms["ZSR N37"].planet = "ZHENG SHI STATION";
+	rooms["ZSR N37"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR N37"].westExit = "ZSR L37";
+	rooms["ZSR N37"].moveMinutes = 3;
+	rooms["ZSR N37"].runOnEnter = vulriksShopBonus;
+	rooms["ZSR N37"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N37"].addFlag(GLOBAL.NPC);
 }

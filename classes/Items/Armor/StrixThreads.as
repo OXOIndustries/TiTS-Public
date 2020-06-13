@@ -8,6 +8,7 @@ package classes.Items.Armor
 	
 	public class StrixThreads extends ItemSlotClass
 	{
+		//Level 7 Common
 		public function StrixThreads()
 		{
 			_latestVersion = 1;
@@ -32,6 +33,7 @@ package classes.Items.Armor
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 3;
+			this.resolve = 2;
 			critBonus = 0;
 			evasion = 8;
 			fortification = 0;

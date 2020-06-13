@@ -323,7 +323,7 @@ public function stephODEp1II():void
 	output("\n\n<i>“This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.”</i>");
 	
 	processTime(30);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",backToSmutMenu);
 }
@@ -359,7 +359,7 @@ public function stephODEp2():void
 	output("\n\nThe goo and Steph both stare at the huntress’s wrist as it vanishes into the goo-girl’s tit. <i>“Oops. I guess I’m hungry! Oh well! This is gonna be super duper fun, Miss Irson, I promise.”</i>");
 	output("\n\nSteph manages only to let out a panicked scream as a surge of gray goo rushes up her arm, crashing across her body like a tidalwave, pulling her into the main mass of silvery machines. Her voice is silenced as a million micromachines surround her, dragging the show’s host into the googirl’s body until there’s no trace of her left except her ponytail wiggling around behind the goo’s head, dripping with moist micromachines. Giggling to herself, the goo spins around and strikes a pose, now almost perfectly mirroring Steph’s shapely, athletic form (except for a much larger bust and ass), even pouring herself in to fill out the huntress’s clothes.");
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",stephODEp2II);
 }
@@ -382,7 +382,7 @@ public function stephODEp2II():void
 	output("\n\nBack on screen, the gray goo encasing Steph Irson has rolled onto her back, spreading her legs for the camera, fingers delving into poor Steph’s gaping cunt, thumb teasing the bud of her clitty. The goo herself is giving the audience a playful grin, clearly enjoying the galactic attention - or at least that of the drone as it buzzes around her, always searching for the best angle. Giving a little gasp of pleasure, her slimy fingers slip into Steph’s folds, spreading her cunt out for its closeup. The drone dutifully flies in, giving you a perfect High-Def view of Steph Irson’s pussy gaped around the googirl’s hand as she starts to jill off.");
 	output("\n\n<i>“Are you getting close, galaxy?”</i> the goo grins, fingers moving faster and faster through Steph’s exposed groin. Mimicking Steph’s own accent, she continues, <i>“Well, I sure am! Let’s finish together, everyone!”</i>");
 	
-	pc.lust(33);
+	pc.changeLust(33);
 	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone’s eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>“Experiencing Technical Difficulties”</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
 	output("\n\n<i>“So, you’re gonna edit all that out in post, right?”</i> the goo giggles, just as a commercial comes on.");
 	
@@ -415,7 +415,7 @@ public function stephODEp3():void
 	output("\n\n<i>“Croickey! That’s amazing!”</i> Steph says, clearly surprised. <i>“I think I’ll be switching brands at home if all the girls have your talented teats!”</i>");
 	output("\n\n<i>“Glad you liked it,”</i> the cow-girl murmurs, half asleep in her afterglow.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",stephODEp3II);
 }
@@ -440,7 +440,7 @@ public function stephODEp3II():void
 	output("\n\nHe turns to Steph with a toothy grin and grabs the Huntress’s ass in both hands, pulling the khaki-clad hostess up against himself. Steph makes a pathetic little yelp as she’s all but hauled off of her feet, her bare legs rubbing up against the bull’s half-hard prick - which immediately smears her tanned flesh with thick, white cream.");
 	output("\n\nThe bull grabs the camera drone as it passes by, making it chirp and buzz at him as he pulls its camera around to look him right in the face. <i>“Want some exciting television, viewers? I hear this slut tapes live, don’tcha?”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",stephODEp3III);
 }
@@ -478,7 +478,7 @@ public function stephODEp3III():void
 	output("\n\n... Only to turn back, grab the camera drone right out of the air, and give it a toothy grin. <i>“That’s it for this week’s episode of </i>Galactic Slutress<i>. Tune in next week to watch this big-titted bimbo get fucked by something else. Oh - and hi, mom!”</i>");
 	output("\n\nThe camera feed cuts out, and a commercial break cuts in.");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(29);
 	clearMenu();
 	addButton(0,"Next",backToSmutMenu);
@@ -523,7 +523,7 @@ public function stephODEp4II():void
 	output("\n\n<i>“Tell me about it!”</i> the nyrea smiles, folding her arms behind her back in a way that compels the camera to zoom in on her thrust-out chest, giving you a view of cream-pale flesh and black nipples that are still nice and stiff. <i>“Ugh, I’m so sick of...”</i>");
 	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that’s only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
 	processTime(6);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",stephODEp4III);
 }
@@ -545,7 +545,7 @@ public function stephODEp4III():void
 	else output(" totally");
 	output(" could have broken my neck falling like that!”</i>");
 	processTime(6);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",stephODEp4IV);
 }
@@ -562,7 +562,7 @@ public function stephODEp4IV():void
 	output("\n\nSteph struggles feebly against her tentacle restraints, her resistance slowly fading away to limp submission as the tentacles drain her milk and pump her full of their own juices. Her silvery-blue eyes roll back as a particularly meaty tentacle squirms its way into her cunt, spreading her wide over its turgid length. Its bulbous head vanishes, only visible as it bulges her gut with the sheer depth and size of its penetration. She screams in pleasure around the squirming vine, her body convulsing around the twin tentacles. The camera shifts in for a close up of Steph’s pussy, and the trickle of white goop spilling out around the vine - the tentacle creature’s seed, no doubt, filling her womb beyond capacity.");
 	output("\n\nHer whole body goes stiff a second later, drawing the drone around to her big, jiggly backside as a third, smaller vine spreads her cheeks in a desperate bid to get at her last unfilled hole. Its bulbous, cock-like head spurts a thick coat of white spunk over Steph’s ass, using its own cum as lube to worm its way through her clenched behind. She screams again as the vine vanishes inside her, completing the three-way fucking she’s fallen into with a powerful, thigh-drenching orgasm.");
 	processTime(6);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",stephODEp4V);
 	addButton(1,"StopWatching",backToSmutMenu);
@@ -583,7 +583,7 @@ public function stephODEp4V():void
 	if (pc.libido() >= 40) output(" Not that you’re complaining...");
 	
 	processTime(6);
-	pc.lust(7);
+	pc.changeLust(7);
 	clearMenu();
 	addButton(0,"Next",backToSmutMenu);
 }
@@ -642,7 +642,7 @@ public function stephODEp5II():void
 	output("\n\nThe camera drone buzzes around, sweeping from one side of the vigorous gang-bang to the other. Several bare furry asses are pounding away at Steph, making her ample curves jiggle obscenely. She moans and gasps, bucking against the many bodies writhing overtop her. Her tail, at least, seems quite happy with its predicament, thrusting deep into the unlucky dog-boy’s ass to the same rhythm that he’s pounding his knot over and over into Steph’s pussy with. He can’t find purchase in her gaping, sodden fuck-hole - even a turgid canid bitch-breaker can’t plug her plump gray pussy.");
 	output("\n\nYou’re treated to long, lusty minutes of furry bodies humping away at the show’s host, fucking her into the dusty snow. Eventually, Steph stops struggling and starts moaning lustily, gripping at the fluffy bodies on top of her and slurping her way up and down the shaft in her mouth. Her hips wiggle and thrust back against the dick trying and failing to knot her, right up until the poor pup grunts and shudders, and the camera drone dutifully zooms in to watch a waterfall of creamy white spurt out around his knot. Steph gasps and giggles, reaching down to pet the korgonne between his low-tucked ears... until she gets distracted by a sudden eruption of puppy-cream between her soles, and then another into the pillowy depths of her cleavage. A little geyser of milk squirts out of her silvered nipples as the two top-mounted korgonne work themselves over the edge, leaving Steph an insensate, moaning mess. She’s not far behind them now!");
 	processTime(8);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",stephODEp5III);
 }
@@ -665,7 +665,7 @@ public function stephODEp5III():void
 	output("\n\n<i>“What are you - aahh! I can’t... So good!”</i>");
 	output("\n\nThe way she’s babbling, you feel like somehow you’re only getting half the conversation. Is the microphone busted?");
 	output("\n\n<i>“Okay! Okay!”</i> Steph gasps, flopping back. She gives a nervous look between the feral beast overtop her and the camera drone. Biting her lip, Steph hooks her hands under her legs and curls herself up at the monster, presenting her still-stuffed pussy to it like an eager whore. The drake growls, shifting its massive weight to reveal a dick every bit as massive and reptilian as you’d expect from such a monster, peeking out of a deep-seated slit in its hide quarters. It grows and grows, from a tapered tip already as big as your fist to a tree-trunk shaft that throbs with bestial desire.");
-	output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
+	//output("\n\nThe camera feed crackles, and you hear a pair of disembodied voices:");
 	output("\n\nThe frosty drake’s front legs slam into the ground on either side of Steph, and its broad flanks rock forward until its titanic cockhead is grinding heavily against her sex. ");
 	//not seen Tarkus ep: 
 	if(flags["STEPH_GOOED"] == undefined) output("By some miracle, ");
@@ -691,7 +691,7 @@ public function stephODEp5III():void
 	output("\n\n<i>“Tune in next week for - oh no!”</i> Steph yelps as several dark doggy-cocks flop onto her face, even as she’s being hauled off. Before one of them can plug itself in her lips, she manages to shout <i>“Uh, commercials! See ya next time!”</i>");
 	output("\n\n...Somehow she didn’t seem too distressed about her fate, there. Maybe she liked the korgonnes’ “hugs” a little too much...");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",backToSmutMenu);

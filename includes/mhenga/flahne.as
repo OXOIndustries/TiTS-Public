@@ -151,7 +151,7 @@ public function flahneApproach():void
 		output("Flahne unbuttons part of her top as you approach, licking her lips lewdly. <i>“I’m not sure I could thank you enough for your work with Penny, but I’m willing to try if you are.”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
 		output("\n\nWhat did you want with Flahne?");
 	}
-	else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined)
+	else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && pennyIsCumSlut())
 	{
 		flahneTalksAboutCumslutPenny();
 		return;
@@ -401,7 +401,7 @@ public function watchFlahne():void {
 	output("\n\nYou smile and thank her for being so accommodating, a bit turned on from the show.");
 	
 	//Boost lust
-	pc.lust(10);
+	pc.changeLust(10);
 	//Pass 10 minutes.
 	processTime(10);
 	//Out to room.
@@ -423,7 +423,7 @@ public function popOviOut():void {
 	//5 minutes pass
 	processTime(5);
 	//choose sex menu
-	pc.lust(5);
+	pc.changeLust(5);
 	flahneSexMenu(false);
 }
 
@@ -878,7 +878,7 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	//Cum
 	pc.orgasm();
 	//Small lust boost.
-	pc.lust(5);
+	pc.changeLust(5);
 	flahneFuckCounter(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1013,7 +1013,7 @@ public function eatFlahneOutUnderDesk():void {
 	flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] = 1;
 
 	//+lust, big MP gain
-	pc.lust(5+rand(5));
+	pc.changeLust(5+rand(5));
 	pc.exhibitionism(1);
 	//Just grabbing a random girl to squirt some ladycum on in...
 	pc.girlCumInMouth(chars["KIRO"]);
@@ -1147,7 +1147,7 @@ public function playAndSpray():void {
 	output("\n\nWith nothing else to say, you dutifully exit the office and are not terribly surprised when you hear the click of the door right behind you.");
 	
 	//gain like 100 lust and some lib, become slightly meaner in personality, Flahne gets mad and won’t talk to you for a while, Play&Spray is off-limits for a good long while/permanently (or maybe even all the desk-play is similarly restricted if you want to be thorough)
-	pc.lust(10000);
+	pc.changeLust(10000);
 	pc.libido(2);
 	processTime(20+rand(10));
 	//100 hours of pissed!

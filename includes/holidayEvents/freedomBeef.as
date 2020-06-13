@@ -256,7 +256,7 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	output("\n\nAs if to punctuate her request, the bison-girl’s black twat winks hungrily at you, smearing the leather straps with thick, viscous trails of musky feminine juice.");
 
 	processTime(15+rand(10));
-	pc.lust(5);
+	pc.changeLust(5);
 	pc.instaBuzzed();
 
 	//[Chaste Help] [Flirty Help] [Nope Out]
@@ -314,7 +314,7 @@ public function freedomBeefFlirtyHelp(beefType:uint):void
 	
 	output("\n\nYour squeezing her over-sized cow’s clit tells her everything she needs to know. She wanted a party, after all...");
 
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(5+rand(2));
 
 	freedomBeefSexMenu(beefType);
@@ -358,7 +358,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 		
 		output("\n\nAfter a few moments, Riley cracks another beer and sits back, happily watching her fireworks shoot off. She offers you another beer as thanks, and given the haze still lingering in your mind from the buffalo’s needy quim, you’re quick to accept. It isn’t long before lingering sex-haze is replaced by a nice, tingly buzz, and find yourself relaxing against the bison’s cobalt flank, watching the display in the sky.");
 
-		pc.lust(33);
+		pc.changeLust(33);
 		processTime(50+rand(20));
 		clearMenu();
 		addButton(0, "Next", freedomBeefChasteHelpII, beefType);
@@ -381,7 +381,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 		
 		output("\n\nYour squeezing her over-sized cow’s clit tells her everything she needs to know. She wanted a party, after all...");
 
-		pc.lust(33);
+		pc.changeLust(33);
 		processTime(5+rand(2));
 
 		freedomBeefSexMenu(beefType);
@@ -628,7 +628,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 	processTime(30+rand(5));
 	pc.orgasm();
 
-	pc.HP(-(pc.HPMax() * 0.8));
+	pc.changeHP(-(pc.HPMax() * 0.8));
 	if (pc.HP() < 1) pc.HP(1);
 	soreDebuff(3);
 	sweatyDebuff(1);

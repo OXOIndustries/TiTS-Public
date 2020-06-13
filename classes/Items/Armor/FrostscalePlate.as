@@ -8,7 +8,7 @@
 	
 	public class FrostscalePlate extends ItemSlotClass
 	{
-		//Level ??? (???). Balance 2.0
+		//Level 8 (Very Rare) Balance 2.0
 		//constructor
 		public function FrostscalePlate()
 		{
@@ -30,7 +30,7 @@
 			this.description = "a frostscale breastplate";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A icy blue breastplate made from one of [frostwyrm.name]'s scales. It might not offer much protection for your limbs, but leaves your vitals well guarded.";
+			this.tooltip = "A icy blue breastplate made from one of [frostwyrm.name]’s scales. It might not offer much protection for your limbs, but leaves your vitals well guarded.";
 
 			//A variant of the frostbane plate armor with reduced defense and freezing resistance.
 		
@@ -44,13 +44,14 @@
 			this.defense = 9;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = -2;
+			this.resolve = 3;
+			this.sexiness = 2;
 			this.critBonus = 0;
-			this.evasion = -2;
+			this.evasion = 3;
 			this.fortification = 20;
 			
-			//resistances.burning.resistanceValue = -13.0;
-			resistances.freezing.resistanceValue = 30.0;
+			resistances.kinetic.resistanceValue = 5.0;
+			resistances.freezing.resistanceValue = 33.0;
 			resistances.addFlag(DamageFlag.PLATED);
 			resistances.addFlag(DamageFlag.NULLIFYING);
 			

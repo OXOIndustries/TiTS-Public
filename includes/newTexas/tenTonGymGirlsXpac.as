@@ -264,7 +264,7 @@ public function tentongymLolaHome():void
 	IncrementFlag("TTGYM_LOLA_HOME");
 	
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	clearMenu();
 	var strapon:Boolean = false;
@@ -894,7 +894,7 @@ public function tentongymSimoneHome():void
 	IncrementFlag("TTGYM_SIMONE_HOME");
 	
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	clearMenu();	
 	if (pc.cockThatFits(chars["SIMONE"].vaginalCapacity(0)) >= 0) addButton(0, "Next", penisRouter, [tentongymSimoneHomeNextCock, chars["SIMONE"].vaginalCapacity(0), false, 0]);
@@ -1295,7 +1295,7 @@ public function tentongymBetsyVictoriaHome():void
 	IncrementFlag("TTGYM_BETSY_VICTORIA_HOME");
 	
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	clearMenu();	
 	addButton(0, "Betsy", penisRouter, [tentongymBetsyVictoriaHomeBetsy, 99999, false, 0]);
@@ -1492,7 +1492,7 @@ public function tentongymBetsyVictoriaGymShowerNotNow():void
 	output("\n\n<i>“Ooh, I like,”</i> Betsy says. The two lovers wander off toward their new potential partner.");
 	
 	processTime(10);
-	pc.lust(30+rand(20));
+	pc.changeLust(30+rand(20));
 	pc.exhibitionism(1);
 	pc.shower();
 	
@@ -1639,7 +1639,7 @@ public function tentongymLolaSimoneHome():void
 	}
 		
 	processTime(30);
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	clearMenu();	
 	if (pc.cockThatFits(tentongymLolaSimoneSmallestHoleCap()) >= 0) addButton(0, "Next", penisRouter, [tentongymLolaSimoneHomeStart, tentongymLolaSimoneSmallestHoleCap(), false, 0]);

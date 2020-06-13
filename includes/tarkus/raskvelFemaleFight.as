@@ -861,7 +861,7 @@ public function getPeggedWhileDoublePenetrate():void
 	else output("at least two ");
 	output("of your dicks in her passages, particularly the purple interior of her soaking-wet cunt. She doesn’t allow that to come about. No, her foot, still stained with moisture and cock-scent, slams down on your chest");
 	if(pc.biggestTitSize() >= 1) output(", right between your [pc.fullChest]");
-	output(", pinning you you flat on the ground. She follows up before you can react, vaulting onto your [pc.hips] so that your [pc.cocks] are pinned behind her smooth-scaled bottom, one threading so perfectly between her cheeks that you nearly blow your load all over her lovely crack.");
+	output(", pinning you flat on the ground. She follows up before you can react, vaulting onto your [pc.hips] so that your [pc.cocks] are pinned behind her smooth-scaled bottom, one threading so perfectly between her cheeks that you nearly blow your load all over her lovely crack.");
 	output("\n\nSmirking and flexing her cheeks, she squeezes that [pc.cock " + y + "] with teasing compressions of her surprisingly large bottom, rolling her hips from side to side to grind her purplish pussy over your [pc.skinFurScales]. You can feel both her clits dragging along, leaving a trail of potent femslime behind them, staining you with the tiny creature’s unmistakably girlish aroma. She giggles, high pitched and tittering, before admitting, <i>“I was kind of hoping you wouldn’t pay, ya know? Not with this much dick banging along here.”</i> She lifts herself up, letting that ass-dragging prick slip its tip against her clenching pucker. <i>“Be sure and let me know if you’re ever in the market for a wife...”</i> She twists a " + pc.cockDescript(x) + " past the ass-obsessed penis so that its [pc.cockHead " + x + "] nestles in between her violet lips, nestled deep in that juicy entrance without quite going inside. She whimpers. <i>“...or a harem girl.”</i>");
 	output("\n\nYour start to answer, but before you can breathe a single word, her muscular thighs give a final quiver and turn to jello. Her body, slight as it is, is entirely supported on your [pc.cocks] for an agonizing moment. Her pussy gives up almost immediately, greedily spreading around your [pc.cock " + x + "] and swallowing the first few inches, canting the hungry slut forward so that she has to catch herself on your [pc.chest]. She groans in excitement and pinches playfully at your nipples, and then her rosebud relaxes enough to accept your [pc.cock " + y + "], the tight ring dragging along your secondary length with blissful pressure. You exhale so loudly that it sounds almost like a moan and lift your own [pc.hips] to accelerate the diminutive slut’s dick-descent.");
 	pc.cockChange(true,false);
@@ -936,6 +936,7 @@ public function catchPostBirthRaskvel():void
 {
 	showName("PREGNANT\nRASKVEL");
 	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("\n\nQuiet moans catch your ear, emanating from somewhere close by. Your attention piqued, you quietly look around for the source of the sounds. The source of the mewling sounds of pleasure obviously wants to remain hidden, but you find her all the same. There’s no hiding your surprise as you see a familiar-looking raskvel there, her legs spread akimbo, mouth open and panting. Her tail is twitching feebly next to her, and her eyes are half-closed. She’s not even cognizant of your arrival.");
 	output("\n\nThe feminine alien is clearly riding some kind of orgasmic high, but incredibly, neither of her hands are at the sodden junction of her thighs. Instead, they’re both perched upon the gravid dome of her belly, rubbing at it with slavish devotion, worshipfully stroking her own smooth-scaled skin on automatic impulse. Her greedy, purple slit isn’t like you remember it either. It’s bigger, puffier, so swollen and engorged that you can’t help but wonder if it would feel any different than the last time you were inside it.");
 	output("\n\n<i>“Ohhh, yes! Gonna have such big, strong eggs!\”</i> Her outburst catches you off guard, and you nearly stumble onto her, but catch yourself at the last minute. <i>“Mmmm... big... swollen... offworlder eggs!\”</i> The raskvel’s hips shudder violently, twisting back and forth.");
@@ -955,7 +956,7 @@ public function giveRaskvelSomeDongToSuckle():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("You make sure to make plenty of noise as you walk up to her");
 	if(pc.isCrotchGarbed()) 
 	{
@@ -1015,7 +1016,7 @@ public function giveHerSumthinToLickSloot():void
 	clearOutput();
 	var x:int = rand(pc.totalVaginas());
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("Making sure to make plenty of noise as you approach, ");
 	if(!pc.isCrotchGarbed()) 
 	{
@@ -1084,7 +1085,7 @@ public function takeOneEggSloot():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("Nodding, you put a call in for a drone to come pick up the egg. That nursery your father set up must have a transport ship set to follow you around, because a speedy little robot shows up in minutes. After a quick scan, it confirms that it’s your offspring. You place the egg in its padded chamber and send it off, back to Tavros station.");
 	output("\n\nThe mother is already passed out, and you note with a grin that her legs are still spread wide-open. At least her elastic cunt seems no worse for the wear - it’s closed as if she’d never been pregnant.");
 	processTime(2);
@@ -1120,7 +1121,7 @@ public function dontTakeARaskEgg():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("You shake your head and turn to go on your way. The mother doesn’t protest any further, in fact, she’s already snoring as you leave - and still spread-eagled in the sands.");
 	processTime(1);
 	clearMenu();
@@ -1136,12 +1137,12 @@ public function watchDatRaskvelEggLayyyy():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("The evolutionary reason for the raskvels’ exceedingly large hips makes itself known when an immense, one foot wide egg is halfway out. No normal woman could pass such a mass so easily or enjoyably, but the diminutive tart is doing so with gusto. She’s screaming out her moans now, her eyes rolled back until only the whites are visible, a long tongue drooling down the side of her face. She’s rutting out the egg an inch at a time, squirting juices every which way. Then, the ovoid mass falls out, still connected to its mother by strings of thick lubricant.");
 	output("\n\n<i>“Fffffffuck yesssss!\”</i> the raskvel hisses before losing her voice to less cogent utterances of bliss. She cradles her ");
 	if(flags["RASKVEL_EGG_COUNT"] >= 8) output("slightly ");
 	output("diminished belly with a needy look on her face. <i>“More... more!\”</i> Her lips look even more swollen now, ludicrously engorged and flushed brilliantly purple. They shine invitingly, lacquered with liquid love and begging to be stretched once more. Luckily, they have not long to wait.");
-	pc.lust(10+rand(5));
+	pc.changeLust(10+rand(5));
 	//Few eggs
 	if(flags["RASKVEL_EGG_COUNT"] <= 3) 
 	{
@@ -1339,7 +1340,7 @@ public function watchDatRaskvelEggLayyyy():void
 	
 	output("\n\nShe’s nodding vigorously, indecipherable gurgles of peaking ardor whistling out of the gaps in her strained fuck-pillows. <i>“You’ll spread your legs for me,”</i> you continue, <i>“show me your pussy... and let me decide... Nnnggh...”</i> Pre pumps in phallus-fattening quantities, pouring down her simmering throat. Her neck bulges outwards, and her small stomach expands inch by [pc.cumVisc] inch. <i>“...You’re gonna let me decide if I’m gonna make your dream of becoming a broodmother come true.”</i>");
 	output("\n\nWhen you glide over her uvula again, another gushing puddle of femme-cum surges from her unused snatch. Her vertically slit eyes contract into fucked-silly bands of saturated happiness, and a string of seemingly impossible climaxes takes her for a roller-coaster ride - destination: who the fuck knows where. Something vaguely resembling a ‘yes’ and a cough comes up, but all you needed to see was her eyes rolling back to know that this little contract has been signed.");
-	output("\n\nWith natural, rutting purpose, you ratify the deal by slamming forward in smooth rhythm Every [pc.knotBallsHilt " + kok + "]-deep, lip-squishing impact pounds your initials into her brain. Wordless pleasure answers your every follow-up question until there’s a frothy mix of hot slaver coating her and you in. When next this little bandit next sees you, she’ll make herself ready, beg for you to pump her full. She’s had all the time in the world to see your reasoning. Maybe after you’re done teaching her the finer points of negotiation she’ll see the pointlessness in hassling strangers for money.");
+	output("\n\nWith natural, rutting purpose, you ratify the deal by slamming forward in smooth rhythm. Every [pc.knotBallsHilt " + kok + "]-deep, lip-squishing impact pounds your initials into her brain. Wordless pleasure answers your every follow-up question until there’s a frothy mix of hot slaver coating her and you in. When next this little bandit next sees you, she’ll make herself ready, beg for you to pump her full. She’s had all the time in the world to see your reasoning. Maybe after you’re done teaching her the finer points of negotiation she’ll see the pointlessness in hassling strangers for money.");
 	output("\n\nThough, honestly, you doubt that very much. For now, she’s getting plenty of practice in sucking you clean on the backstrokes.");
 	output("\n\nThe raskvel’s cheeks have almost completely sucked inwards, and her lips stretch forward in a whorish display that leaves no question as to her willingness to be your cumdump. Her tongue weaves across your urethral swell while every pre-smeared muscle clenches around your squeal-vibrated cockmeat" + (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FLARED) ? ", triggering the expansion of your spunk-corking flare" : "") + ". The last of her breaths fade against your bloated dick, the length sliding effortlessly into her moist innards. A final groan of suffocated bliss and of needs unmet passes upwards, triggering your orgasm" + (pc.hasKnot(kok) ? " just moments before your knot succeeds in plugging her face like the exotic twat it is" : "") + ".");
 
@@ -1452,7 +1453,13 @@ public function watchDatRaskvelEggLayyyy():void
 	{
 		output("\n\nCurling in bred bliss, the lizard-rabbit screams her soul out when the first lancing wad of [pc.cumVisc] spunk reams her womb like milk into an empty bucket. All her body is good for is taking load after thick, slimy load of [pc.cumNoun]. With a white knuckled grip you jerk back and slam forward again, pulling on her in just the right way to remind her who’s in charge, who her alpha " + (pc.isHerm() ? "herm" : "male") + " is. You’ve rutted her into a drooling, babbling mess while she can do naught but enjoy your weight on her. Fervid walls suckle in torrent after torrential spout of fountaining egg-fertilizer. Liquid weight dumps into the raskvel, bloating her thirsty, oversaturated core into a sloshing balloon. Your virile reservoir knows no end, emptying itself directly into her waiting womb <b>raw</b> and <b>hot.</b>");
 		output("\n\nMaybe hers isn’t a pristine womb, but it is one that’s well and thoroughly marked by <i>you.</i> And nothing could make you happier. Well, except for crying out and cumming harder, seeding the kobold-bitch into a senseless wreck good only for bearing children now. You doubt the hormones will last that long, but damn if it doesn’t make the act all the better." + (pc.cockTotal() > 1 ? " [pc.CumGem] lassos festoon the rest of your private short-stack cumdump in [pc.cumColor] smears of goop. It accumulates to the point that it leaks from every muscle and slope on her sordid little body." : ""));
-		if (pc.cumQ() >= 10000) output("\n\nNothing could have prepared this hapless lizard for a " + (pc.isHerm() ? "she-" : "") + "stud like you. Even when a cock’s worth of cum has crammed her womb and cunt full, when it no longer has anywhere to go but out, you deign to withdraw. She can’t complain, not when she’s so full she’ll be bedridden (or close to it) for days. When you grab her thighs and lock them together around your shaft, globs of oozing excess pour of her snatch while the rest of your hypersexual magnanimity erupts onto the ravaged runt, splattering her in a kobold-coating volume of spunk. Now nobody’s going to touch her. For all the other natives will know, and any would-be rushers trying to have their way with aliens... she’s used goods" + (pc.virility() > 0 ? ", and maybe... a broodmother in waiting" : "") + ".");
+		if (pc.cumQ() >= 10000)
+		{
+			output("\n\nNothing could have prepared this hapless lizard for a " + (pc.isHerm() ? "she-" : "") + "stud like you. Even when a cock’s worth of cum has crammed her womb and cunt full, when it no longer has anywhere to go but out, you deign to withdraw. She can’t complain, not when she’s so full she’ll be bedridden (or close to it) for days. When you grab her thighs and lock them together around your shaft, globs of oozing excess pour out of her snatch");
+			if (pc.hasKnot(kok)) output(" despite the throbbing presence of your bestial seed-plug");
+			output(" while the rest of your hypersexual magnanimity erupts onto the ravaged runt, splattering her in a kobold - coating volume of spunk. Now nobody’s going to touch her. For all the other natives will know, and any would - be rushers trying to have their way with aliens... she’s used goods" + (pc.virility() > 0 ? ", and maybe... a broodmother in waiting" : "") + ".");
+		}
+		
 	}
 	else output("\n\nThe extreme rush of overflowing spunk caps off your fertilizing orgy. [pc.Cum] races through your spunk-vein, plastering unquenchable walls in fecund heat. Heated release pushes past mindless contractions and into a womb more than ready to receive its due rewards. Teeming crackles of electrical urgency arc through your loins, pulsating like the visible glow of a rare lightning strike when another rope fires off. Feverish walls suckle you and your [pc.cumVisc] loads deeper, making sure as many swimmers get their opportunity to fill the lapis girl’s bred body to the brim with eggs made ready to hatch the healthiest possible children. A little round swell in her tummy will be indicative of her successful mating." + (pc.cockTotal() > 1 ? " Sympathetic squirts of a divided creampie spray out over her, striping her body in [pc.cumGem] lines." : ""));
 

@@ -221,7 +221,7 @@ public function wallSlutPunkSecOpEnd():void
 	output("\n\nDid she orgasm from getting face-fucked?");
 	output("\n\nWill you?");
 	processTime(30);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",wallSlutLossPart2);
 }
@@ -325,7 +325,7 @@ public function slutSlutLossScene():void
 	output("\n\n<i>“I promised you’d like it! Since we don’t have all day to waste on training like those dopes over at KihaCorp, why don’t we start the programming?”</i> She snaps her fingers.");
 	output("\n\n<i>Static.</i>");
 	processTime(4);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",pussySlutV2);
 }
@@ -345,7 +345,7 @@ public function pussySlutV2():void
 	output(". Her scent is reaches your nose, mild and alien but desirable all the same. You thrust your [pc.tongue] out, straining to reach it, yet she’s not low enough yet. A single droplet forms on her clit when her silky, delectable slit drops a few inches lower. She’s almost there. Her ass is almost ready to sit down on the cushions and grant you access to that slippery treasure trove of feminine moisture and...");
 	output("\n\n<i>Static.</i> <i>“Very good. You’re a natural!”</i>");
 	processTime(4);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",pussySlutV3);
 }
@@ -362,7 +362,7 @@ public function pussySlutV3():void
 	output("\n\nWatching it descend is like unwrapping a christmas present; with each passing second, more glorious detail is revealed. The gentle slopes of aroused feminine lips resolve into a hypnotic wonderland of glittering lust. The clit pops out of the hood, hovering over tongue, promising to reward your tongue with more heavenly taste once you adequately serve it. Slowly yawning open, the bright pink interior at last reveals itself, flexing and squeezing in anticipation of taking your entire tongue to the root.");
 	output("\n\n<i>Static.</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV4);
 }
 
@@ -377,7 +377,7 @@ public function pussySlutV4():void
 	output("\n\n<i>“Oh my, you are <b>ravenous</b>! Let’s just verify that your dopamine responses stay stupidly high when dealing with a few of our more exotic clientele, and we can get you set up and ready to lick in no time!”</i> Anayill snaps her fingers.");
 	output("\n\n<i>Static.</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV5);
 }
 
@@ -397,7 +397,7 @@ public function pussySlutV5():void
 	output("\n\nEyes closed, you worship her on autopilot. Your tongue somehow <i>knows</i> exactly where to go and what spots to lick. It traverses the maze of rippling muscle with a native’s intimate knowledge, whipping up to caress clusters of nerves and flexing to slide across neglected channels. Your jaw hurts from opening so wide, but it’s the only way to satisfy the aching thirst for more girlcum. You’re dimly aware that you’ve become drenched in it from the top of your head all the way down to your chin, but you want more. You want to bathe in it. You want to drink her relief until your body is more pussy-juice than water.");
 	output("\n\n<i>Static!</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV6);
 }
 
@@ -412,7 +412,7 @@ public function pussySlutV6():void
 	output("\n\nUncaring for how loud it sounds, you suck with abandon. You make love to the juicy honeypot with your face and smile when her balls churn and rock against your chin. Daringly, you slide your tongue down to favor them with a lick, but just one! You’re right back into that pussy after, where you belong. That exploratory caress was only to take your slick-furred client’s attention somewhere else so that you could surprise her with a sudden, deep thrust.");
 	output("\n\n<i>Static.</i> <i>“Very good. Now keep licking! An orgasm ought to convince you that you made the right decision by coming to us!”</i>");
 	processTime(5);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",pussySlutV7);
 }
 
@@ -704,7 +704,7 @@ public function smotheringFemdomWivTittyKitty():void
 	output("\n\nA fuzzy, dreamlike feeling envelopes your entire being. The more you genuflect on the soothing wobble and sensual sway of her bosom, the more you realize that this isn’t a dream. For once you feel... calm... <i>It calms you to stare at her</i>, to worship her with your [pc.eyes]. The longer you focus on her and the sparkling droplets streaming from her divine tits, the deeper you sink into that feeling, that amazing feeling that eliminates all anxiety, obliterates stress, and makes you feel <i>so secure.</i>");
 	output("\n\nAnd the deeper she sinks into your consciousness.");
 	processTime(8+rand(9));
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",nextBoobsuckingKaithritMindwashing);
 }
@@ -839,10 +839,10 @@ public function postLossCuntsuckin():void
 	moveToElevatorAdjustment();
 	clearOutput();
 	author("William");
-	output("Life comes at you fast. Air rushes into your lungs when you gasp awake, sat in Zheng Shi’s cargo elevator. The lusty kitty-pirate is nowhere to be seen.");
+	output("Life comes at you fast. Air rushes into your lungs when you gasp awake, seated in Zheng Shi’s cargo elevator. The lusty kitty-pirate is nowhere to be seen.");
 	output("\n\n<i>“If you continue to show yourself here, I will see to it that your training is completed.");
 	//hasCollar:
-	if(pc.accessory is MaikesCollar) output(" That collar you wear clearly comes from an unsuitable master.");
+	if(pc.accessory is MaikesCollar || getWornCollar() != null) output(" That collar you wear clearly comes from an unsuitable master.");
 	output("”</i>");
 	output("\n\nYou’d jolt back in shock, but there are the armored baps of an augmented pirate pushing against you. Two hands at your waist unlock the cuffs responsible for your bondage, coming away alongside two black tails latched around your abdominals. Before she stands, she nibbles at your [pc.ear], a fang sinking into the appendage just deep enough to cause a wince.");
 	output("\n\n<i>“Any more intrusions, interloper, and your freedom ends,”</i> she smirks over her shoulder, hefting her rifle. <i>“But you’ll be back. [pc.BoyGirl]s like you crave attention. And when you come back,”</i> she closes her hand into an O shape, <i>“that’s when you’ll be mine. But that wouldn’t be so bad, would it? Whatever you’re doing with your life, I can’t say, but judging by your skillessness...”</i> she laughs, <i>“you’d be better off living it on your knees.”</i>");
@@ -923,9 +923,9 @@ public function slaveslutBadEnd(volunteered:Boolean = false):void
 		output(" <i>“One last chance, trespasser, and you failed. I’ll admit, it was worth the effort, and a fun diversion. Nothing better than success, right? Well, for me anyway.”</i> His right hand extends, palm opened, and the collar on the floor, as if yanked by an industrial magnet, flies into his grip. <i>“Don’t make this any harder... not that you could. You’ve been conditioned rather well so far. You’ll take to your new life smoothly.”</i>");
 		output("\n\nYour [pc.arms] won’t move with his legs pinning them - all they can do is squirm. One hand lifts your head by the chin ");
 		//wearingCollar:
-		if(pc.accessory is MaikesCollar) output("and slices off your old collar ");
+		if(pc.accessory is MaikesCollar || getWornCollar() != null)  output("and slices off your old collar ");
 		output("while the other whacks the ");
-		if(pc.accessory is MaikesCollar) output("new ");
+		if(pc.accessory is MaikesCollar || getWornCollar() != null)  output("new ");
 		else output("warm ");
 		output("choker to your neck. As heavily as it hit the floor, it snaps shut with bleak conclusiveness, strong enough to make your eyes cross from a tsunami of overwhelming reality. Its inescapable grasp tightens around your throat, hissing steam as it flattens your [pc.skinFurScales] to become a permanent fixture on your body.");
 	}
@@ -937,7 +937,7 @@ public function slaveslutBadEnd(volunteered:Boolean = false):void
 		output("\n\nAnd then your brain reminds you of what he’s capable of giving you. A life of pleasure unending in service to something better than you are. His taste flickers on your tongue even now. Being some pirate’s cock holster was more pleasurable than you’d given it credit for, encompassing you in the inexpressible succulence of total submission. Memories vibrate apart, recollection of your mind-wiping orgasm bringing a shudderingly sweet and ecstatic sensation back to you. You want it again.");
 		output("\n\nSuddenly you’re knelt beside the device, hefting it, each lewd fantasy making a mockery of your perception of time. If you put this on, then that will be your life now and forever. He’s only given you a sampling of what it’s like to be a slave.");
 		output("\n\nYou want more. That’s why you throw your weapons ");
-		if(pc.accessory is MaikesCollar) output("and old collar ");
+		if(pc.accessory is MaikesCollar || getWornCollar() != null)  output("and old collar ");
 		output("away and press the warm device comfortably and snugly to your throat, a shameful heat like morning sunlight blossoming through your loins all the way to your fingertips. You feel the crushing weight of your choice, of the life you’re leaving behind, and let it all go by snapping the slavemaking device to your neck where it belongs, every stress and worry disappearing in a fleeting moment of urgence. The silver necklace hisses steam and cinches down, flattening your [pc.skinFurScales] to become a permanent fixture of your quivering body.");
 		output("\n\n<i>“Now lie back,”</i> your <b>owner</b> commands, and you obey. You were already doing so before he finished his sentence, and you can’t tell if it was really you making the choice. You don’t have long to contemplate it before your <b>Master</b> is sat atop your [pc.belly].");
 	}
@@ -982,7 +982,7 @@ public function slaveslutBadEnd(volunteered:Boolean = false):void
 	output("\n\nDarkness comes, and then there’s a glitchy whine.");
 	output("\n\n......");
 	processTime(60);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",slaveslutBadEnd2);
 }
@@ -1059,7 +1059,7 @@ public function luckyCatchBadEndWithFSecop(volunteered:Boolean = false):void
 		else output("No longer will your libido be denied. It remembers the conditioning. It blooms at the supple, sensuous sway of her female form. It explodes at the jiggle of her armored breast and at the memory of your lips being wrapped around the source of infinite joy. You fall, losing your [pc.weapon] in the descent, and struggle to masturbate, no longer able to defend yourself from a life of slavery.");
 		output(" <i>“There you have it. See? Told you I wouldn’t hurt you. Much,”</i> she chuckles.");
 		output("\n\nYou manage to look over and she’s gone... and then two hands weave under your [pc.arms] and around your front. The cool, oppressive touch of her armor to your [pc.skinFurScales] settles into your core, driving in the truth of your situation with every beat of the heart.");
-		output("\n\nThe victorious operative whispers into your ear, <i>“Now... it’s time for you to stop fighting it. You know your life is here...”</i> She opens one of her hands and the silver collar on the floor is tugged towards it by a powerful magnetic force. <i>“...in this collar. You’ll be taken care of" + (pc.accessory is MaikesCollar ? ", moreso than your previous owner seems to have cared":"") + ". You will want for nothing ever again. You will spend your days thinking of how best to please me. Such is the ease of being a slave.”</i>");
+		output("\n\nThe victorious operative whispers into your ear, <i>“Now... it’s time for you to stop fighting it. You know your life is here...”</i> She opens one of her hands and the silver collar on the floor is tugged towards it by a powerful magnetic force. <i>“...in this collar. You’ll be taken care of" + ((pc.accessory is MaikesCollar || getWornCollar() != null)  ? ", moreso than your previous owner seems to have cared":"") + ". You will want for nothing ever again. You will spend your days thinking of how best to please me. Such is the ease of being a slave.”</i>");
 		output("\n\nShe brings the open loop of gleaming metal to your neck and pulls the inorganic snare back, snapping the slavemaker to your throat. The circuit is completed tight and oppressively, deafening you with the sound of its closure. When it cinches down, hissing steam to close permanently around your neck, it scares you, makes you squirm... but the kaithrit is there, stroking your [pc.hairNoun] gently, whispering sweet nothings into your [pc.ear] to soften your transition to your new life.");
 	}
 	// pc Chose To [Submit]
@@ -1068,9 +1068,9 @@ public function luckyCatchBadEndWithFSecop(volunteered:Boolean = false):void
 		output("There’s no denying that siren call echoing somewhere in your head. You’ve had a taste of the life that’s waiting for you. The flavor of obedient submission has coursed through you, allowed you to cum, shown you what a good [pc.boyGirl] like yourself will receive if [pc.heShe] listens. The memories of being beneath that lovely kaithrit come rushing back. She spoke softly, treated you sincerely, eased you into this.");
 		output("\n\nEvery step you take to the collar gets easier than the last. First you shed your weapons, and then your worries. Left - color is brought to your cheeks. Right - the color deepens. Left - you remind yourself of her meticulous care. Right - you realize how wonderful the shame of being so inferior and yet so useful and desired is.");
 		output("\n\nAll of a sudden you’re holding the silver collar and the kaithrit is gone. The alluring prospect of giving up your stresses and your quest to become a pleasure-slave curls your mouth upward. You’ll be <i>hers.</i> You’ll get more of her milk. Most of all, you haven’t forgotten what you said to her. That admittance before is replaying in your mind.");
-		output("\n\n<i>“You belong to me.”</i> She appears behind you, arms wrapped around your torso. She places a hand on your wrist, crooked fingers gently ushering the device to your throat." + (pc.accessory is MaikesCollar ? " You didn’t even notice how quickly or silently she took your old collar off.":""));
+		output("\n\n<i>“You belong to me.”</i> She appears behind you, arms wrapped around your torso. She places a hand on your wrist, crooked fingers gently ushering the device to your throat." + ((pc.accessory is MaikesCollar || getWornCollar() != null) ? " You didn’t even notice how quickly or silently she took your old collar off.":""));
 		output("\n\nYou belong to her. That’s why you fit the ");
-		if(pc.accessory is MaikesCollar) output("new ");
+		if(pc.accessory is MaikesCollar || getWornCollar() != null) output("new ");
 		output(" collar snugly to your neck and cinch it shut. An agonizing moment comes - your old life ejects into the ether - it goes, and then... nothing. The device closes with a quiet hiss, flattening your [pc.skinFurScales] below its implacable circumference. Once it’s become a permanent fixture of your body, the quiet that settles over you makes you feel so <i>liberated.</i>");
 		output("\n\nMore than you ever have before.");
 	}
@@ -1105,7 +1105,7 @@ public function luckyCatchBadEndWithFSecop(volunteered:Boolean = false):void
 	output("\n\n<i>“I’ll take care of you, protect you, because you’re my slave. Nobody’s going to hurt you. You’ll get to spend every day thinking about how your mistress will come back rich from a raid, wanting to sit back and relax.”</i> Her soft, sweet tones fade into heavy pants. <i>“It’ll be nice, having a reason like you to keep kicking ass. Life’ll be so damn-”</i> she winces, your incisor grazing her nipple <i>“...easy. So much more fun. Heh, you get to suck on boobs for the rest of yours while I have to work even harder. Good thing we found each other.”</i>");
 	output("\n\nShe presses forward, squirting a throat-clogging volume of serenity-inducing love into you. You’re so hot and horny that you can’t do anything but replay everything she said on repeat, cumming to the thought. You’re thrashing in her lap, shuddering and quivering as your belly swells and you suck and suck, breathlessly enchanted...");
 	processTime(50);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",luckyCatchBadEndWithFSecop2);
 }
@@ -1184,7 +1184,7 @@ public function mausBullyScene(tEnemy:Creature):void
 	output("\n\nHer demeanor shifts to something victorious. How presumptuous! But... she’s almost got you... and... maybe that wouldn’t be so bad if those tits kept getting closer? Right? They’re really big, and she’s squeezing the supple flesh so passionately. Maybe you’re looking at this all wrong?");
 	output("\n\nWhat do you do!?");
 	processTime(3);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Fight",fightDatMausBullier,tEnemy,"Fight","You can’t cower here! Show her that a mouse is no cat’s prey!");
 	addButton(1,"Run",runFromFemSecShop,undefined,"Run","Make a break for it - <b>Hopefully!</b>");
@@ -1251,14 +1251,14 @@ public function runFromFemSecShop():void
 			output("\n\nHeart beating and lungs burning... you’ve shaken her. Whew.");
 			output("\n\nDammit. Speaking of shaking, <i>those tits...</i>");
 			pc.energy(-10);
-			pc.lust(5);
+			pc.changeLust(5);
 			processTime(8+rand(3));
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 			return;
 		}
 	}
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	// sceneTag: PC lust maximizes
 	clearMenu();
 	addButton(0,"Next",letHerSecOpBullyYou);
@@ -1276,7 +1276,7 @@ public function letHerSecOpBullyYou():void
 	output("\n\n<i>“See? No need to be on edge, cutie. I’m not some random merc who’ll fuck anything that moves, and we have to <i>try</i> not to kill each other around here. That said, what should I do with you...”</i>");
 	output("\n\nWhatever it is, you honestly can’t wait for it now.");
 	processTime(4);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",getBulliedByFemSecop);
 }
@@ -1331,7 +1331,7 @@ public function getBulliedByFemSecop():void
 	if(pc.hasCock()) output("around your [pc.cockNoun]");
 	else if(pc.hasVagina()) output("inside your [pc.pussyNoun]");
 	output(" while you wiggle your tongue around a bursting teat is overwhelmingly erotic.");
-	output("\n\nA second effect makes itself known. Something in her milk makes your [pc.lipColor] lips feel swollen and engorged as a heat once ticklish becomes intense and almost suffocating. If you could see your cheeks now, you wouldn’t blame anyone for thinking you fell victim to a rainbowtox prank. There’s numbness, and it disappears every time your lips firm for another suck, and that sensation is now so intense that it’s blindingly pleasurable.");
+	output("\n\nA second effect makes itself known. Something in her milk makes your [pc.lipColor] lips feel swollen and engorged as a heat once ticklish becomes intense and almost suffocating. If you could see your cheeks now, you wouldn’t blame anyone for thinking you fell victim to a Rainbotox prank. There’s numbness, and it disappears every time your lips firm for another suck, and that sensation is now so intense that it’s blindingly pleasurable.");
 	output("\n\n<i>“Good [pc.boyGirl], good [pc.boyGirl],”</i> she murmurs, eyes shut while she gives you a handy. The scent of sex fills your nostrils. Rivulets of lactic purple flow from your overstuffed cheeks, your body simply incapable of keeping up with the flow. Forget Steele Tech. Forget the inheritance. You just want to sit here and be nursed all day. Who knew that a pirate could be so tender, so passionate?");
 	output("\n\nYou squeeze the buxom boob until bursts of torrid goodness are ignoring your reflexes and flooding your gullet. Once or twice you spare a [pc.hand] to squeeze her other boob, dousing your [pc.skinFurScales] in more drug-enhanced milk. It occurs to you that if she told you to do anything, instructed you carefully, you may end up listening too obediently. Fortunately, training you to do anything isn’t her goal, as evident by her incessant yowlings. The knowledge that she’s some random criminal surfaces only to get dunked like an unwelcome guest.");
 	output("\n\nShe’s vibrating inside and out. There’s certainly no way either of you are going to stop, bound together on a journey to orgasm. Your pelvis squirms with the need to vent your raging arousal. All your aphrodisiac-imbued needs compress down into a singular surge too much for you to endure.");
@@ -1733,7 +1733,7 @@ public function fuckTheSecopGirl(x:int):void
 	}
 	//[Drink] [Don’t Drink]
 	processTime(15);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Drink",drinkDatCatMilk,x,"Drink","What’s a little refreshment before the main course?");
 	addButton(1,"Don’t Drink",dontDrinkAtTheKittyWell,x,"Don’t Drink","Nah... Madam Titty Kitty’s milk would just get in the way of a good fuck.");
@@ -2374,7 +2374,7 @@ public function wsanTaurServicingLoss():void
 	output("\n\n<i>“Awww, but I can’t help it!”</i> Jenny whines before resuming her little tour, seemingly enjoying describing her friends to you. <i>“Then the quiet one with brown hair next to Prue is Coco. She’s a little shy, but she’s my best friend. We all met in highschool! So, that’s a start,”</i> she says, putting a hand on your shoulder with a grin. <i>“But you already know how to get better acquainted with us, right?”</i>");
 	output("\n\nYou do. Kay snorts with laughter as Jenny turns her body to the side, lifting her skirt with her tail and presenting her immaculate behind. You can see a slick, juicy black pussy between her hindlegs, gleaming with wetness.");
 	processTime(10);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss2);
 }
@@ -2403,7 +2403,7 @@ public function wsanTaurServicingLoss2():void
 	output("\n\n<i>“Oh! I- what did you say?”</i> Coco asks Prue, confused.");
 	output("\n\n<i>“I asked if you wanted to go next,”</i> Prue says, wiggling a finger at you. <i>“C’mere.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss3);
 }
@@ -2437,7 +2437,7 @@ public function wsanTaurServicingLoss3():void
 	output("\n\n<i>“P-Prue,”</i> Coco moans, knitting her hands together. <i>“I’m going to... to cum really soon...”</i>");
 	output("\n\n<i>“Mmm, that’s fine, I’ve still got time,”</i> Prue mutters, starting to fuck you a little more meaningfully. <i>“Damn, that’s good.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss4);
 }
@@ -2478,7 +2478,7 @@ public function wsanTaurServicingLoss4():void
 	output("\n\n<i>“Oh boy, here we go,”</i> Prue says wearily, recovering next to Jenny. <i>“All aboard the Kay-train.”</i>");
 	output("\n\n<i>“Gonna fill you up from the other end now,”</i> Kay says, grinning wolfishly. <i>“Maybe it’ll all come out your mouth.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",wsanTaurServicingLoss5);
 }
@@ -2986,7 +2986,7 @@ public function secOpMaleTitfuck(response:String = "intro"):void
 			
 			processTime(5);
 			// +50 lust
-			pc.lust(50);
+			pc.changeLust(50);
 			
 			CombatManager.genericVictory();
 			break;

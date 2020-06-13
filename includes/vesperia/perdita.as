@@ -77,7 +77,9 @@ public function perditaLootsAvailable():Array
 
 public function showPerdita(nude:Boolean = false):void
 {
-	showBust("PERDITA" + (nude ? "_NUDE":""));
+	var tanString:String = "";
+	if(flags["MET_PERDITA"] == 2) tanString = "_TAN";
+	showBust("PERDITA" + tanString + (nude ? "_NUDE":""));
 	showName("\nPERDITA");
 }
 //Talk First Time
@@ -151,7 +153,7 @@ public function learnAboutPerdita():void
 	flags["PERDITA_ABOUT"] = 1;
 	author("SomeKindofWizard");
 	output("<i>“My name’s [pc.name] Steele, pleasure.”</i> You accept the spot she’s cleared for you amongst her various empties, ordering a drink for yourself as you do so. Perdita necks a mouthful of her own; it looks like a simple whisky on the rocks...");
-	output("\n\nStill she doesn’t look <i>entirely</i> blasted. <i>“Something about me draw you in? Perhaps you’re just looking to kill a few.”</i> She pauses for a moment, pulling out a palm-sized looking datapad. It chirps at her and she smiles brightly, tail wagging. <i>“Sorry, got mail. Anyway, please! Tell me about yourself [pc.name]. I’ve got enough drink in me to actually manage being sociable.”</i>");
+	output("\n\nStill she doesn’t look <i>entirely</i> blasted. <i>“Something about me draw you in? Perhaps you’re just looking to kill some time.”</i> She pauses for a moment, pulling out a palm-sized looking datapad. It chirps at her and she smiles brightly, tail wagging. <i>“Sorry, got mail. Anyway, please! Tell me about yourself [pc.name]. I’ve got enough drink in me to actually manage being sociable.”</i>");
 	output("\n\nAlthough Perdita says as much, she has a hard time keeping eye contact with you while you’re talking. ");
 	if(pc.biggestTitSize() >= 4 || pc.lipRating() >= 4) output("Indeed, plenty of the time her attention trails down to your [pc.breasts] or [pc.lips]. ");
 	output("You recount some of your exploits (including the raunchier few) before you manage to turn the conversation in her direction.");
@@ -342,6 +344,7 @@ public function perditaIsBackForNormalInteractions(back:Boolean = false):void
 		output("\n\nThe half-Ausar leans in, giving you a good look (and a faceful of whisky-breath) before settling back. Very cool indeed, you agree, opting not to mention your more... extensive alterations.");
 		processTime(5);
 		flags["MET_PERDITA"] = 2;
+		showPerdita();
 		//[Appearance] [About] [Champeon] [Buy Smut] [Support] [Flirt]
 	}
 	else
@@ -489,7 +492,7 @@ public function flirtWithPostVacayPerditles():void
 	//[Footjob] //No better job in a sauna 
 	//[Body-shots] //Why stop at one? [Ice-Play] //Kally’s probably got an ice bucket you can borrow
 	processTime(4);
-	pc.lust(3);
+	pc.changeLust(3);
 	perditaSexMenu();
 }
 
@@ -570,14 +573,13 @@ public function perditaDickFuckingPart2(x:int):void
 	else output("You stand up in the pool as well, revealing your [pc.cocks] to be just as ready and raring to go as her fuckable backdoor");
 	output(". You’d swear the moderately-drunk pup has to wipe the drool from her mouth as she drinks you in, before she delivers a spank to her other cheek and folds herself over the bath so that only her legs are submerged before spreading that buttock wide too. You can just about make out her throbbing cock where it’s pinned between her soft flesh and the bathhouse floor, no doubt still freely dripping pre. Her tail (just about the only part of her lower half that remained un-submerged) begins to wag with anticipation. The bedroom eyes she’s casting over her shoulder are firmly locked on your [pc.cock " + x + "]." + (pc.isTaur() ? " She gulps a few times and makes sure to prop herself up in preparation for the extra weight you’ll be fucking her into the floor with.":"") + " <i>“Well " + pc.mf("handsome","sexy") + "? I’m oooh so fucking ready for you! Give me something to scream for!”</i>");
 	output("\n\nHer tail’s wagging so hard you have to grip her cushy backside, squeezing in an attempt to hold her still so that you can properly " + (pc.isTaur() ? "mount her":"lay into her") + ". It’s obvious this pup-slut wants to go hard, but there’s still an order to these things. She gasps audibly as you pin her tail still and spit on your fingers before leaning down, shivering and moaning when you meet her plump ring. The heat coming off of her could put the water you’re knelt in to shame; it’s a surprise that steam doesn’t rise from your now saliva-coated fingers once you sink them into her asshole. Another obvious throbbing comes from her cock as you grind two [pc.fingers] around in her backdoor, and dribbling pre is milked out where it can join the water.");
-	if(pc.cocks[x].cLength() < 7) output(" You may not be the largest, but a properly-prepared slut is a far more fuckable slut");
-	else if(pc.cocks[x].cLength() < 14) output(" It’s a good thing you stopped to prepare her, judging by the way she tries to practically crush your fingers with eager muscles");
-	else output("Fuck, even with your ministrations preparing her it’s going to be a tough fit to fit your massive bitch-breaker of a cock in her");
-	output(".");
+	if(pc.cocks[x].cLength() < 7) output(" You may not be the largest, but a properly-prepared slut is a far more fuckable slut.");
+	else if(pc.cocks[x].cLength() < 14) output(" It’s a good thing you stopped to prepare her, judging by the way she tries to practically crush your fingers with eager muscles.");
+	else output(" Fuck, even with your ministrations preparing her it’s going to be a tough fit to fit your massive bitch-breaker of a cock in her.");
 	output("\n\nYour thoughts are interrupted when your fingers bump against something even hotter than the rest of her sensitive walls... just how engorged is this girl’s cum-button? A testing press turns her gasping into one long sultry moan, and she grips the edge of the bath so hard her knuckles go white while her ears fold back as far as they can go. <i>“H-hhh... oh shit. Stupid sexy kui-tan nut-sauce, I’m already gonna blow.”</i> Perdita groans, waving her hips from side-to-side and grinding her prick against the sauna’s edge while her tight little pouch seems to grow heavier. <i>“Steele, please... I wanna cum with you inside me! Oh fuck, fuck do I need it!”</i>");
 	output("\n\nAs if you needed the invitation; after a moan like that your own ");
 	if(pc.cockTotal() == 1) output("[pc.cock " + x + "] aches with a need to breed");
-	else output("[pc.cocks] are oozing [pc.cumcolor] all over themselves in preparation");
+	else output("[pc.cocks] are oozing [pc.cumColor] all over themselves in preparation");
 	output(". So long as the smutty half-ausar can keep on going after cumming once, you don’t care one bit. Her asshole winks at you invitingly once you withdraw your fingers, but she reaches back and gathers more of the semi-lubricated water before pressing it into her ass with what might be her entire fist. With a frown you take her hand back out, dishing a spank across one quivering cheek that releases an orgasmic bark from the pup. It’s no good if she gets carried away now! " + (pc.isTaur() ? "After making sure she’s not going to be actually <i>crushed</i> by your bulk you get your [pc.legs] up on either side of her, letting your cock rest in the drenched cleft of her asscheeks. With a desperately horny moan Perdita reaches back and lifts her ass up on tip-toes, helping guide your [pc.cockHead " + x + "] to her wanton asshole.":"You step up close enough to rest your [pc.cock " + x + "] between her asscheeks, and she immediately starts bouncing and grinding against you. Grunting, you force her to keep still once more while you line your [pc.cockHead " + x + "] up with her wanton asshole.") + " She finally goes still, grabbing her own massive fluffy tail to keep it from getting in the way. In the stillness of that pre-penetration moment you can only hear her panting for breath while she watches over her shoulder in anticipation.");
 	output("\n\n<i>“Hey, what are you waiting f–ooooh... Fuuuuck~”</i> With a smug smile you wait for her mouth to open in question before pressing forward. Her maw becomes an open ‘o’ of pleasure, tongue hanging out as you feed ");
 	if(pc.cocks[x].cLength() < 7) output("the entirety of your [pc.cock " + x + "]");
@@ -629,8 +631,8 @@ public function perditaDickFuckingPart2(x:int):void
 		else if(pc.cocks[x].cLength() < 14) output("her prostate");
 		else output("every inch of flesh you’re able to fit your prick past");
 		output(". You get to capture that perfect moment; Perdita comes crashing headlong into a massive orgasm. The first thick streak of alabaster cream paints the underside of her tits before you take a hold of her cock, aiming it straight up so that her scalding hot fluids can come raining down onto the two of you. At the same time you finally relax and allow yourself to join her in ecstasy. ");
-		if(cumQ < 2000) output("\n\nImmediately her depths are filled with ropes of [pc.cumtype], but apparently this pup wasn’t kidding about her production. By the time you’ve finished jettisoning every last quart of cream and rendered your balls aching and empty, she’s still twitching and squirming on your length and only just starting to peter off.");
-		else output("\n\nIt doesn’t matter how proud of her production Perdita is; you don’t so much cum as you do baste her guts in goo. By the time she’s spasming her way through those last aftershocks of orgasm you’ve finished filling her to the brim, the rest of your ardor is forced to squirt out around the tight seal of her ring and your [pc.cock] where it fills the bath until it’s fit to flood.");
+		if(cumQ < 2000) output("\n\nImmediately her depths are filled with ropes of [pc.cumType], but apparently this pup wasn’t kidding about her production. By the time you’ve finished jettisoning every last quart of cream and rendered your balls aching and empty, she’s still twitching and squirming on your length and only just starting to peter off.");
+		else output("\n\nIt doesn’t matter how proud of her production Perdita is; you don’t so much cum as you do baste her guts in goo. By the time she’s spasming her way through those last aftershocks of orgasm you’ve finished filling her to the brim, the rest of your ardor is forced to squirt out around the tight seal of her ring and your [pc.cock " + x + "] where it fills the bath until it’s fit to flood.");
 	}
 	output("\n\n<i>“Fuuuck...”</i> She eventually moans, running her hands across her cum-covered " + (!silly ? "tits":"yams") + " and squeezing her puffy nipples. Jizz escapes between her fingers like leaking milk as you attempt to unlodge yourself");
 	if(pc.hasKnot(x)) output("; thanks to a little extra hot lubrication it’s just barely possible to draw your knot out");
@@ -665,7 +667,7 @@ public function icePlayWivPerditles():void
 	if(pc.hasCock()) x = pc.biggestCockIndex();
 	//Herms have a 50/50 chance of either genital.
 	if(x >= 0 && pc.hasVagina() && rand(2) == 0) x = -1;
-	output("Perdita toys with the shot glass of nutty nut-brew for a few moments before knocking it back, while you quickly do the same. <i>“Alright, uh... gimme a sec.”</i> The wickedly-grinning pup slides off of her perch, making straight for the bar. For a second you’re afraid that she’s about to get the two of you too plastered to fuck, but instead she retrieves a small silver bucket while Kally giggles to herself... call it paranoia but you could <i>swear</i> she looked right at you before laughing. There’s a little spring in the half-ausar’s step as she makes toward Kally’s bathhouse sauna. It’s incredibly satisfying just to watch her walk; each rise and fall of her feet is met by a tail-wag mirror. Apparently it helps make for an incredibly broad and springy bum");
+	output("Perdita toys with the shot glass of nutty nut-brew for a few moments before knocking it back, while you quickly do the same. <i>“Alright, uh... gimme a sec.”</i> The wickedly-grinning pup slides off of her perch, making straight for the bar. For a second you’re afraid that she’s about to get the two of you too plastered to fuck, but instead she retrieves a small silver bucket while Kally giggles to herself... call it paranoia but you could <i>swear</i> she looked right at you before laughing. There’s a little spring in the half-ausar’s step as she makes toward Kally’s bathhouse sauna. It’s incredibly satisfying just to watch her walk; each rise and fall of her feet is met by a tail-wag mirror. Apparently it helps make for an incredibly broad and springy bum.");
 	output("\n\nThe sliding door between bar and sauna rolls gently aside before washing the both of you in a backdraft of heat, and the moment it’s slid shut behind you all sounds of the raucous bar-talk is muted to practical silence. Instead there’s nothing but the gentle trickle of water interspersed by the occasional ‘tonk’ of bamboo fountains knocking against each other. Perdita takes a deep breath of the steamy air, stretching and slipping off her jacket.");
 	output("\n\nThere’s a little space for coat hooks and boxes to ditch your belongings in, so while she’s busily undressing you " + (!pc.isCrotchExposed() ? "strip off your own coverings":"ditch your excess equipment") + ". A variety of swimwear hangs on a rack beside the wooden clothes-bins... but you won’t be needing those. When you return your attention to Perdita, the horny pup’s only gotten her top off; it seems she’s stopped in order to admire your own form.");
 	//muscular
@@ -733,10 +735,10 @@ public function perditaIceFuckpart2(x:int):void
 	if(pc.isTaur()) output("tickling that seam between humanoid torso and bestial body");
 	else output("teasing your [pc.crotch]");
 	output(". Her lips touch against your neck, warming the frozen flesh with kisses and licks while you gasp at the ice being pushed into your belly button.");
-	output("\n\nIn fact Perdita’s pressed so closely against you now that it’s possible to feel her bitch-boner pressing against your flesh; what’s the harm in making sure you know just how much you <i>appreciate</i> her? You choose your moment carefully; when the horny pup puts a fresh ice cube in her mouth in order to nibble on your ear again, you wrap your [pc.fingers] around her prick and give her a nice slow squeeze. <i>“A-ah!”</i> She gasps, nearly dropping the ice-cube before nuzzling up against you. <i>“Ooh... I approve”</i> ");
-	output("\n\nJust before you can turn the tables on your canid lover she grips you back, ");
-	if(x < 0) output("sinking chilled fingers into your sopping twat");
-	else output("wrapping chilled digits around your own scalding [pc.cockNounSimple " + x + "]");
+	output("\n\nIn fact Perdita’s pressed so closely against you now that it’s possible to feel her bitch-boner pressing against your flesh; what’s the harm in making sure you know just how much you <i>appreciate</i> her? You choose your moment carefully; when the horny pup puts a fresh ice cube in her mouth in order to nibble on your ear again, you wrap your [pc.fingers] around her prick and give her a nice slow squeeze. <i>“A-ah!”</i> She gasps, nearly dropping the ice-cube before nuzzling up against you. <i>“Ooh... I approve.”</i>");
+	output("\n\nJust before you can turn the tables on your canid lover she grips you back");
+	if(x < 0) output(", sinking chilled fingers into your sopping twat");
+	else output(", wrapping chilled digits around your own scalding [pc.cockNounSimple " + x + "]");
 	output(". She might as well have rooted you to the spot as the juxtaposition of cold and hot fight for control over the arguably most sensitive part of your body, eliciting a giggle out of her that turns into a delighted little bark when you reach around in order to start jerking her off properly.");
 	output("\n\nShe guides you back towards the water’s edge, pinning you there with a series of kisses against your " + (!pc.isTaur() ? "neck":"flanks") + " that are always followed by the touch of swiftly-melting ice. Now however she has you entirely at the mercy of her other hand " + (x >= 0 ? "jerking":"jilling") + " you steadily towards completion, watching all the while so that she can drink in every expression on your face. The attentions are so earnest it’s almost hard to make eye-contact with her, suddenly self-conscious about being added to her collection of stories.");
 	output("\n\nThat train of thought quickly disables itself again when the last of the ice melts and she swaps to two hands, ");
@@ -744,7 +746,9 @@ public function perditaIceFuckpart2(x:int):void
 	else output("practically driving a whole fist into you while rapidly fanning your clit");
 	output(" until your nerves are screaming with desire. She must have been waiting for your eyes to scrunch shut however; the moment they do you actually " + pc.mf("yell","squeal") + " out with surprise. She had one last ice-cube, and it’s now firmly in your ass where it can slowly melt. Your legs tremble while unconscious shivers rock their way up-and-down your body, and you might even be annoyed at the shock if not for the constant onslaught. " + (x >= 0 ? "It doesn’t help when the icy weight is being pushed down onto your prostate, further confusing your challenged nerves.":"Hell, from where she is now though you could probably feel the hand in your cunt make contact with the walls between your depths and melt that ice faster."));
 	output("\n\n<i>“C’mon [pc.name]. Cum! You know you want to!”</i> Again she beams those bright and expectant eyes at you, doing her damndest to finish you off. And finally she does.");
-	output("\n\nYou slump out of her grasp and into the water, shuddering once more as your muscles tighten up{ and force her hand out of your pussy}. What’s left of the ice-cube in your rear shoots out before you ");
+	output("\n\nYou slump out of her grasp and into the water, shuddering once more as your muscles tighten up");
+	if(x < 0) output(" and force her hand out of your pussy");
+	output(". What’s left of the ice-cube in your rear shoots out before you ");
 	if(x >= 0)
 	{
 		var cumQ:Number = pc.cumQ();

@@ -42,7 +42,7 @@
 			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 6;
+			this.physiqueRaw = 5;
 			this.reflexesRaw = 11;
 			this.aimRaw = 1;
 			this.intelligenceRaw = 4;

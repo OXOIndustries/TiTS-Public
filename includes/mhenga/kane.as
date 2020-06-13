@@ -82,7 +82,7 @@ public function kaneFirstApproach():void
 		output("\n\n<i>“So,”</i> he says, in his harsh, well-pronounced tones. <i>“You did exactly as I demanded. Submitted to our greater truths, then returned to your master’s palace and burned it to the ground.”</i> His brow furrows as he considers you, marshalling his thoughts. <i>“Are all starwalkers so amenable? You fuck them into the dirt once, and then they will do whatever you say?”</i>");
 		output("\n\nHe falls to the ground in a single, liquid movement, landing agilely before stepping close to you, the air thickening with his sweet, horny smell. It really is a lot stronger than your average male zil; heat rushes to your [pc.groin] almost immediately and your thoughts soften.");
 		output("\n\n<i>“I think you’d make a fine trophy,”</i> he growls, lively black eyes prowling up and down your [pc.chest] and [pc.legs], <i>“if somebody was willing to show you some firmness, some attentiveness, teach you true obedience. We’ll see. For now - know that I’m not interested in small talk, starwalker. If you step to me, you accept I’m in charge. You listen to what I say, and you do it.”</i> He pauses, looking you straight in the eye. <i>“Understand?”</i>");
-		pc.lust(10+pc.libido()/5);
+		pc.changeLust(10+pc.libido()/5);
 		processTime(1);
 		kaneAddSubmissionButtons();
 	}
@@ -101,14 +101,15 @@ public function kaneBuzzOff():void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
-	pc.lust(10+pc.libido()/5);
-	processTime(1);
-
+	
 	if (pc.isBro()) output("<i>“Shut up, dude,”</i> you laugh easily. <i>“I kicked your ass before, and I’ll do it again.”</i>");
 	else if (pc.isBimbo()) output("<i>“Hey now,”</i> you pout. <i>“We struggle snuggled before and I won, didn’t I? So stop being mean.”</i>");
 	else if (pc.isNice()) output("<i>“Seeing as how I’ve done everything your tribe demands in order to be treated with respect,”</i> you say, <i>“there’s no need for remarks like that.”</i>");
 	else output("<i>“Seem to remember kicking your ass pretty bad,”</i> you reply. <i>“According to the law of your own tribe, that means you have to treat me with some respect.”</i>");
 	output("\n\n<i>“True enough,”</i> Kane says, with a careless shrug. <i>“You are worthy of respect. Which is why we’re talking right now. Why I’m going to be honest with you.”</i> He eats you up with his lively black eyes, prowling up and down your body, and then falls to the ground in a single, liquid movement, landing agilely before stepping close to you, the air thickening with his sweet, horny smell. It really is a lot stronger than your average male zil; heat fills your [pc.groin] almost immediately, and your thoughts turn a bit gooey. <i>“I’m not interested in small talk, starwalker. If you step to me, you accept I’m in charge. You listen to what I say, and you do it.”</i> He pauses, looking you straight in the eye. <i>“Understand?”</i>");
+
+	pc.changeLust(10+pc.libido()/5);
+	processTime(1);
 
 	kaneAddSubmissionButtons();
 }
@@ -118,12 +119,13 @@ public function kaneGoOnPls():void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
-	pc.lust(20+pc.libido()/4);
-	processTime(2);
-	
+		
 	output("You’d be lying if getting dirty-talked like this right out of the gate didn’t give you a little thrill. You grin up at the big, lean wasp boy and give him some right back, suggesting if he’s so sure himself he should come down and put his dick where his mouth is.");
 	output("\n\nHis smile widens. He falls to the ground in a single, liquid movement, landing agilely and then stepping close to you, the air thickening with his sweet, horny smell. It really is a lot stronger than your average male zil, softening your thoughts and making heat fill your [pc.groin] almost immediately. You don’t pull away when his hand grips your [pc.hip], hand moving slowly upwards prospectively. The heavy scent of sugary sex intensifies...");
 	output("\n\n<i>“I fully intend to,”</i> he growls. <i>“But let’s make sure we’re clear on a few things first, starwalker. If you step to me, I’m in charge. You do what I say, when I say. You do that... <i>“ His hand tightens on your [pc.ass]. <i>“We’ll get along very well indeed.”</i>");
+
+	pc.changeLust(20+pc.libido()/4);
+	processTime(2);
 
 	kaneAddSubmissionButtons(true);
 }
@@ -133,9 +135,7 @@ public function kaneSubmit(flirty:Boolean = false):void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
-	pc.lust(10+pc.libido()/5);
-	processTime(5);
-	
+		
 	if (flags["KANE_STATUS"] == 1)
 	{
 		output("Anything for a bit of peace.\n\n<i>“Fine,”</i> you sigh, lowering your eyes.");
@@ -182,7 +182,9 @@ public function kaneSubmit(flirty:Boolean = false):void
 	else output(" once again accepting submission, is indeed blissful.");
 	
 	output("\n\n<i>“So then, " + (kaneDominance() > 50 ? "trophy [pc.boy]" : "starwalker") + ". Was there something you’d like to know?”</i>");
-	
+	pc.changeLust(10+pc.libido()/5);
+	processTime(5);
+
 	kaneDominance(10);
 	flags["KANE_STATUS"] = 2;
 	flags["KANE_LAST_BLOWJOB"] = -1;
@@ -523,9 +525,7 @@ public function kaneDemandBlowjob():void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
-	pc.lust(15+pc.libido()/4);
-	processTime(2);
-	
+		
 	if (flags["KANE_LAST_BLOWJOB"] == -1)
 	{
 		output("<i>“Starwalker,”</i> says Kane in a kind of lusty, contemplative drone, a lopsided grin on his face, as you approach his tree. After a moment’s pause, he slides gracefully out of the boughs and swaggers towards you, his beetle-like groinplate clicking away as he comes. Heavy, rich sweetness tingles in your nostrils, heat rising inexorably to your [pc.skin] as his thick, six inch, foreskinned cock flops into the open. <i>“First thing’s first. Kneel, and put those lips to the use they were made for.");
@@ -538,6 +538,8 @@ public function kaneDemandBlowjob():void
 		output("Kane waits until you are kneeling on the soft turf, and then slides out of his tree. Your heart flutters slightly as the powerfully built zil looms over you; your mouth opens, saliva naturally forming as his groinplate slides down, letting his thick, sugar-leaking cock swing ponderously down.");
 		output("\n\n<i>“What a good trophy. Compliant and quiet,”</i> he smiles. <i>“Ready to service their master. You may begin.”</i>");
 	}
+	pc.changeLust(15+pc.libido()/4);
+	processTime(2);
 	
 	addButton(0, "Agree", kaneHellYeahBeeBlowjob);
 	addButton(1, "Refuse", kaneRefuseBlowjobs);
@@ -548,9 +550,7 @@ public function kaneHellYeahBeeBlowjob():void
 	clearOutput();
 	showKane(true);
 	author("Nonesuch");
-	pc.lust(25+pc.libido()/3)
-	processTime(2);
-
+	
 	if (kaneDominance() < 51)
 	{
 		output("Alright, fine. More than fine, really.");
@@ -634,7 +634,8 @@ public function kaneHellYeahBeeBlowjob():void
 		output("\n\nAt last he steps backwards, his beetle-black groin-armor clicking back shut, and looking thoroughly gratified, he leans back against his tree. You blink, almost sleepily. What were you even doing before this? What were you looking for?");
 		output("\n\n<i>“Speak, if you wish,”</i> Kane prompts, looking at you with knowing smirk. <i>“Or do you wish to feel more of your master’s love?”</i>");
 	}
-	
+	pc.lust(25+pc.libido()/3)
+	processTime(2);
 	pc.loadInMouth(new Kane());
 	pc.orgasm();
 	pc.orgasm();
@@ -977,7 +978,7 @@ public function kanePCGetsManhandled(lostByLust:Boolean):void
 	{
 		output("Your body is ablaze with sweet, pheromonal need, you can’t think of anything but how much your [pc.groin] needs some manual relief... and suddenly it’s all you can do. Your hands tremble out of Kane’s, dive down to your groin, and a moment later you’re squatted on the grass, shamelessly moaning as you masturbate furiously, desperate to get the sugary heat out of you.");
 		output("\n\nThe zil simply watches, smirkingly enjoying the fruits of his victory.");
-		pc.lust(-pc.lustMax()/2);
+		pc.changeLust(-pc.lustMax()/2);
 		processTime(5);
 	}
 	else
@@ -1074,7 +1075,7 @@ public function kaneBadEndTwo():void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
-	currentLocation = "GAME OVER";
+	moveTo("GAME OVER");
 	processTime(60*24*(20+rand(50)));
 
 	output("The young human explorer checked the holo-map emitted by her codex, before carefully peeking over the boulder, peering down the steaming, thickly vegetated valley again. She knew she had to be careful: she was on her own, many miles out from Esbeth in uncharted territory,");

@@ -31,14 +31,16 @@ package classes.Items.Apparel
 			
 			attackVerb = "";
 			
-			basePrice = 3400;
-			attack = 0;
-			defense = 0;
-			shieldDefense = 0;
-			sexiness = 8;
-			critBonus = 0;
-			evasion = 5;
-			fortification = 0;
+			this.basePrice = 3400;
+			this.attack = 0;
+			this.defense = 0;
+			this.shieldDefense = 0;
+			this.sexiness = 5;
+			this.critBonus = 0;
+			this.evasion = 7;
+			this.fortification = 0;
+			
+			resistances.tease.resistanceValue = 20.0;
 			
 			version = _latestVersion;
 		}

@@ -46,6 +46,8 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "healthdelivery": cheatFunc = Cheats.BringMeAFox; break;
 		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
 		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
+		case "doll": cheatFunc = Cheats.SexdollEncounter; break;
+		case "ardiaschoice": cheatFunc = Cheats.ArdiaLetsYouChoose; break;
 		
 		// Treatment
 		case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;
@@ -1446,7 +1448,7 @@ public function chooseSexualGift():void {
 	addButton(7,"Mini",applySexualGift,"mini","Mini","Decreases the size of your male organs and causes them to be more receptive to future size-decreasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
 	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
-	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
+	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","You will have a lower sex drive than normal, but you'll be better at teasing with a low libido than most!");
 	addButton(11,"Infertile",applySexualGift,"infertile","Infertile","No matter what changes are made to your virility or fertility levels, you will be unable to produce offspring naturally.");
 	addButton(13,"None",applySexualGift,"none","No Sexual Gift","You will not begin with a natural sexual gift.");
 	if(pc.hasVagina()) 
@@ -1504,7 +1506,7 @@ public function applySexualGift(arg:String = "none"):void {
 			pc.createPerk("Extra Ardor",0,0,0,0,"Increases lust gain over time.");
 			break;
 		case "ice cold":
-			pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
+			pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time and improves low libido teasing.");
 			break;
 		case "infertile":
 			pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
@@ -1599,7 +1601,7 @@ public function applyUpbringing(arg:int = 0):void {
 		//Pampered
 		case GLOBAL.UPBRINGING_PAMPERED:
 			pc.willpowerRaw--;
-			pc.credits += 1000;
+			pc.credits += 2000;
 			break;
 		//Athletic
 		case GLOBAL.UPBRINGING_ATHLETIC:
@@ -2253,9 +2255,18 @@ public function ohShitGameStarts():void {
 	creationHeader("THE\nMESSAGE");
 	
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
-	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
-	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
-	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");
+	output("\n\n<i>“Message complete,”</i> the codex blithely states.\n\n<i>Fuck!</i>");
+	clearMenu();
+	addButton(0,"Next",gameStartOutro);
+}
+
+public function gameStartOutro():void
+{
+	clearOutput();
+	showName("TO\nSPACE!");
+	author("Fenoxo");
+	output("You hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
+	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)\n\nAfter [rival.name]'s headstart, there's no time to waste! You pull up the first set of coordinates - to a planet known as Mhen'ga, and blow through the undocking proceedures as fast as the local authorities will allow. Besides, <b>you can return to Tavros once you have the funds for a shopping spree!</b>");
 	minutes = 2;
 	hours = 6;
 	days = 1;
@@ -2267,11 +2278,11 @@ public function ohShitGameStarts():void {
 	shipLocation = "TAVROS HANGAR";
 	generateMap();
 
+	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (false)//if(demo) 
 		addButton(0,"Next",demoOver);
 	else 
-		addButton(0,"Next",mainGameMenu);
-	
+		addButton(0,"Next",flyTo,"Mhen'ga");
 }
 
 

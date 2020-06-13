@@ -239,7 +239,7 @@ public function olympiaSexWheee():void
 		output("\n\nOlympia glances over her shoulder, a slight smile on her viridian lips, while her hands keep working. <i>“Oh, yes. You’re rather charming, not to mention the only person to bother talking to me here... and if you care enough to ask, you might actually be interested in <b>my</b> pleasure, too, unlike Doctor Teyaal. That would be a nice change of pace. Perhaps if you haven’t been apprehended by the time my ship is ready for launch...”</i>");
 		output("\n\nOr maybe you could find a way to mix pleasure <i>and</i> business.");
 		processTime(4);
-		pc.lust(3);
+		pc.changeLust(3);
 		clearMenu();
 		if(pc.IQ() >= 90) addButton(0,"Work & Fuck",workAnFuckDatGynoidsGyni,undefined,"Work & Fuck","You’re pretty damn brilliant, if you do say so yourself. Maybe you can get this scientific sexbot all hot and bothered with your mind.");
 		else addDisabledButton(0,"Work & Fuck","Work & Fuck","You aren’t smart enough for this.");
@@ -250,7 +250,7 @@ public function olympiaSexWheee():void
 		output("<i>“Need a second opinion on anything?”</i> you offer, sidling up to the voluptuous sexbot. <i>“Or maybe just a little stress relief?”</i>");
 		output("\n\nYou slip a hand around her waist, pressing your crotch into her plump bottom and putting the other hand on hers. <i>“Still thinking about last time, are you?”</i> the gynoid purrs. Though she’s still writing away, Olympia pushes her ass back against you and wraps her sinuous tail around your [pc.hips]. <i>“You were certainly an able assistant before... mmm, I look forward to when I’m allowed some time off in earnest. But for now, yes, I’d love your unique brand of help.”</i>");
 		processTime(3);
-		pc.lust(5);
+		pc.changeLust(5);
 		olympiaSexMenu();
 	}
 }
@@ -268,7 +268,7 @@ public function workAnFuckDatGynoidsGyni():void
 	output("\n\nSure. And maybe you’ll be the inspiration she’s been sorely lacking. You never know.");
 	output("\n\n<i>“Very well. Let me show you what I’m working on... and you can get started working on me.”</i>");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	olympiaSexMenu();
 }
 
@@ -313,7 +313,7 @@ public function buttfuckTheSexyRobo(x:int):void
 	output("\n\n<i>“Oh! Yes, give me your all, [pc.name],”</i> Olympia moans, abandoning all pretense of her labors. Her draconic tail tightens around your waist, holding you tight until you’ve finish inseminating her robotic bowels. The last aftershot you give her is accompanied by an audible sigh from your gynoid lover, and her body slowly relaxes around you, though her tail and hole don’t let you go quite yet.");
 	output("\n\nAfter a moment, the gynoid casts a glance over her shoulder with a flare of her glowing eyes. <i>“I thought you weren’t going to be a distraction, [pc.name]...”</i>");
 	output("\n\nYou lean over her, cupping a succulent breast in one hand and finishing off an equation for her with the other. <i>“But it was a good distraction?”</i>");
-	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gain some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
+	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gained some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
 	output("\n\nYou give her your answer in the form of a firm squeeze as you finally divest yourself of her tight little asshole, letting the last vestiges of your orgasm leak down Olympia’s thigh. By the time you’ve found your [pc.weapon], she’s already back at work... though still obviously marked by your seed.");
 	processTime(30);
 	var ppOlympia:PregnancyPlaceholder = olympiaCreatureStats();

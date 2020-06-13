@@ -9,14 +9,6 @@ public function daneIsCrew():Boolean
 {
 	return false;
 }
-public function kiroRecruited():Boolean
-{
-	return false;
-}
-public function kiroIsCrew():Boolean
-{
-	return false;
-}
 
 public function PCShipIsCasstech():Boolean
 {
@@ -56,9 +48,4 @@ public function hasCapitalShip():Boolean
 public function PCShipHasHolodeck():Boolean
 {
 	return false;
-}
-
-public function ardiaDomLevel(arg:int = 0, apply:Boolean = false):int
-{
-	return 0;
 }

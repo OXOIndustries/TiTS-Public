@@ -120,6 +120,7 @@
 		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/Pornos.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
@@ -128,6 +129,7 @@
 		//Holiday shit
 		include "../includes/holidayEvents/2018XmasEvents.as";
 		include "../includes/holidayEvents/2018Krissy.as";
+		include "../includes/holidayEvents/biancaVDay.as";
 		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
@@ -150,13 +152,17 @@
 		//Followers
 		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
+		include "../includes/follower/ardia.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
 		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
 		include "../includes/follower/makius.as";
+		include "../includes/follower/kiro.as";
+		include "../includes/follower/kiroBimbo.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/olympiaAndSidewinder.as";
@@ -224,8 +230,16 @@
 		include "../includes/events/kimberQuest/roomFunctions.as";
 		include "../includes/events/kimberQuest/kimberQuest.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
+		include "../includes/events/kiroCrewQuest/fuckdollGeneric.as";
+		include "../includes/events/kiroCrewQuest/holoTrap.as";
+		include "../includes/events/kiroCrewQuest/illustriaPo.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/kiroCrewQuest/rooms.as";
+		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
+		include "../includes/events/kiroCrewQuest/taursuit.as";
+		include "../includes/events/kiroCrewQuest/twinSlutBots.as";
+		include "../includes/events/kiroCrewQuest/victoryEvent.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
@@ -336,6 +350,7 @@
 		include "../includes/mhenga/syri.as";
 		include "../includes/mhenga/tanis.as";
 		include "../includes/mhenga/tharePlantation.as";
+		include "../includes/mhenga/thyvara.as";
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
@@ -365,6 +380,7 @@
 		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
+		include "../includes/tarkus/lumi.as";
 		include "../includes/tarkus/mindwashVisor.as";
 		include "../includes/tarkus/novaClinic.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
@@ -494,9 +510,16 @@
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
+		include "../includes/zhengShiStation/vulriks.as";
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
+
+		// Dhaal
+		include "../includes/dhaal/capsuleHotel.as";
+		include "../includes/dhaal/milkBar.as";
+		include "../includes/dhaal/milkThief.as";
+		include "../includes/dhaal/rooms.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -528,6 +551,7 @@
 		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
+		include "../includes/uveto/eitan.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/heidrun.as";
@@ -543,6 +567,7 @@
 		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
+		include "../includes/uveto/milodanFutazon.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
@@ -571,6 +596,14 @@
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
 		include "../includes/uveto/xotchiExpansion.as";
+		
+		//uveto steele biomedical deepsea research facility
+		include "../includes/uveto/steeleBiomedical/janeriaCore.as";
+		include "../includes/uveto/steeleBiomedical/janeriaSpawn.as";
+		include "../includes/uveto/steeleBiomedical/rooms.as";
+		include "../includes/uveto/steeleBiomedical/roomFunctions.as";
+		include "../includes/uveto/steeleBiomedical/steeleBioDeepseaLab.as";
+		include "../includes/uveto/steeleBiomedical/typhon.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
@@ -686,7 +719,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.018";
+			version = "0.8.065";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -738,6 +771,9 @@
 			
 			inputManager = new InputManager(stage, false);
 			setupInputControls();
+			
+			// Pre-load character/ship data
+			initializeNPCs();
 			
 			initStephEps();
 			

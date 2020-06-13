@@ -561,8 +561,8 @@ public function yogaMediumMode():void
 	}
 	else
 	{
-		output("You’re not one to turn down the opportunity for some self-improvement. It’s one of the main reasons you keep coming back to Paige’s class in the first place. <i>“That’s the spirit,”</i> she says encouragingly. <i>“Alright then, I think I have just the pose for you to try.");
-		output("\n\nFirst, lay flat on your back.”</i> You shuffle forward so that your whole body remains on the mat, and gently set yourself onto your back, as per her instruction. <i>“Bend your left knee and put it over your right leg as far as you can, without moving your right leg and without lifting either of your shoulders from the mat.”</i>");
+		output("You’re not one to turn down the opportunity for some self-improvement. It’s one of the main reasons you keep coming back to Paige’s class in the first place. <i>“That’s the spirit,”</i> she says encouragingly. <i>“Alright then, I think I have just the pose for you to try.”</i>");
+		output("\n\n<i>“First, lay flat on your back.”</i> You shuffle forward so that your whole body remains on the mat, and gently set yourself onto your back, as per her instruction. <i>“Bend your left knee and put it over your right leg as far as you can, without moving your right leg and without lifting either of your shoulders from the mat.”</i>");
 		output("\n\nIt’s a surprisingly difficult instruction to follow! Your upper body wants to follow your lower body and tries to twist with it, but you maintain both your shoulders onto the mat. The stretch pulls hard on your left thigh and lower back, so much that you find it uncomfortable for a moment, but as with all yoga poses, you know it’ll pass.");
 		output("\n\n<i>“This pose is called the ‘supine twist,’”</i> she says as she runs both her hands over your body, particularly along your left, stretched leg, making sure it’s in the correct position. <i>“It’s one of yoga’s stricter poses; if you lift your knee too close to your chest, you risk pulling a gluteal muscle. Nobody likes damaged glutes!”</i> You laugh politely. <i>“Okay, now breathe in...”</i>");
 	}
@@ -702,8 +702,8 @@ public function yogaHardEnding():void
 	// end scene (scene: Hard Mode); place PC one square outside of Paige’s Yoga Class; increase Physique by 2; increase Reflexes by 1; increase Tone by 10; deduct 20 credits; deduct 70 energy; if (scene: Hard Mode 2), increase Lust by 20; inflict Sore on PC
 	processTime(50);
 	//Fuck yo stat gains, B. -Fen
-	pc.energy(-70);
-	pc.lust(20);
+	pc.changeLust(20);
+	pc.changeEnergy(-70);
 	yogaToning(10);
 	clearMenu();
 	addButton(0,"Next",moveSouth);
@@ -1247,7 +1247,7 @@ public function paigeSexPrologue():void
 	//[=Next=]
 	// end scene (scene: Sex Prologue)
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",paigeSexPrologue2);
 }
@@ -1343,7 +1343,7 @@ public function paigeSexPrologue2():void
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");
 
 	processTime(20);
-	pc.lust(50);
+	pc.changeLust(50);
 	// end scene (scene: Sex Prologue 2)
 	// refer to Sex With Paige document (scene: First Time) to proceed
 	clearMenu();
@@ -1433,7 +1433,7 @@ public function iddiCustomizationsTalk():void
 	// end scene (scene: Customizations)
 	// increase Lust by 1
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",aboutIddiTalk);
 }
@@ -1608,7 +1608,7 @@ public function paigeAtHomeYoga():void
 		//if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}
 		if(flags["PAIGES_WINES"] != undefined && flags["PAIGE_YOGA"] == undefined || (flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] < 4)) output(" <i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
 		//if {the PC hasn’t unlocked Hard Mode}
-		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
+		else if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
 		else output(" <i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
 		//[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=]
 		// play the usual difficulty modes and Difficulty Select 2 endings
@@ -1621,9 +1621,10 @@ public function paigeAtHomeYoga():void
 		if(hours >= 0 && hours < 9) output(", even at this unruly hour");
 		output("!”</i>");
 		output("\n\nThe main room to her unit, besides the couch, the recliner, and the coffee table, is mostly bare. On top of it is one single, massive yoga mat that, until you met her, Paige used by herself. <i>“Strip out of your gear,”</i> she says, and you do.");
-		output("\n\n[if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}<i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
+		//if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}
+		if(flags["PAIGES_WINES"] != undefined && flags["PAIGE_YOGA"] == undefined || (flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] < 4)) output("\n\n<i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
 		//if {the PC hasn’t unlocked Hard Mode}
-		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output("\n\n<i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
+		else if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output("\n\n<i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
 		else output("\n\n<i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
 	}
 	processTime(5);
@@ -1711,7 +1712,7 @@ public function apartmentYogaEndings():void
 	processTime(50);
 	yogaToning(10);
 	pc.energy(-70);
-	pc.lust(33);
+	pc.changeLust(33);
 	paigeMenu();
 }
 
@@ -1989,7 +1990,7 @@ public function herEyes3():void
 	output("\n\nWhen she pulls away, her familiar, confident smile spreads across her lips. <i>“So I’m worth exactly one million credits, am I, sweet thing?”</i> she asks playfully. <i>“If the surgery was one-million-and-one credits, is that the line?”</i>");
 	output("\n\n<i>“Oh, shut up,”</i> you chide.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",herEyes4);
 }
@@ -2020,7 +2021,7 @@ public function herEyes4():void
 
 	output("\n\nYou hum as you consider it.");
 	
-	var time2Go:Number = 0;
+	var time2Go:int = 0;
 	if(hours < 8) time2Go = (8 - hours) * 60;
 	else if(hours > 8) time2Go = 8*60 + (24-hours)*60;
 	else time2Go = 50;
@@ -2031,7 +2032,7 @@ public function herEyes4():void
 	pc.createStatusEffect("PAIGE_COMA_CD");
 	pc.setStatusMinutes("PAIGE_COMA_CD",60*30);
 	clearMenu();
-	addButton(0,"Stay",paigeEyeholeEmailEvent);
+	addButton(0,"Stay",stayForPaigesEyeholes);
 	addButton(1,"Leave",leavePaigesEyeholes);
 }
 
@@ -2058,6 +2059,8 @@ public function paigeEyeholeEmailEvent():void
 {
 	clearOutput();
 	showName("SURGERY\nALERT!");
+	author("B");
+	
 	output("The familiar tone of receiving a new message rings through the air. You bring your codex off your hip, checking who it’s from – it’s from Tavros’ Infirmary!");
 	output("\n\n<i>“" + pc.mf("Mister","Miss") + " [pc.name],”</i> it reads, <i>“you’re receiving this message as Miss Paige’s partner and sponsor. We’re happy to report that her surgery to replace her damaged eyes with a synthetic, biologically identical set has been a success.”</i> That’s a relief. And that’s exciting! Paige will be able to see again! <i>“Miss Paige is currently in an induced coma; we request your presence within the next twelve hours to proceed.”</i>");
 	//if {PC is on Tavros}

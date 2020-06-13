@@ -118,13 +118,21 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 	return flags["GIANNA_SILICONE_STORAGE"];
 }
 
-public function giannaCumflated(cumFrom:Creature = null):Boolean
+public function giannaCumflated(cumFrom:Creature = null, hole:int = 0):Boolean
 {
 	if(cumFrom != null && flags["GIANNA_CUMFLATION_DISABLED"] != 1)
 	{
 		// cumflate her!
 		gianna.fluidSimulate = true;
-		gianna.loadInCunt(cumFrom, 0);
+		switch(hole)
+		{
+			// Oral loads
+			case -2: gianna.loadInMouth(cumFrom); break;
+			// Anal loads
+			case -1: gianna.loadInAss(cumFrom); break;
+			// Vaginal loads
+			case 0: gianna.loadInCunt(cumFrom, 0); break;
+		}
 	}
 	//if(gianna.hasStatusEffect("Cumflated9999")) return true;
 	if(gianna.isCumflated() && gianna.bellyRating() >= 10) return true;
@@ -280,6 +288,12 @@ public function approachGianna(special:String = ""):void
 		//Repeat PC Cumflated Approach
 		else if(giannaCumflated() && flags["GIANNA_CUMFLATION_DISABLED"] == undefined)
 		{
+			var cumflationName:String = "Vaginally-Filled";
+			if(gianna.statusEffectv1("Anally-Filled") > gianna.statusEffectv1(cumflationName)) cumflationName = "Anally-Filled";
+			if(gianna.statusEffectv1("Orally-Filled") > gianna.statusEffectv1(cumflationName)) cumflationName = "Orally-Filled";
+			var cumType:int = gianna.statusEffectv3(cumflationName);
+			var cumflatedVagina:Boolean = (cumflationName == "Vaginally-Filled");
+			
 			output("<i>“Hey,”</i> you call. <i>“You okay?”</i>");
 			output("\n\nGianna starts, ");
 			//Neg:
@@ -287,12 +301,12 @@ public function approachGianna(special:String = ""):void
 			//Normal
 			else if(giannaPersonality() < 66)
 			{
-				output("nearly dropping the mop before propping it against the wall. A full body blush starts at her cheeks and works its way down her form. <i>“I thought you might like to see the fruits of your labor. I might not be able to get pregnant like these girls, but I can flaunt that a virile " + pc.mf("man","woman") + " packed me with more cum than two bulls put together.”</i> The android smiles, pleased with her wordplay. <i>“I thought you might like it.”</i> She steps forward, swaying her hips so that her [pc.cumNoun]-stuffed belly presses against your middle. <i>“Do you?”</i> Her expression is hopeful.");
+				output("nearly dropping the mop before propping it against the wall. A full body blush starts at her cheeks and works its way down her form. <i>“I thought you might like to see the fruits of your labor. I might not be able to get pregnant like these girls, but I can flaunt that a virile " + pc.mf("man","woman") + " packed me with more cum than two bulls put together.”</i> The android smiles, pleased with her wordplay. <i>“I thought you might like it.”</i> She steps forward, swaying her hips so that her " + pc.fluidNoun(cumType) + "-stuffed belly presses against your middle. <i>“Do you?”</i> Her expression is hopeful.");
 			}
 			//Positive
 			else
 			{
-				output("giving you a sly smile while swinging her body around the mop’s pole. She lets it fall against the wall. Her attention is fixed solely on you as she puts one foot in front of the other, swaying her hips in a way that makes her stuffed belly audibly slosh. <i>“Look what you did to me, [pc.name],”</i> she husks. <i>“You pumped so much [pc.cum] in me that I can’t even hold it all inside. My poor pussy is straining just to keep it from gushing out onto the floor.”</i> Rubbing her hand against the faux gravid curve, she reaches you. <i>“Do you like knowing that you’re so virile that you’ve overfilled one of the best-engineered cunts in the galaxy?”</i> She gathers some of your dripping excess with her fingers and brings it to her lips, savoring it. <i>“Do you like it when I show you just how lewd you make my body?”</i>");
+				output("giving you a sly smile while swinging her body around the mop’s pole. She lets it fall against the wall. Her attention is fixed solely on you as she puts one foot in front of the other, swaying her hips in a way that makes her stuffed belly audibly slosh. <i>“Look what you did to me, [pc.name],”</i> she husks. <i>“You pumped so much " + pc.fluidDescript(cumType) + " in me that I can’t even hold it all inside. My poor " + (cumflatedVagina ? "pussy" : "asshole") + " is straining just to keep it from gushing out onto the floor.”</i> Rubbing her hand against the faux gravid curve, she reaches you. <i>“Do you like knowing that you’re so virile that you’ve overfilled one of the best-engineered " + (cumflatedVagina ? "cunts" : "holes") + " in the galaxy?”</i> She gathers some of your dripping excess with her fingers and brings it to her lips, savoring it. <i>“Do you like it when I show you just how lewd you make my body?”</i>");
 			}
 			//[Yes][Yes, but...][No]
 			clearMenu();
@@ -553,7 +567,8 @@ public function neverCumflateAgain():void
 public function leaveWhileGiannaGetsRidOfCum():void
 {
 	clearOutput();
-	giannaDisplay();
+	showBust("");
+	showName("");
 	output("You don’t have time to wait around for this. She might be disappointed to see you go, but she’ll get over it.");
 	gianna.flushCumflation();
 	giannaPersonality(-10);
@@ -568,12 +583,12 @@ public function leaveWhileGiannaGetsRidOfCum():void
 public function waitForGiannaToDespunk():void
 {
 	clearOutput();
-	giannaDisplay();
 	//Pass 13 minutes
 	processTime(13);
+	gianna.flushCumflation();
+	giannaDisplay();
 	output("Gianna sure takes her time getting cleaned up, but when she comes out, she looks as fresh as the day you met her. There aren’t even any stretch marks on her synthskin, just a smooth, unblemished middle positioned eight inches from a clean, juicy-looking pussy.");
 	output("\n\nSpinning, the companion shows off, coming to rest with a slight giggle. <i>“This should be more suitable to your tastes, then. Now, was there anything I could help you with?”</i>");
-	gianna.flushCumflation();
 	//main menu!
 	approachGianna("noText");
 }
@@ -581,7 +596,6 @@ public function waitForGiannaToDespunk():void
 public function giannaToggleCumflation():void
 {
 	clearOutput();
-	giannaDisplay();
 	author("Jacques00");
 	
 	// Enable cumflation
@@ -612,6 +626,7 @@ public function giannaToggleCumflation():void
 		output("\n\n<b>Gianna is no longer able to be inflated by cum.</b>");
 		flags["GIANNA_CUMFLATION_DISABLED"] = 1;
 	}
+	giannaDisplay();
 	
 	processTime(1);
 	
@@ -710,7 +725,7 @@ public function giannaAppearance():void
 	if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] != undefined) output(" You know from experience that she takes in more silicone there, distributing it through her body to improve her aesthetics.");
 	output("\n\nShe has knees and feet exactly as you would expect. There’s even ten carefully crafted, synth-skin covered artificial toes that wiggle when she walks. They lack nails, but pink-hued depressions conceal that from a distance, looking like painted polish.");
 	
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	clearMenu();
 	addButton(0,"Next",approachGianna,"back");
@@ -758,7 +773,7 @@ public function talkToGianna(display:Boolean = true):void
 				else output("across your head");
 				output(" while she grinds. <i>“Don’t you want a girl that will take care all your needs and serenade you with endless conversation while you come down?”</i> She subtly flexes the pale flesh of that silicone-padded behind. <i>“Why rush into the talk now?”</i>");
 				//Add a good bit of lust and dommy sex option. Bimbos always get dommy sex. Same with super low will characters.
-				pc.lust(20);
+				pc.changeLust(20);
 				//9999
 			}
 			//Positive
@@ -766,7 +781,7 @@ public function talkToGianna(display:Boolean = true):void
 			{
 				output("\n\n<i>“Mmm, we can talk for a while if that’s what you want,”</i> Gianna smiles while stretching to present her [gianna.breasts] to you. <i>“Did you have something on your mind?”</i> She purposefully causes the synthskin on her chest to flush pink, drawing your eyes there once more. <i>“You’re not having trouble focusing, are you?”</i>");
 				//Add option to go directly to dommy sex.
-				pc.lust(15);
+				pc.changeLust(15);
 				//9999
 			}
 			//Slightly Positive
@@ -1684,7 +1699,7 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 	}
 	giannaDisplay();
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	giannaBodyModMenu(false);
 }
 
@@ -1702,7 +1717,7 @@ public function decreaseGiannaBoobs(siliconeReturned:int):void
 		if(giannaPersonality() >= 70)
 		{
 			output(" <i>“Aww, I was just getting used to them! My god, the bulls’ eyes practically pop out of their heads every time they walk by. And you,”</i> she says, sashaying forward to rub them against your [pc.chest], <i>“...you should see the way you look at them when I do this.”</i> She grabs you by the chin and pulls your face up to meet her gaze. <i>“See? But if that’s what you really want, I can take them down a little for you.”</i>");
-			pc.lust(3);
+			pc.changeLust(3);
 		}
 		//Normal
 		else if(giannaPersonality() >= 35)
@@ -1959,7 +1974,7 @@ public function maxGiannaBootyEnd(jerk:Boolean = false):void
 	output("\n\n<i>“What now?”</i>");
 	gianna.buttRatingRaw = 20;
 	//+33 lust
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(3);
 	giannaBodyModMenu(false);
 
@@ -2163,7 +2178,7 @@ public function increaseGiannaLips(siliconeUsed:int):void
 		output("”</i> Pursing her [gianna.lips], she lets her eyelids flutter closed and starts pumping the silicone. You can hear it sloshing through the hose and sloshing through her spine towards its targets. After a moment, the smooth curves ripple and bloat, pulling the synthskin surface so tight that they shine brighter than any lipstick-slathered mouth.");
 		output("\n\nThe pumps wind down a scant few seconds later, leaving the companion with significantly expanded facial assets. She runs her tongue across their expansive surface and moans, <i>“Mmmm... I love the feel of my synthskin’s input resolution shifting.”</i> She sucks her top lip in, then lets it pop out so that she can nibble on the lower one. <i>“Yeah... the cows are gonna be jealous now. I could easily match the biggest of them now, and I don’t need to breathe when I go down on someone.”</i> Blushing, she suggests, <i>“Why don’t we unhook the pump and try these out?”</i>");
 		//+10 lust
-		pc.lust(10);
+		pc.changeLust(10);
 		gianna.lipMod = 3;
 	}
 	//3 - 4 dazzling/exquisitely large to hyper-engorged/constantly pursed
@@ -2425,14 +2440,15 @@ public function hugeTittyTittyfuck():void
 	if(pc.balls > 1) output(" Your [pc.balls] quake, sliding your [pc.sack] against the underside of Gianna’s lubricated bust. The extra stimulation has your [pc.cocks] straining all the harder as they begin to erupt.");
 	else output(" You groan low in your throat as you begin to erupt.");
 
+	var cumQ:Number = pc.cumQ();
 	//Not too long to stick out the top.
 	if(pc.longestCockLength() < 25) 
 	{
 		//No new pg.
-		if(pc.cumQ() < 5) output(" The few small drops that leak out into Gianna’s tits are the only signs of your climax. She almost misses it, but coos with pleasure when she realizes what has happened.");
-		else if(pc.cumQ() <= 25) output(" The modest squirts you drizzle into her tits transform her cleavage into a slick, [pc.cumColor] swamp. The android girl coos excitedly, still kneading her boobs to wring every last ounce of [pc.cumNoun] from your shivering form.");
-		else if(pc.cumQ() <= 100) output(" The good-sized ropes of [pc.cum] you drizzle into Gianna’s tits do a good job of turning them into a syrupy mess. Cooing, the android continues to knead them, milking out every single drop. Her boobs shine with a thick coat of [pc.cumColor] when you finally sag back, drained.");
-		else if(pc.cumQ() <= 600) {
+		if(cumQ < 5) output(" The few small drops that leak out into Gianna’s tits are the only signs of your climax. She almost misses it, but coos with pleasure when she realizes what has happened.");
+		else if(cumQ <= 25) output(" The modest squirts you drizzle into her tits transform her cleavage into a slick, [pc.cumColor] swamp. The android girl coos excitedly, still kneading her boobs to wring every last ounce of [pc.cumNoun] from your shivering form.");
+		else if(cumQ <= 100) output(" The good-sized ropes of [pc.cum] you drizzle into Gianna’s tits do a good job of turning them into a syrupy mess. Cooing, the android continues to knead them, milking out every single drop. Her boobs shine with a thick coat of [pc.cumColor] when you finally sag back, drained.");
+		else if(cumQ <= 600) {
 			output(" The thick ropes of [pc.cum] you squirt into Gianna’s tits more than fill her cleavage, and big globs of it drizzle out the bottom onto your [pc.legOrLegs]");
 			if(pc.balls > 0) output(" and [pc.balls]");
 			else if(pc.hasVagina()) output(" and [pc.vaginas]");
@@ -2443,13 +2459,13 @@ public function hugeTittyTittyfuck():void
 	//Poking out! No new paragraphs
 	else
 	{
-		if(pc.cumQ() < 5) output(" The few small drops that you manage to drool down your length and into Gianna’s tits are the only signs of your climax. She almost doesn’t notice at first, but coos with pleasure when she realizes what has happened.");
-		else if(pc.cumQ() < 50) output(" The modest squirts you launch into the air fall over Gianna’s face and breasts in a perverse drizzle. She coos, kneading her boobs excitedly, trying to coax every last drop out of you. Her tongue dabs at a droplet of [pc.cum] that fell on her [gianna.lips], and she smiles as you paint the top her bosom.");
-		else if(pc.cumQ() <= 500) output(" The thick ropes of [pc.cum] that you squirt into the air hang there, suspended for a long moment of passion, before falling back into her welcoming tits, splashing [pc.cumColor] droplets across her face. Runnels of it soon fill her canyon-like cleavage, and a few droplets even manage to leak out the bottom of her heaving chest. She merely coos excitedly, still squeezing her boobs tightly around you, trying to wring out even larger bursts of seed with her unceasing attentions.");
+		if(cumQ < 5) output(" The few small drops that you manage to drool down your length and into Gianna’s tits are the only signs of your climax. She almost doesn’t notice at first, but coos with pleasure when she realizes what has happened.");
+		else if(cumQ < 50) output(" The modest squirts you launch into the air fall over Gianna’s face and breasts in a perverse drizzle. She coos, kneading her boobs excitedly, trying to coax every last drop out of you. Her tongue dabs at a droplet of [pc.cum] that fell on her [gianna.lips], and she smiles as you paint the top her bosom.");
+		else if(cumQ <= 500) output(" The thick ropes of [pc.cum] that you squirt into the air hang there, suspended for a long moment of passion, before falling back into her welcoming tits, splashing [pc.cumColor] droplets across her face. Runnels of it soon fill her canyon-like cleavage, and a few droplets even manage to leak out the bottom of her heaving chest. She merely coos excitedly, still squeezing her boobs tightly around you, trying to wring out even larger bursts of seed with her unceasing attentions.");
 		else 
 		{
 			output(" The blasts of [pc.cum] that you launch in the air are so large that the first is more than enough to completely drench Gianna’s cooing face and slick tits. The rest splatter everywhere, but the curve of her cleavage still manages to collect enough of your seed to create a virtual [pc.cumColor] swimming pool on her chest.");
-			if(pc.cumQ() >= 1500) output(" Waterfalls of [pc.cumVisc] [pc.cumNoun] slowly roll down the outside of her bosom, pooling briefly in the crooks of her elbows before finally falling to the floor with wet splatters.");
+			if(cumQ >= 1500) output(" Waterfalls of [pc.cumVisc] [pc.cumNoun] slowly roll down the outside of her bosom, pooling briefly in the crooks of her elbows before finally falling to the floor with wet splatters.");
 			output(" She’s still squeezing too, still milking every last drop, no matter how messy or [pc.cumNoun]-drenched she may become.");
 		}
 	}
@@ -2460,11 +2476,11 @@ public function hugeTittyTittyfuck():void
 	output("\n\n<i>“I thought so,”</i> the companion says while trying to separate her weighty assets from your crotch. <i>“I’m sensitive enough to get off on this with my eyes closed, but the look on your face,”</i> Gianna explains, <i>“was just too much. I couldn’t NOT cum.”</i> She giggles. <i>“Wow, a double-negative. I’m getting almost as bad as some of the cows.”</i> Standing away now, she rubs her hands over the slick curves of her chest, gathering some [pc.cum] on a fingertip to lick.");
 	//No new PG
 	//Small
-	if(pc.cumQ() <= 50) output("\n\n<i>“Not a bad sample.”</i>");
+	if(cumQ <= 50) output("\n\n<i>“Not a bad sample.”</i>");
 	//Medium
-	else if(pc.cumQ() <= 150) output("\n\n<i>“Yum!”</i>");
+	else if(cumQ <= 150) output("\n\n<i>“Yum!”</i>");
 	//Large
-	else if(pc.cumQ() <= 500) output("\n\n<i>“Ohh, there’s so much to clean...”</i>");
+	else if(cumQ <= 500) output("\n\n<i>“Ohh, there’s so much to clean...”</i>");
 	//XL
 	else output("\n\n<i>“So much deliciousness, so little time.”</i> She shivers. <i>“I’m glad I was configured to adore the tastes of all kinds of seed.”</i>");
 	output("\n\nYou hop off the crate and make to grab your [pc.gear] while Gianna grabs a nearby towel to wipe clean with. Come to think of it, there are a LOT of towels in the area. You suppose New Texan milk barns must be messy places.");
@@ -2560,6 +2576,9 @@ public function giannaNormalTitTitfuck():void
 	else if(flags["GIANNA_TEMP"] == 0) output("warm");
 	else output("cold");
 	output(" friction. You ooze pre-cum with each cock-swaddling stroke, mixing your lusty fluid in with the already-present lube.");
+	
+	var cumQ:Number = pc.cumQ();
+	
 	//Dick not big enough to jut out the top.
 	if(pc.biggestCockLength() <= gianna.biggestTitSize())
 	{
@@ -2587,18 +2606,18 @@ public function giannaNormalTitTitfuck():void
 		output("\n\nShe speeds up, and not just a little bit. It’s like her breasts are jackhammering your [pc.cockBiggest], drilling through your resistance to get at the creamy release just under the surface. They seem a blur of shuddering, quivering titty - a sleeve of vibrating pleasure that’s so tight and simultaneously soft your mind boggles at the sensations being transmitted to it by your traitorous spine. Arcs of pleasure sizzle and spark through your body, making your muscles spasm and your crotch lurch upward to press yourself fully into Gianna’s blushing bust.");
 		output("\n\nYou cum like a supernova.");
 		//Not much cums
-		if(pc.cumQ() < 5) output("\n\nAt least, it feels like a supernova. The few droplets that you do squirt are almost entirely subsumed in the sea of shimmering lube around you. Your quivering, ecstatic cock doesn’t even offer enough to discolor the mix.");
+		if(cumQ < 5) output("\n\nAt least, it feels like a supernova. The few droplets that you do squirt are almost entirely subsumed in the sea of shimmering lube around you. Your quivering, ecstatic cock doesn’t even offer enough to discolor the mix.");
 		//Normalish Cum
-		else if(pc.cumQ() < 25) output("\n\nAt least, it feels like a supernova. Your globs of [pc.cum] mix thoroughly into the fucksoup inside Gianna’s cleavage, somehow making it even hotter and wetter than before. The extra lubrication of it along with the sheer, naughty thrill of creampieing her considerable tits has you squirting out more than you’d otherwise be capable of.");
+		else if(cumQ < 25) output("\n\nAt least, it feels like a supernova. Your globs of [pc.cum] mix thoroughly into the fucksoup inside Gianna’s cleavage, somehow making it even hotter and wetter than before. The extra lubrication of it along with the sheer, naughty thrill of creampieing her considerable tits has you squirting out more than you’d otherwise be capable of.");
 		//Largish
-		else if(pc.cumQ() < 200) output("\n\nSo much [pc.cum] pumps out of your titty-bound tool that you can feel it dripping out the bottom of her cleavage onto your [pc.legOrLegs]. At least one droplet of [pc.cumColor] crests the android’s shuddering valley, turning into a colored stream that runs down her front. Your load quickly builds into a frothy coat that covers the whole of Gianna’s [gianna.chest].");
+		else if(cumQ < 200) output("\n\nSo much [pc.cum] pumps out of your titty-bound tool that you can feel it dripping out the bottom of her cleavage onto your [pc.legOrLegs]. At least one droplet of [pc.cumColor] crests the android’s shuddering valley, turning into a colored stream that runs down her front. Your load quickly builds into a frothy coat that covers the whole of Gianna’s [gianna.chest].");
 		//Very largish
-		else if(pc.cumQ() < 700) output("\n\nThe first rope distinctly alters the texture of your squishy booby prison, and the second actually manages to push its way out the top - not with enough pressure to shoot anywhere. A pool forms in her shaking cleavage all the same. Each successive shot drenches her bosom in more and more of your [pc.cum] until Gianna’s whole chest is a drenched, dripping mess, and your lap doesn’t fare much better.");
+		else if(cumQ < 700) output("\n\nThe first rope distinctly alters the texture of your squishy booby prison, and the second actually manages to push its way out the top - not with enough pressure to shoot anywhere. A pool forms in her shaking cleavage all the same. Each successive shot drenches her bosom in more and more of your [pc.cum] until Gianna’s whole chest is a drenched, dripping mess, and your lap doesn’t fare much better.");
 		//Kiro sized
 		else output("\n\nOr perhaps, a quasar would be more appropriate. [pc.Cum] launches out of you in such volume that it seems to erupt out of the top of Gianna’s bosom, hosing her down from chin to forehead. [pc.CumColor] droplets drip back down into the rapidly forming lake just in time for your next burst to spray up. This time, she’s pulled back far enough to be out of the way. The android’s eyes are practically glued shut, hiding the rain of [pc.cumNoun] from her until it’s falling over her hair, slicking it down to her scalp. Her head, her shoulders, and even her torso get totally drenched. Rivulets of your spermy goo even thread the crack of her [gianna.ass]. When you finally finish, Gianna is lousy with [pc.cumNoun] and standing in a pool of it.");
 		//Merge
 		output("\n\nYou slump down exhausted. Gianna, meanwhile, is as energetic as when you started");
-		if(pc.cumQ() >= 50) output(", if a little messier");
+		if(cumQ >= 50) output(", if a little messier");
 		output(". She’s even still stroking your softening dick, wringing the last few drops of [pc.cum] from your cock’s tip. She pulls away a little regretfully, yet she looks satisfied all the same. <i>“I should go get cleaned up and top off my fluid reservoir. If you stick around we can have some more fun, okay?”</i>");
 		output("\n\nYou nod, watching her [gianna.butt] as she goes, and start getting yourself cleaned up and ready to go. By the time you finish, she’s walking back.");
 		//End this whole variant
@@ -2651,17 +2670,17 @@ public function giannaNormalTitTitfuck():void
 
 		output("\n\nThe tightly-knotted mass of pleasure inside you makes itself known with an involuntary clench that has your [pc.cocks] standing far above attention. Your [pc.feet] violently kick at the crate as you’re brought to your peak and held there by the manufactured vixen’s mouth, suspended on the edge while she ever so subtly works her tongue and tits faster. Just as you’re about to blow, Gianna starts jacking her [gianna.chest] so fast that you briefly wonder if she’s got a light drive built into them. You mutely mouth, <i>“Oh fuck,”</i> and your lower body seizes under what feels like a mountain of obscene pleasure.");
 		output("\n\nA second later, a geyser of pure bliss bores through it, blasting out the top like a torrent of molten magma.");
-		if(pc.cumQ() <= 5) output(" Only, in your case, that magma is a few sparse droplets of [pc.cum]. You squirt your meager reserves into Gianna’s mouth, violently twitching your hips as you do, so lost in the moment that your climax drags on far past the point where you stop cumming.");
-		else if(pc.cumQ() <= 25) output(" Your actual eruption is a little more modest than it feels, planting [pc.cumVisc] ropes of [pc.cumNoun] straight into Gianna’s mouth. You’re so lost in the moment that your ecstatic release carries on well past its normal end. Your robotic lover’s cheeks bulge to contain it. The edges of her lips curl into a smile, one that leaks a single droplet of [pc.cumColor].");
-		else if(pc.cumQ() <= 200) output(" You feel every bit like a human volcano as you bathe Gianna’s mouth in white-hot [pc.cumNoun], inseminating her palate with such thick ropes that her cheeks bulge long before you finish. Backing off, she swallows and smiles, still pumping her tits while you lose yourself to the ecstasy. [pc.CumColor] strands force her to blink her eyes closed and practically glue them shut. Other squirts shoot up and fall across the curves of her tits, bathing them with your prolonged release. When you finally do cum down, she’s a mess, but one that’s practically glowing with satisfaction.");
+		if(cumQ <= 5) output(" Only, in your case, that magma is a few sparse droplets of [pc.cum]. You squirt your meager reserves into Gianna’s mouth, violently twitching your hips as you do, so lost in the moment that your climax drags on far past the point where you stop cumming.");
+		else if(cumQ <= 25) output(" Your actual eruption is a little more modest than it feels, planting [pc.cumVisc] ropes of [pc.cumNoun] straight into Gianna’s mouth. You’re so lost in the moment that your ecstatic release carries on well past its normal end. Your robotic lover’s cheeks bulge to contain it. The edges of her lips curl into a smile, one that leaks a single droplet of [pc.cumColor].");
+		else if(cumQ <= 200) output(" You feel every bit like a human volcano as you bathe Gianna’s mouth in white-hot [pc.cumNoun], inseminating her palate with such thick ropes that her cheeks bulge long before you finish. Backing off, she swallows and smiles, still pumping her tits while you lose yourself to the ecstasy. [pc.CumColor] strands force her to blink her eyes closed and practically glue them shut. Other squirts shoot up and fall across the curves of her tits, bathing them with your prolonged release. When you finally do cum down, she’s a mess, but one that’s practically glowing with satisfaction.");
 		else 
 		{
 			output(" Your actual eruption is every bit as voluminous as it feels. Gianna’s cheeks bulge obscenely from the first rope, and when she backs off, still trying to swallow, the next paints her face, covering it in a coat of dripping [pc.cumColor]. Her skillful pumping of your [pc.cockBiggest] jerks to a confused stop, but you’re lost in the feeling of unloading now, hosing down her hair, painting her tits, and drenching her face what feels like untold times. The whole of the android’s body is soon dripping");
-			if(pc.cumQ() >= 5000) output(" and seated in a deep puddle");
+			if(cumQ >= 5000) output(" and seated in a deep puddle");
 			output(" like some kind of soaked cum-doll.");
 		}
 		output("\n\nYou slump down exhausted. Gianna, meanwhile, is as energetic as when you started");
-		if(pc.cumQ() >= 200) output(", if a little messier");
+		if(cumQ >= 200) output(", if a little messier");
 		output(". She’s even still stroking your softening dick, wringing the last few drops of [pc.cum] from your cock’s tip.");
 		//No new PG, personality variations
 		//Dommy
@@ -2805,19 +2824,20 @@ public function giannasCockSuckingLipsSuckCocks():void
 	if(gianna.buttRating() >= 15) output(" obscenely. Waves of kinetic force ripple through her bloated, jiggling bum");
 	output(". The suction intensifies, and you feel the pleasant, hot ache of an orgasm brimming up from inside your belly.");
 	output("\n\nYou consider warning her that you’re getting close to cumming, but a tightening of her throat silences any such concerns. Either she knows it’s coming or she’s not likely to care. Those beautiful blue eyes meet yours one more time and drift closed. Then, powerful constrictions start around your base, undulating along your length towards your [pc.cockHeadBiggest]. Your heart hammers as molten need builds into explosive desire. Your [pc.cockBiggest] strains, captive to Gianna’s silicone-swollen lips, and you thrust, burying yourself to the hilt. Gianna hums, tickling your underside, coaxing you to even greater heights of passion as the dam bursts.");
+	var cumQ:Number = pc.cumQ();
 	//Emptyish
-	if(pc.cumQ() < 5) output("\n\nYou only leak a single droplet into the robot’s plush hole, but it feels just as good regardless. Your muscles are clamping down and spasming like mad, trying to milk more fuckbatter from your already overtaxed [pc.balls]. It’s exquisite, but you’d better take a break if you want to have something to shoot next time.");
+	if(cumQ < 5) output("\n\nYou only leak a single droplet into the robot’s plush hole, but it feels just as good regardless. Your muscles are clamping down and spasming like mad, trying to milk more fuckbatter from your already overtaxed [pc.balls]. It’s exquisite, but you’d better take a break if you want to have something to shoot next time.");
 	//Normalish
-	else if(pc.cumQ() < 25) output("\n\nYou squirt a few nice, long loads directly into her waiting maw. She doesn’t even swallow; she just lets it roll down her unresisting throat into whatever passes for her stomach, milking you all the while. It’s such a thorough, powerful cocksucking that your climax seems to last for far longer than normal, though time is nothing if not ephemeral while blowing a load between Gianna’s plush lips.");
+	else if(cumQ < 25) output("\n\nYou squirt a few nice, long loads directly into her waiting maw. She doesn’t even swallow; she just lets it roll down her unresisting throat into whatever passes for her stomach, milking you all the while. It’s such a thorough, powerful cocksucking that your climax seems to last for far longer than normal, though time is nothing if not ephemeral while blowing a load between Gianna’s plush lips.");
 	//Bigger than normalish
-	else if(pc.cumQ() < 200) output("\n\nYou erupt long, thick ropes of [pc.cum] directly into the robot’s plush hole, firing them down her unresisting throat in what feels like a neverending deluge. Purring, she edges back, letting you spill more onto unsoiled throat, mouth, and tongue, finishing her retreat just in time to catch a puddle of sperm-filled fluid on her pouty lower lip. She smiles and licks it into her [pc.cumColor]-flooded mouth, showing you before she swallows. You feel a little drained after and have the distinct impression you poured at least a normal orgasm’s worth directly into her belly.");
+	else if(cumQ < 200) output("\n\nYou erupt long, thick ropes of [pc.cum] directly into the robot’s plush hole, firing them down her unresisting throat in what feels like a neverending deluge. Purring, she edges back, letting you spill more onto unsoiled throat, mouth, and tongue, finishing her retreat just in time to catch a puddle of sperm-filled fluid on her pouty lower lip. She smiles and licks it into her [pc.cumColor]-flooded mouth, showing you before she swallows. You feel a little drained after and have the distinct impression you poured at least a normal orgasm’s worth directly into her belly.");
 	//Slightly Superhuman
-	else if(pc.cumQ() < 600) output("\n\nYou go off like a firehose, pouring inhumanly thick ropes of [pc.cum] down Gianna’s unresisting throat. Her belly gurgles noisily under the deluge, and she slowly backs off you, leaving slick, exposed cock in her wake and exposing fresh inches of throat for you to inseminate. She takes you into her mouth, letting you watch her cheeks fill, and then, she swallows, letting ribbons of your [pc.cumColor] delight trickle out of the corner of her plush cockpillows. You sag back, emptied. You haven’t cum that hard in a while.");
+	else if(cumQ < 600) output("\n\nYou go off like a firehose, pouring inhumanly thick ropes of [pc.cum] down Gianna’s unresisting throat. Her belly gurgles noisily under the deluge, and she slowly backs off you, leaving slick, exposed cock in her wake and exposing fresh inches of throat for you to inseminate. She takes you into her mouth, letting you watch her cheeks fill, and then, she swallows, letting ribbons of your [pc.cumColor] delight trickle out of the corner of her plush cockpillows. You sag back, emptied. You haven’t cum that hard in a while.");
 	//Obscene
 	else output("\n\nYou go off like a firehose, pouring a river of [pc.cum] into Gianna’s belly. Her eyes widen in surprise at first, then lower in acceptance as her belly begins to expand. Her hands roam across it, marvelling at its sloshing, filling size. She edges back slowly, letting you fill her throat and mouth with the stuff. Her cheeks puff out as you overwhelm even her elasticity, and she pops off, still connected to you by an eager tongue. Webs of [pc.cumColor] connect your bodies as you continue to bathe her in yet more [pc.cumNoun], and she takes it with a smile, her eyes concealed behind a half-dozen layers of distilled excitement. She leans in as you taper off, letting the last few dribbles spill onto her gleaming onyx lips, and kisses your [pc.cockHeadBiggest] as if to thank it for being so virile.");
 	//Merge
 	output("\n\nGianna rises, leaving you panting.");
-	if(pc.cumQ() < 600) output(" She burps quietly, coloring slightly.");
+	if(cumQ < 600) output(" She burps quietly, coloring slightly.");
 	else output(" She rubs her belly, blushing there as much as on her cheeks. It’s almost like your [pc.cum] is warming her from the inside out, making her glow.");
 	output(" Licking her [gianna.lips] one last time, she shivers. <i>“I’ll never get tired of that... but I should tend to some scheduled maintenance. And ");
 	if(giannaPersonality() >= 70) output("[pc.name]? Just come if you ever have any ideas about fun things we could do with my mouth.");
@@ -2827,6 +2847,7 @@ public function giannasCockSuckingLipsSuckCocks():void
 	output("\n\nThe big-lipped android sashays away, wiggling her hips even more than her normal exaggerated gait, a trail of dripping lubricant behind her. Scheduled maintenance indeed.");
 	flags["GIANNA_STALL_SEEN"] = 1;
 	processTime(20+rand(4));
+	giannaCumflated(pc, -2);
 	pc.orgasm();
 	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
@@ -2925,6 +2946,8 @@ public function giveGirlsOral():void
 	else output(" lean back into the chair’s padding");
 	output(" and enjoy the ride, vocalizing your pleasure with soft pants and pleased-sounding groans.");
 
+	var i:int = 0;
+	var girlCumQ:Number = pc.girlCumQ();
 	//Hyper clitties - dick sized and up!
 	if(pc.clitLength >= 5)
 	{
@@ -2934,8 +2957,8 @@ public function giveGirlsOral():void
 		{
 			output("Juices splatter the chair");
 			if(pc.wettestVaginalWetness() >= 5) output(" and your fellatrix’s [gianna.tits]");
-			if(pc.girlCumQ() >= 1500) output(", the beginnings of an avalanche of [pc.girlCum] that soaks the straw-covered floor");
-			if(pc.girlCumQ() >= 5000) output(". The drain gurgles as it attempts to deal with your prodigiously sloppy orgasms");
+			if(girlCumQ >= 1500) output(", the beginnings of an avalanche of [pc.girlCum] that soaks the straw-covered floor");
+			if(girlCumQ >= 5000) output(". The drain gurgles as it attempts to deal with your prodigiously sloppy orgasms");
 			output(". ");
 		}
 		output("You gurgle thoughtlessly while Gianna deepthroats your [pc.clit].");
@@ -2953,23 +2976,10 @@ public function giveGirlsOral():void
 		output("\n\nAs you black out, a tiny part of you marvels at the sparks of overwhelming enjoyment that arc across your synapses, shutting them down with what feels like the most powerful orgasm of your life.");
 		//Next - to epilogues - at the end of other scene variation.
 		processTime(10);
-		
-		/* u wot m8?
-		[pc.orgasm];
-		[pc.orgasm];
-		[pc.orgasm];
-		[pc.orgasm];
-		[pc.orgasm];
-		*/
-		
-		for (var i:int = 0; i < 5; i++)
-		{
-			pc.orgasm();
-			flags["GIANNA_FUCK_TIMER"] = 0;
-		}
+		for (i = 0; i < 5; i++) { pc.orgasm(); }
 		
 		clearMenu();
-		addButton(0,"Next",girlyTongueVibeEpilogue);
+		addButton(0,"Next",girlyTongueVibeEpilogue, true);
 		return;
 	}
 	//Tig ol’ clitties
@@ -3002,16 +3012,12 @@ public function giveGirlsOral():void
 	{
 		output("squirt a torrent of [pc.girlCum] with explosive force, filling the android’s mouth, but also squirting out around the edges of her [gianna.lips], casting webs of libidinous fluid across the once-clean stall that hang and drip. She gulps as fast as she can with her tongue still extended and vibrating - and what better place for it to be! You twist and squirm on it. Just as your first explosive orgasm slows, she triggers another on its heels. It’s completely overwhelming. You feel helpless underneath the all-encompassing pleasure, ragdolling in the chair as you’re milked for gush after gush of [pc.girlCumNoun].");
 		output("\n\n");
-		if(pc.girlCumQ() >= 5000) output("You can hear the drain in the floor trying to keep up now that you’ve soaked all the available straw. ");
+		if(girlCumQ >= 5000) output("You can hear the drain in the floor trying to keep up now that you’ve soaked all the available straw. ");
 		output("Part of you wishes you could see what Gianna’s body looks like. Is she painted in the stuff? Do her tits glisten? Explosions of pink, electric pleasure disperse your thoughts like morning mist under the midday sun. You moan and babble, trying to ask her to stop, but it comes out as little more than incoherent gibbering. Your [pc.legOrLegs] won’t obey your commands. Your arms won’t do anything but ineffectually roam across your [pc.fullChest]. All you can manage is to gush and tremble, spellbound by that vibrating tongue.");
 		output("\n\nBefore long, the high-speed undulations unravel your increasingly unbalanced thoughts. Your eyes flutter closed, and your world becomes nothing but dreams of tongues filling pussies and slick hands rubbing across exquisitely smooth, unblemished flesh.");
 	}
 	processTime(10);
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	for (i = 0; i < 5; i++) { pc.orgasm(); }
 	//Next
 	clearMenu();
 	addButton(0,"Next",girlyTongueVibeEpilogue);
@@ -3020,6 +3026,9 @@ public function giveGirlsOral():void
 //Next epilogues - variants based on if came from clit sucking or tongue vibes.
 public function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 {
+	processTime(60);
+	for (var i:int = 0; i < 10; i++) { pc.orgasm(); }
+	
 	clearOutput();
 	giannaDisplay();
 	output("You wake up to the sensation of being toweled off. Gianna is wiping the last wetness from your cheek as you come to. You’re in a different room now - a shower, by the looks of it, and the robotic woman has obviously spent some time cleaning you up.");
@@ -3057,17 +3066,7 @@ public function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 		output("\n\nPart of you wants to scold her, but she’s right; you’re floating on cloud nine right now. You’d have a hard time getting mad at having your ship impounded.");
 		output("\n\nPetting the eager woman, you tell her that she did a wonderful job. She beams at that and gathers your things for you. A short time later, the two of you return to the barn’s main room, different needs sated by what would seem a one-sided act.");
 	}
-	processTime(60);
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
-	[pc.orgasm];
+	pc.shower();
 	processTime(17);
 	flags["GIANNA_GIVEN_GIRLY_ORAL_YET"] = 1;
 	flags["GIANNA_FUCK_TIMER"] = 0;
@@ -3322,11 +3321,12 @@ public function eatOutPussyOfRoboChicksDuring69():void
 	if(pc.hasCock())
 	{
 		output(" while [pc.eachCock] convulses against her tits, painting them [pc.cumColor]");
-		if(pc.cumQ() >= 10)
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 10)
 		{
 			output(", unleashing ");
-			if(pc.cumQ() < 100) output("streams");
-			else if(pc.cumQ() < 1000) output("torrents");
+			if(cumQ < 100) output("streams");
+			else if(cumQ < 1000) output("torrents");
 			else output("waterfalls");
 			output(" of [pc.cumNoun]");
 		}
@@ -3405,6 +3405,7 @@ public function coochFuckThreeMaybeFourInOne():void
 	
 	IncrementFlag("FUCKED_GIANNA_VAGINALLY");
 	
+	var cumQ:Number = pc.cumQ();
 	//Normal Variant - Not a taur.
 	if(!pc.isTaur())
 	{
@@ -3467,17 +3468,17 @@ public function coochFuckThreeMaybeFourInOne():void
 			output(", she clenches, and when you nearly escape, the suction ramps back up. You may have her bent over submissively, but her pussy is like a leash for your dick, guiding it into fucking harder and faster. Gianna’s juices are spilling down the sides of the table. She’s leaking more almost nonstop, and some of her throaty screams of bliss are starting to sound suspiciously orgasmic.");
 			output("\n\nThe feel of that velvet vice squeezing down on you is coaxing you uncomfortably close to the edge yourself. Effervescent heat bubbles dangerously close, just beneath the surface of your [pc.cockHead " + x + "], threatening to burst out in thick ropes at a moment’s notice. Looking down, you observe the obscene, pleasure-drunk expression on Gianna’s face. Her eyes are rolled back, and her [gianna.lips] hang open, moaning whorishly. It’s like her entire being is wrapped tight around your [pc.cock " + x + "], hanging onto its every pulse and waiting for it to release.");
 			output("\n\nYou piston back forcefully enough that the table noisily skitters a few inches across the floor and grab Gianna by her lengthy ponytail, forcing her to arch her back to face you. Blinking dully, her vacantly glowing eyes slowly come to focus on you just in time for your orgasm to hit. ");
-			if(pc.cumQ() < 5) 
+			if(cumQ < 5) 
 			{
 				output("You dribble a weak few droplets into her gushing folds, grunting as you empty your all-too empty ");
 				if(pc.balls > 0) output("[pc.balls]");
 				else output("body");
 				output(" once more.");
 			}
-			else if(pc.cumQ() < 50) output("You spurt [pc.cum] into her gushing folds, churning her lubricant into a sexual slurry that leaks down her legs to show the world just how well-fucked she is.");
-			else if(pc.cumQ() <= 300) output("You shoot thick ropes of [pc.cum] directly into her gushing folds, so thick and copious that the trickle of lubricant pouring down her thighs turns [pc.cumColor]. The bulk of your virile payload pumps directly into her artificial womb, where it will undoubtedly stay, staining her with your load.");
-			else if(pc.cumQ() <= 1000) output("You erupt immense loads of [pc.cum] directly into her gushing folds, flooding her [gianna.vagina] with what feels like torrents of the stuff. Streams of your [pc.cumVisc] roll down her thighs in visible declarations of your virility.");
-			else if(pc.cumQ() <= 3000)
+			else if(cumQ < 50) output("You spurt [pc.cum] into her gushing folds, churning her lubricant into a sexual slurry that leaks down her legs to show the world just how well-fucked she is.");
+			else if(cumQ <= 300) output("You shoot thick ropes of [pc.cum] directly into her gushing folds, so thick and copious that the trickle of lubricant pouring down her thighs turns [pc.cumColor]. The bulk of your virile payload pumps directly into her artificial womb, where it will undoubtedly stay, staining her with your load.");
+			else if(cumQ <= 1000) output("You erupt immense loads of [pc.cum] directly into her gushing folds, flooding her [gianna.vagina] with what feels like torrents of the stuff. Streams of your [pc.cumVisc] roll down her thighs in visible declarations of your virility.");
+			else if(cumQ <= 3000)
 			{
 				output("You erupt, pouring titanic streams of [pc.cum] directly into her gushing folds, filling every available crevice with your virile fluid. Her belly bloats with the jiggling, liquid weight, and ");
 				if(pc.hasKnot(x)) output("you feel the pressure on your [pc.knot " + x + "] as some tries to escape.");
@@ -3489,7 +3490,7 @@ public function coochFuckThreeMaybeFourInOne():void
 				if(!pc.hasKnot(x))
 				{
 					output("The backpressure blows out around your base, soaking you from the waist down in your own sexual backwash.");
-					if(pc.cumQ() >= 8000) output(" The hay tries admirably to soak it all up, but the room soon turns into a spunky pool. A drain in the floor does slowly empty it, at least.");
+					if(cumQ >= 8000) output(" The hay tries admirably to soak it all up, but the room soon turns into a spunky pool. A drain in the floor does slowly empty it, at least.");
 				}
 				else
 				{
@@ -3498,19 +3499,20 @@ public function coochFuckThreeMaybeFourInOne():void
 			}
 			output("\n\nThrobbing inside the sperm-filled android, you pant for breath, watching her slowly come out of her pleasured daze.");
 			output("\n\nShe ");
-			if(pc.cumQ() > 1000) output("gingerly rubs at her expanded belly, then looks at you and giggles, practically glowing in delight. <i>“I’m glad I could please you so- mmm... so much.”</i> She gathers some of her leaking fluids from your joined crotches and rubs it across the gravid-looking dome. <i>“My potent [pc.master]....”</i>");
+			if(cumQ > 1000) output("gingerly rubs at her expanded belly, then looks at you and giggles, practically glowing in delight. <i>“I’m glad I could please you so- mmm... so much.”</i> She gathers some of her leaking fluids from your joined crotches and rubs it across the gravid-looking dome. <i>“My potent [pc.master]....”</i>");
 			else output("gingerly looks back at you, then giggles at the feeling of your [pc.cum] inside her. <i>“So I guess you found me pleasing after all.”</i> The android blushes a little. <i>“I’m glad I could make you so happy.”</i>");
 			output("\n\nInstead of responding, you slowly pull backwards");
 			if(!pc.hasKnot(x)) output(", lazily sliding yourself out so that she can feel every steele-hard vein before you go soft.");
 			else 
 			{
 				output(", catching on your [pc.knot " + x + "] a few times before finally managing to yank it out with a noisy pop.");
-				if(pc.cumQ() > 1000) output(" [pc.Cum] pours out after like water from a spring.");
+				if(cumQ > 1000) output(" [pc.Cum] pours out after like water from a spring.");
 				output(" Gianna goes cross-eyed and shudders. Her thighs spasm, and her blissful gasps bring a smile to your face. She looks a little out of it, but that’s fine. It’ll give you more time to clean yourself up.");
 			}
 			output("\n\nThe companion comes around just as you’re finishing gearing up. She staggers up onto wobbling legs in a distinctly organic way and apologizes for the mess, explaining that she needs to tidy up, if it’s okay with you.");
 			output("\n\nYou nod your head and let her pass, hoping the locals will get a good look at your work before she removes it.");
 			processTime(23);
+			giannaCumflated(pc, 0);
 			pc.orgasm();
 		}
 		//Normal Gianna - Missionary
@@ -3548,14 +3550,14 @@ public function coochFuckThreeMaybeFourInOne():void
 			output("\n\nBreaking the kiss, you watch the android finally cum. Her legs squeeze down around your back, holding you completely within her");
 			if(gianna.hasCock()) output(" while her [gianna.cock] unloads into the bottom of her [gianna.chest]");
 			output(". She wrings your [pc.cock " + x + "] tightly enough that you find yourself teleported to the top of a plateau of pleasure, and soon enough, you’re cumming too, throbbing potently inside her as you unload into her sucking twat.");
-			if(pc.cumQ() < 5) output(" The only evidence of your moment of passion is the squirming android below.");
-			else if(pc.cumQ() <= 150) output(" Trickles of [pc.cum] dribble out around you to wet the already soaked bed.");
+			if(cumQ < 5) output(" The only evidence of your moment of passion is the squirming android below.");
+			else if(cumQ <= 150) output(" Trickles of [pc.cum] dribble out around you to wet the already soaked bed.");
 			else
 			{
 				output(" Her belly swells against you as you pump more and more [pc.cum] into her");
-				if(pc.cumQ() <= 1000) output(".");
-				else if(pc.cumQ() <= 2000) output(", gently inflating her with the fruits of your liquid love.");
-				else if(pc.cumQ() <= 8000) output(", rounding into a pregnant dome filled with [pc.cumVisc] love.");
+				if(cumQ <= 1000) output(".");
+				else if(cumQ <= 2000) output(", gently inflating her with the fruits of your liquid love.");
+				else if(cumQ <= 8000) output(", rounding into a pregnant dome filled with [pc.cumVisc] love.");
 				else 
 				{
 					output(", bloating into an obscenely pregnant, jiggly sphere.");
@@ -3572,7 +3574,7 @@ public function coochFuckThreeMaybeFourInOne():void
 				output("\n\nYou can do that.");
 				processTime(20);
 				//Dont forget to cumflate if needed.
-				giannaCumflated(pc);
+				giannaCumflated(pc, 0);
 				pc.orgasm();
 				processTime(60);
 				clearMenu();
@@ -3596,7 +3598,7 @@ public function coochFuckThreeMaybeFourInOne():void
 				//Pass 25 minutes
 				processTime(25);
 				//Dont forget to cumflate if needed.
-				giannaCumflated(pc);
+				giannaCumflated(pc, 0);
 				pc.orgasm();
 			}
 		}
@@ -3631,7 +3633,8 @@ public function coochFuckThreeMaybeFourInOne():void
 			if(gianna.hasCock())
 			{
 				output("\n\n<i>“But first, let’s get you good and lubed up,”</i> Gianna suggestions, bending overtop of you. Her [gianna.cock], already hard, presses down against your own. The biggest difference");
-				if(flags["GIANNA_TEMP"] == -1) output(", aside from the chilliness of her boner,/, aside from how incredibly heated her boner is,");
+				if(flags["GIANNA_TEMP"] == -1) output(", aside from the chilliness of her boner,");
+				else if(flags["GIANNA_TEMP"] == 1) output(", aside from how incredibly heated her boner is,");
 				output(" is that hers is already oozing clear, slippery fluid, thoroughly juicing your cock in oily lubrication. You shudder through her frotting while ");
 				if(flags["GIANNA_TEMP"] == 1) output("hot");
 				else if(flags["GIANNA_TEMP"] == 0) output("warm");
@@ -3676,37 +3679,37 @@ public function coochFuckThreeMaybeFourInOne():void
 			output("\n\nScrewing up her brow, Gianna does her best to keep the reins tight on her runaway pleasure, but she’s losing it moment by moment. She’s so turned on that [gianna.nipples] almost seem to be vibrating atop her chest, as hard as you’ve seen them. Grabbing hold of one mid-downstroke, she gushes enough lubricant from her [gianna.vagina] to glaze your [pc.belly] with it. <i>“F-f-fuck!”</i> she stutters. Bracing herself with one hand on your [pc.chest], she ups the tempo, no longer even trying to top. Grunts and gasps of exertion are the only sounds she makes, and despite their artificial origins, they seem sincere.");
 			output("\n\nQuivers of liquid pleasure ripple through your middle from moment to moment, beholden to nothing but the slippery-sweet caresses of the android’s slit, coaxing you closer and closer to eruption until you wonder if you’ll have the sense left to give her warning of your climax. Gianna looks down, a little cross-eyed from pleasure, and moans, <i>“Cum, [pc.name]!”</i> She’s blushing so hard she’s practically pink, obviously on the edge herself, and with the way her pussy is wringing you, you couldn’t stop yourself from obeying if you wanted to.");
 			output("\n\nPleasure crashes over you like a wave. The tightly-coiled ball of magma inside you convulses, surging past involuntary spasming muscles, and erupts in the android’s squeezing, sucking cunt. ");
-			if(pc.cumQ() < 5) output("There’s barely a drop to be shot, but she claims every little bit of it, milking your [pc.cock " + x + "] until it’s impotently spasming, wrapped up in pleasure and drained of every ounce of [pc.cumNoun].");
-			else if(pc.cumQ() <= 25) 
+			if(cumQ < 5) output("There’s barely a drop to be shot, but she claims every little bit of it, milking your [pc.cock " + x + "] until it’s impotently spasming, wrapped up in pleasure and drained of every ounce of [pc.cumNoun].");
+			else if(cumQ <= 25) 
 			{
 				output("You seed her convulsing quim with every drop your [pc.balls] hold");
 				if(pc.balls == 1) output("s");
 				output(", painting her interior [pc.cumColor]. Even after you stop, she’s still milking your [pc.cock " + x + "], wrapping it in what feels like a sleeve of heaven on earth.");
 			}
-			else if(pc.cumQ() <= 500) output("You blast long ropes of [pc.cum] directly into her waiting quim, coloring her own juices [pc.cumColor] as they mix together. The [pc.cumVisc] stuff absolutely drenches her pussy, and your [pc.cock " + x + "] throbs with wild enjoyment throughout.");
+			else if(cumQ <= 500) output("You blast long ropes of [pc.cum] directly into her waiting quim, coloring her own juices [pc.cumColor] as they mix together. The [pc.cumVisc] stuff absolutely drenches her pussy, and your [pc.cock " + x + "] throbs with wild enjoyment throughout.");
 			else
 			{
 				output("You geyser huge ropes of [pc.cum] directly into her waiting quim, flooding her interior with so much [pc.cumVisc] love that some of it squirts back out around her clinging lips. Bulging slightly, the companion’s belly expands to contain what you’re pumping into whatever passes for her womb");
-				if(pc.cumQ() >= 8000) output(", rapidly attaining a rounded, sexed-to-pregnant look");
-				if(pc.cumQ() >= 12000) output(", then bloating to obscene roundness");
+				if(cumQ >= 8000) output(", rapidly attaining a rounded, sexed-to-pregnant look");
+				if(cumQ >= 12000) output(", then bloating to obscene roundness");
 				output(". She milks your [pc.cock " + x + "] throughout and long after your heady flow abates.");
 			}
 			output("\n\nFlopping down onto you, Gianna wraps her arms around your neck and batters your crotch with her hips, slapping them against you with increasingly unfocused, sloppy thrusts. [pc.Cum] squirts out around you, and the screams of pleasure she unleashes into your ear nearly deafen you. Yet, you can’t help but smile in satisfaction at getting her off so powerfully. She’s twitching on top of you for a solid minute, her pussy still quivering around you, lustily kissing at the nape of your neck repeatedly.");
 			output("\n\nYou gently push her up when her thrashings slow.");
 			output("\n\nThe android smiles at you, rubbing her hand across your lube");
-			if(pc.cumQ() > 500) output(" and cum");
+			if(cumQ > 500) output(" and cum");
 			output("-soaked belly. <i>“I told you I’d wring out every drop.”</i> Judging by how empty you");
 			if(pc.balls > 1) output("r [pc.balls] feel");
 			else if(pc.balls > 0) output("r [pc.balls] feels");
 			else output(" feel");
 			output(", you’re inclined to agree with her.");
 			output("\n\nGianna drags herself off your pole like an exhausted swimmer climbing from a pool. She nearly falls when she rolls off the table onto the straw-covered floor");
-			if(pc.cumQ() >= 8000) output(", dragged down by her inflated belly");
+			if(cumQ >= 8000) output(", dragged down by her inflated belly");
 			output(". <i>“I’m gonna... gonna go wipe up. I’ll be right back.”</i>");
 			output("\n\nYou get dressed while the made-to-order woman does her business.");
 			processTime(41);
 			//Dont forget to cumflate if needed.
-			giannaCumflated(pc);
+			giannaCumflated(pc, 0);
 			//Orgasm - make sure to COMPLETELY empty balls.
 			pc.orgasm();
 			pc.ballFullness = 0;
@@ -3844,13 +3847,14 @@ public function phatBootyHotdogging():void
 	output(". You cum so hard white spots dance across your vision.");
 
 	output("\n\nGianna gasps in delight when she feels your [pc.cum] between her jiggling asscheeks");
-	if(pc.cumQ() < 60) output(".");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 60) output(".");
 	else 
 	{
 		output(", then moans when thick ropes of it spill out of it from both ends.");
-		if(pc.cumQ() >= 400) output(" Her look turns incredulous as the ropes thicken to rivers that splatter wetly on the floor, rolling off her back on both sides.");
-		if(pc.cumQ() >= 2000) output(" The floor drain struggles to keep up with the liquid weight you’re putting out, but you’re cumming too hard to care.");
-		if(pc.cumQ() >= 10000) 
+		if(cumQ >= 400) output(" Her look turns incredulous as the ropes thicken to rivers that splatter wetly on the floor, rolling off her back on both sides.");
+		if(cumQ >= 2000) output(" The floor drain struggles to keep up with the liquid weight you’re putting out, but you’re cumming too hard to care.");
+		if(cumQ >= 10000) 
 		{
 			output(" As the tide of [pc.cumNoun] floods halfway up the table’s legs, you wonder if ");
 			if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output("Kiro ever has problems like this.");
@@ -3867,7 +3871,7 @@ public function phatBootyHotdogging():void
 	output("\n\nYou shake your head, a little awed, and step back, enjoying the wet sound of your [pc.cockBiggest]");
 	if(pc.cockTotal() > 1) output(" and [pc.cockSmallest]");
 	output(" sliding free. Gianna stretches and climbs up.");
-	if(pc.cumQ() >= 2000) output(" She even uses her toe to draw patterns in the slowly draining [pc.cumNoun].");
+	if(cumQ >= 2000) output(" She even uses her toe to draw patterns in the slowly draining [pc.cumNoun].");
 	output(" Then, you help each other clean up, and she helps you gear back up. ");
 	if(!pc.isNude()) output("You guess there are advantages to running around naked all the time.");
 	else output("When you don’t need to carry equipment around with you anymore, you’re going to love being able to enjoy being naked as much as she is.");
@@ -4018,14 +4022,15 @@ public function savinTriesToWriteGiannaButtfux():void
 
 	output("\n\nShe senses what’s coming, and her lips fill out into a wide, contented grin. <i>“Don’t hold back... please...”</i> she moans, cupping her tits, pinching her nipples. <i>“I want to feel it. Every drop.”</i>");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nYour body responds on a primal, instinctive level to your lover’s need. Your ");
 	if(pc.balls == 0) output("body");
 	else output("[pc.balls]");
 	output(" tremble");
 	if(pc.balls == 1) output("s");
 	output(", seed swelling before rushing to meet Gianna’s magnificent ass. <i>“Ah! I feel it!”</i> she cries, excitement palpable as her muscles contract, welcoming the first ropes of your hot cum that shoot deep into her ass. Your hips piston faster, hammering into her writhing hole, using her tight passage to milk yourself into her. She’s more than happy to let you do it, crying out in pleasure as you thrust faster into her, letting out ");
-	if(pc.cumQ() < 100) output("a steady spurt of seed.");
-	else if(pc.cumQ() <= 5000) output("a veritable river of spooge into Gianna’s ass. She seems to soak it all up, eagerly draining your seed as fast as you can give it to her.");
+	if(cumQ < 100) output("a steady spurt of seed.");
+	else if(cumQ <= 5000) output("a veritable river of spooge into Gianna’s ass. She seems to soak it all up, eagerly draining your seed as fast as you can give it to her.");
 	else output("a torrential amount of spunk into Gianna’s ass, filling the android’s body too fast for her to cope with. By the time you’re done, she looks positively pregnant... and all but beams in delight at her expanded, cum-swollen belly, cradling it like a child.");
 	output(" As you wind down, Gianna laces her feet behind your butt, urging you to give her one final push into her ass. Her back arches in a slow, languid motion as she takes your still-hard cock a final time. Trickles of spunk drool out of her ass as you enter her, staining the spread cheeks of her [gianna.butt].");
 
@@ -4035,7 +4040,7 @@ public function savinTriesToWriteGiannaButtfux():void
 		output("Gianna reaches up with one of her perfect, creamy-skinned feet");
 		if(!pc.isTaur()) output(" and brushes her big toe across your [pc.lip]");
 		output(". <i>“Mmm, that was nice. My circuits are just </i>trembling<i> after that, " + pc.mf("stud","babe") + ".”</i> She makes a quiet purring sound, languidly stretching her arms back");
-		if(pc.cumQ() > 5000) output(" and rubbing her cum-stuffed belly");
+		if(cumQ > 5000) output(" and rubbing her cum-stuffed belly");
 		output(".");
 	}
 	//if NormalGigi:
@@ -4044,6 +4049,7 @@ public function savinTriesToWriteGiannaButtfux():void
 	output("\n\nYou pat her thigh, slowly pulling yourself back from her until, with a wet pop, your cock flops free. Spunk drools out of her well-fucked ass, pooling between her legs as they flop back down to the floor. She hops up after a quiet moment of afterglow, happily helping you clean and gear up.");
 	if(pc.isMischievous()) output(" As you’re getting ready to depart, you reach back and give Gianna a swift swat on the ass. She squeals, and a goodly amount of your orgasm leaks out to stain her thighs. Her alabaster skin darkens at the mishap, causing you to laugh all the way out.");
 	processTime(30);
+	giannaCumflated(pc, -1);
 	pc.orgasm();
 	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
@@ -4457,7 +4463,7 @@ public function coughAtAnnoXGianna():void
 
 	//[Next]
 	processTime(2);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",giannaXAnnoThreesomeGo, x);
 }
@@ -4509,8 +4515,9 @@ public function giannaXAnnoThreesomeGo(x:int):void
 	output("”</i>");
 	output("\n\nThe excited android frees her fingers with a wet-sounding ‘schluck’ and adjusts herself so her face is poised directly over Anno’s enflamed pussy, lips still slightly spread. The white-furred ausar’s thighs are already soaked with arousal - so wet that when Gianna lowers her face into the soaked box, her face acquires a gleaming, slut-soaked sheen. Her inky oral organ thrusts deep. You can hear it as much as see it. Its passage deep into the pliant puppy is marked in the way Anno whimpers and squirms, abdominals clenching and spasming.");
 	output("\n\nTrickles of feminine lubricant slowly drip from the side of the overloaded milking bench. Gianna’s tugs soon pull you into it, basting your dick in the waterfall of girlcum in between strokes. She massages it into your skin, fingers working every crease and crevice of excited cockflesh until it is absolutely drenched in Anno’s excited ejaculate.");
-	if(pc.cumQ() >= 1000) output(" You drip your own pre like a faucet. Carelessly, the android mixes that into the sexual melange until you aren’t sure how much of the nerve-stimulating slickness is your own and how much belongs to your fluffy puppy.");
-	else if(pc.cumQ() >= 10) output(" You leak a little bit of pre, and Gianna is not at all shy about gathering it to dilute into Anno’s overwhelmingly sloppy contributions.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000) output(" You drip your own pre like a faucet. Carelessly, the android mixes that into the sexual melange until you aren’t sure how much of the nerve-stimulating slickness is your own and how much belongs to your fluffy puppy.");
+	else if(cumQ >= 10) output(" You leak a little bit of pre, and Gianna is not at all shy about gathering it to dilute into Anno’s overwhelmingly sloppy contributions.");
 	output(" Her fist slaps wetly against your crotch. If she were to pull her fingers away, webs of wetness would connect it.");
 	output("\n\nYou grab hold of Gianna’s [gianna.butt] and squeeze in desperation, holding on to anything as the pleasure builds inside you. It sloshes back inside you to the rhythm of the android’s cock-milking hand, like every stroke is adding more and more kinetic energy to the fluid-filled reservoir until it is ready to spill over the lip of your restraint.");
 	if(pc.isBimbo()) output(" Yay!");
@@ -4525,7 +4532,7 @@ public function giannaXAnnoThreesomeGo(x:int):void
 	output("”</i>");
 	output("\n\nAnno looks back over her shoulder in desperation, spreading her legs as wide as they’ll go. <i>“B-b-boss? Puh-please!”</i>");
 	processTime(20);
-	pc.lust(500);
+	pc.changeLust(500);
 	clearMenu();
 	addButton(0,"Next",giannaXAnnoThreesomeGo2, x);
 }
@@ -4556,13 +4563,14 @@ public function giannaXAnnoThreesomeGo3(x:int):void
 	showName("ANNO\n& GIANNA");
 	showBust(annoBustDisplay(true),giannaBustDisplay());
 	
-	output("It is then that Gianna takes your hand and presses it against her tight, synthetic cunt. She leans over the table next to Anno, offering you a chance to take her doggie-style for desert after having your fill of missionary with the canine slut. Something seems mismatched about that, but you’re too horny to care. You pull out of the fucked-out pup and thrust yourself into the eager android, burying your ausar-basted bone deep into silken lips of Gianna’s talented nethers. They cup and caress you, stroking you, fluttering over your flesh in ripples that demand you orgasm as soon as possible.");
+	output("It is then that Gianna takes your hand and presses it against her tight, synthetic cunt. She leans over the table next to Anno, offering you a chance to take her doggie-style for dessert after having your fill of missionary with the canine slut. Something seems mismatched about that, but you’re too horny to care. You pull out of the fucked-out pup and thrust yourself into the eager android, burying your ausar-basted bone deep into silken lips of Gianna’s talented nethers. They cup and caress you, stroking you, fluttering over your flesh in ripples that demand you orgasm as soon as possible.");
 	output("\n\nGianna moans, but not for long. The exhausted Anno slides over to her, and soon the two hotties are frenching, trading tongues as you satisfy your second quim of the day. There are differences between the two that you’d love to point out, were you not on the edge of exploding. Gianna’s cunt is definitely the more active of the two, but Anno’s has a certain something to it, perhaps the smell, perhaps her pheromones that keep Gianna’s expertly manipulated folds from massaging her out of your brain entirely.");
 	output("\n\nThey’re both watching you from the corners of their eyes. Gianna’s twinkle mischievously, and her [gianna.butt] starts twerking against you, rocking and bouncing, the lips dragging tightly along your length. It’s too much, too pleasing to the eye and the dick. Overwhelmed by the erotic might of these two seductresses, you groan and climax, your [pc.cock " + x + "] becoming hypersensitive as Gianna’s synthflesh folds squeeze down on your [pc.cockHead " + x + "].");
+	var cumQ:Number = pc.cumQ();
 	//No cum!
-	if(pc.cumQ() < 4) output("\n\nYou feel your [pc.cock " + x + "] flex with the rhythmic force of attempted ejaculations, and Gianna must feel it too, because her eyes flash white with what you can only assume is pleasure. The android shakes beneath you, her kisses suddenly artless. She cums right alongside you until the feeling passes, leaving muted satisfaction and exhaustion in its wake. You slide out of her slippery slit and flop down alongside the two girls, cuddling into soft breasts and post-coital hugs.");
+	if(cumQ < 4) output("\n\nYou feel your [pc.cock " + x + "] flex with the rhythmic force of attempted ejaculations, and Gianna must feel it too, because her eyes flash white with what you can only assume is pleasure. The android shakes beneath you, her kisses suddenly artless. She cums right alongside you until the feeling passes, leaving muted satisfaction and exhaustion in its wake. You slide out of her slippery slit and flop down alongside the two girls, cuddling into soft breasts and post-coital hugs.");
 	//Normal jizz
-	else if(pc.cumQ() < 250) 
+	else if(cumQ < 250) 
 	{
 		output("\n\nYou feel your [pc.cock " + x + "] flex in rhythmic ejaculation, even some slight trickles along your ");
 		if(pc.balls > 0) output("[pc.sack]");
@@ -4578,6 +4586,7 @@ public function giannaXAnnoThreesomeGo3(x:int):void
 	}
 	//Merge
 	processTime(15);
+	giannaCumflated(pc, 0);
 	pc.orgasm();
 	pc.applyPussyDrenched();
 	sweatyDebuff(2);

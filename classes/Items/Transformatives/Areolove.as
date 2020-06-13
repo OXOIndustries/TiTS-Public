@@ -286,7 +286,7 @@ package classes.Items.Transformatives
 			
 			//Puts gear back on if it was taken off earlier
 			if(target.isChestGarbed() && !clothed) output(" Shivering a bit from the lingering tingling, you put your gear back on.");
-			target.lust(10);
+			target.changeLust(10);
 			kGAMECLASS.processTime(5);
 			clearMenu(); 
 			addButton(0, "Next", mainGameMenu);

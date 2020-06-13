@@ -184,7 +184,7 @@ public function genesModsInterior():void
 			if (pc.lust() == pc.lustMax()) output(" You smirk lazily back at the fanfir and think about what it is you want.");
 		}
 
-		if (pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
+		if (!isGeneSubmissionDisabled() && pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
 			// Goto sex
@@ -925,7 +925,7 @@ public function genesModsBlowjob():void
 		pc.loadInMouth(chars["GENE"]);
 		// Cumflation
 		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
-		pc.lust(33);
+		pc.changeLust(33);
 	}
 	else
 	{
@@ -984,7 +984,7 @@ public function genesModsBlowjob():void
 
 		// cumflate
 		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
-		pc.lust(33);
+		pc.changeLust(33);
 		pc.orgasm();
 	}
 	processTime(29);
@@ -1175,9 +1175,9 @@ public function genesModsBellyrubRelease():void
 	
 	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [pc.raceShort], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
 	processTime(3);
-	pc.lust(10+rand(5));
+	pc.changeLust(10+rand(5));
 	geneSubmissionLevel(-3);
-
+	pc.createStatusEffect("Just Sexed Gene");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1199,7 +1199,7 @@ public function genesModsBellyrubDeny():void
 
 	geneSubmissionLevel(-3);
 	processTime(2);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1226,7 +1226,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
 	processTime(1);
-	if (pc.tallness < 112 || !pc.hasVagina())
+	if (pc.tallness >= 112 || !pc.hasVagina())
 	{
 		output(" Desist, and we’ll do something we both know will be mutually satisfying instead.”</i> Disappointed, you step away, knowing you have no choice but to proffer a different form of fucking now.");
 
@@ -1286,7 +1286,7 @@ public function genesModsBellyrubFirstRelease():void
 	output("\n\n<i>“You can’t tell anyone about... that, Steele,”</i> he replies thickly. <i>“My reputation... if you don’t, then, yes, I wouldn’t mind... that.”</i> He wipes himself down and clambers back into his clothing, looking rather shamefaced.");
 	processTime(4);
 	geneSubmissionLevel(-3);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1358,7 +1358,7 @@ public function genesModsLickedOut():void
 	
 	output("\n\n<i>“That was good for a start to our little massaging session,”</i> purrs Gene, all mocking, casual menace. He taps your throbbing [pc.clit] with his long, purple tongue, laughing softly as it makes you twitch. <i>“Time to get a bit more serious.”</i>");
 
-	if (pc.vaginas.length > 0)
+	if (pc.vaginas.length > 1)
 	{
 		output("\n\nYou moan woozily as he trails that devilishly long, prehensile muscle of his further back, trailing over the lips of your [pc.vagina 1], pushing inside to swab at its sensitive entrance.");
 		

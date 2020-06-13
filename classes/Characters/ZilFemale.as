@@ -286,7 +286,7 @@
 				if(target.armor.shortName != "") output(target.armor.longName + " and [pc.skin]");
 				else output("[pc.skin]");
 				output(", pumping a thick load of some kind of chemical into you. You feel hot and flustered in seconds, blushing hard as your loins burn. Your whole body feels like it’s in a haze....");
-				target.lust(15);
+				target.changeLust(15);
 				if (target.hasStatusEffect("Zil Sting")) 
 				{
 					target.addStatusValue("Zil Sting",1,4);
@@ -324,18 +324,19 @@
 				//If Speed is higher and passes check:
 				if(target.reflexes() + rand(20) + 1 > 15) {
 					output(" You leap out of the way, rolling to the side as a pink haze envelopes the ground where you were standing a moment before. Though even at this distance, your skin tingles sensually...");
-					target.lust(1);
+					target.changeLust(1);
 				}
 				//If Toughness is higher and passes check:
 				if(target.physique() + rand(20) + 1 > 20) {
 					output(" You cover your face behind your arms as the glass shatters. You cough and wheeze as a pink mist rolls around you, but quickly hold your breath as a your skin tingles lustily...")
-					target.lust(2);
+					target.changeLust(2);
 				}
 				//Else if failed the check: 
 				else {
 					output(" You cry out as the vial shatters, exploding in a pink cloud that blows over you. You gag and cough and suddenly your hands are reaching to your crotch as if on their own. You yank back, but feel a hot haze washing across your exposed body. What the hell is this stuff?");
+					target.changeLust(5);
+					/* FEN NOTE: Cut as per Savin's request.
 					//PC must pass an willpower check, else:
-					target.lust(5);
 					if(!target.hasStatusEffect("Blinded"))
 					{
 						if(target.accessory is FlashGoggles) output("\n\nFortunately, your goggles shield your eyes from the pink cloud and you avoid being blinded!");
@@ -344,7 +345,7 @@
 							output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
 							CombatAttacks.applyBlind(target,rand(3) + 1 );
 						}
-					}
+					}*/
 				}
 			}
 		}
@@ -395,14 +396,14 @@
 			{
 				output(" You wonder what the hell she’s doing, but judging by the look on her face, she is being assaulted by a potent cloud of her own sex pheromones!");
 				output("\n\nLuckily your [pc.armor] is airtight, so you don’t have to worry about being affected by it - but you can see <i>she</i> definitely is!");
-				lust(8);
+				changeLust(8);
 			}
 			// Moderate toughness check pass
 			else if(target.physique() + rand(20) + 1 > 20) {
 				output(" You wonder what the hell she’s doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
 				output("\nYou hold your breath as long as you can, waving the lusty cloud away from you. Before long, the zil girl tires out, nearly cumming before she stumbles back with chest heaving. There’s a thick scent of sex in the air by the time you breathe again...");
-				lust(5);
-				target.lust(5);
+				changeLust(5);
+				target.changeLust(5);
 			}
 			else {
 				output(" You wonder what the hell she’s doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
@@ -413,7 +414,7 @@
 				{
 					output(" Your crotch feels so hot that you know you just HAVE to touch her soon. Damn this woman and her stupid... sexy... beautiful alien body.");
 				}
-				target.lust(10+target.libido()/10);
+				target.changeLust(10+target.libido()/10);
 			}
 		}
 	}

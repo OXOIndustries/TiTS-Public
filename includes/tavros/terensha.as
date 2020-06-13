@@ -241,7 +241,7 @@ public function undertaleFootjob():void
 	output("\n\nConsidering how devoted she is to yours, that’s a damn shame. Her wet, rapid ministrations have already brought you near to your peak - you can feel pressure welling in the base of your cock");
 	if(pc.hasKnot(0)) output(", which she’s keen to exploit by rubbing your swelling bitch-breaker.");
 	// keratin:
-	else if(9999) output(", especially around the keratin nubs along your shaft, which Ren lavishes with her lubricated affection.");
+	else if(pc.cocks[0].cType == GLOBAL.TYPE_DZAAN) output(", especially around the keratin nubs along your shaft, which Ren lavishes with her lubricated affection.");
 	else output(" and deep inside your [pc.balls].");
 	output("\n\nShe must be able to feel your prick throbbing with need, as Ren’s green lips curl into a lustrous smile. <i>“Don’t worry about making a mess. Just go ahead and cover my feet in cum....”</i>");
 	output("\n\nHer urging is like a magic word in your ear. The pressure in your [pc.balls] is suddenly overwhelming, and watery pre spurts all over Ren’s latex-wrapped toes. Your pre-orgasmic juices just add to the glaze of lube already on her, letting her move those dexterous digits just that much faster. Her toes circle and squeeze your crown, milking out every juicy drop until with a grunt of pleasure, you buck your hips and feel a rush of heat barreling through your throbbing manhood. A thick gout of [pc.cumNoun] splatters the bottom of her toes, earning a delighted gasp from your partner as her foot is slathered in a thick load of cum. Her other foot presses against your tender underside, massaging out more and more of your orgasm’s fruit to smear against her soles and toes.");
@@ -419,7 +419,7 @@ public function roomServiceFromRensa():void
 	output("\n\n<i>“So, how do you want me?”</i> the halfbreed whore purrs, tracing a pair of fingers along the side of the bed. <i>“On top, or ");
 	if(pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
 	else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	terenshaSexMenu();
 }
@@ -1176,7 +1176,7 @@ public function tellMeYourStoryRenPart2():void
 		if (pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
 		else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
 
-		pc.lust(33);
+		pc.changeLust(33);
 		
 		terenshaSexMenu();
 	}
@@ -1197,7 +1197,7 @@ public function tellMeYourStoryRenPart2():void
 		output("\n\nShe laughs and offers you a hand up, guiding you back to the brothel floor. <i>“See ya cow-[pc.boyGirl]. Unless I somehow managed to keep your interest after that,”</i> she says with a wink, sashaying back to her table.");
 
 		clearMenu();
-		pc.lust(15);
+		pc.changeLust(15);
 		addButton(0,"Next",mainGameMenu);
 	}
 }
@@ -1270,7 +1270,7 @@ public function askRenshaForACow3Way():void
 	output("\n\n<i>“A-as long as I get off, I don’t care!”</i> Reaha moans, wiggling her ass at you; an overt plea for you to come ravish her dripping sex. <i>“C’mon, please!”</i>");
 	output("\n\n<i>“Well, [pc.name]?”</i> Terensha says, punctuating your name with a little moan - her prick vanishes into the cow-girl’s mouth, right up to the knot-like base in one thrust. <i>“We’re all yours.”</i>");
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	//[From Behind] [Double Dragon]
 	clearMenu();
 	if(pc.hasHardLightEquipped() || pc.cockThatFits(500) >= 0) addButton(0,"From Behind",takeReahaAndRenshaFromBehind,undefined,"From Behind","Take advantage of the cow-girl’s neediness and pound her puss from behind while Ren face-fucks her.");
@@ -1322,7 +1322,7 @@ public function takeReahaAndRenshaFromBehind():void
 	output(" There’s not exactly a lot of room left to maneuver inside her, no matter how much fem-lube pours out from the orgasming cow-girl; it’s a struggle to push inwards, jockeying with Ren for even the tiniest bit of space inside your shared cock-holster cow.");
 	output("\n\nOf course, that only means you’re rubbing more and more intently against the slick shaft of Ren’s prick and the sodden walls of Reaha’s quim. You’re not sure if Ren and Reaha ever really <i>stop</i> cumming, the way they moan and gasp and squirt, but their lurid acts only add to your pleasure: you’ve barely fought your way back to hilt in Reaha’s quivering quim before you feel the familiar, rising tension burning in your loins.");
 	processTime(10);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",keepBangingonReahaWithRensha,x);
 }

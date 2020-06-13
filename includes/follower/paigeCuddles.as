@@ -49,11 +49,20 @@ public function paigeRegardingTheBed(noMoreBedPaige:Boolean = true):void
 public function paigeJumpToSexFlowchart(args:Array):void
 {
 	IncrementFlag("SEXED_PAIGE");
-	if (pc.hasCock())
-	{
-		addButton(0,"Be Bottom",SSVBB,args);
-		addButton(1,"Be Top",SSVBT,args);
-	}
+	if(pc.hasCock())
+    {
+        // {PC has a dick that’s too big}
+        if(pc.cockVolume(0) > paige.vaginalCapacity(0))
+        {
+           addButton(0,"Down On You",SSDY,args);
+           addButton(1,"Down On Her",SSDH,args);
+        }
+        else
+        {
+           addButton(0,"Be Bottom",SSVBB,args);
+           addButton(1,"Be Top",SSVBT,args);
+        }
+    }
 	else
 	{
 		args.push("SSTI");
@@ -344,7 +353,6 @@ public function paigeDoABarrelRoll():void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 	
 	output("Paige has made the mistake of ceding the control over the bed to you. That said, you aren’t a cruel bedmaster, but you <i>do</i> have one more thing you want to do with Paige before you call it a night.");
 	output("\n\nYour grip on her body shifts, wrapping your forearms around her belly and your [pc.legs] around her own, locking her to you. With a heave, you roll to your right side, putting yourself on your back, and with Paige on top of you, her back to you. She doesn’t stop her girlish giggling the entire time, and once you’re settled on your back, she excitedly disengages and rolls herself over, until she’s face-to-face with you.");
@@ -362,6 +370,7 @@ public function paigeDoABarrelRoll():void
 	output("\n\nKnowing full-well what she means, you ask her to go on.");
 	output("\n\n<i>“I’m saying, if you want to show me an even</i> better <i>time in bed... I mean, the only thing I’m wearing right now are some panties. I wouldn’t miss them if you wanted to cap tonight off with... a bang.”</i>");
 	output("\n\nYou feel the familiar tingle in your [pc.crotch] as she spurs on your arousal. You aren’t horny <i>yet,</i> but that can change in a hurry if you wanted. But, on the other hand, Paige is giving you the option to back out, and you doubt she’d hold it against you if you said you wanted to save it until morning. Hell, the sex might even be <i>better</i> if you put it off until then.");
+	pc.changeLust(30);
 
 	addButton(0, "Sex", paigeWhyNotShag, ["PCSRO"]);
 	addButton(1, "Sleep", paigeINeedMyEightHoursBish, ["PCSRO"]);
@@ -374,7 +383,6 @@ public function paigeWonderBoutShagging():void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 	
 	output("You tell her that that sounds like a really kinky fantasy, and you ask her which part of it is the sexiest for her.");
 	output("\n\nPaige hums gently, her head rocking from side to side as she thinks about it. <i>“I wanna say... it’s the part where I’m so irresistible that someone would lose all control of themselves and... dig themselves into my pants and have me, right there in the classroom.”</i>");
@@ -390,6 +398,7 @@ public function paigeWonderBoutShagging():void
 	output("\n\n<i>“[pc.name],”</i> Paige moans, her tongue licking between your fingers one final time. <i>“I’m... I’m not going to last much longer, sweet thing. Either fuck me or don’t.”</i>");
 	output("\n\nYou’ve gotten Paige all hot and bothered, but she’s still giving you an out, if all you want to do is catch some shut-eye. It might be a little cruel of you, of course, but who’s to say that a case of blue-balls wouldn’t just make the ‘good morning’ after all the better?");
 
+	pc.changeLust(30);
 	addButton(0, "Sex", paigeWhyNotShag, ["PCSF"]);
 	addButton(1, "Sleep", paigeINeedMyEightHoursBish, ["PCSF"]);
 }
@@ -401,7 +410,6 @@ public function paigeJustShagAlreadyJeez():void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 	
 	output("‘We always wants what we can’t have,’ she says. Well, she hasn’t met someone like you – someone daring enough to take what it is they want.");
 	output("\n\nWith some quick, forceful movements, you wrap your arms around Paige, getting a surprised huff from her lungs as you bear-hug her, and you roll onto your back, bringing her atop you, pressing you both chest-to-chest. You explain that there are few things in this universe that you can’t have if you want it – and right now, you want your sexy yogi on top of you, and her ass in your hands.");
@@ -418,6 +426,7 @@ public function paigeJustShagAlreadyJeez():void
 	output("\n\nThe only thing stopping you from taking her right here and now is a thin, satiny layer of her soaked panties pressing against your body. It would be a simple thing, to get them out of the way and take what you can decide is rightfully yours, right here and now.");
 	output("\n\nOr, you could show initiative in another way, and leave her hanging. Her body could belong to you, but you could take your time in taking it. Her horny mewling could be your lullaby as you drift to sleep tonight. Hell, it could very well make the morning after all the better for you both.");
 		
+	pc.changeLust(30);
 	addButton(0, "Sex", paigeTooHornyToSleep, ["PCSTH2"]);
 	addButton(1, "Sleep", paigeINeedMyEightHoursBish, ["PCSTH2"]);
 }
@@ -429,7 +438,6 @@ public function paigeTakesPoint():void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 	
 	output("–is to grab her by the wrists and lean backward. She giggles, excited and horny, as she lets you tumble her onto you, chest-to-chest and nose-to-nose. With you on your back and her on top of you, you tell her that you’re completely under her control. Whatever she wants, you’re at her service.");
 	output("\n\n<i>“That’s what I like about you, [pc.name]. Well, certainly one of the reasons,”</i> she says, her hands twisting around to grab onto your wrists in response. <i>“You’re so flexible in bed. If I want to be held, you hold me. If I want you to love me, you love me. If I want you to let me fuck you, you’re</i> all <i>for it.”</i>");
@@ -443,6 +451,7 @@ public function paigeTakesPoint():void
 	output("\n\n<i>“Still feel like sleeping?”</i> she asks when she pulls away, her breath coming out in short, horny pants. <i>“I’m not so horny yet that I’ll lose sleep if you want to. But something tells me that you’re not exactly ready to count some sheep,”</i> she giggles, her hips thrusting against you, noting how you shiver under her and how ready you are yourself.");
 	output("\n\nPaige is giving you an option. You could call it a night here if you wanted, and if you do, chances are, you’re going to be pretty pent up in the morning. Hell, that might actually make the sex better.");
 	output("\n\nOr you can just fuck Paige until you both fall asleep right here and now.");
+	pc.changeLust(30);
 	
 	addButton(0, "Sex", paigeTooHornyToSleep, ["PCSLHL"]);
 	addButton(1, "Sleep", paigeINeedMyEightHoursBish, ["PCSLHL"]);
@@ -455,7 +464,6 @@ public function paigeAboutToGetFucked():void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 
 	output("–to direct your fingers a little lower, snaking them into the cleavage of her ass. You wriggle them gently, but specifically, a little further south, underneath the hem of her panties, to her pussy.");
 	output("\n\nYou gently rake your fingers across the rim of her sex, feeling their spongy, wet texture. Paige hisses in pleasure as you toy with her; she bites into her bottom lip and her hips thrust unconsciously downward, imploring your fingers to penetrate her. You do no such thing, of course.");
@@ -491,6 +499,7 @@ public function paigeAboutToGetFucked():void
 	else output(" your blank crotch.");
 	output("\n\nYou’ve got a hot, riled-up and sexually-aggravated ausar on top of you, grinding her sopping snatch onto your pelvis. What’s " + indefiniteArticle(pc.race()) + " to do?");
 
+	pc.changeLust(30);
 	paigeJumpToSexFlowchart(["PCSSB"]);
 }
 
@@ -501,7 +510,6 @@ public function paigeWhyNotShag(args:Array):void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 	args.push("PCSE3");
 	
 	output("The arousal is mutual. You tell Paige that, if she’s in the mood for a good time, you won’t be the one between you to deny you both.");
@@ -512,7 +520,7 @@ public function paigeWhyNotShag(args:Array):void
 	output("\n\nYou respond that you sincerely meant to actually get some shut-eye with Paige – you couldn’t help it if things got a little saucier in the meantime.");
 	output("\n\n<i>“Rest assured, you’ll be getting what you want, sweet thing,”</i> Paige says as she dexterously uses her free hand to hook through the waistband of her panties, her legs shimmying them off her hips and to her ankles. With a flick of the wrist, they’re tossed clear across the room. <i>“We’ll just be entertaining each other until then, is all.”</i>");
 	output("\n\nYou grin. That sounds like a great time to you.");
-	
+	pc.changeLust(30);
 	paigeJumpToSexFlowchart(args);
 }
 
@@ -523,7 +531,6 @@ public function paigeTooHornyToSleep(args:Array):void
 	clearOutput();
 	showPaige(true);
 	processTime(5);
-	pc.lust(30);
 	args.push("PCSE4");
 	
 	output("After everything that’s happened so far, you think you wouldn’t be able to get to sleep if you tried, not with");
@@ -547,7 +554,7 @@ public function paigeTooHornyToSleep(args:Array):void
 	output(" The panties rip apart, the fabric loosely flopping around your clenched fist, until you give it a careless toss across the room.");
 	output("\n\nPaige looks over her shoulder, to where you threw her underwear, and when she looks back at you, she leans down with a sort of aggressive, horny fervor she hadn’t shown yet tonight. <i>“Fuck, that’s</i> hot,<i>”</i> Paige says, her fingers working between your bodies to align you two more appropriately. <i>“Fuck me right now, [pc.name]!”</i>");
 	output("\n\nYou heard the lady.");
-	
+	pc.changeLust(30);
 	paigeJumpToSexFlowchart(args);
 }
 
@@ -579,8 +586,6 @@ public function paigeWakeyWakey():void
 	showPaige(true);
 	var args:Array = flags["PAIGE_WAKEY_FLAGS"].concat();
 	flags["PAIGE_WAKEY_FLAGS"] = undefined;
-	if (InCollection("PCSES", args)) pc.lust(30);
-	
 	var hadSex:Boolean =	InCollection("PCSE3", args)
 							|| InCollection("PCSE4", args)
 							|| InCollection("PCSBN", args)
@@ -629,7 +634,7 @@ public function paigeWakeyWakey():void
 	if (InCollection("PCSES", args)) output(" <i>“You know where to find me, especially if you want to... make good on that offer later.”</i>");
 	else output(" <i>“You know where to find me.”</i>");
 	output("\n\nThen, she’s on the way to her own quarters, and you’re left alone to greet the new day.");
-	
+	if (InCollection("PCSES", args)) pc.lust(30);
 	addButton(0, "Next", mainGameMenu);
 }
 

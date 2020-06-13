@@ -176,7 +176,7 @@ public function wereGoodToMakeBabbysDragonLady():void
 	output("\n\n<i>“With you, elskan,”</i> she adds, turning her gaze to address you with a hopeful grin.");
 	output("\n\n<i>Definitely</i> has got your attention. It’s a bit of a curveball and you can only give it a quick mulling over: sure, it’s a bit flippant but it’s perfectly doable.");
 	if (StatTracking.getStat("pregnancy/total births") > 0) output(" You’ve done it before, anyway!");
-	output("And getting bred by a beast of a she-dragon like her...");
+	output(" And getting bred by a beast of a she-dragon like her...");
 	if (!pc.hasVagina()) output(" or actually breeding <i>her</i> for that matter.");
 	output("\n\nYou ask her for more details, specifically about who’s actually doing the impregnating.");
 	if (!pc.hasVagina()) output(" You imagine that the answer will be simple and obvious given your particular ‘organ’ arrangement.");
@@ -335,7 +335,7 @@ public function mirrinBabusTakeOne():void
 	output("\n\n<i>“At least, I uhhh, hope it works. So: who’s riding who?”</i>");
 
 	//PC lust set to max. 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	processTime(13);
 	clearMenu();
@@ -578,7 +578,7 @@ public function mirrinBabesAllOverThePlace():void
 	output("\n\n<i>“Ach..! Mirrin!”</i> you call out while trying to breathe.");
 	output("\n\nYou hear a teasing laugh from up above, the lusty qilin relenting just enough to give you some breathing room.");
 	output("\n\n<i>“Mmmhaha! Too easy!”</i> she calls out, flicking her tail away from the view of her muscled behind. Still chuckling herself, Mirrin starts the second part of her babymaking journey: milking your [pc.balls] for every drop of [pc.cum]!");
-	output("\n\nStarting off slow, she reclines backwards onto her palms so that you don’t have to bear her weight. In an effort to adjust to your [pc.cockShape " + cockIdx + "]* member, she grinds her lower half left and right, round and round until the tight, hot and wet depths of her inviting breedhole have formally welcomed you inside. And tight she is! Dare you say almost virginal...?");
+	output("\n\nStarting off slow, she reclines backwards onto her palms so that you don’t have to bear her weight. In an effort to adjust to your [pc.cockShape " + cockIdx + "] member, she grinds her lower half left and right, round and round until the tight, hot and wet depths of her inviting breedhole have formally welcomed you inside. And tight she is! Dare you say almost virginal...?");
 	output("\n\nShe has no trouble using it, at least!");
 	output("\n\nSatisfied with the impression your meat is making on her body, she begins to lightly bounce on your [pc.cock " + cockIdx + "] and lap. The dragoness still goes slowly, perhaps out of tiredness or perhaps to savour the moment, it’s not clear. You can hear her though: a surprisingly feminine, husky coo of approval with every hump. There’s a subtle sense of pride welling in you for having her tap into her feminine side just a bit more.");
 	output("\n\nShe slows and stops abruptly, awkwardly pushing herself onto the bed and adopting a messy kneeling position. Her flowing silver mane comes to rest on her back and her tail hangs loosely over your [pc.belly], her muscled buns emphasized by her arched back and flattened thighs.");
@@ -658,7 +658,7 @@ public function wakeUpToFreshlyBredMirrin(scene:int):void
 	output("\n\n<i>“No no, I’ll send a mail or something. Wouldn’t want to tie a free spirit down more than I already try to, huh? Hmmhmm...”</i>");
 	output("\n\nShe nuzzles the top of your [pc.hair] with her nose, your head getting smushed between her soft cleavage.");
 	output("\n\n<i>“Fuck, does that make me a MILF now?”</i> she half-whispers, as if locked in a moment of epiphany.");
-	if (scene != 1)
+	if (scene != 0)
 	{
 		output("\n\n<i>“Double fuck, also means I’m gonna get more of this chest meat, huh?”</i>");
 		output("\n\nShe gently squeezes her ample jugs against your head with a chuckle, just long enough to warm your [pc.ears].");
@@ -723,7 +723,7 @@ public function PCFinallyGetsToPlayDoctorsAndDragons():void
 	output("\n\n<i>“Fuck...”</i> she says under her breath.");
 	output("\n\n<i>“You remember what I said, it’s not likely that this is going to bring success by normal means. Could’ve even gotten worse over time,”</i> he says with a wry grin, fiddling the items in his duffle bag. The tests are short and clean. Most of them involve him holding devices to your lower body and then noting the results, followed by a short round of general STD cleansers.");
 	if (pc.hasSSTD()) output(" Good thing he’s got that at hand, you being the galaxy’s bicycle that you seem to be.");
-	output("He does the same for Mirrin, although her ‘extra’ test comes from him measuring something from a tightly sealed container of suspiciously familiar white fluid. Once he’s done with her, your qilin lover stands by your side, her hand wrapping loosely around your [pc.hip]. <i>“All good?”</i> she asks, squeezing you to her warm body.");
+	output(" He does the same for Mirrin, although her ‘extra’ test comes from him measuring something from a tightly sealed container of suspiciously familiar white fluid. Once he’s done with her, your qilin lover stands by your side, her hand wrapping loosely around your [pc.hip]. <i>“All good?”</i> she asks, squeezing you to her warm body.");
 	output("\n\nYou nod, doing the same with your hand to her hip. Several beeps come out of the doctor’s devices, a dissonant mess of irregular rhythms.");
 	output("\n\n<i>“Oh right, here we go. Let’s just read... ah, okay. Yeah, it’s as I thought,”</i> he says flatly, wrinkling his nose and sniffing.");
 	switch (flags["MIRRIN_PREGSTAGE"])
@@ -758,7 +758,7 @@ public function PCFinallyGetsToPlayDoctorsAndDragons():void
 		output("\n\nIt’s a quicker trip to Mirrin’s house than usual, the both of you having trouble keeping each other’s hands to themselves. Her security guard greets you as you both reach the house, a knowing smirk on his face.");
 		output("\n\nOnce you’re through the doors and into the main room, the she-dragon pushes you up to the wall with an arm over your shoulder and a palm planted firmly against the surface.");
 		output("\n\n<i>“So now I’m wondering about we do this...”</i> she says with a breathy, smoky voice.");
-		pc.lust(pc.lustMax());
+		pc.changeLust(pc.lustMax());
 		processTime(2);
 		clearMenu();
 		// [Get Preg] ded
@@ -955,7 +955,7 @@ public function mirrinTriesForPregAgainThisTimeWithAdvantage():void
 	output("\n\nYou both take the Priapin medipens and angle them to your respective thighs. Mirrin begins a countdown.");
 	output("\n\n<i>“Three, two, one...”</i>");
 	output("\n\nYou press firmly on the pen and a small <i>pssh</i> sound follows the unsettling numbing sensation in your [pc.thigh]. Immediately, you can feel your heart rate jump in speed and the flush of arousal warms every part of your body. Ooo, what a feeling! [pc.eachCock] " + (pc.hasCocks() ? "engorge" : "engorges") + " to a nearly-full hardness, your [pc.balls] swelling alongside with a sudden urge to release. The need to breed and be bred has never felt stronger!");
-	output("\n\nWithout another thought, you swallow down the Breeders Bliss and wait a few seconds for the magic to work. The heat from the Priapin that fills your pelvis grows exponentially as your [pc.vagina " + vagIdx + "] goes into heat! A thin trickle of [pc.girlCum] escapes from your parting, puffed-up entrance and tickles the blood-flushed skin around it. [pc.eachCockIsAre] painfully erect, curling up slightly as " + (pc.hasCocks() ? "they throb" : "it throbs") + " with readiness in front of you.");
+	output("\n\nWithout another thought, you swallow down the Breeders Bliss and wait a few seconds for the magic to work. The heat from the Priapin that fills your pelvis grows exponentially as your [pc.vagina " + vagIdx + "] goes into heat! A thin trickle of [pc.girlCum] escapes from your parting, puffed-up entrance and tickles the blood-flushed skin around it. [pc.EachCockIsAre] painfully erect, curling up slightly as " + (pc.hasCocks() ? "they throb" : "it throbs") + " with readiness in front of you.");
 	output("\n\nYou feel a smile grow on your [pc.face] as ambient pleasure simmers within your body. You’re definitely ready! And how is Mirrin doi- <i>Oh.</i>");
 	output("\n\nYou can see the qilin bending over with a pained expression on her face. <i>“Fokkk, that’s so <b>hot</b>,”</i> she whines, her eyelids flickering and cheeks flushing a deeper shade of red. She leans on the edge of the bed, ventilating deeply through her open mouth.");
 	output("\n\nYou feel the need to stroke yourself... no wait, she’s in pain, right?!");
@@ -973,7 +973,7 @@ public function mirrinTriesForPregAgainThisTimeWithAdvantage():void
 	output("\n\nA rough palm finds itself on your [pc.cockHead " + cockIdx + "] and then squeezes it. You wince, the strength in her fingers forming a told hold as she yanks your tool around and grinds it against her slightly parted, dripping pussy. At the same time, she guides the flare of her monstrous, 16\" stallion prick against your [pc.cunt " + vagIdx + "]! Oh she’s not really going to try <i>that</i>, right...?!");
 
 	//PC lust set to max. PC gains ‘Breeders Bliss’ and ‘Priapin’ status effects. Brings up cock and vagina selection screen. 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	processTime(11);
 	clearMenu();
@@ -1101,7 +1101,7 @@ public function mirrinAndSteeleRecordAnEducationalVideo(vagIdx:int):void
 	output("\n\n<i>“Ah, before the uhh, next step, you’re going to need some Bliss, hm? Get you nice and... receptive,”</i> she whispers from behind, pressing her thumbs into your back muscles.");
 
 	processTime(23);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 
 	clearMenu();
 	addButton(0,"Sure",mirrinShowsTheWorldHowGirlGetPragnent,vagIdx,"Sure","Anything to guarantee it this time around! Plus it’s going to make you super horny!");
@@ -1125,7 +1125,7 @@ public function mirrinShowsTheWorldHowGirlGetPragnent(vagIdx:int):void
 	processTime(1);
 
 	clearMenu();
-	addButton(0,"Next",timeToStartADragonBreedingShow,vagIdx);
+	addButton(0,"Next",timeToStartADragonBreedingShow,[vagIdx, false]);
 }
 
 public function gottaGiveMirrinsViewersAProperShowAfterAll(vagIdx:int):void
@@ -1143,7 +1143,7 @@ public function gottaGiveMirrinsViewersAProperShowAfterAll(vagIdx:int):void
 	output("\n\nA pleasant but ever-present heat builds inside your loins, filling all parts of your [pc.groin]. Your [pc.pussy " + vagIdx + "] moistens with arousal, puffy and ready while [pc.eachCock] " + (pc.hasCocks() ? "harden" : "hardens") + " to a semi-erect state. Dang, that feels <i>great</i>! You could just breed that dragon right on the spot if...you weren’t... tied up...huh.");
 	output("\n\n<i>“Not so fast, no chances taken,”</i> says the qilin, cupping your chin between her thumb and forefinger.");
 	output("\n\n<i>“Open.”</i>");
-	output("\n\nYou do so at her prompt, a little worried by the tight squeeze of her digits. You unfurl your [pc.tongue] and Mirrin places the small pill on the centre. It’s easily swallowed and in your already aroused state, you can only guess at to what happens next. Although subtle at first, a compounding warmth fills out your lower body completely, engorging your sex organs all the more! [pc.EachCock] now " + (pc.hasCocks() ? "stand" : "stands") + " painfully erect and eager to be used while your [pc.pussy " + vagIdx + "] is begging to bred by thick dragon meat!");
+	output("\n\nYou do so at her prompt, a little worried by the tight squeeze of her digits. You unfurl your [pc.tongue] and Mirrin places the small pill on the center. It’s easily swallowed and in your already aroused state, you can only guess at to what happens next. Although subtle at first, a compounding warmth fills out your lower body completely, engorging your sex organs all the more! [pc.EachCock] now " + (pc.hasCocks() ? "stand" : "stands") + " painfully erect and eager to be used while your [pc.pussy " + vagIdx + "] is begging to bred by thick dragon meat!");
 	processTime(1);
 
 	clearMenu();
@@ -1190,11 +1190,14 @@ public function mirrinStartsThePreparationForImpregnationPenetration(vagIdx:int)
 
 	processTime(26);
 	clearMenu();
-	addButton(0,"F-fuck...!",timeToStartADragonBreedingShow,vagIdx);
+	addButton(0,"F-fuck...!",timeToStartADragonBreedingShow,[vagIdx, true]);
 }
 
-public function timeToStartADragonBreedingShow(vagIdx:int):void
+public function timeToStartADragonBreedingShow(arg:Array):void
 {
+	var vagIdx:int = arg[0];
+	var isPunished:Boolean = arg[1];
+	
 	clearOutput();
 	showMirrin(true);
 	author("SoAndSo");
@@ -1205,7 +1208,9 @@ public function timeToStartADragonBreedingShow(vagIdx:int):void
 	output("\n\nIt takes all your willpower to focus on holding back a burgeoning orgasm, your inner muscles clenching tight on the " + (pc.hasCock() ? "vibes" : "vibe") + " within you.");
 	if (pc.hasCock()) output(" [pc.EachCockIsAre] priapismic, your [pc.balls] aching, full with [pc.cum] and kept sensitive by the drugs in your system.");
 	output("\n\nYou stay strong, if just on the edge: Doing it for her, doing it for, doing it for...ffuuh...");
-	output("\n\nYou lose all sense of how long you’ve been subjected to this torturous entrapment or even a sense of your surroundings, bound, gagged and blinded as you are. All you can sense and feel is the ache of your posture, the deep arousal that fills out your body and the intense struggle to not cum your brains out.");
+	output("\n\nYou lose all sense of how long you’ve been subjected to this torturous entrapment or even a sense of your surroundings, bound");
+	if(isPunished) output(", gagged");
+	output(" and blinded as you are. All you can sense and feel is the ache of your posture, the deep arousal that fills out your body and the intense struggle to not cum your brains out.");
 	output("\n\nYou hear some approaching hoofsteps, and your heart rate jumps up a notch. In your subdued, horny state, the first thing you try to do is call out, but you only end up moaning through your gag.");
 	output("\n\n<i>“Eh? How’re you handling things, hm? I was expecting an iron will out of my breeding partner and all I see is a quivering bitch,”</i> she mocks, chuckling to herself. A heavy, clawed hand runs down the side of your [pc.legOrLegs] and stops at your [pc.hip], feeling rough against your [pc.skinFurScales] the whole way.");
 	output("\n\n<i>“Let’s check progress, huh? Make sure you’re really ready to receive...”</i>");
@@ -1218,8 +1223,11 @@ public function timeToStartADragonBreedingShow(vagIdx:int):void
 	output("”</i> you hear her say loudly, trying to figure out what she could be doing. It’s wasted effort though as your mind quickly snaps back to your sexually subjugated state: don’t cum yet, don’t cum yeehh-");
 	output("\n\nYou once again manage to stop your body from giving in, a muted whine now the only evidence. You hear Mirrin chuckling again above you, muttering something in her native language.");
 	output("\n\n<i>“Æ haltu kjafti... best is yet to come.”</i>");
-	output("\n\nYou feel the vibe slide out of your [pc.pussy " + vagIdx + "] at a torturous pace, the sensation of emptiness a welcome respite that draws a satisfied series of groans from your throat.");
-	if (pc.hasCock()) output(" The vibe stuffed into your [pc.asshole], however, still buzzes away but still, the sense of relief is a welcome one...");
+	if(isPunished)
+	{
+		output("\n\nYou feel the vibe slide out of your [pc.pussy " + vagIdx + "] at a torturous pace, the sensation of emptiness a welcome respite that draws a satisfied series of groans from your throat.");
+		if (pc.hasCock()) output(" The vibe stuffed into your [pc.asshole], however, still buzzes away but still, the sense of relief is a welcome one...");
+	}
 	output("\n\n<i>“Fuuuck me, huh? Look at how wet this utterrrrr slut is, boys,”</i> you hear her quip loudly, her R’s rolling with devilish intent, <i>“Think [pc.heShe] is ready? Poll time, go go go: wetten [pc.himHer] more or <b>fuck</b> and <b>breed</b> [pc.himHer] right fucking now?!”</i>");
 	output("\n\nYou can hear what sounds like a hundred little pings going off at once, much to the qilin’s delight.");
 	output("\n\n<i>“Woaaah, alright, alright, right fucking now then! One more thing left...”</i>");
@@ -1259,7 +1267,7 @@ public function timeToStartADragonBreedingShow(vagIdx:int):void
 
 	processTime(37);
 	clearMenu();
-	addButton(0,"Double fuck...!",heyDragonJuiceMirrinBossHere,vagIdx);
+	addButton(0,"Double Fuck...!",heyDragonJuiceMirrinBossHere,vagIdx);
 }
 
 public function heyDragonJuiceMirrinBossHere(vagIdx:int):void
@@ -1307,7 +1315,7 @@ public function neverEnoughMirrinBabies(cockIdx:int):void
 	showMirrin(true);
 	author("SoAndSo");
 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	output("You inhale with all your waning strength, tongue lolling out to the side as you try taking in as much air as possible. With your free hands, you grasp at your overstuffed womb... so hot and full! If those fertility drugs work, then there’s no way you’re not getting pregnant.");
 	output("\n\n...but speaking of.");
 	output("\n\nThroughout all this, [pc.eachCock] " + (pc.hasCock() ? "have" : "has") + " been ignored this entire time. Still painfully erect with priapismic stiffness, you so desperately want to get off even after getting bred into submission by your dragon queen. You reach over your [pc.belly] and grope at [pc.eachCock] with enervated tugs, your insides groaning with all that fresh weight.");
@@ -2099,7 +2107,7 @@ public function mirrinSterkurHusBonus():Boolean
 		output("\n\n<i>“Aw you didn’t, no! That’s so awesome!”</i> you exclaim, clasping your hands together as something strangely wholesome bubbles within you.");
 		output("\n\n<i>“Yeah yeah but... I had this whole big, sexy reveal thing and it was going to be sweet. I, uh, thing... forgot entirely about new underwear,”</i> she flusters, twirling her fingers in the air. <i>“Well, if it’s out of the bag, want to see?”</i>");
 		output("\n\nYou nod far harder than is healthy and lick your [pc.lipsChaste] in anticipation as Mirrin pivots on her hoof to turn around...");
-		output("\n\nDangling free in a softened state are her ‘new’ horse-cocks. Nestled above her coco-nuts, the two lengths pulse and twinge with ambient arousal and are much longer than you’re familiar with. Jeez, they must be 12\" when <i>soft</i>! Just how big did she go...?! You can’t help but analyse it more, of course: she did it all for you...");
+		output("\n\nDangling free in a softened state are her ‘new’ horse-cocks. Nestled above her coco-nuts, the two lengths pulse and twinge with ambient arousal and are much longer than you’re familiar with. Jeez, they must be 12\" when <i>soft</i>! Just how big did she go...?! You can’t help but analyze it more, of course: she did it all for you...");
 		output("\n\nWhat takes your eyes first are the new bulges of meat near the bases of each shaft. Bulbous knots, although only an inch or so thicker than the shaft proper. The thought of having one lock inside you is almost too much to bear. Even more so when you notice the curious ribbing that lines both shafts: as if calling back to her gryvain genes, thick ribs line each shaft, reaching across the sheath and all the way to the flare. You count eight across each shaft, intervaled like a boutique condom. And is it just you or are those veins a little bit thicker...?");
 		output("\n\nYou spend a few minutes too long just staring in awe, not a word said as the pendulous shafts steal your attention.");
 		output("\n\n<i>“So you like ‘em, hm? Feels a bit chilly just having them out like this when...”</i> chuckles Mirrin as she gives her biggest shaft a soft pat. <i>“When no one’s handling it. How about a ha-”</i>");
@@ -2228,7 +2236,7 @@ public function mirrinsNewLook():void
 	output("\n\nUnlike most gryvain and gryvain hybrids, she has no wings or any discernible markings that denote former wings. One of the many foibles in her idea of self-image.");
 	output("\n\nLooking down, her hefty horse-hooves follow a similar pattern and color design to her horns, slightly splayed to accommodate her thick, rippling thighs and overall frame.");
 	output("\n\nHer silvered hair is long, thick, and straight, most usually kept in a tightly wrapped ponytail while a hint of a mane follows from the base of her skull to the start of her neck. Her actual pony’s tail follows the same arrangement, although its strands are more coarse. Tight leather binding holds both tails into their shapes and when she undoes them, the silver cascades behind her and flows freely. If your mind ran wild, she’d give the impression of some kind of Herculean deity when the wind blows through the strands...");
-	output("\n\nIn terms of outfit, you’ve seen her in all manner of sponsored gear and getups, but right now, she’s wearing a grey tank tap with ‘Galaxy’s Greatest Dadmom’ that fits loosely over her chest and a tight looking pair of grey yoga pants. The straps of her telltale jockstrap peak out over the rim, still trying its best at holding back the contents within. Speaking of...");
+	output("\n\nIn terms of outfit, you’ve seen her in all manner of sponsored gear and getups, but right now, she’s wearing a grey tank top with ‘Galaxy’s Greatest Dadmom’ that fits loosely over her chest and a tight looking pair of grey yoga pants. The straps of her telltale jockstrap peak out over the rim, still trying its best at holding back the contents within. Speaking of...");
 	output("\n\nYou can’t help but have your eyes drawn to her more intimate features.");
 	output("\n\nHer prominent" + (flags["MIRRIN_PREGSTAGE"] != 10 ? ", matronly and oh-so-milky F-cup" : " E-cup") + " chest is nestled into her loose tank top and barely seems to fit even with all that loose material.");
 	if (flags["MIRRIN_PREGSTAGE"] != 10) output(" You’re surprised she’s managed to adapt to the additional bust from her pregnancy, even if her method leaves even less to the imagination than before.");
@@ -2773,7 +2781,8 @@ public function doanMirranUpTheBum(cockIdx:int):void
 	output(" A bigger, rougher hand lightly squeezes your joined together fingers and massages them with calloused motions. In turn, you rub the belly of the great beast and murmur your content for your lover.");
 
 	processTime(40+rand(26));
-	pc.applyCumSoaked();
+	//reported as bug here: https://forum.fenoxo.com/threads/0-8-044-cum-covered-tag-for-mirrin-scenes.19329/
+	//pc.applyCumSoaked();
 	soreDebuff(4);
 	pc.orgasm();
 	clearMenu();
@@ -3114,7 +3123,7 @@ public function chillinAnMirrin(fromFinishUp:Boolean = false):void
 	output("<i>“I could do with that, yeeeah,”</i> you sigh. <i>“I don’t think I’ve got to just roll over and watch TV for a while.");
 	if (flags["STEPH_WATCHED"] != undefined) output(" Well, something that wasn’t Intergalactic Huntress or whatever...");
 	output("”</i>");
-	output("\n\n<i>“Let’s do it then, I got snacks, uhhh, some kinda beer, pretty much all the channels. I’ll getcha comfy and uh, yeah,”</i> says the grinning qilin as she" + (fromFinishUp ? "hauls herself up off the bed. You watch her grab and quickly put on a grey robe, laughing through your teeth as the ill-fitting thing exacerbates her obscene cleavage. <i>“Yeah yeah yeah, I’ll be laughing soon enough. Let’s get you wrapped up, eh?”</i>" : "looks from the kitchen to the lounging space a few meters from the door. <i>“Something else first, though.”</i>"));
+	output("\n\n<i>“Let’s do it then, I got snacks, uhhh, some kinda beer, pretty much all the channels. I’ll getcha comfy and uh, yeah,”</i> says the grinning qilin as she " + (fromFinishUp ? "hauls herself up off the bed. You watch her grab and quickly put on a grey robe, laughing through your teeth as the ill-fitting thing exacerbates her obscene cleavage. <i>“Yeah yeah yeah, I’ll be laughing soon enough. Let’s get you wrapped up, eh?”</i>" : "looks from the kitchen to the lounging space a few meters from the door. <i>“Something else first, though.”</i>"));
 	if (fromFinishUp)
 	{
 		output("\n\nYou give her a quizzical smile");
@@ -3259,7 +3268,7 @@ public function drinkSumDragonJuice():void
 	output("\n\nWell...");
 
 	processTime(20);
-	pc.lust(15+pc.libido()/10);
+	pc.changeLust(15+pc.libido()/10);
 	pc.createStatusEffect("MirrinTiddysuckCooldown");
 	pc.setStatusMinutes("MirrinTiddysuckCooldown",24*60);
 	IncrementFlag("MIRRIN_MILKED");

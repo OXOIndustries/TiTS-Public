@@ -137,6 +137,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
 			chars["VENDINGMACHINE"].inventory.push(new TauricoVenidae());
+			chars["VENDINGMACHINE"].inventory.push(new TauricoVenidaeLight());
 			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
 			chars["VENDINGMACHINE"].inventory.push(new Cackler());
 			

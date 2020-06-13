@@ -326,7 +326,7 @@ package classes.Items.Transformatives
 							}
 							output("\n\nBy the time the growth begins to abate, you’re sure <b>you’re up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
 							changes++;
-							pc.lust(20+rand(10));
+							pc.changeLust(20+rand(10));
 						}
 						else output("\n\n" + pc.breastRatingLockedMessage());
 					}
@@ -400,7 +400,7 @@ package classes.Items.Transformatives
 						else output("you’ve got a literal honeypot now!");
 						output("</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
-						pc.lust(Math.round(pc.lustMax()/2));
+						pc.changeLust(Math.round(pc.lustMax()/2));
 						changes++;
 					}
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
@@ -457,7 +457,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou’re definitely starting to feel a little hornier now, with the familiar heat of arousal coursing through you. Man, what you wouldn’t give for a cute little myr girl between your legs about now...");
 					pc.slowStatGain("libido",5);
-					pc.lust(30);
+					pc.changeLust(30);
 					changes++;
 				}
 				//Honeypot Perk (Convert Thickness to Boob Size)

@@ -41,11 +41,12 @@ package classes.Items.Apparel
 			
 			//Information
 			this.basePrice = 400;
-			this.attack = 0; 
+			this.attack = 4; 
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 0;
-			this.sexiness = 6;
+			this.shields = 10;
+			this.sexiness = 3;
+			this.resolve = 2;
 			this.critBonus = 0;
 			this.evasion = 6;
 			this.fortification = 0;

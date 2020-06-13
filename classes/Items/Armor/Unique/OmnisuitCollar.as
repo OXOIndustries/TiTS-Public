@@ -4,6 +4,9 @@ package classes.Items.Armor.Unique
 	import classes.GLOBAL;
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
+	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
+	import classes.Items.Armor.Unique.Omnisuit;
 	
 	public class OmnisuitCollar extends ItemSlotClass
 	{
@@ -35,9 +38,10 @@ package classes.Items.Armor.Unique
 			attack = 0;
 			defense = 3;
 			shields = 0;
-			sexiness = 7;
+			sexiness = 3;
+			resolve = 2;
 			critBonus = 0;
-			evasion = 2;
+			evasion = 8;
 			fortification = 0;
 			
 			resistances.burning.resistanceValue = 34.0;
@@ -50,6 +54,21 @@ package classes.Items.Armor.Unique
 			//itemFlags.push(GLOBAL.ITEM_FLAG_AIRTIGHT);
 			
 			version = _latestVersion;
+		}
+		
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
+		{
+			if(targetCreature is PlayerCharacter && outputText)
+			{
+				/* Handled in omnisuitExtras.as under omnisuitInventoryBlurb()! */
+				return;
+			}
+			targetCreature.createStatusEffect("Rubber Wrapped");
+		}
+		
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
+		{
+			targetCreature.removeStatusEffect("Rubber Wrapped");
 		}
 	}
 }

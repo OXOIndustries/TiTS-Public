@@ -544,7 +544,7 @@ public function whosInCharge():void
 		output("\n\nOgram chuckles, <i>“Just a little more, slut. Hang in there....”</i>");
 		output("\n\n<i>“Aaaaah. Stopitstopitstopit,”</i> Amma moans, finally breaking down and crying out, her hand disappearing under her skirt. It doesn’t take much more before her voice reaches a crescendo and her tits erupt in a little squirt of milk that soaks right through her shirt, drenching her in her own lactic lust. With a grunt, Amma face-plants on her desk, her big, pillowy tits cushioning the fall. ");
 		output("\n\n<i>“Bigger </i>that<i>, slut,”</i> Ogram laughs as the cow-girl cums her brains out.");
-		pc.lust(4);
+		pc.changeLust(4);
 	}
 	processTime(6);
 	
@@ -766,7 +766,7 @@ public function worshipZeBullCawk():void
 	else output(" collect your gear");
 	output(".");
 	processTime(15);
-	pc.lust(20+rand(10));
+	pc.changeLust(20+rand(10));
 	var ppOgram:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppOgram.createPerk("Fixed CumQ", 2000, 0, 0, 0);
 	pc.loadInMouth(ppOgram);
@@ -932,7 +932,7 @@ public function okayEllieYaCuntLetsMilkMeFirstTime():void
 
 	output("\n\nWith that, Carrie step back to her stool, dims the lights to a dark, moody hue, and presses a big red button next to the door. <i>“Have fun!”</i>");
 
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(5);
 	//[Continue to PROSTATE ABUSE WHOO]
 	clearMenu();
@@ -960,7 +960,7 @@ public function useTheMilkerWithoutCarrieYaSkag():void
 
 	output("\n\nYou set the bottle aside and look back to your bovine attendant, giving her a thumbs up. <i>“Alright babe, just hold on and spread ‘em wide for Mister Floppycock!”</i> Carrie says, flashing you a grin before dimming the lights to a sultry haze of darkness and pushing the big red button next to her stool.");
 
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(5);
 	//[To Prostate Abuse Whoo!]
 	clearMenu();
@@ -1305,7 +1305,7 @@ public function specialOrdersForTreatedGals():void
 	output("\n\n<i>“Order up,”</i> Herman grunts, slapping the spunk-filled roast beef closed and handing it down to you. <i>“On the house.”</i>");
 	output("\n\nTalk about eating cum. You giggle and take the sandwich, munching down on the savory, salty cock-based concoction. The taste sends shivers of pure ecstasy down your spine as you finally sate your hunger for cum... and also lunch. You slump back against the interior of the counter, feasting upon the creamy sandwich. Delicious!");
 	pc.exhibitionism(2);
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(23);
 	pc.energy(100);
 	//pc.thickness += (1);
@@ -1348,7 +1348,7 @@ public function stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerAT
 	output("\n\n<i>“Croickey! That’s amazing!”</i> Steph says, clearly surprised. <i>“I think I’ll be switching brands at home if all the girls have your talented teats!”</i>");
 	output("\n\n<i>“Glad you liked it,”</i> the cow-girl murmurs, half asleep in her afterglow.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEp3Pt2);
 }
@@ -1373,7 +1373,7 @@ public function stephIrsonEp3Pt2():void
 	output("\n\nHe turns to Steph with a toothy grin and grabs the Huntress’s ass in both hands, pulling the khaki-clad hostess up against himself. Steph makes a pathetic little yelp as she’s all but hauled off of her feet, her bare legs rubbing up against the bull’s half-hard prick - which immediately smears her tanned flesh with thick, white cream.");
 	output("\n\nThe bull grabs the camera drone as it passes by, making it chirp and buzz at him as he pulls its camera around to look him right in the face. <i>“Want some exciting television, viewers? I hear this slut tapes live, don’tcha?”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEp3Pt3);
 }
@@ -1413,7 +1413,7 @@ public function stephIrsonEp3Pt3():void
 	
 	watchStephEpisodeBroadcast("STEPH_COWGIRL");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(29);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1836,7 +1836,7 @@ public function carrieBlowjobIntro():void
 			output("\n\n<i>You’re terrible</i>, her eyes say.");
 			output("\n\n<i>I know</i>, yours reply.");
 			//+ Arousal
-			pc.lust(15+rand(3));
+			pc.changeLust(15+rand(3));
 		}
 		//Time is 17:05-08:55
 		else
@@ -2316,7 +2316,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			output(" against her thighs would. Or maybe your husky groan when you finally reach your second orgasm, the plush flesh of Carrie’s boobs squeezing between your fingers, packing her flexing, clinging fuck hole full of " + pc.mf("bull","stud") + " cream too.");
 			
 			processTime(3 + rand(4));
-			pc.lust(50);
+			pc.changeLust(50);
 			// Super cum output only:
 			if(pc.cumQ() >= 10000) superCum = true;
 			for(i = 0; i < 2; i++) { pc.orgasm(); }
@@ -2345,7 +2345,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			output(" and slide every hard, tender inch into their wet mouths and then the closeness of their throats, ensuring they drink down every last thick drop.");
 			
 			processTime(5 + rand(6));
-			pc.lust(50);
+			pc.changeLust(50);
 			for(i = 0; i < 4; i++) { pc.orgasm(); }
 			// [pb]
 			clearMenu();
@@ -2409,7 +2409,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			output("\n\n<i>“Don’t make me beat your impertinent ass in front of everyone,”</i> replies Horisha coolly, ushering him in front of her. <i>“You’re up 12 whups for the day as is.”</i>");
 			
 			processTime(2);
-			pc.lust(50);
+			pc.changeLust(50);
 			clearMenu();
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p1");
 			break;
@@ -2446,7 +2446,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			
 			processTime(7 + rand(6));
 			// Lust decreased by 50%
-			pc.lust(-50);
+			pc.changeLust(-50);
 			// [pb]
 			clearMenu();
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p2");
@@ -2477,7 +2477,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			pc.applyPussyDrenched();
 			pc.applyPussyDrenched();
 			// Lust decreased by 50%
-			pc.lust(-50);
+			pc.changeLust(-50);
 			// [pb]
 			clearMenu();
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p3");
@@ -2657,7 +2657,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			
 			processTime(25 + rand(11));
 			// + Lust
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			// [Shower] [Later]
 			clearMenu();
@@ -2705,7 +2705,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			processTime(225 + rand(31));
 			pc.energy(-40);
 			sweatyDebuff(1);
-			pc.lust(50);
+			pc.changeLust(50);
 			
 			// [pb]
 			clearMenu();
@@ -2787,7 +2787,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			processTime(225 + rand(31));
 			pc.energy(-40);
 			//sweatyDebuff(1);
-			pc.lust(100);
+			pc.changeLust(100);
 			
 			clearMenu();
 			addButton(0, "Next", carrieMilkerBadEnd, "go back p1");
@@ -2851,7 +2851,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			processTime(225 + rand(31));
 			pc.energy(-40);
 			sweatyDebuff(1);
-			pc.lust(50);
+			pc.changeLust(50);
 			
 			// scene carries on as from first
 			pc.createStatusEffect("NT Build Bottle Plant Repeat");
@@ -3012,7 +3012,7 @@ public function carrieCockTailSneakyDeaky():void
 	var x:int = 0;
 	var cumTotal:Number = pc.cumQ();
 	//Mhen’gan fantasy requires PC knows about Penny’s crush on Flahne and both are still on Mhen’ga (not followers)
-	if(flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined && !pennyIsCrew()) fantasies.push(0);
+	if(flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut() && !pennyIsCrew()) fantasies.push(0);
 	//Myrelli fantasy requires PC has toured the Gildenmere thollum
 	if(flags["THOLLUM_TOURED"] != undefined) fantasies.push(1);
 	
@@ -3137,7 +3137,7 @@ public function cameronCockMilker():void
 	output("\n\n<i>“Oh shucks, I guess I forgot to lock the door. Hi, [pc.name],”</i> Carrie says, bouncing on her heels. <i>“Gonna have to wait for a bit if you wanna use the milker. Cam here’s just about to strap in.”</i>");
 	output("\n\nCam blushes a little, though you can see the slab of meat between his legs twitching as he pulls his overalls down, showing his dark donut to you and Carrie. The milker attendant dutifully grabs a bottle of lube and snaps on a glove, telling Cameron to climb onto the machine. She gives you a saucy look while the little faux-cow gets ready, and uses her thumbs to pry apart his soft ass-cheeks, almost invitingly...");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.createStatusEffect("Cameron Milker Cooldown", 0, 0, 0, 0, true, "", "", false, 24*60);
 	
 	addButton(0, "Participate", megaMilkCameron, undefined, "Participate", "You’re sure Cam wouldn’t mind you spending a little quality time together, just the three of you.");

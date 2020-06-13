@@ -235,14 +235,19 @@ public function bribeTaivrasGateGuards():void
 		addButton(14,"Back",mainGameMenu);
 	}
 	var gems:int = 0;
+	var offworldGems:int = 0;
 	//Check if PC has any "GEM" type items.
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
-		if(pc.inventory[x].type == GLOBAL.GEM) gems++;
+		if(pc.inventory[x] is Picardine || pc.inventory[x] is Kirkite || pc.inventory[x] is Satyrite || pc.inventory[x] is GemSatchel) gems++;
+		else if(pc.inventory[x].type == GLOBAL.GEM) offworldGems++;
 	}
 	if(gems == 0) addDisabledButton(1,"Gems","Gems","You don’t have any gems.");
 	else if(gems == 1) addButton(1,"Gem",giveDemAGem,gems,"Gem","Offer the gem you’re carrying.");
-	else addButton(2,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
+	else addButton(1,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
+	if(offworldGems == 0) addDisabledButton(1,"ExoticGems","ExoticGems","You don’t have any exotic gems.");
+	else if(offworldGems == 1) addButton(1,"Exotic Gem",giveDemAnExoticGem,gems,"Exotic Gem","Offer the exotic gem you’re carrying.");
+	else addButton(1,"ExoticGems",giveDemAGem,gems,"ExoticGems","Maybe they’d be interested in one of the exotic gems you’re carrying...");
 }
 
 public function giveDemAGem(gems:int):void
@@ -260,6 +265,22 @@ public function giveDemAGem(gems:int):void
 	clearMenu();
 	addButton(14,"Back",bribeTaivrasGateGuards);
 }
+public function giveDemAnExoticGem(gems:int):void
+{
+	clearOutput();
+	showPraetorians();
+	output("You take out a pouch ");
+	if(gems > 1) output("laden with gemstones");
+	else if(pc.hasItemByClass(GemSatchel)) output("laden with gemstones");
+	else output("with a gemstone");
+	output(" and offer them to the guards, hoping to appeal to their avarice. The guards approach, their dark eyes glinting with greed as you reveal your briberous payload. When they get a good look at the stones, though, their lips curl, and the lead guard plants her hands on her hips.");
+	output("\n\n<i>“Is that it?”</i> she scowls, squinting at your offering. <i>“No, no, I’m not going to risk Queen Taivra’s wrath for </i>that<i>,”</i> she scoffs, shoving your hand back.");
+	output("\n\n<i>“We can get gemstones anywhere,”</i> the other nyrea says. <i>“Come on, if you want to buy your way in, cough up something really </i>unique<i>. Something special!”</i>");
+	output("\n\nSomething special, huh? Maybe a truly precious metal would suit them better...");
+	clearMenu();
+	addButton(14,"Back",bribeTaivrasGateGuards);
+}
+
 
 //[Plat190]
 //Offer your chunk of Platinum 190. Surely these ladies can appreciate the rare beauty of precious metals!
@@ -1508,7 +1529,7 @@ public function partnershipWithTaivra(plat190:Boolean = false):void
 	output("\n\nYou lean in and kiss her, binding your fate with a woman you’ve only just met. You could have fought her, as you have many others before her. You might have even won. But somehow, you feel that you’ve found the lesser of every evil here today. And as Taivra said, you’ll be sure to make this relationship as pleasurable as you can - you think to yourself, as one of your hands snakes up her firm chest, dipping under the fur-lined mail of her top to squeeze a breast. Taivra moans softly, and your Codex chirps something about a new marriage license being ready at the nearest Confederate legal office. Wherever that is. For now, you’re content to enjoy the fruits of your new union.");
 
 	processTime(8);
-	pc.lust(14);
+	pc.changeLust(14);
 	
 	rewardXP(1000);
 	
@@ -2199,7 +2220,7 @@ public function badEndWithTaivraShit():void
 
 	output("\n\nA moment later, and you become a true member of her massive harem in an explosion of pleasure.");
 	processTime(2000);
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	clearMenu();
 	addButton(0,"Next",soloTaivraBadEndPart2);
 }
@@ -2247,7 +2268,7 @@ public function soloTaivraBadEndPart2():void
 	pc.armor.description = "a set of royal nyrea harem clothes";
 	
 	pc.libido(25);
-	pc.lust(100);
+	pc.changeLust(100);
 	for (var i:int = 0; i < 28; i++)
 	{
 		if (pc.hasVagina())
@@ -2843,7 +2864,7 @@ public function queenTaivraAskThrone():void
 	output("\n\nYou agree and lean in to claim your wife’s lips in a kiss before she moves forward in her throne, summoning some of her soldiers to start disassembling it as you place the call in to Steele Tech to have a far more comfortable version made.");
 	
 	processTime(69);
-	pc.lust(15);
+	pc.changeLust(15);
 	pc.credits -= 5000;
 	
 	flags["TAIVRA_NEW_THRONE"] = 0;
@@ -2860,7 +2881,7 @@ public function queenTaivrasNewThrone():void
 	output("Turning your attention back to the queen, you find her relaxed on her restored throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up to pull you closer, where you can see she is currently enjoying the features of her new throne. <i>“I will admit, while I was reluctant at first, this proved to be a most excellent idea. Let me know if there is </i>anything<i> I can do to show my thanks.”</i>");
 	
 	processTime(4);
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	flags["TAIVRA_NEW_THRONE"] = 2;
 	
@@ -3554,7 +3575,7 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			
 			processTime(7 + rand(5));
 			if(flags["FUCKED_TAIVRAS_BETA"] == undefined) flags["FUCKED_TAIVRAS_BETA"] = 0;
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			// [Maybe Later] [Fuck Beta]
 			addButton(0, "Later", taivrasEggStuffedBeta, "later", "Maybe Later", "You’ll come back when Taivra’s done.");
@@ -3867,7 +3888,7 @@ public function loseToPrincessYeGit(willing:Boolean = false):void
 	output("\n\nEventually, Princess stops wasting her fluids on your humble belly and pulls out, spilling one last string of condensed sexual desire across your chin. You take a swipe at it and miss, then forget it when a spunky burp erupts from your mouth. Blushing, you lick your lips and look uncertainly at your Mistress.");
 	output("\n\nShe’s flopped backwards onto the bed and allowed an eager harem ‘boy’ to climb atop her still-stiff pole. She’s bucking and moaning with feverish intensity, surrounded by the cooing forms of a dozen of her compatriots in servitude. You make your way over to join them, awaiting your promised reward.");
 	processTime(80);
-	pc.lust(1000);
+	pc.changeLust(1000);
 	clearMenu();
 	addButton(0,"Next",princessBadEndPartDeus);
 }

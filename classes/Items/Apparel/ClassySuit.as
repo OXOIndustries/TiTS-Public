@@ -37,14 +37,16 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 1;
 			this.shieldDefense = 0;
-			this.sexiness = 7;
+			this.sexiness = 2;
+			this.resolve = 3;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 1;
 			this.fortification = 0;
 			
 			resistances.corrosive.resistanceValue = 10.0;
+			resistances.electric.resistanceValue = 10.0;
 			resistances.poison.resistanceValue = 10.0;
-			resistances.drug.resistanceValue = 10.0;
+			resistances.drug.resistanceValue = 20.0;
 			
 			this.version = this._latestVersion;
 		}

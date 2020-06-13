@@ -556,16 +556,16 @@ public function moosionaryWithBrandy():void
 		output("\n\nYour attention returns towards the matter at hand, though.");
 		output("\n\nYou give your bovine lover a grin, <i>“Well I guess we’ll just have to make do with what we’ve got.”</i>");
 		output("\n\nBrandy blushes and smiles at that.");
-		output("\n\nShe moves her hands, once again allowing you to gaze upon her pink slit.");
+		output("\n\nShe moves her hands, once again allowing you to gaze upon her pink slit. ");
 	}
 	else output("\n\n");
 	
-	output(" You place the underside of your [pc.cock " + x + "] against the lube-leaking hole and begin to roll your hips, rubbing your tool up and down her cunt. Brandy shudders and moos softly as you wet your [pc.cock " + x + "] with her fluids. You keep going until you get your [pc.cock " + x + "] nice and lubed up for the cowgirl, finally pulling back only to see your lover red-faced and biting her lip. You look down and line your cock up with Brandy’s pucker, pressing your [pc.cockHead " + x + "] into it, applying a little pressure and letting off. The soon-to-be buttslut moos softly as your cockhead presses into her dark star. You push harder, and harder, but she seems a bit tense, whining little moos making their way past her lips with each attempted thrust. You reach your hand up to the cowgirl’s cheek, cupping it; she brings her gaze to meet yours.");
+	output("You place the underside of your [pc.cock " + x + "] against the lube-leaking hole and begin to roll your hips, rubbing your tool up and down her cunt. Brandy shudders and moos softly as you wet your [pc.cock " + x + "] with her fluids. You keep going until you get your [pc.cock " + x + "] nice and lubed up for the cowgirl, finally pulling back only to see your lover red-faced and biting her lip. You look down and line your cock up with Brandy’s pucker, pressing your [pc.cockHead " + x + "] into it, applying a little pressure and letting off. The soon-to-be buttslut moos softly as your cockhead presses into her dark star. You push harder, and harder, but she seems a bit tense, whining little moos making their way past her lips with each attempted thrust. You reach your hand up to the cowgirl’s cheek, cupping it; she brings her gaze to meet yours.");
 	pc.cockChange();
 	output("\n\n<i>“Just relax, Brandy,”</i> you say calmly to your lover, trying to reassure her.");
 	output("\n\nShe nods, letting herself go limp, her muscles relaxing as she brings her hands down, grabbing at your [pc.butt]. You push your hips forward, and the resistance you felt before seems dissipated. As your [pc.cock " + x + "] slowly pushes into her, a <i>“MooooOOOOOOO!”</i> of pleasure and pain fills the air, your glans meeting her pucker. You continue your slow thrust into Brandy’s ass, her hands grabbing at your [pc.butt], trying to guide you into her. Her inner walls squeeze at your [pc.cock " + x + "], each inch you shove inside her making your mind cry out in pleasure, and you can’t help but let out a few lewd groans as your cock makes its way inside your lover’s ass. The chorus of Brandy’s pleasured moos echos in your ears as ");
-	if(pc.hasKnot(x)) output("your dick finally bottoms out inside her cushy bottom.");
-	else output("your knot reaches the cowgirl’s stretching asshole.");
+	if(pc.hasKnot(x)) output("your knot reaches the cowgirl’s stretching asshole.");
+	else output("your dick finally bottoms out inside her cushy bottom.");
 
 	output("\n\nYou give Brandy a minute to adjust to the cock lodged inside her. She moos softly and wiggles under you. Hardly able to resist the urge to do so, you lean down and kiss the squirming cowgirl briefly before bringing yourself back up. She blushes fiercely in return as you both take in the pleasure of a moment’s silence.");
 	output("\n\n<i>“Think it’d be okay if I start moving?”</i> you ask.");
@@ -722,7 +722,7 @@ public function brandyExhibitionism():void
 		processTime(22);
 		//decrease affection -10
 		brandyAffection(-10);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.exhibitionism(2);
 	}
 	else
@@ -759,7 +759,7 @@ public function brandyExhibitionism():void
 		output("\n\nAnd there you rest atop your naked lover, drunk and happy, ready to sleep off your stooper while Brandy rest with her afterglow on the soft grass of the stockyard before you both have to get back to work.");
 		output("\n\nHopefully no one else comes to interrupt the two of you...");
 		processTime(45);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.exhibitionism(2);
 		pc.milkInMouth();
 	}
@@ -810,7 +810,7 @@ public function taurTimeWithBrandy():void
 	output("\n\n<i>“M-moo?”</i>");
 
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	//[Miscreant Manor] You think you know a better spot where you could get this done. //Requires the PC to have been to miscreant manor. Requires cock.
 	if(flags["MISCREANT_MANORED"] != undefined) addButton(0,"M. Manor",takeBrandyToMiscreantManor,undefined,"Miscreant Manor","You think you know a better spot where you could get this done.");

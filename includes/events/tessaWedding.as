@@ -371,7 +371,7 @@ public function heyLittleTessaWhatDoWeSayWeHaveWeDone(approval:int):void
 	output("\n\nYou nod, listening to her plan.");
 	output("\n\n<i>“Okay. So I’m your girlfriend. Let’s say we met at some... Steele sponsored charity or something. Oh! Right, they think I do charity work. Um... let’s say I’m not working at the moment. Like we’re some old fashioned couple or something dumb. You... Well, we can tell people the truth. A brave adventurer exploring the galaxy. Maybe leave out the X-rated bits?”</i> Tessa’s eyes narrow further, her red orbs intense. <i>“And do not under any circumstances talk about our sex life. Fictional or otherwise.”</i>");
 	output("\n\nYou laugh at that, but Tessa’s intense gaze forces you to stop and you agree to the rule.");
-	output("\n\nTessa relaxes. <i>“Good. Also if possible, try not to talk about me when I’m not around to lead the conversation. These people... talk. If you say something to somebody the whole room will know. <b>Remember that</b> nothing you say will be private!”</i>");
+	output("\n\nTessa relaxes. <i>“Good. Also if possible, try not to talk about me when I’m not around to lead the conversation. These people... talk. If you say something to somebody the whole room will know. <b>Remember that nothing you say will be private</b>!”</i>");
 	output("\n\nYou nod at that, taking careful note that your words will travel.");
 	output("\n\nThe ovir smiles. <i>“Alright. So guess I should mention the bride and groom, huh? They’re names are Karen and Monty. Wait, he might go by Montgomery now? Um... Fuck it’s been awhile. Anyways, Karen is an angel. Invited me to all her birthdays from age four until... well now. I seriously still get invites.”</i> Tessa shakes her head slightly. <i>“Monty is... Okay. I mean he was a total nerd growing up. Didn’t talk to him much, but he was never mean to me or anything.”</i> Tessa points a sharp finger at you. <i>“<b>Be. Nice.</b> I like them. Don’t ruin their wedding or I swear to fucking god I will lose my shit.”</i>");
 	output("\n\nYou stare at Tessa a moment, agreeing to be nice as best you can. She eyeballs you hard for a moment. You get the impression she doesn’t believe you.");
@@ -440,7 +440,7 @@ public function itsANiceDayForATessaWedding():void
 
 	output("Together, you and Tessa make your way down the corridor, trailing behind a few other couples. You spot an usher standing at the end of the hall next to a wide set of open double doors, directing people as they reach him. You glance over at Tessa and notice her staring intently at the usher, contemplating something. Her thought is cut off by the unexpected sound of a woman’s voice behind you. <i>“Tessy?”</i> Tessa freezes and stops you both in your tracks, her face turning even more pale and her lips pressing tightly together. <i>“Tessy! Oh my god!”</i>");
 	output("\n\nYou watch Tessa’s eyelids flutter and she sighs deeply, seemingly bracing herself. She releases your arm and turns on her heel, facing the woman behind you. Her face lights up instantly with what you know to be fake enthusiasm. <i>“Jan? Is that you?”</i> Tessa shrieks loudly, causing you to jump at the unexpected, and uncharacteristic, cry. She runs forward and embraces the woman called Jan, who starts shrieking as well along with Tessa. <i>“It’s been years! Oh my god, you look amazing!”</i> Tessa releases Jan from her hug, allowing you a clear look at the woman.");
-	output("\n\nJan is very distinctly human, with light skin and a rich brown hair done up in a beehive hairstyle. She’s tall and rail thin, giving her a willowy appearance, and is wearing a long red dress that seems to hang off her slender shoulders, accentuating her slender form. She’s certainly pretty, but standing next to Tessa’s impressive curves she seems quite the plain jane by comparison. <i>“Oh please. Now you’re just flattering me. Look at you! You look...”</i> Jan looks Tessa up and down, an odd smirk on her lips. <i>“Womanly.”</i> You notice Tessa wince slightly at that. The thin woman turns her gaze to you, her smirk growing wider. <i>“And who is this fine young specimen?”</i>");
+	output("\n\nJan is very distinctly human, with light skin and a rich brown hair done up in a beehive hairstyle. She’s tall and rail thin, giving her a willowy appearance, and is wearing a long red dress that seems to hang off her narrow shoulders, accentuating her slender form. She’s certainly pretty, but standing next to Tessa’s impressive curves she seems quite the plain jane by comparison. <i>“Oh please. Now you’re just flattering me. Look at you! You look...”</i> Jan looks Tessa up and down, an odd smirk on her lips. <i>“Womanly.”</i> You notice Tessa wince slightly at that. The thin woman turns her gaze to you, her smirk growing wider. <i>“And who is this fine young specimen?”</i>");
 	output("\n\nTessa turns as well, giving a soft chuckle. <i>“This is... Um... This is...”</i> The white woman stutters on her words trying to introduce you, clearly knocked off her center.");
 
 	//+1 to Bride Side Approval. +1 to Groom Side Approval.
@@ -479,7 +479,7 @@ public function heyLittleTessaWhoIsItYoureWith(answer:int):void
 		tessaHandler.groomApproves();
 		tessaHandler.tessaApproves(-2);
 	}	
-	output("\n\nJan silently stares at you a moment while smirking, her face difficult to read. You can’t help but feel a bit uncomfortable at her gaze, her brown eyes almost as intrusive as Tessa’s. <i>“Interesting... Well it’s a pleasure to meet you, [pc.name]. That’s a very nice");
+	output("\n\nJan silently stares at you a moment while smirking, her face difficult to read. You can’t help but feel a bit uncomfortable at her gaze, her brown eyes almost as intrusive as Tessa’s. <i>“Interesting... Well it’s a pleasure to meet you, [pc.name]. That’s a very nice ");
 	if (tessaHandler.clothes) output(tessaHandler.clothes);
 	else output("outfit");
 	output(" by the way.”</i> Her eyes shift back to Tessa, the ovir seemingly regaining her composure. <i>“You know Tessy, this is the first time all us girls have been together since graduation! Isn’t that weird?”</i>");
@@ -564,7 +564,7 @@ public function tessaShowsHerDearFriends(drink:int):void
 	//+1 Groom Side Approval, +1 Bride Side Approval, +1 Tessa Approval
 	addButton(2, "Prefer Monty", tessaAsksIsThereSomeoneElseYouHoldDear, 2);
 	//+2 Tessa Approval, +2 Bride Side Approval.
-	addButton(3, "Perfer Tessa", tessaAsksIsThereSomeoneElseYouHoldDear, 3);
+	addButton(3, "Prefer Tessa", tessaAsksIsThereSomeoneElseYouHoldDear, 3);
 	tessaWedCheckBlackout();
 }
 
@@ -577,7 +577,7 @@ public function tessaAsksIsThereSomeoneElseYouHoldDear(choice:int):void
 	processTime(4);
 
 	output("You remark to Tessa that you like " + ["Adra", "Clark", "Monty", "her"][choice] + " best. Tessa rolls her eyes and smiles, but doesn’t react further. You take one last look back up to the stage and notice Adra looking directly at you. You stare at her a moment then she gives her decorated ears a small wiggle and shoots you a smile. Oh shit. She heard you.");
-	output("\n\nYou look away and turn to the back of the hall, just as the bride and her father start to enter. The whole room stands at the sight of her, and given your placement at the back of the room you suspect you currently have one of the best views. While you pay little attention to her father, you can’t help but give the bride a good look over. She is a small woman, with olive skin, long jet black hair pulled back tight, and a stunning smile. Her wedding dress was strapless, flowing behind her with a long trail, dragging along the floor neatly. Her chest, while as close to perfectly shaped as you’ve ever seen, does not seem particularly large despite being able to hold up her dress.");
+	output("\n\nYou look away and turn to the back of the hall, just as the bride and her father start to enter. The whole room stands at the sight of her, and given your placement at the back of the room you suspect you currently have one of the best views. While you pay little attention to her father, you can’t help but give the bride a good look over. She is a small woman, with olive skin, long jet black hair pulled back tight, and a stunning smile. Her wedding dress is strapless, flowing behind her with a long trail, dragging along the floor neatly. Her chest, while as close to perfectly shaped as you’ve ever seen, does not seem particularly large despite being able to hold up her dress.");
 	output("\n\nOnce she’s made her way onto the stage you can tell just how short she is standing next to both Monty and Adra, her head only reaching either of their chests. You glance at Tessa next to you who is smiling softly, seeming genuinely happy at the sight of her friend. Everybody takes their seats and the ceremony begins.");
 	output("\n\nA few minutes in you find most of the the crowd fully engaged in the words of the Officiant. You glance around the room a bit, noting not a single person looking your way, aided by your choice to sit in the very back. Despite that, you can’t shake the feeling that you’re being watched...");
 
@@ -691,7 +691,7 @@ public function withTheLightsSoLowAnInvitationToWhatTessaWantsYouToKnow(topic:in
 	output("\n\nJan’s smirk turns into a proper smile again at that. <i>“Of course. Anyways, I’m here on business. Bride business if you can believe.”</i> Tessa’s smile shifts a bit, curiosity breaking through her smile. <i>“Our presence has been requested. Both of us.”</i> Jan’s eyes flick back over to you. <i>“Should only be a few minutes. Private stuff.”</i>");
 	output("\n\nTessa turns to look at you, giving you a concerned stare for a moment. She turns back to Jan, her smile gone from her face. <i>“Of course.”</i> Tessa moves over to you and thrusts her purse into your hands. <i>“Wait here for me, okay?”</i>");
 	output("\n\n<i>“Oh don’t be silly, Tessy! [pc.name] should head into the dining hall and get a drink. Open bar you know.”</i> Jan’s eyes shift back to you, her expression devious. <i>“[pc.HeShe]’ll be fine for a few minutes unattended. Right? What’s the worst that could happen?”</i>");
-	output("\n\nTessa looks at you and presses her lips tightly together. She doesn’t seem to like that idea at all, but can’t offer a counterpoint. <i>“You’re right... Go ahead and find our seats while you’re at it okay, honey?”</i> The white ovir practically stalks in close and plants a quick smooch on your cheek. <i>“Be good.”</i>");
+	output("\n\nTessa looks at you and presses her lips tightly together. She doesn’t seem to like that idea at all, but can’t offer a counterpoint. <i>“You’re right... Go ahead and find our seats while you’re at it. Okay, honey?”</i> The white ovir practically stalks in close and plants a quick smooch on your cheek. <i>“Be good.”</i>");
 
 	tessaHandler.tessaApproves();
 
@@ -774,7 +774,7 @@ public function teachingTessaIsAMemoryThatWillLast():void
 	processTime(3);
 
 	output("You decide to ask the wizen teacher about Tessa as a student.");
-	output("\n\n<i>“Ah yes, Ms. Hardy was a very bright young woman, and very quiet and reserved as well. If she had not stood out so much due to her... Um...”</i> You notice the older man shift in uncomfortably his seat, searching for the right word. <i>“Species... She may have gone completely unnoticed.”</i> Barney sighs, absently scratching his chin. <i>“She was very quiet, stealthy even.I’d hazard a guess it’s an evolutionary trait the ovir developed long ago, but that girl could sneak up on anybody during even the deepest silence.”</i>");
+	output("\n\n<i>“Ah yes, Ms. Hardy was a very bright young woman, and very quiet and reserved as well. If she had not stood out so much due to her... Um...”</i> You notice the older man shift in uncomfortably his seat, searching for the right word. <i>“Species... She may have gone completely unnoticed.”</i> Barney sighs, absently scratching his chin. <i>“She was very quiet, stealthy even. I’d hazard a guess it’s an evolutionary trait the ovir developed long ago, but that girl could sneak up on anybody during even the deepest silence.”</i>");
 	output("\n\nYou can’t help but recall a few instances of your pale friend showing off that same talent. You ask the teacher how he became acquainted with that skill set of hers.");
 	output("\n\n<i>“She snuck up on me a few times over the years, whenever I’d not been fully paying attention. I don’t think she really understood just how stealthy she could be for quite some time.”</i> Barney softly laughs to himself then looks around the room. <i>“So where is our elusive friend? I hope she didn’t leave you to the wolves.”</i>");
 
@@ -1038,7 +1038,7 @@ public function janGotALicenseForLoveAndIfItExpiresPrayHelpFromTessa():void
 	//+1 Tessa Approval. +1 Bride Side Approval. +1 Groom Side Approval. +1 Tessa Alcohol lvl. 
 	addButton(1, "A Fun Lady", nowTessaIsHidingInCratesThatAreFrightening, 1);
 	//+1 Bride Side Approval. +1 Groom Side Approval. +1 Tessa Alcohol lvl. 
-	addButton(2, "Seen Me?", nowTessaIsHidingInCratesThatAreFrightening, 2, "Seen Me?", "\"Have you seen me?\"");
+	addButton(2, "Seen Me?", nowTessaIsHidingInCratesThatAreFrightening, 2, "Seen Me?", "“Have you seen me?”");
 }
 
 // Part 2:
@@ -1053,7 +1053,7 @@ public function nowTessaIsHidingInCratesThatAreFrightening(reply:int):void
 	output("\n\nTessa grabs your arm and drags you away again. You try to ask the ovir why exactly she wants to hide, but she doesn’t seem to pay you any mind. She pulls you off into a side hallway, and slips you both into a storage room. She lets go of you and you take a look around, noting the whole room to be filled with crates of alcohol.");
 	output("\n\n<i>“Well hot damn.”</i> Tessa moves to a nearby crate and examines it. <i>“Well. I might have to reconsider that beer being my last drink.”</i>");
 	output("\n\n<i>“So, why exactly are we hiding?”</i> You move towards Tessa, taking a look at the crate she’s rummaging through.");
-	output("\n\nThe white woman sighs and turns to face you. <i>“Looks I’ve... Okay. That thing Jan dragged me off to do? Well, I didn’t leave home on the best of terms with everybody. Karen had us sit in a room and... talk. First time in years... I’d like to say there are not hard feelings but...”</i> Tessa turns back to the crate, reaching in and pulling out a bottle. <i>“Forgiving is hard.”</i>");
+	output("\n\nThe white woman sighs and turns to face you. <i>“Look, I’ve- Okay. That thing Jan dragged me off to do? Well, I didn’t leave home on the best of terms with everybody. Karen had us sit in a room and... talk. First time in years... I’d like to say there are not hard feelings but...”</i> Tessa turns back to the crate, reaching in and pulling out a bottle. <i>“Forgiving is hard.”</i>");
 	if (tessaHandler.adraValOne)
 	{
 		output("\n\n<i>“You meant Adra right?”</i> Tessa turns to face you, still holding the bottle in her hand. <i>“That’s who she wanted you to make up with, right?”</i>");
@@ -1085,27 +1085,28 @@ public function tonightALittleTessaCameDancingOnTheFloor(drinks:int):void
 	clearMenu();
 	clearOutput();
 	showWeddingTessa();
-	processTime(3);
+	processTime(6);
 
+	output("A short while later, you"); 
 	switch (drinks)
 	{
 		case 0:
-			output("You tell Tessa you two should head back to the party. The white woman regards the bottle another moment, then sets it back into the crate without opening it."); 
+			output(" tell Tessa you two should head back to the party. The white woman regards the bottle another moment, then sets it back into the crate without opening it."); 
 			tessaHandler.tessaApproves();
 			break;
 		case 1:
-			output("You move up beside Tessa and take the bottle from her. You crack it open and take a hearty swig of it, then offer it back to her. The white woman smiles and takes the bottle from you, knocking back a healthy amount herself.");
+			output(" move up beside Tessa and take the bottle from her. You crack it open and take a hearty swig of it, then offer it back to her. The white woman smiles and takes the bottle from you, knocking back a healthy amount herself.");
 			tessaHandler.tessaApproves(2);
 			tessaHandler.tessaDrinks(1, false);
 			tessaHandler.youDrink(1, false);
 			break;
 		case 2:
-			output("You stand there in silence. After a moment, Tessa opens the bottle and starts to down it, chugging away at the contents. She gasps in satisfaction when she finishes, then sighs to herself solemnly.");
+			output(" stand there in silence. After a moment, Tessa opens the bottle and starts to down it, chugging away at the contents. She gasps in satisfaction when she finishes, then sighs to herself solemnly.");
 			tessaHandler.tessaDrinks(2, false);
 			break;
 	}
 	output("\n\nThe two of you make your way out of the storage room and back to the reception hall. Upon entering you see the reception is now in full swing, with many of the guests out on the dance floor. A rather upbeat party song is playing, and all the dancers seem to be enjoying themselves. Tessa sighs to herself. <i>“So... I think this is the part where we’re supposed to dance.”</i> Without giving you a chance to speak, the white ovir roughly grabs your arm and pulls you onto the dance floor.");
-	output("\n\nTessa rhythmic patterns dance more <i>at you</i> than <i>with you</i> at you, the ovir woman swaying her sultry hips back and forth hypnotically, moving her curvaceous body to the music. All things considered, the woman knows how to dance. You note a few other guests turn to watch your date, more than one lewd smile being tossed her way. Clark, who is currently dancing with two girls at the same time, is one. Adra, off standing to the side of the dance floor, is another.");
+	output("\n\nTessa’s rhythmic patterns dance more <i>at you</i> than <i>with you</i> you. The ovir woman sways her sultry hips back and forth hypnotically, moving her curvaceous body to the music. All things considered, the woman knows how to dance. You note a few other guests turn to watch your date, more than one lewd smile being tossed her way. Clark, who is currently dancing with two girls at the same time, is one. Adra, off standing to the side of the dance floor, is another.");
 	output("\n\nThe song ends and a new one starts to play. This time it’s a very slow romantic song you vaguely remember hearing before. Tessa stops her dancing and stares at you, her expression very conflicted. <i>“Uhm... Right.... So...”</i>");
 
 	//+3 Tessa Approval. +2 Bride Side Approval. +2 Groom Side Approval.
@@ -1211,7 +1212,7 @@ public function collectFlowersToGoFromTessasEleven():void
 	if (tessaHandler.clothes == "dress" || pc.isFeminine() || pc.femininity >= 40)
 	{
 		output("\n\nYou get grabbed by a older looking woman and pushed along with the rest, despite your protests. You notice Tessa also getting dragged onto the floor, the ovir’s silent expression calling out to you for help. You end up in the middle of the horde, Tessa lost somewhere in front of you, hidden behind a sea of women. How many single ladies are at this damn wedding? Just in front of you, you notice a familiar brown beehive: Jan.");
-		output("\n\nFrom somewhere in the front you hear Karen call out. <i>“Alright, ready ladies?”</i> The crowd screams and shouts their response, nearly deafening you. <i>“Alright. Here.We.Go!”</i> You look upward and see the pale bouquet arc up in the air. Time slows.");
+		output("\n\nFrom somewhere in the front you hear Karen call out. <i>“Alright, ready ladies?”</i> The crowd screams and shouts their response, nearly deafening you. <i>“Alright. Here-We-Go!”</i> You look upward and see the pale bouquet arc up in the air. Time slows.");
 		output("\n\nYou look around. You know only milliseconds are passing but you feel like you have all the time in the world to act. Despite this, you know you only have time for one action...");
 
 		//+1 Tessa Approval. +3 Bride Side Approval. +3 Groom Side Approval.
@@ -1229,7 +1230,7 @@ public function collectFlowersToGoFromTessasEleven():void
 	else
 	{
 		output("\n\nYou notice Tessa getting dragged onto the floor, the ovir’s silent expression calling out to you for help. She gets lost somewhere in the horde, hidden in a sea of women. How many single ladies are at this damn wedding?");
-		output("\n\nFrom your spot on the sidelines you see Karen step into position and call out . Alright, ready ladies?” The crowd screams and shouts their response. “Alright. Here.We.Go!” You look upward and see the pale bouquet arc through the air. Time slows.");
+		output("\n\nFrom your spot on the sidelines you see Karen step into position and call out . Alright, ready ladies?” The crowd screams and shouts their response. “Alright. Here-We-Go!” You look upward and see the pale bouquet arc through the air. Time slows.");
 		output("\n\nYou look around. At this point you can do nothing. But still, sometimes it’s the thought that counts...");
 
 		//+3 Tessa Approval. +3 Bride Side Approval. +3 Groom Side Approval.
@@ -1339,7 +1340,7 @@ public function tessaDontCallMeFromTheBathroomToTellMeImWithClark():void
 		//Plays Part 2
 		addButton(0, "Stay And Wait", nowAllICanHangOutWithIsTessasLoveThatWasOnce, true);
 		//Triggers Ending 3
-		addButton(1, "\"Help\" Clark", whenYouHearClarkOfferYouTakeADip, undefined, "\"Help\" Clark", "Help Clark with his ‘happy ending.’");
+		addButton(1, "“Help” Clark", whenYouHearClarkOfferYouTakeADip, undefined, "“Help” Clark", "Help Clark with his ‘happy ending.’");
 	}
 	else
 	{
@@ -1357,7 +1358,7 @@ public function nowAllICanHangOutWithIsTessasLoveThatWasOnce(fromClark:Boolean):
 	showTessaAdra();
 	processTime(3);
 
-	if (fromClark) output("You turn Clark down and the big blonde man shrugs. “Alright. Suit yourself. If you change your mind I’ll be close by.” He gives you a lewd wink then enters the men’s room, leaving you alone in the hall.\n\n");
+	if (fromClark) output("You turn Clark down and the big blonde man shrugs. <i>“Alright. Suit yourself. If you change your mind I’ll be close by.”</i> He gives you a lewd wink then enters the men’s room, leaving you alone in the hall.\n\n");
 	output("Another minute passes and you hear a second set of footsteps coming your way. You turn and spot Adra coming down the hall. <i>“Hey, Um... [pc.name] right? Did you see Clark come this way?”</i>");
 	output("\n\nYou tell her he just stepped into the men’s room.");
 	output("\n\n<i>“Ah.”</i> She turns to regard the men’s room door, then shifts her gaze back to you and the contents of your hands. <i>“Nice bouquet. " + (tessaHandler.caughtBouquet ? "You" : "Tess") + " really worked for that thing. Things must be serious between you two.”</i>");
@@ -1525,10 +1526,10 @@ public function heyLittleTessaLetsFuckThatViceAndWish(reply:int):void
 	if (tessaHandler.brideApproval >= 17)
 	{
 		output(" Karen tugs on Monty’s jacket, causing the tall blond man to lean down and listen while his wife whispers in his ear.");
-		if (tessaHandler.groomApproval < 17) output("<i>“Hm. I don’t know honey. They do have to go.”</i>");
+		if (tessaHandler.groomApproval < 17) output(" <i>“Hm. I don’t know honey. They do have to go.”</i>");
 		else
 		{
-			output("Monty smiles, <i>“Oh, interesting idea...”</i>");
+			output(" Monty smiles, <i>“Oh, interesting idea...”</i>");
 			output("\n\nKaren moves towards Tessa again and starts whispering to her. The pale ovir turns a bright shade of pink, and her red eyes go wide as saucers.");
 			if (tessaHandler.tessaApproval >= 15 && tessaHandler.tessaBooze >= 7 && ((pc.hasCock() && pc.shortestCockLength() < 18) || pc.hasVagina))
 			{
@@ -1848,7 +1849,7 @@ public function tessaLeadsTheThreesome():void
 	output("\n\nYou feel Tessa below you start to crawl, scaling back up you into a straddling position once more. Her thick egg-bearing hips are on either side of yours now, and your feel her give you a squish with her powerful thighs. <i>“Come here, you bitch.”</i> You hear Adra’s howls stifle, the noises silenced and replaced with throaty moans. On top of you, the two women embrace, clearly making out with each other while moaning lustfully. On your crotch, hot wetness starts to soak you, Tessa’s reptilian cunt starting to pour all over.");
 	if (pc.hasCock())
 	{
-		output("\n\nTessa grinds herself against you, rubbing her soaking wet pussy on your rigid cock. Her cunt seems to wrap over you, seemingly gripping you while the ovir bucks her hips. Both your sexes burn hottly, brushing against each other, teasing your cockflesh and driving you crazy with pleasure. Tessa shifts her hips, and much to your surprise, she slides your cock properly inside of her eager quim. Even with your face buried in muff, you can’t help but pause for a moment and take it in: Tessa is letting you fuck her. Not willing to let this chance go, you start to buck your hips, thrusting your hard cock up into the ovir riding you. Tessa’s cloaca is clearly not like a normal cunt. It seems to mold to the shape of your [pc.cockShape] schlong, with her hole tighter than you expected, but somehow more spacious than you imagined. The shapely woman starts grinding her hips again, seemingly not content with just your upward thrusts alone. You’ve gotta say, this woman can ride a cock.");
+		output("\n\nTessa grinds herself against you, rubbing her soaking wet pussy on your rigid cock. Her cunt seems to wrap over you, seemingly gripping you while the ovir bucks her hips. Both your sexes burn hotly, brushing against each other, teasing your cockflesh and driving you crazy with pleasure. Tessa shifts her hips, and much to your surprise, she slides your cock properly inside of her eager quim. Even with your face buried in muff, you can’t help but pause for a moment and take it in: Tessa is letting you fuck her. Not willing to let this chance go, you start to buck your hips, thrusting your hard cock up into the ovir riding you. Tessa’s cloaca is clearly not like a normal cunt. It seems to mold to the shape of your [pc.cockShape] schlong, with her hole tighter than you expected, but somehow more spacious than you imagined. The shapely woman starts grinding her hips again, seemingly not content with just your upward thrusts alone. You’ve gotta say, this woman can ride a cock.");
 		pc.cockChange();
 	}
 	else if (pc.hasVagina()) output("\n\nSomething thick presses up against your now abandoned cunt. At first you think it’s a cock, but you know that’s impossible based on the angle and present company. Whatever it is, it pushes inside of your quivering womanhood with surprising power. You let out a throaty moan as it forces its way inside of you, growing thicker as it plunges deeper. Your eyes open wide in a horrid realization: Tessa is using her tail on you. Tessa’s tail wiggles inside of you, the tip of it buried several inches deep. Her effort sends you into a fit of moaning pleasure, the movement of the ovir’s tail fucking you in a way a cock never could. You can’t help but wonder how long Tessa’s had this particular trick up her sleeve. If you knew your ovir lover could do this do you, you’d have been begging to be fucked this way every day.");
@@ -1878,10 +1879,10 @@ public function tessaFollowsAdrasLead():void
 	output("You say you want Adra to take the lead.");
 	output("\n\nTessa scoffs. She turns to Adra and gives her a shrug. <i>“Guess you’re up.”</i> She turns back to you, her red eyes staring at you intensely.");
 	output("\n\nAdra smiles, and behind her you notice her tail wagging in excitement. She gives Tessa a quick peck on the cheek before moving in towards you. She bends over, meeting your face. <i>“I’ll be sure to treat you right.");
-	if (!pc.isNude() || tessaHandler.outfit)
+	if (!pc.isNude() || tessaHandler.clothes)
 	{
 		output(" Mind losing the clothes?.”</i>");
-		output("\n\nYou remove your " + (tessaHandler.outfit ? tessaHandler.outfit : "[pc.gear]") + ", wiggling out of it the best you can while still seated on the floor. Adra smiles down at you, patiently waiting for you to fully disrobe. To the side you notice Tessa tapping her foot, more than a little impatient with your pace. You finish stripping down, now sitting naked on your [pc.ass].");
+		output("\n\nYou remove your " + (tessaHandler.clothes ? tessaHandler.clothes : "[pc.gear]") + ", wiggling out of it the best you can while still seated on the floor. Adra smiles down at you, patiently waiting for you to fully disrobe. To the side you notice Tessa tapping her foot, more than a little impatient with your pace. You finish stripping down, now sitting naked on your [pc.ass].");
 	}
 	output("\n\nSlowly, Adra places her hands on your shoulders and guides you down until you’re flat on your back. The ausar swings her leg over you, now straddling your waist with her strong thighs. <i>“Wish I could stay up here, but...”</i> She runs her furry fingers along your [pc.chest], trailing downward towards your midsection. <i>“First I got to to warm you up.”</i>");
 	output("\n\nSlowly, she moves her hands to either side of your head and bends over, her impressive chest threatening to smother you. Before it can, the well endowed woman starts to crawl backward, her chest brushing against yours as she slowly moves down your body. A shiver runs up your spine as her soft tits graze against your [pc.skinFurScales], giving you a teasing sensation that rises as she runs them over your lower half.");
@@ -1889,7 +1890,7 @@ public function tessaFollowsAdrasLead():void
 	if (pc.hasCock()) output(" [pc.cockNounComplex]");
 	else if (pc.hasVagina()) output(" [pc.vagina]");
 	else output(" crotch");
-	output(" The ausar looks up at you, blue eyes full of desire. <i>“Hope you don’t object to me treating myself.”</i> Her gaze shift over to Tessa. <i>“Try not to get to jealous.”</i>");
+	output(". The ausar looks up at you, blue eyes full of desire. <i>“Hope you don’t object to me treating myself.”</i> Her gaze shift over to Tessa. <i>“Try not to get to jealous.”</i>");
 	output("\n\nTessa scoffs, and moves a hand to her crotch, her fingers disappearing between her thighs. <i>“I’ll make do on my own for now. You just try not to make a fool of yourself down there.”</i> She gives a devious smirk as her fingers get to work at herself.");
 	output("\n\nAdra’s eyes turn back to you, a lascivious gleam in them. You can’t help but feel excited now. This woman is going to give you a treat.");
 	if (pc.hasCock()) output("\n\nSlowly, Adra’s takes hold of your pillar of cockflesh, her furry hand wrapping around it. Her grip on your member is delicate, but you feel her fingers have some untapped strength. She starts to glide her hand up and down slowly, teasing you with some simple stroking. Adra’s fingers tickle your sensitive flesh, her furry digits making you gasp softly. The doggy girl smiles up at you, watching you enjoy her work.");
@@ -1932,7 +1933,7 @@ public function tessaThreesomeOver():void
 	showTessa();
 	processTime(412);
 
-	output("Your eyes stay closed when you wake, consciousness coming back to you slowly. As your senses start to sharpen, you realize you are still on the floor of Tessa’s ship. You open your eyes carefully, the light in the hold feeling nearly blinding. As you start to shift, you notice something is off, your naked. On top of that your completely spent and pleasurably sore.. Examining yourself you see your covered in a mix of dried fluids; cum, sweat, and you suspect something else you can’t quite place. It coats your [pc.skinFurScales] like a film, reaching from your head to your thighs. As you sit up, you feel it cracking and breaking on your body. Something about this is wrong, and the sex juices should not be covering you nearly this much.");
+	output("Your eyes stay closed when you wake, consciousness coming back to you slowly. As your senses start to sharpen, you realize you are still on the floor of Tessa’s ship. You open your eyes carefully, the light in the hold feeling nearly blinding. As you start to shift, you notice something is off, you’re naked. On top of that your completely spent and pleasurably sore.. Examining yourself you see your covered in a mix of dried fluids; cum, sweat, and you suspect something else you can’t quite place. It coats your [pc.skinFurScales] like a film, reaching from your head to your thighs. As you sit up, you feel it cracking and breaking on your body. Something about this is wrong, and the sex juices should not be covering you nearly this much.");
 	output("\n\n<i>“Oh you’re up.”</i> You hear the sound of Tessa’s voice and turn your head, regarding the white woman. She’s sitting on her couch, wrapped in her fuzzy pink robe, with a book in her hand. <i>“I was wondering when you’d come to. It was starting to get ridiculous.”</i>");
 	output("\n\nYou rubs your eyes, finding the dried fluids even there. <i>“What happened?”</i>");
 	output("\n\nTessa closes her book and frowns. <i>“We fucked. Well you, me, and Adra fucked.”</i> She sets her book down next to herself and crosses her arms. <i>“It was nice, but don’t think it’s gonna happen again. That was a one time deal.”</i>");
@@ -1971,7 +1972,7 @@ public function tessaThreesomeOverForRealsies(reaction:int):void
 			output("You’re not really sure how to process that news, so you choose not to.");
 			output("\n\nYou pull yourself up to your feet, the dried fluids cracking and flaking off of from your body. You ask Tessa why you are covered in so much of this stuff.");
 			output("\n\nTessa chuckles, slightly amused. <i>“Do you really want to know?”</i>");
-			output("\n\nIn keeping with your current attitude, you decide you don’t. You gather up your gear and start to make your way to the ships exit, more cum flakes falling off you as you move around. As you’re leaving you hear Tessa stand and follow after you. <i>“Wait”</i>");
+			output("\n\nIn keeping with your current attitude, you decide you don’t. You gather up your gear and start to make your way to the ships exit, more cum flakes falling off you as you move around. As you’re leaving you hear Tessa stand and follow after you. <i>“Wait.”</i>");
 			output("\n\nYou turn and face her, notice her tail swishing on the ground behind her. Tessa’s face is filled with more than a little regret.");
 			output("\n\n<i>“Hey, I know you don’t seem... Look. That was shitty of me. It’s just that...”</i> she thinks about her words a moment. <i>“Sorry, I left you passed out on the floor. It won’t happen again. Promise.”</i>");
 			output("\n\nSomehow you believe her. You say your goodbyes to Tessa and head out, still covered in whatever the hell is on you.");
@@ -1981,7 +1982,7 @@ public function tessaThreesomeOverForRealsies(reaction:int):void
 			output("\n\nTessa smirks at you, her red eyes narrowing. <i>“Really now? Well that’s certaining interesting...”</i>");
 			output("\n\nYou pull yourself up to your feet, the dried fluids cracking and flaking off of from your body. You ask Tessa why you are covered in so much of this stuff.");
 			output("\n\nTessa chuckles, biting her lower lip. <i>“You didn’t think the fun stopped when you passed out did you?”</i>");
-			output("\n\nA shiver runs down your spine, and you can’t help but picture the sorts of things they must have done on your unconscious body. You gather up your gear and sart to make your way to the ships exit, more cum flakes falling off you as you move around. As you’re leaving you hear Tessa stand and follow after you. <i>“Wait”</i>");
+			output("\n\nA shiver runs down your spine, and you can’t help but picture the sorts of things they must have done on your unconscious body. You gather up your gear and sart to make your way to the ships exit, more cum flakes falling off you as you move around. As you’re leaving you hear Tessa stand and follow after you. <i>“Wait.”</i>");
 			output("\n\nYou turn and face her, notice her tail swishing on the ground behind her. Tessa’s face is filled with slight concern.");
 			output("\n\n<i>“Hey... I know you said you liked it, but I was just thinking... Look, I really shouldn’t have just left you there. It wasn’t right...”</i> she thinks about her words a moment. <i>“Sorry, I left you passed out on the floor. But... Now that I know you like that sort of thing...”</i> the pale woman gives you a sultry wink as her face shifts into a devious grin.");
 			output("\n\nYou return the gesture at the seductive woman, liking the sound of that. You say your goodbyes to Tessa and head out, still covered in dried girl cum.");
@@ -2059,7 +2060,7 @@ public function tessaYouMayAlsoFuckTheGroom():void
 	processTime(12);
 
 	output("Your eyes shift from Karen down to Monty, letting the young bride know you’re gunning for her man. She rolls her eyes and lifts herself of her husband, leaving him on the floor with his pants still tented.");
-	output("\n\n<i>“Wait really?”</i> Monty lifts his head up, watching as you move towards him. His hidden manhood seems to sniffen up, his pants growing even tighter. As you reach him, you drop down and reach for his fly, popping off his button and pulling down the zipper. Biting your lip, you reach into his pants and pull little Monty free.");
+	output("\n\n<i>“Wait, really?”</i> Monty lifts his head up, watching as you move towards him. His hidden manhood seems to sniffen up, his pants growing even tighter. As you reach him, you drop down and reach for his fly, popping off his button and pulling down the zipper. Biting your lip, you reach into his pants and pull little Monty free.");
 	output("\n\nLittle Monty might be a poor description, as the cock in your hand masts out at least eight inches. Just staring at it makes your mouth water, the thought of sucking on such a thick hunk of meat making you quiver. Not being able to help yourself, you move in, taking Monty’s cockhead into your mouth. As soon as you close your mouth, a wave of depraved pleasure runs down your spine like a shivering chill. While he isn’t particularly large or thick, somehow the idea of being on your knees sucking off somebody’s husband adds enough of a kick to really get your blood boiling. Without giving it any further thought, you bury yourself into the Groom’s lap, sucking away eagerly.");
 	output("\n\nMonty gasp and moans as you work his pole, his body starting to shake after less than a minute. His manhood throbs in your mouth, seemingly growing slightly larger with each pulse. The faint taste of precum tickles your tongue, tasting sweet as it oozes out. You start to suck harder and deeper, picking up your pace with vigor and hunger as the man moans below you. His terran cock is simple to please, and you’re able to take it all into your throat with little effort. The fact he’s liquored up also helps, but the idea his strong reactions are completely a result of your work is far more arousing.");
 	output("\n\nOff to the side you here a low growl, and the sound of footsteps. You pause for a moment: Tessa’s on the move. The footsteps are drawing close, the clicks of her heels making far more noise than the ovir normally allows, sounding almost angry. You can’t help but tense up, fully believing the ovir is about to do something violent. To your surprise, they pass right by you, heading in the direction of Karen. A moment later you hear the woman gasp along with the sound of somebody hitting the floor. Believing for a moment Tessa must have pounced on her, a deep lusty moan from Karen tells you she’s far from being in distress. As far as you can tell based on other suggestive noises, Tessa is giving Karen the tonguing of a lifetime.");
@@ -2164,7 +2165,7 @@ public function tessaWithTessaWithTessa():void
 	processTime(12);
 
 	output("You turn your head, locking eyes with the white woman and giving her a mischievous smirk. Her red orbs stare back at you, the pale woman letting out a soft sigh. <i>“Fine, if that’s how you want it. Get on your back.”</i>");
-	output("\n\nLaying down on the floor, you quickly discover it’s freezing cold, and on contact your spine arches away from the cold cement. Above you Tessa lets out a small laugh, then lowers herself down, her thick scaly thighs falling on either side of your [pc.waist]. <i>“Aww, sorry about that.”</i> She runs her fingers along your collarbone, her sharp claws gliding over you. <i>“Don’t worry, I’ll make it up to you. Just lay back and let me take very, very good care of you.”</i> She gives you a wide and wicked grin.");
+	output("\n\nLaying down on the floor, you quickly discover it’s freezing cold, and on contact your spine arches away from the cold cement. Above you Tessa lets out a small laugh, then lowers herself down, her thick scaly thighs falling on either side of your waist. <i>“Aww, sorry about that.”</i> She runs her fingers along your collarbone, her sharp claws gliding over you. <i>“Don’t worry, I’ll make it up to you. Just lay back and let me take very, very good care of you.”</i> She gives you a wide and wicked grin.");
 	if (pc.hasCock()) output("\n\nWith her free hand, Tessa reaches down between her legs, her fingers brushing against your [pc.cock]. The touch of her scaly hand sends a shiver up your spine, as her smooth fingers run up and down your sensitive member. Your shaft hardens at her touch, engorged with blood, growing girthier where it rests; nestled in between her thick thighs. You feel her slender digits wrap around you, taking hold of your mast with an iron grip. Slowly, she runs her hand up and down, your thick meat throbbing in her hand as she strokes you. You release a soft sigh, enjoying Tessa’s uncharacteristically soft touch as the pale woman continues to jerk you off.");
 	else if (pc.hasVagina()) output("\n\nWith her free hand, Tessa reaches down between her legs, her fingers brushing against your [pc.vagina]. The feel of her scaly hand sends a shiver up your spine, as her smooth fingers run up and down the sensitive folds of your womanhood. Her touch makes your cunt flesh tingle and warm, and you feel yourself growing wetter by the second. As if invited in, two of her fingers slip inside of you, curling and dexterously locating your G-spot. Her thumb teases against your [pc.clit], applying some pressure against it while her fingers massage the inside of your cunt. You gasp out softly, enjoying Tessa’s uncharacteristically soft touch as the pale woman continues to work your pussy.");
 	output("\n\nYour ivory companion bends over, keeping her hand her firmly on your sex. Her smooth tits press against your [pc.chest] tightly, as she brings her face down next to your ear. Softly she whispers. <i>“I’m really glad you picked me.”</i> Something in her voice tells you she’s more than just glad. In fact, Tessa sounds almost grateful. She takes a deep sigh and you faintly smell the booze staining her breath. Perhaps it’s just the liquor talking? Before you can give it more thought Tessa pulls herself off of you and retreats into an upright position.");
@@ -2256,7 +2257,7 @@ public function tessasFriendDoneInTheButtButt():void
 	output("\n\nThe Bride’s moans grow so loud your ears start to ring, both her ass and cunt both being fucked mercilessly. You struggle to hold her as she writhes in a fit of pleasure, trying to keep her steady so you don’t have to alter your pace. You thrust into her dark tightness over and over, each time slamming your hips into her heavenly behind. Sweat starts to form on your [pc.skinFurScales], your whole body burning with the warmth of your lust and exertion. Your cock feels like it’s on the verge of exploding, with Karen’s ass now clenched dangerously tight as a result of her overstimulated state. Below her you hear Monty panting, and you can only imagine his own cock is treated to a similar experience to your own. At this rate you don’t think either of you will last much longer.");
 	output("\n\nOver Karen’s shoulder you notice a white flash, followed by Monty’s muffled cries. Tilting your head, you see that Tessa has outright sat down on Monty’s face, the poor man wiggling under the ovir’s womanly hips. The pale woman smirks and releases a contented sigh, then starts grinding herself on the Groom’s face. Tessa’s red eyes focus in on Karen, her smirk turning into something far more depraved as her long tongue slips from her mouth. A moment later she leans in, and suddenly the Bride’s moans are muffled like her husband’s, only by a different set of lips this time. Karen doesn’t seem to mind, and roughly grabs at Tessa, pulling herself closer to the snowy woman nearly causing you to mistime a thrust and pop out of her ass completely.");
 	output("\n\nYou quickly reseat yourself in her behind, scooting forward against the Bride’s ass. Ignoring the two women, you focus on yourself, taking a deep breath and picking up the pace. Huffing for air, you hammer the Bride’s ass with all of the force you can muster, fighting against the tightness of her overstuffed lower end, trying to hold on the best you can. Muffled moans from the others are soon drowned out by the wet sounds of sex, as Monty also pick up the pace despite being half smothered by Tessa. Your [pc.balls] " + (pc.balls > 1 ? "start" : "starts") + " to ache, on the verge of reaching their breaking point as your cock throbs inside Karen’s hole. Gasping for each breath, you throw your head back and let out a impassioned groan, the only one of the four of you able to make a proper cry of passion.");
-	output("\n\nYour [pc.balls] churn, as you bury yourself deeply into Karen, a surge of liquid bliss fires through your burning hot rod. A shudder of pure pleasure runs through your body as thick spools of [pc.cumColor] spunk erupts from your [pc.cockHead] and fill the Bride’s dark passage. Below you feel Monty tense and shake reaching his own climax as well.The Groom fires off his own load deep into the depths of his new wife’s pussy. Karen pulls herself off of Tessa and convulses, the two orgasms seemingly taking their toll on her and pushing her over the edge. Her back arches, and she nearly topples over onto you, falling heavily against your heaving [pc.chest]. Looking down at her, you notice her eyes have rolled back, and her tongue hangs out like a bitch in heat. You hear a low and lusty moan and turn your eyes upward to face Tessa. The chesty ovir’s face is flushed, and she seems is be purring with pleasure. She lifts herself off Monty’s face, the Groom taking a deep gasping breath as he takes his first draw of air without just his nose in quite some time. Tessa gives you a smirk, then rolls off Monty completely.");
+	output("\n\nYour [pc.balls] churn, as you bury yourself deeply into Karen, a surge of liquid bliss fires through your burning hot rod. A shudder of pure pleasure runs through your body as thick spools of [pc.cumColor] spunk erupts from your [pc.cockHead] and fill the Bride’s dark passage. Below you feel Monty tense and shake reaching his own climax as well. The Groom fires off his own load deep into the depths of his new wife’s pussy. Karen pulls herself off of Tessa and convulses, the two orgasms seemingly taking their toll on her and pushing her over the edge. Her back arches, and she nearly topples over onto you, falling heavily against your heaving [pc.chest]. Looking down at her, you notice her eyes have rolled back, and her tongue hangs out like a bitch in heat. You hear a low and lusty moan and turn your eyes upward to face Tessa. The chesty ovir’s face is flushed, and she seems is be purring with pleasure. She lifts herself off Monty’s face, the Groom taking a deep gasping breath as he takes his first draw of air without just his nose in quite some time. Tessa gives you a smirk, then rolls off Monty completely.");
 	output("\n\nExhaustion hits you like a truck and you fall backwards, your cock audibly popping out of Karen’s ass as you and the Bride tumble onto the ground.");
 
 	pc.orgasm();

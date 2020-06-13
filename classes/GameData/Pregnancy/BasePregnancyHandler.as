@@ -115,6 +115,9 @@ package classes.GameData.Pregnancy
 				return false;
 			}
 			
+			// Invalid if negative index!
+			if (pregSlot < 0) return false;
+			
 			if (pregSlot <= 2 && !this.canImpregnateVagina) return false;
 			if (pregSlot == 3 && !this.canImpregnateButt) return false;
 			
@@ -140,7 +143,7 @@ package classes.GameData.Pregnancy
 			if (_onTryImpregnate != null)
 			{
 				if (debugTrace) trace("Calling onTryImpregnate handler");
-				wasSuccessful = _onTryImpregnate(father, mother, pregSlot, this);
+				wasSuccessful = _onTryImpregnate(father, mother, pregSlot, (this as BasePregnancyHandler));
 			}
 			else
 			{
@@ -152,12 +155,12 @@ package classes.GameData.Pregnancy
 				if (wasSuccessful)
 				{
 					if (debugTrace) trace("Calling onSuccessfulImpregnation handler");
-					_onSuccessfulImpregnation(father, mother, pregSlot, this);
+					_onSuccessfulImpregnation(father, mother, pregSlot, (this as BasePregnancyHandler));
 					
 					if (_onSuccessfulImpregnationOutput != null) 
 					{
 						if (debugTrace) trace("Calling onSuccessfulImpregnationOutput handler");
-						_onSuccessfulImpregnationOutput(father, mother, this);
+						_onSuccessfulImpregnationOutput(father, mother, (this as BasePregnancyHandler));
 					}
 					
 					return wasSuccessful;
@@ -173,12 +176,12 @@ package classes.GameData.Pregnancy
 				if (!wasSuccessful)
 				{
 					if (debugTrace) trace("Calling onFailedImpregnation handler");
-					_onFailedImpregnation(father, mother, pregSlot, this);
+					_onFailedImpregnation(father, mother, pregSlot, (this as BasePregnancyHandler));
 					
 					if (_onFailedImpregnationOutput != null)
 					{
 						if (debugTrace) trace("Calling onFailedImpregnationOutput handler");
-						_onFailedImpregnationOutput(father, mother, this);
+						_onFailedImpregnationOutput(father, mother, (this as BasePregnancyHandler));
 					}
 					
 					return wasSuccessful;
@@ -233,7 +236,7 @@ package classes.GameData.Pregnancy
 				if (_onDurationEnd != null)
 				{
 					if (debugTrace) trace("Calling onDurationEnd handler");
-					_onDurationEnd(tarCreature, pregSlot, this);
+					_onDurationEnd(tarCreature, pregSlot, (this as BasePregnancyHandler));
 				}
 				else
 				{
@@ -383,6 +386,11 @@ package classes.GameData.Pregnancy
 			
 			// Setup the pregnancy data for the Mother
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			
+			if (thisPtr.handlesType == null)
+			{
+				throw new Error("BasePregnancyHandler for type " + thisPtr.handlesType + " does not exist!");
+			}
 			
 			pData.pregnancyType = thisPtr.handlesType;
 			if (thisPtr.debugTrace) trace("Knocking up " + mother.short + " with pregnancy type " + pData.pregnancyType);

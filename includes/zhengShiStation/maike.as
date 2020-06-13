@@ -202,7 +202,7 @@ public function myCollarBrokeMaike():void
 	output("\n\n<i>“Up!”</i>");
 	output("\n\nYou’re harshly yanked back to your [pc.feet] with the shakiest footing in recent memory. There’s barely enough endorphin relief to keep you stable but pure inner fire keeps you standing.");
 	output("\n\n<i>“Ah, ah, I’ve remembered: deliver this for me, slave. Another incentive to not wander. If I find you wearing it, I’ll do far worse than crush your back beneath my feet,”</i> she threatens and shoves an old-fashion space-suit helmet into your hands from out of the blue. Closer to a ball of high-grade glass than a proper protective piece, ‘panoramic’ is one word you would use generously to describe it. <i>“Take it to the nearest member of staff when you’ve made the descent or I don’t know, put it on your head and wait for them to beat it off of you, then they’ll know what to do with it.”</i>");
-	output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>.");
+	output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>");
 	output("\n\n<i>“<b>What</b> are you standing around for? Go, go!”</i>");
 	output("\n\nA violently swift whip-crack snaps against your shoulder!");
 	//(pc takes 20 lust damage)
@@ -310,7 +310,7 @@ public function fuckUpWithMaikeAnGetForceyed():void
 		output("\n\n<i>“Up!”</i>");
 		output("\n\nAt that command, the whip cracks against your [pc.thigh]. Fuck, she doesn’t let up!");
 		processTime(20);
-		pc.lust(20);
+		pc.changeLust(20);
 		pc.girlCumInMouth(maike);
 	}
 	//pcHasCock, scene priority:
@@ -353,7 +353,7 @@ public function fuckUpWithMaikeAnGetForceyed():void
 		output("\n\n<i>“Three. Fucking. Days worth. Tiffy will be so jealous when I tell him just how <b>fat</b> and useless you became. Now, to seal the deal.”</i>");
 		output("\n\nHuhhh...??");
 		processTime(20);
-		pc.lust(20);
+		pc.changeLust(20);
 		pc.loadInAss(maike);
 	}
 	//pcNeuter:
@@ -397,7 +397,7 @@ public function maikeFucksYaUpPart2():void
 	if(flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined)
 	{
 		output("\n\n<i>“Ah, ah, I’ve remembered: deliver this for me, slave. Another incentive to not wander. If I find you wearing it, I’ll do far worse than crush your back beneath my feet,”</i> she threatens and shoves an old-fashion space-suit helmet into your hands from out of the blue. Closer to a ball of high-grade glass than a proper protective piece, ‘panoramic’ is one word you would use generously to describe it. <i>“Take it to the nearest member of staff when you’ve made the descent or I don’t know, put it on your head and wait for them to beat it off of you, then they’ll know what to do with it.”</i>");
-		output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>.");
+		output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>");
 		output("\n\n<i>“Now off you go or else I’ll to throw you into the pen with nothing but that collar on. All those broken spirits, so aggressive and horny all in one place... I can only imagine what ravenous minds would do to <b>this</b> body,”</i> she hisses into your ear before pushing you towards the walkways exit.");
 
 		//pcHasVagina, NoCock:
@@ -756,7 +756,7 @@ public function spankDatMaike():void
 	output("\n\nHey, if she can handle a hordes worth of slaves day in and day out, she can handle herself.");
 	processTime(30);
 	pc.addHard(2);
-	pc.lust(30);
+	pc.changeLust(30);
 	output("\n\n");
 	clearMenu();
 	addButton(0,"Next",maikeNextThing);
@@ -804,11 +804,11 @@ public function tailFeedMaike():void
 	output("\n\nThe slaver can only whine as her still-hanging tongue is pulled out of your tail-slit and pushed into the mixed-fluid cum puddle. Still in lick mode, she just keeps at it! Hungry lapping intersperses with her murmuring approval and you can only chuckle at how much she’s into eating her own defiled cum.");
 	output("\n\nBreathless and satisfied, you finally let go of her horns. A sense of mild accomplishment colors your mood: beating down a big bad Overseer and forcing her to eat her own cum out of your tail-pussy... in a way, it was meant to be.");
 	output("\n\nYou dust yourself down and tenderly push yourself off of the slaver’s spread out body. She says nothing as you do, still lost to her newfound need for her own cum. Your tail is satisfied having retained some of her sweet-smelling seed, that’s what matters here. She can handle herself, right? Or at least once she gets over her new obsession.");
+	pc.changeLust(100);
 	output("\n\n");
 	pc.addHard(1);
 	processTime(20);
 	feedCuntSnake(enemy);
-	pc.lust(100);
 	clearMenu();
 	addButton(0,"Next",maikeNextThing);
 }

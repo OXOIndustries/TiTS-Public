@@ -615,7 +615,7 @@ public function majaSpaceTalk():void
 	output("”</i> she replies. She flushes deeper, but perks up as she continues.");
 
 	//if pc is puppo preg:
-	if(9999 == 0) 
+	if(pc.hasPregnancyOfType("KorgonnePregnancy")) 
 	{
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Maybe Maja could do spacings when " + (silly ? "puppers" : "pups") + " are grown,");
@@ -661,7 +661,7 @@ public function majaSexyTimes():void
 		if(!korgiTranslate()) output("[pc.name] smells so good. Can we have matings?");
 		else output("Oh gods you smell <i>good</i>. I can’t stop thinking about... mating, breeding, fucking!");
 		output("”</i> she whines, her turgid dick throbbing harder with each word. <b>Breeding sounds like a really good idea</b>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	else 
 	{
@@ -681,7 +681,7 @@ public function majaSexyTimes():void
 		output("\n\n<i>“What did you have in mind?”</i>");
 	}
 	processTime(2);
-	pc.lust(5);
+	pc.changeLust(5);
 	majaSexMenu();
 }
 
@@ -708,6 +708,9 @@ public function majaSexMenu():void
 	{
 		addDisabledButton(3,"Catch Dick","Catch Dick","You’d need to have a vagina to take Maja’s dick in it.");
 	}
+	if(pc.isTaur()) addDisabledButton(4,"HJ+RideHer","Give Handjob & Ride Her","Alas, your exotic 'tauric body prevents you from engaging in this.");
+	else if(!pc.hasVagina()) addDisabledButton(4,"HJ+RideHer","Give Handjob & Ride Her","If you want to do this, <b>you will absolutely need a pussy.</b>");
+	else addButton(4,"HJ+RideHer",vaginaRouter,[majaHandjobAndRide,ppMaja.cockVolume(0),0,0,true],"Give Handjob & Ride Her","Get down and dirty with Maja.");
 	addButton(14,"Back",repeatMajaApproach,true);
 }
 
@@ -735,13 +738,13 @@ public function worshipMajasBitchBreakingBoner():void
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Much good feels! Unh, very goods");
 	else output("Ohh fuck! I can feel it in my whole body");
-	output(",”</i> she yips, muscles clenching as you slip your [pc.lips] around around her cockhead. The twin tastes of meat and mint mix with the salty pre-cum fountaining from her tip, and you greedily lick and suckle the soft point. Her breasts bounce in the air as you release them, using both hands to coddle her expanding knot. The bulging meat swells as you massage it, swiftly matching the size of her melon-thick balls.");
+	output(",”</i> she yips, muscles clenching as you slip your [pc.lips] around her cockhead. The twin tastes of meat and mint mix with the salty pre-cum fountaining from her tip, and you greedily lick and suckle the soft point. Her breasts bounce in the air as you release them, using both hands to coddle her expanding knot. The bulging meat swells as you massage it, swiftly matching the size of her melon-thick balls.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Maja’s... Already,");
 	else output("I... I’m already,");
 	output("”</i> she shouts, making a weak attempt to pull your head further onto her cock. You freeze, preparing for a deluge of cum as she drops back onto the table, muscles locking in a brain freezing orgasm. Anticipation pumps signals to your throat with every throb of her sapphire slutprick, and you find yourself gulping empty air at the prospect of drinking her spunk.");
 	output("\n\nBut ");
-	if(9999) output("the cum doesn’t come");
+	if(flags["SEXED_MAJA"] != undefined) output("the cum doesn’t come");
 	else output("nothing happens");
 	output(". Maja groans as you continue to suck, teeth clenching as her body is jolted by smaller shocks of pleasure. The cum isn’t coming, but her orgasm doesn’t seem to be stopping either. She grunts out something you can hardly make out between the moans of pleasure, and you painstakingly pop yourself off her cock to listen more closely.");
 
@@ -1280,4 +1283,215 @@ public function catchMajasCockYaSlut():void
 
 	clearMenu();
 	addButton(0,"Next",move,"KORGII T41");
+}
+
+//[UN.IMPL'd/OCTOBER] Maja Handjob + Ride
+//[Make Love]
+// Tooltip1: Get down and dirty with Maja.
+// Tooltip2: If you want to do this, <b>you will absolutely need a pussy.</b>
+// Tooltip3: Alas, your exotic 'tauric body prevents you from engaging in this.
+// Requires Pussy. No Taurs, sorry.
+// Reminder: use vaginaRouter
+public function majaHandjobAndRide(x:int):void
+{
+	clearOutput();
+	showMaja(true);
+	author("William");
+
+	output("<i>Her,</i> you think. That’s what you have in mind. Not her cock. Not her tits. Not even her balls. Just her.");
+	output("\n\nMaja’s snout is curved into a nervous smile, expressing her lack of composure. Crisp, minty pheromones waft up off her excited loins - a primal aroma that fills the air. Scintillating, refreshing, and distinctly animalistic. You blink and look to her face, and she demurely turns away, tiny throbs drumming through a bright blue cock that’s begun to emerge from its sheath. Hard labor scuffs her cheeks, grime clings to her hair. Sweat accrues in her fluffy bosom.");
+	output("\n\nThe hermaphrodite korg wears fatigue like a supermodel wears a designer dress - she’s gorgeous.");
+
+	// first time
+	if(flags["MAJA_MADE_LOVE"] == undefined)
+	{
+		output("\n\n<i>“" + (!korgiTranslate() ? "Why starings strongly, [pc.name]? Not knowing alien’s sharing habits...":"Why are you staring intently, [pc.name]? Is that how all aliens mate? I’m not familiar with this...") + "”</i>");
+		// pc Bimbo
+		if(pc.isBimbo()) output("\n\nGiggling and bounding forward, you burrow your face into Maja’s breasts, giving the stout beast-tamer a big hug and reassuring yet very lewd smile. <i>“Yup,”</i> you nod so hard your neck starts to get sore - thank goodness for big boobies! <i>“Totes is, sweetie. You’ve got an awesome body, there’s just so much to look at and appreciate! No reason to feel ashamed when you’ve got huge tits and a fat cock!”</i>");
+		// pc Bro
+		else if(pc.isBro()) output("\n\nGrunting appreciatively, you move forward and wrap an arm around Maja’s shoulders, squeezing her boobs. <i>“You look good,”</i> you husk, roughly squeezing her nipples. <i>“Sound better.”</i>");
+		// pc Kind,Misch,Hard
+		else output("\n\n<i>“It is, sort of,”</i> you chuckle, stepping forward and running a hand through the korgonne’s cheekfur. <i>“There’s more to sharing heat than bumping the other person.”</i> Your fingers curl around the jutting cyan pebbles capping her wobbly chest. <i>“You have to get to know them. Appreciate them for who they are and what they have.”</i> All the while, you’re leaning in closer, kissing her neck, letting your hot voice wash up the korg’s nape, <i>“Let them know how beautiful they really are.”</i>");
+		// merge
+	}
+	// repeat time
+	else
+	{
+		output("\n\n<i>“" + (!korgiTranslate() ? "Starings so hard again... makings heat, [pc.name].":"You’re staring hard again, like before, [pc.name]... it’s warming...") + "”</i>");
+		// pc Bimbo
+		if(pc.isBimbo()) output("\n\n<i>“Hard not to stare!”</i> you admit, jumping forward to wrap your face in the korgonne’s heavenly bosom. <i>“You’re so cute! I could go on and on and on and on and on talking about how much I love what you’re packing! Buuut...”</i> You lick your lips, catching a whiff of fresh dickmusk and very nearly losing your train of thought. <i>“...Ummm... you’re super hot!”</i>");
+		// pc Bro
+		else if(pc.isBro()) output("\n\n<i>“Guess I should stare harder,”</i> you grunt, giving one beryl nipple a good squeeze, enjoying the tactility of her creasing teat. <i>“Makes you look hotter.”</i>");
+		// pc Kind,Misch,Hard
+		else output("\n\nThe smile you give her makes her grow another few inches, both up top and bottom, and it’s super adorable how she’s trying not to make it obvious. <i>“Can’t deny it works, right?”</i> you giggle, lavishing that little spot behind her ears with affectionate scratches. <i>“There’s a lot I like about you, and you shouldn’t feel embarrassed.”</i>");
+	}
+	// merge
+	output("\n\nHer tail starts to wag, and that’s when you make your move, licking the korgi’s soft cerulean lips. It’s a high pleasure to bring her into a passionate, intensely wet kiss. Her heart’s pounding so fast that it ripples through her heaving boobs, pressed square to your [pc.chestNoun]. Muscle-packed arms wrap around your waist, soothingly warm fur rubbing your [pc.skinFurScales], delighting in a tender embrace not often experienced. She’s letting you set the pace, melting into your embrace, getting harder, and puffier.");
+	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("\n\nYou break the kiss only to rasp, <i>“Undress me.”</i> Maja moans into your throat, questing hands undoing your kit piece by piece. Once, you had to help her find a piece, but after that, she had you buck naked in less than thirty seconds.");
+	output("\n\nAn immense and <b>firm</b> presence appears, jabbing into your [pc.belly], made all the warmer by sensational lovemaking. Maja’s burgeoning dog-cock stretches up your naked torso, spearing into her pillowy cleavage. Instead of groping her ass, your [pc.hands] turn their attentions to her semi-erect phallus, capturing the enormous organ in a double-handed grip. Aiming her cannon down, you pump the canid shaft to full hardness, letting out a moan of your own when her fuzzy palms stroke circles into your [pc.butts].");
+	output("\n\nMaja’s cock is so big that you can’t touch your index fingertip to your thumb; it’s impossible to encircle. The tracts of her smooth blue shaft are laced with outsized veins that never relax, venting blood into a rapidly-ripening breeding mass. At the root of her dick, just before her sheath, is her knot, fattening in the palm of your hand, lusty palpations motivating its purposeful growth. Just beneath is her wide, pheromone-drenched ballsack, containing two testicles instead of the korgonne’s single standard gonad - it’s overflowing with sperm. The short woman’s bulbous scrotum draws your fondling digits deep into the sweaty, musky terrain, as though it were a cozy for your [pc.hands]. You can smell pussy, too: heady feminine fragrance interweaves with strong, potent masculinity, a buffet for the senses.");
+	output("\n\nRunning up and down the fleshy heat of her turgidity, pearly pre dribbles from the tamer’s irrepressible phallus, adding a squelching frisson to your fervid handjob. Torrents of heat pass through her dilated cumvein, eased out by alternating caresses. The feel of her appealingly large manhood leaves you so breathless that your lips end up parting. Breaths washing over one another, you both give in to emotion, wholly possessed by the shared desire of release. Maja’s found your [pc.pussy " + x + "]" + (pc.hasCock() ? ", brushing your [pc.cocksLight] in the process":"") + ", and tweaks your [pc.clit] with a bestial grip strength.");
+	output("\n\nShe slowly humps; forward earns her bloating bitch-breaker a hard grab, reverse gives her tapered crown an orgasmic flexing. Two mammals enthusiastically grind their sweaty bodies together; in the midst of blissful writhe you learn each other’s particular rhythms. Lengthy moans are pulled. Heavy, sibilant titters vibrate through [pc.skinFurScalesColor] [pc.skinFurScalesNoun] and tawny-beige pelt. Pussies seep glistening lubricants, and when orgasm hits, when Maja’s seed comes crashing up to spray across the room, you become hyper-aware of each bead trickling down your inner thigh.");
+	output("\n\nYou squeeze on Maja’s knot; keening, violent lurches fire off a sticky volley. Pints of rushing seed surge through the korgonne’s firmness, long thick arcs of bubbly virility shooting up the walls, flailing through the air as her length bounces. Male climax plays havoc on the tribeswoman’s brain, and you nearly orgasm a second time from the raw <b>pressure</b> of the little herm’s spermy cascade. Her brisk, cool pheromones are driving you wild, and you pump a little faster, coaxing out the first of her oceanic loads even as rivulets of [pc.girlCum] paste her cunt-clawing paw, delighting in that powerful tension draining from her massive nuts.");
+	output("\n\nIt takes a minute for Maja to finally calm down, and the storefront is a mess. She’ll have to clean it up. But it’s gonna have to wait: she’s still erect.");
+	output("\n\nAnd you’re hornier than ever.");
+	processTime(30);
+	pc.changeLust(150);
+	clearMenu();
+	addButton(0,"Next",majaLovemaking2,x);
+}
+
+public function majaLovemaking2(x:int):void
+{
+	clearOutput();
+	showMaja(true);
+	author("William");
+	output("Locked by the lips, you and Maja stumble in the direction of her bedding, falling into her personal cozy away from the world. She polishes your neck with long, wet licks, bright cobalt lips peppering moist and appreciative kisses as she moves, pure, overwhelming arousal in every smooch. On top, you’re pawing at her bust" + (pc.hasCock() ? ", compressing her shuddering tits around your [pc.cocksLight] and hers":" around her own throbbing mast") + ", cummy moisture leaking into her spongy fur. Tenderised by one orgasm already, she spunks again, blasting milky-white ropes of steaming jism through her cleavage and over her head.");
+	output("\n\nMaja sprawls, cock pulsing under your crotch. The sapphire points of her nipples shiver to your fingers’ rapt attention. She cries out again, her fat dick spewing half-cum half-pre onto her face. Jacking that oversized length makes noisy squishing sounds that magnify the next frothy load - she just can’t stop cumming! Everything you do is a blissful bombardment on her nerves, detonating caches of boiling-hot lust in the animal tamer’s supple curves, speeding along yet more slutty wetness to accumulate in her canine features. Simmering and twitching and oozing, her tongue begins to loll, so you relent, delighting in your partner’s sub-vocal growls and lyrical moanings as she attempts to catch her third wind.");
+	output("\n\nCurrents of bliss crackle through her gargantuan member, pulsing in thick fur. It’s easy to forget where you are, sinking into the hot softness that is this fervid korgonne, in a dark and snug place. Staring up with flat green eyes, Maja smilingly says, <i>“" + (!korgiTranslate() ? "[pc.name] very helping... wise mating, knowing every about Maja. Wanting give back.":"[pc.name]... you seem to know everything about me, how to make me happy... please let me do something for you, too.") + "”</i>");
+	output("\n\nThe padded paws on your [pc.hips] stroke with uncertainty, stimulating your muscles. She looks to your crotch then up again, snout widening. So you scoot up and over until your [pc.pussiesIsAre] hovering just above her nose, the faint illumination from your codex refracting in the dripping threads of fresh nectar. Puddling girl-lube flows onto the stocky woman’s teal lips, leaving her squirming and panting, and her tail thumping just under her waist." + (pc.hasCock() ? " [pc.CumColor] droplets sag from your [pc.cockHeads] too, joining the effluence drenching her cerulean mouthpiece. <i>“Just like me...”</i> she quietly quips.":""));
+	output("\n\nMaja slips a hand");
+	if(pc.balls > 0) output(" under your ballsack");
+	else if(pc.hasCock()) output(" under your [pc.cockNoun]");
+	else output(" into your nethers");
+	output(" and strokes the");
+	if(pc.vaginalPuffiness(x) > 0) output(" puffy");
+	output(" folds of your aroused cunt, genuine joy triggering you to release another wave of glistening [pc.girlCumNoun]. The korgonne’s large fingers explore your sapphic fields, letting her other arm surprise your [pc.ass] with similar appreciation, squeezing, rubbing, rolling, and pinching your left butt-cheek until you’re arching needfully. [pc.LegNoun] buckling, you collapse onto her muzzle, straight into the path of a curving azure tongue, long and perfect for lapping up a drink, its biological purpose turned to massaging your yielding labia, opening your [pc.vaginaColor " + x + "] sex with insistent licks.");
+	output("\n\nA wave of fatigue grips you, so you grip her head, [pc.thighs] trembling to the swish and swash of oral service. Palm-sized fingers squeeze your [pc.skinFurScales] harder, delivering a harsh ‘thwack!’ of a slap, the kind that lets beasts know who their mistress is; her tongue plunges inside at the same time, affirming the authority imprinted on your [pc.ass]. That heavy hand squeezes so, so tightly that your body mimics the sensation, winding up and finally snapping. Orgasm washes through your [pc.pussiesLight]; she thrusts her nose deeper, her muzzle the closest thing your clenching cunny has to something phallic and milkable; parting your kneading innards, her wonderfully <b>long</b> and sinfully <b>rough</b> tongue easily brings you to the elongated climax you so generously gave to her.");
+	output("\n\nCascades of [pc.girlCum] gush helplessly. More than that, it’s like you’re experiencing multiple orgasms at a time. [pc.GirlCumColor] slime catches her jaw, soaks her brow, stuffs her cheeks to overflowing, and the result of her vigorous licks is another hollow quake felt to the point of your [pc.clit], and you cum helplessly, no matter where she aims. Writhing in ecstasy, convulsing in twitching climax, it seems Maja’s");
+	if(flags["MAJA_MADE_LOVE"] == undefined) output(" starting to gain a lot of confidence with you.");
+	else output(" self-belief has enjoyed a hearty injection of confidence since she met you.");
+	output("\n\nWhen you rouse and slide back, the dog-woman eyes you seductively. She looks very silly with all that pussy-drool masking her, but very satisfied too. ");
+	if(pc.biggestTitSize() >= 1) 
+	{
+		output("Suddenly, the korgonne leans forward, seizing your [pc.breasts] and [pc.nipples]. Your sight blossoms into a vibrant sea of pleasure. You move closer on instinct, giving her the chance to enjoy all that you have to offer, loving it the most when your [pc.nippleColor] buds are pinched and tweaks are added at random.");
+		if(pc.canLactate()) output(" All the pressing finally expresses a thin arc of [pc.milk]. On reflex, Maja opens wide to catch it, not wasting a single drop of your milk. <i>“" + (pc.isPregnant() ? "Close to birthing,":"Like pregnant,") + "”</i> she laughs. <i>“Good taste.”</i>");
+	}
+	output("\n\n<i>“" + (!korgiTranslate() ? "[pc.name]... still needings... me too, but boy-korg parts too fat...":"You’re still horny, [pc.name]... and I am too. I’m sorry that my cock is too big...") + "”</i>");
+
+	if(pc.isBimbo()) output("\n\nToo big!? Naw, no such thing!");
+	else if(pc.isBro()) output("\n\nWho does she think she’s talking to? Too big... sheesh.");
+	else output("\n\nAh, now <b>there’s</b> an idea!");
+
+	output("\n\nThe temperature in the room rises as you slither back, tugging Maja’s dick from between her cleavage. Two blue feet of sensitized dog-cock loom close to you, the pole big enough to euphorically hug, not quite big enough for a whore to perform with. You lick at the undervein, tasting her salt and musk, not even caring how much this beastly boner is going to stretch you. You grope her ballsack, feeling the bloatedness, making her shift all that sperm-packed fur around you. <i>“[pc.name]?”</i> she asks hesitantly, mouth slightly ajar.");
+	output("\n\nLifting up to a squat, you make suckling love to the korgonne’s cock, groaning into her mast, gripping the stern meat, giving the head long, sensuous licks, jerking the hose - phallic obsession. You plant your [pc.lips] to the weakest spots and squeeze them against the girthy profusion, attaching yourself like a vacuum on your trip downward, whereupon your [pc.tongue] lays the most luscious licks on her knot. If you concentrate hard enough, you can identify bits of your own residue in there.");
+	output("\n\nThe suction of your mouth closes around Maja’s nutsack soon after, fluffy mini-kegs enlarged past the point two hands could hold one. All it takes is more lascivious licking to restart her production; you throw in a nice and horny <i>“mmm”</i> as you sup her ballsweat, and her gurgling orbs clench. You fondle the creamy cushions as you give them their tongue bath, glorying in that pillowy warmth, losing yourself to the mind-melting sweetness of thirsty ball worship, roaming the gigantic, summitless hills for an unknown period of time, topping the performance off with a contented sigh that you <b>know she heard,</b> judging by the way her now-slippery testes just rose.");
+	output("\n\nCyan cock quivers from your touch, webs of herm-goo dripping from the pointed tip. That rich mixed scent only an endowed herm can have makes your mouth water, and with your errant thoughts silenced by her minty pheromones, you climb the mountain and position the pointed crown to your [pc.pussy " + x + "]. The sordid tunnel fruitlessly clamps down on nothing, because you nosed your furry lover’s cunt-breaking totem into its sodden gates. The anticipation in the fragrant air is suffocating.");
+	output("\n\nNot so much that she doesn’t sense your intention.");
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",majaLovemaking3,x);
+}
+
+public function majaLovemaking3(x:int):void
+{
+	clearOutput();
+	showMaja(true);
+	author("William");
+
+	// first time
+	if(flags["MAJA_MADE_LOVE"] == undefined)
+	{
+		output("<i>“" + (!korgiTranslate() ? "[pc.name]! Too big, won’t fit. Please no self-hurtings!":"[pc.name], it’s too big! Don’t hurt yourself!") + "”</i>");
+	}
+	// repeat time
+	else output("<i>“" + (!korgiTranslate() ? "[pc.name]... it’s so big... but if okay with size please being careful.":"It’s so big, [pc.name]... please be careful, I don’t want you to get hurt.") + "”</i>");
+	// merge
+	output("\n\nPreparation is important. The longer you tease her awkward fuck-club of a boner with the promise of sweet, bare twat, the more heat her dick spurts. Mons-coating wads of pre burst from her tip as you drum the obscene organ into your clitoral hood. High volumes are flung out, gathering into globs that immediately drip off, or, if you rub hard enough, get pushed inside, glazing your damp delta in ooey gooey goodness.");
+	if(pc.wetness(x) < 2) output(" You’re going to need it - you’re not wet enough on your own to handle this korgonne’s truncheon.");
+	else if(pc.wetness(x) < 4) output(" You’re a wet [pc.boyGirl] for sure, but not even your amped glands can coat this beast without assistance.");
+	else output(" Finally, a challenge worthy of your significant squirting abilities. Maja’s dick-spit has lubed your entrance up, and your fuck-juice waterfalls her fatness in enough lubrication to encase smaller pricks in a thick layer of gloss. This is a pairing made in the korgonne’s great forge.");
+
+	output("\n\nHigh on Maja’s scent, you stroke her tummy and cock, gradually ceding control to Uveto’s gravity. Your breath catches in your throat when her taper skewers your [pc.pussy " + x + "], the fist-sized crest splitting you open so that the girthier shaft can have an easier time. You bite your lip, high-pitched whines echoing in the back of your throat. Taking your fluffy mate’s mammoth is not going to be a quick or painless process, and that’s exactly why it’s going to feel so good. Suddenly, your body contracts upon the intrusion, spilling waves of [pc.girlCumVisc] lubricant onto the head of the trespassing monster, but it does little to impede the progress of a physical instrument that mother nature designed to effectively breed the tightest of holes.");
+
+	// pc Low Vaginal Looseness
+	if(pc.looseness(x) < 3)
+	{
+		output("\n\nRippling acres of vaginal tightness are biblically parted by Maja’s staff. The first of far too many cobalt inches gape your willing pussy, stretching your kegel muscles and rounding them out to the shape of the korgonne’s chemically-endowed member. It took until meeting her to realize how <b>empty</b> you were, and how your body had been silently crying out for a hypersexualized schlong to wear it as a sexual ornament. Intoxicating hormonal urge is right there behind it, filling your veins, which are also echoing your cunt’s previous perception of stimulation deprivation. You’re being molded in real-time around this penis, its powerful ascent on a channel of lubricated bliss something you’ll forever relish, even if it does ruin you for others.");
+	}
+	// pc Med Vaginal Looseness
+	else if(pc.looseness(x) < 5)
+	{
+		output("\n\nGiving up control over your descent was a move that should have whores taking notes, but that’s not what makes riding a dick special. Your pussy is trained for big insertions, yet there’s that subtle contrast of being too tight and too loose that Maja’s cock plays with, molds like clay. She’s breaking you in for her, and for her alone, adjusting your [pc.vaginaColor " + x + "] interior to clut in the places that please <i>her</i> the most. It’s ruining you, meticulously, sensually, doing wonderful things to the torrid trench gaped like a laquine broodmother’s juicy nexus.");
+	}
+	// pc High Vaginal Looseness
+	else
+	{
+		output("\n\nYour [pc.pussy " + x + "] is no stranger to big, heavy rods flattening it into a useless, worn out fuck-tunnel. It can only derive pleasure from being stuffed by dense dongs, bulging boners, meaty members; it requires obscene expressions of masculinity to reward, to welcome into its wet, sized-out embrace - other pussies couldn’t serve them anyway. Maja is positively bewildered by the ease at which she stuffs your yielding box full of her colossal girth. Once she accepts how made-for-dicking you really are, she shudders, rocking her hips to drive that satisfaction into your dick-starved nerves.");
+	}
+	var knotty:Boolean = false;
+	// pc Low Vaginal Capacity
+	if(pc.vaginalCapacity(x) < 120) output("\n\nFor Maja’s sake you do your absolute best not to show pain as that slab of korgonne-meat forcing its way into your body. Hyperventilations race up and down your neck, burning from the intense discomfit. Her tapering pries open the reflexively tensing path to your womb, turning your cunt into its personal (if inadequate) cum-box. Soon, it can go no further: it presses on the" + (pc.isPregnant(x) ? " sealed entrance to your womb, your cervix angrily denying entrance":" entrance to the most powerful and important organ in your reproductive system. A tiny bit more force, and she’ll flood your ovaries") + ". It does hurt, no fucking doubt, but that masochistic sensation of being filled out, having your hips widened by half an inch with each [pc.raceShort]-breaking throb of her pussy-destroying dick... that’s heaven. She can’t knot you, but that’s fine - this is enough.");
+	// pc Med Vaginal Capacity
+	else if(pc.vaginalCapacity(x) < 600) 
+	{
+		output("\n\nMaja’s mastiff is far in excess of sizes you’re comfortable with. At first there’s a little uncertainty: you’re penetrated without pain, cuntlips pinned wide around veiny dog-cock, a full foot of thick dickmeat plunged inside. She cries out, ever-present lust overwhelming her composure. Stocky hips buck, thrusting through clutching walls and to the" + (pc.isPregnant(x) ? " sealed gates of your womb":" yawning gates of your womb") + ", incredible and merciless force trespassing on sacred ground. She’s bottomed out, insofar as your anatomy will allow, within spitting distance of her knot.");
+	}
+	// pc High Vaginal Capacity
+	else 
+	{
+		output("\n\nMaja is cross-eyed starstruck by your [pc.pussyNoun " + x + "]’s accommodations. <i>“Impossible!”</i> she cries in sudden ecstasy, watching the bulk of her canid mallet disappear into your magical cunny. As your body sinks down, your brain rises in pure pleasure, that simmering feeling from before transforming into a full-body sensation of molten desire. Your [pc.ass] slaps into her balls with a lurid squish of sexual finality, your [pc.pussiesLight] smacking wetly into her crotch. If she wanted to fuck her knot straight into you while you ride, she could. The poor korgonne swoons in utter disbelief, her penis pumping brutish amounts of pre-seed into your gut.");
+		output("\n\nShe’s finally met someone in this galaxy who can show her a world of pleasure she never knew.");
+		knotty = true;
+	}
+	var ppMaja:PregnancyPlaceholder = majaPlaceholder();
+	pc.cuntChange(x,ppMaja.cockVolume(0));
+	// merge
+	output("\n\nAs addictive as this feeling of fullness is, you start to move, slowly and languidly. Sliding up Maja’s hyper-turgid rigor, reality is bisected by crackling bliss. [pc.Hands] clutching the korgonne’s muscular waist, you descend the shaft, innards tightening down on her heated maleness. Smashing" + (!pc.isPregnant(x) ? " her cock-head into your womb’s door":" your loins to hers") + ", jouncing up and down on the herm-dog causes you to whimper; clear slime leaks from your strained slit in thick beads. Unneeded muscles go dormant, slackening to force you to fuck her in a specific posture, [pc.butts] vibrating from the accelerating fuck.");
+	output("\n\nMaja fucks you on her own strength, twisting her hips to imprint her phallus around your abdominals. Her paws find strength again, pinching your [pc.clits]" + (pc.hasCocks() ? " and jerking your bobbing [pc.cocksLight]":"") + "; her nostrils flare, assaulted by the scent of a needy breeder. That otherworldly tightness continues to swell; blood pounds in your ears, grotesque firmness throbs in your completely-clogged recesses - you merely whimper. The only thing a body as wrecked as yours can do, consciousness wrought by enough extreme input to fry modern-day circuit breakers, is cum helplessly, again, and again, mini-orgasms riding atop the improbably-large pillar pounding your core.");
+	output("\n\nBlack tendrils creep into your periphery, changing to white and blue on every fall. Every shift in hue is accompanied by the lurid stirrings of juice inside you, struggling to flow, but you’re never left empty for more than a second. Constant, firm pressure drives deep, rough pleasure into your sopping [pc.vaginaColor " + x + "] wetness, banging a once-sumptuous place into a used-up penile gutter. Maja’s breaths come out steamy clouds, laced with animalistic urges she can no longer deny.");
+	output("\n\nA threatening growl boils out of her maw, dominant and lustful. Maja reaches up to your torso and yanks you down into a hug, burrowing your [pc.face] into her bountiful front, bending her legs and railing you full of more ecstatic weight than your mind knows what to do with. Inhuman fingers dig into your [pc.skinFurScales] and scalp, gripping tighter than a creature in deep rut. The korgonne ups her pace, fangs gritted, training your overflowing honeypot one dewy screw at a time.");
+	output("\n\nNeither of you manage to speak - words wouldn’t matter here. Raw desire and livid emotion reigns, powering into your desperate quim");
+	if(pc.vaginalPuffiness(x) > 0) output(", gloriously engorged petals swallowing" + (knotty ? " up everything to the knot":" her knot up") + ", boobs deforming into your flesh, jetting jumps of spooge acting as apertif to a sloppy creampie. Coruscating nerves propel her to orgasm, swabbed and smoothed by every monstrous thrust.");
+	output("\n\nClimax isn’t far. Her big, sticky balls are pulsing at the rear of your [pc.thighs], magnificent spunk-sacks roiling against your nethers. Ample testicular squish <b>churns</b> with every muff-stuffing pitch, liquid burden ready to twitch out into your spent, fluttering pussy.");
+	if(pc.biggestTitSize() >= 1 && pc.canLactate()) 
+	{
+		output(" Maja reaches down and seizes one of your boobs, popping the milky cork on" + (pc.totalNipples() == 2 ? " both":" all") + " nipples in sequence, getting your body to let down its bounty in maddening manner.");
+	}
+	output("\n\nClimax hits in a moment of pure, instinctual passion. You’re first to blow, cascades of [pc.girlCum] spattering across the curvature of her sack. ");
+	if(pc.hasCock())
+	{
+		output("[pc.Cum] fires into the dark crevice between your smushed chests, stuttering spurts of male delight. ");
+	}
+	//lowMedCapacity:
+	if(!knotty) output("Urethra-straining quantities of seed explode into you afterward. Alas, Maja is unable to tie the knot, but in this position, held safe and secure in the tamer’s arms, her genes aren’t wasted.");
+	else output("In those split-seconds before Maja’s phallus-fattening detonations blast into your womb, she slams your ass down onto her crotch, forcing you to take that bulbous knob of rut-flesh. You can feel it squishing around inside ensuring not a single drop of DNA is wasted.");
+	output("\n\nTides of korgonne spunk buffet your womb, clenched muscle parting for considerable fluid bounty. Gouts of seed" + (pc.isPregnant(x) ? " crash against your in-use womb":" deliver right to the door of your ovaries, flooding your fallopian tubes") + ". You loose a wall-shuddering scream for only a second, Maja dragging you into another kiss. Her doughy ‘nads unspool rope after rope of curve-enhancing jizz, pressing against your rump in the most explosive moments. Your belly" + (pc.bellyRating() < 20 ? " swells up to leviathan-like proportions, plump with children as well as fresh sperm":" groans outwards, fresh nut expanding your curves to better house your partner’s magnificent output") + ".");
+	output("\n\nRaging ropes of molten stickiness rush ceaselessly. Gushing seed permeates every inch of your pregnable puss, ballooning your gut and forcing your biology to work overtime in siphoning away all that it possibly can. Maja’s got enough cream to impregnate the entire hold twice over, and, Void, fuck... it’s all being pumped into you. Cum oozes everywhere, billions of swimmers tickling your baby-tube, further ejaculations pushing the old puddles of gloop further into your cum-thirsty quim.");
+	output("\n\nYou sigh, and then groan, then sigh some more, fatigue dining on your waning endurance. Maja rolls you over to the side, positioning you between the wall of her sleeping nook and, of course, her, kissing you lightly on the nose. When your eyes shut, they stay shut.");
+	processTime(35);
+	pc.orgasm();
+	pc.loadInCunt(ppMaja,x);
+	if(pc.canLactate()) pc.milked();
+	clearMenu();
+	addButton(0,"Next",finishingWivMaja,x);
+}
+
+public function finishingWivMaja(x:int):void
+{
+	clearOutput();
+	showMaja(true);
+	author("William");
+	output("There’s something to be said about being able to sleep in the arms of a shy yet capable lover like Maja, here in her room, cuddling furtive in a warm mountain hold on a frozen ball of ice floating in the ocean of stars. Far away from civilization. Even further away from responsibility, from things you’d rather not deal with, keeping her cock warm in that creased cleft between your legs. You can’t recall the last time you slept so well.");
+	output("\n\nEyes opened, you feel like you could disappear in the woman’s emerald-green gaze. <i>“Good wakings, [pc.name],”</i> she says. Her passionate smile begs for a kiss - the next two or three minutes are spent making out, cuddling in the afterglow in this inky space. <i>“" + (!korgiTranslate() ? "Had many happying feels. [pc.name]...":"I’ve never been happier, [pc.name]...") + "”</i>");
+	output("\n\nYou chucklingly answer with a smile.");
+	output("\n\nMaja withdraws her softened tool from your depths, all flavors of cooled effluence flecking her sheath. Her knot had calmed and deflated during your tranquil nap. A pudding of thick, gooey pleasure pours from you, all the excess your body couldn’t contain. The beastmaster is close at your side as you get your things together, rubbing your [pc.belly] affectionately, saying nothing, sincerely invested in your health and well-being.");
+	output("\n\nOf course, you can’t stay here forever. You have a place in the galaxy that you can’t give up. Not yet.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "[pc.name] soon visitings? Maja be here, and wishing good tidings.":"Will you visit again soon, [pc.name]? I’ll be here, and I’ll be wishing for your success.") + "”</i>");
+	output("\n\nBefore you turn to leave, you squeeze her palm, hoping your");
+	if(pc.isBimbo()) output(" face-splitting beam");
+	else if(pc.isBro()) output("broad grin");
+	else output("heart-felt smile");
+	output(" embeds itself in her mind.");
+	output("\n\nYou’ll try to make time.");
+	processTime(15);
+
+
+	IncrementFlag("MAJA_MADE_LOVE");
+	IncrementFlag("SEXED_MAJA");
+	pc.createStatusEffect("MAJA_FUCK_RECOVERY");
+	pc.setStatusMinutes("MAJA_FUCK_RECOVERY",30);
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

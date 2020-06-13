@@ -431,7 +431,7 @@ public function meetPippa(arg:Array = null):void
 			
 			output(" She stands up and begins to move toward you. <i>“How about we forget the massage for now, and instead, we fuck. It’s been too long since I got to have some fun with a sexy, treated slut.”</i>");
 			
-			pc.lust(10);
+			pc.changeLust(10);
 			pippaDominance(1);
 			flags["PIPPA_FLIRTED"] = 1;
 		}
@@ -785,8 +785,8 @@ public function pippaStandardMassage():void
 	if (pc.isTaur()) output("slowly stand up.");
 	else output("slowly sit up.");
 	
-	if (pippaCurrentOil() == PIPPA_OIL_LUST) pc.lust(40);
-	else if (pippaCurrentOil() != PIPPA_OIL_NUMB) pc.lust(20);
+	if (pippaCurrentOil() == PIPPA_OIL_LUST) pc.changeLust(40);
+	else if (pippaCurrentOil() != PIPPA_OIL_NUMB) pc.changeLust(20);
 	
 	
 	if (pc.lust() >= 33 && pc.hasGenitals() && flags["PIPPA_FLIRTED"] == 1 && pippaCurrentOil() != PIPPA_OIL_NUMB)
@@ -818,8 +818,8 @@ public function pippaStandardMassage():void
 	pippaStandardMassagesGiven();
 	pippaAffection(1);
 	pc.credits -= pippaStandardMassageCost();
-	pc.HP(pc.HPMax() / 4);
-	pc.energy(pc.energyMax() / 4);
+	pc.changeHP(pc.HPMax() / 4);
+	pc.changeEnergy(pc.energyMax() / 4);
 	
 	
 }
@@ -1085,9 +1085,9 @@ public function pippaSpecialMassage():void
 	
 	pc.credits -= pippaSpecialMassageCost();
 	processTime(15);
-	if (pippaCurrentOil() == PIPPA_OIL_LUST) pc.lust(60);
-	else if (pippaCurrentOil() == PIPPA_OIL_NUMB) pc.lust(25);
-	else pc.lust(30);
+	if (pippaCurrentOil() == PIPPA_OIL_LUST) pc.changeLust(60);
+	else if (pippaCurrentOil() == PIPPA_OIL_NUMB) pc.changeLust(25);
+	else pc.changeLust(30);
 	
 	addButton(0, "Next", pippaSpecialMassageII);
 }
@@ -1149,8 +1149,8 @@ public function pippaSpecialMassageII():void
 	applyOilEffect(pc, OIL_SOURCE_SPECIAL_MASSAGE);
 	pippaSpecialMassagesGiven();
 	pippaAffection(3);
-	pc.HP(pc.HPMax() / 2);
-	pc.energy(pc.energyMax() / 2);
+	pc.changeHP(pc.HPMax() / 2);
+	pc.changeEnergy(pc.energyMax() / 2);
 	if (pc.hasGenitals()) pc.orgasm();
 	
 	addButton(0, "Next", mainGameMenu);
@@ -1742,7 +1742,7 @@ public function pippaGetSatOn():void
 	pippaSexed();
 	pippaAffection(2);
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	pippaDominance(1);
 }
 
@@ -1987,7 +1987,7 @@ public function pippaFeedMilk():void
 	
 	output("”</i> Tired of her teasing, you grab the back of her head and push her face into your [pc.breast]. She giggles and finally, really digs in. Her [pippa.lips] and tongue slide all around your [pc.nipple], drawing a torrent of [pc.milk] from your [pc.breasts], and the insatiable pig slut greedily swallows every last drop.");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	
 	output("\n\nYou notice that, while feeding from you, Pippa has snaked a hand down between her legs and is rubbing her [pippa.pussy]. She, of course, isn’t the only one who’s turned on. ");
 	

@@ -187,7 +187,7 @@ public function paigesHalloween3():void
 	output("\n\nFrankly, you’re not sure what to think or do. Whoever is standing right in front of you resembles Paige, quite a bit, but she’s <i>not</i> Paige. You don’t move, trying to process what’s happened in this room, and what’s happened to Paige, if that’s truly her.");
 	output("\n\nThe woman stops admiring herself for a moment to explore her surroundings. She notes the mess of yoga mats and general debris around her, clicking her tongue at the sight. Then, her glowing green eyes fall onto yours.");
 	processTime(20);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",paigesHalloween4);
 }
@@ -218,7 +218,7 @@ public function paigesHalloween4():void
 	output("\n\n<i>“I’d be a bit surprised too,”</i> she laughs well-meaningly. <i>“I’m sure you have a million-and-one questions to ask me. Fire away, cutie.”</i> She leans back in, one hand tickling down your thigh and the other crawling up your back, keeping you close to her as she resumes kissing and rocking against you. <i>“Make it quick, though. I got thirty years of ‘backlog’ to get through and I’m not wasting tonight on answering questions.”</i>");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=Possessed?=][=Old Life=][=Paige=][=No Thanks!=]
 	// end scene (scene: Paige’s Halloween 4)
@@ -275,7 +275,7 @@ public function paigeHalloweenPossessionTalk():void
 	paigeTalkTic();
 	// end scene (scene: Possessed); if this is the third dialogue option chosen, include a [=Next=] button that goes to (scene: HSIFT)
 	processTime(6);
-	pc.lust(10);
+	pc.changeLust(10);
 	addDisabledButton(0,"Possessed","Possessed","You already had this conversation.");
 	if(pc.statusEffectv1("ghosttic") > 2)
 	{
@@ -321,7 +321,7 @@ public function ghostlyOldLifeTalk():void
 	paigeTalkTic();
 	// end scene (scene: Old Life); if this is the third dialogue option chosen, include a [=Next=] button that goes to (scene: HSIFT)
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	addDisabledButton(1,"Old Life","Old Life","You already had this conversation.");
 	if(pc.statusEffectv1("ghosttic") > 2)
 	{
@@ -365,7 +365,7 @@ public function whereIsPaige():void
 	}
 	paigeTalkTic();
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	// end scene (scene: Where Is Paige); if this is the third dialogue option chosen, include a [=Next=] button that goes to (scene: HSIFT)
 	addDisabledButton(2,"Paige","Paige","You already had this conversation.");
 	if(pc.statusEffectv1("ghosttic") > 2)
@@ -396,7 +396,7 @@ public function tooSpoopyFourMe():void
 	output("\n\n<i>“Please?”</i> she begs, her hips jerking forward involuntarily, her concealed dick rubbing against your belly and the fabric containing it. <i>“I’ve... look, long story short, I’ve had this hard-on ever since I became a ghost. Some thirty-years, now. Wouldn’t</i> you <i>jump at the first opportunity to... have it taken care of? Just... help a girl out, would you?</i> Please?”</i>");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=...Okay=][=Nope!=]
 	addButton(0,"...Okay",HSIFT,true);
@@ -468,7 +468,7 @@ public function HSIFT(twospoop:Boolean = false):void
 	output("\n\n<i>“Release me,”</i> she commands you, nodding to her throbbing erection. You flip back onto your front, crawling towards her until your nose is pressed against the fabric. Paige’s body quivers in excitement, her hands shaking against her hips; if you don’t make a move, and quickly, she’ll probably do it for you.");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=Suckle=][=Lower Pants=]
 	addButton(0,"Suckle",HSS1);
@@ -500,7 +500,7 @@ public function HSS1():void
 
 	output("\n\nDespite your eagerness, you can only take her in one of your holes. How do you pleasure Paige?");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Oral=][=Vaginal=]
 	// end scene (scene: HSS1)
 	clearMenu();
@@ -525,7 +525,7 @@ public function HSLP():void
 	output("\n\nShe sighs as she lands on her own knees, her hands rubbing and massaging at your thighs and the thick of your asscheeks; she gropes you shamelessly, stressing your muscles and meat for the main course coming up. When she stops her prodding, you finally feel it: the point of her dick, stalking around your [pc.vagOrAss], teasing you both. You feel a warm, wet splash of liquid against you, and then, with a push, she’s inside – but just the tip, for now.");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=Buck Back=][=Lay Down=]
 	addButton(0,"Buck Back",HSBB);
@@ -548,7 +548,7 @@ public function HSO():void
 	output("\n\nPaige hums in pleasure with your every little motion: from all the attention you’re sparing to her huge cock, to all the abject worshipping of her muscles, to all the attention you pay to all the little minutia of her body and genitals. When you kiss your way back to the arrow-like tip of her Ausar dong, she thrusts her hips forward, rubbing the thick of her shaft across your cheek, sharing the moistness you’ve given her.");
 	output("\n\nPaige’s hips are quivering in excitement, and you’re pretty sure she isn’t going to get any harder. You gently grasp her by the knot, directing the point of her weapon directly between your eyes. If Paige were to cum, right here and now... where would you want it most?");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=Your Mouth=][=Your Face=]
 	addButton(0,"Your Mouth",HSYM);
@@ -604,7 +604,7 @@ public function HSVA():void
 	output("\n\nHonestly, that sounds a bit tempting to you....");
 
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=Pull Out=][=Take Her Knot=]
 	// end scene (scene: HSVA)
@@ -651,7 +651,7 @@ public function HSLD():void
 	//[=Submit=][=Say Nothing=]
 	// end scene (scene: HSLD)
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Submit",HSS2);
 	addButton(1,"Say Nothing",HSSN);
@@ -673,7 +673,7 @@ public function HSBB():void
 	output("\n\nYou feel yourself spreading just a bit wider with every pound against you. It’s happening, whether you want it or not – but you can at least control your own body as it happens.");
 
 	processTime(7);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	//[=Relax=][=Take It=]
 	addButton(0,"Relax",HSR);
@@ -692,7 +692,7 @@ public function HSYM():void
 	output("\n\nThe sounds of you slurping along her red length are interrupted by Paige saying, simply, <i>“gonna cum.”</i> Her breathing is harsh and guttural; she instinctually hunches, giving more power to her legs, to properly seed your belly. <i>“Gonna put some thick Ausar jizz in that pretty mouth of yours,”</i> she says, knowing how hungry you are for it. <i>“Doubt it’ll be the last time either, you slut.”</i>");
 	output("\n\nWhen the first drop hits your [pc.tongue], you think to yourself that you certainly hope not.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	//[=Climax=]
 	// end scene (scene: HSYM); go to (scene: HSE1)
@@ -719,7 +719,7 @@ public function HSYF():void
 	output("\n\nHer body jerks awkwardly for a moment, and her abs crunch. You watch her load travel up her shaft before–");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	//[=Climax=]
 	// end scene (scene: HSYF); go to (scene: HSE2)
 	clearMenu();
@@ -744,7 +744,7 @@ public function HSPO():void
 	output("\n\nPaige pants, her breathing haggard, her balls bouncing in time with her hands. You watch rapturously as her cock inflates, the spade opening slightly for another quick rush of pre that lands across your torso, a mere appetizer of the flood that soon follows it....");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",HSE2);
 	//[=Climax=]
@@ -768,7 +768,7 @@ public function HSTHK():void
 	output("\n\nSomething immediately triggers in Paige’s head as soon as she feels herself slip into you. The sudden heat around her bulbous knot, and the tightness around the whole of her dick, flips a switch that tells her to stuff your body even further with her cum. With a grunt bordering on an awkward bark, she hunches over, and you feel another sensation quickly bloom inside you.");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",HSE3);
 	//[=Climax=]
@@ -812,7 +812,7 @@ public function HSS2():void
 	output("\n\nShe clenches her teeth and inhales sharply once your body molds around her shaft. Her body becomes stock-still as something triggers in her head; after a tense moment, you feel every contour of her cock against your sensitive flesh as it bloats, making room for her load to seed you like the proper, willing bitch that you are beneath her.");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",HSE3);
 
@@ -863,7 +863,7 @@ public function HSSN():void
 	else pc.buttChange(paige.cockVolume(0)*2);
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",SSE4);
 	//[=Climax=]
@@ -895,7 +895,7 @@ public function HSR():void
 	else pc.buttChange(paige.cockVolume(0)*2);
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",SSE4);
 	//[=Climax=]
@@ -934,7 +934,7 @@ public function HSTI():void
 	//[=Climax=]
 	// end scene (scene: HSTI); go to (scene: HSE5)
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",SSE5);
 }
@@ -992,7 +992,7 @@ public function HSE2():void
 	pc.loadInMouth(paige);
 	pc.applyCumSoaked();
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",HSA,"HSE2");
 	//[=Aftermath=]
@@ -1138,6 +1138,7 @@ public function HSA(comeFrom:String):void
 		else output(", but you’re reminded rather strictly of the thick, tight knot keeping you both decidedly in place. You aren’t moving, and that’s that");
 		output(". You remind the ghost that she gets <i>one night.</i> She’s had her fun; you want Paige back now.");
 
+		output("\n\n");
 		//if {Clock is less than 05:59}
 		if(hours < 6) output("<i>“The night ain’t over yet, first of all,”</i> she replies snidely, rocking her hips, and her still-hard cock, against your body enticingly. <i>“And second of all, ");
 		//if {Clock is more than 06:00}
@@ -1271,7 +1272,7 @@ public function paigeGhostGhost():void
 	output("\n\nYou sit there, dumbfounded at the changes, but Paige takes the initiative and snaps you out of it by pressing the point of her new cock against your face. <i>“Feel like saying hello?”</i> she asks you sultrily.");
 	output("\n\nDon’t mind if you do.");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Suckle",HSS1);
 	addButton(1,"LowerPants",HSLP);

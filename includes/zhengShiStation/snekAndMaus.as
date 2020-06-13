@@ -106,8 +106,6 @@ public function snekHasCaughtHerselfAMaus():void
 	clearMenu();
 	clearOutput();
 	snekMausHeader("SNAKE\nAND MOUSE");
-	processTime(2+rand(3));
-	pc.lust(pc.libido()/3 + 15);
 
 	if (flags["SNEK_MAUS_TIMESTAMP"] == undefined)
 	{
@@ -185,6 +183,8 @@ public function snekHasCaughtHerselfAMaus():void
 			else output("\n\nYou’d better decide quickly if you want your tongue swimming in jizz, because at this rate she’s gonna get it all!");
 		}
 	}
+	processTime(2+rand(3));
+	pc.changeLust(pc.libido()/3 + 15);
 
 	addButton(0, "Watch", watchSnekAndMausLikeSpaceDavidAttenborough, undefined, "Watch", "You can watch. Best not to draw attention... usually. Maybe.");
 
@@ -211,8 +211,6 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 	clearMenu();
 	clearOutput();
 	snekMausHeader("PREY AND\nPREDATOR");
-	processTime(5);
-	pc.lust(pc.lustMax());
 
 	output("The [rat1.skinColor], naked mouse squeaks, wiggling left and right, smiling dopily at the " + (snake.lipColor == "black" ? "gold and black" : "pink and blue") + " viper. Whatever reticence the rodent had vanished three sloppy sucks back, replaced with shy appreciation and chordant moans. You and he both watch the slyveren tugging and gurgling on his mouth-watering prick with gusto, practically pumping his glistening cock in and out. His round, mousey ears wobble adorably, and his tail wags a few strokes before settling near her elbow, tail tip brushing her arm before wrapping it in a prehensile hug.");
 	output("\n\nShe giggles, lips curled, gloving his drool-sheened dick in her clutching tongue, jerking upwards to express another throat bulging load of precum into her maw. Her ear pleasing gulp is audible enough to reach your [pc.ears].");
@@ -324,7 +322,8 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 		output("\n\n<i>“I bet you do! There’s nothing to worry about, nothing at all, I promised you! Now look at me.”</i> Her big, beautiful eyes lock to his, and some otherworldly force crackles between their retinas. Nuzzling her smooth-scaled face to his, she whispers into his ear a few a words that you don’t hear; she withdraws, kissing his cheek. <i>“I want you to think about only me right now, just think about how liberating it’ll be, how free you’ll feel when you cum. Why, a silly boy like you,”</i> her lips purse in sexual fashion, <i>“you <b>need</b> this! " + (snekMausFirstTime(SNEK_MAUS_WATCH) ? "Your dick needs someone to take charge, show you what you’ve been missing!" : "Just let me take charge of this big, strong dick, and give it what it needs!") + "”</i>");
 		output("\n\nShe’s back to sucking his dick, but instead of moaning as you’d expect, the cum-burdened scoundrel closes his eyes. They open a second or two later clear of doubt, hinting at a mind properly aligned on what’s happening.");
 	}
-
+	processTime(5);
+	pc.changeLust(pc.lustMax());
 	addButton(0, "Next", snekMausAndSteeleSittingInACornerPEEPING);
 }
 
@@ -780,8 +779,6 @@ public function mausesAreTheNaturalPreyOfSneksAndPCs():void
 	clearMenu();
 	clearOutput();
 	snekMausHeader("\nLUCKY MOUSE");
-	processTime(5);
-	pc.lust(pc.libido()/2.5 + 20);
 
 	// Bimbo
 	if (pc.isBimbo()) output("You can’t just ignore a boy in need. Just because there’s a smoking hot snake with tits all over him doesn’t mean there’s no room for you to get in there and make his day the best ever! Besides, you’ve been drooling about it the entire time you’ve been thinking about it. Nothing would make you happier than to thrust your tongue out and please that dick. You push into the room on a <i>mission,</i> your cum-dump of a mouth as ready to go as the slyveren’s.");
@@ -838,7 +835,8 @@ public function mausesAreTheNaturalPreyOfSneksAndPCs():void
 		if (ratsPCIsGood()) output(" He winks at you, moving his left leg to give you room to work.");
 		else output(" He spreads his left leg wider, giving you plenty of room.");
 	}
-
+	processTime(5);
+	pc.changeLust(pc.libido()/2.5 + 20);
 	addButton(0, "Next", mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism);
 }
 
@@ -955,7 +953,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 			output(" you have for " + (cocktackles > 1 ? "dicks" : "a dick"));
 			if (!pc.isCrotchExposed()) output(" slithers out of your [pc.crotchCoverUnder] and");
 		}
-		output(" weaves through the air to knock at the egg-laying serpent’s cunt. Your prehensile infiltration was well lubed by sluttery in advance, and you’re pushing through fathomless {ebony/pink} depths to the alien’s reproductive systems, rhythmically pumping her cunt. <i>“Nnngwhaaat!?”</i>");
+		output(" weaves through the air to knock at the egg-laying serpent’s cunt. Your prehensile infiltration was well lubed by sluttery in advance, and you’re pushing through fathomless " + (snake.lipColor == "black" ? "ebony":"pink") + " depths to the alien’s reproductive systems, rhythmically pumping her cunt. <i>“Nnngwhaaat!?”</i>");
 		output("\n\nVoice crescendoing, you pump into her without a second thought, just glad to turn this into a real orgy. When you cum at the end of this, you’re going to hold on to the fantasy of fertilizing some slave catcher’s egg. Or eggs. Whatever’s in there, she’s going to remember how well other races breed for sure!");
 	}
 	output("\n\n<i>“I-I can’t hold it anymore!”</i> The mouse’s feet plant under your bodies and he lifts up, his two cum-dumps ready to receive his burgeoning desire. <i>“I’m going to- hiek!”</i>");

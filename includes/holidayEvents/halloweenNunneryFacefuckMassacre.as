@@ -95,7 +95,7 @@ public function goThroughTheFrontDoor():void
 	output("\n\nYour hands sink down, grabbing hold of her pigtails as you buck forward, bury your bone inside the dog-girl’s mouth with one savage thrust. Her eyes go wide and her jaw gapes at your sheer girth, but you don’t have the patience to enjoy her shock. The blood surging through your body feels like it’s boiling with the heat of your mania. Using her hair as handlebars you pump back and forth, from lips to uvula only a handful of times before your seed begins to flow. The nun struggles weakly as globs of cum fill her mouth and leak down her throat. Semen bubbles at her lips and runs down her chin but still you swing your hips and yank her head, driving your mast inches deeper with every stroke.");
 	output("\n\nThe cloistered cleric gurgles and hacks, choking and gagging on your monstrous member and the torrential spouts glazing her mouth. Despite her difficulty in gulping down air through cock-stuffed cheeks, the nun’s eyes are closed and she wears an expression of sublime relish. She winces with acute delight every time you pull her hair and gurgles wordlessly on your maw-flooding spunk. Your forceful pace and relentless grip yank her head hard enough to shake her habit off, freeing her long, pointed jackal-like ears. They wobble to and fro as you drag her body, head-first, up and down your jackhammering pillar.");
 	processTime(5);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",goThroughTheFrontDoor2);
 }
@@ -136,7 +136,7 @@ public function backWindowNunstuff():void
 	output("\n\n<i>“B-Brianna,”</i> the kui-tan moans. <i>“These things are so hot,”</i> she whines, anxiously pulls the black veil from her peak and loosens the white coif around her neck. The tall tanuki’s pale silver tresses spill across her brown furred shoulders. She tugs at the huskar’s habit next, exposing the redhead’s short-cropped hair and pointed, scarlet ears. She reaches out and gently guides her canine partner’s head down, toward her inner thighs.");
 	output("\n\n<i>“Hmmm,”</i> chubby nun coos, lifting the kui-tan’s legs up around her shoulders. <i>“You know I’m powerless against these big, juicy balls of yours,”</i> Sister Brianna scolds, burying her face in the plush softness. Sister Channing gasps, arching her back in a full body stretch of private bliss at the huskar’s eager, ball-worshipping tongue. Every lapping lick and heated, suckling kiss adds volume to the kui-tan’s sack, ballooning the fist-sized orbs into a pair of ripe melons that hide everything but the peaks of the huskar’s doggy ears.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",backWindowNunstuff2);
 }
@@ -240,7 +240,7 @@ public function showerSceneNunfuck():void
 	output("\n\nYou go to one knee, and flip her onto her front, grabbing her arms and hauling them to the small of her back. Using one of her tails like a rope, you tie her wrists together, then pull her legs back and do the same with her ankles and the other tail. Hog-tied and bound by her own body, you hoist the Sister Bambi up with both arms, marveling at just how light the nun is.");
 	output("\n\n<i>“What is- who are- why are-”</i> she sputters, gasping and slowly regaining her senses from the fall. The answer to all her questions - the massive mast swinging between your legs - rises in full salute, lifting its bulk to a vertical pillar of shower-slick meat. Flipping her upside-down, you hold the kitty parallel to your cock, pressing its length against her front. With her head at the level of your balls, your phallus reaches well past the small abbess’ belly button. <i>“No way,”</i> she gasps. <i>“You can’t... I can’t...”</i>");
 	processTime(10);
-	pc.lust(150);
+	pc.changeLust(150);
 	clearMenu();
 	addButton(0,"Next",showerSceneNunfuck2);
 }
@@ -287,7 +287,7 @@ public function endTheNunFacefuckStuff():void
 	author("Adjatha");
 	output("You pull off the visor and gulp down cold air. Pressing the heels of your palms into your eyes does little to clear the sim from your vision. Maybe you’ll check out the rest of the smut another time, but for now, you’ve had enough.");
 	//Increase lust by 50
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	//end event and drop PC back into the room
@@ -378,7 +378,7 @@ public function policeGirlEncounter():void
 	output("\n\nYou take a moment to strip all the gear off of the ovir girl’s belt, tossing weapons and tools out of the reach of her wily, reptilian appendage. Then, you kneel down next to her, belt in hand. She looks confused for a moment before realization sinks in. Her expression colors in a blush so hot her scales seem to darken. Despite her hateful glare, her chin rises slightly as if presenting her throat to you. Accommodatingly, you wrap the thick leather around her neck like a collar, looping it behind her and buckling it to the iron bars of the convent’s gate. You give it a yank, tightening the cinch until she’s barely able to speak, much less move. Finally, you grab hold of her tail and ponytail, tying one to the other in a knot so complex she might need a haircut to get free.");
 	output("\n\nOnly once the UGC officer has been thoroughly bound do you stand back up and lift your cock with a broad palm. Her slitted eyes widen and her heels dig into the ground, but her tail tugs anxiously, yanking her own hair in the process. You rest the peak of your bulbous serpentine against her forehead, shaft flopping heavily over her nose and mouth. The sheer girth nearly conceals her whole face. She trembles, knees squeezing together, and you notice a dark splotch spreading across her pants exactly the length of her puffy slit. Well, if she’s going to cum just from a little choking and a cock on the face, imagine what she’ll do when you mix the two.");
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",policeGirlEncounter2);
 }
@@ -523,7 +523,7 @@ public function nunEndEnding():void
 		//Gain perk <i>“The Face Fucker”</i> - Increases minimum lust by 5 and cum production by 10-50% (whatever seems reasonable)
 		if(!pc.hasPerk("Face Fucker")) pc.createPerk("Face Fucker",5,0,0,0,"Increases minimum lust and cum output, thanks to that strange VR adventure...");
 		pc.boostCum(25);
-		pc.lust(1000);
+		pc.changeLust(1000);
 	}
 	//repeat
 	else

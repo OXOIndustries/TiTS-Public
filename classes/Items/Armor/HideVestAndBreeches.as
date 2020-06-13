@@ -37,9 +37,10 @@ package classes.Items.Armor
 			this.attack = 0;
 			this.defense = 2;
 			this.shieldDefense = 0;
-			this.sexiness = 3;
+			this.sexiness = 2;
+			this.resolve = 3;
 			this.critBonus = 0;
-			this.evasion = 5;
+			this.evasion = 10;
 			this.fortification = 0;
 			resistances.burning.resistanceValue = 20.0;
 			

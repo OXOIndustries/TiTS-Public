@@ -120,7 +120,7 @@
  	output("\n\nIt’s clear that she’s on the verge of climaxing. Do you continue teasing her breasts and let her cum, stop and untie her, or stop and walk off?");
  	
  	processTime(5);
- 	pc.lust(15);
+ 	pc.changeLust(15);
  	
  	addButton(0, "Continue", praiToyBoobFirst, undefined, "Continue To Completion", "Rather than untying her, help her in a different way.");
  	addButton(1, "Untie", praiToyUntieFirst, undefined, "Stop And Untie", "She looks like she’d appreciate it if you just got her down now.");
@@ -173,7 +173,7 @@
  	
  	pc.addMischievous(3);
  	processTime(10+rand(5));
- 	pc.lust(15);
+ 	pc.changeLust(15);
  	
  	addButton(0, "Untie", praiToyBoobUntieFirst, undefined, "Untie Her", "She looks like she’d appreciate it if you just got her down.");
  	addButton(1, "Leave", praiToyBoobLeaveFirst, undefined, "", "");
@@ -227,7 +227,7 @@
  	output("at you, and toys with the hem of her blouse, giving you a little bob. <i>“Thank you very much for saving me, " + (flags["PRAI_FIRST"] == undefined ? "albeit in such an unorthodox way" : "again") + ",”</i> she glances to the side, blushing. <i>“Um, is there anything I can do for you?”</i>");
  
  	processTime(15+rand(5));
- 	pc.lust(10);
+ 	pc.changeLust(10);
  
  	praiTalkMenuFirst(1); 
  }
@@ -269,7 +269,7 @@
  	output("She shifts back and forth from leg to leg, occasionally leaning forward to balance on her toes before rocking back.");
  	
  	processTime(1);
- 	pc.lust(5);
+ 	pc.changeLust(5);
  	
  	praiTalkMenuFirst(variation);
  	addDisabledButton(0, "Appearance");
@@ -572,7 +572,7 @@
  	showPrai(1);
  	clearMenu();
  	
- 	output("You push your way through the denser foliage of Mhen’ga, waxy green leaves the size of your head alternating with prickly blue vines. Underfoot, a juvenile cocksnake slithers through the underbrush, and overhead, an unknown avian lets out a cry like a violin breaking. You glance upwards, noting through the small gap in the canopy that the sky has been overcast for quite a while now.");
+ 	output("You push your way through the denser foliage of Mhen’ga, waxy green leaves the size of your head alternating with prickly blue vines. Underfoot, a juvenile cunt snake slithers through the underbrush, and overhead, an unknown avian lets out a cry like a violin breaking. You glance upwards, noting through the small gap in the canopy that the sky has been overcast for quite a while now.");
  	output("\n\nFinally, the brush gives way to a curious scene. Suspended inches off the ground is the grayscale kui-tan from before--Prai Ellit. She’s wearing her usual bandolier over a white blouse and a yellow skirt as she struggles weakly. Her wrists and ankles are secured tightly by multicolored vines that suspend her, spreadeagled in the air. The vines don’t seem to be moving, and a chlorophyllic woman behind her is slumped over the curve of a massive tree leaf. A pith helmet sits askew on Prai’s head, while a cream-colored scarf is draped loosely about her neck.");
  	output("\n\nThe kui-tan twists this way and that, trying to get a look at you.");
  	if (flags["PRAI_MOOD"] == 1) output("\n\n<i>“Oh crackers! Well, this is embarrassing,”</i> she says her cheeks pinkening.");
@@ -632,7 +632,7 @@
  	output("\n\nYou have a better idea and pull the scarf from her neck, carefully tying a thick knot midway through it.");
  	if (flags["PRAI_MOOD"] == 2) output("\n\n<i>“How is that going to help me out exact--MMPH!”</i>");
  	else if (flags["PRAI_MOOD"] == 1) output("\n\n<i>“Oh my! Yes, pl--MMPh!”</i>");
- 	output(" she goes wide-eyed as you pop the makeshift gag in her mouth, carefully tying it behind her ears. You boop her black nose, and " + (flags["PRAI_MOOD"] == 2 ? "Prai snorts, giving you a withering look, but clearly establishing that she has no trouble breathing. " : "You can see a shiver run down her whole body, fluffing up her fur along the way as she takes in a deep breath through her nose and exhales a happy, albeit muffled, sigh. Clearly, she’s having no trouble breathing. ") + "Her plump lips press in a tight pout around the knotted scarf, already smudging it with her pink lipstick. Despite her expression, she squirms softly as the front of her yellow skirt begins to tent up.");
+ 	output(" she goes wide-eyed as you pop the makeshift gag in her mouth, carefully tying it behind her ears. You boop her black nose, and " + (flags["PRAI_MOOD"] == 2 ? "Prai snorts, giving you a withering look, but clearly establishing that she has no trouble breathing. " : "you can see a shiver run down her whole body, fluffing up her fur along the way as she takes in a deep breath through her nose and exhales a happy, albeit muffled, sigh. Clearly, she’s having no trouble breathing. ") + "Her plump lips press in a tight pout around the knotted scarf, already smudging it with her pink lipstick. Despite her expression, she squirms softly as the front of her yellow skirt begins to tent up.");
  	output("\n\nAt this point, you decide you take your time, slowly running your hands up her sides, enjoying the muffled moan of pleasure from Prai. Your fingers run over the tight cords of pitcher plant holding her in place, and cup your hands against her bound, boyish chest. Prai groans, her nipples stiffening under your hands, pushing against the tight fabric of her blouse. One button at a time, you unfasten her top, then slowly slide your hands against the almost-nonexistent mounds of her breasts. She’s warm to the touch and getting warmer. She grows warmer still when you slip your fingers beneath the simple lace of her bra. Prai gasps as you roll her charcoal nipples between your fingertips, her back arching.");
  	output("\n\nYou spend some time there, rolling her fat nipples back and forth, Prai’s small squeaks of pleasure accompanying your teasing. When you finally let them go, she lets out a muffled whine from her gag. You glance down, noting that there’s already a large wet spot spreading out from the tented bulge in her skirt.");
  	output("\n\nShe trembles as your fingers roam over her chest, sliding down her sides and to her hips. From her angle, she can’t see what you’re doing behind her, and this seems to heighten her sensitivity. When you trace a fingertip atop the bulge in her skirt, she bucks against the vines, swinging sharply in her restraints.");
@@ -647,7 +647,7 @@
  	
  	processTime(10+rand(3));
  	pc.addMischievous(3);
- 	pc.lust(20);
+ 	pc.changeLust(20);
  	
  	addButton(0, "JackHer", praiPlayJackSecond, undefined, "Jack Her Off", "Given the day she’s having it’d only be nice to give her some relief.");
  	if (!pc.isTaur() && pc.hasCock()) addButton(1, "Suspension", praiPlaySusSecond, undefined, "Suspension Fuck", "Some acrobatic mid-air sex is just the thing you both need.");
@@ -743,7 +743,7 @@
  	output("\n\nYou squeeze her tail tighter, drawing a yelp and a shiver from her. <i>“I want your cock so bad,”</i> she moans. <i>“I need it. I’ll do anything for it. Pleaaaassssse!”</i>");
  	output("\n\nYou suppose you could give her what she wants. On the other hand, she’s got quite a mouth on her when she’s not babbling non sequiturs; it might be more beneficial to leave her in this state.");
  	
- 	pc.lust(20);
+ 	pc.changeLust(20);
  	processTime(10+rand(3));
  	
  	addButton(0, "Fuck", praiPlaySusFuckSecond, undefined, "", "");
@@ -986,7 +986,7 @@
  	output("\n\nYou " + (pc.isTaur() ? "give her hair a sharp tug" : "squeeze her tail tighter") + ", drawing a yelp and a shiver from her. <i>“I want your cock so bad,”</i> she moans. <i>“I need it. I’ll do anything for it. Pleaaaassssse!”</i>");
  	output("\n\nYou suppose you could give her what she wants. On the other hand, she’s got quite a mouth on her when she’s not babbling non sequiturs; it might be more beneficial to leave her in this state.");
  	
- 	pc.lust(20);
+ 	pc.changeLust(20);
  	processTime(10+rand(3));
  	
  	addButton(0, "Fuck", praiPlayBegFuckSecond, undefined, "", "");
@@ -1149,7 +1149,7 @@
  	output("\n\nShe leans in closely, holding the container up against the floral woman’s arm, and brings her scalpel to the plant’s arm.");
  	output("\n\nYou know you should let Prai finish. Given her sudden focus on her work, it’s unlikely that you’ll be able to fool around with her afterwards. On the other hand, it’s extremely tempting to see what would happen if the plant woke up.");
  	
- 	pc.lust(10);
+ 	pc.changeLust(10);
  	processTime(10+rand(3));
  	
  	addButton(0, "Gather", praiHelpGatherSecond, undefined, "Gather", "Let Prai gather her sample.");
@@ -1225,7 +1225,7 @@
  	
  	processTime(20+rand(8));
  	if (!pc.isTaur()) pc.orgasm();
- 	else pc.lust(20);
+ 	else pc.changeLust(20);
  	pc.addHard(6);
  	flags["PRAI_MOOD"] = 2;
  	flags["PRAI_EMAIL_NUMBER"] = 9;

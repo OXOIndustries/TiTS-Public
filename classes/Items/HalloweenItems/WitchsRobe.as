@@ -8,7 +8,7 @@ package classes.Items.HalloweenItems
 	import classes.Engine.Interfaces.clearOutput;
 	import classes.Characters.PlayerCharacter;
 	
-	//Level ?? Halloween Funsies.
+	//Level 6 Halloween Funsies.
 	public class WitchsRobe extends ItemSlotClass
 	{
 		public function WitchsRobe()
@@ -22,11 +22,11 @@ package classes.Items.HalloweenItems
 			
 			shortName = "Witch.R";
 			
-			longName = "witch's robe";
+			longName = "witch’s robe";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a witch's robe";
+			description = "a witch’s robe";
 			
 			tooltip = "Equal parts fantasy and fetish, this witch costume is equally suited for a mythos convention or a stripper pole. The bulk of the outfit consists of a pointed witch’s hat and a black velvet robe, and comes with an array of burnished leather accessories beneath its lavish exterior. This outfit makes no attempt to cover the chest or groin, allowing for a more sinful appearance if you forgo the companion pieces.";
 			
@@ -38,13 +38,13 @@ package classes.Items.HalloweenItems
 			attack = 0;
 			defense = 0;
 			shields = 0;
-			sexiness = 6;
-			critBonus = 0;
-			evasion = 10;
+			sexiness = 5;
+			critBonus = 10;
+			evasion = 12;
 			fortification = 0;
 			
 			resistances.burning.resistanceValue = -10.0;
-			//resistances.freezing.resistanceValue = 10.0;
+			resistances.tease.resistanceValue = 10.0;
 			
 			// Note: Since the suit creates a stable environment any gaseous based damage wouldn't work against it.
 			itemFlags = [];

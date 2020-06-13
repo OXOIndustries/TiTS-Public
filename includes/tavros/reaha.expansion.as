@@ -974,7 +974,7 @@ public function reahaAddictionTherapy():void
 	output("\n\n<i>“That’s alright,”</i> you say, stroking her thigh. <i>“I’m going to make you feel just as good as with those patches on.”</i>");
 
 	processTime(20);
-	pc.lust(33);
+	pc.changeLust(33);
 
 	if (pc.hasCock()) addNextButton(reahaAddictionTherapyDickwielder);
 	else addNextButton(reahaAddictionTherapyNoWingWang);
@@ -1184,7 +1184,7 @@ public function reahaBreastMilkIceCream():void
 	processTime(20);
 	pc.credits -= 20;
 	pc.milkInMouth(chars["REAHA"]);
-	pc.lust(5);
+	pc.changeLust(5);
 	reaha.lust(5);
 
 	//[Share] [Be Greedy]

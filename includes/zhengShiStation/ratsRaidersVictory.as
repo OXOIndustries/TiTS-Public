@@ -2161,8 +2161,6 @@ public function ratsOnRatsForVoraciousFucks():void
 	clearMenu();
 	clearOutput();
 	showRats(3, true);
-	processTime(5);
-	pc.lust(pc.libido()/10+5);
 
 	output("No way you’re going to miss this chance.");
 	if (pc.isBimbo() || pc.isBro()) output(" Think of how much you would have to pay to get this kind of service anywhere else! And why else did you grow all those dicks anyway!?");
@@ -2190,6 +2188,8 @@ public function ratsOnRatsForVoraciousFucks():void
 	output("\n\nStrained moans squeeze past dry lips, breathy whispers and murmurs follow. Held horizontally by each other’s cushioning bodies, the rats try to hold themselves steady. The crisp scent in the air finalizes your self-lubrication.");
 	output("\n\nThere’s no better time to start.");
 
+	processTime(5);
+	pc.changeLust(pc.libido()/10+5);
 	addButton(0, "Next", ratsRatsRatsStackedStackedStacked);
 }
 
@@ -3336,7 +3336,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	if (flags["RATS_SEXED_EAR"] != undefined) output(" again");
 	output("... and it feels fucking incredible. Warm, smooth tightness swaddles you in the embrace of this lovely creature, almost making you forget what else you can do from here.");
 	output("\n\nThe carnal volumes at which you voice your blissful gratification are drowned out by her’s; you clash with your desire to rut her head, to skullfuck her into a sexual stupor that she’ll never wake up from. This position gives you such absolute power over your partner, and recalling what you’ve read about these mice, it gives you so much more than that.");
-	output("\n\nIrregardless, you " + (flags["RATS_SEXED_EAR"] == undefined ? "begin to understand the raw sensuality of rodenian mating" : "appreciate the raw sensuality of rodenian mating, glad to have her trust") + ". You could stand there forever thinking about the raw emotion and physicality of what you’re doing. Most of the galaxy spends its time spreading legs, engaging in sexual congress face to face.");
+	output("\n\nRegardless of that, you " + (flags["RATS_SEXED_EAR"] == undefined ? "begin to understand the raw sensuality of rodenian mating" : "appreciate the raw sensuality of rodenian mating, glad to have her trust") + ". You could stand there forever thinking about the raw emotion and physicality of what you’re doing. Most of the galaxy spends its time spreading legs, engaging in sexual congress face to face.");
 	output("\n\nBut with this rat... She places all her trust in you, and you, in turn, have the power to vindicate that. The ideas surrounding this act are just as powerful as the vice you’ve entered.");
 	
 	output("\n\nYou bottom out, though you’re not sure if you can go further or you’ve hit the depraved limit.");
@@ -3763,8 +3763,8 @@ public function ratsMindfuckDone(scene:int):void
 	else output("\n\nThere’s a pregnant pause when the rodenian stares at you. A fire in her [rat0.eyeColor] eyes leaves you in mystery until you see a small sigh pass through her lips -- a squeak. The ecstatic rat-girl tackles you to the ground in a hasty approach, thrusting her tongue past your [pc.lipsChaste] in a surprise kiss. You interlock your hands around her waist, returning her desirous affections for a spell. <i>“[pc.Mister] CEO... I... I wish you didn’t go...”</i> she pulls back, moist, puppyish eyes staring down as a string of saliva beaks. <i>“Please come back soon, okay? I don’t like when you’re not here...”</i>\n\nYou rub the side of her head, simply smiling in response. The mouse finally pulls away, casting several needy glances your way before shaking her head.");
 
 	output("\n\n<i>“Alright dummies, let’s get going!”</i> the rodenian barks, waking her two friends and rousing them to action. After she puts her gear back on, she regards you one last time. <i>“See you later, " + ratsMisterCEO() + "!”</i> she shouts, pointing a tiny finger at you. <i>“Don’t forget, you’re gonna be paying up next time!”</i>");
-	if (ratsPCIsGood()) output("She nods, blowing a kiss before disappearing into the shadows. You wonder when you’ll see her again...");
-	else output("She grins and waves, bounding down the corridor into the shadows. You’ll be seeing her again, certainly...");
+	if (ratsPCIsGood()) output(" She nods, blowing a kiss before disappearing into the shadows. You wonder when you’ll see her again...");
+	else output(" She grins and waves, bounding down the corridor into the shadows. You’ll be seeing her again, certainly...");
 	
 	IncrementFlag("RATS_SEXED_EAR");
 	IncrementFlag(ratEarFlag);
@@ -3876,7 +3876,7 @@ public function ratsThievesDeserveSpanking(thiefRat:Creature):void
 		if (remainingRat.isFemale() || pc.hasVagina()) output(" and");
 	}
 	if (remainingRat.isFemale() || pc.hasVagina()) output(" femininities");
-	output(" stretch and strain, desperate to release their pent up loads irregardless of how this situation unfolded.");
+	output(" stretch and strain, desperate to release their pent up loads regardless of how this situation unfolded.");
 	
 	output("\n\nDominant thrill blossoms through your brain, soothing the soreness in your wrist and the needling in your beet-red palm. Every impact forces out a hot dribbly mess of aural pussyjuice and " + remainingRat.mf("cock slime", "regular pussyjuice") + ", the respective owners on the edge of collapse. High-pitched whines form in the backs of their throats, guilty eagerness spilling out in greater quantities the more they learn to let go of their pride.");
 	if (pc.isHerm()) output("\n\nYour [pc.cocks] and [pc.pussies] are no different, each ready to mark these rats in a liquid reminder of you. ");

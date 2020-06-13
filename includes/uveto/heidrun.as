@@ -136,7 +136,7 @@ public function heidrunAppearance():void
 	output(", the husky corgi coos, her voice dripping with lust.");
 
 	processTime(2);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Next",approachHeidrun);
 }
@@ -168,7 +168,7 @@ public function sexWithHeidrun():void
 	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("You disrobe in record time, all the while giddy with anticipation. ");
 	output("Now to decide what you want to do.");
 	processTime(3);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	if(pc.hasGenitals())

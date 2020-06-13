@@ -12977,7 +12977,7 @@ public function bessBreastFeed(opts:Array = null):void
 
 	flags["BESS_BREASTFED"] = 1;
 
-	pc.lust(15);
+	pc.changeLust(15);
 	bess.orgasm();
 
 	clearMenu();
@@ -13417,7 +13417,7 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	bess.orgasm();
 	pc.girlCumInMouth(chars["BESS"]);
 	bess.orgasm();
-	pc.lust(30);
+	pc.changeLust(30);
 
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
 	flags["BESS_FUCKED"]++;

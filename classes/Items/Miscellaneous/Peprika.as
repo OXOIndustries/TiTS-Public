@@ -90,8 +90,8 @@
 			}
 			
 			useEffect(target);
-			if(addStat > 0) target.energy(addStat);
-			if(addLust > 0) target.lust(addLust);
+			if(addStat > 0) target.changeEnergy(addStat);
+			if(addLust > 0) target.changeLust(addLust);
 			
 			return false;
 		}

@@ -49,6 +49,9 @@ public function HereBeDragonBonus():Boolean
 	
 	if(flags["FROSTWYRM_NOT_HOSTILE"] != undefined)
 	{
+		// Genital Hotfix
+		if(!frostwyrm.hasGenitals()) frostwyrm.updateGenitals();
+		
 		output("\n\nThe shore here is where you can summon");
 		
 		if(flags["FROSTWYRM_NOT_HOSTILE"] < 2)
@@ -117,7 +120,7 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 	if (!ppFrostwyrmling.hasCock()) ppFrostwyrmling.createCock();
 	ppFrostwyrmling.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 	ppFrostwyrmling.cocks[0].cLengthRaw = 12;
-	ppFrostwyrmling.cocks[0].cThicknessRatioRaw = 2.5;
+	ppFrostwyrmling.cocks[0].cThicknessRatioRaw = 1.5;
 	ppFrostwyrmling.createPerk("Fixed CumQ", 450000, 0, 0, 0);
 	
 	//ppFrostwyrmling.impregnationType = "FrostwyrmPregnancy";
@@ -128,6 +131,8 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 //Encounter Text
 public function encounterFrostwyrm():void
 {
+	// Genital Hotfix
+	if(!frostwyrm.hasGenitals()) frostwyrm.updateGenitals();
 	// Gender-assignment hotfix
 	frostwyrm.createStatusEffect("Force It Gender");
 	frostwyrm.removeStatusEffect("Force Fem Gender");
@@ -395,7 +400,7 @@ public function frostwyrmBadEnd():void
 
 	processTime(90);
 	pc.removeAll();
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	addButton(0,"Next",frostwyrmBadEndII);
 }
 
@@ -561,20 +566,37 @@ public function frostwyrmPickMeUpBaby():void
 	frostWyrmHeader();
 	author("B");
 	
-	output("You concentrate on your psionic link with the Frostwyrm; you reach out to her, telling her that you’re on the Uveto ocean coastline, and you’d like to see her.");
-	output("\n\n<i>At once, my Qal,</i> you hear her familiar voice thrum inside your skull. The flight between the coast and her lair is a fair distance, and you prepare to settle in, pacing and hugging yourself to keep warm, as you wait for her.");
-	output("\n\nDespite that, she’s by your side much sooner than you anticipated; she must have been out hunting when you called for her. Within minutes, you see her imposing form in the distance, and you hear her roar vibrate the very air around you. She spots you as soon as you spot her, and she dives, the air splitting around her wings as she comes in for a quick landing.");
-	output("\n\nShe rights herself with practiced grace before landing, a pair of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
-	output("\n\nYou don’t waste much time before asking her to take you back to her lair. <i>Of course,</i> she replies gladly, lowering her body to the ice so that you can climb onto her. <i>I look forward to you warming my lair once more.</i>");
-	
-	// Allow Xmas events once a year
-	var currDate:Date = new Date();
-	var enableXMas:Boolean = false;
-	if (isChristmas()) {
-		if (flags["FROSTWYRM_XMAS"] == undefined || (flags["FROSTWYRM_XMAS"] != undefined && flags["FROSTWYRM_XMAS"] < currDate.fullYear))
-		enableXMas = true;
+	//special one time tf scene (coded by DrunkZombie)
+	if (nykkeFrostwyrmTF() && flags["FROSTY_KNOWS_PC_FROSTWYRMTF"] == undefined)
+	{
+		output("You concentrate on your psionic link with the Frostwyrm. But it’s a little difficult to really focus on her, because you’re giddy and excited over how she might react to your ‘little’ change. Still, the message goes through, and [frostwyrm.name] responds, albeit haltingly.");
+		output("\n\n<i>Are you unwell, my Qal?</i> she asks. <i>Your mannerisms are different. I will arrive with all haste.</i>");
+		output("\n\nYou tell her that you hope she does!");
+		output("\n\nShe appears over the horizon after a moment, flying with a much higher speed and less grace than usual. Her very roar vibrates the air around you, and after a minute of her approach, she spots you, and she comes in for a quick landing.");
+		output("\n\nThe snow kicks up and fogs your vision. When it settles, you and [frostwyrm.name] have a clean, clear look at each other – you make a pose, showing off all your new Frostwyrm attributes, confirming that she does indeed see what she thinks she’s seeing. You tell her that this is the result of what that scientist had found when you had collected her blood, and you ask her if she likes it.");
+		output("\n\nAt first, [frostwyrm.name] is still. A wave of different emotions washes over her, and therefore you, which is unusual for her: she usually only feels one emotion at a time, and she’s usually careful about what she communicates over her link with you. But now, you’re feeling confusion; wariness; and dizziness; but the two emotions you feel overwhelmingly are joy – joy that you, her Qal, would go through such lengths for her – and lust. Almost unbearable lust. The kind that would almost make a person get aggressive.");
+		output("\n\nShe cranes her long neck forward, her nose bumping against your [pc.chest], her nostrils flaring in time with her inward breathing, to take in your scent. You still smell like you, further confirming your identity. <i>This is the power of your kind?</i> she asks, her voice coming out slurred and unfocused. <i>To change your physical form by ingesting the blood of another?</i>");
+		output("\n\nYou answer that, no, it’s not as simple as drinking someone or something’s blood. And technically, she’d have the scientist that asked for her blood in the first place to thank; it’s not a power that your species intrinsically has. But, with a good mind and the knowledge of all the world’s history to fall back on, you and your kind can do... almost anything. Including this.");
+		output("\n\n[frostwyrm.name]’s body slowly crawls forward, her nose pressing tightly against you as she more insistently, more <i>urgently</i> takes in more of you and your body. <i>I can hardly contain myself, my Qal. My wonderful Qal,</i> she says, her tongue panting out like a dog. <i>I would have you on the coast</i> this moment <i>if I could.</i>");
+		output("\n\nIt almost sounded like she was asking for your permission. You tell her that you’d love to have her, too – but not here. You’d both be rather vulnerable out here in the snow. You’d rather go to the lair, where it’s safe.");
+		output("\n\nShe whines, but relents, and lowers her body for you to climb aboard. <i>We have no time to waste!</i> she demands, and you hurry on. When you’re secure, a powerful flap of your wings lifts you into the air – much stronger and much more rocky than every previous flight.");
 	}
-	
+	else
+	{
+		output("You concentrate on your psionic link with the Frostwyrm; you reach out to her, telling her that you’re on the Uveto ocean coastline, and you’d like to see her.");
+		output("\n\n<i>At once, my Qal,</i> you hear her familiar voice thrum inside your skull. The flight between the coast and her lair is a fair distance, and you prepare to settle in, pacing and hugging yourself to keep warm, as you wait for her.");
+		output("\n\nDespite that, she’s by your side much sooner than you anticipated; she must have been out hunting when you called for her. Within minutes, you see her imposing form in the distance, and you hear her roar vibrate the very air around you. She spots you as soon as you spot her, and she dives, the air splitting around her wings as she comes in for a quick landing.");
+		output("\n\nShe rights herself with practiced grace before landing, a pair of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
+		output("\n\nYou don’t waste much time before asking her to take you back to her lair. <i>Of course,</i> she replies gladly, lowering her body to the ice so that you can climb onto her. <i>I look forward to you warming my lair once more.</i>");
+		
+		// Allow Xmas events once a year
+		var currDate:Date = new Date();
+		var enableXMas:Boolean = false;
+		if (isChristmas()) {
+			if (flags["FROSTWYRM_XMAS"] == undefined || (flags["FROSTWYRM_XMAS"] != undefined && flags["FROSTWYRM_XMAS"] < currDate.fullYear))
+			enableXMas = true;
+		}
+	}
 	processTime(5);
 	clearMenu();
 
@@ -703,7 +725,7 @@ public function nameThatFrostwyrm1():void
 	output(" She doesn’t answer, but underneath you, you feel her lungs heaving in short bursts, crudely mimicking laughter. If this is a power Frostwyrms like herself have....");
 	output("\n\nYou brace yourself on her body, excited more than ever to get to work repopulating her species.");
 	processTime(65+rand(3));
-	pc.lust(50);
+	pc.changeLust(50);
 	
 	processTime(5);
 	clearMenu();
@@ -759,76 +781,113 @@ public function frostwyrmHomeAtLast():void
 	clearOutput();
 	frostWyrmHeader();
 	author("B");
+	var hermVToggle:Boolean = false;
 	
-	output("You arrive at [frostwyrm.name]’s lair after an uneventful flight about an hour later. You feel [frostwyrm.name]’s psionics pull at your mind slightly, suggesting that she won’t have her Qal wearing clothing in her lair, and that she’d like to see you bared to her. You agree, rather eagerly; the more naked you become, the more pleasure [frostwyrm.name] bestows upon you through her link. You quickly work to remove your effects.");
-	
-	processTime(60);
-	clearMenu();
-	
-	if (flags["FROSTWYRM_GAVE_BATH"] == undefined && (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")))
+	//special one time tf scene (coded by DrunkZombie)
+	if (nykkeFrostwyrmTF() && flags["FROSTY_KNOWS_PC_FROSTWYRMTF"] == undefined)
 	{
-		addButton(0, "Next", frostwyrmSteeleIsADirtyGirl);
-		return;
-	}
-	
-	if (flags["FROSTWYRM_EGGS"] != undefined && !pc.hasWombPregnancy())
-	{
-		if (flags["FROSTWYRM_KIP_COUNT"] == undefined || flags["FROSTWYRM_KIP_COUNT"] < 100) output("\n\nSitting in one corner of the lair is a large, oblong egg, resting on its side against a nearby wall. [frostwyrm.name] has brought in some fluffy snow from outside of the lair to act as something of a nest for the egg while it incubates.");
-		else output("\n\nSitting in one corner of the lair is a large, oblong egg, resting on its side in something of a makeshift incubator that your daughters have collectively assembled. The area is plush and secure, away from the bustle of the rest of your clan, and it has two of your daughters attending it at all times, making sure that whatever is occupying it has need for nothing.");
-		output(" You’ve lost track of how long it’s been there, but if you believe [frostwyrm.name] on Frostwyrm gestation, it should be anytime within the next four months.");
-	}
-	
-	if (flags["FROSTWYRM_KIP_COUNT"] == undefined)
-	{
-		output("\n\n[frostwyrm.name] tromps her way deeper into her lair, towards the raised ice platform that is her resting spot. Circling it once, she steps onto it, curling herself into a disk comfortably, her tail hanging lazily off the side and its spade waving towards you, inviting you to join her.");
-		output("\n\nYou do so, slipping past her tail and tucking yourself between her front four legs, resting against the barrel of her chest, her heavy heartbeat providing ambience. She sighs contentedly; for her, there’s nothing quite like cuddling up with her Qal in the comfort of her lair.");
-		output("\n\nNow that you’re here, what would you like to do with [frostwyrm.name]?");
-	}
-	else if (flags["FROSTWYRM_KIP_COUNT"] == 1){
-		output("\n\nWhen you and [frostwyrm.name] arrive into the lair, your first (and so far only) kip comes bounding up to you both, excitedly chittering, first at her Qim and then at her Qal, welcoming them back. [frostwyrm.name] bends down, nuzzling her kip the same way she did to you, before making her way to the raised ice platform that is her bed towards the rear of the cave. When your kip greets you, she embraces you in a full-body hug and an exaggerated lick across your cheek, knowing that your kind shows affection in a slightly different way.");
-		output("\n\n[frostwyrm.name] circles her bedding once, then curls herself into a disk, hanging her tail off the side and waving it lazily at you to come join her. You do so, slipping past her tail and tucking yourself between her front four legs, resting against the barrel of her chest. Your kip eagerly joins you, squirming up next to you and wrapping her own six limbs tightly around your body, purring all the while as she shares her body heat with her Qim and her Qal.");
-		output("\n\nNow that you’re here, what would you like to do with [frostwyrm.name]?");
-	}
-	else if (flags["FROSTWYRM_KIP_COUNT"] < 6){
-		output("\n\nWhen you and [frostwyrm.name] arrive into the lair, your kips excitedly run up to meet you both, chittering in their Frostwyrm tongue in greeting. They each nuzzle against their Qim first as you undress, and she responds in kind, brushing her long nose against her children the same way she did to you.");
-		output("\n\nWhen they finish with her, they each bound up to you happily, embracing you in a tight hug sequentially, then giving you long, exaggerated licks across your face, knowing that your kind shows affection differently.");
-		if (flags["FROSTWYRM_KIP_COUNT"] > 3){
-			output(" When both your cheeks are thoroughly occupied by Frostwyrm tongue, your other ");
-			if (flags["FROSTWYRM_KIP_COUNT"] > 4) output("kips get ");
-			else output("kip gets ");
-			output("creative, licking at your [pc.chest] and across your [pc.belly]");
+		flags["FROSTY_KNOWS_PC_FROSTWYRMTF"] = 1;
+		output("Your ride back to the lair takes a breezy forty, terrifying minutes; more than a few times you were worried you were going to lose your grip with her speed. You arrive, safe and sound, at the lair, and no sooner do you make it inside than does your [frostwyrm.name] begin nudging at you once more.");
+		if (!pc.isNude()) output("\n\n<i>Remove your coverings at</i> once, she demands, her teeth nipping at your effects. No matter how quickly you strip naked, it’s not fast enough for her.");
+		
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("\n\nYour daughters crowd around you both, wondering what the fuss is. When they see you, they at first don’t recognize you – you don’t quite look like any of them. But your psionic link between them all is unshakable, and with a start, they all realize who you are. Your eldest two daughters press forward, their noses at your body, taking in your scent and scrutinizing every little detail of your new Frostwyrm form." + (flags["NYKKE_VERSION"] == 1 && flags["FROSTWYRM_INCEST_OPTION"] == 1 ? " Their tongues snake out to taste you; their hands begin exploring you–" : ""));
+		else if (flags["FROSTWYRM_KIP_COUNT"] > 0) output("\n\nYour daughter, as always, was eager to meet both her parents again – but she stops, confused, when she sees you. She doesn’t recognize you, yet you both share an unbreakable psionic link – and when she realizes who you are and what you’ve done, her own excitement becomes nearly uncontrollable. " + (flags["NYKKE_VERSION"] == 1 && flags["FROSTWYRM_INCEST_OPTION"] == 1 ? " Still, she is a good, respectable daughter: no matter how badly she wants you, her Qim has laid claim to you first. But that doesn’t mean she isn’t going to have a good show." : ""));
+		
+		if (flags["FROSTWYRM_KIP_COUNT"] > 0) output("\n\n<i>You will give your Qal and your Qim their space!</i> [frostwyrm.name]’s voice booms uncharacteristically, startling your daughters away from you. Her long neck bends down and curls around you, separating you from your clutch." + (flags["NYKKE_VERSION"] == 1 && flags["FROSTWYRM_INCEST_OPTION"] == 1 ? " <i>[pc.name] is</i> my <i>mate, and I will claim the Qal first!</i>" : ""));
+		
+		output("\n\n" + (flags["FROSTWYRM_KIP_COUNT"] > 0 && flags["NYKKE_VERSION"] == 1 && flags["FROSTWYRM_INCEST_OPTION"] == 1 ? "With the hierarchy and turn-order established, y" : "Y") + "our mate pushes you with her massive snout, towards the raised ice platform that is her bedding. No sooner do you approach the platform is she upon you.");
+		
+		processTime(60);
+		clearMenu();
+		if (pc.isHerm())
+		{
+			if (pc.fertility() > 0 && !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy") && rand(2) == 0) hermVToggle = true;
 		}
-		output("\n\n[frostwyrm.name] makes her way to the elevated, flattened platform of her resting place at the rear of the lair, curling herself into a disk and leaving a spot open for you. You join her, with some difficulty: your kips, all eager to join their Qim and their Qal with some physical bonding, climb over you and beat you to [frostwyrm.name], curling up between her front four legs and resting against the thick of her chest, ears tensed for her heartbeat.");
-		output("\n\nOnce you’re finally good and pinned against [frostwyrm.name] with your daughters all wrapping themselves around you, sharing their body heat with you and cleaning you absently with their long, flat tongues, you finally think of what to do with your family now that you’re here.");
+				
+		if (pc.hasCock() && hermVToggle == false)
+		{
+			if (pc.virility() <= 0) addButton(0, "Next", frostwyrmAnalFunTimes, undefined);
+			else addButton(0, "Next", (flags["FROSTWYRM_GOT_DICKED"] == undefined ? frostwyrmItsAHotdogInAHallway : frostwyrmVaginalRepeat));
+		}
+		else 
+		{
+			if (pc.fertility() <= 0) addButton(0, "Next", frostwyrmAnalFunTimes, undefined);
+			else if (pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addButton(0, "Next", frostwyrmAnalFunTimes, undefined);
+			else addButton(0, "Next", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
+		}
 	}
-	else if (flags["FROSTWYRM_KIP_COUNT"] < 20){
-		output("\n\nYou barely have the time to reach for your gear before you and [frostwyrm.name] are assaulted by your growing clutch. They thankfully go for their Qim first, giving you a moment to remove your effects: they nuzzle lovingly against [frostwyrm.name], against her thick legs and against her snout when she greets them individually. Some of the older ones, displaying what they’ve learned from you, hug against her huge body where they can, licking at her scales affectionately.");
-		output("\n\nYou have a much more... thorough time of it, when each of your daughters leaves [frostwyrm.name] to properly greet you home. You’re submerged in strong Frostwyrmling flesh as each daughter wraps her four, powerful arms around you, squeezing you against her body and giving you a thick, long lick across your cheek before letting another kip have a turn. Some grow impatient and share the hug with a sibling, with you crushed in between them; your vision is obscured by fleshy pink tongues caressing your cheeks; some of the more experienced and daring kips lick across your [pc.chest] and all the way down to your [pc.belly]");
-		output("\n\n[frostwyrm.name] makes her way to her raised, flattened platform, circling it once before stepping onto it and curling herself into a disk. Most of your kips are already up against her, worming their way between her legs to rest against her torso, yet [frostwyrm.name]’s eyes are on yours as her tail beckons you to join her and your kips.");
-		output("\n\nTwo of your kips guide you to her, holding your hands as you make your way there, and let you get cozy against [frostwyrm.name] before showing themselves in, cuddling up against you. They each errantly bathe you gently (not that you needed it, after that extensive greeting); there is no silence in the lair as each and every kip purrs loudly, settling themselves against the body heat of their Qim and their Qal.");
-		output("\n\nNow that you’re here, is there something <i>else</i> you’d like to do with your family?");
+	else
+	{
+		output("You arrive at [frostwyrm.name]’s lair after an uneventful flight about an hour later. You feel [frostwyrm.name]’s psionics pull at your mind slightly, suggesting that she won’t have her Qal wearing clothing in her lair, and that she’d like to see you bared to her. You agree, rather eagerly; the more naked you become, the more pleasure [frostwyrm.name] bestows upon you through her link. You quickly work to remove your effects.");
+		
+		processTime(60);
+		clearMenu();
+		
+		if (flags["FROSTWYRM_GAVE_BATH"] == undefined && (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")))
+		{
+			addButton(0, "Next", frostwyrmSteeleIsADirtyGirl);
+			return;
+		}
+		
+		if (flags["FROSTWYRM_EGGS"] != undefined && !pc.hasWombPregnancy())
+		{
+			if (flags["FROSTWYRM_KIP_COUNT"] == undefined || flags["FROSTWYRM_KIP_COUNT"] < 100) output("\n\nSitting in one corner of the lair is a large, oblong egg, resting on its side against a nearby wall. [frostwyrm.name] has brought in some fluffy snow from outside of the lair to act as something of a nest for the egg while it incubates.");
+			else output("\n\nSitting in one corner of the lair is a large, oblong egg, resting on its side in something of a makeshift incubator that your daughters have collectively assembled. The area is plush and secure, away from the bustle of the rest of your clan, and it has two of your daughters attending it at all times, making sure that whatever is occupying it has need for nothing.");
+			output(" You’ve lost track of how long it’s been there, but if you believe [frostwyrm.name] on Frostwyrm gestation, it should be anytime within the next four months.");
+		}
+		
+		if (flags["FROSTWYRM_KIP_COUNT"] == undefined)
+		{
+			output("\n\n[frostwyrm.name] tromps her way deeper into her lair, towards the raised ice platform that is her resting spot. Circling it once, she steps onto it, curling herself into a disk comfortably, her tail hanging lazily off the side and its spade waving towards you, inviting you to join her.");
+			output("\n\nYou do so, slipping past her tail and tucking yourself between her front four legs, resting against the barrel of her chest, her heavy heartbeat providing ambience. She sighs contentedly; for her, there’s nothing quite like cuddling up with her Qal in the comfort of her lair.");
+			output("\n\nNow that you’re here, what would you like to do with [frostwyrm.name]?");
+		}
+		else if (flags["FROSTWYRM_KIP_COUNT"] == 1){
+			output("\n\nWhen you and [frostwyrm.name] arrive into the lair, your first (and so far only) kip comes bounding up to you both, excitedly chittering, first at her Qim and then at her Qal, welcoming them back. [frostwyrm.name] bends down, nuzzling her kip the same way she did to you, before making her way to the raised ice platform that is her bed towards the rear of the cave. When your kip greets you, she embraces you in a full-body hug and an exaggerated lick across your cheek, knowing that your kind shows affection in a slightly different way.");
+			output("\n\n[frostwyrm.name] circles her bedding once, then curls herself into a disk, hanging her tail off the side and waving it lazily at you to come join her. You do so, slipping past her tail and tucking yourself between her front four legs, resting against the barrel of her chest. Your kip eagerly joins you, squirming up next to you and wrapping her own six limbs tightly around your body, purring all the while as she shares her body heat with her Qim and her Qal.");
+			output("\n\nNow that you’re here, what would you like to do with [frostwyrm.name]?");
+		}
+		else if (flags["FROSTWYRM_KIP_COUNT"] < 6){
+			output("\n\nWhen you and [frostwyrm.name] arrive into the lair, your kips excitedly run up to meet you both, chittering in their Frostwyrm tongue in greeting. They each nuzzle against their Qim first as you undress, and she responds in kind, brushing her long nose against her children the same way she did to you.");
+			output("\n\nWhen they finish with her, they each bound up to you happily, embracing you in a tight hug sequentially, then giving you long, exaggerated licks across your face, knowing that your kind shows affection differently.");
+			if (flags["FROSTWYRM_KIP_COUNT"] > 3){
+				output(" When both your cheeks are thoroughly occupied by Frostwyrm tongue, your other ");
+				if (flags["FROSTWYRM_KIP_COUNT"] > 4) output("kips get ");
+				else output("kip gets ");
+				output("creative, licking at your [pc.chest] and across your [pc.belly]");
+			}
+			output("\n\n[frostwyrm.name] makes her way to the elevated, flattened platform of her resting place at the rear of the lair, curling herself into a disk and leaving a spot open for you. You join her, with some difficulty: your kips, all eager to join their Qim and their Qal with some physical bonding, climb over you and beat you to [frostwyrm.name], curling up between her front four legs and resting against the thick of her chest, ears tensed for her heartbeat.");
+			output("\n\nOnce you’re finally good and pinned against [frostwyrm.name] with your daughters all wrapping themselves around you, sharing their body heat with you and cleaning you absently with their long, flat tongues, you finally think of what to do with your family now that you’re here.");
+		}
+		else if (flags["FROSTWYRM_KIP_COUNT"] < 20){
+			output("\n\nYou barely have the time to reach for your gear before you and [frostwyrm.name] are assaulted by your growing clutch. They thankfully go for their Qim first, giving you a moment to remove your effects: they nuzzle lovingly against [frostwyrm.name], against her thick legs and against her snout when she greets them individually. Some of the older ones, displaying what they’ve learned from you, hug against her huge body where they can, licking at her scales affectionately.");
+			output("\n\nYou have a much more... thorough time of it, when each of your daughters leaves [frostwyrm.name] to properly greet you home. You’re submerged in strong Frostwyrmling flesh as each daughter wraps her four, powerful arms around you, squeezing you against her body and giving you a thick, long lick across your cheek before letting another kip have a turn. Some grow impatient and share the hug with a sibling, with you crushed in between them; your vision is obscured by fleshy pink tongues caressing your cheeks; some of the more experienced and daring kips lick across your [pc.chest] and all the way down to your [pc.belly]");
+			output("\n\n[frostwyrm.name] makes her way to her raised, flattened platform, circling it once before stepping onto it and curling herself into a disk. Most of your kips are already up against her, worming their way between her legs to rest against her torso, yet [frostwyrm.name]’s eyes are on yours as her tail beckons you to join her and your kips.");
+			output("\n\nTwo of your kips guide you to her, holding your hands as you make your way there, and let you get cozy against [frostwyrm.name] before showing themselves in, cuddling up against you. They each errantly bathe you gently (not that you needed it, after that extensive greeting); there is no silence in the lair as each and every kip purrs loudly, settling themselves against the body heat of their Qim and their Qal.");
+			output("\n\nNow that you’re here, is there something <i>else</i> you’d like to do with your family?");
+		}
+		else if (flags["FROSTWYRM_KIP_COUNT"] < 100){
+			output("\n\nYou’re both accosted immediately by your growing clutch. Most of your kips go to their Qim, nuzzling warmly against her body in traditional Frostwyrm greeting. [frostwyrm.name], patient as she is, takes her time to bend down and greet each and every daughter sequentially, although most of her kips aren’t nearly as patient: they hug against her thick legs, greeting her like they’re greeting you, and cleaning the few scales that are within licking distance. Some even climb up onto [frostwyrm.name]’s back and give her some attention between her wings.");
+			output("\n\nIn the chaos, the oldest and most devious of your kips make a beeline for you first, rather than [frostwyrm.name]. They work together to greet you traditionally: they wrap their strong arms against you, pulling you tightly to their Amazonian bodies and keeping you against their form for a bit longer than usual. They each lick across your cheek, greeting you as they always had, and giving your dirty [pc.skinFurScales] a bit of a wash while they’re at it.");
+			output("\n\nYour moments with your eldest daughters are interrupted by your younger ones, each fiending for their moment with their Qal. You’re surrounded by the thick muscles, each of them giving you platonic hugs against their powerful forms and each of them giving you loving licks across your face and, when that’s too occupied, across your [pc.chest] and [pc.belly].");
+			output("\n\nWhen [frostwyrm.name] makes her way to her elevated, flattened resting platform, she’s never given a moment’s peace from her kips, each of them clinging to her and chittering excitedly about their day. [frostwyrm.name] listens carefully to each story, her psionic abilities granting her the strength to listen to each one perfectly, as she circles her bedding and curls herself into a disk on top of it. Her kips all start squirming their way between her legs, seeking out the warmth of their Qim, but all the while, [frostwyrm.name]’s eyes are on you, her tail wagging lazily in your direction for you to join her.");
+			output("\n\nYour kips are careful to leave a spot for you in the warmth of her clutches, but they join the cuddle ball regardless by climbing onto their Qim, curling into their own little balls all across her back. Two of your oldest kips lead you by the hand up to [frostwyrm.name], then, when you show yourself into the huddle, they join you, one against your front and one against your back, hugging you closely and continuing their ‘greeting’ from where they left off.");
+			output("\n\nNow that you’re here, what is it you’d like to do with your family?");
+		}
+		else{
+			output("\n\nYou’re reintroduced to the thriving ecosystem that is [frostwyrm.name]’s lair. You are immediately greeted by three of your oldest kips, who gently help you out of your gear before going to their usual, familiar greeting routine: they form a triangle around you, hugging you closely, pressing every facet of their tall, muscular bodies against yours, while bathing your face in languid, exaggerated licks.");
+			output("\n\n[frostwyrm.name] is greeted by a swarm of her progeny, each of them chittering and clamoring around her and onto her, and [frostwyrm.name] greets each of them in order, patiently listening to each of their stories. That said, for every kip that’s on her, nuzzling her and bathing her, there are five more that seem to ignore her. There are simply too many Frostwyrmlings in the comparatively tiny lair for [frostwyrm.name] to tend to, and every kip that does not receive special attention knows that they’ll have their chance later.");
+			output("\n\nThe lair has turned into a very compact, bustling village of sorts: some kips are better at others at certain tasks or skills, and they’ve established an economy involving food, baths, and sex, where one good or service is worth one or more of another. One adventurous kip has pillaged the foreign settlements on Uveto for thick pelts and exotic cloths; another kip, an exceptional hunter, has rows upon rows of caught and dressed fish that she offers in exchange for pleasure. The walls of the lair are dressed with various knick-knacks and baubles, including several banners that the kips have adopted as an emblem for their house.");
+			output("\n\nThe elevated, flattened plateau of ice that [frostwyrm.name] uses for her bed has been adorned with colorful carpets and thick pillows – [frostwyrm.name] is too large to properly enjoy them, but the area is appropriately regal and pleasant for a Qim. A number of kips lie on it, keeping it warm, and they leave without a word once [frostwyrm.name] approaches it. She circles it once before easing herself into it, curling herself into a disk.");
+			output("\n\nShe’s soon joined by a dozen or more of her young, six of them worming their way between her thick legs and six crawling on top of her, bathing her between her wings and along the crease of her neck. She has eyes only for you, though; her tail wags lazily at you, beckoning you to join her. You’re led by the hand by your two eldest daughters to [frostwyrm.name], and they allow you to cozy up against her before they join you as well.");
+			output("\n\n[frostwyrm.name]’s contentedness and pleasure at being with her Qal and her repopulated species resonates through the psionic link between you and each and every one of your daughters. As soon as [frostwyrm.name] begins purring, your daughters all join her, and soon the sounds of the lair are replaced by a harmonious song of purrs and coos. The two daughters cuddled up against you give you another, gentle, platonic lick across the cheek before going back to what they were doing.");
+			output("\n\nNow that you’re here, the Qal of the clan, nestled up against your Qim, what would you like to do?");
+		}
+		
+		/*if (flags["FROSTWYRM_EGGS"] != undefined && flags["FROSTWYRM_KIP_COUNT"] == undefined) addButton(0, "Next", frostwyrmSheHatchedWithoutYou, undefined);
+		else */
+		frostwyrmMainMenu(false);
 	}
-	else if (flags["FROSTWYRM_KIP_COUNT"] < 100){
-		output("\n\nYou’re both accosted immediately by your growing clutch. Most of your kips go to their Qim, nuzzling warmly against her body in traditional Frostwyrm greeting. [frostwyrm.name], patient as she is, takes her time to bend down and greet each and every daughter sequentially, although most of her kips aren’t nearly as patient: they hug against her thick legs, greeting her like they’re greeting you, and cleaning the few scales that are within licking distance. Some even climb up onto [frostwyrm.name]’s back and give her some attention between her wings.");
-		output("\n\nIn the chaos, the oldest and most devious of your kips make a beeline for you first, rather than [frostwyrm.name]. They work together to greet you traditionally: they wrap their strong arms against you, pulling you tightly to their Amazonian bodies and keeping you against their form for a bit longer than usual. They each lick across your cheek, greeting you as they always had, and giving your dirty [pc.skinFurScales] a bit of a wash while they’re at it.");
-		output("\n\nYour moments with your eldest daughters are interrupted by your younger ones, each fiending for their moment with their Qal. You’re surrounded by the thick muscles, each of them giving you platonic hugs against their powerful forms and each of them giving you loving licks across your face and, when that’s too occupied, across your [pc.chest] and [pc.belly].");
-		output("\n\nWhen [frostwyrm.name] makes her way to her elevated, flattened resting platform, she’s never given a moment’s peace from her kips, each of them clinging to her and chittering excitedly about their day. [frostwyrm.name] listens carefully to each story, her psionic abilities granting her the strength to listen to each one perfectly, as she circles her bedding and curls herself into a disk on top of it. Her kips all start squirming their way between her legs, seeking out the warmth of their Qim, but all the while, [frostwyrm.name]’s eyes are on you, her tail wagging lazily in your direction for you to join her.");
-		output("\n\nYour kips are careful to leave a spot for you in the warmth of her clutches, but they join the cuddle ball regardless by climbing onto their Qim, curling into their own little balls all across her back. Two of your oldest kips lead you by the hand up to [frostwyrm.name], then, when you show yourself into the huddle, they join you, one against your front and one against your back, hugging you closely and continuing their ‘greeting’ from where they left off.");
-		output("\n\nNow that you’re here, what is it you’d like to do with your family?");
-	}
-	else{
-		output("\n\nYou’re reintroduced to the thriving ecosystem that is [frostwyrm.name]’s lair. You are immediately greeted by three of your oldest kips, who gently help you out of your gear before going to their usual, familiar greeting routine: they form a triangle around you, hugging you closely, pressing every facet of their tall, muscular bodies against yours, while bathing your face in languid, exaggerated licks.");
-		output("\n\n[frostwyrm.name] is greeted by a swarm of her progeny, each of them chittering and clamoring around her and onto her, and [frostwyrm.name] greets each of them in order, patiently listening to each of their stories. That said, for every kip that’s on her, nuzzling her and bathing her, there are five more that seem to ignore her. There are simply too many Frostwyrmlings in the comparatively tiny lair for [frostwyrm.name] to tend to, and every kip that does not receive special attention knows that they’ll have their chance later.");
-		output("\n\nThe lair has turned into a very compact, bustling village of sorts: some kips are better at others at certain tasks or skills, and they’ve established an economy involving food, baths, and sex, where one good or service is worth one or more of another. One adventurous kip has pillaged the foreign settlements on Uveto for thick pelts and exotic cloths; another kip, an exceptional hunter, has rows upon rows of caught and dressed fish that she offers in exchange for pleasure. The walls of the lair are dressed with various knick-knacks and baubles, including several banners that the kips have adopted as an emblem for their house.");
-		output("\n\nThe elevated, flattened plateau of ice that [frostwyrm.name] uses for her bed has been adorned with colorful carpets and thick pillows – [frostwyrm.name] is too large to properly enjoy them, but the area is appropriately regal and pleasant for a Qim. A number of kips lie on it, keeping it warm, and they leave without a word once [frostwyrm.name] approaches it. She circles it once before easing herself into it, curling herself into a disk.");
-		output("\n\nShe’s soon joined by a dozen or more of her young, six of them worming their way between her thick legs and six crawling on top of her, bathing her between her wings and along the crease of her neck. She has eyes only for you, though; her tail wags lazily at you, beckoning you to join her. You’re led by the hand by your two eldest daughters to [frostwyrm.name], and they allow you to cozy up against her before they join you as well.");
-		output("\n\n[frostwyrm.name]’s contentedness and pleasure at being with her Qal and her repopulated species resonates through the psionic link between you and each and every one of your daughters. As soon as [frostwyrm.name] begins purring, your daughters all join her, and soon the sounds of the lair are replaced by a harmonious song of purrs and coos. The two daughters cuddled up against you give you another, gentle, platonic lick across the cheek before going back to what they were doing.");
-		output("\n\nNow that you’re here, the Qal of the clan, nestled up against your Qim, what would you like to do?");
-	}
-	
-	/*if (flags["FROSTWYRM_EGGS"] != undefined && flags["FROSTWYRM_KIP_COUNT"] == undefined) addButton(0, "Next", frostwyrmSheHatchedWithoutYou, undefined);
-	else */
-	frostwyrmMainMenu(false);
 }
 
 public function frostwyrmMainMenu(bOutput:Boolean = true):void
@@ -853,7 +912,7 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	addButton(4, "Bellyrub", whosAGoodFrostwyrm, undefined);
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) addButton(5, "Boop", frostwyrmTouchDaDragon, undefined);
 	
-	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
+	if (pc.hasKeyItem("Blood Extractor")) addButton(5, "Extract", frostwyrmQuestSample, undefined);
 	
 	if(flags["NYKKE_MET"] != undefined && flags["NYKKE_VERSION"] == 1) addButton(6, "Nykke", nykkeMainMenu, true, "Nykke","Spend some time with Nykke in her lair.");
 	
@@ -1106,7 +1165,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	if (flags["FROSTWYRM_GAVE_BATH"] != undefined) addButton(5, "Eat Her", frostwyrmLickTheMagicDragon, undefined);
 	addButton(14, "Back", frostwyrmMainMenu, undefined);
 }
-/*public function frostwyrmQuestSample():void
+public function frostwyrmQuestSample():void
 {
 	clearOutput();
 	frostWyrmHeader();
@@ -1135,11 +1194,12 @@ public function frostwyrmIWantToBangTheLizard():void
 	output("\n\nYou tell her that, as soon as the results come in, she’ll be the first to hear about it.");
 	
 	clearMenu();
+	flags["LESSAU_FROSTWYRM_QUEST"] = 1;
 	pc.removeKeyItem("Blood Extractor");
 	pc.createKeyItem("Vial of Frostwyrm Blood", 0, 0, 0, 0, "");
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", frostwyrmMainMenu);
 }
-*/
+
 // putting each sex scene separately, figure it'd be easier to keep track of variables that way
 public function frostwyrmItsAHotdogInAHallway():void
 {
@@ -1958,7 +2018,7 @@ public function frostwyrmLickTheMagicDragon():void
 	output("\n\nBoth hands find purchase at once: your left finds her budding, pulsating clit, unmistakable even if your vision is totally blocked off. It’s huge, round, soaked, and smooth as could be: with every beat of her heart, you feel it lunge and pulse in your grip. You gently fondle it, rubbing it like a crystal ball, lifting it up and pushing it down; [frostwyrm.name]’s haunches unconsciously follow your movements, "+(silly ? "almost like you’re piloting her with a joystick." : "seeking out more of the intense pleasure you’re giving her."));
 	output("\n\nYour right, meanwhile, worms its way into her, splitting her wider apart, but also causing her to clench even more tightly onto you. Your arm spreads the gap around you, giving you some more air to breathe, but, more importantly, you reach far deeper into her than you could with just your face: your fingers prod and poke at every muscle they can as you sink deeper into her, which, in turn, makes her shiver and clench and buck even more, feeling something akin to some real penetration since you started"+(silly ? " – you joke to yourself that this probably isn’t where you left your keys, but it doesn’t hurt to look." :""));
 	output("\n\nYou can only imagine what it must truly feel like for her: sure, you can feel her lust and her pleasure, but that doesn’t mean "+(pc.hasVagina() ? "you can feel whatever [frostwyrm.name]’s feeling in your own pussy" : "you have a phantom vagina with a face and an arm in it, with a hand polishing your clit")+". Although you can’t feel every minute sensation, what you know for certain is that [frostwyrm.name] is enjoying every little thing you’re doing – and, if you’re right, she’s getting awfully close.");
-	output("\n\n<i>I need not read your thoughts to know that cleanliness was never your intent, my Qal,</i> Frosty says, in a chastising, yet playful tone. Her breathing is coming out in quick, dry pants – although, her lungs are so huge that a single pant for her is bigger than a deep sigh for you. Her flanks are shaking in pleasuring, with every little vibration going straight through to you, jostling you inside her vent. <i>Continue, and I would surmise that both of us would be in urgent need of a second bath.</i>");
+	output("\n\n<i>I need not read your thoughts to know that cleanliness was never your intent, my Qal,</i> [frostwyrm.name] says, in a chastising, yet playful tone. Her breathing is coming out in quick, dry pants – although, her lungs are so huge that a single pant for her is bigger than a deep sigh for you. Her flanks are shaking in pleasuring, with every little vibration going straight through to you, jostling you inside her vent. <i>Continue, and I would surmise that both of us would be in urgent need of a second bath.</i>");
 	output("\n\nYou tell her not to resist or hold back – her pleasure is your duty, and if that means you keep giving her a thorough, in-depth bath until she doesn’t need them anymore, then, as her Qal, that’s what that means. She’d do the same for you.");
 	output("\n\nYou can hear the sharp sound of claws raking against ice, even muffled as they are through her spongy walls. Her muscles, and particularly her vulva, grow tense around you, squeezing around your intrusive skull and your right hand, still aimlessly seeking and raking at nothing inside her canal. <i>Indeed I would,</i> she replies – and you get the sudden gut feeling that you should hold your breath.");
 	output("\n\nHer shaking gets more intense, and, with a hearty flex of her haunches, you’re trapped in between the squeezing walls of her pussy. Your skull is pinched on both sides by her wet, spongy vulva, and your arm is pressed in a hot, wet vice, from shoulder to fingertip. And then, in a surprising move, [frostwyrm.name] leans forward, her front side dropping and her rear side lifting, taking you with it: your [pc.legOrLegs] lift straight up off the ground, dangling in the air, forcing you to lean them against her bouncing Frostwyrm balls for some stability.");
@@ -2888,7 +2948,7 @@ public function frostwyrmItsMineAllMine():void
 	if (flags["NYKKE_VERSION"] == 1) itsNykke = true;
 	
 	output("You’re cuddled warmly against [frostwyrm.name] and " + (flags["NYKKE_MET"] != undefined && itsNykke ? "Nykke" : "your eldest kip") + " spooning up against you, both of them sharing your body heat, as you stare out to the village of Frostwyrmlings you and [frostwyrm.name] have created. It’s been many years since your firstborn, and not only do you feel as young as ever, and not only do you not intend to stop breeding with your Qim, but you feel as though your adventure as the Qal to your race of hybrids is only beginning.");
-	output("\n\nYour Qim loves you with all her heart; you don’t need psionics to know that. And your kips are all highly devoted to you; although they take a rather mercenary position with you during their inner circle couplings, their love and devotion to their Qim and their Qal isn’t something you’d ever question. Your family in the icy lair would do absolutely anything for you, if you’d but ask.");
+	output("\n\nYour Qim loves you with all her heart; you don’t need psionics to know that. And your kips are all highly devoted to you; their love towards their Qim and their Qal isn’t something you’d ever question. Your family in the icy lair would do absolutely anything for you, if you’d but ask.");
 	output("\n\n[frostwyrm.name] is an enormous, icy dragon, capable of rending buildings and small armies asunder with her bulk. Each of your daughters are highly muscled; tall as a giant; and naturally equipped with scales as tough as shields. If you asked them to, and you were serious about it, you could easily take over Uveto; the only defense the planetoid has is its indigenous peoples and weather stations full of scientists, not fighters. It’d be a fairly simple, and possibly bloodless, operation.");
 	output("\n\nYou look out to the village of your daughters, each of them milling about the lair with their own thoughts, concerns, and activities, waiting for you to simply say a word, any word, and they’ll drop everything for you. It’s very tempting. But it would also mean abandoning your by-now years-long adventure to claim your inheritance from your late father and being a full-time Qal to the Frostwyrms.");
 	output("\n\nDo you stop your adventuring and claim Uveto as your kingdom?");
@@ -3013,7 +3073,7 @@ public function frostwyrmXMas():void
 		output("and your daughter");
 		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s, all huddled around you two");
 	}
-	output(" if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would like to try being a part of [pc.aRace] tradition. This sort of event only comes across once every Sky Cycle for your kind, and it’s a very significant part of your culture – it would mean a lot to you if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" said yes.");
+	output(" if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would like to try being a part of terran tradition. This sort of event only comes across once every Sky Cycle for your kind, and it’s a very significant part of your culture – it would mean a lot to you if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" said yes.");
 	output("\n\nYou hoped that "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would say yes, of course, but the response your "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "clutch" : "mate") +" gave you was a little more enthusiastic than you had expected. <i>You have been a wonderful Qal and an ideal mate to me, [pc.name],</i> [frostwyrm.name] says warmly as her long neck cranes towards you, her huge face nuzzling lovingly against your body. <i>It would be my privilege to participate in your culture.</i> ");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined)
 	{
@@ -3082,7 +3142,7 @@ public function frostwyrmXMasSnowmen():void
 	}
 	output(", until you");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
-		output("and your daughter");
+		output(" and your daughter");
 		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
 	}
 	output(" pack a snowball tight enough for her to get started.");
@@ -3202,7 +3262,7 @@ public function frostwyrmXMasGiftGiving():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
 		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output(", your daughter flying alongside you both");
 		else {
-			output("your daughters taking their place on either side of their Qim in the air");
+			output(", your daughters taking their place on either side of their Qim in the air");
 			if (flags["FROSTWYRM_KIP_COUNT"] > 5) output(", flying in a tight V behind her");
 		}
 	}
@@ -3315,7 +3375,7 @@ public function frostwyrmXMasDecorate():void
 
 	output("The holidays wouldn’t be complete without one last thing. They’re always accompanied by a ton of decorating, whether it’s the house or some symbol. But you’re at a bit of a loss – you look around the island for a moment and notice how it’s completely, absolutely bare. Aside from the snow, there isn’t so much as an icicle for you to decorate, and even if there was, what would you decorate it with?");
 	output("\n\nYou tap your chin in thought as you wonder. Thinking about it logically, you don’t have a lot of tools on hand, and the only things on the island to decorate are–");
-	output("\n\nStruck with inspiration, you ask [frostwyrm.name] "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +"to join you back inside the lair. <i>Are there no more activities in your traditions, [pc.name]?</i> asks [frostwyrm.name]. You tell her that there is exactly one left, and you say that she’s probably going to enjoy it quite a bit, but you’d prefer to be inside to do it. [frostwyrm.name] acquiesces, and you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"make your way back into the lair.");
+	output("\n\nStruck with inspiration, you ask [frostwyrm.name] "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +" to join you back inside the lair. <i>Are there no more activities in your traditions, [pc.name]?</i> asks [frostwyrm.name]. You tell her that there is exactly one left, and you say that she’s probably going to enjoy it quite a bit, but you’d prefer to be inside to do it. [frostwyrm.name] acquiesces, and you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"make your way back into the lair.");
 	output("\n\nYou, of course, strip naked as soon as you’re inside, but you keep your things closer by than usual. Your mate makes her way to the raised platform that is her bedding, and you approach, eying her sultrily. You tell her that there are actually two more activities, but one of them isn’t exactly ‘official.’ It’s to... commiserate your affection with your loved ones. Usually, that only means ‘platonically,’ but definitions can often be a fickle thing.");
 	output("\n\n[frostwyrm.name] understands your meaning and lays on her side, her rear two legs spread, giving you unrestricted access to her genitalia. Her heavy testicles rest against the inside of her scaly thigh, one heavy nut spilling over the other. She isn’t currently aroused, but judging from the way her lust is feeding into you, that’s going to change in a hurry.");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
@@ -3405,7 +3465,7 @@ public function frostwyrmXMasEnding():void
 	output("\n\nYou lay one arm across her muzzle and give her a gentle kiss on the tip of her flaring nose. "+ (silly ? "<i>“Same.”</i>" :"You couldn’t have said it better."));
 
 	processTime(5);
-	pc.lust(50);
+	pc.changeLust(50);
 	
 	var currDate:Date = new Date();
 	flags["FROSTWYRM_XMAS"] = currDate.fullYear;
@@ -3578,8 +3638,8 @@ public function frostwyrmlingCatchGangbang():void
 		else output("\n\nYou’re all for a good orgy, and this has been some of the most fun and, like, totally exciting... uh, fun, you’ve ever had. She can call you what she likes - sometimes you even like being called a cheap slut or a dirty whore, and the fact that she’s your kip kinda makes it even hotter - but [frostwyrm.name] deserves to be called what she is, and that is her Qim.");
 		output("<i>Right,</i> she says, the mirth plain in her mental tone, <i>sorry, my Qal.</i>");
 	}
-	output("\n\nAlready, the sensation is torturous: to be so close to release and have release elude you constantly. Like water overflowing a dam, the results are going to be monumental once the dam finally breaks: Nykke couldn’t be more lubricated, with the feminine juices you’re coating her blunt dick with , and you’re ready to squirt a fountain as soon as she releases her damnable block on you[if (pc.isHerm()). And, just northward, ");
-	if (pc.hasCock()) output("your [pc.cock] stands tall and hard as diamonds, unappreciated and ignored. You’re at the point where the faintest wisp of your kip’s breath on your skin would set you off, if it weren’t for the block she has on your orgasm");
+	output("\n\nAlready, the sensation is torturous: to be so close to release and have release elude you constantly. Like water overflowing a dam, the results are going to be monumental once the dam finally breaks: Nykke couldn’t be more lubricated, with the feminine juices you’re coating her blunt dick with , and you’re ready to squirt a fountain as soon as she releases her damnable block on you");
+	if(pc.hasCock()) output(". And, just northward, your [pc.cock] stands tall and hard as diamonds, unappreciated and ignored. You’re at the point where the faintest wisp of your kip’s breath on your skin would set you off, if it weren’t for the block she has on your orgasm");
 	output(". And she knows it: she’s reading your every thought, emotion, and expression, delighting in the control she has over you while her and her sisters have their way.");
 	output("\n\nAs time goes on, your kips grow more and more frantic, allowing their own orgasms to continue unimpeded. The one in your mouth is closest: hot little spurts of precum layer your mouth, and she batters her heavy knot against your [pc.lips] more forcefully than usual. The scales on her balls grow tighter against your forehead, and the testicles themselves begin to flex and pull up against her body. She’s on the verge, and in just another few pumps–");
 	output("\n\nHer hands on your head grow tight, and you flinch as her sharp claws drag slightly against your [pc.skinFurScales], but she retains some control. She doesn’t try to knot your mouth, thankfully");

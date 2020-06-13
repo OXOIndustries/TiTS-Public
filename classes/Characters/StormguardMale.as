@@ -176,7 +176,7 @@
 			this.balls = 4;
 			this.cumMultiplierRaw = 20;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 1;
+			this.cumQualityRaw = 2;
 			this.cumType = GLOBAL.FLUID_TYPE_CUNDARIAN_SEED;
 			this.ballSizeRaw = 12;
 			this.ballFullness = 100;
@@ -506,7 +506,7 @@
 			else output("prowling around you in the snow");
 			output(". <i>“But fearsome opponents call for all-or-nothing tactics!”</i>");
 			this.createStatusEffect("Shield CD",4,0,0,0);
-			this.shields(150);
+			this.changeShields(150);
 		}
 		//Covering Charge Mk2
 		//Becomes medium acc kinetic shot, high acc energy melee, low chance to cause stun

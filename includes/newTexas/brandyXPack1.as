@@ -105,7 +105,7 @@ public function brandyVaginal():void
 	
 	//Else: You paint Brandy’s inner walls [pc.cumColor] as you fill her with your seed, making sure the good cowgirl gets all the [pc.cum] she deserves.
 	
-	output("Your [pc.hips] buck jerkily against Brandy’s own spacious sides, your dick spasming between her nether lips,");
+	output(" Your [pc.hips] buck jerkily against Brandy’s own spacious sides, your dick spasming between her nether lips,");
 	
 	if(pc.balls > 0)
 	{
@@ -151,9 +151,8 @@ public function brandyMutualFingering():void
 	clearOutput();
 	showBrandy(true);
 	author("HugsAlright");
-	if (silly) author("HugsItsNotAlright");
 	
-	output("\n\nSmiling amidst your kiss, you rub your fingers along Brandy’s still-clothed cunt, causing her to release a few whimpering, needy moos into your mouth. Then, you start to trail your hand upward to the hem of her shorts, gently pulling her belt loops and running your digits across her pale, smooth skin. With a devious grin you slip your fingers under her pants, making the cowgirl’s breath shudder and stutter as your seeking members are greeted with the warm, wet heat of Brandy’s pussy. You trail your digits up and down along her pink slit until she starts mooing again, still pressing her lips to yours.");
+	output("Smiling amidst your kiss, you rub your fingers along Brandy’s still-clothed cunt, causing her to release a few whimpering, needy moos into your mouth. Then, you start to trail your hand upward to the hem of her shorts, gently pulling her belt loops and running your digits across her pale, smooth skin. With a devious grin you slip your fingers under her pants, making the cowgirl’s breath shudder and stutter as your seeking members are greeted with the warm, wet heat of Brandy’s pussy. You trail your digits up and down along her pink slit until she starts mooing again, still pressing her lips to yours.");
 	output("\n\nSoon, a pair of devious fingers are delving into her pussy, spreading her lower lips and tearing a moan of a moo from your lover’s lungs, her breath catching soon after. Though, it’s difficult to move your fingers much with the cowgirls pants in the way.");
 	output("\n\nPlanning to remedy that, you withdraw your digits from Brandy’s quim, making the bovine beauty let out a whimpering moo as you break your kiss. You move her hand back to Brandy’s shorts, gazing into your lover’s hungry, bang-cloaked eyes for a moment, watching her blush and pant for a moment before grinning wide and starting to pull down on her shorts. The needy cowgirl is quick to realize what’s going on and wiggles her hips to get those pesky clothes off more easily. And, with your efforts combined, you have her lower garments off in no time, baring her dripping pink pussy to you.");
 	if (pc.isNude()) output("\n\nAlready naked yourself");
@@ -209,7 +208,7 @@ public function brandyCoupleTalk():void
 	output("\n\n<i>“Of course we can be together,”</i> you whisper as your hug continues.");
 	output("\n\nAt that, you can hear and feel Brandy’s breath catch, as she pulls back from your embrace a bit to look into your eyes. The cowgirl sniffles slightly and her face flushes red, her bang-cloaked eyes getting all misty when she hears your answers. A quivering smile appears on her face as a joyous moo erupts from her lips, pulling herself back into your hug. You stay that way for a while, holding Brandy as she let out happy little cowgirl noises now an then, sniffling and doing her best to hold back tears of joy with her tits all mashed against your");
 	if (pc.tallness > 60) output(" chest.");
-	else output(" face.");
+	else output(" [pc.face].");
 	output("\n\nWhen your embrace finally ends, your new girlfriend does so with some reluctance, letting her arms unwrap from your waist and going to grab your hands instead, lacing her dainty fingers between yours. She looks at you and blushes, biting her lip right before she decides to make a surprisingly bold move and bring you into a kiss, pressing herself into you for a short moment before pulling back, leaving both of you with smiles on your faces and your cow-friend wiping a tear from her cheek.");
 	output("\n\nThere’s a silence in the air after that, which Brandy seems to enjoy, simply smiling and rocking back and forth on her heels as she looks into your [pc.eyes]. Eventually, though, you figure you better move things along. After all, you’ve got a pretty New Texan girlfriend who’d probably like to spend some time with you!");
 	
@@ -326,7 +325,7 @@ public function approachBrandySally():void
 		output("\n\nShe quickly turns her attention back to you, patiently awaiting any word from you.");
 	}
 		
-	pc.lust(5);
+	pc.changeLust(5);
 	brandySallyMenu();
 }
 //talk about them
@@ -350,7 +349,7 @@ public function brandySallyTalkThem():void
 	output("\n\nSeems like your mute cow-pal has found herself a nice girlfriend.");
 
 	//set met brandy sally flag		
-	pc.lust(5);
+	pc.changeLust(5);
 	flags["MET_BRANDY_SALLY"] = 1;
 
 }
@@ -458,7 +457,7 @@ public function brandySallyThreesome():void
 		output(", you’re greeted by your rum-titted friend’s voice.");
 		
 		processTime(20);		
-		pc.lust(20);
+		pc.changeLust(20);
 		pc.exhibitionism(2);
 		IncrementFlag("BRANDY_SALLY_THREESOME_CUN");
 	}
@@ -468,7 +467,7 @@ public function brandySallyThreesome():void
 	output("\n\nSmiling, the darker of the two gals gazes back up at you once more, <i>“Hey, once Brandy’s all rested up, I think you should stop by again... I’m sure she’d </i>love<i> to do this again.”</i>");
 	output("\n\nThat sounds like a plan to you, already feeling Sally’s potent scent creeping into your mind again. You figure you better clear out and let the two girls rest, saying your goodbyes before heading back into the Bronco.");
 	
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

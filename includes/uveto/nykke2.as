@@ -88,7 +88,7 @@ public function nykke2Intro2():void
 	output("The Frostwyrmling makes a pass above you, close enough that you can feel the backdraft rush against you when it flies by. A blast of steam washes against your face, followed by a tightness in your head. The sensations are all too familiar with the first time you communicated with [frostwyrm.name], and if you’re right, this Frostwyrmling must be trying to reach out to you.");
 	output("\n\nYou keep your eyes on it, ready to make the first strike if you need, but its movements don’t <i>seem</i> overly aggressive, not immediately. It makes a shallow circle as it turns back toward you, and, dipping down, it skids into the snow, billowing a cloud of white snow over you as it comes to a stop.");
 	output("\n\nNow that it’s closer to you, you get a better look at the creature: it looks quite similar to your own kip" + (flags["FROSTWYRM_KIP_COUNT"] == 1 ? "" : "s") + ", including a head of dishevelled hair reaching to its neck. There isn’t a single white scale on its whole body – very atypical for a Frostwyrm or even a half-breed – and instead, its tougher outer scales are pitch black, and its softer front-end scales are a dull grey. It has a humanoid face, including wide, bright-red eyes; a button nose; and a pair of thick black lips, framed by silky-smooth skin and a pair of raised cheekbones.");
-	output("\n\nThere are a number of pockmarks and scars across its body, particularly along its stomach, chest, and arms. And, totally shameless, it has rather <i>exaggerated</i> endowments: a pair of thick, firm F-cup breasts sit atop its chest, each topped by a pair of icy-blue nipples, and between its thick, bubbly thighs are a pendulous pair of testicles resting beneath a thick, plump penile vent, bulging to contain what is probably a real competitor of a cock.");
+	output("\n\nThere are a number of pockmarks and scars across its body, particularly along its stomach, chest, and arms. And, totally shameless, it has rather <i>exaggerated</i> endowments: a pair of fat, firm F-cup breasts sit atop its chest, each topped by an icy-blue nipple, and between its thick, bubbly thighs are a pendulous pair of testicles resting beneath a thick, plump penile vent, bulging to contain what is probably a real competitor of a cock.");
 	output("\n\nIt steps toward you, bent forward and sniffing at the air, letting its nose lead the way forward. The way it carries itself, it’s either confident that you won’t attack it, or its confident that it’ll win the encounter if you try; you’ve probably intruded on its territory, and it’s ready to defend it, but it’s not quite ready to start a fight, either.");
 	output("\n\n<i>You smell like a Frostwyrm,</i> it says to you psionically. It presses its nose up against your [pc.upperGarments], taking in a huff to try and get a bead on who you are – or, more likely, who you smell like. <i>But you’re clearly not one." + (nykkeFrostwyrmTF() ? " You aren’t fooling anyone." : "") + " And you’re not like me.</i> Its two left arms surge forward, grabbing onto your right, and holding it steady so it can sniff you from wrist to shoulder. <i>But you smell a bit like....</i>");
 	output("\n\nYou respond to it, verbally, by saying that you are a Qal to a clutch. You had met a Frostwyrm, and it mated with you until you started a family.");
@@ -330,7 +330,7 @@ public function nykke2IntroTalk():void
 	output("\n\nShe looks down, across her stomach, to her still-erect Frostwyrm cock, bobbing in the cold air beneath her. She’s pent up, <i>badly.</i> You can’t say you’re surprised – she hasn’t mated in two-hundred years. In fact, if she’s like [frostwyrm.name], she’s probably a virgin, and you remember how frantically [frostwyrm.name] fucked you when she first brought you back to her lair.");
 	output("\n\n<i>“Please?”</i>");
 	
-	pc.lust(10);	
+	pc.changeLust(10);	
 	processTime(5);
 	clearMenu();
 	addButton(0,"Fuck",nykke2IntroFuck, 1,"Fuck","Nykke seems honest enough, and you can hardly imagine what it’s like to be a two-hundred-year-old-virgin. The poor girl desperately needs someone to rock her world, and who better than you, Certified Frostwyrm Fucker?");
@@ -415,7 +415,7 @@ public function nykke2TalkMenu():void
 	output("\n\nAs subtle as a brick, she uncrosses her legs, giving you an eyeful of her exposed genitals – her Frostwyrm cock poking into the cold breeze of the air, accentuated by a pair of thick, low-hanging, full balls – and crosses them again, the other leg on top of the other.");
 	output("\n\nGreat, now <i>you</i> hope the conversation will take your mind off other things, too.");
 		
-	pc.lust(10);	
+	pc.changeLust(10);	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Mates",nykke2TalkMates,undefined,"Mates","Ask Nykke what qualities her ideal mate should have. Should they be strong, or smart, or just virile enough to give her a legendary clutch?");
@@ -457,7 +457,7 @@ public function nykke2TalkMates():void
 	output("\n\nFor the pleasure of it, you answer matter-of-factly.");
 	output("\n\nShe crosses her legs again. You catch the distinct whiff of her musk in the salty oceanic air as she does so. <i>“Fine,”</i> she says. <i>“I’ll wait a bit more.”</i>");
 		
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5 + rand(5));
 	addDisabledButton(0, "Mates","Mates","You already have a <i>pretty</i> good idea on what Nykke considers to be the perfect mate...");
 }
@@ -534,7 +534,7 @@ public function nykke2TalkAdventuring():void
 	output("\n\nThe psionic vision ends abruptly, and you’re back on cold, unforgiving Uveto, sitting in the snowbank next to Nykke. Her legs and thighs shift against each other, and you can see the beginnings of a half-chub peek from between her thick, muscular thighs. She’s putting in the token effort to hide it, but... you can tell, she wants you to start imagining on your own terms.");
 	output("\n\nWell... it’s working.");
 		
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(10 + rand(5));
 	addDisabledButton(2, "Adventuring","Adventuring","You’ve just talked about this! The idea of traveling the stars and seeing new cultures and peoples is an exciting idea for Nykke. She probably wouldn’t be against going with you some day.");
 }
@@ -571,7 +571,7 @@ public function nykke2TalkBlackScales():void
 	output("\n\nThe sensation of relief comes through much more clearly, now that you’ve given her some perspective on your love for [frostwyrm.name] and the love she had from her own Qim and Qal. You can still sense just a tinge of apprehension, like a tick that refuses to let go, and you’re not certain if you’ll ever be able to get that out of her, but, apart from that, you can tell that Nykke is satisfied with your answer.");
 	output("\n\nShe rests her head against yours, gazing out to the sparkling ocean before you two, and her hand squeezes yours tighter. There are a couple of obvious questions she wants to ask you, but they’re for another time – right now, she just wants to think about her parents.");
 
-	pc.lust(10);		
+	pc.changeLust(10);		
 	processTime(5 + rand(5));
 	addDisabledButton(3, "Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you, and to her own Qim and Qal, it never mattered what she looks like.");
 }
@@ -619,7 +619,7 @@ public function nykke2SexTakeHer(hole:int=-1):void
 	nykke2Header(true);
 	
 	output("Your hands travel down Nykke’s sides, feeling the tightness of her Frostwyrm muscles and the way they combat themselves as she holds her position above you. You ask her what her first instinct is, now that she’s above you, with her body barrelling on top of you, and her cock grinding against you. If she knew what she wanted... how would she take it?");
-	output("\n\nAt the question, all four of Nykke’s hands strike forward, gripping you by the arms" + (!pc.isNaga() && !pc.isTaur() ? "and legs" : "") + ". She’s strong enough to restrict you, and, when she leans back and lifts you off the snow, she’s strong enough to lift you, but her grip is conscientious enough that she doesn’t bruise you. You’re as comfortable as her total manhandling of you can be – and, from the poking you’re feeling at your [pc.belly], it seems like Nykke’s made her decision on how she wants you.");
+	output("\n\nAt the question, all four of Nykke’s hands strike forward, gripping you by the arms" + (!pc.isNaga() && !pc.isTaur() ? " and legs" : "") + ". She’s strong enough to restrict you, and, when she leans back and lifts you off the snow, she’s strong enough to lift you, but her grip is conscientious enough that she doesn’t bruise you. You’re as comfortable as her total manhandling of you can be – and, from the poking you’re feeling at your [pc.belly], it seems like Nykke’s made her decision on how she wants you.");
 
 	nykke2IntroFuck(2,-1,hole);
 }
@@ -651,7 +651,7 @@ public function nykke2SexInHerAss(kok:int=0):void
 	output("\n\nRunning your hands over her expansive, tight ass as you slowly sink into it, you ask Nykke how she’s feeling, and the sensations she’s experiencing. You could just as easily feel it over your psionic connection, but you want her to enunciate it. You tell her to feel how it is to be bent over; to be in such a vulnerable position, knowing that she can trust you; and, especially, how it feels to enjoy sex without mating, like you’re doing right now.");
 	output("\n\n<i>“This feels...”</i> she tries to say again, but the words just won’t come. You’re patient with her; to help her relax, you lean over her and plant several kisses along the underside of her tail, hoping that the closeness will get her to open up a bit. <i>“It’s... so different.”</i>");
 	output("\n\nYou ask her if ‘different’ is bad, in this case.");
-	output("\n\n<i>“No,”</i> she answers quickly. <i>“I can see the appeal.”</i> She shifts a bit, unconsciously, causing your [pc.cock] to shuffle inside her, which hits different, more sensitive muscles in her ass. She takes a deep, sharp breath through her nose, then sighs in pleasure. <i>“I never considered mating like this before.”</i>");
+	output("\n\n<i>“No,”</i> she answers quickly. <i>“I can see the appeal.”</i> She shifts a bit, unconsciously, causing your [pc.cock " + kok + "] to shuffle inside her, which hits different, more sensitive muscles in her ass. She takes a deep, sharp breath through her nose, then sighs in pleasure. <i>“I never considered mating like this before.”</i>");
 	output("\n\nYou tell her that most kinds don’t; it’s a bit of an... acquired taste, for sure. You haven’t even done this with [frostwyrm.name], although that’s not because you haven’t asked. You’re sure she’d let you if you did.");
 	output("\n\nAt your Qim’s name, Nykke looks over her shoulder towards you, her ruby-red eyes focusing on yours. Her eyes are half-lidded in lust, but her gaze is nonetheless steely and resolute, determined on you. <i>“Take me,”</i> she demands. <i>“Let me feel all of you inside me.”</i>");
 	output("\n\nShe wants you, in part because she wants you; in part because it’s genuinely pleasurable; and, in part, to prove something, either to you, or to [frostwyrm.name] (when she isn’t here to defend herself), or to herself. Whatever the case, you don’t hesitate to acquiesce Nykke, and you thrust into her, sinking the remaining distance into her tight, eager asshole.");

@@ -474,7 +474,7 @@ public function cutHair(hairInches:Number):void
 		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(hairInches) + " inches long!</b>");
 		else if(pc.hasFur()) output(" <b>You have nothing but fur on your head!</b>");
 		else output(" <b>You are totally bald!</b>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
 	processTime(7);
@@ -648,7 +648,7 @@ public function hairColorizing(newColor:String = "black"):void
 		if(pc.hasCock()) output("and the way she’s grinding ever-so-slightly against your bulge, ");
 		output("she’s teasing herself just as much.");
 		output("\n\nFinally you’re treated to a short but sweet kiss as the last of the gel is used up, and by the time Ceria pulls her lips away and gets off your lap the last vestiges of [pc.hairColor] have vanished from the tips of your hair, leaving you with a pleasant tingle in your roots as the gel finishes ensuring its work is permanent. <b>Your hair is now " + newColor + "!</b>");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	pc.hairColor = newColor;
 	pc.credits -= ceriaServicePrice(500);
@@ -1048,7 +1048,7 @@ public function furColorApplicationGo(newColor:String):void
 		if(pc.hasCock()) output(" and narrowly avoids brushing your erection with her fingertips");
 		output(". <i>“Of course, if you want to try out a different color sometime, I’ll gladly do this for you again any time you want.”</i>");
 		output("\n\nCeria eventually takes her hands off of your body and gets up to put her shirt back on, allowing you to reclaim your gear and get a proper look at your new coloration. <b>Your fur is now " + newColor + "!</b>");
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	else
 	{
@@ -1196,7 +1196,7 @@ public function touchPointyEars():void
 
 	output("\n\nFinally you let up, letting go of Ceria with one last flourish of your fingertips across the back of her ear. She promptly fumbles under the counter for a few seconds, pulling out a sign marking the salon as temporarily closed, and fixes you with a hungry look. <i>“Okay, after a display like that there’s no way you’re not taking responsibility for turning me on, right, " + pc.mf("hunk","cutie") + "?”</i>");
 
-	pc.lust(12);
+	pc.changeLust(12);
 	processTime(8);
 
 	ceriaSexMenu(true);
@@ -1390,7 +1390,7 @@ public function giveDatElfSlootOral():void
 
 	//[Next] Exit conversation with Ceria.
 	processTime(24);
-	pc.lust(13 + rand(10));
+	pc.changeLust(13 + rand(10));
 	pc.girlCumInMouth(chars["CERIA"]);
 	fuckedCeria(true);
 	clearMenu();
@@ -1523,7 +1523,7 @@ public function fuckCeria(x:int=0):void
 		}
 		else
 		{
-			output("\n\nYou can feel the first pulse come flowing up your dual cumveins, a thick dose of [pc.cumNoun] that gushes out of your [pc.cock " + x + "] into Ceria’s waiting cunt. The second follows a moment later, blasting into her ass as you start cumming in a continuous back-and-forth rhythm. Both of her holes squeeze even tighter, her ass practically vicelike around your [pc.cock " + y + "] as if trying to prevent you from filling her in back, but your inhuman output will not be so easily denied. Soon her cries of ecstacy turn to moans of shock as you fill her with so much cum that it makes her once-slim belly swell until she looks practically gravid, her twat and tailpipe alike packed to the brim with your [pc.cumVisc] seed.\n\nYou’d gladly fill her even more, but her tightness isn’t quite so great as to allow that. The excess [pc.cumColor] spunk floods out around the sides of your cocks to cover your thighs in your own [pc.cumNoun].");
+			output("\n\nYou can feel the first pulse come flowing up your dual cumveins, a thick dose of [pc.cumNoun] that gushes out of your [pc.cock " + x + "] into Ceria’s waiting cunt. The second follows a moment later, blasting into her ass as you start cumming in a continuous back-and-forth rhythm. Both of her holes squeeze even tighter, her ass practically vicelike around your [pc.cock " + y + "] as if trying to prevent you from filling her in back, but your inhuman output will not be so easily denied. Soon her cries of ecstasy turn to moans of shock as you fill her with so much cum that it makes her once-slim belly swell until she looks practically gravid, her twat and tailpipe alike packed to the brim with your [pc.cumVisc] seed.\n\nYou’d gladly fill her even more, but her tightness isn’t quite so great as to allow that. The excess [pc.cumColor] spunk floods out around the sides of your cocks to cover your thighs in your own [pc.cumNoun].");
 			if(pc.hasVagina()) output(" Underneath your dicks, you feel [pc.eachVagina] twitching as if wishing it was getting so gloriously filled, having to settle for adding a wash of [pc.girlCum] to the mess between your legs.");
 			output("\n\nYou pull out to find Ceria’s gone limp and slack-jawed, letting out a dazed groan. Her eyes are half-shut and her ears droop low, fucked and stuffed so thoroughly that she’s gone completely insensate. The moment you pull out, massive spurts of [pc.cumNoun] start belching from her pussy, her own juices completely swallowed up by your titanic flood. It looks like she’s not going to come back to her senses for a little while after a fucking like that, so you clean up as best you can and make sure she’s comfortable, giving the elf girl a kiss on the forehead before you take your leave.");
 			output("\n\nIt’s quite a while before Ceria comes back out to the counter, looking back to normal. She shoots you an annoyed look, but you can’t help but notice she’s got a bit of a smile tugging at her cheeks... and she’s looking just a little less trim than usual.");
@@ -1622,7 +1622,7 @@ public function earFuckWithCeria():void
 	output("\n\nEncouraged by the sight of the lust-drunk elf, you wrap your fingers the whole way around and start to pump her from wide base to narrow tip, jacking off Ceria’s ear just as fast and hard as any dick. She reacts about as you would expect. Her mouth hangs slack whenever it isn’t moaning obscenities, and tiny puddles of drool are beginning to form atop her DD-cup cleavage. She seems oblivious to her own state, so oblivious that she doesn’t even react when you start smearing pussy-juice on her other ear, allowing you to pump both sides of her head equally forcefully.");
 	output("\n\nCeria’s eyes roll back until they’re little more than white slits, and a ragged moan rips its way out of her throat, blissfully screaming, <i>“Yessssss!”</i> Her hips twitch wildly, and the scent of strawberries fills the air, followed shortly by the sound of her sweet-scented girlcum splattered against the floor. You let go of her ears, too turned on by elf to hold back any longer. It’s time you got to ride one of those sexy, elven blessings and see if your pussy can make her squirt as easily as your hands.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",earFuckCeriaPart2);
 }
@@ -1888,7 +1888,7 @@ public function fuckCeriaDoggyCounter(kok:int=0):void
 		if (pc.cocks[kok].cLength() >= 7) output(" Your girth proves too much a strain for her rear to properly house. Though you don’t make it all the way in, you satisfy yourself with the bulges in her sublime form.");
 		else output(" Conquering her ass slaps the full weight of your [pc.hips] to her cushiony ass, dominating her innards with your twin shafts.");
 		
-		if (pc.cockTotal() >= 3) output("\n\nWhile Ceria loses herself to the daze of repeating, penetrative orgasm, you make use of a third avenue of pleasure available only to someone with all this dick to offer. You bring your third dick down into the valley of her spread butt-cheeks, plenty of organic cleavage there for you to slide between while you spear her mind and body. All of the pressure you feel on your first backstroke is orgasm-worthy; if you’re not careful you’ll black out from sensory deprivation before even starting. The elf-sleeve’s clenching shudders (and the endless tides of girlspunk warming your groin) tell you she’s climaxing harder than her body’s used to. After a few rounds, though, she’ll get used to it.");
+		if (pc.cockTotal() >= 3) output("\n\nWhile Ceria loses herself to the daze of repeating, penetrative orgasm, you make use of a third avenue of pleasure available only to someone with all this dick to offer. You bring your third dick down into the valley of her spread butt-cheeks, plenty of organic cleavage there for you to slide between while you spear her mind and body. All of the pressure you feel on your first backstroke is orgasm-worthy; if you’re not careful you’ll black out from sensory overload before even starting. The elf-sleeve’s clenching shudders (and the endless tides of girlspunk warming your groin) tell you she’s climaxing harder than her body’s used to. After a few rounds, though, she’ll get used to it.");
 	}
 	
 	pc.cockChange();

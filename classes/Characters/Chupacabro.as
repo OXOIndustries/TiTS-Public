@@ -214,12 +214,12 @@ package classes.Characters
 				if(target.hasAirtightSuit())
 				{
 					output("\n\nYour tongue lolls at the display. You’re quick to shake devious thoughts from your head and focus on the matter at hand again.");
-					target.lust(5);
+					target.changeLust(5);
 				}
 				else
 				{
 					output("\n\nYour tongue lolls at the display, the goat-bull’s pheromones clouding your senses and deepening your lust. You’re quick to shake devious thoughts from your head and focus on the matter at hand again.");
-					target.lust(10);
+					target.changeLust(10);
 				}
 			}
 			else output("\n\n" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + "’s display is tempting, but you resist it all the same, strengthening your resolve and leading you to take up a fighting stance again.");

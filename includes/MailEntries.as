@@ -124,7 +124,7 @@ public function configureMails():void
 		var msg:String = "";
 
 		msg += pc.short + "!";
-		msg += "\n\nYou think you could take a break from finding new aliens to fuck to help me break in a new bar? It turns out my sister has her own place near Vesperia and sent me an invite. Long story short: I could really use a wingman for the visit, and I can’t think of anyone more trustworthy (and did I mention fuckable?) than you. I threw the coordinates in an attachment in case you’ve been living under a rock or something. Shoot me a message when you’re on your way, and I’ll meet you at the landing pad. Perks of being a pirate! My schedule is more wide open than a rahn’s legs.";
+		msg += "\n\nYou think you could take a break from finding new aliens to fuck to help me break in a new bar? It turns out my sister has her own place near Vesperia and sent me an invite. Long story short: I could really use a wingman for the visit, and I can’t think of anyone more trustworthy (and did I mention fuckable?) than " + (kGAMECLASS.kiroIsCrew() ? "my captain":"you") + ". I threw the coordinates in an attachment in case you’" + (kGAMECLASS.kiroIsCrew() ? "re too lazy to come by my quarters for them.":"ve been living under a rock or something") + ". Shoot me a message when " + (!kiroIsCrew() ? "you’re on your way, and I’ll meet you at the landing pad. Perks of being a pirate! ":"you have to rondezvous at the landing pad. Perks of being on your crew! ") + "My schedule is more wide open than a rahn’s legs.";
 		msg += "\n\nTry not to have too much fun without me,";
 		msg += "\n\tKiro";
 		msg += "\n\n(<b>Canadia Station Coordinates unlocked!</b>)";
@@ -339,6 +339,18 @@ public function configureMails():void
 	, "Favor to ask.", "Tessa", "Tessa_da_besta@cmail.com", quickPCTo, quickPCToAddress);
 	//nykke 2
 	MailManager.addMailEntry("nykke2_sighting", nykke2SightingEmail, "Wildlife Advisory for Eastern Irestead", "Uveto Wildlife/Weather Advisory", "NoReply@Uveto.gov", quickPCTo, quickPCToAddress);
+	//lumi
+	MailManager.addMailEntry("lumi_breed_hungry", lumiBreedHungryEmail, "A little gift to my favorite " + pc.mf("boy", "girl") + "toy!", "Lumi", "Lumi@GabilaniGalaxy.org.tk", quickPCTo, quickPCToAddress);
+	
+	//milodan futazons
+	MailManager.addMailEntry("joyco_uveto_hazmat_advisory", joycoUvetoHazmatAdvisoryEmail, "Urgent: Hazmat Advisory", "JoyCo HR", "HumanResources@JoyCo.corp", quickPCTo, quickPCToAddress);
+
+	//Lessau Frostwyrm tf
+	MailManager.addMailEntry("lessau_frostwyrm_tf", drLessauFrostwyrmTFEmail, "Research Complete", "Dr. Lessau", "edward_lessau@SteeleTech.corp", quickPCTo, quickPCToAddress);
+	
+	//stormguard egg hatch email
+	MailManager.addMailEntry("stormguard_hatch", stormguardEggHatchEmail, "Congratulaions!", "Briget", "Briget@SteeleTech.corp", quickPCTo, quickPCToAddress);
+
 }
 
 public function kallyKiroMilkvite():String

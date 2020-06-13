@@ -48,7 +48,7 @@ public function paigeFirstTimeIntro():void
 
 	output("\n\nYou memorize her taste as her tongue coils over yours; you familiarize yourself with the smooth texture of the wriggling muscle in your mouth. Her whole body rubs against you; the static of her fur tickles and excites you. Your hands grip at nothing, dying to touch her.");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("First Time");
 	//[=Embrace Her=][=Grab Her Ass=][=Do Nothing=]
 	// end scene (scene: First Time)
@@ -77,12 +77,12 @@ public function FTEH1(args:Array):void
 	output("\n\n<i>“I’m normally the aggressive type in bed, I’m told,”</i> she whispers to you, her fingers tracing from your scalp to your earlobe. <i>“But today, I want it to be about us both. Tell me what you want, [pc.name]. How do you want me, baby?”</i>");
 
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	//[=Love Her=][=Take Her=][=More Teasing=]
 	// end scene (scene: FTEH1)
 	clearMenu();
 	if(pc.cockVolume(0) >= paige.vaginalCapacity(0)) addButton(0,"Love Her",FTLH1,args,"Love Her","You’re too big to fuck Paige. But that doesn’t mean you can’t still love her...");
-	else addButton(0,"Love Her",FTLH1,args);
+	else if(pc.hasGenitals()) addButton(0,"Love Her",FTLH1,args);
 	if((pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) || (pc.hasVagina() && (!pc.hasCock() || pc.cockVolume(0) <= paige.vaginalCapacity(0))) || !pc.hasGenitals()) addButton(1,"Take Her",FTTH1,args);
 	else addDisabledButton(1,"Take Her","Take Her","You’re too big to fuck Paige. But there are other ways to enjoy each other...");
 	addButton(2,"More Teasing",FTMT1,args);
@@ -109,7 +109,7 @@ public function FTGHA1(args:Array):void
 	output(". <i>“Feels like you’re more than ready to keep up with me. How do you want me, babe? Tell me how you want me.”</i>");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[=Take Her=][=Hotdog=][=69=]
 	// end scene (scene: FTGHA1)
@@ -137,7 +137,7 @@ public function FTDN1(args:Array):void
 	output("\n\n<i>“I noticed you haven’t touched me yet. I know it’s not because you’re scared,”</i> she mocks playfully. <i>“Maybe you don’t like being in control? Tonight is about us, sweet thing, but if you want me to be the toucher, I’ll gladly play the part.”</i> She licks her lips and narrows her eyes at you. <i>“Tell me what you want from me, babe.”</i>");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	clearMenu();
 	//[=69=][=More Teasing=][=Be Her Toy=]
@@ -157,7 +157,7 @@ public function FTTH1(args:Array):void
 	showPaige(true);
 	args.push("FTTH1");
 	// Play from here if the PC has a penis
-	if(pc.hasCock()) 
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) 
 	{
 		output("You have a horny Ausar on top of you, begging for some of your dick, and you’re not about to disappoint her. You reach down to your package, gripping it just beneath the [pc.cockHead], and slowly drag it between her pussy lips, letting her liquid lust smear across the skin of your shaft.");
 		output("\n\nShe whines in pleasure as you tease her. You don’t keep up the act: as soon as you’re lined up, you thrust forward, claiming Paige’s cunt for yourself.");
@@ -166,6 +166,7 @@ public function FTTH1(args:Array):void
 		else if(pc.hasVagina()) output(", the fur of her drooping, swishing tail occasionally tickling against your [pc.vagina]");
 		output(".");
 		output("\n\nShe begins to rock her body back and forth, coercing your dick to rub around inside her. You watch her body sway above you, her free tits jiggling in the air, her nipples pointed in unspoken want, inviting you to them.");
+		pc.cockChange();
 	}
 	// Play from here if the PC has a vagina, or curiously lacks sexual endowments
 	else
@@ -184,7 +185,7 @@ public function FTTH1(args:Array):void
 	//[=Grope Tits=][=Suck Tits=][=Grab Hips Instead=]
 	// end scene (scene: FTTH1)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Grope Tits",FTGT1,args);
 	addButton(1,"Suck Tits",FTST1,args);
@@ -213,7 +214,7 @@ public function FTMT1(args:Array):void
 	output("\n\nThe teasing has driven Paige into another gear; her tongue buries itself into your mouth and her toned body is using all its strength to keep you pinned. She doesn’t seem to care the way your hands, still clasped to her ass, inch their creeping fingers ever farther south. With one particular roll of her hips, she almost seems to be encouraging it.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Finger Her=][=Finger Her Butt=][=Do Nothing=]
 	//// end scene (scene: FTMT1)
 	clearMenu();
@@ -243,7 +244,7 @@ public function FT691(args:Array):void
 	//[=Next=]
 	// end scene (scene: FT691), continue at (scene: FT692)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FT692,args);
 }
@@ -314,7 +315,7 @@ public function FTLH1(args:Array):void
 	}
 	//[=Next=]
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	// end scene (scene: FTLH1), continue at (scene: FTLH2)
 	clearMenu();
 	addButton(0,"Next",FTLH2,args);
@@ -335,14 +336,16 @@ public function FTHD1(args:Array):void
 	output("\n\nYou wonder how long you can keep this up before she begs you.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	
 	// end scene (scene: FTHD1)
 	clearMenu();
 	//[=Penetrate Her=][=Finger Her Butt=][=Keep Going!=]
-	addButton(0,"Penetrate Her",FTPH1,args);
+	if(pc.cockVolume(0) < paige.vaginalCapacity(0)) addButton(0,"Penetrate Her",FTPH1,args);
+	else addDisabledButton(0,"Penetrate Her","Penetrate Her","You're too large.");
 	addButton(1,"FingerHerButt",FTFHB1,args);
-	addButton(2,"Keep Going",FTKG1,args);
+	if(pc.cockVolume(0) < paige.vaginalCapacity(0)) addButton(2,"Keep Going",FTKG1,args);
+	else addDisabledButton(2,"Keep Going","Keep Going","You're too big to eventually wind up inside her.");
 }
 
 //[=Be Her Toy=]
@@ -359,7 +362,7 @@ public function FTBHT1(args:Array):void
 	output("\n\nPaige shifts forward even more, lifting herself onto her knees. You take a deep breath, freed from your prison – and you’re greeted with the sight of Paige’s dripping, nearly-steaming cunt. The heat of her sex wafts between you, and you involuntarily (at first) breathe it in. <i>“Deep breath,”</i> she commands, and you feel her hand grip you by the back of your head.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Resist=][=With Pleasure!=]
 	// end scene (scene: FTBHT1)
 	clearMenu();
@@ -381,11 +384,16 @@ public function FTGT1(args:Array):void
 	if(pc.biggestTitSize() <= 2) output(" for stability as she rides you");
 	else output(" to not only return the favor, but for stability as she moves her hips atop you");
 	if(pc.hasCock()) output(" gently. Your thrusting is restrained as you both enjoy each other’s bodies; there’s plenty of time, and neither of you are going anywhere. From the look on her face as she absently paws at your own chest, she’s more than content to take you all night long, if you can last.");
-	else output(". You both rock gently into each other, not content to simply get off and wanting to spend the night to enjoy each other’s bodies. With her every push of her slick twat over your own, her hands knead into your boobs, which has you rock against her, which pulls her back, so she pushes forward....");
+	else {
+        output(". You both rock gently into each other, not content to simply get off and wanting to spend the night to enjoy each other’s bodies. With her every push of her slick twat over your ");
+        if(pc.hasVagina()) output("own");
+        else output("[pc.crotch]");
+        output(", her hands knead into your boobs, which has you rock against her, which pulls her back, so she pushes forward....");
+    }
 	output("\n\n<i>“Gods, you’re good at that,”</i> she congratulates you as she pushes her chest into your hands. Incentivized, you keep it up, paying attention to what each finger is doing to her and watching how she reacts when you palm her nipple in just the right way.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Next=]
 	// end scene (scene: FTGT1), continue at (scene: FTGT2)
 	clearMenu();
@@ -414,7 +422,7 @@ public function FTST1(args:Array):void
 	output(" – although your leverage is a bit neutered, the intimacy of your new positions makes the experience all the more important to you both. Paige continues to whisper gentle instructions and praises to you as you work your tongue on her breasts and your hips against hers.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Next=]
 	// end scene (scene: FTST1), go to (scene: FTST2)
 	clearMenu();
@@ -456,7 +464,7 @@ public function FTGHI1(args:Array):void
 	//[=Next=]
 	// end scene (scene: FTGHI1); go to (scene: FTGHI2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTGHI2,args);
 }
@@ -484,7 +492,7 @@ public function FTFH1(args:Array):void
 	//[=Next=]
 	// end scene (scene: FTFH1); go to (scene: FTFH2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTFH2,args);
 }
@@ -504,7 +512,7 @@ public function FTFHB1(args:Array):void
 	//[=Next=]
 	// end scene (scene: FTFHB1); go to (scene: FTFHB2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTFHB2,args);
 }
@@ -543,7 +551,7 @@ public function FTDN2(args:Array):void
 	output("\n\nShe’s done with the teasing. Her hips collide with yours in one lust-filled motion.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Next=]
 
 	// end scene (scene: FTDN2); go to (scene: FTDN3)
@@ -566,7 +574,7 @@ public function FTPH1(args:Array):void
 	pc.cockChange();
 
 	processTime(2);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Next=]
 	// end scene (scene: FTPH1); go to (scene: FTPH2)
 	clearMenu();
@@ -587,7 +595,7 @@ public function FTKG1(args:Array):void
 	pc.cockChange();
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Next=]
 	// end scene (scene: FTKG1); go to (scene: FTKG2)
 	clearMenu();
@@ -601,7 +609,7 @@ public function FTKG1(args:Array):void
 public function FTR1(args:Array):void
 {
 	clearOutput();
-	showPaige();
+	showPaige(true);
 	args.push("FTR1");
 	output("You place your hands on Paige’s hips, obstructing her descent, her pussy juice dripping the few inches difference between your face and her. <i>“That hardly seems fair,”</i> you tell her. You use one finger to tweak her clitoris, causing her to sharply inhale in pleasure. <i>“You have some responsibility as the top too, Paige.”</i>");
 	output("\n\nPaige hums in consideration as she gyrates her hips in time with your playing with her clit. <i>“Fair enough, [pc.name].”</i> She lifts her body away from you and your face, then swings one leg over your head to turn herself around. <i>“I wouldn’t be much of a teacher if I didn’t teach by good examples.”</i>");
@@ -619,7 +627,7 @@ public function FTR1(args:Array):void
 	//[=Next=]
 	// end scene (scene: FTR1); go to (scene: FT692)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FT692,args);
 }
@@ -648,7 +656,7 @@ public function FTWP1(args:Array):void
 	//[=Next=]
 	// end scene (scene: FTWP1); go to (scene: FTWP2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTWP2,args);
 }
@@ -686,7 +694,7 @@ public function FT692(args:Array):void
 	output("\n\nThe pleasure you’re giving each other using only your mouths is intense, and after several minutes, it’s clear to you both that you have no intention of stopping, even if it meant something better. The quivering on Paige’s hips get more and more intense the longer you two remain in place, and her devotions to your own hips and crotch become more and more eager and wanting. She’s very close, but she wants nothing more than to taste you, <i>all</i> of you, and she’s doing her level best to hold off until you cum with her.");
 	output("\n\nShe doesn’t wait long...");
 	processTime(6);
-	pc.lust(12);
+	pc.changeLust(12);
 
 	//[=Climax=]
 	// end scene (scene: FT692); go to (scene: FT69E)
@@ -742,7 +750,7 @@ public function FTLH2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FTLH2); go to (scene: FTLE)
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",FTLE,args);
 }
@@ -767,7 +775,7 @@ public function FTGT2(args:Array):void
 
 	output("\n\nShe stops, unable to say any more. You only need to go a few more pumps yourself.");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	//[=Climax=]
 	// end scene (scene: FTGT2), go to (scene: FTCE)
@@ -809,7 +817,7 @@ public function FTST2(args:Array):void
 
 	output("\n\n<i>“Just a bit more, sweet thing,”</i> she says, breathless. Her pace is barely restrained and her hips are shaking in her eagerness to reach her peak. <i>“Cum with me, [pc.name]. Cum with me!”</i>");
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	//[=Climax=]
 	// end scene (scene: FTST2); go to (scene: FTLE)
 	clearMenu();
@@ -863,7 +871,7 @@ public function FTGHI2(args:Array):void
 		output("\n\nThat won’t be a problem: you’re only a few grinds away. And then one less. And then....");
 	}
 	processTime(5);
-	pc.lust(15);
+	pc.changeLust(15);
 	//[=Climax=]
 	// end scene (scene: FTGHI2); go to (scene: FTCE)
 	clearMenu();
@@ -879,17 +887,18 @@ public function FTFH2(args:Array):void
 	output("Paige repositions herself so that her sopping wet sex is directly above your own, and as she does so, she brings her hands up to her face – taking an exaggerated sigh through her nose and then tasting the collected fluids on it");
 	if(!pc.hasGenitals()) output(" (mostly for effect, since any fluids on it are hers)");
 	output(". <i>“I’ll have to have some more of that later,”</i> she says sultrily, and then closes the distance, ");
-	if(pc.hasCock()) output("devouring your [pc.cock] with her body");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) output("devouring your [pc.cock] with her body");
 	else if(pc.hasVagina()) output("meshing your [pc.vagina] with hers");
 	else output("pressing her body against the flat of your crotch");
 	output(".");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) pc.cockChange();
 	output("\n\nYou’re both momentarily paralyzed, but your sensations come to you quickly. The excitement ");
-	if(pc.hasCock()) output("of being inside Paige ");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) output("of being inside Paige ");
 	else if(pc.hasVagina()) output("of grinding and tribbing against Paige ");
 	output("after all that teasing makes you a bit lightheaded, and it takes Paige starting before you to snap you out of it.");
 
 	output("\n\nYou push against her, your movements frenzied; you’re closer to orgasm than you thought, although after all that foreplay, you’re not terribly surprised. ");
-	if(pc.hasCock()) output("Your [pc.cock] throbs with your heart, bulging inside her, massaged by her every muscle and contour");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) output("Your [pc.cock] throbs with your heart, bulging inside her, massaged by her every muscle and contour");
 	else if(pc.hasVagina()) output("Your [pc.vagina] clenches in vain, hungry for Paige’s fingers, or anything");
 	else output("Your time with your lack of genitals has accustomed you to how sexual ‘release’ works in your body, and it’s not far");
 	output(". Paige matches your every aggressive movement, just as ready as you; she says no words but her whimpers are all you need to know how close she is, and she’s close.");
@@ -899,7 +908,7 @@ public function FTFH2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FTFH2); go to (scene: FTLE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTLE,args);
 }
@@ -911,7 +920,7 @@ public function FTFHB2(args:Array):void
 	showPaige(true);
 	args.push("FTFHB2");
 	// Continue here if the PC has a penis
-	if(pc.hasCock())
+	if(pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0))
 	{
 		output("You take your penetration slowly as Paige works between your bodies to align your [pc.cock] into herself – your hands are busy, after all. She lifts her hips and wriggles them forward a bit to get them lined up, and you take the opportunity to twist your digit in her tight anus. The concentrated faces she makes are as funny as they are sexy.");
 		output("\n\nYour [pc.cockHead] sinks past the tight, wet vulva of her cunt, and she stops momentarily to tease you both. You’re not having any of that, though. Your left hand spanks her ass cheek and your right hand drives deeper into the cleft of her butt. She yips in surprise and sinks to your hilt immediately – and then she yips again in passion as she experiences you finally and fully inside her.");
@@ -921,18 +930,21 @@ public function FTFHB2(args:Array):void
 	else
 	{
 		output("You take your penetration slowly as Paige works between your bodies to align her crotch with your own – your hands are busy, after all. She gets lazy in her anally-teased stupor and presses down instead, slowly dragging her leaking pussy from your lower abdomen until it finds its mark at your crotch.");
-		output("\n\nVulva to vulva, clit to [pc.clit], Paige closes her eyes in lust, enjoying the surging heat between you. She goes too slowly for your liking: your left hand spanks her ass cheek and your right hand drives deeper into her butt. She yips in surprise and drives forward an inch – and then yips again in passion as your tribbing sends her to a different place.");
+		if(pc.hasVagina()) output("\n\nVulva to vulva, clit to [pc.clit], Paige closes her eyes in lust, enjoying the surging heat between you.");
+		else if(pc.hasCock()) output("\n\nGrinding against your [pc.cocks], Paige closes her eyes in lust, enjoying the surging heat between you.");
+		else output("\n\nGrinding against your bare loins, Paige closes her eyes in lust, enjoying the surging heat between you.");
+		output(" She goes too slowly for your liking: your left hand spanks her ass cheek and your right hand drives deeper into her butt. She yips in surprise and drives forward an inch – and then yips again in passion as your tribbing sends her to a different place.");
 		// Continue both here
 	}
 	output("\n\nNow that you both have what you both want, you’re not as interested in teasing her butt and slowly withdraw, making a show of it at your knuckles. Once you’re out, you go about the sex with a more vanilla speed. You don’t have much leverage for pushing, but you don’t need a lot to get the reactions you wanted.");
-	output("\n\n<i>“I’m not going to lie, sweet thing,”</i> Paige says, focusing her gaze in your (relative) direction. <i>“I kinda liked it. We’ll have to explore later.”</i>");
+	output("\n\n<i>“I’m not going to lie, sweet thing,”</i> Paige says, focusing her gaze in your " + (paigeBlind() ? "(relative) ":"") + "direction. <i>“I kinda liked it. We’ll have to explore later.”</i>");
 	output("\n\nShe leans her body forward, pressing her boobs to your [pc.chest]. <i>“Would you like that?”</i> she asks lowly while her hips move with a renewed, focused purpose. <i>“You want to ");
-	if(pc.hasCock()) output("shove this thick meat up my ass");
+	if(pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) output("shove this thick meat up my ass");
 	else output("fuck me with the biggest strap-on we can");
 	output("? Get the full yoga-body experience, [pc.name]?”</i>");
 
 	output("\n\nAll the teasing and foreplay has apparently gotten her closer to completion than you realized. Her breathing has quickened and her body is moving at a more telltale pace. <i>“Something to think about. But in the meantime,”</i> she whispers, then sits back up, her knees on either side of your waist and her cunt plowing down onto your");
-	if(pc.hasCock()) output(" rock-hard dick");
+	if(pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) output(" rock-hard dick");
 	else output(" crotch");
 	output(". <i>“There’s something else we need to finish first.”</i>");
 
@@ -941,7 +953,7 @@ public function FTFHB2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FTFHB2); go to (scene: FTCE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTCE,args);
 }
@@ -975,7 +987,7 @@ public function FTDN3(args:Array):void
 	output("\n\nHer body quakes at the news and she rocks atop you once, twice, and a third time, before her body stiffens. You only need one or two more yourself, and then...");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: FTDN3); go to (scene: FTLE)
 	clearMenu();
@@ -999,7 +1011,7 @@ public function FTPH2(args:Array):void
 	output("\n\nShe selfishly stops and you feel her body grow tense, especially around your [pc.cock]. Her body grips you, but you fight her for your own finish, which, as you feel her fluids wash down your dick and splash against your [pc.skinFurScales], is only a pump away...");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: FTPH2); go to (scene: FTCE)
 	clearMenu();
@@ -1029,7 +1041,7 @@ public function FTKG2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FTKG2); go to (scene: FTPFE)
 	processTime(7);
-	pc.lust(14);
+	pc.changeLust(14);
 	clearMenu();
 	addButton(0,"Next",FTPFE,args);
 }
@@ -1041,14 +1053,16 @@ public function FTWP2(args:Array):void
 	showPaige(true);
 	args.push("FTWP2");
 	output("Paige thrusts onto you with authority, claiming you");
-	if(pc.hasCock()) output(" by engulfing you");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) output(" by engulfing you");
 	else if(pc.hasVagina()) output(" by dominating your [pc.vagina] with her own");
+	else output(" by slapping her wet cunt against your heated flesh");
 	output(". The sound of her furry flesh clapping onto your [pc.skinFurScales] reverberates through the room, and then again as she fucks you. You’ll probably be sore later.");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) pc.cockChange();
 
 	output("\n\nPaige straightens her body, bringing both her arms up, her elbows above her head and her hands hooked behind it. She flaunts her perfect, toned body to you: her breasts bounce in front of you, her nipples taunting you to come at them, and she flexes her stomach with her every lift, her fur visibly indenting along her abdominals.");
 	output("\n\n<i>“Tell me how much you like it,”</i> she says huskily, her" + (paigeBlind() ? " blind" : "") + " eyes piercing into yours. <i>“You’re getting what you wanted, [pc.name]. Your sexy yoga teacher is fucking you. She’s got her tits out for you. She’s naked; she’s </i> soaking <i>wet; and she’s all over you. Tell her how much you love being beneath her; how much you’d love to do it again.”</i>");
 	output("\n\nYou repeat everything she says, and more, sprinkling in dialogue about how strong she is and how the dominant attitude suits her. True or not, the words really seem to work for Paige, and with every submissive acquiescence, her grin grows wider and her body becomes tenser. <i>“Aren’t you just the perfect little pet,”</i> she says, gasping out with every bounce. <i>“");
-	if(pc.hasCock()) output("A vibrator would never ask me to keep going or tell me how much they love it");
+	if(pc.hasCock() && pc.cockVolume(0) < paige.vaginalCapacity(0)) output("A vibrator would never ask me to keep going or tell me how much they love it");
 	else if(pc.hasVagina()) output("A hot little bitch for the hot top bitch to play with");
 	else output("The fact you don’t have anything to work with makes it even hotter. Like it’s something else I can dominate you with");
 	output(".”</i> She leans forward, her hands drawing across your torso. <i>“I love all my pets. They make me happy. And I like making them happy.”</i> Her bouncing grows more intense and needy as her breaths come out in heavier draws – all the dominant talk has gotten her very close. <i>“What can I do to make you happy, [pc.name]?”</i>");
@@ -1063,7 +1077,7 @@ public function FTWP2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: FTWP2); go to (scene: FTPFE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",FTPFE,args);
 }
@@ -1127,9 +1141,27 @@ public function FTPFE(args:Array):void
 	if(pc.hasCock())
 	{
 		output("\n\nYou’re about to make it a whole lot messier as you");
-		if(pc.cumQ() <= 349) output("r [pc.cum] erupts from your hard shaft, buried and abused in Paige’s twat. It blasts from your [pc.cockHead] and deep into her, and her body ripples around your length, eager and ravenous for more. Again and again, you give her what she demands, helpless beneath her as you inseminate her. Despite your effort to keep up with her, Paige is still cumming and the pool of her femcum is still growing between you for a few moments after you’ve gone dry.");
-		else if(pc.cumQ() < 1000) output(" erupt inside her, dousing her flaming honeypot with some liquid love of your own. You attempt to count the shots your [pc.cock] makes into her, but you lose focus after four and instead just ride out your shared orgasm. Paige keeps rocking her body on top of you, sucking down load after load with every bounce, and she hums in delight with each warm, flowering bubble within her. Eventually, your backlog is too much for her to fully contain, and a splash of [pc.cum] bursts from her, trickling down the veins of your shaft and coating your lower body.");
-		else output("r immense load ignites in her ovaries, blasting her vaginal walls and deep into her body again and again. Paige’s" + (paigeBlind() ? " blind" : "") + " eyes cross in her head as she takes your fourth load, then your fifth, and then you both quickly lose count; her toned stomach slowly balloons as she absorbs you, and soon that’s also not enough and your [pc.cum] bursts from between your dick lodged in her cunt, adding your spunk to the growing pool of femcum between you. Paige, though, makes no effort to remove herself; she takes every drop as best as she can, and from her blissed-out expression, she loves the sensation.");
+		if(pc.cumQ() <= 349) 
+		{
+			output("r [pc.cum] erupts from your hard shaft, ");
+			if(pc.cockVolume(0) < paige.vaginalCapacity(0)) output("buried and abused in Paige’s twat.");
+			else output("the tip rammed into in Paige’s twat at the last second");
+			output(". It blasts from your [pc.cockHead] and deep into her, and her body ripples around your ");
+			if(pc.cockVolume(0) < paige.vaginalCapacity(0)) output("length");
+			else output("tip");
+			output(", eager and ravenous for more. Again and again, you give her what she demands, helpless beneath her as you inseminate her. Despite your effort to keep up with her, Paige is still cumming and the pool of her femcum is still growing between you for a few moments after you’ve gone dry.");
+		}
+		else if(pc.cumQ() < 1000) 
+		{
+			output(" erupt ");
+			if(pc.cockVolume(0) < paige.vaginalCapacity(0)) output("just as your tip nestles ");
+			output("inside her, dousing her flaming honeypot with some liquid love of your own. You attempt to count the shots your [pc.cock] makes into her, but you lose focus after four and instead just ride out your shared orgasm. Paige keeps rocking her body on top of you, sucking down load after load with every bounce, and she hums in delight with each warm, flowering bubble within her. Eventually, your backlog is too much for her to fully contain, and a splash of [pc.cum] bursts from her, trickling down the veins of your shaft and coating your lower body.");
+		}
+		else 
+		{
+			if(pc.cockVolume(0) < paige.vaginalCapacity(0)) output(" find your tip slipped inside. You");
+			output("r immense load ignites in her ovaries, blasting her vaginal walls and deep into her body again and again. Paige’s" + (paigeBlind() ? " blind" : "") + " eyes cross in her head as she takes your fourth load, then your fifth, and then you both quickly lose count; her toned stomach slowly balloons as she absorbs you, and soon that’s also not enough and your [pc.cum] bursts from between your dick lodged in her cunt, adding your spunk to the growing pool of femcum between you. Paige, though, makes no effort to remove herself; she takes every drop as best as she can, and from her blissed-out expression, she loves the sensation.");
+		}
 		if(pc.balls > 0) output("\n\nYour [pc.balls] tense underneath you, pulling up and squeezing with your every contraction to meet Paige’s voracious quota for more cum. Their mass gets lighter and lighter with each one, giving you an easier time to thrust up into her – if only you weren’t already exhausted, and if Paige would just let you.");
 		if(pc.hasVagina()) output("\n\nYour [pc.vagina] cums as well, cold and lonely, wishing to be abused and battered just like Paige’s. Your [pc.girlCum] adds to the mess spreading around you; your walls wink and compress invitingly for something, <i>anything,</i> to give it a taste of the euphoria Paige is going through, but nobody answers its cry.");
 	}
@@ -1166,6 +1198,11 @@ public function FTCE(args:Array):void
 	// Continue here if PC is male or herm
 	if(pc.hasCock())
 	{
+		if(pc.cockVolume(0) > paige.vaginalCapacity(0))
+		{
+			output("\n\nYou may be too big for a proper fuck, but you're not too big to for Paige to cram your [pc.cockHead] inside at the last moment.");
+			pc.cockChange();
+		}
 		if(pc.cumQ() <= 349) output("\n\nYour hands tense, pulling at her body as your [pc.cock] shoots its heady load deep into her body. Paige purses her lips and flares her nostrils with every pulse of your [pc.cum] she feels you inject into her thirsty canal. <i>“Keep going, sweet thing,”</i> she cheers through a dry mouth, and you comply, giving her every drop you have stored up. She smiles and hums to herself through it all, up until you have nothing left to give.");
 		else if(pc.cumQ() <= 1000) output("\n\nYour fingers dig into her fur and you feel your [pc.cock] inflate inside her, stretching her tunnel to accommodate the sudden girth. Your first bunch nestles deep into her womb, but it grows crowded and stuffed in moments with your quantity. <i>“My, sweet thing,”</i> she says, rocking her hips every time she feels another load inside her, <i>“you were almost as pent up as me. Keep it up, give me all you got.”</i> Despite her confidence, her body, paunch with cum, can’t contain all of you, and your [pc.cum] seeps from her in small rivers around your still-pounding dick. But she’s happy to keep trying.");
 		else output("\n\nYou momentarily lose control over your motor functions as your titanic load bursts from your [pc.cockHead], filling Paige’s body to the brim in moments. <i>“Holy cow,”</i> she laughs, frozen on your body as you helplessly pound another few kilograms of sheer [pc.cum] into her body. The definition in her abs vanish before your eyes, replaced by a paunch of liquid. <i>“Don’t tell me you’ve been saving this for me, sweet thing? Give me all you got~.”</i> Your [pc.cock] bloats again and again with fresh surges of cum in time with your heartbeat, and you have no say whether you wanted to give her everything or not. Despite her confidence, your progeny bursts from the seal of your dick in her pussy as quickly as you deposit them – but, it’s not hurting her, and in fact she’s pretty into it, so you keep going.");
@@ -1208,8 +1245,13 @@ public function FTLE(args:Array):void
 	{
 		if(pc.cumQ() <= 349) output("\n\nYour other hand grabs a fistful of Paige’s ass as you climax into her, shooting your load deep into her loving, thirsty channel. Paige winces and chews her bottom lip as she feels you throb and burst inside of her. <i>“Yes, [pc.name],”</i> she implores; her movement has slowed, only enough to coax out your individual orgasms and liquids, instead using her energy to bask in the glow of your climaxes. <i>“[pc.name], I...,”</i> she says, then stops herself before she says something out-of-turn.");
 		else if(pc.cumQ() <= 1000) output("\n\nPaige huffs deep breaths every time she feels you deposit another heavy load of [pc.cum] into her; your dick gets thicker just before every wad, and she clenches a little tighter after every one. <i>“Yes, [pc.name],”</i> she whispers, begging with her body for you to keep going. Both of your hands clench, your left squeezing her own and your right pulling at her tough skin as your load surges through your [pc.cock] and into her. <i>“Keep it up, sweet thing,”</i> she says, rocking her hips and stiffening with every new shot.");
-		else output("\n\nPaige’s breath and voice catch in her throat as your immense load catches her pleasantly off-guard. Your force and quantity are unrelenting, giving her heaps and heaps of [pc.cum][if (pc.hasBalls = true), your overstuffed [pc.balls] clenching again and again with every new batch");
-		output(". <i>“Wow, [pc.name],”</i> she manages to laugh, her grip on your limp-from-overstimulation hand tightening with every new shot. <i>“Give me all of you, baby. Paige wants it all.”</i> You couldn’t stop the flood if you wanted – not that you want to.");
+		else 
+		{
+			output("\n\nPaige’s breath and voice catch in her throat as your immense load catches her pleasantly off-guard. Your force and quantity are unrelenting, giving her heaps and heaps of [pc.cum]");
+			//if (pc.hasBalls = true)
+			if(pc.balls > 0) output(", your [pc.balls] clenching again and again with every new batch");
+			output(". <i>“Wow, [pc.name],”</i> she manages to laugh, her grip on your limp-from-overstimulation hand tightening with every new shot. <i>“Give me all of you, baby. Paige wants it all.”</i> You couldn’t stop the flood if you wanted – not that you want to.");
+		}
 		if(pc.hasVagina()) output("\n\nYour [pc.vagina] spasms in perfect sync with Paige’s, such to the point that you almost feel like it’s <i>you</i> that’s getting fucked and filled with cum. Every time Paige clenches on you, your pussy mimics her exactly, sucking load after load of empty air but pretending it’s cum anyway. It’s enough to make you cross-eyed.");
 	}
 	// Continue here if the PC is female, and/or has a penis that is too big
@@ -1319,7 +1361,7 @@ public function sexWithPaige():void
 	//[=Vanilla=][=Anal=][=Tribadism=][=Down On You=][=Down On Her=]
 	// end scene (scene: Sex Select)
 	if(!pc.hasCock()) addDisabledButton(0,"Vanilla","Vanilla","You need a penis to have sex with Paige this way!");
-	else if(pc.cLength(0) > paige.vaginalCapacity(0)) addDisabledButton(0,"Vanilla","Vanilla","You might literally split the poor girl in half with your monster! Maybe you should look into some reduction to have sex with Paige this way.");
+	else if(pc.cockVolume(0) > paige.vaginalCapacity(0)) addDisabledButton(0,"Vanilla","Vanilla","You might literally split the poor girl in half with your monster! Maybe you should look into some reduction to have sex with Paige this way.");
 	else addButton(0,"Vanilla",SSVI,undefined,"Vanilla","Just straight, no-nonsense ugly bumping.");
 	if(!pc.hasCock()) addDisabledButton(1,"Anal","Anal","You need a penis to have sex with Paige this way!");
 	else if(pc.cockVolume(0) > paige.analCapacity()) addDisabledButton(1,"Anal","Anal","You need a smaller penis to take the back door. You don’t want to hurt her!");
@@ -1365,7 +1407,7 @@ public function SSVI():void
 	// end scene (scene: SSVI)
 	args.push("SSVI");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Be Bottom",SSVBB,args);
 	addButton(1,"Be Top",SSVBT,args);
@@ -1390,7 +1432,7 @@ public function SSVBB(args:Array):void
 	//[=Kiss Her=][=Spank Her=]
 	// end scene (scene: SSVBB)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVBB");
 	clearMenu();
 	addButton(0,"Kiss Her",SSVKH,args);
@@ -1417,7 +1459,7 @@ public function SSVBT(args:Array):void
 	//[=Doggy Style=][=Missionary=]
 	// end scene (scene: SSVBT)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVBT");
 	clearMenu();
 	addButton(0,"Doggy Style",SSVDS,args);
@@ -1439,7 +1481,7 @@ public function SSVKH(args:Array):void
 	//[=Caress=][=Manhandle=]
 	// end scene (scene: SSVKH)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVKH");
 	clearMenu();
 	addButton(0,"Caress",SSVCa,args);
@@ -1465,7 +1507,7 @@ public function SSVSH(args:Array):void
 	//[=Chew=][=Lick n’ Suck=]
 	// end scene (scene: SSVSH)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVSH");
 	clearMenu();
 	addButton(0,"Chew",SSVCh,args);
@@ -1492,7 +1534,7 @@ public function SSVDS(args:Array):void
 	//[=Rougher=][=Gentler=]
 	// end scene (scene: SSVDS)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVDS");
 	clearMenu();
 	addButton(0,"Rougher",SSVR,args);
@@ -1530,7 +1572,7 @@ public function SSVM(args:Array):void
 	//[=Anvil Position=][=Kiss Her Neck=]
 	// end scene (scene: SSVM)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVM");
 	clearMenu();
 	addButton(0,"Anvil Pos.",SSVAP,args);
@@ -1552,7 +1594,7 @@ public function SSVCa(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVCa); go to (scene: SSVE1)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVCa");
 	clearMenu();
 	addButton(0,"Next",SSVE1,args);
@@ -1572,7 +1614,7 @@ public function SSVMH(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVMH); go to (scene: SSVE2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVMH");
 	clearMenu();
 	addButton(0,"Next",SSVE2,args);
@@ -1593,7 +1635,7 @@ public function SSVCh(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVCh); go to (scene: SSVE2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVCh");
 	clearMenu();
 	addButton(0,"Next",SSVE2,args);
@@ -1612,7 +1654,7 @@ public function SSVLnS(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVLnS); go to (scene: SSVE3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVLnS");
 	clearMenu();
 	addButton(0,"Next",SSVE3,args);
@@ -1635,7 +1677,7 @@ public function SSVR(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVR); go to (scene: SSVE5)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVR");
 	clearMenu();
 	addButton(0,"Next",SSVE5,args);
@@ -1658,7 +1700,7 @@ public function SSVG(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVG); go to (scene: SSVE4)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVG");
 	clearMenu();
 	addButton(0,"Next",SSVE4,args);
@@ -1680,7 +1722,7 @@ public function SSVKHN(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVKHN); go to (scene: SSVE4)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVKHN");
 	clearMenu();
 	addButton(0,"Next",SSVE4,args);
@@ -1703,7 +1745,7 @@ public function SSVAP(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSVAP); go to (scene: SSVE3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSVAP");
 	clearMenu();
 	addButton(0,"Next",SSVE3,args);
@@ -1999,7 +2041,7 @@ public function SSAI():void
 	//[=Gently=][=Raw=][=Prep=]
 	// end scene (scene: SSAI)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Gently",SSAG,args);
 	addButton(1,"Raw",SSAR,args);
@@ -2038,7 +2080,7 @@ public function SSAP1(args:Array):void
 	//[=Gently=][=Keep Prepping=]
 	// end scene (scene: SSAP1)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Gently",SSAG,args);
 	addButton(1,"Keep Going",SSAP2,args);
@@ -2051,7 +2093,7 @@ public function SSAP2(args:Array):void
 {
 	args.push("SSAP2");
 	clearOutput();
-	showPaige();
+	showPaige(true);
 	if(flags["PAIGE_RIMMING"] == 1) flags["PAIGE_RIMMING"] = 2;
 	output("You’re rather content where you are, you decide. Paige’s ass is one of her finer features, and she knows it, constantly showing it off and deliberately taking some lewder yoga poses that really highlights it. The idea of motorboating those tight cheeks and getting a good taste has crossed your mind once or twice.");
 	output("\n\n<i>“Damn,”</i> Paige moans as she feels you press your face deeper into her cleft. <i>“Eager [pc.boyGirl]!”</i> She wiggles her butt, massaging your face with her tight ass as your tongue swipes across her hole and pierces into its clenching center now and again. <i>“You getting comfortable back there, [pc.name]? Don’t forget, that’s only the entrée before the main course.”</i>");
@@ -2065,7 +2107,7 @@ public function SSAP2(args:Array):void
 	//[=Gently=][=Keep <i>“Prepping”</i>=]
 	// end scene (scene: SSAP2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Gently",SSAG,args);
 	addButton(1,"Keep Going",SSAP3,args);
@@ -2090,7 +2132,7 @@ public function SSAP3(args:Array):void
 	//[=Gently=]
 	// end scene (scene: SSAP3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Gently",SSAG,args);
 }
@@ -2131,7 +2173,7 @@ public function SSAG(args:Array):void
 	output(" Paige’s puffy, needy honeypot bounces with the rest of her, right in front of you, and Paige is too busy keeping herself steady to pay attention to it. You could help her out, if you wanted....");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Finger Her=][=Do Nothing=]
 	// end scene (scene: SSAG)
 	clearMenu();
@@ -2165,7 +2207,7 @@ public function SSAR(args:Array):void
 	//[=Wait=][=Pull Her Down=]
 	// end scene (scene: SSAR)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Wait",SSAW,args);
 	addButton(1,"PullHerDown",SSAPHD,args);
@@ -2186,7 +2228,7 @@ public function SSAFH1(args:Array):void
 	//[=Next=]
 	// end scene (scene: SSAFH1); go to (scene: SSAFH2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSAFH2,args);
 }
@@ -2206,7 +2248,7 @@ public function SSADN1(args:Array):void
 	//[=Next=]
 	// end scene (scene: SSADN1); go to (scene: SSADN2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSADN2,args);
 }
@@ -2233,7 +2275,7 @@ public function SSAW(args:Array):void
 	//[=Up Top=][=Down Low=]
 	// end scene (scene: SSAW)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Up Top",SSAUT,args);
 	addButton(1,"Down Low",SSADL,args);
@@ -2262,7 +2304,7 @@ public function SSAPHD(args:Array):void
 	//[=Kiss Her=][=Finger Her=]
 	// end scene (scene: SSAPHD)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Kiss Her",SSAKH,args);
 	addButton(1,"Finger Her",SSAFH3,args);
@@ -2284,7 +2326,7 @@ public function SSAFH2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSAFH2); go to (scene: SSAE1)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSAE1,args);
 }
@@ -2304,7 +2346,7 @@ public function SSADN2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSADN2); go to (scene: SSAE2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSAE2,args);
 }
@@ -2326,7 +2368,7 @@ public function SSAUT(args:Array):void
 	output("\n\nWhich is good, because you’re on the verge of an orgasm yourself.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	//[=Climax=]
 	// end scene (scene: SSAUT); go to (scene: SSAE3)
@@ -2349,7 +2391,7 @@ public function SSADL(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSADL); go to (scene: SSAE2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSAE2,args);
 }
@@ -2371,7 +2413,7 @@ public function SSAKH(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSAKH); go to (scene: SSAE3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSAE3,args);
 }
@@ -2402,7 +2444,7 @@ public function SSAFH3(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSAFH3); go to (scene: SSAE4)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSAE4,args);
 }
@@ -2657,7 +2699,7 @@ public function SSTI():void
 
 	IncrementFlag("SEXED_PAIGE");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	args.push("SSTI");
 	//[=Use Thigh=][=Use Fingers=]
@@ -2708,7 +2750,7 @@ public function SSTUT(args:Array):void
 	output("\n\nAn idea pops into your head: if you act quickly enough, you could change positions by rolling you both over, putting you on top and in charge. Paige <i>is</i> moving a little slowly, after all....");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTUT");
 	//[=Leg Lock=][=Roll Over=]
 	// end scene (scene: SSTUT)
@@ -2750,7 +2792,7 @@ public function SSTUF(args:Array):void
 	//[=Sit Up=][=Spank=]
 	// end scene (scene: SSTUF)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTUF");
 	clearMenu();
 	addButton(0,"Sit Up",SSTSU,args,"Sit Up","");
@@ -2791,7 +2833,7 @@ public function SSTLL(args:Array):void
 	output("\n\nHer head rests on your shoulder, her chin bumping against your collarbone every time she thrusts her cunt upward against yours. She unintentionally offers her neck to you, too lost in her pleasure to consider it or anything but fucking you.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 
 	args.push("SSTLL");
 	//[=Kiss It=][=Bite It=]
@@ -2824,7 +2866,7 @@ public function SSTRO(args:Array):void
 
 	args.push("SSTRO");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Missionary=][=Twist & Straddle=]
 	// end scene (scene: SSTRO)
 	clearMenu();
@@ -2866,7 +2908,7 @@ public function SSTSU(args:Array):void
 	output(".”</i>");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTSU");
 	//[=Grind=][=Spank=][=Stand Up=]
 	// end scene (scene: SSTSU)
@@ -2901,7 +2943,7 @@ public function SSTS1(args:Array):void
 	output(". But she also stops her fucking in order to get this new position. Are you gonna stand for that?");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTS1");
 	//[=Comply=][=Grab Forearms=]
 	// end scene (scene: SSTS1)
@@ -2929,7 +2971,7 @@ public function SSTKI(args:Array):void
 
 	args.push("SSTKI");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: SSTKI); go to (scene: SSTE1)
 	clearMenu();
@@ -2961,7 +3003,7 @@ public function SSTBI(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTBI); go to (scene: SSTE2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTBI");
 	clearMenu();
 	addButton(0,"Next",SSTE2,args);
@@ -2995,7 +3037,7 @@ public function SSTM(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTM); go to (scene: SSTE2)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTM");
 	clearMenu();
 	addButton(0,"Next",SSTE2,args);
@@ -3032,7 +3074,7 @@ public function SSTTANDS(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTT&S); go to (scene: SSTE3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTT&S");
 	clearMenu();
 	addButton(0,"Next",SSTE3,args);
@@ -3068,7 +3110,7 @@ public function SSTG(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTG); go to (scene: SSTE3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTG");
 	clearMenu();
 	addButton(0,"Next",SSTE3,args);
@@ -3092,7 +3134,7 @@ public function SSTS2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTS2); go to (scene: SSTE4)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTS2");
 	clearMenu();
 	addButton(0,"Next",SSTE4,args);
@@ -3129,7 +3171,7 @@ public function SSTStU(args:Array):void
 	// end scene (scene: SSTStU); go to (scene: SSTE3)
 	args.push("SSTStU");
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSTE3,args);
 }
@@ -3184,7 +3226,7 @@ public function SSTC(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTC); go to (scene: SSE4)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTC");
 	clearMenu();
 	addButton(0,"Next",SSTE4,args);
@@ -3218,7 +3260,7 @@ public function SSTGF(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSTGF); go to (scene: SSTE5)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	args.push("SSTGF");
 	clearMenu();
 	clearMenu();
@@ -3508,7 +3550,7 @@ public function SSDY():void
 	output("\n\nShe doesn’t waste any time, getting to work on your crotch, her hands first playing with the thick of your thighs as her mouth inches its way closer, salivating on you as she leans in. She’s clearly all for it. Do you let her go at her own pace, or do you take advantage of her generous offer?");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Let Her=][=Take Control=]
 	// end scene (scene: SSDY)
 	clearMenu();
@@ -3614,7 +3656,7 @@ public function SSDYLH(args:Array):void
 	output("\n\nThe sensation of having Paige’s mouth on you has you clutching at her bedsheets, both in pleasure and in excitement for what more she’s going to do: this is only the beginning, after all. When your knuckles turn white, you realize that you don’t have to be totally still in this experience. You could keep them busy by playing with her hair – or you could offer something else.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Her Hair=][=Offer=]
 	// end scene (scene: SSDYLH)
 	clearMenu();
@@ -3629,7 +3671,9 @@ public function SSDYTC(args:Array):void
 	clearOutput();
 	showPaige(true);
 	args.push("SSDYTC");
-	output("Paige sometimes likes to go on about being dominant or submissive in bed, and how she doesn’t mind being the bottom every once in a while. Seeing her now – in her own unit, on her knees, her mouth inches from your crotch, ready to serve you – you think she might appreciate you taking on a more controlling attitude. You’d be lying if you said you weren’t into that too, of course.");
+	output("Paige sometimes likes to go on about being dominant or submissive in bed, and how she doesn’t mind being the bottom every once in a while. Seeing her now –");
+	if(currentLocation == "PAIGE_HOUSE") output(" in her own unit,");
+	output(" on her knees, her mouth inches from your crotch, ready to serve you – you think she might appreciate you taking on a more controlling attitude. You’d be lying if you said you weren’t into that too, of course.");
 
 	// Continue here if Paige is focusing on the PC’s penis
 	if(args[0] == 1)
@@ -3705,7 +3749,7 @@ public function SSDYTC(args:Array):void
 	//[=Her Hair=][=Her Ears=]
 	// end scene (scene: SSDYTC)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Her Hair",SSDYHH,args);
 	addButton(1,"Her Ears",SSDYHE,args);
@@ -3796,7 +3840,7 @@ public function SSDYHH(args:Array):void
 	output(" You feel kind of lame, gasping in barely-contained self-control as Paige <i>does</i> things to you, and the only thing you’re doing in exchange is running your mitts through her hair. Surely she’d appreciate a few good words on a job well done, at least?");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Tell Her=][=Show Her=]
 	// end scene (scene: SSDYHH)
 	clearMenu();
@@ -3873,7 +3917,7 @@ public function SSDYHE(args:Array):void
 	output("\n\nPaige is really working you over; her mouth is too busy to tell you how much she’s enjoying it, but it’s clear from her actions that your overactive dominant position has energized her as well. You’re appreciative of Paige being beneath you, working you over with her skilled tongue – if she’s showing you just how much she enjoys it, surely you could return the favor and communicate to her just how much you enjoy being above her.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Show Her=][=Jackhammer=]
 	// end scene (scene: SSDYHE)
 	clearMenu();
@@ -3953,7 +3997,7 @@ public function SSDYTH(args:Array):void
 	output(" isn’t far off, and Paige knows it. Your [pc.hips] quiver beneath her, shaking in pleasure, ready to burst into her mouth, and she pulls out every stop to get you there. You remove your hand from her scalp, losing control over your fingers and toes in short order. You look down at Paige, watching her work on you with an intense, hungry fervor. It strikes you with inspiration, but... you’re so close! Do you even bother? Is it worth interrupting Paige?");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Offer=][=Climax=]
 	// end scene (scene: SSDYTH); if [=Climax=], go to (scene: SSDYE)
 	clearMenu();
@@ -4041,7 +4085,7 @@ public function SSDYSH(args:Array):void
 	output(" of your life, and Paige knows it. She hears your heartbeat against her cheeks and in her mouth, assaulted on all angles by your body. Your fingers dig into her head unintentionally and your toes go numb. Her tongue goes overtime on you, covering as much surface as she can with every pass, bringing you closer, and closer, until....");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Climax=]
 	// end scene (scene: SSDYSH); go to (SSDYE)
 	clearMenu();
@@ -4109,7 +4153,7 @@ public function SSDYJH(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSDYJH); go to (scene: SSDYE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSDYE,args);
 }
@@ -4238,7 +4282,7 @@ public function SSDYAG(args:Array):void
  	output("\n\nWell, don’t mind if you do. You shuffle off her bed, turning around and sitting on your knees, wedging yourself between her spread legs. Paige idly tweaks her clit as she waits for you to close the gap between her hungry maw and your own. You could dive right in and fuck the foreplay, of course... but what’s the rush?");
 
  	processTime(5);
- 	pc.lust(10);
+ 	pc.changeLust(10);
 	args.push("SSDH");
  	//[=Tease=][=Dive In=]
 	// end scene (scene: SSDH)
@@ -4268,7 +4312,7 @@ public function SSDHT(args:Array):void
 	//[=In Her Cooch=][=Offer=]
 	// end scene (scene: SSDHT); increase Lust by 20
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"In Her Cooch",SSDHIHC,args);
 	addButton(1,"Offer",SSDO1,args,"Offer","It takes two to tango, after all! Ask Paige if she’s into a bit of 69 action.");
@@ -4323,7 +4367,7 @@ public function SSDHIHC(args:Array):void
 	//[=Get Aggressive=][=Nice & Easy=]
 	// end scene (scene: SSDHIHC); increase Lust by 20
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Get Aggressive",SSDHGA,args);
 	addButton(1,"Nice & Easy",SSDHNANDE,args);
@@ -4349,7 +4393,7 @@ public function SSDHIHA(args:Array):void
 	output("\n\nYou continue your assault, eating her wet box and fucking her butt with your middle finger, wriggling both appendages every which way when they’re deep inside her. Paige is open and vulnerable to anything else you can throw at her. There isn’t much more that comes to mind, other than getting more aggressive with your current course. Well... no, there is <i>one</i> thing. You have a free hand. Women may not have prostates, but they have buttons. Maybe you’ll find out just how wild you can make this for her if you press it.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[=Get Aggressive=][=Push The Button=]
 	// end scene (SSDHIHA)
 	clearMenu();
@@ -4374,7 +4418,7 @@ public function SSDHNANDE(args:Array):void
 	//[=Climax=][=Offer=]
 	// end scene (scene: SSDHN&E); if [=Climax=], go to (scene: SSDHE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Climax",SSDHE,args);
 	addButton(1,"Offer",SSDO2,args,"Offer","There’s nothing saying only one of you has to cum tonight...");
@@ -4398,7 +4442,7 @@ public function SSDHGA(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSDHGA); go to (SSDHE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSDHE,args);
 }
@@ -4431,7 +4475,7 @@ public function SSDHPTB(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSDHPTB); go to (scene: SSDHE)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSDHE,args);
 }
@@ -4469,7 +4513,7 @@ public function SSDHE(args:Array):void
 	//[=Afterglow=]
 	// end scene (scene: SSDHE); go to (scene: SSDHAG)
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",SSDHAG,args);
 }
@@ -4500,7 +4544,7 @@ public function SSDHAG(args:Array):void
 
 	// end scene (scene: SSDYAG); increase Lust by 40; advance clock by one hour; place PC one square outside Paige’s Unit
 	processTime(5);
-	pc.lust(5);//Fen note: already many lust gains on the way here. No need to go crazazle.
+	pc.changeLust(5);//Fen note: already many lust gains on the way here. No need to go crazazle.
 	clearMenu();
 	addButton(0,"Next",moveSouth);
 }
@@ -4542,7 +4586,7 @@ public function SSDO1(args:Array):void
 	output(". Paige winces in pleasure, rocking her hips onto your face to get herself comfy (you’re sure), until she lowers her own mouth and gets to work.");
 
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	// end scene (scene: SSDO1); go to (scene: SSDO2)
 	clearMenu();
@@ -4601,7 +4645,7 @@ public function SSDO2(args:Array):void
 	//[=Climax=]
 	// end scene (scene: SSDO2); go to (scene: SSDO3)
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",SSDO3,args);
 }
@@ -4696,7 +4740,7 @@ public function SSR():void
 	//[=Embrace Her=][=Grab Her Ass=][=Do Nothing=]
 	// end scene (scene: SSR); continue along the First Time path
 	processTime(5);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Embrace Her",FTEH1,args);
 	addButton(1,"Grab Her Ass",FTGHA1,args);

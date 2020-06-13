@@ -334,7 +334,7 @@ public function talkToNehzaraAboutHerMission():void
 	}
 	else output("<i>“Since I’d rather not ask it of my subordinates, and I surely can’t keep any trench wives here with me, I could use someone giving me a little encouragement and relief as I work... someone who can be felt and not seen... like under my desk, perhaps?”</i>");
 	processTime(7);
-	pc.lust(3);
+	pc.changeLust(3);
 	//[Under Desk] [Storage Closet] [Refuse]
 	//(Under Desk is used for cockless PCs and taurs only in this instance, though males/herms can access it later through the main interaction menu upon meeting Nehzara again. Taurs, due to their size, can’t fit in a tight closet and therefore only have access to Under Desk. I may write something for them later, or let Savin do it.)
 	clearMenu();
@@ -352,7 +352,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	showNehzara(true);
 	if(fromMissionTalk)
 	{
-		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it </i>is<i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
+		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it <i>is</i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
 		output("\n\n");
 		if(pc.isNice()) output("<i>“Sure,”</i> you say with a shrug and a smile. It’s obvious that she could use a little release, and you wouldn’t mind getting a taste of some red-ant nectar.");
 		else if(pc.isMischievous()) output("<i>“Why not?”</i> you reply with a wink. <i>“Just promise to be this polite when my head’s between your legs.”</i>");
@@ -447,7 +447,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	//(++Lust, PC can now take the shuttle to Kressia)
 	pc.girlCumInMouth(ppNehzara);
 	pc.exhibitionism(1);
-	pc.lust(35);
+	pc.changeLust(35);
 	processTime(17);
 	flags["SEXED_NEHZARA"] = 1;
 	if(!pc.hasKeyItem("Kressia Pass")) pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
@@ -530,7 +530,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 		else output("I think I know a way to make it work, though.");
 		output("”</i>");
 	}
-	pc.lust(33);
+	pc.changeLust(33);
 	processTime(30);
 	imbibeVenomEffects();
 	clearMenu();

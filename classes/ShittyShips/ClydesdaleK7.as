@@ -43,7 +43,7 @@
 			valuablesSizeRaw = 50;
 			toysSizeRaw = 50;
 
-			shipCapacityRaw = 12;
+			shipCapacityRaw = 14;
 			shipGunCapacityRaw = 2;
 
 			this.a = "the ";
@@ -71,11 +71,11 @@
 			this.shield.hasRandomProperties = true;
 
 			//SPEED / THRUST
-			this.physiqueRaw = 15;
+			this.physiqueRaw = 40;
 			//AGILITY:
-			this.reflexesRaw = 15;
+			this.reflexesRaw = 10;
 			//SENSORS
-			this.aimRaw = 20;
+			this.aimRaw = 35;
 			//SYSTEMS
 			this.intelligenceRaw = 20;
 			//POWER GEN

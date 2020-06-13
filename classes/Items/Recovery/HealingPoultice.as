@@ -88,17 +88,16 @@
 				kGAMECLASS.output("You apply the poultice to your body");
 				if(healing > 0) kGAMECLASS.output(" and instantly feel the alien enzymes go to work");
 				kGAMECLASS.output(".");
-				if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " HP</b>)")
-				target.HP(healing);
+				target.changeHP(healing);
 			}
 			else
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens a healing poultice and uses it");
-				if(healing > 0) kGAMECLASS.output(", closing quite a few wounds. (<b>+" + healing + " HP</b>)");
+				if(healing > 0) kGAMECLASS.output(", closing quite a few wounds.");
 				else kGAMECLASS.output(" to no effect.");
-				target.HP(healing);
+				target.changeHP(healing);
 			}
 			if (inCombat()) target.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			return false;

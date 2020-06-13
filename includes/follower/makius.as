@@ -694,7 +694,8 @@ public function makiusTalkMenu(from:int = -1):void{
 		if (from == 2) addDisabledButton(3, "Pregnancy");
 		else addButton(3, "Pregnancy", makiusTPregnancy);
 	}else addDisabledButton(3, "Pregnancy", "Pregnancy", "You should learn more about Venarian biology first.");
-	addButton(14,"Back", makiusCrewMenu);
+	if (flags["MAKI_IN_CREW"] || hours <= 7 || hours >= 16) addButton(14, "Back", makiusCrewMenu);
+	else addButton(14, "Back", mainGameMenu);
 }
 
 public function makiusTFamily():void{
@@ -1256,7 +1257,6 @@ public function makiusEvict():void{
 		}else{
 			output("move back to the clinic, trying my best to make ends meet. I will start looking for a job closer to Tavros");
 			//TODO make a preg result that removes this exit
-			rooms["RESIDENTIAL DECK 12"].eastExit = "MAKIUS NURSERY HOME";
 			MailManager.unlockEntry("makius_nursery_abandoned_email", GetGameTimestamp() + 1000);
 		}
 		output(".\" He says with a smile on his face, through his lowered ears tell you that he's doing his best to hide the fact that he is sad from being away from you.");
@@ -1297,7 +1297,6 @@ public function makiusEvictJob():void{
 	flags["MAKI_OFFERED_JOB_AT_NURSERY"] = true;
 	flags["MAKI_HOME_SEEN"] = false;
 	flags["MAKI_IN_CREW"] = false;
-	rooms["RESIDENTIAL DECK 12"].eastExit = "MAKIUS NURSERY HOME";
 	addButton(0,"Continue",makiusLeave);
 }
 
@@ -1393,7 +1392,7 @@ public function makiusNurseryGoHome():void{
 public function makiusRoomExtra(buttonID:Number):void{
 	if (!flags["MAKI_IN_CREW"] && (flags["MAKI_STATE"] == 2 || flags["MAKI_OFFERED_JOB_AT_NURSERY"])){
 		output("\n\nTo the east " + (flags["MAKI_OFFERED_JOB_AT_NURSERY"]?"is a cheap apartment with a simple facade. Sleek metallic plates, give it a modern look that shows the owner cares more for efficiency than anything.":"is a decrepit apartment, its facade clearly in a state of disrepair.") + "The notice on the door states that Makius is currently " +  (hours > 7 && hours < 16?(flags["MAKI_OFFERED_JOB_AT_NURSERY"]?"working at the nursery":"out doing odd jobs"):"in the house") + ". The holo-number next to the door reads 126.");
-		if (hours > 7 && hours < 16?) addDisabledButton(buttonID, "Makius' Room", "Makius' Room", "Nobody's home");
+		if (hours > 7 && hours < 16) addDisabledButton(buttonID, "Makius' Room", "Makius' Room", "Nobody's home");
 		else addButton(buttonID, "Makius' Room", makiusRoomEnter);
 	}
 	setNavDisabled(NAV_EAST_DISABLE);
@@ -1469,6 +1468,8 @@ public function makiusNurseryRecruit():void{
 	}else{
 		output("You ask the doctor if he would like to take a break from dealing with " + (ChildManager.numChildren()?"kids, ":"") + "robo nannies and space mumps, so he can come work at your ship again?");
 		output("\n\n");
+		output("\n\n");
+		output("\n\n");
 	}
 }
 
@@ -1488,9 +1489,6 @@ public function makiusNurseryRecruitPressOn():void{
 	output("\n\n\"I'll get my stuff ready…We'll meet back on the ship?\"");
 	output("\n\nYou tell him you'll be there.");
 	flags["MAKI_IN_CREW"] = true;
-	if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"]){
-		rooms["RESIDENTIAL DECK 12"].eastExit = undefined;
-	}
 	addButton(0,"Back", move,"RESIDENTIAL DECK 12");
 }
 

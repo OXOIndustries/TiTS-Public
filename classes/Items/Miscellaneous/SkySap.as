@@ -22,7 +22,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.FOOD;
+			this.type = GLOBAL.POTION;
 			//Used on inventory buttons
 			this.shortName = "SkySap";
 			//Regular name
@@ -238,7 +238,7 @@
 						outputB("regrown your");
 						pc.vaginas[x].hymen = true;
 					}
-					outputB(" hymen. <b>You now have a virgin, [pc.pussyColor] vanae pussy!</b>.");
+					outputB(" hymen. <b>You now have a virgin, [pc.pussyColor] vanae pussy!</b>");
 					pc.shiftVagina(x, GLOBAL.TYPE_VANAE);
 					pc.vaginas[x].vaginaColor = getVanaeAccentColor(pc);
 					changes++;
@@ -330,7 +330,7 @@
 					}
 					outputB(" now " + pc.vaginas[0].vaginaColor + "!</b>");
 					changes++;
-					pc.lust(30);
+					pc.changeLust(30);
 					pc.slowStatGain("libido",2);
 				}
 				//Squirter
@@ -383,7 +383,7 @@
 					outputB("\n\nYou test out your newly filled udders by giving them a quick squeeze. From your [pc.nipples], a six foot stream of milk arcs out and splatters on the ground. <b>You’ve gained a Squirt Attack, when you have enough milk!</b>");
 					//Gain squirt attack
 					changes++;
-					pc.lust(35);
+					pc.changeLust(35);
 				}
 				//Eye Color Change
 				// Eye color is not vanae type.

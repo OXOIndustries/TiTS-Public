@@ -403,7 +403,7 @@ public function gropeVerusha():void
 	output("\n\nHaving gotten what she wants, she turns around and throws you to the direction of the door. You stumble, almost falling on your face. You turn, thinking about giving her a piece of your mind, but she’s already sitting down, her back to you.");
 	output("\n\nYou realize that it’s best for you to back down. Even if you could stand against her in a fight, who knows what kind of aftermath it could cause. So you pick up your pride and walk away.");
 	processTime(8);
-	pc.HP(-1);
+	pc.changeHP(-1);
 	flags["VERUSHA_GROPED"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -455,7 +455,7 @@ public function yesSexWithVerusha():void
 	output("\n\nYou try to do as she says, you really do, but you can’t concentrate with her roaming hands all over your [pc.butt] and [pc.chest]. You manage to husk out a breathless <i>“please.”</i>");
 	output("\n\nShe gives her finger provocative lick before pushing it into your asshole. <i>“That’s what I like to hear.”</i>");
 	processTime(2);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",verushaSexWalkToShip);
 }
@@ -513,10 +513,10 @@ public function verushaSexWalkToShip():void
 		if(pc.exhibitionism() >= 66) output(" Not that you mind, just the thought of the horny raskvel staring at your [pc.ass] gets you hot and bothered.");
 		output(" She keeps wandering around Novahome until she grows bored and heads towards your ship.");
 		pc.exhibitionism(2);
-		pc.lust(10);
+		pc.changeLust(10);
 	}
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	if(rand(6) == 0 && flags["MET_VERUSHAS_FRIEND"] == undefined) addButton(0,"Next",randomMercEncounterWivVerusha);
 	else addButton(0,"Next",verushaInShipPresexFluff);
@@ -540,7 +540,7 @@ public function randomMercEncounterWivVerusha():void
 	output("\n\nAfter walking for a bit longer, the familiar hiss of your ship’s door informs you that you are finally are back at your ship.");
 	pc.exhibitionism(1);
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",verushaInShipPresexFluff);
 }
@@ -566,7 +566,7 @@ public function verushaInShipPresexFluff():void
 
 	//[Sex] (scene chosen at random, rut takes priority over rest of the scenes and heat takes priority over rut)
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",verushaSexRouter);
 }
@@ -767,7 +767,7 @@ public function verushaHeatSex2(x:int):void
 	output(" You’re left standing in your bedroom, naked and leaking cum. You’d best get that shower unless you want to walk around with cum leaking out of your pussy.");
 	processTime(7*60);
 	//Wake up satisfied, whynot!
-	pc.lust(-50);
+	pc.changeLust(-50);
 	verushaQuickwalkOption();
 }
 

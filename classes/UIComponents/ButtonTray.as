@@ -93,6 +93,8 @@
 			this.addChild(_backgroundElem);
 		}
 		
+		private var maxButtonPage:int = 8;
+		
 		/**
 		 * Create all of the main interface buttons present in the Button Tray
 		 */
@@ -105,7 +107,7 @@
 			var btnY:int = -149;
 			
 			var vPad:int = 8;
-			var hPad:int = 9.5;
+			var hPad:int = 9;
 			
 			for (var btn:int = 0; btn < 15; btn++)
 			{
@@ -133,7 +135,9 @@
 				newBtn.addEventListener(MouseEvent.CLICK, _buttonHandlerFunc);
 			}
 			
-			for (var btnD:int = 0; btnD < 60; btnD++)
+			var btnD:int = 0;
+			var btnLim:int = (15 * maxButtonPage);
+			for (btnD = 0; btnD < btnLim; btnD++)
 			{
 				_buttonData.push(new ButtonData());
 			}
@@ -211,7 +215,7 @@
 					{
 						var newButtonPage:int = Math.ceil((lastButtonIndex + 1) / 15);
 						if (newButtonPage < 1) newButtonPage = 1;
-						if (newButtonPage > 4) newButtonPage = 4;
+						if (newButtonPage > maxButtonPage) newButtonPage = maxButtonPage;
 						if (_buttonPage > lastButtonPage && newButtonPage < lastButtonPage) _buttonPage = newButtonPage;
 					}
 					i = -1;
@@ -239,7 +243,7 @@
 		
 		public function execButtonPageNext():void
 		{
-			if (_buttonPageNext.isActive == false || buttonPage >= 4) return;
+			if (_buttonPageNext.isActive == false || buttonPage >= maxButtonPage) return;
 			
 			buttonPage++;
 			
@@ -277,7 +281,14 @@
 					// Disabled buttons have no function
 					if (bd.func == null)
 					{
-						_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
+						if (bd.itemQuantity != 0 || (bd.tooltipComparison != null && bd.tooltipComparison.length > 0))
+						{
+							_buttons[i].setItemDisabledData(bd.buttonName, bd.itemQuantity, bd.stackSize, bd.tooltipHeader, bd.tooltipBody, bd.tooltipComparison);
+						}
+						else
+						{
+							_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
+						}
 					}
 					else
 					{
@@ -311,6 +322,9 @@
 			resetButtonColours();
 			clearButtonData();
 			clearGhostButtons();
+			
+			buttonPage = 1;
+			
 			CheckPages();
 		}
 		
@@ -451,6 +465,7 @@
 			_buttonData[slot].itemQuantity = quantity;
 			_buttonData[slot].stackSize = stackSize;
 			_buttonData[slot].tooltipComparison = ttComparison;
+			//CheckPages();
 		}
 		
 		/**

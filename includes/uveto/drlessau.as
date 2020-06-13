@@ -1,4 +1,7 @@
 // The Island of Doctor Lessau
+//LESSAU_FROSTWYRM_QUEST null = not started, 0 talked to lessau, 1 sample collected, 2 sample delivered, 3 completed
+//LESSAU_FROSTWYRM_TFTIMER timer to send the email for the tf being reader
+//FROSTWYRM_TF_UNLOCKED = 1 unlocks tf
 
 public function drLessauBonus():Boolean
 {
@@ -101,6 +104,11 @@ public function drLessauShop():void
 		if(!chars["DRLESSAU"].hasItemByClass(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
 	}
 	else chars["DRLESSAU"].destroyItemByClass(OrangePill, -1);
+	if (flags["UVETO_DEEPSEALAB_QUEST"] == 5)
+	{
+		if(!chars["DRLESSAU"].hasItemByClass(CrackleJelly)) chars["DRLESSAU"].inventory.push(new CrackleJelly());
+	}
+	else chars["DRLESSAU"].destroyItemByClass(CrackleJelly, -1);
 	if (flags["FROSTWYRM_TF_UNLOCKED"] != undefined)
 	{
 		if(!chars["DRLESSAU"].hasItemByClass(FrostwyrmIchor)) chars["DRLESSAU"].inventory.push(new FrostwyrmIchor());
@@ -123,6 +131,11 @@ public function drLessauTalkMenu():void
 	addButton(0, "Why Here", drLessauWhyHere, undefined, "Why Here", "Ask Lessau what the head of the biotech division is doing out on Uveto.");
 	addButton(1, "Knew Dad", drLessauKnewDad, undefined, "Knew Dad", "It sounds like Lessau knew your dad pretty well.");
 	addButton(2, "Chimera", drLessauWTFRU, undefined, "Chimera", "You’ve never really seen anything quite like the doctor before.");
+	if (flags["UVETO_DEEPSEALAB_QUEST"] == 0) addButton(3, "ResearchShaft", drLessauResearchShaft, undefined, "Research Shaft", "Ask Lessau about the sealed research shaft you’ve seen.");
+	else if (flags["UVETO_DEEPSEALAB_QUEST"] == 1) addDisabledButton(3, "ResearchShaft", "Research Shaft", "You were already given permission to enter the lab.");
+	if (flags["UVETO_DEEPSEALAB_QUEST"] >= 4 && flags["FROSTWYRM_NOT_HOSTILE"] >= 2 && flags["LESSAU_FROSTWYRM_QUEST"] == undefined ) addButton(4, "Frostwyrm", drLessauFrostWyrm, undefined, "Frostwyrm", "You wonder if Lessau can tell you anything about the frostwyrm...");
+	else if (flags["LESSAU_FROSTWYRM_QUEST"] == 0) addDisabledButton(4, "Frostwyrm", "Frostwyrm", "You have already talked about the frostwyrm.");	
+	else if (flags["LESSAU_FROSTWYRM_QUEST"] == 1) addButton(4, "Frostwyrm", drLessauFrostWyrmGiveSample, undefined, "Frostwyrm", "Give Dr Lessau the sample you collected.");
 	
 	addButton(14, "Back", drLessauMainMenu);
 }
@@ -155,7 +168,7 @@ public function drLessauKnewDad():void
 	output("\n\n<i>“You make it sound like she’s property,”</i> you reply. Lessau fixes you with as serious a look as you’ve ever seen from anyone.");
 	output("\n\n<i>“You don’t leave Xenogen, [pc.name]. Not if they find you useful, or if you grow too knowledgeable about what they do behind closed doors.");
 	//Done the M'henga or Myrellion Xenogen quests
-	if (flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1 || flags["NEVRIE_QUEST"] == 2) output(" I would caution you against doing any more for them than you already have, or you too may find yourself considered an asset too important to let roam free.");
+	if (flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1 || flags["NEVRIE_QUEST"] == 2 || flags["NEVRIE_QUEST"] == 3) output(" I would caution you against doing any more for them than you already have, or you too may find yourself considered an asset too important to let roam free.");
 	output("”</i>");
 	output("\n\nLessau lets the statement hang, seemingly unwilling to go into more lurid detail. The moment eventually passes, and Lessau returns to his story after a moment to collect himself.");
 	output("\n\n<i>“At the time Steele Tech was mostly a mining company. The biotechnology division was woefully underdeveloped and underfunded, so we began from almost nothing. Between Victor’s generous funding and some fortunate breakthroughs, we’ve managed to develop at a brisk pace since then. We even bought the rights to a terran transformative and improved it. Sadly it did little to help Victor’s condition, but it proved the commercial viability of our department as well. Sales of Humana+ have been brisk... or Terran Treats, as I gather most people call them.”</i> Lessau grumbles a bit at the mention of the more popular name.");
@@ -563,7 +576,9 @@ public function steeleBiomedGangbangII():void
 	author("Couch");
 	
 	output("Distracted by your indulgence, you give a muffled grunt of surprise as " + (!metWalt() ? "the wolf" : "Walt") + " slips your remaining gear off to get at your [pc.hips]. A sweep of his tongue along your [pc.vagOrAss] makes you shiver, prompting him to keep going, each lick digging a little deeper in.");
-	output("\n\nMore of their coworkers join in now, assisting " + (!metCynthia() ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, " + (pc.hasTail() ? "your tail, " : "") + "" + (pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
+	output("\n\nMore of their coworkers join in now, assisting " + (!metCynthia() ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, ");
+	if(pc.hasTail()) output("your tail" + (pc.tailCount > 1 ? "s":""));
+	output((pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
 	output("\n\n<i>“Alright, alright, let’s not crowd " + pc.mf("him", "her") + ",”</i> the minotauress says after a bit of this. <i>“You’ll all get a turn, let’s do this all nice and orderly-like.”</i> She looks down at you with a grin as the rest of her coworkers draw back a bit."); 
 	if (!metCynthia()) output("<i>“Name’s Cynthia, by the way. Pleasure to meet you, boss.”</i>");
 	
@@ -645,4 +660,104 @@ public function steeleBiomedGangbangIII():void
 	processTime(140);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu)
+}
+//unlocks the elevator for the deepsea lab quest
+public function drLessauResearchShaft():void
+{
+	clearOutput();
+	showLessau();
+	var frostwyrmWins:int = 0;
+	if (flags["FROSTWYRM_VICTORY_COUNT"] != undefined && flags["FROSTWYRM_VICTORY_COUNT"] > 0) frostwyrmWins += flags["FROSTWYRM_VICTORY_COUNT"];
+	
+	output("You ask Lessau about the sealed research shaft you’ve seen. The mention of it makes Lessau noticeably nervous.");
+	output("\n\n<i>“That was sealed just before you arrived, in fact. We’re waiting on a hazard team to arrive to address the situation.”</i>");
+	output("\n\n<i>“Oh? What situation?”</i> you ask, your curiosity now piqued. Lessau freezes, growls at himself, then sighs.");
+	output("\n\n<i>“A short time before you arrived, there was an accident that damaged the casing of one of our deepsea facility’s power conduits. That in itself was an inconvenience, if a hazardous one to the native life. However, before it could be repaired it drew the attention of one of the native bioforms, a minor predator of small fish, that began feeding on the electricity from the exposed conduit. Within minutes it bloated to enormous size and broke into the facility to begin drawing on the generator directly. We managed to evacuate, but as we did Typhon, the station’s AI, reported that he was being attacked as well. I don’t know what kind of condition he or the facility are in now. All reports from down there have stopped.”</i>");
+	output("\n\nYou ask if you can go down to check it out yourself. You <i>are</i> kind of in the adventuring business, after all. Lessau looks aghast, even if he’s not surprised.");
+	output("\n\n<i>“Absolutely not! We have no idea what the situation is down there, it would be insane to let you go.”</i>");
+	output("\n\nYou point out that if the creature was growing that rapidly, they might not have time for the hazard team to arrive now. You’re here now, and you’re pretty undeniably badass.");
+	if (frostwyrmWins > 0)
+	{
+		output(" You beat the frostwyrm, after all.");
+		if (frostwyrmWins > 1) output(" " + num2Text(frostwyrmWins,true)+ " times!");
+	}
+	output(" Lessau sighs at this rationale.");
+
+	output("\n\n<i>“Just like your father...if you’re going to go, make sure you bring some kind of thermal or freezing weaponry. The creature’s adapted to the ocean floor, it will be used to relatively stable temperatures compared to most life on this planet. I’ll authorize you for permission, but be warned that you likely won’t be able to return until you’ve dealt with the situation. Stay safe, [pc.name], I have no desire to lose you over this.”</i>");
+	output("\n\nYou assure Lessau that you’ll be fine, giving him a thumbs-up as you leave his office. Time to go check out the research shaft.");
+		
+	flags["UVETO_DEEPSEALAB_QUEST"] = 1;
+	
+	processTime(5);
+	
+	drLessauTalkMenu();
+}
+//starts the frostwyrm tf quest
+public function drLessauFrostWyrm():void
+{
+	clearOutput();
+	showLessau();
+	
+	output("You ask Lessau about the frostwyrm, the planet’s apex predator.");
+	output("\n\n<i>“Ah, those...I can’t tell you how much I’ve wanted a blood sample from them. Unfortunately, based on what native legends say of it, the blood crystallizes shortly after being exposed to the air, or on the creature’s death the moment its psionic field breaks down. We know it possesses an enormous amount of savicite in its bloodstream, and its DNA would be immediately ruined by the crystallization. In order to get a sample you would have to subdue...one...alive.”</i>");
+	output("\n\nThe chimeric doctor trails off and sighs, using one of his hands to facepalm. <i>“And now you’re going to go do it, aren’t you.”</i>");
+	output("\n\nYou just whistle innocently.");
+	output("\n\n<i>“Well, I certainly can’t stop you, so here.”</i> Lessau taps at his console for a few moments, summoning a drone which hands you an object a bit like a metal frisbee with a glass dome in the middle. <i>“Take this sample extractor. Apply it to an open wound and let it fill up, it will extract the blood sample and apply regenerative foam to the injury. Hopefully that will keep it somewhat pacified. If you do decide to face it, be careful. I would hate to lose you over this.”</i>");
+	output("\n\nYou tell the doctor that you’ll do your best, putting the extractor away.");
+	output("\n\n");
+	
+	flags["LESSAU_FROSTWYRM_QUEST"] = 0;
+	pc.createKeyItem("Blood Extractor", 0, 0, 0, 0, "");
+	processTime(5);	
+	drLessauTalkMenu();
+}
+//give the frostwyrm sample to get the tf created
+public function drLessauFrostWyrmGiveSample():void
+{
+	clearOutput();
+	showLessau();
+	
+	output("You place the filled extractor on Lessau’s desk as you walk in, a triumphant grin on your face. Lessau for his part looks downright stunned.");
+	output("\n\n<i>“You continue to amaze me, [pc.name].”</i> Lessau manages after a bit. <i>“I’ll have this looked at right away.”</i>");
+	output("\n\nYou also inform Lessau about the frostwyrm’s telepathy, which if anything is even more shocking to him than the blood sample.");
+	output("\n\n<i>“You mean to tell me these creatures are sapient? No hunter has had communication with a frostwyrm before now, we’ve only been able to guess at their level of intelligence. If they can communicate at a humanoid level, it changes things greatly.”</i>");
+	output("\n\n<i>“I’m sure the whole team will be ecstatic to work on this project, but we will need some time to process the sample and develop a transformative agent. I’ll ensure you’re notified immediately.”</i>");
+	
+	flags["LESSAU_FROSTWYRM_TFTIMER"] = GetGameTimestamp();
+	flags["LESSAU_FROSTWYRM_QUEST"] = 2;
+	pc.removeKeyItem("Vial of Frostwyrm Blood");
+	processTime(5);	
+	drLessauTalkMenu();
+}
+	
+//does frostwyrm tf email need to be sent
+public function drLessauFrostWyrmCheckToReceiveEmail(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if (flags["LESSAU_FROSTWYRM_TFTIMER"] != undefined)
+	{
+		if (GetGameTimestamp() > (flags["LESSAU_FROSTWYRM_TFTIMER"] + (24 * 60)))
+		{
+			var timestamp:int = GetGameTimestamp() + deltaT;
+			flags["LESSAU_FROSTWYRM_TFTIMER"] = undefined;
+			flags["LESSAU_FROSTWYRM_QUEST"] = 3;
+			flags["FROSTWYRM_TF_UNLOCKED"] = 1;
+			
+			resendMail("lessau_frostwyrm_tf", timestamp);
+		}
+	}	
+}
+//frostwyrm tf email
+public function drLessauFrostwyrmTFEmail():String
+{
+	var eText:String = "";
+	
+	eText += "[pc.name],"
+	eText += "\n\nI’m pleased to inform you that the clinical trials for Frostwyrm Ichor have begun, and the test subjects are delighted with the results. You can come acquire some from my office whenever you like."
+	eText += "\n\nI’ve reached out to Anyxine about opening diplomacy with the frostwyrms in light of their sapient status. It may be difficult, not to mention dangerous, but their sheer power and what knowledge they may possess of this planet’s secrets make the possibility of an alliance too tempting to resist. If you discover any information that may be of assistance, feel free to speak to either of us about it."
+	eText += "\n\nI’ve also sent a memo to corporate informing them of your contribution. They are very impressed with you, [pc.name]. Keep up the good work."
+	eText += "\n\nDr. Lessau"
+	eText += "\nHead Researcher, Uveto"
+	eText += "\nSteele Tech Biomedical Division"
+	
+	return doParse(eText);
 }

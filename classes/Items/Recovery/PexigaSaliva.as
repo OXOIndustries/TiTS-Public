@@ -69,17 +69,17 @@
 				kGAMECLASS.clearOutput();
 				//Consume:
 				kGAMECLASS.output("You knock back the gooey, sweet-tasting stuff with ease, finding it more than palatable to your tongue. It tingles pleasantly on your taste buds as it invigorates you.");
-				if(healing > 0) kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff? (<b>+" + healing + " Energy</b>)");
-				target.energy(healing);
+				if(healing > 0) kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff?");
+				target.changeEnergy(healing);
 			}
 			else
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens a vial of pexiga saliva and drinks it");
-				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost.");
 				else kGAMECLASS.output(" to no effect.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			return false;
 		}

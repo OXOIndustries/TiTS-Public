@@ -562,7 +562,7 @@ public function jesseFirstTeaseII(title:int):void
 
 	pc.createStatusEffect("Jesse Bar Cooldown",0,0,0,0,true,"","",false,60*12);
 	flags["JESSE_TEASE_STATE"] = 1;
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -639,7 +639,7 @@ public function jesseSecondTeaseII():void
 	output("\n\nYou empathise with her, telling her she did well. She did as you commanded, more or less. Before she removes herself, you manage to get in a quick peck on her cheek, causing it to flush pink and puff up. She doesn’t say much but you can tell by the way she looks at you, the way she ambles away with a small swing in her hips, and the slovenly kiss she blows you that she wouldn’t mind seeing you again.");
 	output("\n\nAs she heads off to the guest rooms, you reorganize yourself, dust your body down and get back to the ship.");
 
-	pc.lust(30);
+	pc.changeLust(30);
 	moveTo("SHIP INTERIOR");
 	flags["JESSE_TEASE_STATE"] = 2;
 	processTime(10);
@@ -1169,7 +1169,7 @@ public function jesseSexBagOTricksRelease(x:int = -1):void
 	output("\n\nOnce she’s finished, she gathers her bag, blows you a kiss, and leaves for the station.");
 
 	processTime(60 + rand(15));
-	pc.lust(100);
+	pc.changeLust(100);
 
 	clearMenu();
 	addButton(0,"Next",jesseSexEnd);
@@ -1203,7 +1203,7 @@ public function jesseSexBagOTricksContinue(x:int = -1):void
 	output("\n\n<i>“Owwwww, ow ow,”</i> she complains, rubbing her elbows. You can’t help but chuckle at it. While she very gingerly redresses, taking extra time with her tight boxers, and tries to take her distracted gaze away from you, there’s a window to repack her bag with the used toys. Once it’s packed she lifts it by the shoulder and blows you a kiss. With a mutual wave, she leaves the ship.");
 
 	processTime(60 + rand(15));
-	pc.lust(100);
+	pc.changeLust(100);
 
 	clearMenu();
 	addButton(0,"Next",jesseSexEnd);
@@ -1214,8 +1214,8 @@ public function jesseSexTrapFunI():void
 	clearOutput();
 	author("SoAndSo");
 	showJesse(true);
-
-	output("\Before you come to answer, Jesse raises her hand.");
+	var x:int = largestCockIndexThatFitsJessesAss();
+	output("Before you come to answer, Jesse raises her hand.");
 	output("\n\n<i>“Uhh, oh, um... feel free to shoot this idea down b-but I’ve a fun little toy I haven’t been able to use yet,”</i> she begins, fidgeting with her wrists. <i>“And well, I-I just wanted to do something less... rigid and more mutual, I s’pose.”</i>");
 	output("\n\nYou’re definitely listening: it’d be a fun turnaround at least. But first, you ask what her <i>real</i> reasoning is considering that she has a history of... obfuscating, to put it tactfully.");
 	output("\n\nWith her face turning away from yours and her fidgeting moving to her neck, she bites her lower lip. <i>“W-well, I think we’re not that different in some ways a-and you’re really cute. Those [pc.eyes]... and those [pc.hips]. Just want to... not stop touching you all over. I really like the sissy thing...”</i>");
@@ -1240,15 +1240,15 @@ public function jesseSexTrapFunI():void
 	output(" Your prostate thanks you all the way: tingly, sharp, and pleasurable sensations fill your lower body in spite of your hole bearing the stretch.");
 	output("\n\nWhen you make it to the base, there’s a few moments to take in what’s before you: Jesse happily sitting on a bright pink fake cock with the most red - faced grin you’ve seen from her. Then there’s you, perversely impaled in the same way...");
 	if (pc.biggestCockLength() > 13) {
-		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10\" fempecker in the middle, dwarfing it in size. Her femdink gets bent by the sheer amount of your dick mass! ");
+		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesse's 10\" fempecker in the middle, dwarfing it in size. Her femdink gets bent by the sheer amount of your dick mass! ");
 		if (silly) output("HO HO HO, MERRY DICKMAS. ");
 		output("Jesse giggles as she watches the meat rod mess. <i>“Mmm, Steele’s monster cock...”</i> she coos.");
 	}
 	else if (pc.biggestCockLength() > 8) {
-		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10\" fempecker in the middle, two twin sizes rubbing their heads together. How cute! <i>“Mmm, I love twin touching tips,”</i> giggles Jesse, her femcock twitching and pushing against yours.");
+		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesse's 10\" fempecker in the middle, two twin sizes rubbing their heads together. How cute! <i>“Mmm, I love twin touching tips,”</i> giggles Jesse, her femcock twitching and pushing against yours.");
 	}
 	else {
-		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10\" fempecker in the middle but is immediately dwarfed by her size. Her slender pecker lilts against your " + pc.cockDescript(x) + ". <i>“Mmmmhaha, look at it! So </i>cute<i>!”</i> she giggles, trying very hard not to belly laugh. <i>M-mean...</i>");
+		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesse's 10\" fempecker in the middle but is immediately dwarfed by her size. Her slender pecker lilts against your " + pc.cockDescript(x) + ". <i>“Mmmmhaha, look at it! So </i>cute<i>!”</i> she giggles, trying very hard not to belly laugh. <i>M-mean...</i>");
 	}
 	output("\n\nStill giggling, Jesse grabs and lubes the insides of the onahole. It’s a pretty robust one, made of some ultra-flexible plastic...? Hard to say. Once she’s done liberally lubing the entrance, she holds it over your tip-touching meat spears. It’s an interesting feat on her part for her skinny fingers hold her femcock and your [pc.cockNounSimple] in one hand lock.");
 	output("\n\n<i>“Ready?”</i> she asks, pursing her mouth so that her ruby-flushed cheeks bulge <i>just</i> so.");
@@ -1266,7 +1266,7 @@ public function jesseSexTrapFunII():void
 	showJesse(true);
 
 	output("You give her a quick nod, your eyes focused on the dual meat-sticks in the strumpet’s hand. The grinding urethra send little pulses of discomfort through your [pc.cockNounSimple] and into your tender loins.");
-	if (silly) output(" So much at steak, Liara, I fckn <i>lurv</i> steak.");
+	//if (silly) output(" So much at steak, Liara, I fckn <i>lurv</i> steak.");
 	output("\n\nThat’s all the window she needs. Jesse hammers down the long, thick fake-hole and it envelopes both of your rods! Immediately, the slippery smooth tightness binds both cocks together with very little effort. <i>Fuck</i>, it’s not just tight but hot too: almost like the real thing!");
 	output("\n\nYou both moan loudly as it sinks further and further down. The onahole stretches out to accommodate both of your lengths: the very furthest depths feels so natural for your [pc.cockHead]!");
 	output("\n\nJesse is already bordering on insensate babbling, her pretty pink tongue lolling around her mouth like an over-excited ausar.");

@@ -145,7 +145,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 		else output("Y-you’re Tuuva’s friend from the other day, right?");
 		output("”</i> You nod, a sense of worry bubbling up in your gut, one that’s justified by his next words. <i>“");
 		if(!korgiTranslate()) output("S-she gone, big snow slide! Tuuva save me, but she fall in big hole. We make look parties, but none find yet. Please help!");
-		else output("W-we lost her. I few of us got caught in an avalanche. Tuuva managed to save me, and the rest got out alright, but she fell down into a hole that was uncovered by the shaking. We’ve sent out search parties, but none of them have found her yet. Please, help find her, you’re her friend after all!");
+		else output("W-we lost her. A few of us got caught in an avalanche. Tuuva managed to save me, and the rest got out alright, but she fell down into a hole that was uncovered by the shaking. We’ve sent out search parties, but none of them have found her yet. Please, help find her, you’re her friend after all!");
 		output("”</i>");
 
 		output("\n\nWell great, turns out you’re clairvoyant, but only about the worst shit! Looks like you’re going to need to track Tuuva down. You ask for more information about where she could be, but all he tells you that she probably fell into an underground cave system, and that those can span a few miles. He <i>does</i> give you a medical kit for when you do find her, so that’s something at least.");
@@ -980,7 +980,7 @@ public function tuuvaSex25Event():void
 	output("\n\n<i>“P-please...”</i> She whimpers out, and you decide that she’s had enough teasing.");
 	output("\n\nHow do you take her?");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	//Show Sex Menu
 	tuuvaSexMenu();
 }
@@ -1458,7 +1458,7 @@ public function fuckTuuva(x:int = 0):void
 	if(y < 0) output("pussy");
 	else output("holes");
 	output(" with as much force as you can, causing the bed to shake under you. You jackhammer in and out of her with no regard for her own pleasure, which, ironically, seems to be turning her on even more. Arcs and splashes of girl-juice fly out of her increasingly upraised booty with each thrust you make, turning the bed into a musky swamp of sexual fluids.");
-	output("\n\nAs your wild fuck grows more intense, you start dragging her more upright, plowing her face directly into the sheets soaked by her own juices. You even yank her tail as you drag her up. You’d probably stop if it didn’t make her moan out; seems like she’s a bit of masochist. You decide to take advantage of this, slowing down your feral thrusts just enough that you can get some slaps in on her tawny-furred booty");
+	output("\n\nAs your wild fuck grows more intense, you start dragging her more upright, plowing her face directly into the sheets soaked by her own juices. You even yank her tail as you drag her up. You’d probably stop if it didn’t make her moan out; seems like she’s a bit of masochist. You decide to take advantage of this, slowing down your feral thrusts just enough that you can get some slaps in on her tawny-furred booty.");
 	output("\n\nHer ");
 	if(y < 0) output("pussy convulses");
 	else output("sloppy holes convulse");
@@ -1842,7 +1842,7 @@ public function pbcookie4Tuuva():void
 	IncrementFlag("TUUVA_COOKIES");
 	pc.createStatusEffect("Tuuva Pooped");
 	pc.setStatusMinutes("Tuuva Pooped",35);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

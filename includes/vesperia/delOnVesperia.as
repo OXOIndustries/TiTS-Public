@@ -331,7 +331,7 @@ public function bodyShotsWithDel():void
 	if(pc.hasCock()) output("\n\nOh yeah. You’re coming for that ass next.");
 
 	processTime(25);
-	pc.lust(33);
+	pc.changeLust(33);
 	pc.imbibeAlcohol(42);
 	addLoveyDoveWithAlcohol();
 	pc.credits -= 100;
@@ -520,7 +520,7 @@ public function fuckDelsAss():void
 	output("\n\n<i>“Go on,”</i> Del coos, wiggling her hips enticingly as your crown presses into her dark star, practically being drawn in by her well-used hole, <i>“I’m soooo ready for it. Ram it on in!”</i>");
 
 	processTime(21);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",delGetsButtplowedAtKallysPart2,x);
 }
@@ -945,7 +945,7 @@ public function delSlootybuttTrainingJr():void
 	showDel(true);
 	author("Savin");
 	output("You cast a glance over your shoulder to watch your impromptu audience start shuffling in from the bar, gratified to see several tented trousers among the gathering of humans, ‘taurs, and a smattering of other core-ward races. Now for a little audience participation...");
-	output("\n\nYou reach back and give yourself a slap on the ass, drawing a sharp breath at the gratifying snap of pain, and the motion of your jiggling cheeks as they recoil from the blow. Your hand moves in, spreading your cheeks wide so everyone can get a good look at your [pc.asshole], shamelessly on display and already craving cock. You can <i>feel</i>the need in your loins and hole, hungry for the familiar taste of cock inside you, pounding you into the steamy, unforgiving wood of the bench, stretching your slutty hole wide open.");
+	output("\n\nYou reach back and give yourself a slap on the ass, drawing a sharp breath at the gratifying snap of pain, and the motion of your jiggling cheeks as they recoil from the blow. Your hand moves in, spreading your cheeks wide so everyone can get a good look at your [pc.asshole], shamelessly on display and already craving cock. You can <i>feel</i> the need in your loins and hole, hungry for the familiar taste of cock inside you, pounding you into the steamy, unforgiving wood of the bench, stretching your slutty hole wide open.");
 	output("\n\nYour mouth is watering. And oh <i>god</i> is your cock hard.");
 	output("\n\n<i>“Come on already,”</i> you whisper to Del with another wiggle of your [pc.hips]. <i>“They’re waiting!”</i>");
 	output("\n\n<i>“Sorry, I was hypnotised for a second there!”</i> the whorish bartender says with a lascivious smile, slipping down onto her knees behind you and spreading your cheeks open with her hands. You give a little shudder of pleasure as Delilah’s tongue slurps along from the ");

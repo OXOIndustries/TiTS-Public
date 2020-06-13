@@ -36,6 +36,8 @@ public function showZilTwins(nekkidTetra:int = 0, nekkidMica:int = 0, tetraInFro
 
 public function zilTwinsEsbethBonus():Boolean
 {
+	//Vday
+	if(biancaVDayHook()) return true;
 	if (pc.level >= 2 && flags["ENCOUNTERED_ZIL"] && pc.hasGenitals() && !pc.isTaur() && flags["ZILTWINS_MET"] == undefined && pc.hasGenitals() && rand(5) == 0) 
 	{
 		zilTwinsInitialEncounter();

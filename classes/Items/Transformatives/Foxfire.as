@@ -580,7 +580,7 @@ package classes.Items.Transformatives
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_FEATHERS)
 				{
-					AddLogEvent("A sudden itchiness spurts out from the bast of your feather quills. As you brush the area, most of your feathers fall away, as though you are entering a severe molting cycle. Rather than new feathers growing in their place, the skin underneath softens, and the holes that your feathers grew from shrink out of sight. Soon, your coat of feathers falls away, leaving <b>you with a set of healthy human-like skin!</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					AddLogEvent("A sudden itchiness spurts out from the bast of your feather quills. As you brush the area, most of your feathers fall away, as though you are entering a severe molting cycle. Rather than new feathers growing in their place, the skin underneath softens, and the holes that your feathers grew from shrink out of sight. Soon, your coat of feathers falls away, leaving <b>you with a set of healthy human-like skin!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_LATEX)
 				{
@@ -1053,7 +1053,7 @@ package classes.Items.Transformatives
 			
 			if (target.faceType != GLOBAL.TYPE_VULPINE && target.faceTypeUnlocked(GLOBAL.TYPE_VULPINE)) // wrong face type - changing
 			{
-				while (target.lipRating() > 0 && target.lipModUnlocked(target.lipMod - 1))
+				while (target.lipMod > 0 && target.lipModUnlocked(target.lipMod - 1))
 				{ // say no to cartoonish lips on muzzle!
 					target.lipMod--;
 				}

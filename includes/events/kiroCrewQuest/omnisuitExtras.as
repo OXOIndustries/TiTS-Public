@@ -23,21 +23,24 @@ public function statOutOmniCollar():void
 		pc.armor.evasion = 5;
 		if(pc.libido() < 33)
 		{
-			pc.armor.defense = 3;
-			pc.armor.sexiness = 7;
-			pc.armor.evasion = 2;
+			pc.armor.defense = 5;
+			pc.armor.evasion = 4;
+			pc.armor.sexiness = 3;
+			pc.armor.resolve = 2;
 		}
 		else if(pc.libido() < 66)
 		{
-			pc.armor.defense = 2;
-			pc.armor.sexiness = 10;
-			pc.armor.evasion = 4;
+			pc.armor.defense = 3;
+			pc.armor.evasion = 8;
+			pc.armor.sexiness = 4;
+			pc.armor.resolve = 1;
 		}
 		else
 		{
 			pc.armor.defense = 1;
-			pc.armor.sexiness = 15;
-			pc.armor.evasion = 6;
+			pc.armor.evasion = 12;
+			pc.armor.sexiness = 5;
+			pc.armor.resolve = 0;
 		}
 	}
 }
@@ -56,6 +59,59 @@ public function omnisuitMenu():void
 	clearMenu();
 	addButton(0,"Reset",firstTimeOmniSuitOn,undefined,"Reset Omnisuit","Reset the Omnisuit so that you can enjoy the first-time configuration all over again.");
 	addButton(14, "Back", itemInteractMenu);
+}
+
+public function omnisuitEquip():void
+{
+}
+public function omnisuitUnequip():void
+{
+	output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.");
+}
+public function omnisuitInventoryBlurb(arg:ItemSlotClass):String
+{
+	var msg:String = "";
+	// Wearing Omnisuit
+	if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
+	{
+		if(flags["OMNISUITED"] == undefined || arg is StrangeCollar)
+		{
+			msg += "Putting strange objects around your neck probably isn’t the best idea you’ve had, but then again, neither is running around the most dangerous parts of the galaxy trying to claim a fortune. Pressing a button on the shining band, you pop it open and line it up around your neck. It’s a little tight, but it should fit without crushing your throat. Sucking in a nervous breath, you snap the ends together, feeling a hidden mechanism make a satisfying ‘click’. It warms against your [pc.skinFurScales], pulling tighter and tighter until you fear it might start to choke you. It never does. Just when you’re starting to panic, it stops shrinking.";
+			msg += "\n\nProbing around the edge with a fingertip, you realize that it wasn’t just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn’t a single gap where your flesh isn’t kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.";
+			if(pc.isBro()) msg += " You bet you look fuckin’ awesome - butch as hell.";
+			else if(pc.isBimbo()) msg += " You bet you look sexy as fuck. You wonder if there’s a ring to attach a leash to. The boys would love it.";
+			
+			if(eventQueue.indexOf(firstTimeOmniSuitOn) == -1) eventQueue.push(firstTimeOmniSuitOn);
+			pc.lockItemSlot(GLOBAL.ARMOR, "You try to replace your new collar but it refuses to unlock. Something is preventing you from removing it...");
+		}
+		else
+		{
+			msg += "You close the Omnisuit’s collar around your neck once more, delighted to feel it molding itself to the shape of your body. After properly adjusting its shape, it hisses, and a wave of oily, latex-like material flows down your body, rapidly coating every inch of your form in clingy tightness. It feels wonderful, being wrapped up in ebony perfection once more, feeling it flowing back into position like the hands of a long lost lover.";
+			msg += "\n\nBest of all, everywhere it goes, sensation is heightened";
+			if(!pc.isNude()) msg += ", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mention clashing with the flawless visual aesthetic you’ve acquired.";
+			else msg += ", so much so that you can’t help but paw at yourself as you take on a sleek new aesthetic.";
+			msg += " It’s a shame that the Omnisuit only pleasantly stimulates you as it envelops your body this time. There’s no full-body teasing of every neuron, just the lovely feel of something rubbery and warm cupping and gripping every part of your form.";
+			msg += "\n\n<i>“Thank you for using your Omnisuit! Remember, the Omnisuit is the only clothing that can pander to your every desire, on the streets or in the sheets!”</i> a perky female voice chirps from inside your collar as you inspect the finished product.";
+			
+			if(eventQueue.indexOf(omniSuitRepeatFinisher) == -1) eventQueue.push(omniSuitRepeatFinisher);
+			pc.lockItemSlot(GLOBAL.ARMOR, "The Omnisuit collar has just been activated. Perhaps you should let it settle before removing it...");
+		}
+	}
+	// Attempting to replace Omnisuit
+	else
+	{
+		switch(arg.type)
+		{
+			case GLOBAL.ARMOR:
+			case GLOBAL.CLOTHING:
+				msg += "Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.";
+				break;
+			default:
+				msg += "The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It’s like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You’ll have to ditch the Omnisuit if you’re going to wear anything else with it. Strange that your backpack and other miscellaneous gear don’t generate the same reaction.";
+				break;
+		}
+	}
+	return msg;
 }
 
 public function omniSuitRepeatFinisher():void
@@ -92,7 +148,7 @@ public function omniSuitRepeatFinisher():void
 	output("\n\n");
 	pc.unlockItemSlot(GLOBAL.ARMOR);
 	statOutOmniCollar();
-	if(!pc.hasStatusEffect("Rubber Wrapped")) pc.createStatusEffect("Rubber Wrapped");
+	pc.armor.onEquip(pc);
 	buttonWrapUpForOmnisuit();
 }
 
@@ -102,11 +158,13 @@ public function buttonWrapUpForOmnisuit():void
 	var lootList:Array = new Array();
 	if(!(pc.lowerUndergarment is EmptySlot)) 
 	{
+		pc.lowerUndergarment.onRemove(pc);
 		lootList.push(pc.lowerUndergarment);
 		pc.lowerUndergarment = new EmptySlot();
 	}
 	if(!(pc.upperUndergarment is EmptySlot)) 
 	{
+		pc.upperUndergarment.onRemove(pc);
 		lootList.push(pc.upperUndergarment);
 		pc.upperUndergarment = new EmptySlot();
 	}
@@ -401,7 +459,7 @@ public function putOnDaOmniSuitFirstTime2():void
 	statOutOmniCollar();
 	output("\n\nOr you could push the button and take it off.");
 	IncrementFlag("OMNISUITED");
-	if(!pc.hasStatusEffect("Rubber Wrapped")) pc.createStatusEffect("Rubber Wrapped");
+	pc.armor.onEquip(pc);
 	processTime(22);
 	pc.orgasm();
 	pc.libido(1);

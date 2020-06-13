@@ -75,6 +75,8 @@ public function startKashimaJobbo(destination:String):void
 	if (annoIsCrew() && flags["ANNO_MISSION_OFFER"] == 3) output(" and maybe grill your favorite puppy-slut on why the company’s been tracking you");
 	output(".");
 
+	flags["KASHIMA_STATE"] = 0;
+	
 	sleep(false);
 	pc.lustRaw = pc.lustMin();
 	flags["STORED SHIP DESTINATION"] = destination;
@@ -292,7 +294,7 @@ public function lustyBugpony():void
 	output("”</i>");
 
 	processTime(10 + rand(5));
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	clearMenu();
 	if (pc.isHerm())
@@ -507,8 +509,8 @@ public function lustyBugponyCocked():void
 
 			output("\n\nYou hide a smirk as she ends up slathering her tits in your cum under her armor, but eventually end up helping her strap on her back plates before gathering up your own, equally soaked, gear. At least your Codex is water-proof. Right?");
 
-			pc.energy(-5);
-			pc.lust(15);
+			pc.changeEnergy(-5);
+			pc.changeLust(15);
 			pc.orgasm();
 			processTime(10+rand(3));
 			sweatyDebuff(1);
@@ -568,8 +570,8 @@ public function lustyBugponyCocked():void
 			output("\n\nYou grin, trying to ignore how close you are to climax. Something inside you demands you make sure the amazon orgasm first, to make her eat her words about this being the wrong way. Then again, the way she’s moaning and gushing slime all over your crotch from her gaping pussy, you don’t think she’s got much resistance left. All there’s left to do, really, is hold out longer than she can: fight back your basest desires and hammer yourself deep inside.");
 
 			processTime(10+rand(3));
-			pc.energy(-5);
-			pc.lust(15);
+			pc.changeEnergy(-5);
+			pc.changeLust(15);
 			sweatyDebuff(1);
 			clearMenu();
 			addButton(0, "Next", lustyBugPonyCockedNotTaurII);
@@ -578,7 +580,7 @@ public function lustyBugponyCocked():void
 	else
 	{
 		if (pc.originalRace.indexOf("leithan") != -1) output("You were born for this, formed from birth to mount luscious beauties like the Chief here and drive your [pc.cock "+cIdx+"] deep into their slavering, hungry wombs.");
-		else output("You’ve long since changed yourself into the perform form for just this occasion, ready and eager to thrust yourself deep inside this leithan beauty to spear her womb, flood it with your potent seed.");
+		else output("You’ve long since changed yourself into the perfect form for just this occasion, ready and eager to thrust yourself deep inside this leithan beauty to spear her womb, flood it with your potent seed.");
 		output(" You canter around the Chief’s tauric body, finding the clasps of her armor and tearing them open as you go. By the time you’re behind her, the Nova Securities plates clatter to the deck, leaving her black and yellow leithan chitin exposed.");
 
 		output("\n\nThat, and the lush black lips of her sex, and the dark donut above it. The Chief’s pussy is nice and wide, perfectly tear-drop shaped and smeared with slimy, sweet-smelling leithan arousal. You drink the smell in, letting it burn into your mind and set your heart ablaze. Blushing over her shoulder, the Chief curls her tail up and over her back, completely exposing herself to you, making way for your manhood. Before the fun starts, though, you can’t help but reach down and give her rump an appreciative grope, brushing your fingers along the thick black lips of her sex.");

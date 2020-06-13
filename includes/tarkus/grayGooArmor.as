@@ -653,7 +653,7 @@ public function pcGooClone(attacker:Creature, target:Creature):void
 			defenseDown = (attacker.armor.defense - 1);
 		}
 		
-		target.lust(3 + rand(3));
+		target.changeLust(3 + rand(3));
 		
 		attacker.createStatusEffect("Reduced Goo", defenseDown, 0, 0, 0, false, "Icon_DefDown", chars["GOO"].short + " has split from your frame and is busy teasing your foes - but it’s reduced your defense!", true, 0);
 		attacker.armor.defense -= attacker.statusEffectv1("Reduced Goo");
@@ -704,7 +704,8 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 	{
 		switch(upgrade)
 		{
-			case "ganrael": if(pc.armor.resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+			case "ganrael": if (pc.armor.resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+			case "janeria": if (flags["UVETO_DEEPSEALAB_NOVA_UPGRADE"] == 1) hasUpgrade = true; break;
 		}
 	}
 	if(bInv)
@@ -716,6 +717,7 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 				switch(upgrade)
 				{
 					case "ganrael": if(pc.inventory[i].resistances.hasFlag(DamageFlag.MIRRORED)) hasUpgrade = true; break;
+					case "janeria": if (flags["UVETO_DEEPSEALAB_NOVA_UPGRADE"] == 1) hasUpgrade = true; break;
 				}
 			}
 		}
@@ -1143,7 +1145,7 @@ public function gooArmorCrewOption(arg:Array):void
 				txt += "\n\n<i>“[pc.name]!”</i>";
 				
 				processTime(2);
-				pc.HP(-10);
+				pc.changeHP(-10);
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["healing 0", fromCrew, exitMain]);
 			}
@@ -1407,7 +1409,7 @@ public function gooArmorCrewOption(arg:Array):void
 			txt += "”</i>";
 			
 			processTime(3 + rand (2));
-			pc.HP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
+			pc.changeHP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
 			pc.createStatusEffect("Goo Armor Healed", 0, 0, 0, 0, true, "", "", false, 60, 0xFFFFFF);
 			
 			// Defense Debuff
@@ -1862,7 +1864,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			flags["GOO_ARMOR_HEAL_LEVEL"] = 1;
 			
 			pc.destroyItemByClass(GrayMicrobots, 10);
-			pc.HP(10);
+			pc.changeHP(10);
 			
 			if(exitMain) gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["leave", fromCrew, exitMain]);
 			else gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
@@ -2053,7 +2055,12 @@ public function gooArmorDetails(showArmorLevel:Boolean = false):String
 		}
 		msg += ".";
 	}
-	if(showArmorLevel) msg += "\n\n<b>Armor Defense:</b> " + pc.armor.defense;
+	if (flags["UVETO_DEEPSEALAB_NOVA_UPGRADE"] == 1) msg += " A shield is being emanated from the armor, a trick learned from an encounter with a janeria.";
+	if (showArmorLevel)
+	{
+		msg += "\n\n<b>Armor Defense:</b> " + pc.armor.defense;
+		msg += "\n\n<b>Armor Shields:</b> " + pc.armor.shields;
+	}
 	
 	return msg;
 }
@@ -2120,20 +2127,28 @@ public function gooArmorCheck(repair:Boolean = false):Boolean
 	// Base stats and upgrades:
 	var baseDefense:Number = 6;
 	var baseSexiness:Number = 5;
+	var baseShields:Number = 0;
+	var baseResElec:Number = -25;
 	// Ganrael
 	if(hasGooArmorUpgrade("ganrael", false))
 	{
 		baseDefense += 2;
 	}
-	
+	if(hasGooArmorUpgrade("janeria", false))
+	{
+		baseShields += 50;
+		baseResElec += 25;
+	}
 	// To repair
 	if(repair)
 	{
 		pc.armor.defense = baseDefense;
 		pc.armor.sexiness = baseSexiness;
+		pc.armor.shields = baseShields;
+		pc.armor.resistances.electric.resistanceValue = baseResElec;
 	}
 	// To check
-	if(pc.armor.defense == baseDefense && pc.armor.sexiness == baseSexiness) return true;
+	if(pc.armor.defense == baseDefense && pc.armor.sexiness == baseSexiness && pc.armor.shields == baseShields && pc.armor.resistances.electric.resistanceValue == baseResElec) return true;
 	return false;
 }
 // Checks and changes armor flags and stats accordingly for exposure.
@@ -2933,7 +2948,8 @@ public function gooArmorEmblemMenu(arg:Array):void
 	
 	if(CodexManager.entryViewed("Aegis")) emblemList.push(["Aegis", "Aegis logo"]);
 	if(CodexManager.entryViewed("Camarilla")) emblemList.push(["Camarilla", "Camarilla patch"]);
-	if(CodexManager.entryViewed("Humphard Inc.")) emblemList.push(["Humphard", "Humphard Inc. logo"]);
+	//Humphard cut.
+	//if(CodexManager.entryViewed("Humphard Inc.")) emblemList.push(["Humphard", "Humphard Inc. logo"]);
 	if(CodexManager.entryViewed("J’ejune")) emblemList.push(["J’ejune", "J’ejune logo"]);
 	if(CodexManager.entryViewed("JoyCo")) emblemList.push(["JoyCo", "JoyCo logo"]);
 	if(CodexManager.entryViewed("KihaCorp")) emblemList.push(["KihaCorp", "KihaCorp logo"]);

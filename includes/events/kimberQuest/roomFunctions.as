@@ -95,11 +95,16 @@ public function kimberWormBonus():Boolean
 public function kimberPantiesBonus():Boolean
 {
 	author("Slab Bulkhead");
-	if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"] < 4) addButton(0, "Search", function ():void
+	//OLD: if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"] < 4) addButton(0, "Search", function ():void
+	//OLD-new hotness: if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"] >= 1) addButton(0, "Search", function ():void
+	//Newer hotness:
+	if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"] >= 1 && flags["KIMBER_QUEST_GOT_PANTIES"] == undefined) addButton(0, "Search", function ():void
 	{
 		clearMenu();
 		clearOutput();
-		flags["KIMBER_QUEST"] += 4;
+		//OLD: flags["KIMBER_QUEST"] += 4;
+		//New Hotness:
+		flags["KIMBER_QUEST_GOT_PANTIES"] = 1;
 		output("You hold your breath and search through the rotting bodies. Most of what you find is broken armor and torn clothing, a few battered weapons, and a broken Xenogen sample container, but nothing of real value. Then, when you flip over one of the gabilani bodies, you find a battered metal box about the size of your Codex.");
 		output("\n\nThe box looks like the daer worm chewed on it, but it’s still closed and locked. The lock is small enough that a quick hit from your [pc.meleeWeapon] breaks it, and you pop open the box.");
 		output("\n\nInside, you find a handful of credit chits totaling forty-two hundred credits and a small package wrapped in colorful paper. You unwrap the package, and find it contains a single pair of panties made out of some kind of stretchy material, which grows more sheer the farther you stretch it. Judging by how wide gabilani hips can get, it seems like the panties were made for one of them.\n\n");
@@ -107,4 +112,9 @@ public function kimberPantiesBonus():Boolean
 		quickLoot(new GabilaniPanties());
 	}, undefined, "Search", "Might as well see if there’s anything in here worth taking.");
 	return false;
+}
+public function giveGabiPanties():void
+{
+	clearOutput();
+	quickLoot(new GabilaniPanties());
 }

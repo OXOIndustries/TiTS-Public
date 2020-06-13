@@ -8,7 +8,7 @@ package classes.Items.HalloweenItems
 	import classes.Engine.Interfaces.clearOutput;
 	import classes.Characters.PlayerCharacter;
 	
-	//Level ?? Halloween Funsies.
+	//Level 6 Halloween Funsies.
 	public class WitchsPanty extends ItemSlotClass
 	{
 		public function WitchsPanty()
@@ -22,7 +22,7 @@ package classes.Items.HalloweenItems
 			
 			shortName = "W.Panty";
 			
-			longName = "witch's panties";
+			longName = "witch’s panties";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
@@ -38,7 +38,7 @@ package classes.Items.HalloweenItems
 			attack = 0;
 			defense = 0;
 			shields = 0;
-			sexiness = 4;
+			sexiness = 3;
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;

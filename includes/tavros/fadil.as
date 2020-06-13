@@ -1,6 +1,7 @@
 public function showFadil(nude:Boolean = false):void
 {
-	showName("\nFADIL" + (nude ? "_NUDE":""));
+	showBust("FADIL" + (nude ? "_NUDE":""));
+	showName("\nFADIL");
 }
 
 public function matchesFadilsPreference():Boolean
@@ -186,7 +187,7 @@ public function fadilTalk(topic:String):void
 			output("\n\n<i>“Oh sure,”</i> replies Fadil. <i>“You remember, how I used to be a tanker? Well, my unit underwent some cross-training to ensure we could support our engineers during sustained operations. So, for me, getting company certification to operate heavy equipment was mostly just a matter of applying what I already knew to a different work environment. I mostly used the initial training period to get acquainted with the people I was going to be working with. After that I spent the next several years going wherever operations deployed us until I paid off my debt and fulfilled my indenture.”</i>");
 			output("\n\nWell, that doesn’t sound too bad. But from what you understand, it isn’t uncommon for rarer, specialized medical treatments to cost in the hundreds of thousands of credits. How did he pay off his debt so quickly?");
 			output("\n\n<i>“That’s a good question,”</i> Fadil says with a nod of his head. <i>“During my third yearly performance review, my boss made me a job offer, saying that he’d recommended me to sapient resources for a promotion and that management had opened a leadership track slot for me. I had begun to half-expect something early in the review but being offered a promotion caught me off guard. I wanted to refuse at first because I wasn’t sure I was right choice for the job, but then I thought about it and realized that the increased pay would help me pay off my mother’s medical bills faster.”</i>");
-			output("\n\n<i>“In any case, getting that promotion turned out to be a good thing in more ways than one,”</i> Fadil says with a shrug. <i>“Although, I did end up working my ass off in order to keep up with the new responsibilities. I was still wore a hard hat but now I had to help direct separate teams in the field, assist with planning and briefings, coordinate between our different departments, train new personnel - it was all very hands-on work. There were a lot of times where we all pitched in to turn an empty patch of ground into a command post or a workable area. My back hurts just thinking about it. If I hadn’t gone through boot camp as a kid, I don’t know if I would have been focused enough to do as well as I did. I spent a lot of extra hours making sure I did everything right.”</i>");
+			output("\n\n<i>“In any case, getting that promotion turned out to be a good thing in more ways than one,”</i> Fadil says with a shrug. <i>“Although, I did end up working my ass off in order to keep up with the new responsibilities. I still wore a hard hat but now I had to help direct separate teams in the field, assist with planning and briefings, coordinate between our different departments, train new personnel - it was all very hands-on work. There were a lot of times where we all pitched in to turn an empty patch of ground into a command post or a workable area. My back hurts just thinking about it. If I hadn’t gone through boot camp as a kid, I don’t know if I would have been focused enough to do as well as I did. I spent a lot of extra hours making sure I did everything right.”</i>");
 			output("\n\nFadil pauses. <i>“I won’t deny I was lucky, though. I’d like to say that the thought of seeing my mother, healthy and happy, was all that was needed to keep me motivated, but that isn’t true. There were many days where I couldn’t think of anything other than my bed. Heck, there were days where I could barely think at all. The fact of the matter is, there are many people that I owe thanks to for bringing me to where I am today.”</i>");
 			output("\n\n<i>“Anyone specific?”</i> you ask.");
 			output("\n\nFadil breaks into a small smile. <i>“The boss’s wife comes to mind. She took a liking to me and helped me out, mostly giving me advice or excuses to rest. In exchange, I occasionally kept her company.”</i>");
@@ -445,7 +446,7 @@ public function fadilfIsFadone():void
 	output("\n\nThe two of you descend the stairs back into the bar. You turn around and kiss him straight on his lips. Surprised at first he quickly takes control. Grabbing you by your ass and kissing you deep. When your lips part, you’re out of breath and your [pc.pussy] is freely drooling down your thighs. He smiles seductively before sitting down in the empty corner table.");
 
 	//Add some lust
-	pc.lust(15+pc.libido()/10);
+	pc.changeLust(15+pc.libido()/10);
 	IncrementFlag("FADIL_SEXED");
 
 	addButton(0, "Next", move, "ANON'S BAR AND BOARD");
@@ -646,7 +647,7 @@ public function timeForPostFadilHeatNaps(vagIdx:int):void
 	output("\n\nAs you walk bowlegged into the bar you’re met with a mixture of lust, awe, and disapproval from the gaze of the patrons, but you ignore them all since you still have " + fadilDaddy() + " on your mind, and no one in here could measure up to him. Just thinking about him has your pussy drooling again. You shake your head in an attempt to clear your thoughts about the older ausar gentleman but only succeed in making yourself hornier. Before you end up masturbating in front of the bar you meld into the crowd of people and get ready to move on.");
 
 	//raise current lust by 20%
-	pc.lust(15+pc.libido()/10);
+	pc.changeLust(15+pc.libido()/10);
 	IncrementFlag("FADIL_SEXED");
 
 	addButton(0, "Next", mainGameMenu);

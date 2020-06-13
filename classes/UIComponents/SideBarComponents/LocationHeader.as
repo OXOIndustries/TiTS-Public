@@ -549,7 +549,6 @@ package classes.UIComponents.SideBarComponents
 		private function set lastSetBust(v:String):void
 		{
 			_lastSetBust = v;
-			if (v == "none") NPCBustImages.LastArtistUsed = "";
 			
 			if (NPCBustImages.hasBustsForCharacter(v))
 			{
@@ -740,7 +739,7 @@ package classes.UIComponents.SideBarComponents
 			//var xStep:int = 17.5;
 			available.reverse();
 			var xStep:int = 40.0;
-			var yStep:int = -2.55;
+			var yStep:int = -2;
 			
 			var tarX:int = xStep * (available.length - 1);
 			var tarY:int = yStep * (available.length - 1);

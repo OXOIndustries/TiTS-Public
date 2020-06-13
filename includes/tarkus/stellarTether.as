@@ -263,7 +263,7 @@ public function fuckTamTamIntoUnconscitude():void
 	output("\n\nShe hasn’t figured out you’re the wrong person yet, but this Kaska apparently has a dick. And if the give in this girl’s cunt is any indication, probably a big one.");
 	if(pc.hasCock()) output(" Think you’re up to filling Kaska’s shoes? Then again, there’s a wrench nearby with a great big, thick handle... that might do the trick, if you don’t mind being horny a while longer.");
 	else output(" You, however, don’t. Luckily, there’s a wrench nearby with a great big, thick handle... that might do the trick, if you don’t mind being horny a while longer.");
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(7);
 	clearMenu();
 	addButton(0,"Use Wrench",wrenchTamtamsCooch,undefined,"Use Wrench","Stuff that wrench where it doesn’t belong. She’s wet enough that it won’t matter.");
@@ -286,7 +286,7 @@ public function wrenchTamtamsCooch():void
 	output("\n\nHer orgasm drags out for what seems like an eternity of whimpers, sighs, and gasps as she rides the wrench until your arm is sore. When she finally comes down off her orgasmic high, Tam leans back and stretches her arms, yawning contentedly.");
 	output("\n\n<i>“Mmm, that was great, chief... you really know how to make a girl feel loved!”</i>");
 	output("\n\nThe cat reaches back, gives you a peck on the cheek, and flops down on her work bench, asleep before she hit the surface. Talk about a cat-nap. You shrug and leave the wrench haft-deep in her pussy, still dripping her juices onto the concrete beneath her feet. Before you leave, you reach up and flip the elevator switch, turning it from Danger Red to Good-to-Go Green. Planetary core, here you come.");
-	pc.lust(5);
+	pc.changeLust(5);
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",takeTamWulf);
@@ -1530,8 +1530,8 @@ public function doNothingWhileTittyGrappled():void
 	output("\n\nYour lips are already pressing against her ebony melons. You go ahead and purse them while you wait. ");
 	if(pc.lust() < pc.lustMax()) output("It’s... more pleasant than you thought it would be.");
 	else output("It’s too much for your already overloaded mind. What starts as a kiss rapidly degrades into a slobbering, smooching motorboat. These tits are fantastic, and you can’t get enough of them! Why were you even fighting this siren?");
+	pc.changeLust(20+rand(10));
 	output("\n");
-	pc.lust(20+rand(10));
 }
 
 //Failed Strugle
@@ -1682,7 +1682,7 @@ public function defeatedByKaska():void
 		else output(", too turned on to care");
 		output(".");
 		processTime(5);
-		pc.lust(pc.lustMax());
+		pc.changeLust(pc.lustMax());
 		//NEXT!
 		clearMenu();
 		addButton(0,"Next",kaskaBadEndPartDues);
@@ -2541,7 +2541,7 @@ public function roomOutsideShekkasBonus():Boolean
 	}
 	if(flags["TARKUS_DESTROYED"] == undefined) output("The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus’ surface. Before you can get to the windswept junkyards, you’ll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.");
 	else output("The section of deck upon which you now stand was undoubtedly the busiest place in all of Novahome back before the planet blew. Now, huge blast doors close off the way to the south, and while foot traffic is still high, the press of raskvel bodies is significantly abated. The massive, central corridor leads east and west from here.");
-	output(" A sign made of mismatched machine parts displays “Shekka’s Widget Warehouse” just above a cobbled-together, ware-house like building to the north.");
+	output(" A sign made of mismatched machine parts displays “Shekka’s Widget Warehouse” just above a cobbled-together, warehouse like building to the north.");
 	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined && flags["PLANET_3_UNLOCKED"] == undefined)
 	{
 		author("Fenoxo");

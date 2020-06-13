@@ -792,12 +792,6 @@ public function ratsContinueService(offers:int):void
 	
 	var twoFemales:Boolean = rat2.mf("m", "f") == "f";
 
-	// PC will be Orally Filled and Pussy Drenched (if 3rd rat is female).
-	pc.loadInMouth(rat1);
-	if (twoFemales) pc.applyPussyDrenched();
-	else pc.loadInMouth(rat2);
-	// PC will gain a lot of lust, and will only cum if they are a Bimbo/Bro/Treated, High Libido, has to be a real slut.
-	pc.lust(pc.libido()/2+25);
 	//if (pc.isBro() || pc.isBimbo() || pc.isTreated() || pc.libido() > 66) pc.orgasm();
 
 	output("You know you’ve succeeded when the [rat1.hairColor]-haired boy drops his baton and struggles with his burdensome attire. The mouse trap’s popped a boner so distractingly adamant that he whines and squirms on the spot, starving for the kind of sweet relief you’re offering. Funny how that works out. ");
@@ -924,6 +918,13 @@ public function ratsContinueService(offers:int):void
 		output(" before polishing his silk-soft cum-pouch just the same as the other, hotly kissing the nuts swimming inside. <i>“O-ohhaaa!!”</i> The rat’s head arches back as you get wrap your tongue around the thick base of his cock.");
 		output("\n\nYou slow down when you feel their knees about to give out. You’re not about to let them cum so soon, that wouldn’t be any fun at all!");
 	}
+
+	// PC will be Orally Filled and Pussy Drenched (if 3rd rat is female).
+	pc.loadInMouth(rat1);
+	if (twoFemales) pc.applyPussyDrenched();
+	else pc.loadInMouth(rat2);
+	// PC will gain a lot of lust, and will only cum if they are a Bimbo/Bro/Treated, High Libido, has to be a real slut.
+	pc.changeLust(pc.libido()/2+25);
 	
 	addButton(0, "Next", ratsWilliamWantedANextButtonHere);
 }
@@ -1004,7 +1005,7 @@ public function ratsWilliamWantedANextButtonHere():void
 			else if (ratsPCIsKnown()) output(" Is... is that how you do business?");
 			output("”</i>");
 			output("\n\nYou clear your jizz-scented throat and stand, looking down at the exhausted rats. Damn, something about this just makes you <i>proud</i>. <i>“");
-			if (ratsPCIsKnown()) output("That’s my business.");
+			if (ratsPCIsKnown()) output("That’s my business. ");
 			output("Guess I don’t have to pay huh?");
 			output("”</i>");
 			output("\n\n<i>“Uhh...”</i> they moan, finally heaving and sitting up. The rodenian tucks her ears and groans,");
@@ -2237,14 +2238,14 @@ public function ratFightLoss():void
 			output("\n\nWhile two rats heft their take and get ready to go, the rodenian hops up to you with a weird vial in hand. She jabs you in the neck with a blue juice of some sort before you can react. <i>“Don’t worry, it’s a resuscitation stim! You’ll get all turned on but it beats bleeding out!”</i>");
 			output("\n\nYou rub your neck, already feeling better... but also feeling a bit turned on.");
 			output("\n\nSatisfied, delighted, <i>excited</i> beyond belief, the rambunctious rodents release you and bound down the passage, the jingling of their loot - your hard-earned wealth - making the hyper-present scorch of humiliation burn all the more painfully...");
-			output(" (<b>H: +<span class='hp'>" + heal + "</span></b>)" + (lust > 0 ? " (<b>L: +<span class='lust'>" + lust + "</span></b>)" : ""));
+			//output(" (<b>H: +<span class='hp'>" + heal + "</span></b>)" + (lust > 0 ? " (<b>L: +<span class='lust'>" + lust + "</span></b>)" : ""));
 		}
 	}
 
 	if (pc.HP() <= 0)
 	{
-		pc.HP(heal);
-		pc.lust(lust);
+		pc.changeHP(heal);
+		pc.changeLust(lust);
 	}
 
 	ratsLossFinish(false);
@@ -2456,8 +2457,6 @@ public function ratsTeasingACEO():void
 	clearMenu();
 	clearOutput();
 	showRats(-2, true);
-	processTime(15);
-	pc.lust(10+pc.libido()/3);
 	
 	output("<i>“...This will do.”</i> The [rat1.hairColor]-haired rodent clambers over your chest, scissoring your head between his thighs");
 	if (!pc.isBiped()) output(" and ensuring your lower half stays down and open");
@@ -2631,6 +2630,8 @@ public function ratsTeasingACEO():void
 	output("\n\nDid you cum?");
 	output("\n\nEyes rolling back, you spasm in solitude, feeling dirty and used. The mouse-boy’s gradually depleting balls contract against your [pc.lips], churning out load after thick load into your stomach until you finally let go and pass out.");
 	
+	processTime(15);
+	pc.lust(10+pc.libido()/3);
 	pc.loadInMouth(rat1);
 	pc.orgasm();
 	pc.orgasm();
@@ -3012,7 +3013,7 @@ public function ratsAllGangThingsComeToAnEnd(vagId:int):void
 		if (pc.HP() <= 0) output("\n\nStanding is surprisingly easy too. You check yourself for wounds from the fight, finding that they’ve all vanished away. <b>The rats must have healed your injuries</b>!");
 	}
 
-	if (pc.HP() <= 0) pc.HP(pc.HPMax());
+	if (pc.HP() <= 0) pc.changeHP(pc.HPMax());
 	IncrementFlag("RATS_GANGBANGED");
 	
 	ratsLossFinish();
@@ -3023,8 +3024,6 @@ public function ratsRidingInTheWildWildSpaceStation():void
 	clearMenu();
 	clearOutput();
 	showRats();
-	processTime(10);
-	pc.lust(pc.libido()/4 + 5);
 	
 	var femaleVictim:Boolean = rand(2) == 0;
 	var victimRace:int = rand(5);
@@ -3049,7 +3048,8 @@ public function ratsRidingInTheWildWildSpaceStation():void
 	else if (pc.hasCock()) output(" Pre flows like a river from your twitching [pc.cocksLight]. You’re not sure if the sheer musk billowing from your cum-veins is going to lead a dedicated search back to you, or the trail of slime you’re going to be leaving.");
 	else output(" You grouse and squirm your hind legs together, trying to put pressure of any kind on your [pc.asshole]. Your butt’s already longing for the return of their tails, despite their uncaring ministrations...");
 	output("\n\nThe rat’s latest victim scours for " + (femaleVictim ? "her" : "his") + " pistol, which of course got stolen and tossed aside in the chaos of it. Before the merc can even get a look at your face the three bandits are back on your proverbial saddle and urging you onward again, howling in celebration. As you pick up the pace and bolt from the scene of the crime, they count their loot in a plain sack that jingles just behind your [pc.ears].");
-
+	processTime(10);
+	pc.changeLust(pc.libido()/4 + 5);
 	addButton(0, "Next", ratsLivingALifeOfRatlaws);
 }
 
@@ -3058,8 +3058,6 @@ public function ratsLivingALifeOfRatlaws():void
 	clearMenu();
 	clearOutput();
 	showRats();
-	processTime(10);
-	pc.lust(pc.libido()/4 + 5);
 	
 	var victimRace:int = rand(3);
 	
@@ -3075,7 +3073,8 @@ public function ratsLivingALifeOfRatlaws():void
 	output("\n\n<i>“Wait, I remember you! You ran from us!”</i> the rodenian laughs maliciously. <i>“You waved a bunch of credit chits in our face and ran away, and then threw a flashbang at us! Now who’s laughing!? And look at all this,”</i> she flicks credit chits in her paws like she’s shuffling a deck, <i>“you thought you could escape justice this long? Think again you greedy cow! Thanks for the donation, we’ll put it to good use, don’t you worry. You think long and hard about this next time you try to avoid giving others a hand!”</i>");
 	output("\n\nShe blows one hell of a raspberry before mounting you again, and like before you’re anally violated and forced on to the next mark. You wonder if you’re ever going to get off... wonder if they’re ever going to get tired of this.");
 	if (pc.hasCock()) output(" Carrying around " + (pc.hasCocks() ? "those dicks" : "that dick") + ", erect and bloated and tight as they are, is becoming so difficult.");
-
+	processTime(10);
+	pc.changeLust(pc.libido()/4 + 5);
 	addButton(0, "Next", ratsHorsesAndBuns);
 }
 
@@ -3085,8 +3084,6 @@ public function ratsHorsesAndBuns():void
 	clearOutput();
 	showRats();
 	//Random jumper bust?
-	processTime(60);
-	pc.lust(pc.libido()/4 + 5);
 	
 	var vagId:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
 	
@@ -3135,6 +3132,9 @@ public function ratsHorsesAndBuns():void
 	if (pc.libido() <= 33) output("You’re not really in a position to disagree.");
 	else output("You happily encourage her.");
 	
+	processTime(60);
+	pc.lust(pc.libido()/4 + 5);
+
 	var jumper:JumperBored = new JumperBored();
 	if (vagId >= 0)
 	{

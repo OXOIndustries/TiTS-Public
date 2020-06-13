@@ -513,7 +513,7 @@ public function daneSexIntro():void
 		}
 		//[Next] - into Dane-selected scene. Maybe add a variant later where you can pick sometimes~!
 		processTime(2);
-		pc.lust(5);
+		pc.changeLust(5);
 		clearMenu();
 		addButton(0,"Next",repeatDaneFuckSceneRouter);
 	}
@@ -604,11 +604,14 @@ public function suckDaneOffYaWanker():void
 	//Bro
 	else if(pc.isBro()) output("\n\n<i>“Hell yes,”</i> you groan, smiling from beneath his cock. <i>“I need to suck this dick.”</i>");
 	//Else
-	else output("\n\n<i>“Yes,”</i> you " + (pc.mf("moan","groan")) + ". <i>“");
-	if(pc.libido() >= 66) output("I needed this fucking cock.");
-	else if(pc.libido() >= 33) output("This is what I needed.");
-	else output("I need you.");
-	output("”</i>");
+	else 
+	{
+		output("\n\n<i>“Yes,”</i> you " + pc.mf("moan","groan") + ". <i>“");
+		if(pc.libido() >= 66) output("I needed this fucking cock.");
+		else if(pc.libido() >= 33) output("This is what I needed.");
+		else output("I need you.");
+		output("”</i>");
+	}
 	//merge
 	output("\n\nReaching up, you heft Dane’s balls. They’re almost the size of oranges but so much heavier. Just holding one nut, you’re amazed by how warm the weight is in your palm, gaining a sense for its virility. Dane’s balls are positively <b>ripe</b>. You swear you can feel it wobbling with how full of spunk it is, the little swimmers straining to make their escape into the warm confines of your throat.");
 	output("\n\nSmooth, veiny dickskin slides against your cheek while you examine the goods behind. By the time you’re done handling the mercenary’s lust-fattened sack, his cock is most of the way hard. The beastly member is clearly not human in shape or smell. It’s a gnarled, primitive thing with all the features of a canine and equine welded together into a prick of singular presence. The chubby, flat tip pulsates against your collarbone while your thumbs reach up to prod at the slight distention of his knot, just now easing out of a straining, glossy sheath.");

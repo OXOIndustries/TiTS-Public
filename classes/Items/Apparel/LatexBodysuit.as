@@ -35,14 +35,14 @@ package classes.Items.Apparel
 			
 			this.basePrice = 440;
 			this.attack = 0;
-			this.defense = 0;
+			this.defense = 1;
 			this.shieldDefense = 0;
 			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 2;
+			this.evasion = 5;
 			this.fortification = 0;
 			
-			resistances.electric.resistanceValue = 15.0;
+			resistances.electric.resistanceValue = 25.0;
 
 			this.version = this._latestVersion;
 		}

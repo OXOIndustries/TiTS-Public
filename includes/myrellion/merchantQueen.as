@@ -307,7 +307,7 @@ public function flirtUpAStormWithAntQueen():void
 	output("\n\nFuck.");
 	// Dickers and Hardlight havers go to cocklust, those lacking go to femlust. No choices. TDM will sue. :<
 	processTime(7);
-	pc.lust(45+rand(5));
+	pc.changeLust(45+rand(5));
 	mercQueenSexRouter();
 }
 
@@ -329,7 +329,7 @@ public function assertYourselfLikeThisIsCoC():void
 	else output("yank your exposed self over, just how she wanted you!");
 	//Once again, dickers and hardlight haves get that cocklust, no choices.
 	processTime(7);
-	pc.lust(45+rand(5));
+	pc.changeLust(45+rand(5));
 	mercQueenSexRouter();
 }
 

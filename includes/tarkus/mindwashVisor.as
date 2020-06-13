@@ -89,7 +89,10 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		addButton(2,"Female",startMindwashSceneLucas, "female");
 		addButton(3,"Futa",startMindwashSceneLucas, "futa");
 		addButton(4,"Game: CoC",startMindwashSceneLucas,"CoC");
-		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		var button:Number = 5;
+		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"KQ:Sexdoll",genericSexdollEncounter,true,"Kiro Quest: Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's sexbots have to offer!");
+		if(pc.hasKeyItem("VR Program: The Twins")) addButton(button++,"KQ:Twins",twinSexdollEncounter,true,"Kiro Quest: Twins Encounter","Experience what it's like to play with the defeated twins.");
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -345,7 +348,10 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		addButton(2,"Female",mindwashVisorScenes, "female");
 		addButton(3,"Futa",mindwashVisorScenes, "futa");
 		addButton(4,"Game: CoC",mindwashVisorScenes,"CoC");
-		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		var button:Number = 5;
+		if(isHalloweenish()) addButton(button++,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
+		if(pc.hasKeyItem("Sexdoll Virtual Reality Program")) addButton(button++,"KQ:Sexdoll",genericSexdollEncounter,true,"Kiro Quest: Sexdoll Encounter","Experience battling with (and indulging in) everything Doctor Po's sexbots have to offer!");
+		if(pc.hasKeyItem("VR Program: The Twins")) addButton(button++,"KQ:Twins",twinSexdollEncounter,true,"Kiro Quest: Twins Encounter","Experience what it's like to play with the defeated twins.");
 		return;
 	}
 	
@@ -473,7 +479,7 @@ public function pumpTheSpy():void
 	output("\n\nShe wears a grin of defiance, but the heat radiating from her body tells a different story. <i>“Do you expect me to beg, Horse Member?”</i>");
 	output("\n\nUsing both hands to guide the flat crown of your bitch-tamer to the tear in her suit, you press the mammoth cock against her fat pussy lips just hard enough to leave her gasping. <i>“No, Ms. Goblin,”</i> you laugh. <i>“I expect you to get fucked.”</i> Pushing hard, you force the blunt peak of your flesh pillar into the squirming saboteur, groaning at her tightness.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",pumpTheSpyII);
 }
@@ -491,7 +497,7 @@ public function pumpTheSpyII():void
 	output("\n\nYour underling pulls back before he knots the spy’s mouth, giving her enough air to sputter and gasp. <i>“W-what did you do to me? Everything feels... hot!”</i> Her perspiration-slick skin seems to shimmer, growing wetter and wetter until every inch of her body has a freshly oiled appearance. She pants, pulling at her restraints and finding the tight bindings no longer hold her. Her hands slip right out with a moist, squishing sound.");
 	output("\n\nYou give her tummy an open-palmed smack and grin as the impact ripples across her frame. <i>“Don’t worry, I’ve just expanded your talents, Agent Goblin. Or, should I say, Agent Gooblin?”</i> You unhook and throw off the leg tethers before grabbing her behind her knees and hoisting her legs up. There’s only the slightest tension as you press her thighs against her breasts, practically folding the girl in two. She gasps and moans, unable to believe just how stretchy she’s become. <i>“Oh, it gets better,”</i> you assure her.");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",pumpTheSpyIII);
 }
@@ -509,7 +515,7 @@ public function pumpTheSpyIII():void
 	output("\n\nHer narrow waist bloats, stomach swelling up with a pregnant bump that swiftly balloons into a nine-month burden. With her womb full to bursting, the gooey consistency of her body starts finding new places to redirect the weight of your subsequent loads. Your cream flows through her, filling her pathetically flat chest, expanding meger A-cups to a proper whore’s double Ds. Her ass inflates to cushiony orbs that practically beg for pounding. Even her hips and thighs fill out, growing wider and fatter until she looks every bit the broodmother you promised her.");
 	output("\n\nWrapping one arm around her throat and leaning in close, you listen to her ecstatic mumbling. Her whole body swollen with your seed, the tight, black bodysuit she was wearing finally gives out - tearing at the seams across her legs, hips, gut, and bust. <i>“You’re not going to be very useful as a spy, Agent Gooblin, but I bet I can think of some use for you,”</i> you chuckle.");
 	processTime(20);
-	pc.lust(20);
+	pc.changeLust(20);
 	var cumNum:Number = pc.cumQ();
 	pc.orgasm();
 	clearMenu();
@@ -607,7 +613,7 @@ public function cowifiedMindwashIII():void
 	output("\n\nThe taller, more sympathetic of the two stares unabashedly at your exposed organ and gulps. <i>“Well... it SEEMS like he’s enjoying it.”</i>");
 	output("\n\n<i>“She,”</i> the smaller one corrects. <i>“Cows are female, bulls are male. Now, get over here and fuck this slutty cow.”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",cowifiedMindwashIV);
 }
@@ -705,7 +711,7 @@ public function invasionOfTheDickSuckersII():void
 	output("\n\nAs you watch with a mix of fear and arousal, it’s almost as if the donut-shaped lips are actually pulling the women’s heads on their dick-sucking mission. Their half-lidded eyes and disconnected expressions take on a new character as the sound of their slurping and sucking grows louder and more desperate. The men, utterly at the mercy of the cock-thirsty women, groan with the overture of release, but you dare not stay a moment longer.");
 
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",invasionOfTheDickSuckersIII);
 }
@@ -726,7 +732,7 @@ public function invasionOfTheDickSuckersIII():void
 	output("\n\nHer lips are still black. If anything, they seem thicker, puffier than just a moment ago. <i>“I think... I think something’s wrong,”</i> you whimper as you take a step back.");
 	output("\n\n<i>“Oh don’t be so dramatic,”</i> Blu chides, yawning. <i>“Geez, I didn’t realize that run tired me out so much. Hey, how about we set your mind at ease with a little oral massage?”</i>");
 	processTime(15);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",invasionOfTheDickSuckersIV);
 }
@@ -811,7 +817,7 @@ public function gymTripScene():void
 	output("\n\nYou wobble a bit, but manage to keep your balance as the stretch sends little, tight twitches through your thighs and groin. A tall, dark-skinned gryvain woman in a white one-piece pauses next to you, giving an appreciative glance. Her eyes travel from your suspended foot all the way down to your planted toes. She takes a step closer and then another.");
 	output("\n\nThe faint bump of her phallus stiffens, swelling with excitement as she takes in the sight of your lean, athletic frame. She raises an eyebrow and gives you an approving nod as her tail follows the path of her eyes, running firmly against your inner leg until it reaches the bulge your pussy lips are making in your skimpy shorts. She gives you a few extra strokes, flitting her tail tip between your lower lips before turning aside, on her way to the sauna with a sly smile.");
 	processTime(4);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",gymTripSceneII);
 }
@@ -826,7 +832,7 @@ public function gymTripSceneII():void
 	output("\n\n<i>“Everybody’s so friendly here,”</i> you gasp, wiping a stray droplet of your unexpected protein shake from your lips. <i>“So what’s first? Upper body, legs, or core?”</i> A quick survey of the gym reveals that the butterfly press is open, so you strut over and take a seat. Lifting your arms at right angles, you firmly grip the wings on either side of you and, with a slow exhale of breath, draw your forearms forward until the rubber hemispheres on the machine’s arms bump together. You ease the machine back into its starting position, your pecs flexing against the restraint of your top with a faint tearing sound.");
 	output("\n\nYou keep up the pace despite the warning, your chest and arms tingling with the effort until, finally, you finish the set. Large holes have torn into the fabric of your top, revealing tantalizing glimpses of your constrained breasts. Another set and the whole thing might just pop open! As is, sweat has left your skin glistening with an oiled polish. More people have stopped their exercises to stare, as if trying to get you to push your fabric to bursting through sheer force of will.");
 	processTime(8);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",gymTripSceneIII);
 }
@@ -842,7 +848,7 @@ public function gymTripSceneIII():void
 	output("\n\n<i>“Hey, sorry about that,”</i> he grunts, lifting and dropping the nuki girl atop his equine thickness like it was just part of his normal workout. <i>“No harm done, right?”</i> he asks with a hopeful grin. HIs cock cozy seems to have lost her original spit and vinegar, and has begun counting off reps for her trainer. Her multi-knotted shaft bounces up and down with each cycle but - quite thoughtfully - she’s put a condom on, so the bulging spurts of pre-cum merely make a wobbling bubble at her tip, rather than drench the equipment.");
 	output("\n\n<i>“Oh, it was my fault, really,”</i> you assure the two with a laugh before moving on.");
 	processTime(8);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",gymTripSceneIV);
 }
@@ -897,7 +903,7 @@ public function doorToDoorDildos():void
 	output("\n\nA wave of unfamiliar impulses flood your body, washing through you with all the pressing urgency of rocket fuel igniting. Your knees knock, your hips shake, your tail lifts, and your toes curl. Biting down on your lower lip, you take a step forward and nearly collapse, leaning against the curvaceous salesgirl for balance. <i>“What... the...?”</i>");
 	output("\n\n<i>“Oh, that’s just the techie stuff doings its, um, stuff! See, the ring is transmitting all the good feelings of the dildo into your little clitty, up your spine, and into your noggin!”</i> She pulls the dildo from the box and sure enough, you can feel the girl’s fingers around the wobbling shaft as if it were hanging between your legs. <i>“So friggin cool, am I right? So, how many can I put you down for?”</i>");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",doorToDoorDildosII);
 }
@@ -919,7 +925,7 @@ public function doorToDoorDildosII():void
 	output("\n\nWith both hands, you pump the cock in and out of the sales girl’s pussy, every fold of her clenching depths transmitted through your body by the clit ring. You twist the shaft, feeling out her squeezing passages with urgent, unsatisfied lust that leaves you shivering. The catgirl’s tail wraps itself around your arms, while she mumbles and moans under your feet.");
 	output("\n\nYou can feel her body tense beneath you and the kitty-cock between her legs twitches before discharging steady, pumping streams of jizz all over your floor. Staring at the throbbing balls inches from your nose fills you with envious despair and you spear her again and again with the dildo, feeling every trembling inch of her sweet slit but unable to flood her with the passion endlessly building inside you. <i>“I just... can’t... CUM!”</i> you cry with a mournful wail and everything goes dark.");
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",doorToDoorDildosIII);
 }
@@ -965,7 +971,7 @@ public function petPro():void
 	output("\n\n<i>“Release,”</i> you command, allowing your pet to jump forward gratefully, jamming her length into your throat in a single thrust. Your relaxation is so deep that she bucks past your curling tongue and against the back of your mouth, pre gushing freely as she goes. You rest your fingers at the peak of your neck, enjoying the feeling of your esophagus bloating with the thick puppy pecker even as your mouth fills with the ballooning girth of her knot. You swallow and gulp with a milking motion that leaves your puppy pawing at you with her building climax.");
 	output("\n\nJust as eagerly as she mounted you, she busts her nut deeply into your esophagus, sending jets of thick spunk gushing down into your stomach. Her balls lightly slap your chin as her abdomen grinds against your nose, making sure every last drop finds its way into your tummy. You rub the warm blossom of liquid weight in your gut and tap the girl on her thigh to make her back up. Reluctant but obedient, the white ausar retreats from your mouth, dragging her salty tip across your forehead as her member slowly goes flaccid.");
 	processTime(10);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",petProII);
 }
@@ -982,7 +988,7 @@ public function petProII():void
 	output("\n\nWhen at last he reaches his limit, he pulls back and presses his tip down directly onto your tongue. You can feel the boy’s orgasm through the liquid, salty pressure of his peaking pleasure, every rapid heartbeat a fresh spout of canine cum pumped directly onto your exposed taste buds. He drills the flavor of his passion into you with every fresh ejaculation, heat building on your sticky cheeks as a flush rises to your spunk-covered face.");
 	output("\n\nYou give the black-furred pup encouraging scritches, swallowing eagerly until, finally, he runs dry. Your world gradually expands outwards once more as breathing comes easily again. Faintly, you’re aware of the gooey glaze your bare skin is soaking in. Some of the less disciplined ausar must’ve blown their loads over you while you were being face-fucked. <i>“Such a waste,”</i> you moan, coaxing another pup into your drool-slick mouth, and then another. You stroke the growing expanse of your belly as all your precious pets fill you with their sweet, sweet cum.");
 	processTime(20);
-	pc.lust(30);
+	pc.changeLust(30);
 	clearMenu();
 	addButton(0,"Next",petProIII);
 }
@@ -1012,7 +1018,7 @@ public function poorLittleWhiteGel():void
 	output("\n\nThe throes of cum cascade rush through their bodies as quickly as you’d hoped, and each grabs one of the suction cups attached to your chair. Popping it onto their swelling members, the girls crowd in close, the heat of their bodies radiating into your white membrane.");
 	output("\n\nFat blobs of pre-cum begin bubbling up from the now moaning girls and the pump under your seat whirrs to life. The kui-tan goo is drawn up the cock-sucking sleeve, into the vibrating tubes, fed past your shoulders and into the dome around your peak. The fishbowl helmet fills with the alluring scent of cream a second before the thin fluid splashes down over your gelatinous forehead. You can’t help but laugh as the warm, sticky spunk flows down your face and pools around your neck. In just a few seconds, the pre has reached the bottom of your chin and a flash of doubt crosses your mind.");
 	processTime(10);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",poorLittleWhiteGelII);
 }
@@ -1028,7 +1034,7 @@ public function poorLittleWhiteGelII():void
 	output("\n\nYou turn your attention outward again, pleased to find that another girl has begun her climax as well. Your helmet is filling up quick quickly now, rising from your chin to just below your eyes. The liquid heat of their passion all around you, it’s all you can do to cross your legs and squeeze your thighs tight. Opening your mouth once more, you being your work in earnest.");
 	output("\n\nYou swallow quickly, almost disappointed that you can’t take more time to just bask in the jizz. One by one, your gulping quaffs keep pace with the big balled women around you. Regular oscillations flow down your neck, like the ripples of a river, carrying twin seas of spunk to the ocean filling your gut.");
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",poorLittleWhiteGelIII);
 }
 
@@ -1043,7 +1049,7 @@ public function poorLittleWhiteGelIII():void
 	output("\n\nThe other girls must’ve hit their climax at some point, because your stomach seems to have hit peak elasticity. Quickly, you divert the flow into your breasts, pumping them full of the sweet, salty cream. You can feel a pressure at the back of your nipples and you focus on removing the outlets as quickly as you can. If you started to spring a leak, it’d all be over! Still blinded by your spunk helmet, you press your palms down on the expanding orbs of your chest. D-cups, F-cups, J-cups... Z-cups... you stop tracking them once they too quiver with the tension of their pressurized contents.");
 	output("\n\nYour ass comes next, swelling to fill the seat of your chair in moments before expanding outward with hips that would need to use loading bays as doors. Despite your concentration, you can feel the inevitable consequences of this much suspended seed inside yourself. All the tingling, heated hunger inside you seems to focus itself right at the base of your abdomen. A firm, gel appendage pokes up from your stretched skin and swells out past your massive belly. The pseudopod bulges in the middle and throbs against your cum-fattened thighs. Your fingers clutch at the armrests of your chair, silently resisting the orgasm that threatens to ruining everything, while the seemingly endless supply of sticky girl-spunk pours into you.");
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	addButton(0,"Next",poorLittleWhiteGelIV);
 }
 
@@ -1062,7 +1068,7 @@ public function poorLittleWhiteGelIV():void
 	output("\n\nDespite your copious release, the weight of your feat has left its mark on you. Your normally narrow, thin body has been pumped to the absurd proportions of a loo’rahn. A definite paunch in your belly and the extra thick hips and ass seem utterly out of place on your cream-polished frame. The eye-boggling Q-cups on your chest make you think twice about trying to stand up just yet, and the wobble of your inflated lips lets you know that the last gulp of all that nuki nut is still with you.");
 	output("\n\nYou tap a water-proofed tablet dangling from one armrest and upload the video to the judging committee. After a brief wait, the screen blinks with a bright, golden glow. You’ve done it! You’re the new record holder for the most cum swallowed by a single humanoid organism at once! Now everybody will know the name...");
 	processTime(10);
-	pc.lust(20);
+	pc.changeLust(20);
 	var cumNum:Number = pc.cumQ();
 	pc.orgasm();
 	addButton(0,"Next",poorLittleWhiteGelV,cumNum);
@@ -1147,7 +1153,7 @@ public function bodysuitBubblesSceneII():void
 	output("\n\n<i>“Neither!”</i> you shoot back. <i>“I’m into normal stuff,”</i> you mutter, your voice gaining volume as you press on. <i>“It was her big, fake tits, if you have to know! I’m into normal stuff! Normal! Not some weird humiliation fetish,”</i> you practically yell.");
 	output("\n\n<i>“Fuck! My ears! That mic is set up for whispers, you scaly-tailed cunt! Warn me before you blow out my hearing next time!”</i>");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",bodysuitBubblesSceneIII);
 }
@@ -1171,7 +1177,7 @@ public function bodysuitBubblesSceneIII():void
 	output("\n\nThe words cascade around you and you moan, trying to pat down the cum bulge, only to send the warm spunk running down the rest of your body. Sticky heat seeps down the interior of your suit, your liquid lust oiling your body. You heart races faster and faster as the situation deteriorates.");
 	output("\n\n<i>“What are you waiting for,”</i> Vee giggles to you in a private, coaxing whisper. <i>“Give the people a show.”</i>");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",bodysuitBubblesSceneIV);
 }
@@ -1193,7 +1199,7 @@ public function bodysuitBubblesSceneIV():void
 	output("\n\nAwash with jizz, inside and out, you scarcely notice when station security pushes past the crowd to collect you. Steady pumps keep pushing waves of cream against your throat and down your body, but the cops lay hold of you all the same, lifting your boneless, blissed-out frame between them.");
 	output("\n\n<i>“I’ll get bail for you this time, if you get bail for me next week,”</i> Vee offers with gleeful delight, no doubt already uploading the recording to the extranet.");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	var cumNum:Number = pc.cumQ();
 	pc.orgasm();
 	clearMenu();
@@ -1270,7 +1276,7 @@ public function breakingTheLawII():void
 	output("\n\nYou’d expected pain or at least discomfort, but the feeling is, if anything, intoxicating. You push more fingers in, marvelling at how pliable your mast has become. The fat prick stretches and gapes as your whole fist pushes in, doubling girth to accommodate the firmness of your hand. Pulling out, you flex and the shaft returns to its prior state, no worse the wear for your insertion.");
 	output("\n\n<i>“The coppers are gonna be looking for some amorphs, but they’ll never think to check the kui-tan with two girl-sized balls,”</i> Green gloats, her excited impatience drawing her to your side with fawning affection. <i>“Ready or not, here I come,”</i> she giggles.");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",breakingTheLawIII);
 }
@@ -1287,7 +1293,7 @@ public function breakingTheLawIII():void
 	output("\n\nGasping, you tremble and try to calm yourself. Your previously tunnel-sized cock shows no signs of its trial, not even the slightest stretch mark. The only sign that the galotian girl didn’t simply vanish but is hanging between your legs. You scoot forward and let your nearly 3\' wide ball plop off your lap and down onto the floor with a burdened jiggle. You perch at the edge of the captain’s chair, rubbing your single, mammoth nut gently, feeling the slight movements of Green within as she no doubt feasts on the cum steadily filling up her hiding place.");
 	output("\n\nYou raise your gaze to Violet and are about to invite her in to fill the other orb when your voice cracks as a monumental orgasm sweeps through your momentary lapse of concentration. You shudder and gasp, fingers digging into your armrests as your chest heaves. You feel heat surging upward as the galotian, recently settled, is forced upward once more.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",breakingTheLawIV);
 }
@@ -1305,7 +1311,7 @@ public function breakingTheLawIV():void
 	output("\n\n<i>“N-no. It’s just that... you’re under arrest.”</i>");
 	output("\n\nThe look of annoyed boredom slips into such authentic shock that you very nearly orgasm despite her earlier command. <i>“Wha-”</i> is all she can get out before you flex the full strength of your highly-trained groin muscles and pull her down, into your balls in a sudden, slurping motion. Her arms fly up and are swallowed too, her hands vanishing past the lip of your shaft as she joins the galotian.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",breakingTheLawV);
 }
@@ -1323,7 +1329,7 @@ public function breakingTheLawV():void
 	output("\n\nYou pick up your com once more and click it on. <i>“This is ‘Brown.’ No sign of the amorphs. I will head back to the rendezvous and try to meet back up with them.”</i>");
 	output("\n\nYou click the com off and toss it aside. That’ll keep the UGC satisfied for the time being. You’ll let them out eventually, but for now, the three of you can have plenty of fun right where you are.");
 	processTime(10);
-	pc.lust(25);
+	pc.changeLust(25);
 	var cumNum:Number = pc.cumQ();
 	pc.orgasm();
 	clearMenu();
@@ -1434,7 +1440,7 @@ public function mindwashCelise():void
 
 		output("\n\nYou assure her that, yes, it is quite crazy and help her down from the chair. If it were anybody else, you’d worry about subjecting them to the machine this intensely, but something tells you that Celise will just keep springing back to her old self, no matter what the visor throws at her.");
 		processTime(75);
-		pc.lust(25);
+		pc.changeLust(25);
 		IncrementFlag("CELISE_MINDWASHED");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1452,7 +1458,7 @@ public function mindwashCeliseFirstimeII():void
 	output("\n\nThe outlines of knotted phalluses pump with the disjointed, shallow strokes you’d expect of four people reaming a single girl, all while the galotian squirms and creams herself with gushing, sloppy gurgles. The shaft in her throat bloats and you can practically see the path of its invisible spunk as the peak sprouts a thin offshoot which rolls down her chest and pools in her middle in an expanding, empty stomach. One after another, the knotted tunnels reach their own climax in the girl, pouring the bloating contents of their bliss into her overfilled form.");
 	output("\n\nThe imaginary dog dicks try to pull out, but the knots are too large and her body too tight, so they content themselves with a slow, lazy series of half-hearted thrusts, enjoying the spunk-filled cock holsters.");
 	processTime(15);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",mindwashCeliseFirstimeIII);
 }
@@ -1954,7 +1960,7 @@ public function ceraphPetPlay():void
 	output("\n\nThe word is choked off as soon as its started. Ceraph lectures, <i>“Pet, that isn’t how you speak! If you’re going to be more than a useless submissive, you need to learn how to communicate. Now, if you want me to ease that pressure, you can mewl like a cat or bark like a dog once for yes. Do it twice for no, and we can go for a walk.”</i> The crushing pressure around your windpipe is relaxed, and you are given a chance to respond.");
 
 	processTime(20);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Bark Once",barkOnceForCeraph);
 	addButton(1,"Bark Twice",barkTwiceForCeraph);
@@ -2001,7 +2007,7 @@ public function barkTwiceForCeraph():void
 	output("\n\nClick.");
 	output("\n\nYour collar is removed, and you look around realizing your owner is gone. Your muscles are sore from the journey and you NEED to masturbate... You aren’t even sure why you did that.");
 	processTime(30);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",CoCSceneEpilogue,0);
 }
@@ -2062,7 +2068,7 @@ public function loppeTheRabbot():void
 	output("\n\n<i>“So, sugar,”</i> she says, interrupting your reverie, <i>“we can do this however you like. I don’t really mind pitching or catching, especially with a cutie like you.”</i> Loppe winks at you, posing for your benefit.");
 	output("\n\nPulling her onto your dick would result in some cowgirl fun, though you’d have to deal with her cock pointed right at you when she came. You could just whip it out and ask what she thinks of it, compared to hers - it might lead to some cross words and crossed swords, though. You could take her monster length vaginally, but if her libido is what she claims, you’ll probably wind up quite stretched. Her hardening horsecock looks like it would fit between your immense tits, an act likely to net you a messy demonstration of her enthusiasm. There’s always the option to receive her anally, though with her vaunted libido, you’d probably end up so flooded with her cum that it would wash from your mouth. Or you could be a prick-tease and leave.");
 	processTime(50);
-	pc.lust(40);
+	pc.changeLust(40);
 	clearMenu();
 	addButton(0,"Get BJ",loppeBJ);
 	addButton(1,"Catch Anal",loppeAnal);
@@ -2215,7 +2221,7 @@ public function heckelScene():void
 	output("\n\n<i>“Like what you see?”</i> she asks, looking you up and down. <i>“‘Cause I like what I see. It’s not every day I get someone as fit as you brave enough to partner up with me. Come on then fresh meat, every newbie has to start at the bottom.”</i> She tilts her head towards her hardening member and raises an eyebrow.");
 	output("\n\nYou feel pretty strong yourself, and you realize you could probably arm wrestle this hyena-bitch down to size.");
 	processTime(30);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Suck Her",heckelGetsSucked);
 	addButton(1,"Catch Anal",heckelAnalScene);
@@ -2238,7 +2244,7 @@ public function heckelGetsSucked():void
 	output("\n\nBefore you can start thinking of a way out of the situation, she growls loudly above you. Her hands grip the back of your head and pull you towards her, burying your face in wet fur and her knot in your mouth. You feel her lean over you as your vision goes dark, your entire face buried in the fur of her groin. Her entire cock seems to flex inside you as her hips thrust forward, and a moment later you feel a burning heat travelling down your throat. Your hands go to the ground to steady yourself as she pulls herself suddenly away, her dick pulling out of your gullet with a long slurp and giving you a chance to breathe clearly again. You barely get one breath in before you realize that she’s still cumming, and a thick stream of jism lands across your face and into your open mouth as she paws herself off the rest of the way. Unable to do anything else at this point, you simply fall back onto your shapely, chiseled butt and let her cum across your face two more times, her tongue lolling out of her mouth as she finishes.");
 	output("\n\nWhen she’s finally emptied herself on your face, she falls down onto the bench in front of you. Before you can say anything, she extends a paw and ruffles your semen-streaked hair. <i>“Heh, not bad fresh meat. If you can learn your place on the food chain here, we might have a beautiful partnership ahead of us. If you still think you can keep up, that is.”</i> She winks at you as she stands again, tossing you her towel from earlier as she heads towards the showers.");
 	processTime(40);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",CoCSceneEpilogue,0);
 }
@@ -2544,7 +2550,7 @@ public function doggieGHole():void
 	output("\n\nYou throw yourself onto the swollen dog-cock and easily engulf the whole thing, spreading your lips wide around the thick knot. You can feel it bouncing the uvula in your throat around but you manage to supress your gag reflex like a good slut while you work the sweaty dick, giving it a thorough tongue bath. You wrap your lips around the base of the knot, feeling it start to stretch your jaws apart. You pull back before it can lock you like that, and squeeze the knot in your hands. It cums, unloading thick wads of gooey cum into your mouth.");
 	output("\n\nA young goblin comes by with a bowl for you to make your payment into. You spit out the gunk and wipe your mouth, as the goblin carries the seed away. You notice a trail of clear drops on the ground behind her. She must be anticipating something...");
 	processTime(30);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",CoCSceneEpilogue,0);
 }
@@ -2559,7 +2565,7 @@ public function impGHole():void
 	output("\n\nYou immediately dive forwards, relishing the idea of taking in another load of demonic cum. Your groin tingles as your lips make their way down the oddly textured shaft, engulphing nearly 10 inches of demon-cock, feeling it press down your throat. You curl your tongue around and begin sliding back and forth, immediately rewarded with a thick dribble of pre-cum. The imp on the other end loses it immediately, blasting waves of cum directly into your belly as you shove forwards, taking him into the hilt. You feel him pulsing and pull back in time to take the last few loads in your mouth, saving your payment for the goblins.");
 	output("\n\nAbruptly, the demon-dong slips through your grasp and out the hole. You hear a loud thump as something lands on the ground. Poor thing.");
 	processTime(20);
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",CoCSceneEpilogue,0);
 }
@@ -2574,7 +2580,7 @@ public function minotaurGHole():void
 	output("\n\nDriven on by the minotaur’s reactions, you take more and more of the minotaur cock into your mouth. As you work your mouth around the first ring, you open up the top section of your red, high-society bodysuit, freeing up your three rows of tits. With each pass, you’re able to take more and more of the bull dick down your throat. You caress your back-breaking milky tits while moaning around the dick. When you get your mouth around the second ring, the minotaur’s cock throbs sharply, and his cum explodes in your mouth. Your eyes bulge in shock, and you pull off the cock as quickly as you can. You swallow the first several shots of thick, rich minotaur cum, while the rest shoots all over your face and tits. You hold up your tits as cum rains down upon you. By the time his orgasm stops and his dick goes limp, your face and breasts are covered in a thick layer of spooge.");
 	output("\n\nYour head spins from the minotaur’s musk, and you idly mop up and swallow the cum on your muzzle. A goblin aide comes in with a bowl, and gently scrapes the cum off your tits with a smooth, flat rock. Once you’re cleaned up and you’re dressed, the aide leads you back to Lynnette.");
 	processTime(10);
-	pc.lust(40);
+	pc.changeLust(40);
 	clearMenu();
 	addButton(0,"Next",CoCSceneEpilogue,0);
 }
@@ -2858,7 +2864,7 @@ public function jezebelMindwash():void
 	pc.lust(50);
 	cumNum += pc.cumQ();
 	pc.orgasm();
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",jezebelMindwashII,cumNum);
 }
@@ -3134,7 +3140,7 @@ public function shekkaMindwashFirstTime3(touch:Boolean):void
 	output("\n\nThe fingers of her hand take a very unsubtle tube shape, and she starts jerking her hand by the wrist back and forth: she’s giving Elijah one slow, but eager, handjob. <i>“But I came before you, baby... I can’t just leave a stud like you hanging, can I?”</i> Shekka licks her lips, drool dripping from her lips and onto the material covering her breasts once more. <i>“These balls must be full to the brim after that. Why don’t you lemme–”</i>");
 
 	processTime(35);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",shekkaFirstTimeMindwashIII);
 	// end scene (scene: First Time 3); increase Lust by 50; go to (scene: First Time Ending)
@@ -3392,7 +3398,7 @@ public function shekkaRepeatMindwashVarI(touch:Boolean):void
 	output("\n\nShe grins deviously as the lights on her visor begin to flicker.");
 
 	processTime(30);
-	pc.lust(50);
+	pc.changeLust(50);
 	if(touch)
 	{
 		if(!shekka.hasCock()) pc.girlCumInMouth(shekka);

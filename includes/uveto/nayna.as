@@ -897,7 +897,7 @@ public function gropeNaynaHug():void
 	output("\n\nThe bizarre bunny breaks away while you’re still dumbstruck by her ignorance. <i>“If you find any more, don’t hesitate to bring them my way! My budget may be limited, by my hugs aren’t!”</i>");
 	output("\n\nYou might have to be more direct next time...");
 	//+lust
-	pc.lust(10);
+	pc.changeLust(10);
 	flags["NAYNA_HUG_LEWDNESS"] = 1;
 	processTime(4);
 	clearMenu();
@@ -922,7 +922,7 @@ public function lewderHugForNayna():void
 	output("\n\n<i>“Good,”</i> Nayna replies, smiling once more. <i>“Next time I’ll be sure to do it right.”</i>");
 	flags["NAYNA_HUG_LEWDNESS"] = 2;
 	processTime(4);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1138,7 +1138,7 @@ public function reactWellToFutaLaquine():void
 	else output("I don’t think it’s possible for someone to suck cock better than you.");
 	output("”</i>");
 	processTime(13);
-	pc.lust(45);
+	pc.changeLust(45);
 	clearMenu();
 	addButton(0,"Next",blowNayna2);
 }
@@ -1193,7 +1193,7 @@ public function blowNayna2():void
 	else output("mouth");
 	output(", blossoming into a turgid plug, leaving you with all of a few nanoseconds to figure out how to swallow the coming flood.");
 	processTime(11);
-	pc.lust(55);
+	pc.changeLust(55);
 	clearMenu();
 	addButton(0,"Next",blowNayna3);
 }
@@ -1226,7 +1226,7 @@ public function blowNayna3():void
 	var pp:PregnancyPlaceholder = getNaynaPregContainer();
 	pc.loadInMouth(pp);
 	processTime(11);
-	pc.lust(100);
+	pc.changeLust(100);
 	pc.applyCumSoaked();
 	//[Next]
 	clearMenu();
@@ -1543,7 +1543,7 @@ public function naynaFucksYourButt():void
 	else output("\n\n");
 	output("You grit your teeth as the bunny shifts gears. Her paws grab you by your waist, and her hips bouncing faster and faster. Her tremendously thick cock hauls upwards and then grinds down into you in the amount of time it takes you to gasp in pleasure. You gulp a breath and she’s back up again, her cock sliding out, and then shoving back down.");
 	output("\n\nOver and over, she thrusts in and out of you, pinning you down as she humps you mercilessly, her muscles apparently not growing tired. You feel her pre oozing into you, though, starting to squelch with each rapid downstroke. Its heat, combined with her furious piledriving, is making you start to feel faint, your whole body shuddering with Nayna’s impacts, radiating pleasure with each bounce of the bunny’s cock inside you.");
-	pc.lust(100);
+	pc.changeLust(100);
 	output("\n\nNayna’s panting heavily, her bouncing hips smacking into your upturned ass with each downward pump, her balls slapping against you as her momentum builds. Her pussy smears a fresh load of her juices on each bob, adding more lubrication to her swiftly-pounding dick. She’s going faster and faster. You can feel her cock throbbing inside you, and it feels so amazing that you can barely catch your breath. She’s oozing so much pre deep inside you that it almost feels like she’s aready cumming. You’re not sure how much more of this you can take before you pass out.");
 	if(pc.isBimbo()) output(" It just feels so amazing to finally get a proper ass pounding!");
 	output(" Every thrust of her thick dick brings a new wave of pleasure crashing through you, and she’s shoving it in and out so fast, that a new surge of pleasure floods your body before the first is even gone.");
@@ -1663,7 +1663,7 @@ public function naynaDockingForHyperPCs():void
 	output("\n\nYou groan delightedly, and Nayna moans right along with you, head lolling backwards. Her ears join her in going limp, sagging back in her full-throated ecstasy until they hang limply against the back of her head. Not even her grip on your [pc.cockHead " + x + "] escapes her pleasured slackening. She’s clearly drunk on pleasure, loving the silken caress of your oversized dong’s pulsating interior.");
 	output("\n\nYou can feel it too. Each beat of your heart makes your [pc.cock " + x + "] tremble, pushing back against the intruder within, bearing down on her with your own biological imperative to engorge. Nayna is harder somehow, perhaps due to her smaller size. Whatever the case, her dick is barely affected by your member’s incessant squeezing. It plunges in and out without a single care for anything beyond its own pleasure, drooling so much liquid anticipation that it feels like she’s literally pumping up your prick, inflating you with her ludicrously copious fluids.");
 	processTime(6);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",naynaDockingPart2);
 }
@@ -1676,7 +1676,7 @@ public function naynaDockingPart2():void
 	output("\n\n<i>“Ung! C-can I...”</i> Nayna shudders at the unspoken thought, stroking her hands up and down your throbbing length. She gasps and looks back up at you, a little cross-eyed. <i>“C-can I cum inside?”</i> Her prominent buck teeth bite into her lush lower lip, yet her thrusts do not slow in the slightest. Quivering on the very edge, she tries to hold her composure together until you give her a reply.");
 	output("\n\nShould she cum inside?");
 	processTime(4);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Yes",cumInsideWhileDockingNayna,undefined,"Yes","Let her cum inside, consequences be damned!");
 	addButton(1,"No",makeNaynaCumOutsideAfterHyperFun,undefined,"No","Don’t let her cum inside, but she can cum all over your dick if she wants.");
@@ -1766,9 +1766,9 @@ public function helpNaynaWithBallflation():void
 	output("\n\nIt’s a messy task - one that takes the better part of an hour, but somebody has to do it.");
 	if(pc.isBimbo()) output(" Somebody that absolutely loves sneaking tastes of the product every chance [pc.heShe] gets.");
 	output(" By the time you finish, you’re halfway to hard again, but Nayna looks absolutely, completely relieved - if a bit exhausted. She lays there, letting her little cleaning robot zap the spunk out of her fur and panting for her breath.");
-	output("\n\n<i>“You... you were right. That was fun.”</i> Shuddering, the bunny tries to tuck herself back into her clothes, wincing when the tightness squeezes another jet of white from balls that look a little bigger than she should be. <i>“F-f-fuuuuck.”</i> Nayna’s ears go flat when she realizes what she’s said, but with a slight shudder, she looks back your way. <i>“This doesn’t mean I’m a slut.”</i> She pauses. <i>“Not a total one anyway. Those dick-girls on the rim know what they’re doing.");
+	output("\n\n<i>“You... you were right. That was fun.”</i> Shuddering, the bunny tries to tuck herself back into her clothes, wincing when the tightness squeezes another jet of white from balls that look a little bigger than she should be. <i>“F-f-fuuuuck.”</i> Nayna’s ears go flat when she realizes what she’s said, but with a slight shudder, she looks back your way. <i>“This doesn’t mean I’m a slut.”</i> She pauses. <i>“Not a total one anyway. Those dick-girls on the rim know what they’re doing.”</i>");
 	processTime(20);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

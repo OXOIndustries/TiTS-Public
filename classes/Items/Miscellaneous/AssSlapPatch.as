@@ -82,10 +82,10 @@ package classes.Items.Miscellaneous
 				else output(" You reach into your [pc.armor] and press the patch onto your [pc.ass].");
 			}
 			output(" The moment the patch is secure, you flinch when a low level electric shock fires into your buttocks. After that, the occupied spot on your butt grows warm. You adjust to the heat of the patch and it begins to gently vibrate against your [pc.skin].");
+			
+			target.changeLust(5);
+			
 			output("\n\n");
-			
-			target.lust(5);
-			
 			// Notes: The pad is expended after 2 days. Has a 1/3 chance to to trigger every hour *or just make it trigger as often as boobswell pads
 			// v1: TFs per cycle
 			// v2: Timer to trigger TFs

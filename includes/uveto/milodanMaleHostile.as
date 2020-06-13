@@ -10,6 +10,7 @@
 
 //#Flags:
 //MILO_MALE_CON_LOSSES	number of consecutive losses to the milodan male
+//OMEGA_LOSS how many times player has lost under effects of omega oil
 
 public function showMilodanMale(nude:Boolean = false):void
 {
@@ -24,6 +25,12 @@ public function bustDisplayMilodanMale(nude:Boolean = false):String
 	
 	return sBust;
 }
+public function inOmegaHeat():Boolean
+{
+	//Used for the loss Omega Oil scenes and bad end. The reason I did this instead of pc.inAnalHeat is because the scenes specifically reference Omega Oil, and there may be Anal Heats coming from other sources in the future
+	if (pc.hasStatusEffect("Strangely Warm") || pc.hasStatusEffect("Flushed") || pc.hasStatusEffect("Fuck Fever")) return true;
+	return false;
+}
 
 public function milodanCombatPrep():Creature
 {
@@ -32,7 +39,7 @@ public function milodanCombatPrep():Creature
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(milodan);
 	CombatManager.victoryScene(winVsMilodanMale);
-	CombatManager.lossScene(lossSceneToMaleMilodan);
+	CombatManager.lossScene(lossSceneToMaleMilodanRouting);
 	CombatManager.displayLocation("MILODAN");
 	milodan.long = "The male Milodan stands at about seven and a half feet, ";
 	//Pc tallness < 85: 
@@ -57,6 +64,18 @@ public function encounterAMilodan():void
 	var milodan_color:String = milodan.furColor;
 	showMilodanMale();
 	author("Wsan");
+	if (inOmegaHeat() && flags["MILO_MALE_CON_LOSSES"] >= 6)
+	{
+		author("Meaty Ochre");
+		output("\n\nThe crunch of snow behind you startles you out of your reprieve, hand reaching for your [pc.weapon] as you spin around to face whoever has snuck up on you. Once again you’re face-to-face with the male of the Milodan species, but the hulking barbarian isn’t poised to attack. Your stance relaxes as you recall the more pleasurable aspects of your close encounters with these shaggy furred aliens. The urge to submit is sudden but familiar by now, and you contemplate going with your gut instinct to turn around and present your [pc.ass] to the dick-bearer before you.");
+		output("\n\nEither the lust you feel is apparent enough that he takes it for an invitation or he’s just tired of waiting, but the Milodan steps forward to place his huge hands on your body. Hands the size of dinner plates quickly find their way to your butt and enthusiastically begin kneading the flesh there. Despite the chill of the tundra, warmth floods your body in response to the perverse groping, and you feel yourself start sinking into the creature’s ministrations. It would be so easy to let this burly feline do whatever he wants to you...");
+		CombatManager.lossScene(omegaBadEndLoss);
+		clearMenu();
+		addButton(0,"Escape",omegaBadEndEscape);
+		addButton(1,"Submit",omegaBadEndSubmit);
+		addButton(2,"Fight", CombatManager.beginCombat);
+		return;
+	}
 	output("\n\nA hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
 	//PC tallness < 85: 
 	if(pc.tallness < 85) output("He’s markedly taller than you are, and his musculature is intense.");
@@ -85,6 +104,8 @@ public function encounterAMilodan():void
 	
 	clearMenu();
 	addButton(0,"Next", CombatManager.beginCombat);
+	//If PC has lost five times under Omega Oil effects, button remains, even if consecutive losses drops back down
+	if (inOmegaHeat() && (flags["MILO_MALE_CON_LOSSES"] >= 5 || flags["OMEGA_LOSS"] >= 5)) addButton(4,"Submit",omegaLossToMiloMale,true,"Submit","Why fight when you both know what you want?");
 }
 
 //Victory scenes
@@ -161,6 +182,7 @@ public function miloMaleWinMenu():void
 		else addDisabledButton(3,"Taurssionary","Taurssionary","As the name would imply, you need to be a centaur or something similar for this particular act.");
 
 		addButton(4,"Rimjob",giveMilodanMalesStinkyButtholeALick,undefined,"Rimjob","Tongue his ass until he’s squirting so much hot release into the snow that it steams.");
+		addButton(5,"CockWorship",milodanCockWorship,undefined,"Cock Worship","You won the fight... that means you get to do what you want. That includes giving this studly catman some crotch worship." + (silly ? " No kink shaming here.":""));
 	}
 	else
 	{
@@ -169,6 +191,7 @@ public function miloMaleWinMenu():void
 		addDisabledButton(2,"Ride Anal","Ride Anal","You aren’t aroused enough for that.");
 		addDisabledButton(3,"Taurssionary","Taurssionary","You aren’t aroused enough for that.");
 		addDisabledButton(4,"Rimjob","Rimjob","You aren’t aroused enough for that.");
+		addDisabledButton(5,"CockWorship","Cock Worship","You aren’t aroused enough for that.");
 	}
 	addButton(14,"Leave",leaveDatMilodanHesASlutAnywayItsNotLiekYouLikedHimOrAnythingBaka);
 }
@@ -199,7 +222,7 @@ public function doggieStyleDatSaberDoggie():void
 	pc.cockChange();
 
 	processTime(5);
-	pc.lust(1000);
+	pc.changeLust(1000);
 	//[Nah] [Yes]
 	clearMenu();
 	addButton(0,"Nah",dontLetTheMilodanGetOffHesADork,x,"Nah","Why would you worry about his pleasure?");
@@ -664,7 +687,7 @@ public function giveMilodanMalesStinkyButtholeALick():void
 	output("\n\n....");
 	output("\n\nBy the time you let him go, you’ve made him paint both the ice and his stomach in pearlescent white jizz. His cock is still drooling pre-cum even now, but you’ve had your fun. Leaving the still-shaking barbarian on the ground, you walk away with a smile. Maybe you should do this more often.");
 	processTime(60);
-	pc.lust(30);
+	pc.changeLust(30);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -704,6 +727,12 @@ public function leaveDatMilodanHesASlutAnywayItsNotLiekYouLikedHimOrAnythingBaka
 	CombatManager.genericVictory();
 }
 
+//Added in Routing for if PC has Fuck Fever
+public function lossSceneToMaleMilodanRouting():void
+{
+	if (inOmegaHeat()) omegaLossToMiloMale();
+	else lossSceneToMaleMilodan();
+}
 //Loss scenes
 //Post-fite text
 public function lossSceneToMaleMilodan():void
@@ -1168,7 +1197,7 @@ public function milodanBadEndHandler():Boolean
 		if (pc.hasVagina())
 		{
 			output("\n\nYou try to escape, of course - more than once. Each time, your new alpha finds you in the snow, drags you back to his tent and spanks you like a disobedient child until your [pc.ass] is glowing red, until you can’t sit without whimpering in discomfort. Eventually, you realize it’s hopeless; he knows the terrain around the village too well - your only hope is that someone will come rescue you. They don’t though, and at some point during your first pregnancy ");
-			if (pc.fertility() == 0) output(" after the fertility priestesses ‘cure’ you of your barren womb, ");
+			if (pc.fertility() == 0) output("after the fertility priestesses ‘cure’ you of your barren womb, ");
 			output("you stop wishing they would. Becoming this milodan’s wife, bearing and rearing this magnificent barbarian’s kits is the best thing that could have happened to you, you realize now. What does the quest matter, really? You’re <b>happy.</b> Content. Fulfilled. Every time your new alpha takes you into his bed and leaves you a squirming, writhing puddle of bitchmeat you care less and less about Steele Tech, about recovering the pods or protecting your inheritance from your cousin. Let them have the stupid company. You’ve got everything you need growing in your swollen belly.");
 			output("\n\nIt’s not an easy life, of course. Your alpha demands that you learn to cook the food he brings home, clean and dress wounds and a myriad of other chores that always need doing around the village, even while you’re waddling about heavy with his spawn. You’re constantly sore for the first month or so of your new life, a result of your alpha’s insane libido and the work you’re always doing. It’s where you belong though, you know that now. Why else would you have kept coming back to be bred in the snow, if you didn’t want to become his forever?");
 			output("\n\nYou’ve forgotten all about your ‘quest’ by the time the milodan who took you for his own is putting his third litter of kits in your tummy. All you can think about is how <i>happy</i> and <i>proud</i> you are to bear another litter for your mate, how good and <i>right</i> it feels to be under him, hundreds of pounds of pure muscle pounding you senseless before his familiar knot begins to do its work, opening your [pc.cunt] up and planting more gorgeous, strong kits in your womb, his musky scent permeating your nostrils. When the first jet of seed sprays your cervix you squeal happily and wrap your arms and legs around your mate, fingers clutching up handfuls of warm fur as your body seizes up, knowing you’re going to be a mother to his kits again, the way you were always meant to be.");
@@ -1193,4 +1222,569 @@ public function milodanBadEndHandler():Boolean
 		return true;
 	}
 	return false;
+}
+
+//[UN.IMPL'd/AUGUST] Male Milodan Crotch Worship
+// Patreon vote. Male Milodans will have a win scene added to their events where the PC performs crotch worship. After doing it enough times, the hulking catdog will dom the PC properly, more facefucking and less input from the PC. But with no downsides, it's just for subby players >.>
+
+//[C. Worship]
+// Tooltip: You won the fight... that means you get to do what you want. That includes giving this studly catman some crotch worship. {silly: No kink shaming here.}
+// No restrictions. It's me, William, writing PC performing oral. You know what you're getting >:)
+
+public function milodanCockWorship():void
+{
+	clearOutput();
+	showMilodanMale(true);
+	author("William");
+	if(!inCombat()) setEnemy(new MilodanMale());
+	// HP Victory
+	if(enemy.HP() <= 1)
+	{
+		output("The heat of battle, you find, is quickly replaced by the heat of desire. Your eyes roll down the furry brute’s broad features, lingering on flexing muscles beneath black-dappled argent camouflage. This winter warrior is a beastly sight even in defeat. His determination continues to flicker behind his quietly defiant eyes. He lost the fight - he knows his place. Yet when your gaze settles on his crotch, your heart skips a beat. You slide the loincloth away, revealing an onyx chub, thick as a fist, resting atop a large pair of densely-furred balls.");
+		//bimboOrCumAddict:
+		if(pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) 
+		{
+			output("\n\nEverything becomes so very clear - you don’t just <b>want</b> this milodan’s dick, you <b>need</b> it. You’re completely fixated on his sexy, nubby prong, even as a stream of hot slaver flows off your slackened tongue. Just thinking about servicing it into a real expression of masculinity gives you a pleasant shudder - it’s what sluts do best, after all. And those balls look nice and full, ripe proof of his prowess as a breeder. There’s gotta be enough nut in there for plenty of women, and it’s all yours! Delirious whimpers build in the back of your throat when you think about getting a large, round belly stuffed with hot and creamy reward - oh yes!");
+		}
+		else if(pc.libido() < 33)
+		{
+			output("\n\nYou bite your lower lip, the erotic thought of having this burly male to yourself flashing in your throbbing mind. At first you feel a little uneasy, but you can’t look away from it. His manhood inspires admiration. Admitting that is embarrassing, but not shameful. That cock is there to be stroked into leonine tumescence, to be serviced. Maybe you got off on the wrong foot? With a face red enough to combat Uveto’s cold, you know what you must do.");
+		}
+		else if(pc.libido() < 66)
+		{
+			output("\n\nAlready your tongue is submerged in saliva. In fact, you’re drooling. Milodan men are mountains of sculpted masculinity, alphas, one and all. He’s not aroused, but you can smell him. His cock is so hypnotic that the real shame would be not touching it. Swallowing the lump in your throat (to make room for that, of course), you set about getting your ‘victory’ prize.");
+		}
+		else output("\n\nIt doesn’t take long for your animalistic urges to surface the way you’re fixated on his dick. It’s like one plus one - big, virile mate, and you, young, " + (pc.fertility() > 0 ? "fertile":"needy") + " [pc.raceShort]-[pc.boyGirl]. You’re drooling all over his powerfully-muscled thigh, thinking over all the reasons why you need this leopard-man’s cock. It gets you hot enough to ignore Uveto’s arctic winds.");
+		
+		if(pc.isBimbo()) output("\n\nSuddenly you feel terrible for hurting him. What will his tribe think if anyone finds out he lost to you? Fluttering your eyelashes, stroking his belly, you purr, <i>“Why don’t you stand up? I’ll make it up to you, big boy! I promise!”</i>");
+		else if(pc.isBro()) output("\n\n<i>“Hrrm,”</i> you groan, smiling at him. <i>“Stand up.”</i>");
+		else if(pc.isNice()) output("\n\n<i>“Now, do me a favor,”</i> you smile, running a [pc.hand] up his thigh. <i>“Stand up, please.”</i>");
+		else if(pc.isMischievous()) output("\n\n<i>“Why don’t you go ahead and get up for me?”</i> you smirk, patting his stomach. <i>“You’ll see why.”</i>");
+		else output("\n\n<i>“Stand up,”</i> you grunt, nostrils flaring. <i>“Don’t ask any questions.”</i>");
+		output("\n\nSans protest, your would-be conqueror moves up, shifting the air around him with mountainous presence. Before you blink, he’s looming over you, staring down from his dominant elevation. He must like what he sees, because his smooth, feline dickskin is hardening, stretching out. The throbbing, thickening prong rapidly engorges with blood, swelling into a [pc.raceShort] tamer nearly a foot thick.");
+		output("\n\nA crystal droplet of precum forms at the tip, and you unconsciously lick your lips.");
+	}
+	// Lust Victory
+	else
+	{
+		output("It hits you right away. Snow and ice don’t smell, making the presence of a virile male’s pheromones all the more prevalent. Tendrils of sexual musk tickle your nose-hairs on their way to your brain. Even in a semi-erect state, the milodan before you, clutching his loins again, is a primal beast, an alpha in his own right. He lost the fight and he certainly knows his place... but when he shifts just a little, when you catch sight of the ebony-black pillar that is his distending phallus, you gulp. Just underneath it, below thick, boner-tending fingers, are his ripe, furred balls, weighed down by enough sperm to breed an entire village of women.");
+		//bimboOrCumAddict:
+		if(pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) output("\n\nFinally! With the fight out of the way and with a big, studly cat-man ready to fuck, you can get down " + (pc.hasKnees() ? "on your knees ":"") + "and <i>suck that yummy cock!</i> The speed at which you do so alarms him, though all he sees when he clears his eyes is a slutty [pc.raceShort] crouched at his groin, looking up past the trunk-thick chub of his barbed phallus, licking [pc.hisHer] lips like a trained and self-secure whore.");
+		else if(pc.libido() < 33)
+		{
+			output("\n\nYou realize he’s that way because of you. You’ve aroused him so painfully that his blood surges with a frenzied heat akin to that of rut. That his girth is hardening before your eyes brings a twinge of erotic satisfaction. Your heart flutters, and you find yourself persuaded by his aroma of need. You shuffle a little closer, realizing that you need to make that cock cum. You can’t look away from it as you sink below it, supplicate to it.");
+		}
+		else if(pc.libido() < 66) output("\n\nYou got him hard for just this reason - you want that dick. As you lick your lips, sensitive and glossed with spit, you find yourself eager to wrap them around it. That sexy beast needs an outlet for all his frustrations. Good thing he has one slinking below him, opening [pc.hisHer] mouth in livid desire.");
+		else output("\n\nRaw, animalistic urge strikes you - the milodan growing hard and firm in front of you, <i>because of you,</i> is a fine example of his species. A large, powerful male, heavy with breeding urge that he, incidentally, needs to fuck someone full of. Of course it’s going to be you. There’s no shame in admitting that you’re salivating for his cock, there’s no humiliation in sinking down below him, desperately wanting to suck it. All you have to do is open wide and let him know.");
+		output("\n\nStanding upright, the milodan looks down at you past the bare, hot shaft of his black penis. Smooth, rippling dickskin hardens to near-fullness right before your eyes, beading the first pearl of precum at its tip. The barbs around the crown and the base bristle in the wind, and even the knot pulses warmly at the fluffy base of his wide crotch. Blood-pumping veins lace his musky girth, working to complete its transformation into a nearly foot-thick [pc.raceShort]-tamer.");
+	}
+	// merge
+	output("\n\nThe fattest dick on Uveto throbs right in front of your [pc.face], dressing itself in a warm coat of pre. A visible cloud of rich musk lingers around the bobbing pillar, faint notes of sweetness present among an intensely masculine signature. The glans is slightly tapered, distinctly cat-like with interlocking layers of feline spines curling out from its most sensitive places. A radius of bulbous flesh girds the root of the all-important phallus: his knot, completing the image of a creature designed to succeed at fertilization with whatever mate he claims... or claims him.");
+	output("\n\n<i>“No delaying,”</i> he growls, taking a step forward, jolting you out of your visual adoration by laying his steep, moist bulk against your forehead. You can feel his heartbeat all the way through the urethra, enlarging the globules of earthen precum " + (pc.hasHair() ? "lathering in your [pc.hairColor] hair":"glazing your scalp") + ". It actually warms you up more than being in his commanding presence, wearing his testosterone like a " + pc.mf("wedding","bride’s") + " veil. You won... but here you are, ");
+	if(pc.libido() < 33) output("nuzzling his scented length, glad to feel protected");
+	else if(pc.libido() < 66) output("rubbing yourself into his bulging mass, overjoyed at how hard he is, how good he smells");
+	else output("tasting the wetness of his pre-soaked rod, kissing his cum-vein, drinking in his scent");
+	output(". You have no doubt in your mind that this milodan is <i>your alpha.</i>");
+
+	output("\n\nWhen you glance down, you’re made aware of the huge, silver gems dangling between his legs, swathed in a damp, soupy haze. The fuzzy testicles are so full that they sag and wobble, creating a seething space of sloped ballsflesh between scrotum and cock that you comfortingly lean into, enfolding your nose in his nutfuzz" + (pc.tailCount > 0 ? ", wagging your [pc.tails]":"") + ", and giving up on cognition. Smothered in fragrant fluffiness, you inhale, grip to his thighs, then huff again, heart racing and body quivering to the overwhelming musk of a born hunter. Supremacy is recognized between flashes of intense dopamine bursts and released neurotransmitters.");
+	output("\n\nThe sound of the wind dies down, replaced with the content, rumbly purr of a pleased milodan that burns away the concept of <i>“negative temperature.”</i> You relax into the intimacy of this perverse embrace, softly licking one orb, sliding your [pc.tongue] from one end to the other, collecting a spicy blend of sweat, pre, and some long-stewed odor to plaster your palate with.");
+	output("\n\nYou lick again, attempting to lift the milodan’s hefty encumbrance. They’re larger than the average apple, and much, <b>much</b> heavier. " + (pc.hasTongueFlag(GLOBAL.FLAG_LONG) ? "Even with a tongue that can curl around the whole sack, you lack the strength to raise even one. They’re as defiant as the creature they’re attached to.":"You don’t get very far. Not only does your tongue lack in strength, it can’t even get a quarter of the way around a single testicle before it slides off, swinging with tremulous inertia.") + " His tremendous ‘nads jostle back and forth with aggressive aftershocks, densely taut with billions, maybe trillions of swimmers" + (pc.hasVagina() ? " ready to make a broodmother out of you":" ready to make the jump to your belly") + ". The taste is amazing, but the <i>feel</i> is out of this world.");
+	output("\n\nNestled in this lewd sauna, you possessively grasp his virile jewels, fingers sinking into pheromone-drenched flesh. Roiling fluids audibly slosh inside, threatening to drown any who come closer. The lewd designs your squishing tongue draws into his pelt churn the waves of his swirling ocean. You purse your [pc.lips] into a slurping O-shape, kissing then sucking on the surfaces of his ecstatically contracting nuts. They gurgle unstably, squeezing tight to his crotch, forcing out the first rope of sperm in a premature ejaculation.");
+	output("\n\nA clawed hand urgently pulls your head from the passionate darkness, firming it against his monolithic member. He meets you with an impatient expression that is understood without language. <i>“Start.”</i> The grip eases when you press your taste buds to the crest of his totem and glide down, coming back up on the broadside, going down on the other, then using a hand to smear as much of your slobber across his sizzling shaft. It shines like a rod of pure, polished latex, practically reflecting your obedient image.");
+	output("\n\nHis cock has a woodsy taste on top of a saltiness that speaks to a thankless lifetime of labor. It’s a feral and bestial relish that flips switches in the primitive corner of your modern mind - it crashes your brain, like it can’t understand the contextual conflict of information it’s reading. Not having to think means you can focus more on enjoying that head-spinning flavor, savor it with sibilant hums of gourmet indulgence. What makes it special, however, is how the lingering aftertaste of his balls mixes with these many qualities to create an epicurean delight that’s too divine to be believed. No cocksucker could resist this perfect dick.");
+	output("\n\nHe places that huge, savage paw on your cheek in a reassuring gesture, softly stroking his nails into your [pc.skinFurScales] as you joyfully service his dick with hand, mouth, and tongue. His short tail is wagging behind him, throwing falling snow in mostly-hidden happiness. You’re staring back, watching his furrowed eyes for any and all signs of pleasure, delighting in the slight wince and pupil dilation when you pepper drooly kisses upon the full scope of his tool with a machine gun’s rapidity.");
+	output("\n\nThe back of his hand wipes over your brow when the climate threatens to cover it up. You have an idea why: he wants to see your [pc.eyes] the whole time. You’re submitting to him, the loser, making this all about him. He’s taking to it very well, maybe even a little inquisitively. After swallowing another load of pre, you see him smile. It’s a surprisingly fond and appreciative look for him, one that ignites the burning neediness in your belly.");
+	// pc Aphrodisiac Spit / Myr Venom
+	if (pc.hasPerk("Myr Venom") || pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+	{
+		output("\n\nIt was a foregone conclusion that your venomous saliva would seep into his shaft, work its blissful magic on his girth. Strong muscles tense around you again, and out spools another white rope of spooge that melts away the ice around your [pc.footOrFeet]. Behind bared fangs a vicious growl sets his wickedly curled lips to rippling. All his pores split open like volcanic fissures, expelling sheer, raw heat in the wake of your injection of ecstasy. It seems he’s showing all the respect he can to the ‘victor’, but if you do what you just did again...");
+	}
+	// pc Long Tongue
+	else if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nWielding the full length of your modified tongue, you see to it that the milodan gets a full wash. You wrap the organ around his base, stroking in proximity to his knot, and use the tip to knead his sack. He grunts and groans, so obviously pleased to have someone of your talents worshiping him. Your alpha encourages you to work a little faster and a little rougher, shifting his hips ever so slightly, beginning to please himself with deference to his subby conqueror.");
+	// merge
+	output("\n\nUnable to hold himself back, the leopard-man’s hips start humping your face, making you realize just how much strength and force is backing that glistening tower. Brutal balls slam into your chin and cheeks, flinging beads of their smutty lacquer into your orifices. Penile barbs curl against your [pc.skinFurScales] and then your ears. The milodan finally halts himself only after eclipsing you in his clenching ballsack, pulling back to present you with the tip of a hard, juicy cock that <b>needs your mouth.</b>");
+	processTime(20);
+	pc.changeLust(15);
+	clearMenu();
+	addButton(0,"Next",worshipMilodanPolePartDeus);
+}
+
+public function worshipMilodanPolePartDeus():void
+{
+	clearOutput();
+	showMilodanMale(true);
+	author("William");
+	// There are two separate scenes here, randomly performed after the first time.
+	// rand 1 (PC Performs Fellatio)
+	if(flags["MILO_C_WORSHIPS"] == undefined || (flags["MILO_C_WORSHIPS"] > 1 && rand(2) == 0))
+	{
+		output("Not wanting to keep your alpha waiting any longer, you pucker your [pc.lips] into an ‘O’-shape and lean closer to the muscled milodan’s jutting girth, eyes up. You press his tip to the center of your oral gap and move forward, acutely delighted by this privilege and all the excitement it brings. Squeezes of varying force to your head follow your fluttering motion. Your [pc.lipsChaste] spread around his thick, imposing girth, strings of slaver leaking from your cock-stuffed maw. It plunges through the narrowness of your sucking cheeks and comes to rest at the entrance of your throat, where the steady deposit of almost boiling milo-pre is strongly felt. The raw flavor of a male combined with the inexorable trickle of lubricant spurs your eyes to water with joy.");
+		output("\n\nAnother smile, this time wider than the last. He rubs your cheek, breathing heavier, also squirming. You slide back so that he has the pleasure of knowing what your [pc.lipColor] fuck-pillows can do. ");
+		if(pc.lipRating() < 3) output("They’re thin and unsuited for the task of pleasing so large a dick, but although your master’s cock may be stretching them into a colorless band, he approves. There’s benefits to either end of the spectrum, like seeing you wholly debased.");
+		else if(pc.lipRating() < 6) output("Your master immediately takes a liking to them, purring at the caress of your succulently plush cock-ring. It retains its color, glossing his most sensitive places under sensually sweeping smoothness.");
+		else output("Your master purrs so vigorously that it can be felt through his cock. Your beautifully plump and lustrous DSLs soothe him in their sensual, shaft-encompassing sweep. Sparkling saliva clings to them, making him all the happier that he has a tailor-made pole-polisher at his beck.");
+		output(" Pressing forward again, you wiggle your tongue under his turgid boner, ready to take him further, deviating from your task only to ensure that the texture of his erection will have a place in all your future dreams.");
+
+		// pc Can’t Deepthroat
+		if(!pc.canDeepthroat())
+		{
+			output("\n\nNo matter how dedicated you are to this brawny barbarian’s pleasure, your brain expresses its disdain at having to accommodate for immense insertions. You cough and hack, sputtering spit and pregasm, doing your best to bring him down your throat. The barbs on that lubricious stud-cock don’t make it any easier, stimulating you into more spasms of agonized ecstasy even as the tip firmly lodges itself over your quavering voice-box. You pull back, take a breath, swallow, and refresh, closing your eyes and sliding forward before your gag reflex can restart: it snaps like a twig. A fervid shudder explodes inside when you feel his knot bump your [pc.face] and his heavy balls pulsing warmly on your jaw.");
+		}
+		// pc Can Deepthroat
+		else 
+		{
+			output("\n\nIt’s at once orgasmic and soulfully fulfilling when the milodan’s slimy cock-head effortlessly glides through the entrance of your throat, thrusting towards your belly without any resistance. You sense no small amount of surprise from the patient cat-man while your oral flume clamps down on him like any vagina would. His biology rewards your esophagus with warming splatters of feline precum, making the " + (silly ? "UwU-vula":"uvula") + "-smushing withdrawal and re-entry even easier. The brush of his barbs to your inner muscles is heavenly, and the sight of his many inches vanishing into your body is eye-crossingly arousing, and that’s before you strain yourself at his knot. Of course you take him to the hilt, happily pressing your jaw into the warm, loving embrace of his bouncing balls.");
+			// pc Bimbo (Add-on to Can Deepthroat)
+			if(pc.isBimbo())
+			{
+				output("\n\nYou could never hope to describe (at least succinctly) just how wonderful it feels to be speared on dick. When you’re not experiencing this unique and unmitigable sensation, you’re always looking forward to the next time! You can only imagine what’s going on behind your cat-master’s eyes as you gleefully nurse his veiny cock, siphoning the liquid burden from his nuts in absent-minded suckles. You’re doing your absolute best to memorize his flavor, hoping that you’ll still taste him when you lick your lips later. Maybe you’ll even be able to find this one milodan by his potent dickscent, train your nose to seek him out among the cold wastes just to attach yourself to his fuck-rod and be served up a bitch’s hot, wonderful reward - You cum. Thinking about it so hard has done it, it’s made you " + (!pc.hasVagina() ? "orgasm from top and bottom":"wriggle too hard into your [pc.clits]; you fill the air with the scent of a satisfied whore") + "!");
+			}
+			// pc SnakeByte (Add-on to Can Deepthroat)
+			else if(flags["USED_SNAKEBYTE"] != undefined) output("\n\nRings of jizz-milking muscle seemingly alarm the brutish tribal. His attempts to pull away are futile and extra arousing. The clash of neck-massaging nubs with your ribbed, cock-clutching interior whites out your world in the exotic aftereffects of a single solitary second in oral paradise. <i>“Strange...”</i> he grunts, thrusting forward on his own, eager to understand just what’s going on in there. Of course he’ll never know of the grand science that’s gifted you these luxurious traits, but he doesn’t need to. He merely needs to enjoy them, like any other who may have such needs.");
+		}
+		// merge
+		output("\n\nFitting a [pc.hand] around his balls, you squeeze his smooth kegs while your throat squeezes his prick. Bobbing up and down with a hand on your head, lewd shlucks and slurps echoing through the frozen terrain; he begins to buck under your expertly planned assault. His cock-head replaces your adams’ apple over a series of frictious lunges that nearly drive you to orgasm. The milodan, immersed in you, is struggling to hold himself together. The meaty paw that’s been on your head the whole time ramps up in response, pressuring you to take more and more and give up less and less." + (pc.hasTongueFlag(GLOBAL.FLAG_LONG) ? " You make sure to keep your flexible tongue working, using it like a tendril of prick-pumping material to create a double-layered blowjob that no one else on this planet could emulate.":""));
+		output("\n\nMaintaining eye contact is a little harder like this. He’s chewing his lips; occasionally, his mouth parts, and his tongue falls out. Steam billows from his flaring nostrils. His throat compresses for another growly swallow while yours cinches down on a pillar of bestial rigor. You start to see his reasoning for keeping you impaled: when your throat realizes there’s no hard, rigid dick to clamp down on, you feel startlingly empty. Your very existence is called into question by the lack of a bulge forming you around itself. It’s a worrying thought, but one easily dispelled by devotion");
+		if(pc.tailCount > 0) output(" and " + (pc.tailCount == 1 ? "a ":"") + "wagging tail" + (pc.tailCount > 1 ? "s":""));
+		output(".");
+		output("\n\n<i>“Good,”</i> he puffs. That deep, oboe-like word rocks your world.");
+		output("\n\nShifting upwards, your motions become fiercer, making every invasive drive of the native’s breed-stick rougher. The veins on his girth depress your [pc.lipsChaste] while you turn your mind and body to the task of total fellatio. Releasing his balls and gripping to his thighs, you curl forwards like an adrenaline-fueled piston. Enmeshed in the moistness of your thirsty throat, the milodan’s throbbing firmness snugly packs itself into the narrow band, raking surfaces of indulgent nerves with the agilely flexing touch of feline pleasure-nubs.");
+		output("\n\nNo longer able to hold his thighs, dutifully blowing him in dangerous proximity of taking his knot, your fingers end up squeezing the firm, muscle-stacked ass cheeks behind him. They clench with every thrust of fur-coated hip, demonstrating that every tendon in his body is concentrated on the relief found by using you. " + (flags["USED_SNAKEBYTE"] == undefined ? "Some of your lingering anxiety is quelled when you notice he’s not worried about knotting you. You simply won’t be able to fit it without some serious changes. On the other hand, that is rather disheartening, seeing it swell like that, unable to plug a hole...":"You’ve undergone some serious mod-work for a reason, now it’s time to see if it can handle this situation. Spoiler: it does, because science is fucking awesome: thanks to your jaw’s ability to stretch even further as a result of Snakebyte, the swollen knot before your eyes is easily gobbled up into your serpentine maw, where it’s lavished like a spunk-factory. Whatever’s going on in your alpha’s head, you can’t wait to see how he reacts to being able to knot your amazing mouth."));
+		output("\n\nA distinct whimper alerts you to the milodan’s approaching orgasm. Frothing spittle follows you into the plunge: you rise all the way to the lip, swirl your [pc.tongue] around the peak, and then slide back down to the base. Your sucking wetness overwhelms his willpower to the point that he grabs onto your head and lances you on his pulsating organ. You defy his grip and rear back, unsheathing him from your mouth entirely, letting it hang in the air, and just before the first surge of ardor erupts, you inhale, and slam your head into his crotch in a full, gurgling stroke" + (flags["USED_SNAKEBYTE"] != undefined ? ", fitting his bitch-making knot nicely in your tenderised maw":"") + ".");
+		output("\n\nThe milodan’s inner flame conflagrates; burningly-white sperm surges through his phallus in vein-fattening volumes. The stretch gapes your girth-ringing lips wider, and the fullness you immediately feel in your throat becomes an intoxicating, feverish delight. Sperm-packed spooge floods your belly, splashing up through the entrance of your cum-gutter, coating all glowing membranes in the cat’s cream. Your voracious depths milk the buried barbarian of hot seed, the slow massage of passionately churning balls telling your mind that it’s done its job. You roll your face and neck, making sure to prolong his quiet, rumbling joy while your stomach expands into a pudgy shelter.");
+		// pc Cums (Bimbo or SnakeByte Only)
+		if(pc.isBimbo() || flags["USED_SNAKEBYTE"] != undefined)
+		{
+			output("\n\nYou can’t hold back any longer - the trembling, tender sensations of having your arousable throat screwed and spunked feed directly into your crotch. ");
+			if(pc.isHerm()) output("Your [pc.cocks] bust, launching [pc.cum] into " + (!pc.isCrotchExposed() ? "your clothes":"the snow under his legs") + " next to your [pc.pussiesLight], expelling the victorious hermaphroditic discharge in light of services rendered.");
+			else if(pc.hasVagina()) output("Your [pc.pussiesIsAre] lighting up, going hollow, until the moment of [pc.girlCumVisc] emission. Yes, " + (!pc.isSquirter() ? "you’re squirting":"you’re cumming") + ", all because you get exceptionally horny from the act of sucking cock... and you fucking love it.");
+			else if(pc.hasCock()) output("Bloating, your [pc.cocks] detonate" + (!pc.hasCocks() ? "s":"") + ", busting your [pc.cumVisc] nut into " + (!pc.isCrotchExposed() ? "your clothes":"the snow underneath him") + ", ejaculatory expulsions timed with his own. Oral orgasm drains you dry in much the same way.");
+			else output("An all-consuming warmth of relieved tension overtakes you. You can’t cum like him, but you don’t need to. Simply being his slut is enough to feel relief from arousal.");
+			//[Next] \\ Go to [Finished]
+			// sceneTag: PC cums
+		}
+	}
+	// rand 2 (Milodan Facefucks PC) (ONLY after doing [C. Worship] once!)
+	else
+	{
+		output("\n\nYour alpha places his other hand on your opposite cheek, lurching forward, pressing his lip-gaping sturdiness to the center of your [pc.lips]. You pucker up on instinct, the rush of his assertion and dominance spurring you into physical reactions of submission. He pushes forward, and the emotional satiation of being taken then and there proves to be too much. Your eyes try to roll back while the crown of his girth slaps against your tonsils. It’s giving your maw all the concentrated male lube it will need to prepare him for his journey. You drool around his throat-stuffing mass, sucking in your cheeks to wring out just a little more of his juice. It’ll help when he’s pounding away at your face.");
+		output("\n\nWiggling your tongue, you glance up to find the ebullient expression of a grizzled warrior poised to claim his prize. He withdraws, dragging your head to the tip, groans of heated approval giving voice to the pleasure your [pc.lips] bring him. ");
+		if(pc.lipRating() < 3) output("They may be small, and they may be easily strained by the rod you’re expected to swallow, but whilst they may not provide maximum pleasure, there <b>is</b> some joy your master will derive in seeing you twisted into a hard-fucked mess.");
+		else if(pc.lipRating() < 6) output(" Your master almost loses himself to the firm yet plush, forgiving hug of your sublime sex-cushions. They retain their color and thickness, passing his dick’s test with flying colors, sweeping across his erection with the promise of a mind-blowing fuck.");
+		else output(" Your master reflexively tightens and stops, the climax-sparking sweep of your blubbery DSLs proving to be more tempting an indulgence than the proverbial apple of eden. He’s purring so loudly that you feel it through his cock, held securely in the luscious, pouting, fuck-my-face lips of his star-walking suck-slut.");
+		output(" Then his masculine mast is pushing back into your slavering suckhole, stretching you around lust-thickened hardness in an almost respectful manner.");
+
+		// pc Can’t Deepthroat
+		if(!pc.canDeepthroat()) output("\n\nHe doesn’t wait to see if you can handle it or not, he stuffs you full then and there, battering past your reflexively tightening trachea and shoving his way into the vice of your gagging throat. You cry out, tears streaming down your face almost immediately. It is simply too much. Aware of your discomfort, the milodan unsheathes himself and spares you a few seconds to recover before gliding back in. This time, his nodule-lined phallus drives into your throat with less resistance, and now that you’re making a conscious effort to suppress your brain’s proclivities, he’s quickly able to hilt himself halfway to your stomach, pressing his fat, supple nuts to your jaw and his knot to your lips.");
+		// pc Can Deepthroat
+		else 
+		{
+			output("\n\nAlthough he doesn’t act to see if you can handle his insertion, you’re suddenly very glad that you don’t have a gag reflex. The masterful milodan plows through your wet esophagus on a one-way trip to your belly, spurting goo on the journey before clapping his balls and knot to your fuck-drunk face. The fingers wrapped around your head all stroke in enthusiastic tandem, impressed at and grateful for your dick-pleasing abilities. He pulls back and thrusts in again, fast learning just how much fun it is to have someone to himself that can handle all he’s packing. You hollow your cheeks down around his tool, clamping down on that all-natural expression of undeniable maleness to keep it safe.");
+			// pc Bimbo (Add-on to Can Deepthroat)
+			if(pc.isBimbo())
+			{
+				output("\n\nThe only thing hotter than being speared on a powerful cock right now would be seeing yourself in the position. Nothing is better than sitting there and being taken so fully, having someone act out all their deep, unmet desires on you. This big, hunky cat is fucking your face, all the wet polish inside making the immodest and desperate act a well-lubricated one. You hope you’ll taste his penis when you lick your lips later, feel a phantom phallus in your neck when you swallow. Maybe if you focus hard enough (which <i>is, admittedly,</i> kind of hard to do at any point) you’ll train your nose to find him out here by his dickmusk alone. Either way, there’s no greater joy than being attached to a stud by the mouth and not having to think about doing more than obediently slurping at his penis.");
+			}
+			// pc SnakeByte (Add-on to Can Deepthroat)
+			if(flags["USED_SNAKEBYTE"] != undefined) output("\n\n<i>“Urrggnnn...”</i> the barbaric leopard crows, hissing from the incidental caress of your now-acting muscles. Ribbed rings of ball-draining efficacy seal him in, preventing him from doing more than being swept away in a storm of writhing lust. Not only do you have zero issue in taking him knot- and balls-deep, but your erogenous suckhole is equipped with the rather uncanny trait of a modified interior capable of extracting even the most endurant facefuckers of all their creamy seed. At first, he pulled back in shock, but now that he’s had a taste of you, the avatar of oral euphoria... he can’t get enough of it.");
+		}
+		// merge
+		output("\n\nNever have you felt so firmly gripped by another person than before this milodan put his genetically-perfected breeding potential into fucking your mouth. All you have to do is hold on to his thighs and remember to breathe while he hauls into your tenderised throat, tugging your [pc.face] as it clings to his hardness. He twitches with urgency, vigorous need boiling in the depths of his maw-stuffing bulk. Moaning so that your voice can pleasure him too, you coaxingly slide up and down his trunk-like dick, glorying in the shameful ease of being useful to your alpha. He is, for you can never relax around him, you must always be lost in that stern pace his thick pole sets for you in violent pumps.");
+		output("\n\nA body meant to endure the harshest environs is throwing all its force into claiming you, pounding you full of pent-up bounty. The interior of your spasming throat-hole is drenched in his organic rapture. Precum squirts, spurts, streams, it’s everywhere, now also splattering from your lips. You’re the glistening toy of a beast who had no idea that the [pc.boyGirl] who defeated him would be his willing cum-slut. Neither of you can articulate your appreciation for one another, save by focusing solely on the cock giving it to you rough and deep.");
+		output("\n\nThe steaming rush of being claimed by some alien is wonderful. Here you are, for all your tools, your education, your training, your expertise, your civilization, taking it in the throat from a primitive hunter on some cold planet, loving every second of it. You’re already considering doing it again. There’s a ferocity here that’d be disconcerting to others but that appeals to you on a personal level. It’s exhilarating, having those spunk-heavy balls mauling your chin. It’s intoxicating, watching him use you, yet not recklessly. There’s still some deference in the way he lunges for your belly, scratches behind your [pc.ears], and imposes himself in a way that protects you from the elements.");
+		if(pc.isBimbo() || flags["USED_SNAKEBYTE"] != undefined) output(" Not that he needs to. The fact you keep cumming yourself stupid just from being an oral fuckpuppet gives you all the sinuous heat you require.");
+		output("\n\nMaybe he doesn’t love you, but he cares about you. Your comfort is important to him, and not just because a lack of respect would lead to a lack of pleasure. Irresistible desire takes its toll on his sexual consistency, and it soon fades. But you’re already well too dizzy to care when he cranes your head up, positions himself firmly on your face, and jackhammers you into the snow-swept plain. Your entire body shakes and rattles while he goes knot-deep. " + (flags["USED_SNAKEBYTE"] == undefined ? "It concerns you that he might try to force it in, but he knows your limits. He knows you can’t handle it, and that trying it would hurt. The realization lets you float away in the storm of his urges.":"It takes him by surprise when you work your jaw in an obscene and magical way, accommodating his knot and even part of his nutsack past your lips. He’s mentally obliterated by the reality: that he can knot-fuck your mouth, truly use your cock-socket of a face like he would some trophy wife’s cunt. Even better? He’ll get to shove it all the way in when he’s ready to cum."));
+		output("\n\nWhile you very faintly consider that giving up your quest and submitting to this milodan for the rest of your life, dominated by his masculine intent, it’s the whimper of impending climax that breaks you from your reverie. His pace collapses into a series of shuddery, disjointed thrusts that make the delicious aches in your well-fucked throat <b>shine</b> in bliss - helpless, spasming bliss. Realizing he’s ready, you give him a little push, [pc.lips] squirming around his shaft, feeling tension drain with every face-fucking cycle. The only alert you get that it’s happening is when he slides down and plants his feet" + (flags["USED_SNAKEBYTE"] != undefined ? ", fitting his knot between your happy cheeks":"") + ".");
+		output("\n\nIt happens so fast that you can’t even register. Your [pc.eyes] bulge with the sudden flood of gouting milodan cum. White-hot sperm splatters your innards with gusto, building in your swelling, gravid belly. The liquid curtain falls, the rabid churn of his slowly-emptying balls lancing your wobbling stomach with heavy inflation. Pints of hot sperm gush rhythmically and unerringly into your belly, plugging you so full that it climbs back up the dirty, used gutter of your throat. You feel full, very comfortably full, with all that jizz pooling and settling in your innermost recesses. The torrents never cease, going on for minute after minute. This is what victory tastes like.");
+		// pc Cums (Bimbo or SnakeByte Only)
+		if(pc.isBimbo() || flags["USED_SNAKEBYTE"] != undefined)
+		{
+			output("\n\nYou can’t hold back any longer - the trembling, tender sensations of having your arousable throat screwed and spunked feed directly into your crotch. ");
+			if(pc.isHerm()) output("Your [pc.cocks] bust, launching [pc.cum] into " + (!pc.isCrotchExposed() ? "your clothes":"the snow under his legs") + " next to your [pc.pussiesLight], expelling the victorious hermaphroditic discharge of an assertively claimed slut.");
+			else if(pc.hasVagina()) output("Your [pc.pussiesIsAre] lighting up, going hollow, until the moment of [pc.girlCumVisc] emission. Yes, " + (pc.isSquirter() ? "you’re squirting":"you’re cumming") + ", all because you get exceptionally horny from the act of being facefucked... and you love it.");
+			else if(pc.hasCock()) output("Bloating, your [pc.cocks] detonate, busting your [pc.cumVisc] nut into " + (!pc.isCrotchExposed() ? "your clothes":"the snow underneath him") + ", ejaculatory expulsions timed with his own. Oral orgasm drains you dry in much the same way.");
+			else output("An all-consuming warmth of relieved tension overtakes you. You can’t cum like him, but you don’t need to. Simply being his slut is enough to feel relief from arousal.");
+			//[Next] \\ Go to [Finished]
+			// sceneTag: PC cums
+		}
+	}
+	processTime(25);
+	pc.loadInMouth(enemy);
+	IncrementFlag("MILO_C_WORSHIPS");
+	if(pc.isBimbo() || flags["USED_SNAKEBYTE"] != undefined) pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",finishBlowingMiloBoi);
+}
+
+//[Finished]
+public function finishBlowingMiloBoi():void
+{
+	clearOutput();
+	showMilodanMale(true);
+	author("William");
+	output("You let yourself be used for a while longer. One orgasm, as it happens, is not enough to satisfy any milodan. That’s why you stayed where you were, turning into little more than his [pc.raceShort]-shaped condom. You sucked him off faster than every previous climax until his balls had diminished considerably, certainly providing his sweet meat with more intense orgasms than any of his kind had up to this point. By the time he unslotted himself from your throat, you had passed out to the sound of a wet pop.");
+	output("\n\nNow you’re awakening. It’s been maybe ten or twenty minutes. You’re still outside, but it’s not cold. You’re completely embraced by the milodan, sharing his body heat for your protection. The moment you stir, he does, and he licks the back and sides of your neck in a half-possessive and half-... something else. Whatever it is, you like it. Then he does it again, pawing at your body, at once enjoying your tactility and coaxing your once-dormant muscles into readiness.");
+	output("\n\nThere’s no conversation to be had. He says nothing, and you’re, quite frankly, finding it hard to disentangle, particularly since you’re still sway to the (luckily benign) weather patterns of wintry Uveto. Hopefully the stuffing you got keeps you warm. When you go to leave, he reluctantly allows it. The squeeze of his hand on your shoulder fills you with intense emotional fulfillment.");
+	if(pc.isBimbo()) output(" You kiss him on the cheek then the tip of his still-exposed cock before going on your way. You’ll never forget him!");
+	else if(pc.isBro()) output(" You give him a pat back and a friendly glance.");
+	else if(pc.isNice()) output(" You simply smile at him, stroking his face before turning and trudging off.");
+	else if(pc.isMischievous()) output(" You pinch his fluffy ear and give him a proud, cum-flecked smirk before trudging off.");
+	else output(" You shrug your shoulders, wiping your mouth and trudging off.");
+	output("\n\nFuck, now it’s colder.\n\n");
+	CombatManager.genericVictory();
+}
+/*
+Summary for Fuck Fever Interactions by Meaty Ochre
+Just wanted to make something that made use of existing mechanics/fetishes. It seemed odd to me that Milodan males drop Omega Oil but using it only gives Steele a scene with Syri so I wrote this. The scene requires the Fuck Fever status effect through using Omega Oil or the Omega Fever perk. Upon loss to a Milodan male Steele catches a dick in the butt. Hopefully it isn’t a dumpster fire.
+
+I decided to also try my hand at some progressive submission scenes based on the number of times getting buttfucked by the Milodan males while under the influence of Fuck Fever. The difference scenes are at the beginning and end of the sex scene.
+
+Notes
+
+The scenes become slightly more submissive with each subsequent loss until a Bad End occurs.
+*/
+public function omegaLossToMiloMale(submit:Boolean = false):void
+{
+	clearOutput();
+	showMilodanMale(true);
+	author("Meaty Ochre");
+		
+	//First time:
+	if (flags["OMEGA_LOSS"] == undefined)
+	{
+		output("Like a marionette cut of its strings, you can no longer support yourself in the wake of");
+		//HP Loss:
+		if (pc.HP() <= 0) output(" the Milodan’s assault.");
+		//Lust Loss:
+		else output(" your rampaging lust.");
+		//Merge
+		output(" Gravity takes over and");
+		//PC is naga:
+		if (pc.isNaga()) output(" your long tail collapses under you");
+		//PC is taur:
+		else if (pc.isTaur()) output(" you crash down onto your bestial lower half");
+		//else:
+		else output(" brings you down" + (pc.isGoo() ? "":" to your knees") + "");
+		output(" while your hips start moving of their own accord. The " + (pc.hasStatusEffect("Fuck Fever") ? "Fuck Fever":"anal heat") + " churning in your blood stokes your lust to a near-sickening intensity, making the terrifying emptiness you feel in your [pc.asshole] all the more anguishing.");
+		if (pc.hasPerk("Buttslut")) output(" Coupled with the Buttslutinator’s mental programming you’re left shaking on the spot, seized by a minor orgasm at the very thought of having your slutty hole filled!");
+	}
+	//from [Submit]:
+	else if (submit)
+	{
+		output("Losing to Milodans as often as you have still hasn’t lost the accompanying novelty. It’s because, like Pavlov’s dog, you’ve been conditioned to expect the mind-blowing reaming afterwards that your heart thumps in anticipation rather than terror. For instance, the sight of the behemoth of fur-covered muscle and claw before you should send claxons off in your mind warning you of danger. Instead you shimmy on the spot, rubbing your thighs together as electricity sparks through your nethers.");
+		output("\n\nAcquiescent, you");
+		//PC is naga:
+		if (pc.isNaga()) output(" coil your tail beneath you");
+		//else:
+		else output(" lower yourself" + (pc.isGoo() ? "":" to your knees") + "");
+		output(". The Milodan eyes you warily, unsure if this is a feint to catch him off guard. As an acolyte at prayer you remain kneeling and lower your hands and face to the ground. Like a wanton whore you raise your hips to display your [pc.ass], wiggling your butt lewdly as invitation. Seemingly gratified, loincloth tenting and then falling away, the muscle-bound male stomps around to your hindquarters, greeting your glutes with a casual slap that makes you yelp aloud.");
+	}
+	else
+	{
+		output("Being alone in the cold of a hostile planet and at the mercy of a 500lbs barbarian would make even a hardened adventurer’s heart pound in terror. With the");
+		if (pc.hasPerk("Omega Fever")) output(" Omega Fever surging through your blood");
+		else output(" Omega Oil you slathered your anus in");
+		output(" addling your mind however, all you can think is that this is the perfect opportunity to once more get your ass stuffed the way you like. You moan in");
+		if (pc.HP() <= 0) output(" slight pain, the bumps and bruises in your last battle an odd partner to the hunger in your ass");
+		else output(" unbridled lust, so intense it becomes a kind of agony");
+		output(", and gaze up at your conqueror with need as you lower yourself before him. There’s no fighting what comes next, but if you’re going to get the reaming you think you will then you have no intention of putting up a struggle.");
+	}
+	//merge
+	output("\n\nYou paw at your throbbing ass and [pc.hips] needily; you want – no, you NEED a cock up your butt right now. Not just any cock either, the hot and thick bitch-breaker of a true Alpha is the only thing you want reaming you, and fortunately the feline barbarian has exactly what you need swinging between his legs. Brain boiling over with bubbling pink lust, you assume the position of a true bitch: ass up and face down.");
+	//PC is nude: 
+	if (pc.isNude())
+	{
+		output("\n\nWandering the frozen wastes of Uveto’s surface in the buff may not have been the wisest idea, but on the bright side it means less time between finding the right dick-bearer and getting your ass stuffed. Exposed like you are the Milodan can see your");
+		if (pc.hasCock()) output(" [pc.cocks]");
+		if (pc.isHerm()) output(" and");
+		if (pc.hasVagina()) output(" [pc.vaginas]");
+		if (pc.isSexless()) output(" [pc.crotch]");
+		output(" swollen with desire, but the big brute tells you he has other plans for you when his plate-sized hands squeeze your [pc.asscheeks].");
+	}
+	else output("\n\nIt takes no time for the barbarian to part your [pc.gear] from you and toss it flippantly around the area. He’s so strong he can handle you like a toy and you can’t even fathom showing resistance. Instead you pant hotly as his enormous hands roam over your gradually exposed flesh and coo each time he gropes a sensitive spot. Grinding your aching ass into his crotch helps soothe your nerves a bit, but you need your [pc.asshole] to be filled!");
+	//First time getting this scene:
+	if (flags["OMEGA_LOSS"] == undefined)
+	{
+		output("\n\nFrom what little you know of them, the furry barbarians seem more like people of actions than words. The monolithic shaft of this particular Milodan, only partially obscured by loincloth, is full of intent and his cold eyes are full of promises. Promises of a long, hard fuck.");
+		output("\n\nThe brute before you sniffs the frozen air, drawing in a couple lungs full of air through his nose and catching your scent. Suddenly there’s a rumbling that could be a lustful growl or the crashing off some far off avalanche that ends when the big brute speaks one word: <i>“Omega.”</i>");
+	}
+	//Repeat:
+	else
+	{
+		output("\n\nAlthough stoic as ever, you’ve been fucked by enough Milodans to know just what the beastly male has in store for you. Drool rolls down your chin as you get lost in daydreams of reamings past, [pc.asshole] clenching happily at the memory. It’s been too long since a big strong Alpha came to claim you as their own, and you’re not going to let this opportunity go to waste.");
+		output("\n\nThe earthy flavor of his lust is heavy on the frozen wind and so arousing that you wish you had a way to bottle the scent so you could always have it with you. The heat in the barbarian’s burly body suffuses your own as he presses his entire frame against you, pins your wrists, and snarls into your ear, <i>“Omega.”</i>");
+	}
+	//Merge:
+	output("\n\nThe Alpha already knows what you are, no point in denying it. It’s practically written on your [pc.face]! <i>“Fuck,”</i> You groan, the pink haze in your mind blotting out any other responses. <i>“Yes, I am. I’m your Omega. I’m your bitch!”</i> Your dominator chuffs in approval and releases your hands, trailing his big mitts up your arms");
+	//PC has breasts:
+	output(", pausing to knead your [pc.breasts] a moment,");
+	output(" and rubbing along your back. The pointed tips of his claws press ever so lightly into your flesh along the way. A hiss of pleasure is forced from your teeth when his hands finally");
+	if (pc.isTaur()) output(" pass over your tauric lower body and");
+	output(" come to rest on your ass.");
+ 
+	output("\n\nNuzzling his way between your butt cheeks, the Milodan rips a whorish scream from your throat as he strokes your pucker with his coarse tongue. That dexterous muscle swirls in and around your rim, making your back entrance pliant and receptive for the reaming to come, whetting your anal appetite until you’re at the brink of starvation for his bulbous, veiny tool. Holding a thigh in each hand, he kneads the flesh of your [pc.legOrLegs] possessively, approving of your sexy body and libidinous behavior. It’s as if the muscular feline is a glutton indulging himself, and your [pc.ass] is appetizer, main course, and dessert!");
+	output("\n\nSlathering your [pc.asshole] with spit doesn’t take long, so the brute withdraws his maw to slap his meaty dong down into your saliva-slick ass cleavage.");
+	if (pc.buttRating() <= 4) output(" Your cute tush is a tad too petite to give a proper buttjob, but not for lack of trying. The Milodan grinds his cock over your perky, well-formed cheeks and against your hole with such insistence that you can recreate a mental image every nub and vein.");
+	//PC has medium butt
+	else if (pc.buttRating() <= 6) output(" Smaller cocks could fit snugly between your buns with no problem, but this big boy is anything but small. A plush booty like yours is definitely up for the challenge though! His big hands squeeze your ass cheeks into the sides of his prick and he eagerly begins humping away at your bottom.");
+	//PC has big butt:
+	else if (pc.buttRating() <= 8) output(" A big booty like yours demands attention however, and the Milodan eagerly pays his dues. He can’t seem to decide whether he wants to spank or knead or jiggle your ass flesh more, so he settles for a combination of all three as he saws his monolithic shaft through your butt cleavage.");
+	//PC has biggest butt
+	else output(" There’s only one thing a big fat ass like your own bouncy rear end was meant for: attracting big strong Alphas like the Milodan to molest you, and you both know it. The beastly male squeezes and slaps your too-juicy tushy hard enough to make you cry out in pleasure and pain, enraptured by the way your flesh bulges between his fingers and jiggles around his straining shaft. You groan, adoring the rough treatment and twerking your [pc.ass] against his hips as he saws through your abundant anal cleavage.");
+	//Merge
+	output(" The nubs on the head of his cock tug at your asshole with each pass of his long dick, smearing precum in your crack and creating sinfully slick sounds. Beneath it all your");
+	if (pc.hasCock()) output(" [pc.cocks] twitch" + (pc.hasCocks() ? "":"es") + "");
+	if (pc.isHerm()) output(" and");
+	if (pc.hasVagina()) output(" [pc.vaginas] throb" + (pc.hasVaginas() ? "":"s") + "");
+	if (pc.isSexless()) output(" [pc.crotch] throbs");
+	output(" with unheeded need.");
+ 
+	output("\n\nWhen the nubby head of his cock finally pops into your anus it’s so good that you sob a bit. It’s more than just physical pleasure; it’s the joy of fulfillment! Being pinned under a virile Alpha with your ass full of monster cock is your life’s purpose, and you bounce your butt on the Milodan’s dick in reaffirmation of that truth, elated at the mind blowing pleasure. You give up on containing the giddy squeals of pleasure that the Milodan’s thrusts elicit from you to focus on more important things. The rush of endorphins spiking your fevered blood. The warmth of the large body pressed firmly against you. The simple pleasure of just staying there and <i>taking it</i>. You can’t help but think that maybe, all the stuff you’ve done until now - the probe hunt, your inheritance, joining the Planet Rush - were all just stepping stones for this moment, right now.");
+	output("\n\nHis unrelenting cock stretches you, breaching you slowly even as your greedy hole welcomes it.");
+	//Buttslut
+	if (pc.hasPerk("Buttslut")) output(" The Word flashes before your mind’s eye, radiant and true: Obey. That’s right, good, obedient buttsluts get fucked!");
+	output(" There’s the sound again, what seems like an avalanche but really it’s just the pleased snarl of the beast on top of you. Though, the possessive way his hands roam over your ass and sides, back and chest tell you he’s planning a flood of white cum just for you.");
+	if (!inCombat())
+	{
+		setEnemy(new MilodanMale());
+	}
+	pc.buttChange(enemy.cockVolume(0));
+	output("\n\nEach slap of the burly barbarian’s balls against your ass pushes you a little further into the utmost depths of depravity. The Milodan male continues to ream your ass with the most wonderful long strokes of his girthy shaft, fueling your " + (pc.hasStatusEffect("Fuck Fever") ? "Fuck Fever":"anal heat") + " until pleasure is frothing through your veins. You can’t stop babbling submissive praise; you tell him how you much you love how well he fucks your ass, how the nubby spines and veins of his feline prick feel inside your colon, how badly you want his knot stretching you. Your babbling earns you a few slaps on the ass, but you thank him for those too, which earns you more affectionate slaps. It quickly devolves into a deliciously vicious cycle of incoherent praise and love taps.");
+	//PC is DD cup or larger:
+	if (pc.biggestTitSize() >= 5)
+	{
+		output("\n\nYour [pc.fullChest] demand almost as much attention as your ass does, and predictably the Milodan male can’t keep his hands off them. Whenever his hands aren’t molesting the flesh of your ass, he reaches around to cup one of your [pc.breastCupSize]s or roll your [pc.milkyNipples] between the pads of his fingers.");
+		//PC is lactating
+		if (pc.isLactating()) 
+		{
+			if (pc.milkQ() <= 500) output(" As the first drops are coaxed from your teats it takes only a little more teasing to work your boobs up to a respectable spray, streams running over the curves your udders and his hands, and soon the scent of sweet [pc.milkNoun] pairing with the spicy smell of raunchy sex.");
+			//PC is lactating a large amount
+			else output(" It’s a weak dam that holds back the flood of your [pc.milk] from the world, and the Alpha fucking you shatters it. A flood of [pc.milkColor] soaks the snow around you with [pc.milkVisc] sweetness and pride swells within your chest at the bountifulness of your bosom.");
+		}
+		output(" The sensation of having your jugs caressed" + (pc.isLactating() ? " and milked":"") + " is just another spoonful of the bliss you’re experiencing.");
+	}
+	//Merge
+                                      	
+	output("\n\nWith one last stroke the alien male sheaths his entire length in your [pc.asshole], his knot swollen so massively that it would tear anyone who doesn’t adore anal sex as much as you do. Your butt gobbles up every inch, barely a moment taken to savor swallowing the knot. That beautiful breeder bulb packs you full and seals your ass tight just as it swells to its full, turgid size.");
+	output("\n\nHis limit finally reached, the Milodan blesses your ass with his own avalanche of sticky white spunk, thick ropes of the stuff basting your insides with baby batter. With no place else to go your stomach begins to swell as your bowels are pumped full. Even the barbarian’s virile, bulbous, veiny knot can’t hope to contain all the spunk he’s pumped into you. The back blast foams around your joining, runnels of the goop soaking your [pc.skinFurScales].");
+	output("\n\nYou cum so hard you can’t even make a noise. Eyes screwed shut, you convulse like the possessed, defenseless against the searing intensity of your own orgasm,");
+	//PC is goo
+	if (pc.isGoo()) output(" your gelatinous form nearly losing its carefully maintained shape.");
+	//else
+	output(" your bones seemingly turning to goo.");
+	//PC is sexless
+	if (pc.isSexless()) output(" With no organic outlet for your burning arousal, your featureless crotch buzzes with directionless heat");
+	else
+	{
+		output(" Untouched but driven to sympathetic orgasm,");
+		if (pc.hasCock()) output(" [pc.eachCock] lance" + (pc.hasCocks() ? "":"s") + " sizzling hot spunk into the icy ground");
+		if (pc.isHerm()) output(" and");
+		if (pc.hasVagina()) output(" [pc.eachVagina] glaze" + (pc.hasVaginas() ? "":"s") + " the ground and your thighs with feminine fluids.");
+	}
+	//Merge
+	output(" Suddenly your train of thought is derailed and chugs off into the night, taking you along with it, the world around you fading to black...");
+ 
+	output("\n\n...Did you pass out for a moment there?  You must have, because the Milodan is pumping away at your hole again, this time taking you in a new position, determined to fill your colon with another load of hot cum.");
+	processTime(45);
+	pc.orgasm();
+	pc.loadInAss(enemy);
+	clearMenu();
+	addButton(0,"Next",omegaLossToMiloMale2);
+}
+public function omegaLossToMiloMale2():void
+{
+	clearOutput();
+	showMilodanMale(true);
+	author("Meaty Ochre");
+
+	IncrementFlag("MILO_MALE_CON_LOSSES");
+	//First time:
+	if (flags["OMEGA_LOSS"] == undefined)
+	{
+		output("After what feels like an eternity submerged in an ocean of pleasure, all you can manage are gasps, screams, and the most lurid, slutty moans to ever leave your lips. <i>“Fucked stupid”</i> doesn’t even begin to describe your current state; eyes glazed over and drooling, anyone who saw you would say you were buttfucked into a coma! When you burp you taste cum. Your behind has been relentlessly battered by the barbarian to the point that your slackened anus offers no resistance to the fleshy bulb of his knot plunging in and out.");
+		output("\n\nIs it possible to be fucked for this many hours without the use of a machine? Has it even been hours or has it been days? Consciousness has come and gone as orgasm temporarily smashed your mind to bits, but you know the Milodan has taken your ass again and again in a variety of positions. The nonstop pummeling of your [pc.asshole] makes it hard to tell, but you know your Fuck Fever has finally been burned out and you are truly, deeply satisfied.");
+		if (pc.hasPerk("Buttslut")) output(" Except, there’s no way a buttslut like yourself could ever get enough anal sex, is there? You can only be satisfied when that feeling of emptiness is dispelled by a rigid shaft in your bum, and luckily the Milodan has no intention of pulling out just yet.");
+		output("\n\nIf fact, you’re so satisfied that you could use a good rest to let your worn-out body recuperate. Lulled to sleep by the fading sounds of flesh slapping flesh and the buzz of endorphins that surge up with every thrust of your Milodan Alpha, you allow the comfortable darkness to overtake you.");
+		output("\n\nConsciousness returns only a short while later, quickly enough that you can still feel the residual heat from the Milodan’s body lingering in your flesh. The barbarian’s spunk warms you from within as well, but you blush radiantly when you realize just how much of the hot goop is pouring from your [pc.asshole]. A sharp gust of wind blows, reminding you that this warmth is temporary and that you should get a move on if you don’t want to become a Steelecicle.");
+		output("\n\nStanding up is rather difficult at the moment so you’re reduced to crawling about the area to gather your equipment. You take the time to gather your thoughts as well, memories of your submission appearing before your mind’s eye. A shiver wracks your body but it’s not from the cold; even without the Fuck Fever clouding your mind you can’t deny how hot it was to be so completely used, to submit and have your ass bred by an Alpha. If you crossed paths with another of the fur-covered barbarians would the same thing happen again? Would he hold you down and ream your hole like the last one did?");
+		output("\n\nYour hands have dipped down to your [pc.crotch] of their own accord, your scattered possessions momentarily forgotten. It’s hard to resist rubbing one out to the memory of getting so perfectly assfucked, but throwing a handful of snow in your own face cools you off quickly enough. Better to have a faceful of it than be buried under it because you spent too long fantasizing.");
+	}
+	//lose 2-3 times:
+	else if (flags["MILO_MALE_CON_LOSSES"] < 4)
+	{
+		output("When you come to you’re still tied to your Alpha’s hips by his bitch breaker, [pc.ass] pressed snugly into his abdomen. You would have expected him to wrench his knot loose and stalk off into the snowy waste when he done slating his lusts on you, but here he is, purring in satisfaction and lazily running his hands over your");
+		if (pc.isTaur()) output(" tauric flanks");
+		else
+		{
+			output(" [pc.belly]");
+			//PC has DD cups or larger
+			if (pc.biggestTitSize() >= 5) output(" and [pc.fullChest]");
+		}
+		output(". Although his body is draped over your own he must have dragged you into some alcove to shield you from the worst of Uveto’s weather. Not so stoic after all, you suppose.");
+		output("\n\nJust as you reach behind to give his feline ear an affectionate scratch, the Milodan decides it’s time to leave after all. Bracing his hands on your [pc.hips], he pops his deflating knot out with a grunt, sending shivers down your spine as his spunk oozes from your gaping hole. Pausing only to scoop up his loincloth off the snow, the barbarian stalks off into the tundra once more. You should probably start gathering up your things... but maybe you’ll just wait until you can feel your [pc.legs] again.");
+	}
+	//lose 4-5 times:
+	//(6+ losses happens in the bad end scene)
+	else if (flags["MILO_MALE_CON_LOSSES"] < 6)
+	{
+		output("The Milodan doesn’t let you leave right away when you wake up; his cum smeared cock is in need of cleaning and who are you to refuse your Alpha? You set to the task with relish when he pops his deflating knot free from your ass, slurping at every nodule and tracing every vein with your [pc.lips] and tongue. The taste of cum on the barbarian’s cock is amazing, a flavorful reminder of how perfect submitting to him feels.");
+		//PC has DD cups or larger: 
+		if (pc.biggestTitSize() >= 5) output(" Thinking that his cock should have something soft to rest on after working so hard, you add your [pc.breasts] to the mix, wrapping the pillowy flesh around his member as it stiffens once more.");
+		output(" Soon you’ve coaxed another load from your dominator that’s just as potent as the ones he’s blessed your ass with.");
+		output("\n\nYou savor the load of jism the way some do a bowl full of home cooking, humming in approval of the feeling of submission it gives you rather than the actual salty taste of your Alpha’s spooge. Cheek resting against his now spotless cock, ass angled toward him so you he can grope your bottom, you bask in the feeling of truly being owned. In the moments before your lover leaves you indulge in a fantasy of spending the rest of your life like this: submitting and servicing girthy, knotted cocks while in the throes of " + (pc.hasStatusEffect("Fuck Fever") ? "Fuck Fever":"your anal heat") + ", using your ass and mouth" + (pc.biggestTitSize() >= 5 ? " and tits":"") + " as targets for the lustful secretions of these burly barbarians you’ve come to adore.");
+		output("\n\nSome small voice inside you speaks up; warning you about continued submission and making you think that soon you won’t be able to break away from the feline barbarians that have been reaming your ass. A much louder voice reminds you how fucking <i>amazing</i> it is to submit to these brutes, how having your rear entrance used like a sextoy makes your concerns melt away. <b>Nonetheless, you should avoid losing to Milodan males if you don’t want to become their butt-bitch.</b>");
+		pc.applyCumSoaked();
+		pc.loadInMouth(enemy);
+	}
+	output("\n\n");
+	//merge
+	//Next
+	//End Scene, move time forward a few hours, applies maximum ass looseness, Anally Filled status effect, and removes Fuck Fever (so no Strangely Warm or Flushed leftovers).
+	IncrementFlag("OMEGA_LOSS");
+	for(var y:int = 0; y < 20;y++)
+	{
+		pc.orgasm();
+		pc.loadInAss(enemy);
+		pc.buttChange(enemy.cockVolume(0));
+	}
+	processTime(5*60);
+	if(inCombat()) CombatManager.genericLoss();
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+//Bad End Escape:
+public function omegaBadEndEscape():void
+{
+	clearOutput();
+	showMilodanMale();
+	author("Meaty Ochre");
+
+	setEnemy(null);
+	CombatManager.abortCombat();
+	output("No, this isn’t what you want! You wring yourself free of the brute’s grasp, his clawed fingertips raking across your rear in a futile attempt to maintain hold on your cheeks. The Milodan snorts heavily, vexation plain on the creature’s otherwise impassive face, and starts towards you with clenching fists.  Unless you get away you’ll be dragged into a life of sexual servitude for the race of feline barbarians.");
+	output("\n\nThere’s no way you’ll be taken so easily today, and the big dumb brute isn’t worth your time fighting; crouching low you scoop up as large a handful of snow as you’re able and chuck it and the barbarian’s snout. The white powder is only an annoyance but the few chunks of ice in the mix are enough to make him yowl. Pain and confusion are effective diversions, and you about-face and sprint as fast as your [pc.legOrLegs] will carry you, no destination in mind except for <i>away</i> and with plenty of space between the Milodan male and yourself.");
+	output("\n\nSprinting until your lungs burn will only do so much to guarantee your safety; you have to hazard a look behind you to see if that walking tower of fuzzy muscle is pursuing you. Gathering your breath and your courage, you look behind you to see... no one. Either the brute gave up chasing after you or didn’t bother at all, but you aren’t in danger of being a lifelong anal whore yet. Strangely you feel a pang of something similar to regret at that thought, but dismiss it with a shake of your head. It’s time to resume your journey.");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+//Bad End Submit:
+public function omegaBadEndSubmit():void
+{
+	clearOutput();
+	showMilodanMale();
+	author("Meaty Ochre");
+
+	output("Yes, this is what you want! The Milodan hugs you against his chiseled torso as he deepens the massaging of your ass, tension melting out of you as relax into his embrace. Submitting to the " + (pc.hasStatusEffect("Fuck Fever") ? "Fuck Fever":"anal heat") + " so many times has cemented your true calling as an Omega. Thankfully these wonderful, masculine Alphas have recognized it as well and reamed your [pc.asshole] enough to make you crave the pleasure surrender brings. You gaze at the brute adoringly, thanking him for seeing your need to for domination, and he responds with a pleased rumble as he begins removing your things.");
+	output("\n\nYour codex falls to the ground with a muffled thump, immediately forgotten. So too do all the other trappings of your previous life, such materials having no place in the future awaiting you. For a brief moment you think that your Alpha intends to let you freeze, but you banish the thought of him ever letting you down. Your faith is rewarded when the Milodan produces an enormous fur pelt to wrap you in and");
+	if (pc.isNaga() || pc.isGoo()) output(" a kind of fur sheath for your [pc.leg]");
+	else output(" a set of hefty snow boots to slip your [pc.legOrLegs] into");
+	output(" for your journey. Despite the simplicity of your garb you feel toasty warm as you clutch it around you, setting out not a moment after to live the rest of your life.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",omegaBadEnd);
+}
+//Bad End Loss:
+public function omegaBadEndLoss():void
+{
+	clearOutput();
+	showMilodanMale();
+	author("Meaty Ochre");
+
+	output("Fate, you ponder ruefully, doesn’t care what you want.");
+	if (pc.HP() <= 0) output(" Your accumulated injuries have");
+	else output(" Your irrepressible lust has");
+	output(" drained the fight out of you despite your best efforts. Now all you can do is cower before the Milodan who so handily beat you, apparently none the worse for wear as he looms over you with the air of one dealing with a minor inconvenience. When he leans down to start stripping you of your things you know your old life is truly over.");
+	output("\n\nAnything that isn’t part of your flesh is immediately flung out into the white, never to be seen again. Your codex and all of your gear vanishes piece by piece and you’re so completely beaten that you can’t even muster an attempt to retain them. Neither do you resist when the barbarian swathes you in a fur pelt, partly to keep you alive and warm for the journey ahead you realize, but also to keep your limbs restrained. The shaggy brute hefts you over his shoulders and starts trekking across the frozen landscape, determined to carry his catch home himself.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",omegaBadEnd);
+}
+public function omegaBadEnd():void
+{
+	clearOutput();
+	showBust(bustDisplayMilodanMale(true), "MILODAN_PRIESTESS", bustDisplayMilodanMale(true));
+	author("Meaty Ochre");
+
+	output("The journey is long but surprisingly not difficult when a Milodan leads the way. The muscle-bound male takes you across vistas of ice far away from anything remotely familiar, snowy hills and glaciers blending together as all manner of foul weather passes overhead. Yet, not once do you ever feel that you’re in danger here, not while you’re under the protection of the burly feline who’s taken charge of your fate. Rather it’s the idea of arriving at your destination that worries you, a mix of trepidation and anticipation that has your belly near bursting with butterflies.");
+	output("\n\nThe Milodan does take good care of you along the way, mainly by pumping your ass full of cum every few hours, warming you from within as your fur cloak warms you from without. Like a true Alpha is supposed to he dominates you expertly, rarely speaking but making you moan so loudly and so whorishly that you’re sure that whatever place you’re being taken to will hear you coming well before seeing you on the horizon. Somehow you’re still able to keep pace with your Alpha despite the constant reamings, and soon you crest a frozen hilltop to finally lay eyes on your destination.");
+	output("\n\nOn the coast next to the frozen ocean is a village of fur tents and snow huts, walled off behind stacked blocks of hewn ice. The butterflies in your belly multiply as you approach the defensive structure until they seem to solidify into a lead weight. As you’re led through a guarded gap in the structure you can feel the eyes of every Milodan you pass turning in your direction, all curious of the foreigner in their midst. Do outsiders ever come amongst these imposing people? Your guide grumbles at you to keep up as your attention is diverted by the appraising stares of his kin and you quickly fall in behind him for the final leg of your journey.");
+	output("\n\nAt last you come upon your destination, the biggest structure that the rest of the village seems to radiate outwards from. It’s one of the few build from actual stone, probably a temple or some other type of community center. You’re not given much time to ponder that thought; the Milodan who has been guiding and reaming you across the tundra quickly snatches away the furs that he gave you before shoving you through the doorway into the sanctum beyond. The door slams shut with finality, and you are alone.");
+	output("\n\nShivering, you wrap your arms around your naked body, but not for lack of heat; fire pits line the walls of the temple and cast strange, twitching shadows along the pelt-covered floors and high reaching stone walls. Heat suffuses your frame and wards off the chill from the outside, but another kind of warmth begins to pool in your loins. A gasp bursts from your lips as your");
+	if (pc.hasVagina()) output(" [pc.vaginasLight] moisten" + (pc.hasVaginas() ? "":"s") + ", twitching hungrily");
+	if (pc.isHerm()) output(", and your");
+	if (pc.hasCock()) output(" [pc.cocksLight] immediately stiffen" + (pc.hasCocks() ? "":"s") + " to full, turgid length");
+	if (pc.isSexless()) output(" crotch heats up");
+	output(", but it’s your own asshole’s need that is at the forefront of your lust infused mind.");
+	output("\n\nAs if tracing an electric wire from your nethers to its source, your eyes are drawn to a round dais in the center of the high ceilinged room. There sits a luminous stone, the source of your arousal, a round object a bit bigger than your fist. Squinting through the slightly eerie glow you see that it is polished completely smooth, a blunted tip at the top then bulging radically outward before a sudden narrow taper and a flared base. Factor in the green glow and you realize you’re looking at a Savicite butt plug, and the more you stare at it the more it fills your vision until you’re aware your [pc.legsNoun] have unconsciously carried you to the edge of the circular platform.");
+	output("\n\n<i>“The off-worlder likes it,”</i> observes a voice from nearby, nearly making you jump out of your skin when you realize it’s coming from the other side of the dais. The voice belongs to a Milodan female, some kind of priestess judging by the sparse but ornate garb covering her fertile figure and staff capped with a similar piece of Savicite. Her bushy tail twitches lightly and she smiles knowingly at you. <i>“That is good. The spirits have brought you to the Totem. To us.”</i>");
+	output("\n\nYou release a breath you didn’t realize you were holding. <i>“Actually, it was one of your males that brought me here.”</i>");
+	output("\n\n<i>“It was the spirits who guided their actions,”</i> she corrects, <i>“and we are those who act on their guidance. Whether it’s for prey to hunt, off-worlder magic to salvage, or...”</i> Reverently, she kneels to pick up the radiant sex object and hops lightly off the raised stone circle to show it to you. This close the heat from the thing is all consuming, threatening to burn you with its lusty green fire. When she taps it gently against your abdomen a moan worms its way past your lips, your lust becoming painful in its intensity. <i>“Or if there’s an Omega out on the plains, looking for Alphas to serve.”</i>");
+	output("\n\nYou try to tell her otherwise, that you’re a Rusher looking for probes, but all that comes out are mumbled words and whimpers. The Milodan female just chastises you. <i>“No, we know what you really are.”</i> She says smugly, a lewd glint in her green eyes. When she traces the sacred sex toy over your flesh you gasp hotly at the sensation, your need for some kind of satisfaction becoming unbearable. You’re rooted to the spot, unable to act on your own, reduced to moaning like a whore as the priestess continues the sensuous torture.");
+	output("\n\nShe slides the object gently across your collarbone and up your neck, resting it on your cheek a moment. <i>“Now that you are here, you will serve.”</i> When she brushes it across your lips you can’t resist suckling the green tip a bit before it goes back down the other side of your face. More whimpering escapes you, any semblance of dignity draining out of you as lust fills its place.");
+	output("\n\n<i>“You will serve in the manner befitting your true nature...”</i> The toy wanders down your chest and flicks a nipple before continuing down to the curve of your hip. With her free hand the fluffy female caresses the [pc.skinFurScales] untouched by Savicite, her delicate touch raising gooseflesh as it passes you’re your body.");
+	//PC has DDs:
+	if (pc.biggestTitSize() >= 5) output(" She takes great pleasure in hefting your breasts in her hand, taking ample time for each bouncy chest pillow.");
+	//PC is lactating:
+	if (pc.isLactating()) output(" Your body can’t help but let down your [pc.milkNoun] after so much stimulation, and when beads of [pc.milkColor] begin to form on your teats the priestess leans her head down to lap with feral hunger at your bosom, coaxing out more and more of your lactic excess.");
+	output(" You’re completely flushed with submissive need, so bad that you’re ready to drop to the ground and follow the first order given to you. The fetish idol glides");
+	if (pc.isTaur()) output(" over your tauric flank");
+	else output(" over your hip");
+	output(" and slides gently in to crack of your ass, gliding up and down, up and down through your anal cleavage.");
+	
+	output("\n\nA sharp spike of sensation bursts in the flesh of your buttcheek, slightly painful but sinfully gratifying after the prolonged teasing. Lurid moans are your only form of communication now; that and sticking your ass out invitingly, hoping to tempt the toy inside your salacious hole. The priestess continues stroking it up and down your valley, up and down with ever so slightly increasing firmness, up and down as it snags on the rim of your anus before dragging past once again. Just when you think the wonderful torment has no end in sight, the blunt point pauses atop your clenching pucker, settling into position for the imminent penetration.");
+	output("\n\n<i>“...that of an Omega.”</i>");
+	output("\n\nThe pressure on your sphincter comes to a tipping point, and finally your hole is forced to yield to the insistent idol. You moan as you feel your");
+	if (pc.ass.looseness() <= 2) output(" narrow hole stretch to accommodate it");
+	else if (pc.ass.looseness() <= 4) output(" loosened anus eagerly accept it");
+	else output(" gaping hole gobble it up");
+	output(", fireworks popping in your nethers as the toy settles in your colon.");
+	if (pc.hasCock()) output(" Your [pc.cocks] "+ (pc.hasCocks() ? "twitch as they unload":"twitches as it unloads") + " volley after volley of stringy spunk with such power you can hear your cock squirting. So high are you on the pleasure of being penetrated that you can’t imagine ever using your cock to penetrate someone again. You were born to catch, and your own phallus is nothing but a benchmark to compare other pricks against!");
+	else if (pc.hasVagina()) output(" Twitching and clutching at a cock that will never come, your [pc.vaginas] weep"+ (pc.hasVaginas() ? "":"s") + " tears of feminine joy despite being left out again. It’s not just the pleasure of anal that is making you into such a wanton slut, it’s the specific denial of your organ"+ (pc.hasVaginas() ? "s":"") + " made for penetration that drives you over the edge!");
+	else if (pc.isHerm()) output(" Even though you’ve been blessed with both masculine and feminine genitals, your [pc.cocks] and [pc.vaginas] can only tremble and juice themselves in sympathy as your greedy ass is treated to pleasure.");
+	else if (pc.isSexless()) output(" Most creatures with sexual urges have some sort of organ meant as an outlet for their pleasure, but your bare crotch has no such thing. Instead the pleasure you feel ricochets through your body, prisoner to a joyous sensation you have no words for.");
+	output(" Unable to support yourself any longer, you collapse onto the fur pelts padding the ground, trying in vain to keep your hips raised. The orgasm that overtakes you in that moment is so intense that you’re at risk of disappearing beneath it forever, but are brought back with a woeful moan as it withdraws from your butt.");
+
+	output("\n\n<i>“Onto the dais.”</i> The priestess instructs, and you hasten on wobbly limbs to comply, hurried by a quick spank on your ass. As you assume position in the center of the raised stone, you realize you have other witnesses to your submission");
+	if (pc.exhibitionism() <=50) output(" and you flush pink in humiliation at the public depravity of your situation, your heart thumping so loudly you think it’s about to leap out of your throat.");
+	else output(" and your heart sings as you feel the familiar lusty sting of having a crowd watch your depravity. You hope the entire village comes to see you!");
+	output(" There’s more than a dozen Milodans stepping out from the flickering shadows, mostly males stroking their nubby dicks but a few females fingering their dripping slits as well. Each of them has their ravenous gaze fixed on your nude form and you shudder under the intensity of their stares. In time each of the spectators will have their turn with the [pc.race] in the center of the temple, but for now you surrender to your inoculation into Milodan society.");
+
+	output("\n\nOnce more the molten heat of the Savicite buttplug makes contact with your flesh and the priestess begins plundering your ass with slow, methodical movements of the wrist. Soon she begins to fuck your ass in earnest with it, and explains to you in great detail the expectations of your new role in the Milodan village. <i>“Submission is your new way of life if it wasn’t already, and as an Omega you are an acolyte of the spirits and a receptacle of the lusts of any of the Alphas who wish to use you.”</i> Frantically you nod your head in assent. The enormous bulge of the buttplug doesn’t just pack your slutty ass full, it clears away any disagreements in your mind to make way for the priestess’ truth.");
+	output("\n\nThe circle of barbarian catpeople is closer to the dias now, each masturbating themselves or their neighbor but beady eyes fixed predatorily on you. Deeper and deeper you fall into the trance of anal submission and indoctrination, swooning as the dominant female plugs your hole again and again. <i>“You will memorize and recite scripture on the necessity and intricacy of Domination and Submission, and you will maintain and preserve this temple and our –your beliefs. This [pc.ass] no longer belongs to you, it belongs to all of us, but you will love the work you will do.”</i> That sounds so right to your ears that you vocalize your joy at the prospect. <i>“Yes! Yes I will love it, I mmmm do love it!”</i>");
+	output("\n\nSmells of lust are all around you as the Milodans now stand shoulder to shoulder around the platform. They jerk their turgid dicks with such forcefulness that flecks of pre splatter on your [pc.skinFurScales] and you moan more whorishly than ever at the debauchery of it. Above you, the priestess continues with her instruction, still fucking your asshole with the totem, lingering as it stretches you at its widest point. <i>“You will bounce your butt on all the cocks that pass through the temple threshold. If they do not have a cock then you will submit to them in other ways, use your other gifts – your hands, your mouth" + (pc.biggestTitSize() >=5 ? ", your breasts":"") + " – to please them. Communion with the spirits is the beginning and ending of your day. Anyone who wishes to use the Totem to stretch out your rear-hole, can. You will sate the lustful.”</i> She squeezes your [pc.ass], then reaches around to briefly grope your [pc.crotch]. <i>“You will not breed.”</i>");
+	if (pc.isLactating()) output(" Her clawed mitts jiggle your [pc.breasts]. <i>“You will feed the hungry.”</i>");
+	output(" She grabs you behind the head and pulls you into a searing kiss. When she pulls away, the priestess smiles and says, <i>“You will sing the praise of the spirits and be happy with us.”</i>");
+	output("\n\nYou cum again. You cum, and with that sacrosanct release of lewdness you know the rest of your life has truly begun.");
+	processTime(5*60);
+	for(var y:int = 0; y < 10;y++)
+	{
+		pc.orgasm();
+		pc.loadInAss(enemy);
+	}
+	clearMenu();
+	addButton(0,"Next",omegaBadEndII);
+}
+public function omegaBadEndII():void
+{
+	clearOutput();
+	showBust(bustDisplayMilodanMale(true), "MILODAN_PRIESTESS", bustDisplayMilodanMale(true));
+	author("Meaty Ochre");
+
+	output("From dawn until dusk and into the next morning each adult Milodan in the village has their way with you. Burly male barbarians force their boners into your butt, greedily propelling themselves to orgasm and using your body as  nothing but an object. Bushy tailed females take great pleasure in dominating you in other ways, mostly by assfucking you with the sacred sextoy.");
+	if (pc.isLactating()) output(" Since you carry a bounty in your bosom you stagger about and nourish your flock with your [pc.milkyNipples] in between reamings, those who partake soon refreshed enough to have you once more.");
+	output(" [pc.name] as the galaxy knows [pc.himHer] all but disappears into a fugue state, the last vestiges of your old personality vanishing and replaced by a true servant of the people.");
+	output("\n\nWhen you next come back to consciousness the priestess greets you with warm familiarity and hot food which you consume ravenously. It’s a simple meal but surprisingly tasty and very filling; you need all the sustenance you can get after yesterday’s bout of intense sex. When you’ve licked your bowl clean the other temple servants appear to guide you to the bath and scrub you squeaky clean, whisking away all the sweat and cum that covered your body.");
+	output("\n\nThe final touch is to dress you in adornment befitting your new role: a stiff hide collar and necklaces made of shaped stones and bleached bones, a similarly made belt that holds up no trousers but accentuates your [pc.hips], bangles for your upper arms, wrists, and [pc.legs]. There isn’t an inch of your body that’s actually covered, but what use are clothes to an Omega who lives to be fucked? You smile and shake your head at the silly notion.");
+	output("\n\nOnce more the priestess plugs you with the Totem, and explains to you that it is the will of the spirits that you, the temple Omega, carry it within you at all times. It is only to be removed if it will be replaced with the flesh of an Alpha, and afterwards it must be immediately replaced. You don’t know how you will acclimate to your libido being supercharged all hours of the day, but don’t have time to ponder that as your daily duties begin. Another acolyte leads the biggest Milodan you’ve ever seen, a mountain of muscle and fur, into the inner sanctum. This hunter was away for a week tracking a mighty target, and although his prey was felled he still needs to soothe his boiling blood.");
+	output("\n\n<i>“That’s where you come in.”</i> Says the priestess, motioning the imposing tower of muscle over. She pops the Totem out of you just as he scoops you up and hilts himself in your [pc.ass]. The brutish barbarian settles for a breakneck pace from the start, and the priestess educates you in the first of the spirits’ axioms: hard work is holy work, and holy work is happy work. A haze of bliss fills your mind just as the flood of cum fills your ass, and you have to admit, you’re feeling pretty holy right now.");
+	processTime((2*60*24)+rand(1440));
+	for(var y:int = 0; y < 10;y++)
+	{
+		pc.orgasm();
+	}
+	badEnd();
 }

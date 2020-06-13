@@ -764,7 +764,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(pc.catDog("nyan", "bork") == "nyan") output(" Not that you can blame them. You’d likely do the same, given the chance.");
 		output("\n\nSylvie drinks a little bit more, eyes twinkling. <i>“");
 		processTime(13);
-		pc.lust(5);
+		pc.changeLust(5);
 		// apply booze
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() == 0) output("So about another drink?");
@@ -798,7 +798,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\n<i>“Wow.”</i>");
 		output("\n\n<i>“And you thought your stories were wild, eh?”</i> Sylvie smiles and finishes her drink. <i>“");
 		processTime(15);
-		pc.lust(10);
+		pc.changeLust(10);
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() == 1) output("Mmm, and I’m still feeling a little warm. How about a hug? Or another drink...");
 		else output("How about a drink? Surely a story like that is worth a few of your credits.");
@@ -841,7 +841,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		else output("Isn’t that the truth.");
 		output("\n\n<i>“");
 		processTime(17);
-		pc.lust(15);
+		pc.changeLust(15);
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() == 0) output("By my estimates, a story that good deserves a drink.");
 		else output("Mmm, these beers are really getting to me. Wanna buy me shots? I bet I can come up with an even better story.");
@@ -872,7 +872,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nThat definitely sounds familiar. You nod.");
 		output("\n\n<i>“Nowadays they’ve got their own legal business set up on Red Light Deck. ‘Six Slippery Sluts’ or some such, though I think they’ve divided enough that it’s more like 46 sluts by this point. At least they’ve been model citizens ever since they got out of the slammer.”</i> Sylvie seems supremely proud of that fact. <i>“");
 		processTime(13);
-		pc.lust(5);
+		pc.changeLust(5);
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() == 0) output("Now how about a drink and another story?");
 		else output("Gosh, you’re such a great listener. How about a hug?");
@@ -924,7 +924,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("”</i>");
 		output("\n\nWith that story told, you realize you’re going to need to change topic - or buy her a drink.");
 		processTime(16);
-		pc.lust(8);
+		pc.changeLust(8);
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() >= 1) output("\n\nSylvie smiles warmly at you. <i>“Thanks so much for putting up with that depressing-ass story. Why couldn’t all spacers be like you? " + pc.mf("Handsome","Beautiful") + ", attentive listeners...”</i>");
 		sylvieMenu();
@@ -1038,7 +1038,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		output("\n\n<i>“Sooo...”</i> your eyes flick down to her clearly visible nipples, then back to her face.");
 
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		sylvieDrunkBump(drunklevelChange);
 		//If now drunk, cut to sex menu intro!
 		if(sylvieDrunkLevel() >= 2)
@@ -1082,7 +1082,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		output("\n\n<i>“Wow.”</i>");
 		output("\n\n<i>“I know, right?”</i> Sylvie laughs and nervously shuffles in place, a distinct flush in her cheeks. <i>“Mmm, that was a good night, but tonight is shaping up pretty great too.”</i> She playfully pinches your cheek and finishes off her beer. <i>“Look at you, buying me drinks and listening to me verbally slutting it up, and you haven’t tried to jump my sweet ass once.”</i> Leaning way, way back, the moose-taur slaps her own ass and whimpers in delight. <i>“That’s the stuff... now how about another drink, " + pc.mf("handsome","my lovely") + "?”</i>");
 		processTime(20);
-		pc.lust(15);
+		pc.changeLust(15);
 		sylvieDrunkBump(drunklevelChange);
 		sylvieMenu();
 	}
@@ -1146,7 +1146,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		else output("\n\n<i>“Nah,”</i> you promise. <i>“I’d stick around for round two at a minimum.”</i>");
 		output("\n\nSylvie giggles, <i>“Keep tempting me like that I’ll have to see how you measure up.");
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() >= 2) output(" Think you could do better than that slutpuppy?");
 		else output(" If you can keep it up through a few more drinks, you’ll get your chance.");
@@ -1206,7 +1206,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		output("\n\n<i>“Oh, if they aren’t actual fertilized eggs, they dissolve away pretty quick. I was bow-legged and drooling for a few hours, just soaking in the pool, after she was done with me. Kally was nice enough to make sure I was okay. She even brought me a few free drinks and made sure I didn’t have any injuries... back there.”</i> Now Sylvie flushes hard. You get the impression she’s not telling the whole story. <i>“I do remember kissing the doh’rahn before she left... but that’s about it. With her and her pheromones gone, I recovered relatively quickly. Even made it to shift on time. That or there were enough eggs in me for my body to assume I was pregnant. One of the two.”</i>");
 		output("\n\nYou ask her if she’d do it again, given the chance.");
 		processTime(20);
-		pc.lust(15);
+		pc.changeLust(15);
 		//Booze bump
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() >= 2)
@@ -1241,7 +1241,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		output("\n\n<i>“Well it started out that way. At first it was perfect, exactly what I wanted and more, but you remember those animal instincts I was talking about?”</i> Sylvie lifts your chin to bring your eyes back up to hers. Then, once satisfied you remember what she’s talking about, puts her hands under her bra-clad boobs and idly bounces them. <i>“Getting fucked wasn’t enough for my body. It decided it was going to be an active participant in this hour-long bang-a-thon.”</i> She thumbs a nipple and sighs, <i>“And it felt so much better. Something about banging back into whoever’s fucking you makes the experience so much more satisfying. I couldn’t stop myself. I slammed my pussy into that dick so hard that the impacts must have sounded like gunshots. I heard the wall creak but I didn’t care; I just wanted to cum.”</i>");
 		output("\n\nSylvie shudders ");
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() >= 2) output("and pinches a nipple through the fabric of her bra");
 		else output("picks her top back up, stopping just short of putting it back on");
@@ -1393,7 +1393,7 @@ public function hugSylvie():void
 	//Merge	
 	output("\n\nYour whole body is sweating by the time you separate. Sylvie is flushed and smiling, and you imagine you must be in a similar state. Regardless, the giantess of a ‘taur decides to cool herself off by chugging an entire beer before your eyes. A belch bursts heedlessly from her mouth the second you separate. Her eyes are a little glassier, a bit drunker, perhaps, but her smile is bright enough to dazzle the grumpiest curmudgeon. <i>“");
 	processTime(15);
-	pc.lust(33);
+	pc.changeLust(33);
 	sweatyDebuff(2);
 	sylvieDrunkBump(1);
 	if(sylvieDrunkLevel() >= 2) 
@@ -1794,7 +1794,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	}
 	else output("\n\n<i>“That’s good, because I can’t go another second without you inside of me,”</i> she admits. <i>“Brace yourself.”</i> With her hind legs trembling, Sylvie drops herself into the water - and onto you.");
 	processTime(14);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",crotchBustingSnuSnuPartTwo);
 }
@@ -1892,7 +1892,7 @@ public function crotchBustingSnuSnuPartTwo():void
 		else output(", but you’re just getting started. With your knot stuck inside her, you fill her with enough spermy ecstasy that her hooves barely scrape the floor - and your [pc.butt] is lifted clean off the ground, supported entirely by the friction of your passion-conjoined forms. No seal is perfect, however. A few squirts later, [pc.cumGem] streams are spraying out of Sylvie’s puss in every direction, flooding the pool with evidence of the tryst.");
 		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the side, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
 	}
-	pc.HP(-40);
+	pc.changeHP(-40);
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
@@ -1913,7 +1913,7 @@ public function hipBustingSnuSnu3(cumBathed:Boolean):void
 	output("\n\nYou promise that you will while Sylvie downs her little pill. Instantly, her posture stiffens, and her gait straightens. She looks back your way, clutching her forehead and giggling as she grabs her things.");
 	output("\n\n<i>“I can’t believe I did that... and it didn’t kill you.”</i>");
 	output("\n\nExamining your tenderized thighs, neither can you.");
-	pc.HP(-10);
+	pc.changeHP(-10);
 	soreDebuff(3);
 	sweatyDebuff(2);
 	processTime(10);
@@ -1987,7 +1987,7 @@ public function tittyBlow():void
 	output("\n\n<i>“Nice and wet,”</i> you observe, pulling out. Thick webs of moose-mare cum dangle between you, snapping one strand at a time. Your cock is shiny and throbbing, angry and hard, tortured with pleasure to the point where all you want to do is thrust it back inside and hump away until you get to cum as hard as Sylvie did. But you wanted a titfuck, and you’re going to get a titfuck. <i>“My turn.”</i> You pat the moose’s quivering ass. <i>“Turn around.”</i>");
 	output("\n\n<i>“Hmmm?”</i> Sylvie mumbles, staggering back up on her hooves. <i>“O-oh... o-okay. Whatever you want, " + pc.mf("handsome","beautiful") + ".”</i>");
 	processTime(25);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",fuckyTittyBlowblow2);
 }
@@ -2367,7 +2367,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 	if(sylvieHasCock()) output("\n\nThrough it all is the lurid gushing of her cock’s voluminous ejaculations. Splat after splat of augmented seed hits hard into the floor, Sylvie’s balls visibly quaking with the effort of disgorging so much. The sweat-slicked equine organ lurches time after time, long after you expected it to stop, hosing out a tidal wave of white, salty goo in response to your tongue’s loving licks.");
 	pc.applyPussyDrenched();
 	processTime(15);
-	pc.lust(80);
+	pc.changeLust(80);
 	clearMenu();
 	addButton(0,"Next",cuffnFuckSylviePartDues);
 }
@@ -2527,7 +2527,7 @@ public function redMyrSylvieFunz():void
 	output("\n\nShe sighs as the steamy bath washes off the excess venom, and you do your best to help scrub her down without making the problem worse. Barring a few irresistible nipple tweaks that prompt weak cries of bliss, you are mostly successful. Focus returns to the moose-taur’s eyes as she begins to come to her senses.");
 	output("\n\n<i>“Oh-oh god. A girl could get addicted to something like that. Every time I tried to form a thought it just changed into ‘get more kisses’,”</i> she explains, a hungry glow showing in her eyes. When she sees you staring she shakes her head. <i>“A-anyway, feel free to do that again any time. I think I’m gonna stay and soak a bit first though, my legs are still half numb.”</i>");
 	output("\n\nYou nod, pulling yourself out of the balmy pool and stretching. On your way out the door, you see the ");
-	if(cat) output("kaithrit");
+	if(!cat) output("kaithrit");
 	else output("gryvain");
 	output(" trying to rouse her partner. You toss a wink in her direction as you pass by, happy to see ");
 	if(cat) output("a flush travel from her chubby cheeks to the top of her chest");
@@ -2541,7 +2541,7 @@ public function redMyrSylvieFunz():void
 	pc.setStatusMinutes("SYLVIE WORKING",(60));
 	processTime(75);
 	pc.shower();
-	pc.lust(15);
+	pc.changeLust(15);
 	sexedSylvie(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2592,7 +2592,7 @@ public function ruttedSylvieBangBusPheromoneHotPotato():void
 	}
 	//Merge
 	processTime(10);
-	pc.lust(200);
+	pc.changeLust(200);
 	clearMenu();
 	addButton(0,"Next",sylvieRutFunPart2);
 }
@@ -2787,7 +2787,7 @@ public function giveTheMooseABone():void
 	output("\n\n<i>“You got </i>that<i> right, that sounds like a lotta fun... as long as you help me test it out. Deal?”</i> she says, batting her eyelashes with a wide smile. She knows she’s getting off hard one way or another tonight.");
 	//[Okay] [Naw]
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Okay",sylvieOkayWithDongeridoodles);
 	addButton(1,"Naw",nawSylvieImADumbshit);
@@ -2829,7 +2829,7 @@ public function sylvieOkayWithDongeridoodles():void
 	output("\n\n<i>“What are you two doing over there?”</i> Kally huffs, arms crossed and staring. <i>“Stop scuffing my floors!”</i>");
 	output("\n\n<i>“Baths,”</i> Sylvie pants urgently, taking your arm with surprising strength, <i>“now.”</i>");
 	processTime(10);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Next",sylvieTriesHerDongerOn1);
 }
@@ -2860,7 +2860,7 @@ public function sylvieTriesHerDongerOn1():void
 	output("\n\n<i>“Can I fuck your butt?”</i> Sylvie asks suddenly, hands clasped beneath her chin and eyes glittering. <i>“I wanna see how it feels!”</i>");
 	output("\n\nHer generous bosom jiggles as she bounces in excitement at the prospect of burying her cock in your ass. Well, how can you say no to that?");
 	processTime(25);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",sylvieTriesHerDongerOn2);
 }
@@ -3184,7 +3184,7 @@ public function sylvieGloryholeSuck():void
 	processTime(70);
 	pc.loadInMouth(ppSylvie);
 	pc.applyCumSoaked();
-	pc.lust(20);
+	pc.changeLust(20);
 	//moveTo("SHIP INTERIOR");
 	currentLocation = "SHIP INTERIOR";
 }
@@ -3761,7 +3761,7 @@ public function fistSylvieNext():void
 	IncrementFlag("SYLVIE_PROSTATE_MILKED");
 
 	processTime(30);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	//[SqueezeBalls] [Relax]
 	addButton(0,"SqueezeBalls",squeezeballsSylvie);
@@ -3928,7 +3928,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	output("\n\nKiro finally takes notice of you. She comes up and wraps herself around you, lavishing your body in sesual attention while her hermhood throbs hotly agaist your leg. <i>“What do you say angel? There’s three, fat, throbbing, drooling horse cocks looking for holes to fill. Think you can take all of them?”</i>");
 	output("\n\nIt’s a daunting proposal to say the least. <i>Are</i> you up to it?");
 	processTime(20);
-	pc.lust(20);
+	pc.changeLust(20);
 
 	clearMenu();
 	if(pc.isPregnant()) addDisabledButton(0,"Gangbang","Gangbang","This would be unsafe given your current, pregnant state.");

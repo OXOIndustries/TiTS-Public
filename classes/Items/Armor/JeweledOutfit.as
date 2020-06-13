@@ -42,15 +42,15 @@ package classes.Items.Armor
 			this.defense = 2;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 20;
+			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 16;
+			this.evasion = 18;
 			this.fortification = 0;			
 			
 			resistances.tease.resistanceValue = -10.0;
-			resistances.psionic.resistanceValue = -20.0;	
-			resistances.freezing.resistanceValue = -10.0;
-			resistances.burning.resistanceValue = 25.0;
+			resistances.psionic.resistanceValue = -10.0;	
+			//resistances.freezing.resistanceValue = -10.0;
+			resistances.burning.resistanceValue = 50.0;
 			resistances.addFlag(DamageFlag.CRYSTAL);
 			
 			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_FULL);

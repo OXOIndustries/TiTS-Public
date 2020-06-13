@@ -8,7 +8,7 @@ package classes.Items.HalloweenItems
 	import classes.Engine.Interfaces.clearOutput;
 	import classes.Characters.PlayerCharacter;
 	
-	//Level ?? Halloween Funsies.
+	//Level 6 Halloween Funsies.
 	public class WitchsCorset extends ItemSlotClass
 	{
 		public function WitchsCorset()
@@ -22,13 +22,13 @@ package classes.Items.HalloweenItems
 			
 			shortName = "W.Corset";
 			
-			longName = "witch's corset";
+			longName = "witch’s corset";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a black silk and leather corset";
 			
-			tooltip = "Woven from black, silky cloth, this corset seems to ripple like water as it flows upon the wearer. Atop this piece is a shiny leather “bra”, fitted with hidden mechanisms that will cause the corset to fasten or unfasten to match the buckle upon the garment's leather crown.";
+			tooltip = "Woven from black, silky cloth, this corset seems to ripple like water as it flows upon the wearer. Atop this piece is a shiny leather “bra”, fitted with hidden mechanisms that will cause the corset to fasten or unfasten to match the buckle upon the garment’s leather crown.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -38,7 +38,7 @@ package classes.Items.HalloweenItems
 			attack = 0;
 			defense = 0;
 			shields = 0;
-			sexiness = 4;
+			sexiness = 3;
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;

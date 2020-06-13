@@ -746,7 +746,7 @@ public function lundSexStarter():void
 		
 		processTime(5);
 	}
-	pc.lust(4);
+	pc.changeLust(4);
 	lundSexMenu();
 }
 
@@ -789,13 +789,14 @@ public function lundDoggyStyle():void
 		else output("You’re not in charge. I know you prefer it this way. A man tells you where to go, what to do, how wide to spread your [pc.thighs], and when to swallow.");
 		output("”</i>");
 		output("\n\n<i>“I- Uuuhh,”</i> you mutter, losing yourself in his words. Gosh, he always knows just what to say to you...");
+		processTime(2);
 		//Next button -> goes to Bimbo Sex.
 		clearMenu();
 		addButton(0,"Next",bimboLundSex,x);
 		return;
 	}
 	//If you’ve selected [Submit], you get a different scene the next time you pick Doggystyle:
-	else if(flags["LUND_MADE_U_SUBMIT"] != undefined && flags["LUND_BROKEN"] == undefined)
+	else if(flags["LUND_MADE_U_SUBMIT"] != undefined && flags["LUND_BROKEN"] == undefined && flags["LUND_BREEDCAVE_DISABLE"] == undefined)
 	{
 		//Just use a generic room with no exits :3
 		currentLocation = "MYRNAS CAVE";
@@ -962,7 +963,19 @@ public function lundDoggyStyle():void
 		output(". Lund has you dominated in both mind and body, and everyone in the room knows it, especially you. You can’t help but moan when he spanks you across your [pc.ass] and steps away, looking back at him with unsuppressed lust.");
 
 		output("\n\nYou can’t help but laugh breathlessly when he raises his arm and receives a cheer from the other korgonnes in the room. The foreign alien, conquered! Fuck it, you’ll be his sexy trophy if he wants. He’s more than earned it with his stellar sexual performance and besides, you like him. You realize he’s turned back to face you, and you flash him a beautiful smile before sinking to your knees in front of him and dedicatedly sucking his bulging dick.");
-		
+		processTime(60);
+		for(var ii:int = 0; ii < 8; ii++) { pc.orgasm(); }
+		pc.applyCumSoaked();
+		if(pc.hasVagina())
+		{
+			pc.loadInCunt(lundipoo,rand(pc.totalVaginas()));
+			pc.loadInCunt(lundipoo,rand(pc.totalVaginas()));
+		}
+		else
+		{
+			pc.loadInAss(lundipoo);
+			pc.loadInAss(lundipoo);
+		}
 		clearMenu();
 		addButton(0,"Next",lundDoggyStyleSubmitEnd);
 	}
@@ -1130,6 +1143,7 @@ public function lundDoggyStyle():void
 			
 			output("\n\nYou give Lund a kiss on the snout before you leave, setting his tail wagging as he sits on the bed and watches you go.");
 		}
+		processTime(40);
 		pc.orgasm();
 		pc.orgasm();
 		if(x >= 0)
@@ -1147,7 +1161,6 @@ public function lundDoggyStyle():void
 		addButton(0,"Leave",leaveLundSex);
 		addButton(1,"Again",moreLundSex,x);
 	}
-	processTime(40);
 }
 
 public function lundDoggyStyleSubmitEnd():void
@@ -1161,11 +1174,21 @@ public function lundDoggyStyleSubmitEnd():void
 	if(flags["LUND_PIERCED"] == undefined) 
 	{
 		output("and the shiny new nipple piercings. Hanging from each [pc.nipple] is a small golden ring, not unlike the type you might go see through the ear of a cowgirl. Lund said he liked them and, well, you weren’t going to say no to that. Besides... looking down at them now, hanging from your [pc.breasts]");
+		if(!(pc.breastRows[0].piercing is EmptySlot))
+		{
+			pc.breastRows[0].piercing.onRemove(pc);
+			var oldPiercing:ItemSlotClass = pc.breastRows[0].piercing;
+			eventQueue.push(function():void { kGAMECLASS.quickLoot(oldPiercing); });
+		}
 		pc.breastRows[0].piercing = new LundsRings();
 		pc.breastRows[0].piercing.onEquip(pc);
 		flags["LUND_PIERCED"] = 1;
 	}
-	else output("Besides, looking down at yourself right now");
+	else 
+	{
+		output("Besides, looking down at yourself right now");
+		flags["LUND_BREEDCAVE_DISABLE"] = 1;
+	}
 	output(", you personally think it’s really hot to be marked so visibly.");
 	output("\n\nBy the time the two of you leave, you’re fucked out for the day. Well, you might have one or two sessions with Lund left in you, but you’re okay for now. You give both him and his balls a warm kiss before you leave, heading back to the Hold proper. You’ll have to do this again sometime soon!");
 	processTime(128);
@@ -1301,7 +1324,7 @@ public function evenEvenMoreLundSex(x:int):void
 	output("\n\nLying there, eyes wide in half-shock and half-admiration, you realize the truth of the situation: he was never fighting you for dominance. He’s been breaking you in the entire time, easing you into being an unresisting fuck for him to enjoy. And as your fatigued hips begin to wildly buck once more, you realize you don’t care.");
 
 	if(pc.isTaur()) output("\n\nYour legs thrash about so wildly Lund seizes your rearmost two, holding them wide open so he can plow your [pc.vagOrAss " + x + "] all throughout your orgasm");
-	else output("\n\nLund leans forward and lifts your legs, holding your thighs and pressing down until your knees are besides your head, pounding the fuck out of your [pc.vagOrAss " + x + "] all the while");
+	else output("\n\nLund leans forward and lifts your legs, holding your thighs and pressing down until your knees are beside your head, pounding the fuck out of your [pc.vagOrAss " + x + "] all the while");
 	output(". Your voice comes out in a shaky, lilting scream of lust as ");
 	if(pc.hasVagina()) output("juices spray from your squelching cunt");
 	else output("your asshole squeezes down on Lund so tightly that for a moment he can’t move");
@@ -1429,7 +1452,8 @@ public function evenEvenEvenMoreLundSex(x:int):void
 	pc.applyCumSoaked();
 
 	//set flag for having submitted
-	flags["LUND_MADE_U_SUBMIT"] = 1;
+	if(flags["LUND_MADE_U_SUBMIT"] == undefined) flags["LUND_MADE_U_SUBMIT"] = 1;
+	if(flags["LUND_BREEDCAVE_DISABLE"] != undefined) flags["LUND_BREEDCAVE_DISABLE"] = undefined;
 	clearMenu();
 	addButton(0,"Next",leaveLundsHouse);
 }
@@ -2248,7 +2272,7 @@ public function repeatLundCookies():void
 		output("\n\nYou <i>do</i> happen to have more....");
 
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.loadInMouth(lundCumPlaceholder());
 		//[=Again=][=Enough=]
 		// give the PC the Orally-Filled status
@@ -2616,7 +2640,7 @@ public function lundBadEndFinale():void
 	output("\n\nYour rub your hand gently over his balls as they clench and lurch, followed by several thick, juicy gouts of his cum flooding into you. You swallow his every load eagerly, your mind wandering to the more nostalgic times you had taken him into your mouth like this. You hear the telltale sound of teeth against crumbly flour again, and his body reacts once more.");
 	output("\n\nIn the ten years it’s been since you gave yourself to your master; you never did find the limit to his stamina.");
 	pc.libido(200);
-	pc.lust(200);
+	pc.changeLust(200);
 	pc.willpower(-100);
 	pc.intelligence(-20);
 	//output("\n\n<b>GAME OVER</b>");
@@ -2647,7 +2671,7 @@ public function enoughBeforeLundBadEnds():void
 	output("\n\nYou’ll make up your mind when you leave....");
 
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	pc.energy(-100);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2844,7 +2868,7 @@ public function lundSubmissionThing():void
 		else output(" cross to his bed immediately, where your outfit lies. He looks in approval as you begin to put it on");
 		output(", a smile playing across his lips. Once you have your ‘real’ clothes on, he looks you up and down and nods.");
 
-		output("\n\n<i>“Good,”</i> he says, circling you once and tugging at the fastenings across your");
+		output("\n\n<i>“Good,”</i> he says, circling you once and tugging at the fastenings across your ");
 		if(pc.mf("m","f") == "m") output("[pc.butt]");
 		else output("[pc.breasts], tummy, and [pc.butt]");
 		output(". He pointedly ignores");
@@ -3724,7 +3748,8 @@ public function lundBreakHimD():void
 	output("\n\n<i>“[pc.Master], [pc.master], "+ (!korgiTranslate() ? "Lund" : "I’m") +" gonna cum,”</i> Lund moans, biting his lip. You can feel him tightening up around you. <i>“[pc.Master]-!”</i>");
 	
 	output("\n\nThere’s a couple of urgent splashes and then nothing but labored silence as the two of you shake, teeth grit as you cum together in the pool. Lund’s throbbing cock creates tiny currents in the water as it twitches up and down, spurting creamy seed that dissolves in the hot water immediately. All of your own spunk ends up inside Lund, your warmth tightly sealed in his depths.");
-	if (pc.cumQ() >= 3000) output(" He ends up with a fair bulge to his tummy by the time you’re done.");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ >= 3000) output(" He ends up with a fair bulge to his tummy by the time you’re done.");
 	
 	output("\n\nSlowly, gripping Lund’s hips and letting out a long sigh, you release the tension in your body and lean back against the side of the pool. Lund’s done a fantastic job of milking you and keeping it all inside, and you idly scratch him between the ears for doing so.");
 	
@@ -3745,12 +3770,13 @@ public function lundBreakHimD():void
 	output(" sucking your [pc.biggestCock] a few minutes later, lying on his bed with your arms behind your head. You were right; this <i>is</i> a good idea. You should be getting him to come out of his shell a little, take matters into his own hands. Now that you’ve broken him down, you can build him back up if you so desire.");
 	
 	output("\n\nThe possibilities whirl around your head, but you take a moment to quash them as you grunt and cum hard into his throat. Sighing in satisfaction, you let him lick and suckle your cock as he greedily swallows down every drop you have to give him.");
-	if (pc.cumQ() >= 3000) output(" Well, nearly every drop - some of it spurts from his snout as he struggles to cope with your voluminous flow, but he gets most of it.");
+	if (cumQ >= 3000) output(" Well, nearly every drop - some of it spurts from his snout as he struggles to cope with your voluminous flow, but he gets most of it.");
 	
 	output("\n\nYou wave him goodbye and set out before he’s even finished cleaning himself off, his lips still dribbling seed. He gives you a little wave, but chokes on your jizz before he can get his words out. You close the door on him taking a few deep, hard swallows.");
 
 	processTime(30+rand(15));
 	pc.orgasm();
+	pc.shower();
 	
 	IncrementFlag("SEXED_LUND");
 	currentLocation = "KORGII J10";
@@ -3894,7 +3920,7 @@ public function lundSubmissionNumber3():void
 	author("Wsan");
 
 	output("Approaching Lund, he actually gives you a friendly wave and a smile as you draw closer. Allowing yourself to be swept up in the giddiness of it all, you press yourself up against him and plaster his face with kisses.");
-	output("\n\n<i>“Oh, master,”</i> you sigh, breathing in his scent with your face rubbing in his fur. He smells like sweat and sex, the two things you do with him most often. You can feel yourself getting" + (pc.hasCock() ? "hard":"wet") + (!pc.isCrotchExposed() ? " in your [pc.lowerGarments]":"") + " already and you’ve only just gotten here. <i>“Master...”</i>");
+	output("\n\n<i>“Oh, master,”</i> you sigh, breathing in his scent with your face rubbing in his fur. He smells like sweat and sex, the two things you do with him most often. You can feel yourself getting " + (pc.hasCock() ? "hard":"wet") + (!pc.isCrotchExposed() ? " in your [pc.lowerGarments]":"") + " already and you’ve only just gotten here. <i>“Master...”</i>");
 	output("\n\n<i>“Hnh,”</i> Lund murmurs, wrapping his arm around your [pc.hips]. <i>“" + (korgiTranslate() ? "Come, pet, I have something to show you":"Pet come with master, show pet thing") + ".”</i>");
 	moveToLundsHouse();
 	output("\n\n<i>“Yeees, masterrr,”</i> you call out in a sing-song voice. Swept along back to his bedroom in a happy daze, he opens the door and you stand there confused for a moment. Letting his arm slip from your back and brush past your [pc.ass] to give you a grope, he walks over to the bed and pats it.");
@@ -4097,7 +4123,11 @@ public function beLundsCookslutEpilogue():void
 	IncrementFlag("LUND_ADVANCED_SUBMISSION");
 	pc.loadInMouth(lundipoo);
 	restHeal();
-	while(pc.lust() > 40 && pc.lustMin() <= 40) { pc.lust(-15); }
+	while(pc.lust() > 40) 
+	{
+		//Modified this. Used to check against minLust to stop, but minLust wasn't factoring in lustMod the same way that lust() does, resulting in an effective minimum of 90.
+		if(pc.lust(-10) == pc.lust(-10)) break;
+	}
 	//End Lund Submission Part 3 by Wsan
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
