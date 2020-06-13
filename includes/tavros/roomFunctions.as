@@ -317,6 +317,12 @@ public function resDeck11Func():Boolean
 	return false;
 }
 
+public function resDeck12Func():void
+{
+	liammeBonus();
+	makiusRoomExtra(1);
+}
+
 public function northWalkwayBonus():void
 {
 	bizzyApartmentHandler(1);

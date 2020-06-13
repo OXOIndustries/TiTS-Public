@@ -803,6 +803,7 @@ public const CREW_MITZI:int = 20;
 public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
+public const CREW_MAKIUS:int = 24;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -829,6 +830,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (yammiRecruited()) crewMembers.push(CREW_YAMMI);
 	if (olympiaRecruited()) crewMembers.push(CREW_OLYMPIA);
+	if (makiusRecruited()) crewMembers.push(CREW_MAKIUS);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -866,6 +868,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (syriIsCrew()) crewMembers.push(CREW_SYRI);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
 	if (olympiaIsCrew()) crewMembers.push(CREW_OLYMPIA);
+	if (makiusIsCrew()) crewMembers.push(CREW_MAKIUS);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -1035,6 +1038,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (syriIsCrew()) crewMembers.push("Syri");
 	if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (olympiaIsCrew()) crewMembers.push("Olympia");
+	if (makiusIsCrew()) crewMembers.push("Maki");
 	
 	if (allcrew)
 	{
@@ -1223,6 +1227,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter) 
 		{
 			crewMessages += kaseCrewBlurbs(btnSlot, InCollection(CREW_KASE, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (makiusIsCrew())
+	{
+		count++;
+		if(!counter) 
+		{
+			crewMessages += makiusCrewBonus(btnSlot, InCollection(CREW_MAKIUS, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -2653,7 +2666,8 @@ public function nearestMedicalCenter(altLoc:String = "", onlyMed:Boolean = true)
 		case "Tarkus":
 			if(!onlyMed)
 			{
-				if(flags["MET_DR_BADGER"] != undefined && flags["DR_BADGER_BIMBOED_PC"] != undefined && drBadgerAtBimbotorium()) roomID = "304"; // Bimbotorium
+				if(flags["MAKIUS_INTRO"] != undefined) roomID = "NOVA CLINIC" //Nove clinic
+				else if(flags["MET_DR_BADGER"] != undefined && flags["DR_BADGER_BIMBOED_PC"] != undefined && drBadgerAtBimbotorium()) roomID = "304"; // Bimbotorium
 				else if(flags["MET_DR_LASH"] != undefined) roomID = "LASH OFFICE"; // Lash office
 				//else roomID = "207"; // Corridor
 			}
@@ -3499,6 +3513,21 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.NPC);
 		rooms["9006"].removeFlag(GLOBAL.NPC);
 	}
+	//Makius going to work
+	if (!flags["MAKI_IN_CREW"] && (flags["MAKI_STATE"] == 2 || flags["MAKI_OFFERED_JOB_AT_NURSERY"]))
+	{
+		if (hours > 7 && hours < 16)
+		{
+			rooms["MAKIUS NURSERY HOME"].removeFlag(GLOBAL.NPC);
+			rooms["NURSERYI16"].addFlag(GLOBAL.NPC);
+		}
+		else
+		{
+			rooms["MAKIUS NURSERY HOME"].addFlag(GLOBAL.NPC);
+			rooms["NURSERYI16"].removeFlag(GLOBAL.NPC);
+		}
+	}
+	
 	/* MHENGA */
 	
 	//Bounties
@@ -4191,6 +4220,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processBreedwellPremiumBreederEvents(deltaT, doOut, totalDays);
 	processMirrinPregnancy(deltaT, nextTimestamp);
 	processBianca(totalDays, nextTimestamp);
+	processMakiusBuffs(deltaT);
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -5393,3 +5423,4 @@ public function taintedLove():void
 	addButton(0, "Again", taintedLove);
 	addButton(14, "Back", mainGameMenu);
 }
+

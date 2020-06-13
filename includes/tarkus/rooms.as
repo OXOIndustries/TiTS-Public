@@ -136,6 +136,7 @@ public function initTarkusRooms():void
 	rooms["208"].roomName = "\nNOVAHOME";
 	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it’s now packed with houses and shops of all styles and sizes. On one side, there’s a shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
 	rooms["208"].runOnEnter = colensosAdjacentRoomStuff;
+	rooms["208"].northExit = "NOVA CLINIC";
 	rooms["208"].eastExit = "209";
 	rooms["208"].westExit = "207";
 	rooms["208"].southExit = "305";
@@ -170,6 +171,30 @@ public function initTarkusRooms():void
 	rooms["LASH OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["LASH OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["LASH OFFICE"].addFlag(GLOBAL.NPC);
+	
+	//MAKIUS CLINIC
+	rooms["NOVA CLINIC"] = new RoomClass(this);
+	rooms["NOVA CLINIC"].roomName = "NOVA\nCLINIC";
+	rooms["NOVA CLINIC"].description = "";
+	rooms["NOVA CLINIC"].runOnEnter = enterNovaClinicFunc;
+	rooms["NOVA CLINIC"].planet = "PLANET: TARKUS";
+	rooms["NOVA CLINIC"].system = "SYSTEM: REDACTED";
+	rooms["NOVA CLINIC"].northExit = "NOVA CLINIC OFFICE";
+	rooms["NOVA CLINIC"].southExit = "208";
+	rooms["NOVA CLINIC"].moveMinutes = 1;
+	rooms["NOVA CLINIC"].addFlag(GLOBAL.INDOOR);
+	rooms["NOVA CLINIC"].addFlag(GLOBAL.PUBLIC);
+	rooms["NOVA CLINIC"].addFlag(GLOBAL.NPC);
+	
+	rooms["NOVA CLINIC OFFICE"] = new RoomClass(this);
+	rooms["NOVA CLINIC OFFICE"].roomName = "DOCTOR'S\nOFFICE";
+	rooms["NOVA CLINIC OFFICE"].planet = "PLANET: TARKUS";
+	rooms["NOVA CLINIC OFFICE"].system = "SYSTEM: REDACTED";
+	rooms["NOVA CLINIC OFFICE"].southExit = "NOVA CLINIC";
+	rooms["NOVA CLINIC OFFICE"].moveMinutes = 1;
+	rooms["NOVA CLINIC OFFICE"].addFlag(GLOBAL.PUBLIC);
+	rooms["NOVA CLINIC OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["NOVA CLINIC OFFICE"].addFlag(GLOBAL.MEDICAL);
 
 	//#10 NOVAHOME
 	rooms["210"] = new RoomClass(this);
@@ -252,6 +277,7 @@ public function initTarkusRooms():void
 	rooms["215"].system = "SYSTEM: REDACTED";
 	rooms["215"].addFlag(GLOBAL.OUTDOOR);
 	rooms["215"].addFlag(GLOBAL.PUBLIC);
+	
 	
 	//#16 RUST FIELDS
 	rooms["216"] = new RoomClass(this);

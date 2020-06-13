@@ -203,6 +203,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "SYNPHIA", Synphia);
 	prepChar(justUpdate, "FOCALOR", Focalor);
 	prepChar(justUpdate, "OLYMPIA", Olympia);
+	prepChar(justUpdate, "MAKIUS", Makius);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

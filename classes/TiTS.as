@@ -156,6 +156,7 @@
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/kase.as";
+		include "../includes/follower/makius.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/olympiaAndSidewinder.as";
@@ -365,6 +366,7 @@
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
 		include "../includes/tarkus/mindwashVisor.as";
+		include "../includes/tarkus/novaClinic.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
 		include "../includes/tarkus/raskvelMaleFight.as";
 		include "../includes/tarkus/rooms.as";
@@ -1825,6 +1827,10 @@
 		public function get synphia():Synphia
 		{
 			return chars["SYNPHIA"];
+		}
+		public function get makius():Makius
+		{
+			return chars["MAKIUS"];
 		}
 
 		public function testShipCombat():void
