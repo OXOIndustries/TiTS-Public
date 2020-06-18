@@ -17,6 +17,7 @@ package classes.GameData
 			bustFallbacks = true;
 			easyMode = false;
 			sillyMode = false;
+			spoilerMode = false;
 			debugMode = false;
 			fontSize = 18;
 			combineDamageValueOutput = false;
@@ -59,6 +60,9 @@ package classes.GameData
 		
 		// Silly
 		public var sillyMode:Boolean;
+		
+		// Show uncompleted stuff in codex logs
+		public var spoilerMode:Boolean;
 		
 		// Seasonal content
 		public var seasonalOverridePreferences:Object;

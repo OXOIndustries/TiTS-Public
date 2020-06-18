@@ -1412,7 +1412,7 @@ public function statisticsScreen(showID:String = "All"):void
 
 	// Racial scores
 	// It may be preferable for balance reasons to only allow this section to be visible if Easy Mode is on,
-	// or maybe only after unlocking it by talking to some doctor/geneticist (maybe Dr. McAllister on Myrmedion?)
+	// or maybe only after unlocking it by talking to some doctor/geneticist (maybe Dr. McAllister on Myrellion?)
 	// Represented as: prettifyGeneticMarker(race's current score, race's 100% score, race's maximum score)
 	// Gotta know what it is before you know how much of one you are (just in case the score for a race would somehow be above 0 before even meeting a member of that race)
 	if(showID == "Race" || showID == "All")
@@ -2525,7 +2525,7 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Mhen'ga
-		if(flags["RIVALCONFIGURED"] != undefined && (showID == "Mhen'ga" || showID == "All"))
+		if((flags["RIVALCONFIGURED"] != undefined || spoiler) && (showID == "Mhen'ga" || showID == "All"))
 		{
 			output2("\n<b><u>Mhen’ga</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2547,7 +2547,7 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Tarkus
-		if(tarkusCoordinatesUnlocked() && (showID == "Tarkus" || showID == "All"))
+		if((tarkusCoordinatesUnlocked() || spoiler) && (showID == "Tarkus" || showID == "All"))
 		{
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2577,7 +2577,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["TARKUS_DESTROYED"] == undefined && flags["TARKUS_TAXI_STOP_UNLOCKED"] != undefined) output2(", The Lift");
 			}
 			// The Stellar Tether
-			if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
+			if((flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined) || spoiler)
 			{
 				output2("\n<b><u>The Stellar Tether</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -2587,12 +2587,14 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Tarkus destroyed by pirates of the <i>Tarasque</i>, Completed");
 					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
-				else output2(" <i>In progress...</i>");
+				else if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined) output2(" <i>In progress...</i>");
+				else if(spoiler) output2(" Not started");
 				if(flags["MITZI_RESCUED"] != undefined)
 				{
 					output2("\n<b>* " + ((flags["MITZI_DISABLED"] != undefined || flags["MITZI_GOODBAD"] != undefined) ? "Mitzi" : "Gabilani Technician") + ":</b> Rescued her");
 					if(flags["MITZI_DISABLED"] == undefined && flags["MITZI_GOODBAD"] == undefined) output2(" " + prettifyMinutes(GetGameTimestamp() - flags["MITZI_RESCUED"]) + " ago");
 				}
+				else if(spoiler) output2("\n<b>* Mitzi:</b> Not rescued");
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
@@ -2600,37 +2602,45 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
+					else if(spoiler) output2(", Didn't take Tam-wolf");
 				}
+				else if(spoiler) output2("\n<b>* Tam:</b> Not met");
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
 					output2("\n<b>* Defenses:</b>");
 					if(flags["ROCKET_PODS_HACKED"] != undefined) output2(" Hacked rocket pods");
-					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked passed rocket pods");
+					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked past rocket pods");
 					else output2(" Destroyed rocket pods");
 				}
+				else if(spoiler) output2("\n<b>* Defenses:</b> Not encountered");
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
 					output2("\n<b>* Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
+					else if(spoiler) output2(", Didn't fuck her");
 				}
+				else if(spoiler) output2("\n<b>* Kaska:</b> Not met");
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
 					output2("\n<b>* Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
+					else if(flags["DICKFUCKED_CAPN_KHORGAN"] == undefined && flags["LESBOED_KHORGAN"] == undefined && spoiler) output2 (", Didn't fuck her");
 				}
+				else if(spoiler) output2("\n<b>* Capt. Khorgan:</b> Haven't defeated her");
 				// Resources
 				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* Resources:</b> Platinum 190 taken");
+				else if(spoiler) output2("\n<b>* Resources:</b> Platinum 190 not taken");
 				// Bomb
 				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* Time-Bomb Countdown:</b> " + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
 			}
 			mainCount++;
 		}
 		// Myrellion
-		if(myrellionCoordinatesUnlocked() && (showID == "Myrellion" || showID == "All"))
+		if((myrellionCoordinatesUnlocked() || spoiler) && (showID == "Myrellion" || showID == "All"))
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2638,6 +2648,7 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Coordinates received");
 				if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
+				else if(spoiler) output2(", Probe not reclaimed");
 			}
 			else output2(" <i>In progress...</i>");
 			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1 && flags["TAIVRA_NEW_THRONE"] == undefined)
@@ -2697,11 +2708,16 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him from Taivra");
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
+				else if(spoiler)
+				{
+					output2("\n<b>* [rival.name]:</b> Not seen");
+					output2("\n<b>* Dane:</b> Not seen");
+				}
 			}
 			mainCount++;
 		}
 		// Zheng Shi
-		if(zhengCoordinatesUnlocked() && (showID == "Zheng Shi" || showID == "All"))
+		if((zhengCoordinatesUnlocked() || spoiler) && (showID == "Zheng Shi" || showID == "All"))
 		{
 			output2("\n<b><u>Zhèng Shi Station</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -2709,6 +2725,8 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Coordinates received");
 				if(9999 == 0) output2(", Reclaimed probe");
+				else if(9999 == 9999 && spoiler) output2(", Probe not reclaimable yet");
+				else if(spoiler) output2(", Probe not reclaimed");
 			}
 			else output2(" <i>In progress...</i>");
 			if(flags["ZHENG_SHI_PASSWORDED"] != undefined)
@@ -2720,7 +2738,9 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>Unknown</i>, Access denied");
 			}
 			if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined) output2("\n<b>* <i>Sidewinder</i>, Loot, Jumper’s Suit:</b> Taken");
+			else if(spoiler) output2("\n<b>* <i>Sidewinder</i>, Loot, Jumper’s Suit:</b> Not taken");
 			if(flags["ZHENG_SHI_GALOMAX"] == undefined) output2("\n<b>* <i>Sidewinder</i>, Loot, Galomax:</b> Taken");
+			else if(spoiler) output2("\n<b>* <i>Sidewinder</i>, Loot, Galomax:</b> Not taken");
 			if(flags["FERUZE_ZHENG_OUTCOME"] != undefined)
 			{
 				// Rival
@@ -2737,7 +2757,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["FERUZE_CAME_INSIDE"] != undefined) output2("\n<b>* Feruze, Times You Came Inside Her:</b> " + flags["FERUZE_CAME_INSIDE"]);
 				if(flags["FERUZE_BIG_DICK_TITFUCKED"] != undefined) output2("\n<b>* Feruze, Times Titfucked:</b> " + flags["FERUZE_BIG_DICK_TITFUCKED"]);
 			}
-
+			else if(spoiler)
+			{
+				output2("\n<b>* [rival.name]:</b> Not seen");
+				output2("\n<b>* Feruze:</b> Not seen");
+			}
 			mainCount++;
 		}
 		// Nothing recorded
@@ -2768,6 +2792,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_BUSINESS_SETUP"] != undefined && (days - flags["SERA_BUSINESS_SETUP"] > 0)) output2("\n<b>* Sera, Days Since Opened Business:</b> " + (days - flags["SERA_BUSINESS_SETUP"]));
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Bitchening</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Sera: Disco 3000
 			if(flags["SERA_PARTY_INVITE"] != undefined)
 			{
@@ -2784,12 +2813,18 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_SALARY_PAID"] != undefined && flags["SERA_SALARY_DATE"] != undefined) output2("\n<b>* Time Since Last Salary Payment:</b> " + prettifyMinutes(GetGameTimestamp() - flags["SERA_SALARY_DATE"]));
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Disco 3000</u></b>");
+				output2("\n<b>* Status:</b> Haven't been invited");
+			}
 			// Riya Quest
-			if(flags["RIYA_QUEST_RESULT"] != undefined)
+			if(flags["RIYA_QUEST_RESULT"] != undefined || spoiler)
 			{
 				output2("\n<b><u>RiyaQuest</u></b>");
 				output2("\n<b>* Status:</b>");
-				switch(flags["RIYA_QUEST_RESULT"])
+				if(flags["RIYA_QUEST_RESULT"] == undefined && spoiler) output2(" Not started");
+				else switch(flags["RIYA_QUEST_RESULT"])
 				{
 					case -1: output2(" Did not follow Riya, Completed"); break;
 					case 1: output2(" Followed Riya, Helped Riya with raid, Completed"); break;
@@ -2800,9 +2835,10 @@ public function displayQuestLog(showID:String = "All"):void
 			//Host Shukuchi
 			if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined)
 			{
-				output2("\n<b><u>" + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 2 ? "Tavros Mafia?" : "Host Shukuchi") + "</u></b>");
+				output2("\n<b><u>" + (flags[("SHUKUCHI_TAVROS_ENCOUNTER"] < 2 || !spoiler) ? "Tavros Mafia?" : "Host Shukuchi") + "</u></b>");
 				output2("\n<b>* Status:</b>");
-				switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
+				if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] == undefined && spoiler) output2(" Not seen");
+				else switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
 				{
 					case undefined: output2(" Tracking"); break;
 					case 1: output2(" Paid the Host"); break;
@@ -2845,8 +2881,13 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" Broken");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Prostate Milker</u></b>");
+				output2("\n<b>* Status:</b> Not broken");
+			}
 			// The Treatment
-			if(CodexManager.entryViewed("The Treatment"))
+			if(CodexManager.entryViewed("The Treatment") || spoiler)
 			{
 				output2("\n<b><u>The Treatment</u></b>");
 				output2("\n<b>* Status:</b> ");
@@ -2879,7 +2920,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Varmint Wranglin'
-			if(flags["MET_CAMERON"] != undefined)
+			if(flags["MET_CAMERON"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Varmint Wranglin’</u></b>");
 				output2("\n<b>* Varmints Captured, Total:</b> ");
@@ -2926,7 +2967,13 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(", Failed");
 				else output2(", <i>In progress...</i>");
 				if(flags["FUCK_LILLIES_USED"] != undefined) output2("\n<b>* Fuck Lillies, Times Sexed:</b> " + flags["FUCK_LILLIES_USED"]);
+				else if(spoiler) output2("\n<b>* Fuck Lillies, Times Sexed:</b> 0");
 				sideCount++;
+			}
+			else if(spoiler) 
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// The Forge Machina
 			if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined)
@@ -2937,6 +2984,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["ROBOT_QUEST_COMPLETE"] == 1) output2(" Robot found, Return to Carl");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Forge Machina</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Penny's Recruitment
 			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined || flags["PENNY_BIMBO_RECRUITED"] != undefined)
@@ -2968,7 +3020,13 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PQUEST_ZILTRAP_RESULTS"] == 1) output2(", Defeated them by health");
 					if(flags["PQUEST_ZILTRAP_RESULTS"] == 2) output2(", Defeated them by lust");
 				}
+				else if(spoiler) output2("\n<b>* Ziltraps:</b> Haven't seen them");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Penny’s Recruitment</u></b>");
+				output2("\n<b>* Status: Not started</b>");
 			}
 			// Penny's Zil Problem
 			if(flags["MET_PENNY"] != undefined)
@@ -2978,6 +3036,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["ZIL_PROBLEM_DEALT_WITH"] != undefined) output2(" Completed");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Penny’s Zil Problem</u></b>");
+				output2("\n<b>* Status:</b> Penny not met");
 			}
 			// Plantation Quest
 			if(flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start"))
@@ -3027,6 +3090,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PQ_DIPLO_FAILS"] != undefined) output2(" Failed " + (flags["PQ_DIPLO_FAILS"] == 1 ? "once" : (flags["PQ_DIPLO_FAILS"] + " times")));
 				}
 				if(flags["PQ_TOOK_AMBER"] != undefined) output2("\n<b>* Amber Idol:</b> Taken");
+				else if(spoiler) output2("\n<b>* Amber Idol:</b> Not aken");
 				if(flags["PQUEST_WATERFALLED"] != undefined)
 				{
 					output2("\n<b>* Kane:</b> Met him");
@@ -3038,20 +3102,28 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated him");
 				}
+				else if(spoiler) output2("\n<b>* Kane:</b> Not met");
 				if(flags["PQ_SECURED_LAH"] || flags["PQ_BEAT_LAH"] != undefined)
 				{
 					output2("\n<b>* R.K. Lah:</b> Met him");
 					if(flags["PQ_BEAT_LAH"] == 1) output2(", Defeated him");
 					if(flags["PQ_BEAT_LAH"] == -1) output2(", Defeated by him");
 				}
+				else if(spoiler) output2("\n<b>* R.K. Lah:</b> Not met");
 				if(flags["PQ_RESOLUTION"] != undefined)
 				{
 					output2("\n<b>* Quinn:</b> Met her");
 					if(flags["PQ_LET_QUINN_GO"] != undefined) output2(", Let her go");
 				}
+				else if(spoiler) output2("\n<b>* Quinn:</b> Not met");
 				if(flags["PQ_NALEENED"] != undefined) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> " + flags["PQ_NALEENED"]);
-
+				else if(spoiler) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> 0");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Plantation Quest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// The Pollen Dance
 			if(flags["QUINNFEST_COMPLETE"] != undefined || flags["QUINNFEST_TALKED"] != undefined)
@@ -3112,8 +3184,12 @@ public function displayQuestLog(showID:String = "All"):void
 						case 1: output2(" You comforted her with some much needed emotional support."); break;
 					}
 				}
-
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Pollen Dance</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Pump-King
 			if(flags["PUMPKING_COMPLETION"] != undefined || MailManager.isEntryViewed("pumpking_alert"))
@@ -3139,6 +3215,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PUMPKING_FUCKED"] != undefined) output2(", Sexed her");
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Pump-King</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Pyrite Satellite Recovery
 			if(flags["SATELLITE_QUEST"] != undefined)
@@ -3167,7 +3248,13 @@ public function displayQuestLog(showID:String = "All"):void
 						case 1: output2(" Defeated her in combat"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Gryvain Agent:</b> Not met");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Pyrite Satellite Recovery</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Zil Capture
 			if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined)
@@ -3191,8 +3278,12 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Zil Capture</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 		}
-
 		if(showID == "Tarkus" || showID == "All")
 		{
 			// Azra's Expeditions
@@ -3217,6 +3308,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 4: output2(", Fed her"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Double Gray Goo:</b> Not met");
 				if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKDOOR_HACKED"] != undefined || flags["AZRA_TARKUS_SKIP"] != undefined)
 				{
 					output2("\n<b>* Bunker:</b>");
@@ -3233,6 +3325,7 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" Visited");
 					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped past");
 				}
+				else if(spoiler) output2("\n<b>* Bunker:</b> Not visited");
 				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
 				{
 					output2("\n<b>* Pregnant Rask Guard:</b> Met her");
@@ -3244,6 +3337,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 3: output2(", She ate you out"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Pregnant Rask Guard:</b> Not met");
 				if(flags["SYDIAN_QUEEN_RESULT"] != undefined)
 				{
 					output2("\n<b>* Sydian Queen:</b> Met her");
@@ -3257,7 +3351,17 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["AZRA_RASK_PC_SUCKED"] != undefined) output2(", Sucked his dick");
 					if(flags["AZRA_RASK_ORGIED"] != undefined) output2(", Sexed him in raskvel orgy");
 				}
+				else if(spoiler)
+				{
+					output2("\n<b>* Sydian Queen:</b> Not met");
+					output2("\n<b>* Azaphel:</b> Not met");
+				}
 				sideCount++;
+			}
+			else if(spoiler) 
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Dr. Badger's Job
 			if(flags["BADGER_QUEST"] != undefined)
@@ -3288,6 +3392,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Badger Quest</u></b>");\
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Pexiga Uplift, aka Bimbo Quest II: The Search For More Bimbos
 			if(flags["PEXIGA_TALKED"] != undefined)
 			{
@@ -3314,6 +3423,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
+				else if(spoiler) output2("\n<b>* Nym-Foe:</b> Not met");
 				if(flags["NYM-FOE"] >= 2) output2(", Defeated her");
 				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
 				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
@@ -3338,6 +3448,7 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" Seen it"); break;
 					}
 				}
+				else if(spoiler) output2("\n<b>* Doll Maker:</b> Not met");
 				if(flags["DOLLMAKER_FIXED"] != undefined) output2(", Fixed it");
 				if(flags["DOLLMAKER_ACTIVATED"] != undefined) output2(", On guard");
 				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone) || flags["DOLLMAKER_LOOT_IQBGONE"] != undefined)
@@ -3350,8 +3461,13 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					else if(pc.hasItemByClass(IQBGone)) output2(", In possession");
 				}
-
+				else if(spoiler) output2("\n<b>* IQ B-Gone:</b> Not looted");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Pexiga Uplift</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Doll Maker Repair
 			if(flags["DOLLMAKER_DISASSEMBLED"] >= 4)
@@ -3422,6 +3538,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["DECK13_ARMORY_ENTERED"] != undefined) output2(", Entered armory");
 					if(flags["DECK13_TAKEN_PISTOL"] != undefined || flags["DECK13_TAKEN_RIFLE"] != undefined) output2(", Looted armory");
 					if(flags["DECK13_SAMPLES_TAKEN"] != undefined) output2("\n<b>* Deck 13, Gray Goo Samples Taken:</b> " + flags["DECK13_SAMPLES_TAKEN"]);
+					else if(spoiler) output2("\n<b>* Deck 13, Gray Goo Samples Taken:</b> 0");
 					if(flags["DECK13_CREW_TALK"] != undefined) output2("\n<b>* Nova:</b> Met her, Found out about her crew");
 					if(flags["GRAY_PRIME_DEFEATED_VIA_HP"] != undefined)
 					{
@@ -3440,6 +3557,11 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Ghost Deck</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Colenso's Conspiracy Theories
 			if(flags["SEXBOT_QUEST_STATUS"] != undefined)
@@ -3486,6 +3608,13 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>The Hnngularity</u></b>");
+				output2("\n<b>* Sexbots Scanned:</b> 0");
+				output2("\n<b>* Sexbot Factory:</b> Active");
+				output2("\n<b>* Hand So:</b> Active");
+			}
 			// Kimber Quest
 			if(flags["KIMBER_QUEST"] != undefined || flags["KIMBER_OFFER"] != undefined)
 			{
@@ -3501,8 +3630,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["KIMBER_QUEST_GOT_PANTIES"] != undefined) output2("\n<b>* Gabilani Panties:</b> Taken");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Kimber’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Lane's Illegal Activity
-			if(flags["MET_LANE"] != undefined)
+			if(flags["MET_LANE"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Lane’s Hypnotism</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -3567,6 +3701,11 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Shekka Quest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 		}
 
 		if(showID == "Myrellion" || showID == "All")
@@ -3624,15 +3763,23 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] != undefined)
 					{
 						output2("\n<b>* Quadommes to Summit:</b> " + flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"]);
+						if(spoiler) output2(" of 4");
 						if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 4) output2(", Enough quadommes!");
 					}
+					else if(spoiler) output2("\n<b>* Quadommes to Summit:</b> 0 of 4");
 					if(flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined) output2("\n<b>* Quadommes, Beta Nyrea Baited, Total:</b> " + flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"]);
+					else if(spoiler) output2("\n<b>* Quadommes, Beta Nyrea Baited, Total:</b> 0");
 					if(flags["BOTHRIOC_QUEST_GENEALOGY"] != undefined) output2("\n<b>* Bothrioc Genealogy, Given To:</b> " + flags["BOTHRIOC_QUEST_GENEALOGY"]);
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Ara’s Diplomacy Mission</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Bothrioc Addiction
-			if(flags["BOTHRIOC_ADDICTION"] != undefined && flags["BOTHRIOC_ADDICTION"] != 0)
+			if(flags["BOTHRIOC_ADDICTION"] != undefined && (flags["BOTHRIOC_ADDICTION"] != 0 || spoiler))
 			{
 				output2("\n<b><u>Bothrioc Oil</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -3643,9 +3790,15 @@ public function displayQuestLog(showID:String = "All"):void
 					if(bothriocAddiction() >= 75) output2(", Accepting of it");
 				}
 				else if(bothriocAddiction() >= 25) output2(" Curious about it");
-				else output2(" Exposed to it");
+				else if(!spoiler) output2(" Exposed to it");
 				output2("\n<b>* Bothrioc Hormone Level:</b> " + bothriocAddiction() + " %");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Bothrioc Oil</u></b>");
+				output2("\n<b>* Status:</b> Not exposed to it");
+				output2("\n<b>* Bothrioc Hormone Level:</b> 0 %");
 			}
 			// EmmyQuest
 			if(flags["EMMY_QUEST"] != undefined)
@@ -3703,6 +3856,11 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" <i>Delivered</i>");
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>EmmyQuest</u></b>");
+				output2("\n<b>* Status: Not started</b>");
 			}
 			// FazianQuest
 			if(flags["FAZIAN_QUEST_STATE"] != undefined && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_NOTSTARTED && (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_DELAY"] != undefined))
@@ -3769,6 +3927,11 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>FazianQuest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			//Federation Quest
 			if(flags["FEDERATION_QUEST"] != undefined)
 			{
@@ -3798,8 +3961,12 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					if(flags["FEDERATION_QUEST"] >= 3) output2(", Completed");
 				}
-
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>FederationQuest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// IrelliaQuest
 			if(flags["IRELLIA_QUEST_STATUS"] != undefined)
@@ -3820,6 +3987,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>IrelliaQuest</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			// Kara's Big Adventure! - Pt.1
 			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && (flags["MET_KARA"] != undefined || flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined))
 			{
@@ -3837,6 +4009,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SHADE_PAID_YOU"] != undefined) output2(", Rewarded by Shade, Completed");
 				if(flags["KARA_PAID_YOU"] != undefined) output2(", Rewarded by Kara, Completed");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>KaraQuest: A Damsel in Distress</u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Kara's Big Adventure! - Pt.2
 			if(flags["KQ2_QUEST_OFFER"] != undefined)
@@ -3874,6 +4051,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					// Kara headshots
 					if(flags["KQ2_KARA_SNIPAH_KILLS"] != undefined) output2("\n<b>* Kara, Enemies Sniped:</b> " + flags["KQ2_KARA_SNIPAH_KILLS"]);
+					else if(spoiler) output2("\n<b>* Kara, Enemies Sniped:</b> 0");
 					// Nuke 'em, Rico!
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
 					{
@@ -3882,7 +4060,8 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
 						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
 					}
-					if(flags["KQ2_FIGHT_STEPS"] != undefined)
+					else if(spoiler) output2("\n<b>* Pirate Base, Nuke:</b> Not activated");
+					if(flags["KQ2_FIGHT_STEPS"] != undefined || spoiler)
 					{
 						output2("\n<b>* Pirate Base, Entrance:</b>");
 						if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) output2(" Blown open with tank");
@@ -3891,7 +4070,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 4) output2(" Opened by Kara");
 						else output2(" Closed");
 					}
-					if(flags["KQ2_RF_KENNEL_USED"] != undefined)
+					if(flags["KQ2_RF_KENNEL_USED"] != undefined || spoiler)
 					{
 						output2("\n<b>* Pirate Base, RF Kennel:</b>");
 						if(flags["KQ2_RF_KENNEL_USED"] == 1) output2(" Used to fix Tam-wolf");
@@ -3903,6 +4082,7 @@ public function displayQuestLog(showID:String = "All"):void
 						output2("\n<b>* Pirate Base, Barracks:</b> Entered");
 						if(flags["KQ2_TAKEN_ARMOR"] != undefined) output2(", Looted");
 					}
+					else if(spoiler) output2("\n<b>* Pirate Base, Barracks:</b> Not entered");
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Dr. Khan:</b> Met him, Defeated him");
@@ -3919,6 +4099,7 @@ public function displayQuestLog(showID:String = "All"):void
 							}
 						}
 					}
+					else if(spoiler) output2("\n<b>* Pirate Base, Dr. Khan:</b> Not defeated");
 					if(flags["KQ2_LEFT_ENGINEER"] != undefined || flags["KQ2_DEFEATED_ENGINEER"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Engineer:</b> Encountered her");
@@ -3932,10 +4113,18 @@ public function displayQuestLog(showID:String = "All"):void
 						}
 						else output2(", Left her alone");
 					}
+					else if(spoiler) output2("\n<b>* Pirate Base, Engineer:</b> Not met");
 					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
+					else if(spoiler) output2("\n<b>* Pirate Base, Juggernaut:</b> Not defeated");
 					if(flags["KQ2_WATSON_MET"] != undefined) output2("\n<b>* Pirate Base, Watson:</b> Met him");
+					else if(spoiler) output2("\n<b>* Pirate Base, Watson:</b> Not met");
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>KaraQuest 2: Eye of the Beholder</u></b>");
+				output2("\n<b>* Status:</b>");
 			}
 			// MarshalQuestuuuuuu
 			if(9999 == 0)
@@ -3945,6 +4134,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(9999 == 0) output2(" Completed");
 				else output2(" <i>In progress...</i>");
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>MarshalQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(9999 == 0) output2(" Not started");
+				else output2(" <i>Not implemented yet...</i>");
 			}
 			// Ant Hybrids
 			if(flags["MCALLISTER_MYR_HYBRIDITY"] != undefined)
@@ -3969,10 +4165,16 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(pc.hasKeyItem("Orange Myr Data")) output2(" In inventory");
 					else output2(" <i>Missing</i>");
 				}
+				else if(spoiler) output2("\n<b>* Orange Myr Data Chit:</b> Not ready");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Myr Hybridity</u></b>");
+				output2("\n<b>* Research:</b> Not discussed");
+			}
 			// Ant TFs
-			if(flags["MET_MCALLISTER"] != undefined)
+			if(flags["MET_MCALLISTER"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Myr Transformation Experiment</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4004,6 +4206,12 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>Not yet obtained</i>");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Nevrie’s Co-worker</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+				output2("\n<b>* Red Myr Blood Sample:</b> <i>Not yet obtained</i>");
+			}
 			// Getting Taivra a new throne
 			if(flags["TAIVRA_NEW_THRONE"] != undefined)
 			{
@@ -4019,7 +4227,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Red Myr Venom Addiction
-			if(CodexManager.entryViewed("Red Myr") && (drankMyrVenom() || sexedMyrVenom()))
+			if((CodexManager.entryViewed("Red Myr") && (drankMyrVenom() || sexedMyrVenom())) || spoiler)
 			{
 				output2("\n<b><u>Red Myr Venom</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4035,13 +4243,21 @@ public function displayQuestLog(showID:String = "All"):void
 						output2("\n<b>* Venom Addiction Level:</b> " + flags["VENOM_ADDICTION"] + " %");
 					}
 					else output2("\n<b>* Venom Dosage Level:</b> " + flags["VENOM_PROGRESS"] + " %");
+					if(spoiler) output2("\n<b>* Venom Addiction Level:</b> 0 %");
 				}
-				else
+				else if(spoiler)
+				{
+					output2("\n<b>* Venom Addiction Level:</b> 0 %");
+					output2("\n<b>* Venom Dosage Level:</b> 0 %");
+				}
+				else if(drankMyrVenom() || sexedMyrVenom())
 				{
 					output2(" Tried");
 					if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] <= 0) output2(", Cured");
 				}
+				else if(spoiler) output2(" Haven't tried");
 				if(sexedMyrVenom()) output2("\n<b>* Doses, Sex-related:</b> " + flags["SEXED_MYR_VENOM"]);
+				else if(spoiler) output2("\n<b>* Doses, Sex-related:</b> 0");
 				if(drankMyrVenom()) output2("\n<b>* Doses, Drink-related:</b> " + flags["DRANK_MYR_VENOM"]);
 				sideCount++;
 			}
@@ -4060,12 +4276,16 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) output2(" Accepted, Learned Iaya’s Fate, Told Sierva, Completed");
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>In Love and War</u></b>");
+				output2("\n<b>* Sierva’s Request:</b> Not started");
+			}
 		}
-
 		if(showID == "Uveto" || showID == "All")
 		{
 			// Drone Hunting
-			if(flags["MET_NAYNA"] != undefined)
+			if(flags["MET_NAYNA"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Drone Hunting</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4078,13 +4298,13 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["DRONED_UVIP V14"] != undefined) naynaDrones++;
 					if(flags["DRONED_UVIP X34"] != undefined) naynaDrones++;
 					if(flags["DRONED_UVIP L28"] != undefined) naynaDrones++;
-
 					if(naynaDrones >= 5) output2(" Completed");
 					else output2(" <i>In progress...</i>");
 					if(naynaDrones > 0) output2("\n<b>* Weather Drones Collected:</b> " + naynaDrones);
 				}
 				else output2(" <i>Not yet accepted...</i>");
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
+				else if(spoiler) output2("\n<b>* Weather Drones Turned In:</b> 0");
 				sideCount++;
 			}
 			// Fertility Ritual
@@ -4098,6 +4318,11 @@ public function displayQuestLog(showID:String = "All"):void
 					case 1: output2(", Took idol"); break;
 				}
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Milodan Ritual</u></b>");
+				output2("\n<b>* Status:</b> Haven't seen ritual");
 			}
 			// Mrs. Reasner
 			if(flags["BEA_QUEST"] != undefined)
@@ -4115,6 +4340,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				if(flags["BEA_SAVCOUNT"] != undefined) output2("\n<b>* Savicite Sold to " + flags["BEA_TITLE"] + ", Total:</b> " + flags["BEA_SAVCOUNT"]);
 				sideCount++;
+			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Refueling the <i>S.S. Inexorable</i></u></b>");
+				output2("\n<b>* Status:</b> Not started");
 			}
 			// Tuuva Expedition
 			if(flags["TUUVA_50AFF"] != undefined)
@@ -4134,12 +4364,18 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Tuuva’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Not started");
+			}
 			//Syri Quest
-			if(flags["SYRIQUEST_STATE"] != undefined)
+			if(flags["SYRIQUEST_STATE"] != undefined || spoiler)
 			{
 				output2("\n<b><u>SyriQuest</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
+				if(flags["SYRIQUEST_STATE"] == undefined) output2(" Not started");
+				else if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
 				else if(flags["SYRIQUEST_STATE"] == 0) output2(" <i>Syri possibly fired from Pyrite job?</i>");
 				else if(flags["SYRIQUEST_STATE"] >= 3) output2(" Accepted");
 				else output2(" <i>In progress...</i>");
@@ -4162,7 +4398,8 @@ public function displayQuestLog(showID:String = "All"):void
 					output2("\n<b>* Living Onahole:</b> Taken");
 					if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2) output2(", Given to Syri");
 				}
-				if(flags["MET_SCHORA"] != undefined)
+				else if(spoiler) output2("\n<b>* Living Onahole:</b> Not taken");
+				if(flags["MET_SCHORA"] != undefined || spoiler)
 				{
 					var schoraName:String = "";
 					if(flags["MET_SCHORA"] > 3 || flags["SYRIQUEST_STATE"] >= 21)
@@ -4182,16 +4419,13 @@ public function displayQuestLog(showID:String = "All"):void
 						case 3: output2(" Met her"); break;
 						case 4: output2(" Met her, Sexed her nicely"); break;
 						case 5: output2(" Met her, Sexed her roughly"); break;
+						default: output2(" Not met"); break;
 					}
 				}
-				if(flags["MET_TORRA"] != undefined)
-				{
-					output2("\n<b>* Researcher:</b> Met and sexed her");
-				}
-				if(flags["SYRIQUEST_STATE"] >= 8)
-				{
-					output2("\n<b>* Dr. Calnor:</b> Met him");
-				}
+				if(flags["MET_TORRA"] != undefined) output2("\n<b>* Researcher:</b> Met and sexed her");
+				else if(spoiler) output2("\n<b>* Researcher:</b> Not met");
+				if(flags["SYRIQUEST_STATE"] >= 8) output2("\n<b>* Dr. Calnor:</b> Met him");
+				else if(spoiler) output2("\n<b>* Dr. Calnor:</b> Not met");
 				if(flags["SYRIQUEST_STATE"] >= 10)
 				{
 					output2("\n<b>* Valden:</b> Met him");
@@ -4209,9 +4443,10 @@ public function displayQuestLog(showID:String = "All"):void
 						}
 					}
 				}
+				else if(spoiler) output2("\n<b>* Valden:</b> Not met");
 				sideCount++;
 			}
-			if(flags["WARGII_PROGRESS"] != undefined || flags["WARGII_SETUP"] != undefined)
+			if(flags["WARGII_PROGRESS"] != undefined || flags["WARGII_SETUP"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Warg’ii Hold</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4238,23 +4473,31 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(flags["WARGII_PROGRESS"] == 2) output2(", <i>In progress...</i>");
 					output2("\n<b>* Influence:</b> " + wargiiScore() + " %");
 					if(flags["WARGII_FIGHTS_RAN"] != undefined) output2("\n<b>* Combat, Retreats, Total:</b> " + flags["WARGII_FIGHTS_RAN"]);
+					else if(spoiler) output2("\n<b>* Combat, Retreats, Total:</b> 0");
 					if(flags["WARGII_FIGHTS_WON"] != undefined) output2("\n<b>* Combat, Victories, Total:</b> " + flags["WARGII_FIGHTS_WON"]);
-					if(flags["WARGII_HEIDRUN_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_HEIDRUN"] == undefined ? "Korgonne Merchant" : "Heidrun") + ":</b> Saved Her");
+					else if(spoiler) output2("\n<b>* Combat, Victories, Total:</b> 0");
+					if(flags["WARGII_HEIDRUN_SAVED"] != undefined) output2("\n<b>* " + ((flags["MET_HEIDRUN"] == undefined && !spoiler) ? "Korgonne Merchant" : "Heidrun") + ":</b> Saved her");
+					else if(spoiler) output2("\n<b>* Heidrun:</b> Not saved");
 					if(flags["WARGII_NENNE_SAVED"] != undefined) output2("\n<b>* Nenne:</b> Saved Her");
-					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_LUND"] == undefined ? "Male Korgonne" : "Lund") + ":</b> Saved Him");
-					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_TUUVA"] == undefined ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved Her");
+					else if(spoiler) output2("\n<b>* Nenne:</b> Not saved");
+					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + ((flags["MET_LUND"] == undefined && !spoiler) ? "Male Korgonne" : "Lund") + ":</b> Saved him");
+					else if(spoiler) output2("\n<b>* Lund:</b> Not saved");
+					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + ((flags["MET_TUUVA"] == undefined && !spoiler) ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved her");
+					else if(spoiler) output2("\n<b>* Tuuva:</b> Not saved");
 					if(flags["WARGII_MAJA_SAVED"] != undefined)
 					{
-						output2("\n<b>* " + (flags["MET_MAJA"] == undefined ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved Her");
+						output2("\n<b>* " + ((flags["MET_MAJA"] == undefined && !spoiler) ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved her");
 						if(flags["WARGII_MAJA_SAVED"] >= 2) output2(", Saved her animals");
 					}
-					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + (flags["KIONA_MET"] == undefined ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved Her");
+					else if(spoiler) output2("\n<b>* Maja:</b> Not saved");
+					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + ((flags["KIONA_MET"] == undefined && !spoiler) ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved her");
+					else if(spoiler) output2("\n<b>* Kiona:</b> Not saved");
 				}
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;
 			}
 			//deepsea biomedical facility
-			if(flags["UVETO_DEEPSEALAB_QUEST"] != undefined)
+			if(flags["UVETO_DEEPSEALAB_QUEST"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Steele Biomedical Deepsea Research Facility</u></b>");
 				output2("\n<b>* Status:</b> ");
@@ -4264,10 +4507,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 3) output2("Cleared Facility");
 				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 4) output2("Cleared Facility, Returned to surface, Waiting for reward");
 				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 5) output2("Complete");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == undefined && spoiler) output2("Not started");
 				sideCount++;
 			}
 			//Frostwyrm TF quest
-			if(flags["LESSAU_FROSTWYRM_QUEST"] != undefined)
+			if(flags["LESSAU_FROSTWYRM_QUEST"] != undefined || spoiler)
 			{
 				output2("\n<b><u>Frostwyrm Sample Gathering</u></b>");
 				output2("\n<b>* Status:</b> ");
@@ -4275,6 +4519,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 1) output2("Gathered blood sample");
 				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 2) output2("Gave blood sample to Dr Lessau, Waiting for results");
 				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 3) output2("Complete");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == undefined && spoiler) output2("Not started");
 				sideCount++;
 			}
 		}
@@ -4282,7 +4527,7 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Canadia" || showID == "All")
 		{
 			// Kiro Picardine Quest (Requires Kiro!)
-			if(flags["KIRO_KALLY_PICARDINE_QUEST"] != undefined && flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
+			if((flags["KIRO_KALLY_PICARDINE_QUEST"] != undefined && flags["RESCUE KIRO FROM BLUEBALLS"] == 1) || spoiler)
 			{
 				output2("\n<b><u>Kally’s Picardine</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4320,7 +4565,7 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Poe A" || showID == "All")
 		{
 			// The Masque
-			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined || spoiler)
 			{
 				output2("\n<b><u>The Masque</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -4336,18 +4581,23 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					output2(" Completed");
 				}
-				else
+				else if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 				{
 					output2(" Invite received from ‘Wet & Waiting’");
 					if(isHalloweenish()) output2(", <i>In progress...</i>");
 					else output2(", <i>Out of season...</i>");
+				}
+				else if(spoiler) 
+				{
+					output2(" Not started");
+					if(!isHalloweenish()) output2(", <i>Out of season...</i>");
 				}
 				sideCount++;
 			}
 		}
 
 		// Nothing recorded
-		if(sideCount == 0)
+		if(sideCount == 0 && !spoiler)
 		{
 			output2("\n<b><u>Not Available</u></b>");
 			output2("\n* <i>No side mission data has been logged");
@@ -4398,10 +4648,20 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 			}
+			else if(spoiler)
+			{
+				output2("\n<b><u>Phoenix Rising</u></b>");
+				output2("\n<b>* The <i>Phoenix</i>, Status:</b> Unknown");
+			}
 			distressCount++;
 		}
+		else if(spoiler)
+		{
+			output2("\n<b><u>Fall of the Phoenix</u></b>");
+			output2("\n<b>* Status:</b> Distress call not recieved");
+		}
 		// Operation: Saendra XPack1
-		if(flags["SAENDRA_XPACK1_STATUS"] != undefined)
+		if(flags["SAENDRA_XPACK1_STATUS"] != undefined || spoiler)
 		{
 			output2("\n<b><u>Fools Rush In</u></b>");
 			output2("\n<b>* Status:</b>");
@@ -4439,7 +4699,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2(" Responded, Cleared Deck 92, Rescue time expired, Peter died");
 				if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid for the <i>Phoenix</i>, Completed");
 			}
-
+			if(flags["SAENDRA_XPACK1_STATUS"] == undefined) && spoiler) output2("Message not recieved");
 			if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != undefined)
 			{
 				output2("\n<b>* Pirate, Merc Guard:</b>");
@@ -4448,6 +4708,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 2) output2(" Defeated him using Saendra’s tits!");
 				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 3) output2(" Defeated him in combat");
 			}
+			else if(spoiler) output2("\n<b>* Pirate, Merc Guard:</b> Not met");
 			if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] != undefined)
 			{
 				output2("\n<b>* Pirate, Techie Guard:</b>");
@@ -4457,6 +4718,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 3) output2(" Defeated her in combat");
 				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 4) output2(" Lost against her in combat");
 			}
+			else if(spoiler) output2("\n<b>* Pirate, Techie Guard:</b> Not met");
 			if(flags["SAENDRA_XPACK1_STATUS"] == 10) output2("\n<b>* Pirate, Mirian Bragga:</b> Know of her <i>(Connected with Saendra’s past)</i>");
 			if(flags["SAENDRA_XPACK1_ASKEDSAEN"] != undefined)
 			{
@@ -4471,10 +4733,11 @@ public function displayQuestLog(showID:String = "All"):void
 			distressCount++;
 		}
 		// Operation: Spooky Aliens
-		if(flags["KASHIMA_STATE"] != undefined)
+		if(flags["KASHIMA_STATE"] != undefined || spoiler)
 		{
 			output2("\n<b><u>The Kashima Incident</u></b>");
 			output2("\n<b>* Status:</b>");
+			if(flags["KASHIMA_STATE"] == undefined && spoiler) output2(" Distress call not recieved");
 			if(flags["KASHIMA_STATE"] == -1) output2(" Ignored call");
 			if(flags["KASHIMA_STATE"] > 0)
 			{
@@ -4499,8 +4762,10 @@ public function displayQuestLog(showID:String = "All"):void
 					output2(" Door unlocked");
 				}
 				if(flags["KI_TAKEN_SWORD"] != undefined) output2(", Looted room");
+				else if(spoiler) output2(", Room not looted");
 			}
-			if(flags["KI_MEDBAY_SLEEPS"] != undefined)
+			else if(spoiler) output2("\n<b>* <i>Kashima</i>, Captain’s Ready Room:</b> Haven't attempted to enter");
+			if(flags["KI_MEDBAY_SLEEPS"] != undefined || spoiler)
 			{
 				output2("\n<b>* <i>Kashima</i>, Medical Bay:</b>");
 				if(flags["KI_MEDBAY_SLEEPS"] != undefined)
@@ -4509,11 +4774,13 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KI_MEDBAY_SLEEPS"] == 2) output2(" twice");
 					if(flags["KI_MEDBAY_SLEEPS"] > 2) output2(" " + flags["KI_MEDBAY_SLEEPS"] + " times");
 				}
+				else if(spoiler) output2(" Haven't slept in room");
 			}
-			if(flags["KIE5_SEARCHED"] != undefined)
+			if(flags["KIE5_SEARCHED"] != undefined || spoiler)
 			{
 				output2("\n<b>* <i>Kashima</i>, Chief Engineer’s Quarters:</b>");
 				if(flags["KIE5_SEARCHED"] != undefined) output2(" Looted room");
+				else if(spoiler) output2(" Haven't looted room");
 			}
 			if(flags["KII3_SAFECRACK_FAILS"] != undefined || flags["KII3_CRACKED"] != undefined)
 			{
@@ -4531,45 +4798,60 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KII3_CRACKED"] == 1) output2(" Safe unlocked and looted");
 				}
 			}
-			if(flags["KI_CMO_MEDSUPPLIES"] != undefined)
+			else if(spoiler) output2("\n<b>* <i>Kashima</i>, Science Quarters:</b> Haven't attempted to open safe");
+			if(flags["KI_CMO_MEDSUPPLIES"] != undefined || spoiler)
 			{
 				output2("\n<b>* <i>Kashima</i>, Chief Medical Officer’s Quarters:</b>");
 				if(flags["KI_CMO_MEDSUPPLIES"] != undefined) output2(" Looted medical supplies");
+				else if(spoiler) output2(" Haven't looted medical supplies");
 				if(flags["KI_CMO_MEDSUPPLIES"] >= 2) output2(", Used stim booster");
+				else if(spoiler) output2(", Haven't used stim booster");
 			}
 			// Master Chief
-			var sNeykkarName:String = ("Chief" + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2) ? " Ushamee" : "") + " Neykkar");
-			output2("\n<b>* " + sNeykkarName + ":</b> Met her");
-			if(flags["KASHIMA_STATE"] < 2)
+			if(flags["KASHIMA_STATE"] != undefined)
 			{
-				output2("\n<b>* " + sNeykkarName + ", Status:</b>");
-				if(flags["CHIEF_NEYKKAR_WITH_PC"] == 1) output2(" At your side");
-				else if(flags["CHIEF_NEYKKAR_WITH_PC"] == 2) output2(" Left behind");
-				else output2(" <i>Unknown</i>");
+				var sNeykkarName:String = ("Chief" + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2 || spoiler) ? " Ushamee" : "") + " Neykkar");
+				output2("\n<b>* " + sNeykkarName + ":</b> Met her");
+				if(flags["KASHIMA_STATE"] < 2)
+				{
+					output2("\n<b>* " + sNeykkarName + ", Status:</b>");
+					if(flags["CHIEF_NEYKKAR_WITH_PC"] == 1) output2(" At your side");
+					else if(flags["CHIEF_NEYKKAR_WITH_PC"] == 2) output2(" Left behind");
+					else output2(" <i>Unknown</i>");
+				}
+				if(flags["FUCKED_CHIEF_NEYKKAR"] != undefined) output2("\n<b>* " + sNeykkarName + ", Times Sexed:</b> " + flags["FUCKED_CHIEF_NEYKKAR"]);
+				else if(spoiler) output2("\n<b>* " + sNeykkarName + ", Times Sexed:</b> 0");
 			}
-			if(flags["FUCKED_CHIEF_NEYKKAR"] != undefined) output2("\n<b>* " + sNeykkarName + ", Times Sexed:</b> " + flags["FUCKED_CHIEF_NEYKKAR"]);
+			else if(spoiler) output2("\n<b>* Chief Ushamee Neykkar:</b> Not met");
 			// The Captain
 			if(flags["KASHIMA_HOLMES_DEFEATED"] != undefined) output2("\n<b>* Captain Holmes:</b> Defeated him");
+			else if(spoiler) output2("\n<b>* Captain Holmes:</b> Haven't defeated him");
 			// Doctor, doctor! Elenora
-			if(flags["KI_VANDERBILT_MET"] != undefined)
+			if(flags["KI_VANDERBILT_MET"] != undefined || spoiler)
 			{
-				output2("\n<b>* Doctor Elenora Vanderbilt:</b> Met her");
+				output2("\n<b>* Doctor Elenora Vanderbilt:</b>")
+				if(flags["KI_VANDERBILT_MET"] != undefined) output2(" Met her");
+				else if(spoiler) output2(" Not met");
 				if(flags["KI_VANDERBILTS_SECRET"] != undefined) output2(", Know of her secret");
+				else if(spoiler) output2(", Don't know of her secret");
 				if(flags["KI_VANDERBILTS_SECRET"] >= 2) output2(", Sexed her");
+				else if(spoiler) output2(", Haven't sexed her");
 				if(flags["KI_VANDERBILT_WORKING_START"] != undefined && (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 4))
 				{
 					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
 					if(flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
 					else output2(" Created, Completed");
 					if(flags["KI_CURE_USED"] != undefined) output2(", Used");
+					else if(spoiler) output2(", Not used");
 				}
+				else if(spoiler) output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b> Not started");
 			}
 			distressCount++;
 		}
 		// Operation: Tanuki Problems #69
-		if(flags["RESCUE KIRO FROM BLUEBALLS"] != undefined)
+		if(flags["RESCUE KIRO FROM BLUEBALLS"] != undefined || spoiler)
 		{
-			if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 || flags["RESCUE KIRO TECHSPEC MACHINE FIX"] != undefined || flags["KIRO_FUCKED_DURING_RESCUE"] != undefined) output2("\n<b><u>Rescue Kiro from Blueballs</u></b>");
+			if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 || flags["RESCUE KIRO TECHSPEC MACHINE FIX"] != undefined || flags["KIRO_FUCKED_DURING_RESCUE"] != undefined || spoiler) output2("\n<b><u>Rescue Kiro from Blueballs</u></b>");
 			else output2("\n<b><u>A Leaf-Shaped Ship</u></b>");
 			output2("\n<b>* Status:</b>");
 			// Did you fix it?
@@ -4586,7 +4868,8 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["RESCUE KIRO TOOK CUTLASS"] != undefined || flags["RESCUE KIRO TOOK PISTOL"] != undefined || flags["RESCUE KIRO TECHSPEC MACHINE FIX"] != undefined || flags["RESCUE KIRO WAITED TO BOARD"] != undefined) output2(" Refused to rescue");
 				else output2(" Ignored call");
 			}
-			else output2(" <i>In progress</i>");
+			else if(flags["RESCUE KIRO FROM BLUEBALLS"] != undefined) output2(" <i>In progress</i>");
+			else if(spoiler) output2(" Not started");
 			// Rewards or Loot?
 			if(flags["RESCUE KIRO TOOK CUTLASS"] != undefined || flags["RESCUE KIRO TOOK PISTOL"] != undefined) output2(", Looted ship");
 			if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["RESCUE KIRO TOOK CUTLASS"] == undefined && flags["RESCUE KIRO TOOK PISTOL"] == undefined) output2(", Rewarded");
@@ -4611,7 +4894,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["KQ_PLAT_OFFERED"] != undefined) output2(", Offered to buy Kiro with Platinum 190");
 			}
 			if(flags["KQ_RESCUED"] != undefined && kiroRecruited()) output2(", Kiro Rescued, Completed");
-			else output2(", <i>Rescue Kiro from " + (knowsPosName() ? "Po" : "her captor") + "!</i>");
+			else output2(", <i>Rescue Kiro from " + ((knowsPosName() || spoiler) ? "Po" : "her captor") + "!</i>");
 			// Kiro tracking
 			if(flags["KQ_LAST_HOUR_TF"] != undefined)
 			{
@@ -4656,20 +4939,23 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 			}
 			// Door stuff
-			if(KQDoorsUnlocked() > 0)
+			if(KQDoorsUnlocked() > 0 || spoiler)
 			{
 				output2("\n<b>* Doors Unlocked:</b> " + KQDoorsUnlocked());
+				if(spoiler) output2(" of 3");
 				if(flags["KQ_PINK_UNLOCKED"] != undefined) output2(", Pink");
 				if(flags["KQ_RED_UNLOCKED"] != undefined) output2(", Red");
 				if(flags["KQ_BLACK_UNLOCKED"] != undefined) output2(", Black");
 			}
 			if(flags["KQ_PINK_ZAP"] != undefined) output2("\n<b>* Doors, Pink, Times Zapped By:</b> " + flags["KQ_PINK_ZAP"]);
+			else if(spoiler) output2("\n<b>* Doors, Pink, Times Zapped By:</b> 0");
 			// Dildo keys
 			var dildoKeys:Array = [];
 			if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined) dildoKeys.push("Knotty terran");
 			if(flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined) dildoKeys.push("Tainted kui-tan");
 			if(flags["KQ_MINO_KING_TAKEN"] != undefined) dildoKeys.push("Minotaur king");
 			if(dildoKeys.length > 0) output2("\n<b>* Dildo Bucket, Looted:</b> " + CompressToList(dildoKeys, false));
+			else if(spoiler) output2("\n<b>* Dildo Bucket, Looted:</b> None");
 			// VR trap
 			if(flags["KQ_VR_COMPLETE"] != undefined || flags["KQ_VR_CHEST"] != undefined)
 			{
@@ -4706,25 +4992,44 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["KQ_VR_DEMONFIGHT"] != undefined) output2(", " + (flags["KQ_VR_DEMONFIGHT"] == 1 ? "Booted from" : "Peacefully left") + " Aulandia");
 				if(flags["KQ_VR_COMPLETE"] != undefined) output2(", Completed");
 			}
+			else if(spoiler) output2("\n<b>* Holodeck & Surgery Suite:</b> Haven't activated VR");
 			// Po tracking
-			if(knowsPosName())
+			if(knowsPosName() || spoiler)
 			{
-				output2("\n<b>* Doctor Illustria Po:</b> " + (flags["KQ_RESCUED"] == undefined ? "Seen" : "Met") + " her");
+				output2("\n<b>* Doctor Illustria Po:</b> ");
+				if(flags["KQ_RESCUED"] != undefined) output2("Met her");
+				else if(knowsPosName()) output2("Seen her");
+				else if(spoiler) output2("Haven't seen her");
 				if(flags["KQ_FUCKED_PO"] != undefined) output2(", Sexed her");
+				else if(spoiler) output2(", Haven't sexed her");
 				if(flags["KQ_PO_DEAD"] == 1) output2(", Killed her");
 				else if(flags["KQ_PO_DEAD"] == 2) output2(", Kiro killed her");
+				else if(spoiler) output2(", Still alive");
 			}
 			// Miniboss
 			if(flags["KQ_MINIBOSS_DOWNED"] != undefined) output2("\n<b>* Advanced Sexbot:</b> Defeated her");
+			else if(spoiler) output2("\n<b>* Advanced Sexbot:</b> Haven't defeated her");
 			// Sexdolls
 			if(flags["KQ_MET_SEXDOLL_HUM"] != undefined) output2("\n<b>* Sexdoll, Human, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_HUM"]);
+			else if(spoiler) output2("\n<b>* Sexdoll, Human, Times Encountered:</b> 0");
 			if(flags["KQ_MET_SEXDOLL_DEM"] != undefined) output2("\n<b>* Sexdoll, Demonic, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_DEM"]);
+			else if(spoiler) output2("\n<b>* Sexdoll, Demonic, Times Encountered:</b> 0");
 			if(flags["KQ_MET_SEXDOLL_LAQ"] != undefined) output2("\n<b>* Sexdoll, Laquine, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_LAQ"]);
+			else if(spoiler) output2("\n<b>* Sexdoll, Laquine, Times Encountered:</b> 0");
 			if(flags["KQ_MET_SEXDOLL_VUL"] != undefined) output2("\n<b>* Sexdoll, Vulpatra, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_VUL"]);
+			else if(spoiler) output2("\n<b>* Sexdoll, Vulpatra, Times Encountered:</b> 0");
 			if(flags["KQ_VULPATRA_TAINTS"] != undefined) output2("\n<b>* Sexdoll, Vulpatra, Times Ear Fucked:</b> " + flags["KQ_VULPATRA_TAINTS"]);
+			else if(spoiler) output2("\n<b>* Sexdoll, Vulpatra, Times Ear Fucked:</b> 0");
 			if(flags["KQ_SEXDOLLS_DEFEATED"] != undefined) output2("\n<b>* Sexdolls, Total Defeated:</b> " + flags["KQ_SEXDOLLS_DEFEATED"]);
+			else if(spoiler) output2("\n<b>* Sexdolls, Total Defeated:</b> 0");
 			if(flags["KQ_MET_TAURSUIT"] != undefined) output2("\n<b>* Taursuit, Times Encountered:</b> " + flags["KQ_MET_TAURSUIT"]);
+			else if(spoiler) output2("\n<b>* Taursuit, Times Encountered:</b> 0");
 			distressCount++;
+		}
+		else if(spoiler)
+		{
+			output2("\n<b><u>A Leaf on the Wind</u></b>");
+			output2("\n<b>* Status:</b> Distress all not recieved");
 		}
 		// Operation: Snowballs the Cat
 		if(flags["ICEQUEEN COMPLETE"] != undefined || flags["DO UVETO ICEQUEEN ENTRY"] != undefined)
@@ -4756,7 +5061,11 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["ZAALT_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			distressCount++;
 		}
-
+		else if(spoiler)
+		{
+			output2("\n<b><u>Ice Queen</u></b>");
+			output2("\n<b>* Status:</b> Distress call not recieved");
+		}
 		// Nothing recorded
 		if(distressCount == 0)
 		{
@@ -4786,18 +5095,23 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] >= 1) output2("\n<b>* Tentacle Garden, Monster:</b> Defeated it");
 				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] >= 2) output2("\n<b>* Tentacle Garden, Gardener:</b> Defeated her");
 			}
+			else if(spoiler) output2("\n<b>* Tentacle Garden, Monster:</b> Not encountered");
 			if(flags["EVENT_WHORIZON_TORMENT_CAGES"] != undefined)
 			{
 				output2("\n<b>* Torment Cages:</b>");
 				if(flags["EVENT_WHORIZON_TORMENT_CAGES"] == -1) output2(" Left rusher");
 				if(flags["EVENT_WHORIZON_TORMENT_CAGES"] == 1) output2(" Saved rusher");
 			}
+			else if(spoiler) output2("\n<b>* Torment Cages:</b> Not encountered");
 			if(flags["EVENT_WHORIZON_FUCK_PRISON"] != undefined) output2("\n<b>* The Fuck Prison, Succubus:</b> Met her");
+			else if(spoiler) output2("\n<b>* The Fuck Prison, Succubus:</b> Not met");
 			if(flags["EVENT_WHORIZON_BONDAGE_PALACE"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_TALK"] != undefined || flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined)
 			{
 				output2("\n<b>* The Bondage Palace, Demon Queen Syri:</b> Met her");
 				if(flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined) output2(", Sexed her");
+				else if(spoiler) output2(", Haven't sexed her
 			}
+			else if(spoiler) output2("\n<b>* The Bondage Palace, Demon Queen Syri:</b> Not met");
 			otherCount++;
 		}
 		// Puppyslutmas
@@ -4816,6 +5130,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 1) output2(", Buzzed");
 				else output2(", Sober");
 			}
+			else if(spoiler) output2("\n<b>* Drinks Total:</b> 0, Sober");
 			otherCount++;
 		}
 		// Spess Bear
@@ -4833,6 +5148,11 @@ public function displayQuestLog(showID:String = "All"):void
 				case 1: output2(" Found, Sold to museum, Rewarded 10000 credits, Completed"); break;
 			}
 			otherCount++;
+		}
+		else if(spoiler)
+		{
+			output2("\n<b><u>Space Bear</u></b>");
+			output2("\n<b>* Status:</b> Haven't found");
 		}
 
 		// Nothing recorded

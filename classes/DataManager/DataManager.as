@@ -2012,7 +2012,7 @@
 				throw new Error("flags failed");
 				return false;
 			}
-			if ((data.sillyMode == undefined || data.easyMode == undefined || data.debugMode == undefined) && data.gameOptions == undefined) 
+			if ((data.sillyMode == undefined || data.easyMode == undefined || data.debugMode == undefined || data.spoilerMode == undefined) && data.gameOptions == undefined) 
 			{
 				throw new Error("Game options failed");
 				return false;
