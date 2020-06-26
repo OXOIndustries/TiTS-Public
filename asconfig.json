@@ -1,0 +1,80 @@
+{
+	"compilerOptions": {
+		"source-path": [
+			"."
+		],
+		"output": "bin/TITS_AIR.swf",
+		"default-frame-rate": 24,
+		"default-background-color": "#3D5174",
+		"default-size": {
+			"width": 1200,
+			"height": 800
+		},
+		"accessible": false,
+		"swf-version": 35,
+		"benchmark": false,
+		"optimize": true,
+		"omit-trace-statements": false,
+		"show-unused-type-selector-warnings": true,
+		"strict": true,
+		"use-network": false,
+		"use-resource-bundle-metadata": true,
+		"warnings": true,
+		"verbose-stacktraces": false,
+		"static-link-runtime-shared-libraries": true,
+		"define": [
+			{
+				"name": "CONFIG::IMAGEPACK",
+				"value": false
+			},
+			{
+				"name": "CONFIG::AIR",
+				"value": true
+			},
+			{
+				"name": "CONFIG::FLASH",
+				"value": false
+			},
+			{
+				"name": "CONFIG::CHARGEN",
+				"value": false
+			},
+			{
+				"name": "CONFIG::debug",
+				"value": false
+			},
+			{
+				"name": "CONFIG::release",
+				"value": true
+			}
+		],
+		"library-path": [
+			"style_uiscroll.swc",
+			"/home/typhlosiondicks/Drive/flash.swc"
+		]
+	},
+	"files": [
+		"classes/TiTS.as"
+	],
+	"config": "airmobile",
+	"airOptions": {
+		"android": {
+			"target": "apk-captive-runtime",
+			"arch": "x86",
+			"platformsdk": "/home/typhlosiondicks/Android/Sdk",
+			"signingOptions": {
+				"keystore": "cert/AirTemplateProj.p12",
+				"storetype": "pkcs12"
+			},
+			"connect": false
+		},
+		"files": [
+			{
+				"file": "icons/android/icons",
+				"path": "icons"
+			}
+		]
+	},
+	"application": "application.xml",
+	"additionalOptions": "-managers flash.fonts.AFEFontManager -keep-as3-metadata+=Serialize"
+}

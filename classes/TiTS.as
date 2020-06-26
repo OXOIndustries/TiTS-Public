@@ -489,7 +489,7 @@
 		include "../includes/zhengShiStation/cherrysAppt.as";
 		include "../includes/zhengShiStation/coronaFlamer.as";
 		include "../includes/zhengShiStation/dane.as";
-		include "../includes/zhengShiStation/forgehound.as";
+		include "../includes/zhengShiStation/forgeHound.as";
 		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
 		include "../includes/zhengShiStation/lorelei.as";
 		include "../includes/zhengShiStation/maike.as";
