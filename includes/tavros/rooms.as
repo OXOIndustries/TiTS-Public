@@ -718,7 +718,19 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
-	rooms["RESIDENTIAL DECK 12"].runOnEnter = liammeBonus;
+	rooms["RESIDENTIAL DECK 12"].runOnEnter = resDeck12Func;
+	
+	//Makius's place when at the nursery
+	rooms["MAKIUS NURSERY HOME"] = new RoomClass(this);
+	rooms["MAKIUS NURSERY HOME"].roomName = "Makius'\nRoom";
+	rooms["MAKIUS NURSERY HOME"].description = "";
+	rooms["MAKIUS NURSERY HOME"].planet = "TAVROS STATION";
+	rooms["MAKIUS NURSERY HOME"].system = "SYSTEM: KALAS";
+	rooms["MAKIUS NURSERY HOME"].westExit = "RESIDENTIAL DECK 12";
+	rooms["MAKIUS NURSERY HOME"].moveMinutes = 1;
+	rooms["MAKIUS NURSERY HOME"].addFlag(GLOBAL.NPC);
+	rooms["MAKIUS NURSERY HOME"].addFlag(GLOBAL.INDOOR);
+	rooms["MAKIUS NURSERY HOME"].addFlag(GLOBAL.PRIVATE);
 	
 	//1013 North Walkway 2
 	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);
