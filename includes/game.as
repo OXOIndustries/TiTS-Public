@@ -2220,6 +2220,11 @@ public function insideShipEvents():Boolean
 		annoHasYourDzaanDrugs();
 		return true;
 	}
+	if (makius.hasStatusEffect("makiusWaitForBirth"))
+	{
+		makiusGivesBirth();
+		return true;
+	}
 
 	return false;
 }

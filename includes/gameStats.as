@@ -6486,12 +6486,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						output2("\n<b>* virility:</b> ");
 						if (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]) output2("taking preventatives");
-						else if (makiusVirilityBoosted()) output2("boosted");
+						else if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() < flags["MAKI_VIRILITY_BOOST"] + 1440) output2("boosted");
 						else output2("virile");
 						if (flags["MAKI_BREEDER_SEEN"])
 						{
 							output2("\n<b>* fertility:</b> ");
-							if(flags["MAKI_TAKING_SUPPRESSANTS"]) output2("supressed breeder form");
+							if(!flags["MAKI_IN_CREW"] || flags["MAKI_TAKING_SUPPRESSANTS"]) output2("supressed breeder form");
 							else if(flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]) output2("taking preventatives");
 							else if(flags["MAKI_STATE"] == 2) output2("pregnant!");
 							else if(flags["MAKI_STATE"]) output2("fertile");
@@ -9984,3 +9984,4 @@ public function listCharPerks(charName:String = ""):String
 
 	return txt;
 }
+

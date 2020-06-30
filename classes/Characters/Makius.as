@@ -14,19 +14,22 @@
 			
 			this.short = "Maki";
 			this.originalRace = "venarian";
-			this.capitalA = ""
+			this.capitalA = "";
+			this.impregnationType = "MakiusPregnancy";
+			this.cumMultiplierRaw = 400;
+			this.fertilityRaw = 0.2;
+			//has sterile perk when not in breeder form
 			
 			//Penis
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cType = GLOBAL.TYPE_VENARIAN;
-
 			
 			masculinize();
 		}
 		
 		public function feminize():void{
 			flags["MAKI_STATE"] = 1;
+			this.removePerk("Sterile");
 			this.buttRatingRaw = 8;
 			
 			this.cocks[0].cLengthRaw = 7;
@@ -35,11 +38,11 @@
 			this.ass.bonusCapacity = 150;
 			this.elasticity = 3;
 			this.ass.wetnessRaw = 3;
-			this.fertilityRaw = 50;
 		}
 		
 		public function masculinize():void{
 			flags["MAKI_STATE"] = 0;
+			this.createPerk("Sterile");
 			this.buttRatingRaw = 3;
 			
 			this.cocks[0].cLengthRaw = 9;

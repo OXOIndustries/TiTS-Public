@@ -20,7 +20,7 @@ public function enterNovaClinicFunc():void {
 			showBust("MAKIUS");
 			output("The Novahome Clinic is its usual semi-organised state of chaos. As you clear the doors, you see the Venarian, Doctor Makius, sitting at the front desk reading a file. As he is not busy with a patient, you head straight to the front desk and announce your presence.");
 			output("\n\n\"Hmm?\" He looks up and immediately breaks into a soft smile upon spotting you. \"Oh, hello [pc.name]. What can I help you with?\" he says, still smiling.");
-			addButton(2, "Talk", makiusClinicTalk, undefined, "Talk", "Chat with the Venarian doctor.");
+			addButton(2, "Talk", makiusClinicTalkIntro, undefined, "Talk", "Chat with the Venarian doctor.");
 			addButton(3, "Appearance", makiusAppearance, undefined, "Appearance", "Make an examination of your own.");
 			if (flags["MAKI_HAS_BEEN_RECRUITED_BEFORE"]) addButton(4, "Sex", makiusClinicSex, undefined, "Sex", "Ask him if he has time for a break.");
 		}
@@ -89,7 +89,6 @@ public function MAKIUS_INTRO3():void {
 	output("\n\nYou nod your head and tell him that's fine.");
 	output("\n\n\"So, what brings you to Haven? I mean… it’s not my business and I don’t mean to pry, but I rarely get news from outside. And it’s not often I get to speak to an offworlder either,\" he says, obviously trying to strike a conversation.");
 	if (pc.isNice()){
-		//TODO add nephew comment back in if possible
 		output("\n\nSince he's trying so hard, you decide to be honest, telling him you've come to this planet as part of a personal mission of sorts.");
 		output("\n\n\"I see. Most people that come by are just interested in finding some scraps or junk for their own projects. So your reply is not so surprising.\"");
 		output("\n\nYou tell the doctor about your father's death and how you're competing with one of your cousins for the inheritance.");
@@ -120,16 +119,21 @@ public function MAKIUS_INTRO3():void {
 	processTime(10);
 	addButton(0,"Back", move,"NOVA CLINIC");
 }
-
-public function makiusClinicTalk():void{
+public function makiusClinicTalkIntro():void{
 	clearOutput();
 	processTime(5);
 	author("LukaDoc");
 	showBust(makiusBust());
 	output("He smiles at your suggestion. \"Sure, it’s been a pretty slow day and I could use a break from all these files. What would you like to talk about?\"");
+	makiusClinicTalk();
+}
+
+public function makiusClinicTalk(from:int = -1):void{
 	clearMenu();
-	addButton(0, "Plans", makiusClinicTalkPlans);
-	addButton(1, "How's Things", makiusClinicHowsThings);
+	if (from == 0) addDisabledButton(0, "Plans");
+	else addButton(0, "Plans", makiusClinicTalkPlans);
+	if (from == 1) addDisabledButton(1, "How's Things");
+	else addButton(1, "How's Things", makiusClinicHowsThings);
 	if (flags["MAKIUS_INTRO"] == true) addButton(2, "Recruit", makiusClinicRecruit);
 	else addDisabledButton(2, "Recruit");
 	addButton(14,"Leave", mainGameMenu);
@@ -145,8 +149,7 @@ public function makiusClinicTalkPlans():void{
 	output("\n\n\"I was hoping to get hired. I’m not fit to be a captain, really,\" he waves off the idea. \"Just hope I don’t have the rotten luck of running into someone like the last one.\" He takes a deep breath. \"Either way, in order to be hired I guess I'd need to get my resume out there. I haven’t bothered because Kayl and the girls were quite inexperienced in the ways of medicine. However, they’ve shown to be eager learners and are good enough that I could leave this clinic in their care in good conscience. So I guess I just haven't gotten around to it yet,\" he shrugs.");
 	output("\n\nYou nod your head thoughtfully; so, this doctor is looking to get hired to go into space again? That could be useful; you resolve to remember that. You thank him for telling you such personal details.");
 	output("\n\nThe Venarian smiles, shaking his head. \"No, thanks for listening. It’s always good to have someone to talk to about these things.\"");
-	clearMenu();
-	addButton(0, "Back", makiusClinicTalk);
+	makiusClinicTalk(0);
 }
 
 public function makiusClinicHowsThings():void{
@@ -185,7 +188,7 @@ public function makiusClinicHowsThings():void{
 	output("\n\nShe turns to you with a smile and says, \"Sorry for interrupting your chat.\"");
 	output("\n\nYou reply that it's okay, you know the doctor's time is valuable.");
 	output("\n\n\"Alright then, " + pc.mf("Mister", "Miss") + " Steele. Don’t be a stranger,\" she waves as you go.");
-	addButton(0, "Back", makiusClinicTalk);
+	makiusClinicTalk(1);
 }
 
 public function makiusClinicHowsThingsTough():void{
@@ -195,7 +198,7 @@ public function makiusClinicHowsThingsTough():void{
 	output("After making your decision, you shake your head and assure the doctor that things are fine and you'll be alright.");
 	output("\"Alright… if you say so.\" He takes a deep breath before smiling. \"Anyway, heard anything from outside?\"");
 	clearMenu();
-	addButton(0, "Back", makiusClinicTalk);
+	makiusClinicTalk(1);
 }
 
 public function makiusClinicRecruit():void{
@@ -204,10 +207,13 @@ public function makiusClinicRecruit():void{
 	showBust(makiusBust());
 	if (!flags["MAKI_HAS_BEEN_RECRUITED_BEFORE"]){
 		flags["MAKI_HAS_BEEN_RECRUITED_BEFORE"] = true;
-		//crew stuff that increases in a non-hardcoded way need to be an actual number.
+		//crew stuff that increases in a non-hardcoded way needs to be an actual number.
 		flags["MAKI_RELATION"] = 0;
 		flags["MAKI_SUBPOINTS"] = 0;
 		flags["MAKI_SUBBED_TIME"] = 0;
+		flags["MAKI_SIRED_CHILDREN"] = 0;
+		flags["MAKI_BIRTHED_CHILDREN"] = 0;
+		
 		output("Nodding to yourself, you decide that Makius sounds too useful to pass up. You ask the doctor if he's still looking for a new captain to take him back into space?");
 		output("\n\n\"Sure am,\" he says with a smile.");
 		output("\n\nIn that case, you reply, you'd like to extend an offer for him to join your crew. Having a trained medical professional on board could come in handy in your travels. If he's willing to accept your offer, of course.");

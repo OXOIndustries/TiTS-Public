@@ -21,6 +21,7 @@
 	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LaquinePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LDCShockHopperPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.MakiusPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MirrinPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
@@ -97,6 +98,7 @@
 			PregnancyManager.insertNewHandler(new AusarPregnancyHandler());
 			PregnancyManager.insertNewHandler(new IlariaPregnancyHandler());
 			PregnancyManager.insertNewHandler(new StormGuardPregnancyHandler());
+			PregnancyManager.insertNewHandler(new MakiusPregnancyHandler());
 			
 		}
 		
