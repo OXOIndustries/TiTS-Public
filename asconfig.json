@@ -50,7 +50,7 @@
 		],
 		"library-path": [
 			"style_uiscroll.swc",
-			"/home/typhlosiondicks/Drive/flash.swc"
+			"C:\\Program Files (x86)\\Adobe\\Adobe Flash CS6\\Common\\Configuration\\ActionScript 3.0\\libs"
 		]
 	},
 	"files": [
@@ -61,7 +61,7 @@
 		"android": {
 			"target": "apk-captive-runtime",
 			"arch": "x86",
-			"platformsdk": "/home/typhlosiondicks/Android/Sdk",
+			"platformsdk": "D:\\Tools\\AndroidSDK",
 			"signingOptions": {
 				"keystore": "cert/AirTemplateProj.p12",
 				"storetype": "pkcs12"
