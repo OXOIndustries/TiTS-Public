@@ -749,7 +749,7 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/waralpha_nude.png", mimeType = "image/png")]
 		public var Bust_WAR_ALPHA_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warLion.png", mimeType = "image/png")]
 		public var Bust_WAR_LION:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion_nude.png", mimeType = "image/png")]
 		public var Bust_WAR_LION_NUDE:Class;

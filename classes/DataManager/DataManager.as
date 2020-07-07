@@ -46,7 +46,9 @@
 			import flash.filesystem.File;
 			import flash.filesystem.FileMode;
 			import flash.filesystem.FileStream;
+			import flash.permissions.PermissionStatus;
 			import flash.events.ProgressEvent;
+			import flash.events.PermissionEvent;
 		}
 	
 		// Define the current version of save games.
@@ -63,11 +65,15 @@
 			private var stickyFileRef:File;
 			private var stickyFileStreamRef:FileStream;
 			private var saveDir:String = "data/com.taintedspace.www";
+
+			private var _saveToFileEnabled:Boolean = IsDesktopAir || (File.permissionStatus == PermissionStatus.GRANTED);
 		}
 		
 		CONFIG::FLASH
 		{
 			private var stickyFileRef:FileReference;
+
+			private var _saveToFileEnabled:Boolean = true;
 		}
 		
 		public function DataManager() 
@@ -224,17 +230,44 @@
 			
 			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.userInterface.clearGhostMenu();
+
+			// "Advanced" file handling methods ultimately require us to be using the AIR api
+			// Moved this a bit further up so that Android fs perms can be checked at the same time
+			CONFIG::AIR
+			{	
+				// Hide the "import saves" and "save sets" option for operating systems we don't support
+				if (IsDesktopAir)
+				{
+					kGAMECLASS.addGhostButton(10, "Import Saves", this.importSavesMenu, undefined, "Import Saves", "Attempt to import saves from other game sources.");
+					if (hasAnyImportedSaves()) kGAMECLASS.addGhostButton(11, "Save Set", this.saveSetMenu, undefined, "Save Set", "Switch between available imported save slot sets.");
+				}
+
+				// If this isn't 'Desktop', this is probably Android, so check to make sure the filesystem can be accessed
+				else if (!this._saveToFileEnabled)
+				{
+					// It can't.
+					kGAMECLASS.output2('\n\nIn order to use the "Load File", "Save File", and "Delete File" options, Trials in Tainted Space must be allowed to access your filesystem storage. You may use the "Allow Storage" button below to grant that permission.');
+
+					kGAMECLASS.addGhostButton(7, "Allow Storage", this.requestMobileFilesystemPerms, undefined, "Allow Storage", "Ask for permission to save and load from local file storage.");
+					kGAMECLASS.addDisabledGhostButton(5, "Load File", "Load from File", "Load game data from a specific file.");
+					kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "Save game data to a specific file.");
+				}
+			}
 			
+			if (this._saveToFileEnabled) {
+				CONFIG::AIR { kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file."); }
+				kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
+				if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
+				else kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "You can’t save in your current location.");
+			}
+
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu, undefined, "Load Game", "Load game data.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu, undefined, "Save Game", "Save game data.");
 			else kGAMECLASS.addDisabledGhostButton(1, "Save", "Save Game", "You can’t save in your current location.");
 			kGAMECLASS.addGhostButton(3, "Delete", this.deleteSaveMenu, undefined, "Delete Save", "Delete a save game slot."); // Added for parity with AIR, because it kinda has to be there...
 			
-			kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
-			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
-			else kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "You can’t save in your current location.");
-			
 			// "Advanced" file handling methods ultimately require us to be using the AIR api
+			/*
 			CONFIG::AIR
 			{
 				kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file.");
@@ -246,6 +279,7 @@
 					if (hasAnyImportedSaves()) kGAMECLASS.addGhostButton(11, "Save Set", this.saveSetMenu, undefined, "Save Set", "Switch between available imported save slot sets.");
 				}
 			}
+			*/
 			
 			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
 		}
@@ -1117,6 +1151,23 @@
 		{
 			private var baDataBlob:ByteArray;
 			
+			private function requestMobileFilesystemPerms():void
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.output2("Requesting filesystem access... ");
+				stickyFileRef = File.documentsDirectory;
+				stickyFileRef.addEventListener(PermissionEvent.PERMISSION_STATUS, permissionEventHandler);
+				stickyFileRef.requestPermission();
+			}
+
+			private function permissionEventHandler(evnt:PermissionEvent):void
+			{
+				stickyFileRef.removeEventListener(PermissionEvent.PERMISSION_STATUS, permissionEventHandler);
+				this._saveToFileEnabled = (evnt.status == PermissionStatus.GRANTED);
+				this.showDataMenu();
+			}
+
 			private function saveToFile():void
 			{
 				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("SAVE\nFILE");
