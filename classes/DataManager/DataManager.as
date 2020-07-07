@@ -234,9 +234,7 @@
 			// "Advanced" file handling methods ultimately require us to be using the AIR api
 			// Moved this a bit further up so that Android fs perms can be checked at the same time
 			CONFIG::AIR
-			{
-				kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file.");
-				
+			{	
 				// Hide the "import saves" and "save sets" option for operating systems we don't support
 				if (IsDesktopAir)
 				{
@@ -247,13 +245,17 @@
 				// If this isn't 'Desktop', this is probably Android, so check to make sure the filesystem can be accessed
 				else if (!this._saveToFileEnabled)
 				{
-					kGAMECLASS.addGhostButton(11, "Allow Storage", this.requestMobileFilesystemPerms, undefined, "Allow Storage", "Ask for permission to save and load from local file storage.");
-					kGAMECLASS.addDisabledGhostButton(5, "Load File", "Load from File", "Loading from files requires the permission to access storage.");
-					kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "Saving to files requires the permission to access storage.");
+					// It can't.
+					kGAMECLASS.output2('\n\nIn order to use the "Load File", "Save File", and "Delete File" options, Trials in Tainted Space must be allowed to access your filesystem storage. You may use the "Allow Storage" button below to grant that permission.');
+
+					kGAMECLASS.addGhostButton(7, "Allow Storage", this.requestMobileFilesystemPerms, undefined, "Allow Storage", "Ask for permission to save and load from local file storage.");
+					kGAMECLASS.addDisabledGhostButton(5, "Load File", "Load from File", "Load game data from a specific file.");
+					kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "Save game data to a specific file.");
 				}
 			}
 			
 			if (this._saveToFileEnabled) {
+				CONFIG::AIR { kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file."); }
 				kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
 				if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
 				else kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "You can’t save in your current location.");
