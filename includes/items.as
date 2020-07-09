@@ -3,6 +3,7 @@ import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.Vahn;
 import classes.Creature;
+import classes.Items.Guns.BubbleBuddyBukkakeBlaster;
 import classes.Items.Transformatives.GaloMax;
 import classes.Items.Transformatives.SumaCreamBlack;
 import classes.Items.Transformatives.SumaCreamWhite;
@@ -1040,6 +1041,7 @@ public function shopkeepLimitedStock(arg:ItemSlotClass):Boolean
 		case arg is MindwashVisor:
 		case arg is SiegwulfeItem:
 		case arg is TarkusJokeBook:
+		case arg is BubbleBuddyBukkakeBlaster:
 			return true;
 			break;
 		default:
@@ -1062,6 +1064,7 @@ public function shopkeepLimitedStockQuantity(arg:ItemSlotClass):int
 		case arg is MindwashVisor:
 		case arg is SiegwulfeItem:
 		case arg is TarkusJokeBook:
+		case arg is BubbleBuddyBukkakeBlaster:
 			return 1;
 			break;
 		default:
@@ -1298,6 +1301,11 @@ public function buyItemGo(arg:Array):void {
 	}
 	if(arg[0] is MindwashVisor)
 	{
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
+	}
+	if (arg[0] is BubbleBuddyBukkakeBlaster)
+	{
+		flags["BBBB_CURRENT_AMMO"] = 0;
 		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg[0]), 1);
 	}
 	output("\n\n");
@@ -1744,7 +1752,8 @@ public function dropItemGo(arg:ItemSlotClass):void {
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "drop"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
-	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
+	if (arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
+	if (arg is BubbleBuddyBukkakeBlaster) flags["BBBB_CURRENT_AMMO"] = undefined;
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
