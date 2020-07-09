@@ -529,7 +529,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap.func = dildoMenu;
 		faps.push(fap);
 	}
-	if(checkToyDrawer(BubbleBuddy) && pc.hasCock())
+	if(pc.hasCock() && (checkToyDrawer(BubbleBuddy) || pc.hasItemByClass(BubbleBuddyBukkakeBlaster) || pc.rangedWeapon is BubbleBuddyBukkakeBlaster))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "BubbleBuddy";
