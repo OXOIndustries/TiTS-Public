@@ -141,7 +141,7 @@ public function stephWorkPornstar():void
 	
 	output("\n\nSteph chuckles. <i>“I know, right? Never thought I’d do something like that, but ever since I did that exp... expos... uh, episode-thing on New Texas, I’ve just felt hornier and hornier... I used to feel bad about all the cute little aliens I’ve been documenting trying to fuck me, but now... I dunno! It’s exciting!”</i>");
 	
-	output("\n\nHer prior melancholy fades away in the blink of an eye, replaced by bubbly bimbo as she hugs her arms around herself in sudden excitement. <i>“With an X-net I’d, like, be able to do whatever I want with whatever I wanted! I mean, what director’s gonna turn away something like THAT?”</i> she cheers, pointing to her video self being bukakked by several small");
+	output("\n\nHer prior melancholy fades away in the blink of an eye, replaced by bubbly bimbo as she hugs her arms around herself in sudden excitement. <i>“With an X-net I’d, like, be able to do whatever I want with whatever I wanted! I mean, what director’s gonna turn away something like THAT?”</i> she cheers, pointing to her video self being bukkaked by several small");
 	if (!CodexManager.entryViewed("Raskvel")) output(", scaly");
 	else output(" raskvel");
 	output(" males. The Steph in front of you giggles as a particularly virile male busts his nut all over her digital face; another tears open the front of her shirt to ram his reptilian cock up between her still fairly mundane breasts, much smaller than the bovine rack she’s sporting now.");
