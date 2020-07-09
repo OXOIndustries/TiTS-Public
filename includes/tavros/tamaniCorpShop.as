@@ -3,6 +3,7 @@ import classes.Items.Apparel.AssManBoxers;
 import classes.Items.Apparel.BackdoorBoiSlutwear;
 import classes.Items.Apparel.CumflationControlBoyshorts;
 import classes.Items.Apparel.SlutSealThong;
+import classes.Items.Guns.BubbleBuddyBukkakeBlaster;
 /*
 	LERRIS_TALKED_BACKROOM
 		0/undefined -- not even attempted the talk scene
@@ -122,6 +123,7 @@ public function lerrisProducts():void
 	chars["LERRIS"].inventory.push(new Lactaid());
 	chars["LERRIS"].inventory.push(new LactaidMilkTank());
 	chars["LERRIS"].inventory.push(new LactaidOverdrive());
+	if (flags["BBBB_CURRENT_AMMO"] == undefined) chars["LERRIS"].inventory.push(new BubbleBuddyBukkakeBlaster());
 	// Unlocks
 	if(pc.level >= 2) chars["LERRIS"].inventory.push(new NukiNutbutter());
 	if(pc.level >= 3) 
@@ -1199,3 +1201,4 @@ public function lerrisDrinkDatTittymilks():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+
