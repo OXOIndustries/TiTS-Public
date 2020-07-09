@@ -3,6 +3,7 @@ package classes.GameData
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.Characters.Vahn;
+	import classes.Items.Guns.BubbleBuddyBukkakeBlaster;
 	import classes.ShittyShip;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
@@ -41,6 +42,8 @@ package classes.GameData
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.UIComponents.UIStyleSettings;
 	import classes.Engine.Utility.IncrementFlag;
+	import classes.Items.Toys.Bubbles.*;
+	
 	
 	public class GroundCombatContainer extends CombatContainer 
 	{		
@@ -4812,7 +4815,8 @@ package classes.GameData
 				}
 			}
 			if(pc.hasKeyItem("RK Lah - Captured")) kGAMECLASS.lahAddendumToCombat();
-
+			
+			if (pc.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_REQUIRES_AMMO) || pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_REQUIRES_AMMO)) displayAmmoStatus(); 
 		}
 		
 		private function displayHostileStatus(target:Creature):void
@@ -5699,6 +5703,43 @@ package classes.GameData
 			}
 			
 			//output("\n\n");
+		}
+		
+		private function displayAmmoStatus():void
+		{
+			var hasReloads:Boolean = false;
+			//BBBB
+			if (pc.rangedWeapon is BubbleBuddyBukkakeBlaster)
+			{
+				output("\n\nBubble Buddy Bukkake Blaster shots remaining: " + flags["BBBB_CURRENT_AMMO"] + "/20\n");
+				output("<b>Reloads:</b>\n");
+				
+				if (pc.numberOfItemByClass(SmallCumBubble) > 0)
+				{
+					output("Small Cum Bubbles (2 shots): " + pc.numberOfItemByClass(SmallCumBubble) + "\n");
+					hasReloads = true;
+				}
+				
+				if (pc.numberOfItemByClass(MediumCumBubble) > 0)
+				{
+					output("Medium Cum Bubbles (5 shots): " + pc.numberOfItemByClass(MediumCumBubble) + "\n");
+					hasReloads = true;
+				}
+				
+				if (pc.numberOfItemByClass(LargeCumBubble) > 0)
+				{
+					output("Large Cum Bubbles (10 shots): " + pc.numberOfItemByClass(LargeCumBubble) + "\n");
+					hasReloads = true;
+				}
+				
+				if (pc.numberOfItemByClass(HugeCumBubble) > 0)
+				{
+					output("Huge Cum Bubbles (20 shots): " + pc.numberOfItemByClass(HugeCumBubble) + "\n");
+					hasReloads = true;
+				}
+				
+				if (!hasReloads) output("No reloads left!");
+			}
 		}
 	}
 }
