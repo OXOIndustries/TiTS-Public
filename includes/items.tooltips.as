@@ -25,6 +25,10 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		
 		// Weapons
+		case "BubbleBuddyBukkakeBlaster":
+			if (kGAMECLASS.flags["BBBB_CURRENT_AMMO"] == undefined) tooltip += "Created one night on a drunken bet, the Bubble Buddy Bukkake Blaster is a modified flamethrower, designed to spray your targets with sweet jizz rather than fiery death. Simply load in a cum bubble from your Bubble Buddy, point, and shoot! Includes an integrated Bubble Buddy, easily detachable Bubble Buddy to keep the spunky shine on your cum!";
+			else tooltip += "Created one night on a drunken bet, the Bubble Buddy Bukkake Blaster is a modified flamethrower, designed to spray your targets with sweet jizz rather than fiery death. Simply load in a cum bubble from your Bubble Buddy, point, and shoot! Includes an integrated Bubble Buddy, easily detachable Bubble Buddy to keep the spunky shine on your cum!\n\n Current Ammo: " + (kGAMECLASS.flags["BBBB_CURRENT_AMMO"]) + "/20";
+			break;
 		case "HoldOutPistol":
 			tooltip += "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) tooltip += ", the perfect weapon for a smuggler";
