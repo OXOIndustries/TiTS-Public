@@ -1,4 +1,6 @@
-﻿import classes.Items.Toys.Bubbles.HugeCumBubble;
+﻿import classes.Characters.PlayerCharacter;
+import classes.Items.Guns.BubbleBuddyBukkakeBlaster;
+import classes.Items.Toys.Bubbles.HugeCumBubble;
 import classes.Items.Toys.Bubbles.LargeCumBubble;
 import classes.Items.Toys.Bubbles.MediumCumBubble;
 import classes.Items.Toys.Bubbles.SmallCumBubble;
@@ -201,7 +203,8 @@ public function outOfCombatBubbleBuddyUse(item:ItemSlotClass):Boolean
 	addButton(2,"Put Away",putItAway,item);
 	if(pc.hasPerk("Dumb4Cum")) addButton(3,"Drink It",drinkSomeBubbleBud,item,"Drink It","Gosh, cum is tasty. Maybe you could like, drink some?");
 	else if(pc.hasPerk("'Nuki Nuts") && pc.hasCock() && pc.balls > 0) addButton(3,"Drink It",drinkSomeBubbleBud,item,"Drink It","Your ‘nuki nuts could use a little booster. Bottoms up!");
-	else addDisabledButton(3,"Drink It","Drink It","You have no reason to start drinking cum.");
+	else addDisabledButton(3, "Drink It", "Drink It", "You have no reason to start drinking cum.");
+	if ((pc.hasItemByClass(BubbleBuddyBukkakeBlaster) || pc.rangedWeapon is BubbleBuddyBukkakeBlaster) && flags["BBBB_CURRENT_AMMO"] < 20) addButton(4, "Refill B.B.B.B.", refillBBBB, item);
 	return true;
 }
 //[Ditch It]
@@ -1505,4 +1508,98 @@ public function bubbleBuddyVaandeEpilogue():void
 	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function bukkakeBlasterAmmoManager(attacker:Creature, expendAmmo:Boolean):Boolean
+{
+	//Put here just in case an npc ever gets one, but too lazy to do more than that
+	if (!attacker is PlayerCharacter)
+	{
+		return false;
+	}
+	
+	else
+	{
+		if (flags["BBBB_CURRENT_AMMO"] > 0)
+		{
+			if (expendAmmo) flags["BBBB_CURRENT_AMMO"] -= 1;
+			return true;
+		}
+		
+		//Reload actions: refill - 1 for the shot being used
+		//2 shots for a small
+		else if (flags["BBBB_CURRENT_AMMO"] == 0 && attacker.hasItemByClass(SmallCumBubble))
+		{
+			if (!expendAmmo) return true;
+			output("You load a small cum bubble into your Bubble Buddy Bukkake Blaster.\n");
+			attacker.destroyItemByClass(SmallCumBubble, 1);
+			flags["BBBB_CURRENT_AMMO"] += 1;
+			return true
+		}
+		
+		//5 for a medium
+		else if (flags["BBBB_CURRENT_AMMO"] == 0 && attacker.hasItemByClass(MediumCumBubble))
+		{
+			if (!expendAmmo) return true;
+			output("You load a medium cum bubble into your Bubble Buddy Bukkake Blaster.\n");
+			attacker.destroyItemByClass(MediumCumBubble, 1);
+			flags["BBBB_CURRENT_AMMO"] += 4;
+			return true
+		}
+		
+		//10 for a large
+		else if (flags["BBBB_CURRENT_AMMO"] == 0 && attacker.hasItemByClass(LargeCumBubble))
+		{
+			if (!expendAmmo) return true;
+			output("You load a large cum bubble into your Bubble Buddy Bukkake Blaster.\n");
+			attacker.destroyItemByClass(LargeCumBubble, 1);
+			flags["BBBB_CURRENT_AMMO"] += 9;
+			return true
+		}
+		
+		//20 for a huge
+		else if (flags["BBBB_CURRENT_AMMO"] == 0 && attacker.hasItemByClass(HugeCumBubble))
+		{
+			if (!expendAmmo) return true;
+			output("You load a huge cum bubble into your Bubble Buddy Bukkake Blaster.\n");
+			attacker.destroyItemByClass(HugeCumBubble, 1);
+			flags["BBBB_CURRENT_AMMO"] += 19;
+			return true
+		}
+		
+		else return false;
+	}
+}
+
+public function refillBBBB(item:ItemSlotClass):void
+{
+	clearMenu();
+	useItemFunction();
+	clearOutput();
+	
+	output("You load the " + item.longName + " into the Bubble Buddy Bukkake Blaster.");
+	itemConsume(item);
+	
+	switch (true)
+	{
+		case item is SmallCumBubble:
+			flags["BBBB_CURRENT_AMMO"] += 2;
+			if (flags["BBBB_CURRENT_AMMO"] > 20) flags["BBBB_CURRENT_AMMO"] = 20;
+			break;
+			
+		case item is MediumCumBubble:
+			flags["BBBB_CURRENT_AMMO"] += 5;
+			if (flags["BBBB_CURRENT_AMMO"] > 20) flags["BBBB_CURRENT_AMMO"] = 20;
+			break;
+			
+		case item is LargeCumBubble:
+			flags["BBBB_CURRENT_AMMO"] += 10;
+			if (flags["BBBB_CURRENT_AMMO"] > 20) flags["BBBB_CURRENT_AMMO"] = 20;
+			break;
+			
+		case item is HugeCumBubble:
+			flags["BBBB_CURRENT_AMMO"] += 20;
+			if (flags["BBBB_CURRENT_AMMO"] > 20) flags["BBBB_CURRENT_AMMO"] = 20;
+			break;
+	}
 }
