@@ -593,6 +593,17 @@ package classes.GameData
 		 */
 		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
+			//Can't fire without ammo
+			if (attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_REQUIRES_AMMO))
+			{
+				if (!hasAmmo(attacker, true)) 
+				{
+					if (attacker is PlayerCharacter) output("Your " + attacker.rangedWeapon.longName + " is out of ammo!");
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " fiddle" + (attacker.isPlural ? "" : "s") + " fruitlessly with " + attacker.getCombatPronoun("hisher") + " empty weapon.");
+					return false;
+				}
+			}
+			
 			if(target is Kane && target.hasStatusEffect("KANE RANGED PREP") && !target.hasStatusEffect("KANE_AI_SKIP") && !target.isImmobilized())
 			{
 				kGAMECLASS.kaneRangedInterrupt();
@@ -963,6 +974,17 @@ package classes.GameData
 				if (attacker is PlayerCharacter) output("Your " + attacker.rangedWeapon.longName + " is currently disabled and unable to be used!");
 				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " fiddle" + (attacker.isPlural ? "" : "s") + " fruitlessly with " + attacker.getCombatPronoun("hisher") + " disabled weapon.");
 				return;
+			}
+			
+			//Ammo check
+			if (attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_REQUIRES_AMMO))
+			{
+				if (!hasAmmo(attacker, false)) 
+				{
+					if (attacker is PlayerCharacter) output("Your " + attacker.rangedWeapon.longName + " is out of ammo!");
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " fiddle" + (attacker.isPlural ? "" : "s") + " fruitlessly with " + attacker.getCombatPronoun("hisher") + " empty weapon.");
+					return;
+				}
 			}
 			
 			var numShots:int = 1;
