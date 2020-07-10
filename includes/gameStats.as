@@ -6477,7 +6477,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("works at the Nova clinic");
 				if (makiusRecruited())
 				{
-					output2("\n<b>* Relation:</b> ");
+					if (flags["MAKI_RELATION"] && flags["MAKI_RELATIONSHIP_STATUS"] != 2){
+						output2("\n<b>* Relation:</b> ");
+						if (flags["MAKI_DATE"] == 3) output2("You should take Maki up on his date.");
+						else if (flags["MAKI_DATE"] == 4) output2("You told Maki you don't want anything serious.");
+						else if (flags["MAKI_RELATION"] == 50 && !flags["MAKI_DATE"]) output2("You should ask Maki on a date.");
+						else if (flags["MAKI_RELATION"] == 100) output2("Maki wants to ask you on a date.");
+						else output2(flags["MAKI_RELATION"]);
+					}
+					output2("\n<b>* Relationship status:</b> ");
 					if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output2("you're his mate");
 					else if (flags["MAKI_RELATIONSHIP_STATUS"]) output2("friends with benefits");
 					else output2("you're his boss");
@@ -9984,4 +9992,4 @@ public function listCharPerks(charName:String = ""):String
 
 	return txt;
 }
-
+

@@ -659,7 +659,7 @@ public function makiusCombLeave():void{
 	output("\n\nBut you'll be back later to visit him. At hearing that he immediately perks up.");
 	output("\n\n\"Okay, I'll be looking forward to it.\"");
 	output("\n\nYou ruffle his hair one more time before walking away.");
-	makiusLeave();
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusTalk():void{
@@ -1183,7 +1183,7 @@ public function makiusHeal():void{
 		else pc.createStatusEffect("Venarian Spit", 50, 0, 0, 0, false, "Icon_Water_Drop", "You've been licked by your Venarian lover. It's lingering effects slowly heal and energise you.", false, 1440);
 		if (flags["MAKI_NOT_LICKING_WOUNDS"] == undefined){
 			output("\n\n\"Good thing you have a Venarian for a doctor… and boyfriend.\" He giggles a bit nervously at that last part. \"Venarian saliva is a real potent disinfectant, much cheaper than these disinfectants I've been using.\" He points at his open maw, showing off a tongue wet with Venarian saliva. \"Though I should've asked earlier. Do you mind if I do this again in the future?\"");
-			addButton(0, "Lick me", makiusHealYesLick, undefined, "Yes", "That's okay.");
+			addButton(0, "Lick Me", makiusHealYesLick, undefined, "Yes", "That's okay.");
 			addButton(1, "Don't", makiusHealNoLick, undefined, "No", "Ew, gross.");
 			pc.HP(pc.HPMax());
 			return;
@@ -1255,8 +1255,8 @@ public function makiusEvict():void{
 	}
 	addButton(0, "Go", makiusEvictGo);
 	addButton(1, "Nevermind", makiusEvictNevermind);
-	if (!flags["BRIGET_MET"]) addDisabledButton(2, "Offer job", "Offer him a job at the nursery", "It'd probably be a good idea to actually go speak to the person overseeing the nursery on your behalf before offering jobs to people!");
-	else if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"]) addButton(2, "Offer job", makiusEvictJob, undefined, "Offer him a job at the nursery", "He doesn't have to go back to that ratty clinic if you offer him a job at your nursery in Tavros..");
+	if (!flags["BRIGET_MET"]) addDisabledButton(2, "Offer Job", "Offer him a job at the nursery", "It'd probably be a good idea to actually go speak to the person overseeing the nursery on your behalf before offering jobs to people!");
+	else if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"]) addButton(2, "Offer Job", makiusEvictJob, undefined, "Offer him a job at the nursery", "He doesn't have to go back to that ratty clinic if you offer him a job at your nursery in Tavros..");
 }
 
 public function makiusEvictGo():void{
@@ -1454,7 +1454,7 @@ public function makiusNurseryRecruit():void{
 		output("You tell the doctor that you’ve managed to free up some space on your ship, so he can come back onboard if he wants.");
 		output("\n\n\"As much as I’d love to do that, I'm not entirely sure if I should. I… <i>we</i> have " + (pc.isPregnant()?"our babies":"a baby") + " to think of, and putting it in dangerous situations just... It just doesn't sit right with me.\"");
 		output("\n\nMaki is visibly conflicted by this, biting his lip and avoiding direct eye contact with you. Looks like he really wants to go, barely managing to hold onto his sense of responsibility in the face of his affection towards you. Maybe, if you put just a little bit more pressure on him, he would buckle. Though he is probably right, you are likely to face dangerous situations during your journeys that might put both the expectant 'mother' and your child at risk.");
-		addButton(0, "Press on", makiusNurseryRecruitPressOn);
+		addButton(0, "Press On", makiusNurseryRecruitPressOn);
 		addButton(1, "Quit", makiusNurseryRecruitQuit);
 	}else{
 		output("You ask the doctor if he would like to take a break from dealing with " + (ChildManager.numChildren()?"kids, ":"") + "robo nannies and space mumps, so he can come work at your ship again?");
@@ -1674,7 +1674,7 @@ public function makiusDate1TalkHim():void{
 	showBust(makiusBust());
 	output("\n\nNow that you are both seated again, you start eating quietly, enjoying a bit of silent peace after the unintended incident. Deciding to break the calm, you ask Makius if he wouldn't mind telling you some things about him - where did he come from, his family, why he became a doctor?");
 	output("\n\n\"Sure.\" He puts his hands on the table and looks at his plate as he recalls the past. \"I guess I wanted to become a doctor because when I was very little, I fell from a branch and broke my leg.\"");
-	addButton(0, "Hold hand", makiusDate1TouchHand);
+	addButton(0, "Hold Hand", makiusDate1TouchHand);
 	addButton(1, "Talk", makiusDate1JustTalk);
 	addButton(2, "Change Subject", makiusDate1ChangeSubject);
 }
@@ -1753,8 +1753,7 @@ public function makiusDate1End():void{
 	output("\"I should be going. See you later, [pc.name]\" He turns and makes his way back to his room.");
 	output("\n\nYou tell him that you will see him later, watch him leave, and then close the door.");
 	flags["MAKI_DATE"] = 1;
-	makiusLeave();
-	
+	addButton(0, "Next", makiusLeave);
 }
 
 public function makiusToFriend():void{
@@ -1983,7 +1982,7 @@ public function makiusDate2friends():void{
 	output("\n\nHe looks embarrassed for a moment. \"And... uh... I like the benefits part. So I hope we can still... you know.\"");
 	output("\n\nIf he wants to, you're happy to, you tell him. In fact, perhaps you could help him feel better now...?");
 	output("\n\nMaki smiles at you but shakes his head. \"Thanks for the offer, but I'm just not in the mood right now. Can we do it later?\"");
-	makiusLeave();
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusToBreeder(playScene:Boolean):void{
@@ -2006,8 +2005,8 @@ public function makiusToBreeder(playScene:Boolean):void{
 			output("\n\nSomething primal seems to stir inside you at the scent filling the air, the Venarian's pheromones enticing you to rub and squeeze and fondle the ready, breedable male you've been courting up until now... if you don't leave now, you won't be able to stop yourself from doing just that.");
 			flags["MAKI_BREEDER_SEEN"] = true;
 			pc.lust(60);
-			addButton(0, "Give in", makiusToBreederGiveIn);
-			addButton(1, "Get out", makiusToBreederGetOut);
+			addButton(0, "Give In", makiusToBreederGiveIn);
+			addButton(1, "Get Out", makiusToBreederGetOut);
 		}else{
 			output("As you enter the "  + (!flags["MAKI_IN_CREW"]?"nursery":(makiusHasMedlab()?"medlab":"doctor's quarters")) + ", you stop and sniff, a smile unconsciously crossing your lips. Maki's in one of his moods again, the kind of mood where he yearns for you to throw him down over the table and breed his belly full of pups. " + (pc.hasCock() || pc.hasTailCock()?"Y" + (pc.hasCock()?"our [pc.cocks] grow" + (pc.cockTotal() == 1?"s":"") + " stiff at the thought of it":"") + (pc.hasCock() && pc.hasTailCock()?" and y":"") + (pc.hasTailCock()?"our [pc.tailCock] wriggles madly,":"") + " eager to be sliding down his ass and filling him with your seed.":""));
 			output("\n\nMaki turns to look at you, standing up and sauntering his way towards you, smiling seductively as he approaches. \"Hi [pc.name]!\" He walks past you, stroking your side with his tail and circling you. He leans into you, rubbing himself against and hugging your side. \"Something I can do you for?\"");
@@ -2075,7 +2074,7 @@ public function makiusToBreederGiveInGoMale():void{
 	output("You tell Maki that it's probably best if he takes those suppressants, or else his pheromones are going to overwhelm the both of you.");
 	output("\n\nMaki nods. \"Right. You'd best go then... before I lose control.\"");
 	output("\n\nYou nod your head and, mustering your willpower, manage to drag yourself out of "  + (!flags["MAKI_IN_CREW"]?"the infirmary":(makiusHasMedlab()?"the medlab":"doctor's quarters")) + " before you end up " + (pc.hasCock() || pc.hasTailCock()?"burying your " + (pc.hasCock()?"cock":"tail-cock") + " to the hilt in a fertile Venarian boy-pussy.":"buying a transformative so you can plow his fertile Venarian boy-pussy."));
-	makiusLeave();
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusToBreederGiveInGoFemale():void{
@@ -2121,9 +2120,9 @@ public function makiusToBreederGetOut():void{
 	output("\n\n\"[pc.name]? I'm so sorry! I should have said something before... sorry for springing this up on you.\"");
 	output("\n\nYou assure the Venarian that it's fine. But you still wonder what caused all of this. You voice your thoughts to the doctor.");
 	output("\n\n\"Well, Venarians have the ability to take on the role of the opposite gender. This means females can impregnate and males can become pregnant. It's triggered when we get particularly amorous with our mates and... uuh... you've been fucking me a lot, so I couldn't help it.\" He bites his lip. \"But don't worry, we have a few hormonal suppressants we can take and I should be back to normal in a few hours... maybe.\"");
-	addButton(0, "Stop him", makiusToBreederGetOutStopHim);
-	addButton(1, "Let him", makiusToBreederGetOutLetHim);
-	addButton(2, "Masc only", makiusToBreederGetOutMascOnly, undefined, "Masculine only", "Ask him if there is any way to keep part of the transformation without the girly ones.");
+	addButton(0, "Stop Him", makiusToBreederGetOutStopHim);
+	addButton(1, "Let Him", makiusToBreederGetOutLetHim);
+	addButton(2, "Masc Only", makiusToBreederGetOutMascOnly, undefined, "Masculine only", "Ask him if there is any way to keep part of the transformation without the girly ones.");
 }
 
 public function makiusToBreederGetOutStopHim():void{
@@ -2160,7 +2159,7 @@ public function makiusToBreederGetOutStopHimYes():void{
 	output("\n\nYou remain impassive to his pleading.");
 	output("\n\nMaki's tail droops and his ears go flat against his skull. \"Aww.\"");
 	output("\n\nYou pat him on the head before heading out, leaving the flustered doctor behind.");
-	makiusLeave();
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusToBreederGetOutStopHimNo():void{
@@ -2176,7 +2175,7 @@ public function makiusToBreederGetOutStopHimNo():void{
 	output("\n\nYou remind him not to get ahead of himself; he needs to take those pills first. <i>Then</i> you can have fun.");
 	output("\n\n\"Alright, I'll start looking for them right now!\" Maki rushes " + (!flags["MAKI_IN_CREW"]?"back into the infirmary and closes the door behind him":(makiusHasMedlab()?"back into the medlab and closes the door behind him":"back to his computer")) + ". You decide to leave him to it, returning to your own quarters to avoid being overwhelmed by any lingering pheromones.");
 	flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"] = true;
-	makiusLeave();
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusToBreederGetOutLetHim():void{
@@ -2204,7 +2203,7 @@ public function makiusToBreederGetOutMascOnly():void{
 	flags["MAKI_BIOVEN_QUEST_TIMER"] = GetGameTimestamp();
 	flags["MAKI_TAKING_SUPPRESSANTS"] = true;
 	flags["MAKI_STATE"] = 0;
-	makiusLeave();
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusPregnancyReveal():void{
@@ -2604,7 +2603,7 @@ public function makiusSexCatch(vNum:int):void{
 		output("\n\n\"My turn now.\" He begins stroking his human-like cock, " + (makiusMasculine()?"nine":"seven") + " inches long, " + (makiusMasculine()?"two inches":"one inch and a half") + " thick with a head covered in small nub-like growths . You watch as soon enough beads of pre begin forming on his tip and then streaming down his length. Maki gathers all of it and bathes his whole shaft in it. You watch in anticipation, eager for him to be ready so that you can begin.");
 		output("\n\nSoon, he approaches you and aligns himself with your [pc.vagOrAss " + vNum + "]. \"Are you ready?\"");
 		output("\n\nYou tell him that you are and shuffle back, playfully stroking his shaft with your nethers.");
-		output("\n\nYour Venarian lover begins making his way inside your depths, slowly filling you up as he leans over you, intent on staying as close as possible to you. You moan appreciatively as he slowly spreads you wider, filling you deeper and deeper. Soon he hilts within you and you shudder, clenching your [pc.vagOrAss " + vNum + "] to try and squeeze his alien cock with its delicious tingly nubbed texture.\n\n");
+		output("\n\nYour Venarian lover begins making his way inside your depths, slowly filling you up as he leans over you, intent on staying as close as possible to you. You moan appreciatively as he slowly spreads you wider, filling you deeper and deeper. Soon he hilts within you and you shudder, clenching your [pc.vagOrAss " + vNum + "] to try and squeeze his alien cock with its delicious tingly nubbed texture.");
 		makius.cockChange();
 		pc.holeChange(vNum, makius.cockVolume(0));
 		output("\n\n\"Aaahh. You feel so good.\" Maki hugs you, nuzzling you and taking in your scent.");
@@ -2707,7 +2706,7 @@ public function makiusSexPitchAnal(cock:int):void{
 		output("\n\nAs one hand continues to play with his groinal slit, your other hand releases his cock and begins to gather a great palmful of the slick, bountiful precum, which you then awkwardly bring back out and begin to massage into his virgin-tight asshole.");
 		output("\n\n\"Ooh, that feels nice too!\" He closes his eyes and begins panting with a smile. You smirk and, after applying a second handful of precum-lube, begin gently probing with a finger, widening him for your own insertion.");
 		output("\n\nMaki raises his butt to give you better access, draping his tail over your shoulder and stroking your back languidly. \"T-Touch me more!\" He says excitedly, it's quite obvious he's enjoying the treatment a great deal. You continue to probe at his ass with one finger, while the fingers of your other hand slide along his groinal slit and the base of his shaft. Watching him moaning and gasping under you, you can't help but feel turned on yourself.");
-		output("\n\nFinally, you ask if he feels ready for the real fun yet. His reply is to lazily nod as he continues smiling. With his consent given, you stop probing at his ass and instead place that hand against his butt to better balance yourself as you take your [pc.cock " + cock + "] and press it against his virginal tailhole, slowly sliding the [pc.cockhead " + cock + "] into him.\n\n");
+		output("\n\nFinally, you ask if he feels ready for the real fun yet. His reply is to lazily nod as he continues smiling. With his consent given, you stop probing at his ass and instead place that hand against his butt to better balance yourself as you take your [pc.cock " + cock + "] and press it against his virginal tailhole, slowly sliding the [pc.cockhead " + cock + "] into him.");
 		pc.cockChange();
 		makius.buttChange(pc.cockVolume(cock));
 		output("\n\nMaki gasps, his eyes opening wide in shock. \"Ooooh!\" A moan fueled by pained pleasure escapes his throat as he bends his back into an arc. \"I-It's in!\" He whimpers.");
@@ -2767,7 +2766,7 @@ public function makiusSexPitchAnal(cock:int):void{
 		}
 		addButton(0, "Okay", makiusSexPitchAnalVirginOkay);
 		addButton(1, "Tease", makiusSexPitchAnalVirginTease);
-		addButton(2, "No way", makiusSexPitchAnalVirginNoWay);
+		addButton(2, "No Way", makiusSexPitchAnalVirginNoWay);
 	}else if(flags["MAKI_STATE"] == 2){
 		output("The Venarian smiles, pleased by your request. He takes your arm and invites you to lay down on his bed, green eyes glued to your own.");
 		output("\n\nYou see his reasoning; in his state, he can't have you on top, after all. You affectionately pat his " + makiusBellyDescriptor() + " and then seat yourself on his bed, laying back and making yourself comfortable, letting your [pc.cocks] be displayed for his perusal.");
@@ -3636,14 +3635,14 @@ public function makiusShowerSex():void{
 	output("\n\nThat's a good boy. Now released, you take your choice and turn to face him, asking him where he'd like you to start soaping him up.");
 	output("\n\nHe smiles and hugs you again, nuzzling you affectionately. \"Wherever you want,\" he replies.");
 	output("\n\nYou can't help but notice a familiar presence jutting out of his groin; seems like your little Maki's been having a few select thoughts about bath time. You could just ignore it, bath time is for cleaning up and groping, not getting even dirtier… but it does have its merits, maybe you could humor him and grant him release?");
-	addButton(0, "Tease him", makiusShowerSexTease);
+	addButton(0, "Tease Him", makiusShowerSexTease);
 	if (pc.hasVagina() || pc.hasCock()){
 		output(" Of course, you could always force him down on his knees and make him play with you instead.");
-		addButton(1, "Get oral", makiusShowerSexGetOral);
+		addButton(1, "Get Oral", makiusShowerSexGetOral);
 	}else{
-		addDisabledButton(1, "Get oral", "You don't have any genitals");
+		addDisabledButton(1, "Get Oral", "You don't have any genitals");
 	}
-	addButton(2, "Stroke him", makiusShowerSexStrokeHim);
+	addButton(2, "Stroke Him", makiusShowerSexStrokeHim);
 }
 
 public function makiusShowerSexTease():void{
@@ -4026,4 +4025,4 @@ public function makiusBathtimeEpilogue():void{
 	output("\n\nNow that the two are out of the shower, you set about drying yourselves off - no small task with Maki's fur coat. The two of you naturally help each other towelling down, and if Maki sneaks a few gropes of you during the process, well, it's alright; you do the same thing to him, after all.");
 	output("\n\nOnce you are both as dry as you're likely to get, you stretch yourself and proclaim that, as refreshing as that might of been, it's about time you leave.");
 	addButton(0, "Next", makiusLeave);
-}
+}
