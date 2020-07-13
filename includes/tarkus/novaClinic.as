@@ -22,12 +22,12 @@ public function enterNovaClinicFunc():void {
 			output("\n\n\"Hmm?\" He looks up and immediately breaks into a soft smile upon spotting you. \"Oh, hello [pc.name]. What can I help you with?\" he says, still smiling.");
 			addButton(2, "Talk", makiusClinicTalkIntro, undefined, "Talk", "Chat with the Venarian doctor.");
 			addButton(3, "Appearance", makiusAppearance, undefined, "Appearance", "Make an examination of your own.");
-			if (flags["MAKI_HAS_BEEN_RECRUITED_BEFORE"]) addButton(4, "Sex", makiusClinicSex, undefined, "Sex", "Ask him if he has time for a break.");
+			if (flags["MAKI_RELATIONSHIP_STATUS"]) addButton(4, "Sex", makiusClinicSex, undefined, "Sex", "Ask him if he has time for a break.");
 		}
 		addButton(0, "Examine", novaClinicExamine);
 		if (pc.HP() >= pc.HPMax()) addDisabledButton(1, "Heal", "Heal", "You feel fine.");
 		else if (pc.hasStatusEffect("Bandaged")) addDisabledButton(1, "Heal", "Heal", "You should wait until your bandages need replacement.");
-		else addButton(1, "Heal", novaClinicHeal, undefined, "Heal", "get healed by the good doctor.");
+		else addButton(1, "Heal", novaClinicHeal, undefined, "Heal", "Get healed by the " + (makiusLeftClinic()?"raskvel nurses.":"good doctor."));
 	}
 }
 
@@ -280,7 +280,7 @@ public function novaClinicSSTD(operation:Array):void{
 			//makius
 			output("\n\nMaki examines the preliminary results showing in his scanner. \"I see that you’ve been infected with <b>" + operation[3][0] + "</b>. Thankfully we may just have the materials to heal you,\" he smiles. \"Since we’re going to need to replenish our stock, I’m afraid I’ll have to charge you. About 500 credits should do it,\" the Venarian doctor explains.");
 		}
-		if (pc.credits < 50) addDisabledButton(0, "Yes", "Get cured", "You are too broke to afford SSTD removal!");
+		if (pc.credits < 50) addDisabledButton(0, "Yes", "Get Cured", "You are too broke to afford SSTD removal!");
 		else addButton(0, "Yes", novaClinicSSTDCure, operation);
 		addButton(1, "No", novaClinicSSTDNo, operation);
 	}else{

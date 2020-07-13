@@ -3217,6 +3217,12 @@ public function showerOptions(arg:Array):void
 			else { addButton(showerSex, "Ramis", ramisBathingCats, "shower"); showerSex++; }
 			btnSlot++;
 		}
+		if (makiusIsCrew())
+		{
+			if (flags["MAKI_RELATIONSHIP_STATUS"]) addButton(btnSlot, "Makius", makiusShowerSex, undefined, "Makius", "Ask Maki if he'd like to join you in the shower.");
+			else addDisabledButton(btnSlot, "Makius", "Makius", "You should get to know him a bit better before asking him to shower together.");
+			btnSlot++;
+		}
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
 		else output("You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu, special);
@@ -3786,8 +3792,8 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.NPC);
 		rooms["9006"].removeFlag(GLOBAL.NPC);
 	}
-	//Makius's room and work
-	if (flags["MAKI_OFFERED_JOB_AT_NURSERY"] || (!flags["MAKI_IN_CREW"] && flags["MAKI_STATE"] == 2))
+	//Makius's daily tavros scedule
+	if (!flags["MAKI_IN_CREW"] && (flags["MAKI_OFFERED_JOB_AT_NURSERY"] || flags["MAKI_STATE"] == 2))
 	{
 		rooms["RESIDENTIAL DECK 12"].eastExit = "MAKIUS NURSERY HOME";
 		if (hours > 7 && hours < 16)
@@ -3801,9 +3807,15 @@ public function variableRoomUpdateCheck():void
 			rooms["NURSERYI16"].removeFlag(GLOBAL.NPC);
 		}
 	}
+	//Makius's home stays if he has a job in the nursery, even if he is a crewmember
+	else if (flags["MAKI_OFFERED_JOB_AT_NURSERY"])
+	{
+		rooms["RESIDENTIAL DECK 12"].eastExit = "MAKIUS NURSERY HOME";
+		rooms["MAKIUS NURSERY HOME"].removeFlag(GLOBAL.NPC);
+		rooms["NURSERYI16"].removeFlag(GLOBAL.NPC);
+	}
 	else
 	{
-		rooms["NURSERYI16"].removeFlag(GLOBAL.NPC);
 		rooms["RESIDENTIAL DECK 12"].eastExit = undefined;
 	}
 	

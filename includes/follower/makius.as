@@ -73,9 +73,9 @@ public function makiusSubbed(amount:Number):void{
 }
 
 public function makiusLeave():void{
-	if (flags["MAKI_IN_CREW"]) mainGameMenu();
-	else if (!flags["MAKI_IN_CREW"] && (flags["MAKI_STATE"] == 2 || flags["MAKI_OFFERED_JOB_AT_NURSERY"])) moveTo("RESIDENTIAL DECK 12");
-	else moveTo("NOVA CLINIC");
+	if (!flags["MAKI_IN_CREW"] && (flags["MAKI_STATE"] == 2 || flags["MAKI_OFFERED_JOB_AT_NURSERY"])) moveTo("RESIDENTIAL DECK 12");
+	else if (!makiusLeftClinic()) moveTo("NOVA CLINIC");
+	mainGameMenu();
 }
 
 //used to calculate how pregnant makius is: 0 and 1 is invisible, 2 to 4 are stages of bigger belly
@@ -309,7 +309,7 @@ public function makiusPets():void{
 		output("\n\nYou stifle it for him by capturing his lips with your own.");
 		output("\n\nMaki is taken by surprise, but easily melts into your kiss. His early playfulness now replaced with desire as he kisses you back. You enjoy the kiss briefly, then break away, leaning back to evade his instinctive attempt to recapture your lips. He looks a bit disappointed, but quickly recovers, nuzzling you once more.");
 		output("\n\nAs he nuzzles you, you feel something poking against you, and you can't resist teasingly asking if Maki really gets that hot and bothered over a kiss.");
-		output("\n\n\"Of course I do.");
+		output("\n\n\"Of course I do.\n\n");
 		if (flags["MAKI_RELATIONSHIP_STATUS"] == 1) output("Kissing is the most intimate form of contact. It's like you are sharing all your feeling with me at once. You could say it's, overwhelming... plus you are such a great kisser, so I really can't help it.\"");
 		else output("I love you very much, [pc.name]. And when we kiss I feel so close to you that I can share everything you mean to me, and in turn I can feel how much I mean to you as well. So, can you really blame me for being turned on by kissing my mate? Plus, on top of all that, you are a great kisser... so I can't help it.\"");
 		output("\n\nWords fail you, so you simply pull him close and hug him tenderly, one hand stroking the mane that runs down the back of his neck as you do so. Maki inhales deeply, taking in your scent as he enjoys the closeness you two are sharing. There is no need for words right now, so you just enjoy your time, relaxing with your Venarian lover.");
@@ -929,7 +929,8 @@ public function makiusDrugs():void{
 		addButton(1, "Pregnancy", makiusDPregnancy, undefined, "Pregnancy Pills", (flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]?"Tell him to stop taking pregnancy prevention pills.":"Tell him to start taking pregnancy prevention pills."));
 		addButton(2, "Suppressants", makiusDSuppressants, undefined, "Suppressants", (flags["MAKI_TAKING_SUPPRESSANTS"]?"Ask him to go off the breeder suppressants.":"Ask him to start taking breeder suppressants."));
 		//bioven
-		if (!flags["MAKI_BIOVEN_QUEST"]) addButton(3, "Manipulation", makiusBioVenResearch, undefined, "Manipulation", "See if you can get him to take Venarian breeding manipulation drugs.");
+		if (CodexManager.entryViewed("Venarians")) addDisabledButton(3, "Locked", "Locked", "You should learn more about Venarians first.");
+		else if (!flags["MAKI_BIOVEN_QUEST"]) addButton(3, "Manipulation", makiusBioVenResearch, undefined, "Manipulation", "See if you can get him to take Venarian breeding manipulation drugs.");
 		else if (flags["MAKI_BIOVEN_QUEST"] == 1) addDisabledButton(3, "Manipulation", "Manipulation", "Maki is still researching which drugs are the best.");
 		else if (flags["MAKI_BIOVEN_QUEST"] == 2) addButton(3, "BuyBioVen", makiusBioVenBuy, undefined, "Buy BioVen", "Check details and price on the medicine you discussed.");
 		else if (flags["MAKI_BIOVEN_QUEST"] == 3) addDisabledButton(3, "BioVen", "BioVen", "The product hasn't arrived yet.");
@@ -1458,9 +1459,12 @@ public function makiusNurseryRecruit():void{
 		addButton(1, "Quit", makiusNurseryRecruitQuit);
 	}else{
 		output("You ask the doctor if he would like to take a break from dealing with " + (ChildManager.numChildren()?"kids, ":"") + "robo nannies and space mumps, so he can come work at your ship again?");
-		output("\n\n");
-		output("\n\n");
-		output("\n\n");
+		output("\n\n\"" + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"As if you need to ask...":"Sure do") + ",\" he says with a " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"dreamy ":"") + "smile. " + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?"It's a shame our child" + (flags["MAKI_BIRTHED_CHILDREN"] + flags["MAKI_SIRED_CHILDREN"] > 1?"ren":"") + " can't come with us, but at least I know that, no matter what, they will be taken care of.":(ChildManager.numChildren() > 15?"I love this job, but it's really exhausting. You have way too many children, " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"love!":"[pc.name]!"):(ChildManager.numChildren()?"It's fun to take care of your child" + (ChildManager.numChildren()?"ren":"") + ", but between Briget and all the technology this place has, it doesn't really look like they need me.":"Well it's not <i>that</i> much of a break when you have nothing to do at your job." + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?" We might want to work on that. Besides, I've missed you.":(flags["MAKI_RELATIONSHIP_STATUS"] == 1?" You might want to work on that.":""))))));
+		output("\n\nIn that case, you reply, you'd like to offer him his previous position. Having a trained medical professional on board will surely come in handy in your travels.");
+		output("\n\n\"Of course!\" He exclaims happily. \"Just give me a few minutes to warn Bridget and we can be off! " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"I can't wait to once again be by your side all the time. ":"") + " He disappears into the Residential Deck before you can say anything else.");
+		output("\n\nYou can't help but marvel at how enthusiastic he is. " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"He must've really missed you.":"So long as he brings that enthusiasm into his work, he should be a valuable addition to your crew."));
+		flags["MAKI_IN_CREW"] = true;
+		addButton(0, "Back", move,"RESIDENTIAL DECK 12");
 	}
 }
 
@@ -1480,7 +1484,7 @@ public function makiusNurseryRecruitPressOn():void{
 	output("\n\n\"I'll get my stuff ready…We'll meet back on the ship?\"");
 	output("\n\nYou tell him you'll be there.");
 	flags["MAKI_IN_CREW"] = true;
-	addButton(0,"Back", move,"RESIDENTIAL DECK 12");
+	addButton(0, "Back", move,"RESIDENTIAL DECK 12");
 }
 
 public function makiusNurseryRecruitQuit():void{
@@ -2501,19 +2505,19 @@ public function makiusSexMenu():void{
 			if (makiusIsCrew() && flags["MAKI_BREEDER_SEEN"]){
 				if (flags["MAKI_STATE"] == 1){
 					if (pc.libido() > 74 || pc.hasPerk("Breed Hungry") || pc.hasPerk("Inhuman Desire") || pc.hasPerk("Easy")){
-						addButton(6, "LustyFuck", makiusSexLustyFuck, [fitsC, false], "LustyFuck", "Fuck the Venarian doctor senseless.");
+						addButton(5, "LustyFuck", makiusSexLustyFuck, [fitsC, false], "LustyFuck", "Fuck the Venarian doctor senseless.");
 					}else{
-						addDisabledButton(6, "LustyFuck", "LustyFuck", "Your libido is not good enough to fuck him senseless.");
+						addDisabledButton(5, "LustyFuck", "LustyFuck", "Your libido is not good enough to fuck him senseless.");
 					}
-					addDisabledButton(7, "Force Change", "Force Change", "Maki is already in his breeding heat.");
+					addDisabledButton(6, "Force Change", "Force Change", "Maki is already in his breeding heat.");
 				}else{
-					addDisabledButton(6, "LustyFuck", "LustyFuck", "He's not in the proper mindset to be fucked senseless.");
+					addDisabledButton(5, "LustyFuck", "LustyFuck", "He's not in the proper mindset to be fucked senseless.");
 					if (flags["MAKI_STATE"] == 2){
-						addDisabledButton(7, "Force Change", "Force Change", "Maki is already pregnant.");
+						addDisabledButton(6, "Force Change", "Force Change", "Maki is already pregnant.");
 					}else if (flags["MAKI_TAKING_SUPPRESSANTS"]){
-						addDisabledButton(7, "Force Change", "Force Change", "You won't' be able to change Maki while he is on suppressants.");
+						addDisabledButton(6, "Force Change", "Force Change", "You won't' be able to change Maki while he is on suppressants.");
 					}else{
-						addButton(7, "Force Change", makiusSexForceChange, fitsC, "Force Change", "Force the Venarian to enter into heat, by fucking his ass several times in a row.");
+						addButton(6, "Force Change", makiusSexForceChange, fitsC, "Force Change", "Force the Venarian to enter into heat, by fucking his ass several times in a row.");
 					}
 				}
 			}
@@ -2523,8 +2527,8 @@ public function makiusSexMenu():void{
 		addDisabledButton(0, "Pitch Anal", "Pitch Anal", "You need a cock to fuck the Venarian's ass.");
 		addDisabledButton(1, "Get Blown", "Get Blown", "You need a cock to get blown by the Venarian doctor.");
 		if (makiusIsCrew() && flags["MAKI_BREEDER_SEEN"]){
-			addDisabledButton(6, "LustyFuck", "LustyFuck", "You need a dick to fuck him senseless.");
-			addDisabledButton(7, "Force Change", "Force Change", "You need a cock to fuck him into heat.");
+			addDisabledButton(5, "LustyFuck", "LustyFuck", "You need a dick to fuck him senseless.");
+			addDisabledButton(6, "Force Change", "Force Change", "You need a cock to fuck him into heat.");
 		}
 	}
 	if (pc.hasVagina()){
@@ -2565,7 +2569,6 @@ public function makiusSexMenu():void{
 	}
 	addButton(3, "Catch Anal", makiusSexCatch, -1, "Catch Anal", "Convince the doctor to fuck your ass.");
 	addButton(4, "Blow Him", makiusSexCatchOral, undefined, "Blow Him", "Get on your knees and give the Venarian a blowjob.");
-	addButton(5, "Shower Sex", makiusShowerSex, undefined, "Shower Sex", "Ask Maki if he'd like to join you in the shower.");
 	addButton(14, "Back", makiusMenu);
 }
 

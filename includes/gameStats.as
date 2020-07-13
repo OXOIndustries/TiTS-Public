@@ -6471,14 +6471,14 @@ public function displayEncounterLog(showID:String = "All"):void
 			if (flags["MAKIUS_INTRO"] != undefined)
 			{
 				output2("\n<b><u>Makius:</u></b> \n<b>* Occupation:</b> ");
-				if (makiusIsCrew()) output2("your crew doctor");
+				if (makiusIsCrew()) output2("Crew member (Onboard Ship)");
 				else if (flags["MAKI_WORKS_AT_NURSERY"]) output2("works at your nursery");
 				else if (flags["MAKI_STATE"] == 2) output2("pregnancy leave");
 				else output2("works at the Nova clinic");
 				if (makiusRecruited())
 				{
 					if (flags["MAKI_RELATION"] && flags["MAKI_RELATIONSHIP_STATUS"] != 2){
-						output2("\n<b>* Relation:</b> ");
+						output2("\n<b>* Affection:</b> ");
 						if (flags["MAKI_DATE"] == 3) output2("You should take Maki up on his date.");
 						else if (flags["MAKI_DATE"] == 4) output2("You told Maki you don't want anything serious.");
 						else if (flags["MAKI_RELATION"] == 50 && !flags["MAKI_DATE"]) output2("You should ask Maki on a date.");
@@ -6488,7 +6488,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Relationship status:</b> ");
 					if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output2("you're his mate");
 					else if (flags["MAKI_RELATIONSHIP_STATUS"]) output2("friends with benefits");
-					else output2("you're his boss");
+					else output2("Acquaintance");
 					
 					if (flags["MAKI_RELATIONSHIP_STATUS"])
 					{
