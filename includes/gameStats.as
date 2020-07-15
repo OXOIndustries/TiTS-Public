@@ -6472,9 +6472,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Makius:</u></b> \n<b>* Occupation:</b> ");
 				if (makiusIsCrew()) output2("Crew member (Onboard Ship)");
-				else if (flags["MAKI_WORKS_AT_NURSERY"]) output2("works at your nursery");
-				else if (flags["MAKI_STATE"] == 2) output2("pregnancy leave");
-				else output2("works at the Nova clinic");
+				else if (flags["MAKI_WORKS_AT_NURSERY"]) output2("Works at your nursery");
+				else if (flags["MAKI_STATE"] == 2) output2("Pregnancy leave");
+				else output2("Works at the Nova clinic");
 				if (makiusRecruited())
 				{
 					if (flags["MAKI_RELATION"] && flags["MAKI_RELATIONSHIP_STATUS"] != 2){
@@ -6486,32 +6486,32 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(flags["MAKI_RELATION"]);
 					}
 					output2("\n<b>* Relationship status:</b> ");
-					if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output2("you're his mate");
-					else if (flags["MAKI_RELATIONSHIP_STATUS"]) output2("friends with benefits");
+					if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output2("You're his mate");
+					else if (flags["MAKI_RELATIONSHIP_STATUS"]) output2("Friends with benefits");
 					else output2("Acquaintance");
 					
 					if (flags["MAKI_RELATIONSHIP_STATUS"])
 					{
 						output2("\n<b>* virility:</b> ");
-						if (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]) output2("taking preventatives");
-						else if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() < flags["MAKI_VIRILITY_BOOST"] + 1440) output2("boosted");
-						else output2("virile");
+						if (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]) output2("On Contraceptives");
+						else if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() < flags["MAKI_VIRILITY_BOOST"] + 1440) output2("Boosted");
+						else output2("Virile");
 						if (flags["MAKI_BREEDER_SEEN"])
 						{
 							output2("\n<b>* fertility:</b> ");
-							if(!flags["MAKI_IN_CREW"] || flags["MAKI_TAKING_SUPPRESSANTS"]) output2("supressed breeder form");
-							else if(flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]) output2("taking preventatives");
-							else if(flags["MAKI_STATE"] == 2) output2("pregnant!");
-							else if(flags["MAKI_STATE"]) output2("fertile");
-							else output2("not in breeder form");
+							if(!flags["MAKI_IN_CREW"] || flags["MAKI_TAKING_SUPPRESSANTS"]) output2("On breeder supressants");
+							else if(flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]) output2("On Contraceptives");
+							else if(flags["MAKI_STATE"] == 2) output2("Pregnant!");
+							else if(flags["MAKI_STATE"]) output2("Fertile");
+							else output2("Not in breeder form");
 						}
 						
 						if (flags["MAKI_BIOVEN_QUEST"] == 4)
 						{
 							output2("\n<b>* Gender drug:</b> ");
-							if (flags["MAKI_TAKING_BIOVEN"] == 2) output2("masculine");
-							else if (flags["MAKI_TAKING_BIOVEN"]) output2("feminine");
-							else output2("natural");
+							if (flags["MAKI_TAKING_BIOVEN"] == 2) output2("Masculine");
+							else if (flags["MAKI_TAKING_BIOVEN"]) output2("Feminine");
+							else output2("Natural");
 						}
 						if (flags["MAKI_SIRED_CHILDREN"]) output2("\n<b>* Pups sired by him:</b> " + flags["MAKI_SIRED_CHILDREN"]);
 						if (flags["MAKI_BIRTHED_CHILDREN"]) output2("\n<b>* Pups birthed by him:</b> " + flags["MAKI_BIRTHED_CHILDREN"]);

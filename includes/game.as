@@ -3796,7 +3796,7 @@ public function variableRoomUpdateCheck():void
 	if (!flags["MAKI_IN_CREW"] && (flags["MAKI_OFFERED_JOB_AT_NURSERY"] || flags["MAKI_STATE"] == 2))
 	{
 		rooms["RESIDENTIAL DECK 12"].eastExit = "MAKIUS NURSERY HOME";
-		if (hours > 7 && hours < 16)
+		if (hours > 7 && hours < 16 || currentLocation == "MAKIUS NURSERY HOME")
 		{
 			rooms["MAKIUS NURSERY HOME"].removeFlag(GLOBAL.NPC);
 			if(flags["MAKI_OFFERED_JOB_AT_NURSERY"]) rooms["NURSERYI16"].addFlag(GLOBAL.NPC);
