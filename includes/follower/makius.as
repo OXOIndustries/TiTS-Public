@@ -250,13 +250,13 @@ public function makiusCrewMenu():void{
 			output("\n\nMaki doesn't wait for your response and begins undressing, carelessly tossing his clothes away.");
 			output("\n\nHe angles his body provocatively towards you. \"Okay, I'm naked now. How do you intend to do me now?\" This close to him, his breeder's musk hangs around the both of you like a cloak, and you can see moisture running down his legs from both his lubricated ass and his erect cock alike.");
 		}else output("\n\nMaki sits beside you, touching your hand. \"So, what do you want to do " + (makiusHasMedlab()?"now that we are in a more private setting":"") + "?\"");
-		clearMenu();
 		makiusMenu();
 	}
 }
 
 public function makiusMenu():void{
 	author("LukaDoc");
+	clearMenu();
 	addButton(0, "Appearance", makiusAppearance, undefined, "Appearance", "Inspect the Venarian doctor");
 	addButton(1, "Talk", makiusTalk);
 	
@@ -317,7 +317,7 @@ public function makiusPets():void{
 	output("\n\nEventually, reluctantly, you let him go and tell him it's probably time you were going. Maki whimpers in disappointment before releasing you and rolling off you.");
 	output("\n\n\"Duty calls, I guess....\"\n\nYou agree, and promise to visit again when you can.\n\n\"Well, I should probably get back to my research as well. See you later?\"\n\nYou assure him that he will, and then politely excuse yourself.");
 	clearMenu();
-	addButton(0, "Back", makiusCrewMenu);
+	addButton(0, "Leave", makiusLeave);
 }
 
 public function makiusDrinkMilk():void{
@@ -370,8 +370,7 @@ public function makiusDrinkMilk():void{
 		output("\n\nWell, if he wants to cuddle, you can probably spare a little time now, you suggest... Maki doesn't even wait for you to finish this thought before grabbing you and dragging you over to his bed, where he promptly lays down, pulling you close and wrapping his legs around you possessively.");
 		output("\n\nYou sigh softly and cuddle up against your " + (makiusPregLevel() > 2?"swollen-bellied":"") + " expectant boyfriend, holding him gently against you and relaxing yourself in his arms.");
 	}
-	clearMenu();
-	addButton(0, "Back", makiusMenu);
+	makiusMenu();
 }
 
 public function makiusEat():void{
@@ -683,8 +682,8 @@ public function makiusTalkMenu(from:int = -1):void{
 		if (from == 3) addDisabledButton(3, "Pregnancy");
 		else addButton(3, "Pregnancy", makiusTPregnancy);
 	}else addDisabledButton(3, "Pregnancy", "Pregnancy", "You should learn more about Venarian biology first.");
-	if (flags["MAKI_IN_CREW"] || hours <= 7 || hours >= 16) addButton(14, "Back", makiusCrewMenu);
-	else addButton(14, "Back", mainGameMenu);
+	if (currentLocation == "NURSERYI16") addButton(14, "Back", mainGameMenu);
+	else addButton(14, "Back", makiusMenu);
 }
 
 public function makiusTFamily():void{
@@ -934,7 +933,7 @@ public function makiusDrugs():void{
 		else if (flags["MAKI_BIOVEN_QUEST"] == 3) addDisabledButton(3, "BioVen", "BioVen", "The product hasn't arrived yet.");
 		else addButton(3, "BioVen", makiusDBioVen, undefined, "BioVen", "Request he changes his masculinity for you.");
 	}
-	addButton(14,"Back",makiusCrewMenu);
+	addButton(14,"Back", makiusMenu);
 }
 
 public function makiusDVirility():void{
@@ -969,7 +968,7 @@ public function makiusDVirility():void{
 		output("\n\n\"Sure, no problem, I'll start taking the pills then.\"");
 		flags["MAKI_TAKING_MALE_CONTRACEPTIVES"] = true;
 	}
-	addButton(0, "Next", makiusCrewMenu);
+	makiusMenu();
 }
 
 public function makiusBoostVirility():void{
@@ -1017,7 +1016,7 @@ public function makiusDPregnancy():void{
 
 		flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"] = true;
 	}
-	addButton(0, "Next", makiusCrewMenu);
+	makiusMenu();
 }
 
 //suppressants will prevent maki_state from reaching 1
@@ -1053,7 +1052,7 @@ public function makiusDSuppressants():void{
 		}
 		flags["MAKI_TAKING_SUPPRESSANTS"] = true;
 	}
-	addButton(0, "Next", makiusCrewMenu);
+	makiusMenu();
 }
 
 public function makiusDBioVen():void{
@@ -1072,7 +1071,7 @@ public function makiusDBioVen():void{
 	}else{
 		addDisabledButton(0, "Natural", "Natural", "Reset him back to his natural transitioning system.");
 	}
-	addButton(3, "Back", makiusCrewMenu);
+	addButton(3, "back", makiusMenu);
 }
 
 public function makiusDBioVenNext(drugSelected:int):void{
@@ -1199,7 +1198,6 @@ public function makiusHeal():void{
 		output("\n\nYou tell him you will. He smiles, relieved with your answer.");
 	}
 	pc.HP(pc.HPMax());
-	clearMenu();
 	makiusMenu();
 }
 
@@ -1481,7 +1479,7 @@ public function makiusNurseryRecruitPressOn():void{
 	output("\n\n\"I'll get my stuff ready…We'll meet back on the ship?\"");
 	output("\n\nYou tell him you'll be there.");
 	flags["MAKI_IN_CREW"] = true;
-	addButton(0, "Back", move,"RESIDENTIAL DECK 12");
+	addButton(0, "Leave", move,"RESIDENTIAL DECK 12");
 }
 
 public function makiusNurseryRecruitQuit():void{
@@ -1509,7 +1507,7 @@ public function makiusNurseryOfferJob():void{
 	flags["MAKI_HOME_SEEN"] = false;
 	flags["MAKI_IN_CREW"] = false;
 	moveTo("NURSERYI16");
-	addButton(0,"Continue", makiusMenu);
+	addButton(0, "Leave", move,"RESIDENTIAL DECK 12");
 }
 
 public function makiusNurseryAbandonedEmail():String{
