@@ -16,7 +16,8 @@ public function enterNovaClinicFunc():void {
 			output("The Novahome Clinic is in its usual semi-organised state of chaos. The now-acting doctor, a male raskvel named Kayl, is working busily at the front desk. Since there are no other patients standing ahead in line, you can walk right up to him and announce your presence.");
 			output("\n\nHe gazes at you as you approach and immediately breaks into a friendly smile. \"Hey there, [pc.name]. Need treatment?\"");
 		}else{
-			//makius
+			// makius
+			makius.masculinize();
 			showBust("MAKIUS");
 			output("The Novahome Clinic is its usual semi-organised state of chaos. As you clear the doors, you see the Venarian, Doctor Makius, sitting at the front desk reading a file. As he is not busy with a patient, you head straight to the front desk and announce your presence.");
 			output("\n\n\"Hmm?\" He looks up and immediately breaks into a soft smile upon spotting you. \"Oh, hello [pc.name]. What can I help you with?\" he says, still smiling.");

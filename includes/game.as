@@ -3219,8 +3219,8 @@ public function showerOptions(arg:Array):void
 		}
 		if (makiusIsCrew())
 		{
-			if (flags["MAKI_RELATIONSHIP_STATUS"]) addButton(btnSlot, "Makius", makiusShowerSex, undefined, "Makius", "Ask Maki if he'd like to join you in the shower.");
-			else addDisabledButton(btnSlot, "Makius", "Makius", "You should get to know him a bit better before asking him to shower together.");
+			if (flags["MAKI_RELATIONSHIP_STATUS"]) addButton(btnSlot, "Maki", makiusShowerSex);
+			else addDisabledButton(btnSlot, "Maki", "Maki", "You should get to know him a bit better before asking him to shower together.");
 			btnSlot++;
 		}
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");

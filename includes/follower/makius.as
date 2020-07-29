@@ -185,8 +185,10 @@ public function makiusCrewBonus(btnSlot:int = 0, showBlurb:Boolean = true):Strin
 	return (showBlurb ? buff : "");
 }
 
-public function makiusCrewMenu():void{
-	//calculate time penalty for maki's submission points. one point for every 2 days the timer doesn't reset
+
+//returns true if the normal scene is not blocked
+public function makiusEvents(atRoom:Boolean):Boolean{
+	// calculate time penalty for maki's submission points. one point for every 2 days the timer doesn't reset
 	var penalty:int = Math.floor((GetGameTimestamp() - flags["MAKI_SUBBED_TIME"]) / 2880);
 	flags["MAKI_SUBBED_TIME"] = flags["MAKI_SUBBED_TIME"] + (2880 * penalty);
 	flags["MAKI_SUBPOINTS"] = Math.max(flags["MAKI_SUBPOINTS"] - penalty, 0);
@@ -194,43 +196,51 @@ public function makiusCrewMenu():void{
 	// Preg events
 	if (makius.hasStatusEffect("makiusPregnancyReveal")){
 		makiusPregnancyReveal();
-	}else if (makius.hasStatusEffect("makiusPregnancyReaction0") || makius.hasStatusEffect("makiusPregnancyReaction1") || makius.hasStatusEffect("makiusPregnancyReaction2")){
+		return false;
+	}
+	if (makius.hasStatusEffect("makiusPregnancyReaction0") || makius.hasStatusEffect("makiusPregnancyReaction1") || makius.hasStatusEffect("makiusPregnancyReaction2")){
 		makiusPregnancyReaction();
-	}
-	// Relation events
-	else if (flags["MAKI_DATE"] == 1){
-		flags["MAKI_DATE"] = 2;
-		makiusToFriend();
-	}else if (flags["MAKI_DATE"] == 2 && flags["MAKI_RELATION"] == 100){
-		makiusDate2Unlock();
-	}
-	//Sub changes
-	else if (flags["MAKI_SUBPOINTS"] > 5 && !flags["MAKI_STATE"] && !flags["MAKI_TAKING_SUPPRESSANTS"]){
-		makiusToBreeder(true);
+		return false;
 	}
 	
-	//BioVen quest
-	else if (flags["MAKI_BIOVEN_QUEST"] == 1 && flags["MAKI_BIOVEN_QUEST_TIMER"] + 10080 < GetGameTimestamp()){
-		makiusBiovenResearch();
-	}else if (flags["MAKI_BIOVEN_QUEST"] == 3 && flags["MAKI_BIOVEN_QUEST_TIMER"] + 4320 < GetGameTimestamp()){
-		makiusBiovenArrival();
-	}
-	
-	// No events
-	else {
-		clearOutput();
-		// turn makius back if not breeder anymore
-		if (flags["MAKI_STATE"] == 1 && flags["MAKI_SUBPOINTS"] == 0 && !makius.isPregnant()){
-			makius.masculinize();
-			output("<b>Makius has reverted form because he hasn't had your cum in his ass for too long.</b>\n\n");
+	if(atRoom){
+		// BioVen quest
+		if (flags["MAKI_BIOVEN_QUEST"] == 1 && flags["MAKI_BIOVEN_QUEST_TIMER"] + 10080 < GetGameTimestamp()){
+			makiusBiovenResearch();
+			return false;
 		}
-		// reset virility when boost is over
-		if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() > flags["MAKI_VIRILITY_BOOST"] + 1440){
-			flags["MAKI_VIRILITY_BOOST"] = undefined;
-			makius.cumQualityRaw = 1;
+		if (atRoom && flags["MAKI_BIOVEN_QUEST"] == 3 && flags["MAKI_BIOVEN_QUEST_TIMER"] + 4320 < GetGameTimestamp()){
+			makiusBiovenArrival();
+			return false;
 		}
 		
-		processTime(10);
+		// Relation events
+		if (flags["MAKI_DATE"] == 1){
+			flags["MAKI_DATE"] = 2;
+			makiusToFriend();
+			return false;
+		}else if (atRoom && flags["MAKI_DATE"] == 2 && flags["MAKI_RELATION"] == 100){
+			makiusDate2Unlock();
+			return false;
+		}
+	}
+	
+	// Sub changes
+	if (flags["MAKI_SUBPOINTS"] > 5 && !flags["MAKI_STATE"] && !flags["MAKI_TAKING_SUPPRESSANTS"]){
+		makiusToBreeder(true);
+		return false;
+	}
+	if (flags["MAKI_STATE"] == 1 && flags["MAKI_SUBPOINTS"] == 0 && !makius.isPregnant()){
+		makius.masculinize();
+		output("<b>Makius has reverted form because he hasn't had your cum in his ass for too long.</b>\n\n");
+	}
+	return true;
+}
+
+public function makiusCrewMenu():void{
+	clearOutput();
+	processTime(10);
+	if(makiusEvents(true)){
 		author("LukaDoc");
 		showBust(makiusBust(1));
 		output("You ask the doctor if he wants to come to his room.\n\n");
@@ -926,7 +936,7 @@ public function makiusDrugs():void{
 		addButton(1, "Pregnancy", makiusDPregnancy, undefined, "Pregnancy Pills", (flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]?"Tell him to stop taking pregnancy prevention pills.":"Tell him to start taking pregnancy prevention pills."));
 		addButton(2, "Suppressants", makiusDSuppressants, undefined, "Suppressants", (flags["MAKI_TAKING_SUPPRESSANTS"]?"Ask him to go off the breeder suppressants.":"Ask him to start taking breeder suppressants."));
 		//bioven
-		if (!CodexManager.entryViewed("Venarians")) addDisabledButton(3, "Locked", "Locked", "You should learn more about Venarians first.");
+		if (!CodexManager.entryViewed("Venarians") && !flags["MAKI_BIOVEN_QUEST"]) addDisabledButton(3, "Locked", "Locked", "You should learn more about Venarians first.");
 		else if (!flags["MAKI_BIOVEN_QUEST"]) addButton(3, "Manipulation", makiusBioVenResearch, undefined, "Manipulation", "See if you can get him to take Venarian breeding manipulation drugs.");
 		else if (flags["MAKI_BIOVEN_QUEST"] == 1) addDisabledButton(3, "Manipulation", "Manipulation", "Maki is still researching which drugs are the best.");
 		else if (flags["MAKI_BIOVEN_QUEST"] == 2) addButton(3, "BuyBioVen", makiusBioVenBuy, undefined, "Buy BioVen", "Check details and price on the medicine you discussed.");
@@ -962,13 +972,14 @@ public function makiusDVirility():void{
 			if (!flags["MAKI_VIRILITY_BOOST"] || GetGameTimestamp() > flags["MAKI_VIRILITY_BOOST"] + 1440) addButton(1, "Boost", makiusBoostVirility, undefined, "Boost virility", "You are determined to have his child! Demand he takes anything to boost his sperm production.");
 			else addDisabledButton(1, "Boost", "Boost virility", "Maki is still on virility boosters");
 		}else addDisabledButton(1, "Boost", "Boost virility", "You need to have had vaginal sex with him to ask him to take virility boosters");
+		addButton(0 ,"Continue", makiusMenu);
 	}else{
 		output("\"I guess it's a pretty big responsibility to have " + (flags["MAKI_SIRED_CHILDREN"] > 0?"more babies":"a baby") + " in you. Even if you have your own nursery to take care of that business.\"");
 		output("\n\nYou thank him for understanding.");
 		output("\n\n\"Sure, no problem, I'll start taking the pills then.\"");
 		flags["MAKI_TAKING_MALE_CONTRACEPTIVES"] = true;
+		makiusMenu();
 	}
-	makiusMenu();
 }
 
 public function makiusBoostVirility():void{
@@ -1119,7 +1130,7 @@ public function makiusDBioVenNext(drugSelected:int):void{
 	output("\n\nNot long after he seems to regain control of his body and sits up on the bed, his new body dripping with obvious arousal, from his erect penis to his bedroom eyes.");
 	output("\n\n\"So, how do I look now? Do you like it?\" He gives you a nervous smile.");
 	output("\n\nYou tell him he looks great, that you like it very much and thank him for doing this for you. Then, you hug him close and ask him if he wants to take his new body for a spin.");
-	output("\n\nHe hugs you close, burying your head in his fluffy," + (makiusMasculine()?"flat":"bountiful") + " chest, as he tells you, \"Yes! I would like that very much.\"");
+	output("\n\nHe hugs you close, burying your head in his fluffy, " + (makiusMasculine()?"flat":"bountiful") + " chest, as he tells you, \"Yes! I would like that very much.\"");
 	flags["MAKI_TAKING_BIOVEN"] = drugSelected;
 }
 
@@ -1264,8 +1275,7 @@ public function makiusEvictGo():void{
 	if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("You can see the sadness welling up in his eyes, despite him trying his best to contain his tears. So you try your best to console him, by wrapping your arms around him in a gentle hug. He looks straight into your eyes and you still see traces of sadness in them. You pat his head and give him some reassuring words, telling you will be back for him when you can. Then you finish it off with a kiss, smacking against his lips for longer than you should and then part ways. He starts arranging his stuff as you leave the soon-to-be empty room and as the door locks behind you, you lean back and hear some light sobbing.");
 	else if (flags["MAKI_RELATIONSHIP_STATUS"]) output("You tell him this has been fun and offer him your hands for a handshake. He grabs it and you surprise him by pulling him closer into a hug. For a few minutes you both stand there appreciating each other's warm embrace, but eventually you have to part ways. He starts arranging his stuff as you leave the soon-to-be empty room.");
 	else output("You offer him your hand for a handshake. He looks at your hand and he grabs it with both hands and gives you a good hard shake. You tell him you enjoyed working with him and hope you can hire him again in the future. \"Likewise.\" He starts arranging his stuff as you leave the soon-to-be empty room.");
-	//TODO this mail doesn't get sent later
-	if(flags["MAKI_STATE"] == 2) resendMail("makius_nursery_abandoned_email", kGAMECLASS.GetGameTimestamp() + 1000);
+	if(flags["MAKI_STATE"] == 2) resendMail("makius_nursery_abandoned_email", kGAMECLASS.GetGameTimestamp());
 	flags["MAKI_IN_CREW"] = false;
 	makius.masculinize();
 	addButton(0,"Continue", mainGameMenu);
@@ -1339,16 +1349,18 @@ public function makiusKidsNursery(btnIndex:Number):Number{
 
 public function makiusNurseryApproach():void{
 	clearOutput();
-	processTime(5);
-	author("LukaDoc");
-	showBust(makiusBust());
-	clearMenu();
-	output("You approach your cute Venarian doctor, who is too engrossed in what he's doing to notice you. You " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"wrap your arms around his back":"place your hand on his shoulder") + " and say hello. He turns around, startled, and looks you straight in the eyes, but then recognizes you and immediately relaxes.");
-	if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("\n\n\"Oh, it's you, my mate. Do you mind waiting until I finish this?\"\n\nNot a minute later, he's done with what he was doing and ready for you.\n\n\"You know I love to do anything if I’m doing it with you! What did you have in mind?\" He asks with a relaxed smile.");
-	else if (flags["MAKI_RELATIONSHIP_STATUS"]) output("\n\n\"Hey, friend. I can't talk right now. Just give me a few minutes to finish this and we can hang out.\"\n\nYou wait for him to rush through what he's doing, and not five minutes later he's ready for you.\n\n\"So, what do you want to do? Did you have anything fun in mind?\" He asks with a naughty smile.");
-	else output("\n\n\"Oh, hello, [pc.name]. I'm busy right now, so give me a few minutes to finish what I'm doing and we can talk, okay?\" He says before turning back to his previous task.\n\nYou wait for him to finish; a good ten minutes pass until he's finally ready for you.\n\n\"What do you want?\" He asks with a smile.");
-	addButton(0, "Chat", makiusNurseryChat, undefined, "Chat", "Spend time chatting with Makius.");
-	addButton(1, "Go Home", makiusNurseryGoHome, undefined, "Go Home", "Head to a private setting with the doctor.");
+	processTime(10);
+	if(makiusEvents(false)){
+		author("LukaDoc");
+		showBust(makiusBust());
+		clearMenu();
+		output("You approach your cute Venarian doctor, who is too engrossed in what he's doing to notice you. You " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"wrap your arms around his back":"place your hand on his shoulder") + " and say hello. He turns around, startled, and looks you straight in the eyes, but then recognizes you and immediately relaxes.");
+		if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("\n\n\"Oh, it's you, my mate. Do you mind waiting until I finish this?\"\n\nNot a minute later, he's done with what he was doing and ready for you.\n\n\"You know I love to do anything if I’m doing it with you! What did you have in mind?\" He asks with a relaxed smile.");
+		else if (flags["MAKI_RELATIONSHIP_STATUS"]) output("\n\n\"Hey, friend. I can't talk right now. Just give me a few minutes to finish this and we can hang out.\"\n\nYou wait for him to rush through what he's doing, and not five minutes later he's ready for you.\n\n\"So, what do you want to do? Did you have anything fun in mind?\" He asks with a naughty smile.");
+		else output("\n\n\"Oh, hello, [pc.name]. I'm busy right now, so give me a few minutes to finish what I'm doing and we can talk, okay?\" He says before turning back to his previous task.\n\nYou wait for him to finish; a good ten minutes pass until he's finally ready for you.\n\n\"What do you want?\" He asks with a smile.");
+		addButton(0, "Chat", makiusNurseryChat, undefined, "Chat", "Spend time chatting with Makius.");
+		addButton(1, "Go Home", makiusNurseryGoHome, undefined, "Go Home", "Head to a private setting with the doctor.");
+	}
 }
 
 public function makiusNurseryChat():void{
@@ -1399,7 +1411,7 @@ public function makiusRoomEnter(fromNursery:Boolean = false):void{
 				if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("But before you can get fully seated, he pulls you in on top of him, going right for a steamy make-out session. His deft paws caressing your backside as your [pc.hands] crawl towards those " + (makiusMasculine()?"sensitive nipples":"voluptuous breasts") + " of his. You wrestle tongues for a good portion of an hour before you two finally part, breathless, but <i>quite</i> content. Looking up at you with a sated smile, your lusty Venarian lover sneaks in one final peck on the nose and then coyly asks what kinds of fun things you have in mind.");
 				else if (flags["MAKI_RELATIONSHIP_STATUS"]) output("He wraps you in a passionate hug and nuzzles his face against your [pc.chest], rubbing himself all over you to make sure you are clearly imprinted with his smell. When he is finally satisfied with the claim he struck, he lets you go and asks what you would like to do.");
 				else output("The doctor taps his codex a few times, making the wall-mounted television screen come to life, flicking through the dozens of channels available even in rush space. After a few minutes of trying to find anything fun to watch, Makius turns to you and asks what you would like to do instead.");
-			}else{
+			}else if (makiusEvents(true)){
 				output("You use the authorization code Makius has given you to walk into his home and find him ");
 				var choices:Array = [];
 				if(flags["MAKI_RELATIONSHIP_STATUS"]) choices.push("in his bedroom, cuddling what looks to be a very lewd body pillow with a picture of you in a sexy position. Noticing your arrival, he promptly shoves the body pillow off the bed, quickly piling all the bed’s covers over it.\n\n\"That was… nothing. Is there anything you want to do, so I don't have to explain that?\"");
@@ -1407,12 +1419,12 @@ public function makiusRoomEnter(fromNursery:Boolean = false):void{
 				choices.push("in the living room, scrubbing each and every surface of anything even remotely resembling dirt.\n\n\"My " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"mate":"saviour") + " is here! I can clean this stuff later!\" He exclaims. Pushing a few buttons and letting the automated systems of the apartment take care of storing the cleaning supplies and utensils, he rushes to your side. \"What can I do for you?\"");
 				if(flags["MAKI_RELATIONSHIP_STATUS"]) choices.push("in the living room, watching a porn flick that features " + (pc.exhibitionism() > 80?"a compilation of your most daring public exploits":"some of the cheesiest and most explicit hospital setting scenarios you have ever seen") + ". Completely oblivious to your presence, the good doctor continues to enjoy his 'me time': his half-lidded gaze never leaves the screen as his deft hands simultaneously tend to his " + (makiusMasculine()?"nine":"seven") + " inch long cock while furiously shoving a sizable dildo deep into his " + (flags["MAKI_STATE"]?"moist ":"") + "asshole. What a naughty shark-puppy!\n\nOnly when you " + (flags["MAKI_RELATIONSHIP_STATUS"] > 1?"wrap your arms around him":"audibly clear your throat") + " does he finally notice your arrival and promptly hides the dildo into the couch.\n\nThe two of you spend the next few moments in a thoroughly embarrassed silence before he manages to let out a \"What do you want, [pc.name]?\"");
 				output(choices[Math.floor(Math.random() * choices.length)]);
-			}
-		}else{
+			}else return;
+		}else if(makiusEvents(true)){
 			output("You ring the bell, and once again you're welcomed into Makius' raggedy rented home. Since the first time you visited him, he has managed to clean up the rest of his apartment. The broken furniture has been thrown out, and the remainder looks as good as it can, given the circumstances. Still, he doesn't let you sit on the living room couch, instead walking you straight into his bedroom.");
 			output("\n\nOnce you're nestled right next to each other, you ask him how he's doing and if he had any luck finding a job.");
 			output("\n\n\"Nothing yet. And I'm doing fine now that you are here,\" he says with a smile. \"So, [pc.name], what do you want to do next?\"");
-		}
+		}else return;
 	}else{
 		if (flags["MAKI_OFFERED_JOB_AT_NURSERY"]){
 			output((fromNursery?"You follow Makius around Tavros station until you both reach":"You ring the bell, and after a couple of minutes the door opens to reveal surprised and happy Makius who " + (flags["MAKI_RELATIONSHIP_STATUS"] < 2?"greets you cordially":"gives you a big hug") + " before inviting into") + " his new home. You walk inside, and after a quick look around, find that it’s quite cozy, despite being decorated with cheap, modern-looking furniture. Everything is spotless and practically sterile, like you would expect the doctor's home to be. Rather than having the place illuminated by artificial lighting, the ever health-cautious doctor has installed holo-windows that bask the room in realistic sunlight " + (flags["MAKI_STATE"] == 2?", no doubt a much better option for an expecting 'mother'":"") + ".");
@@ -1765,7 +1777,7 @@ public function makiusToFriend():void{
 	if (makiusAtNursery()) output("the nursery's infirmary, you see Makius reading up about xenopediatry");
 	else if (makiusHasMedlab()) output("he medlab, you see Makius staring at the computer screen");
 	else output("the doctor's quarters, you see Makius reading a book");
-	output("deep in thought, and decide to " + (pc.isNice()?"politely ":"") + "get his attention.");
+	output(" deep in thought, and decide to " + (pc.isNice()?"politely ":"") + "get his attention.");
 	output("\n\nMaki visibly jumps, his ears standing at full attention as they swivel, scanning his surroundings. \"Ah... Hello, captain.\" Maki averts his gaze, his ears tucking down on his skull.");
 	output("\n\nYou ask him what's wrong; he was just staring off into space when you came in.");
 	output("\n\n\"Umm... nothing. Nothing wrong at all. Why would there be anything wrong? Nope.\"");
@@ -2574,7 +2586,13 @@ public function makiusSexCatch(vNum:int):void{
 	showBust(makiusBust(2));
 	processTime(30);
 	author("LukaDoc");
-	makiusSubbed(-1);
+	makiusSubbed( -1);
+	
+	// reset virility when boost is over
+	if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() > flags["MAKI_VIRILITY_BOOST"] + 1440){
+		flags["MAKI_VIRILITY_BOOST"] = undefined;
+		makius.cumQualityRaw = 1;
+	}
 	
 	if (makius.cockVirgin){
 		if (!makius.analVirgin){
@@ -3131,6 +3149,7 @@ public function makiusSexPitchOral():void{
 		}else{
 			output("A veritable tidal wave of semen erupts from your shaft" + (pc.cockTotal() > 1?"s":"") + ", washing over your lover's body in great, gluggy gushes that absolutely plaster him with [pc.cumNoun], caking his whole body with your fluids and leaving him a dripping, soggy mess, colored [pc.cumColor] from head to toe.");
 		}
+		pc.orgasm();
 		output("\n\nMaki wipes his face, just removing the excess from around his eyes, and blinks in stunned surprise.");
 		output("\n\nWith a sigh of relief, panting slightly for breath, you ask if that answers his question, unable to resist a grin curling your lips.");
 		output("\n\nHe looks a bit disappointed. \"I guess it does….\" He wipes a strand from his muzzle and suck his finger clean, appreciating what little of your seed he actually got to taste.");

@@ -37,9 +37,9 @@ package classes.GameData.Pregnancy.Handlers
 			for(var i:int = 0; i <= 360; i++){
 				if (i == 25){
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						//if (pregSlot == 3) AddLogEvent(ParseText((kGAMECLASS.makius.hasStatusEffect("makiusPregnancyReveal")?"Your codex beeps, notifiying you of a new message: <b>Maki wants to tell you something important in person.</b>":"You find yourself fantasizing about Maki, picturing how big his belly will get from his pregnancy.")) , "passive");
 						if (pregSlot == 3){
-							if(kGAMECLASS.makius.hasStatusEffect("makiusPregnancyReveal")) AddLogEvent(ParseText("Your codex beeps, notifiying you of a new message: <b>Maki wants to tell you something important in person.</b>") , "passive");
+							if (kGAMECLASS.makius.hasStatusEffect("makiusPregnancyReveal")) AddLogEvent(ParseText("Your codex beeps, notifiying you of a new message: <b>Maki wants to tell you something important in person.</b>") , "passive");
+							else AddLogEvent(ParseText("You find yourself fantasizing about Maki, picturing how big his belly will get from his pregnancy.") , "passive");
 						}
 						else AddLogEvent(ParseText("A scent that, normally, wouldn't bother you is suddenly unbearably rank. Lately your sense of smell has been getting stronger and you often wake up nauseous.") , "passive");
 					}, true);
@@ -66,7 +66,7 @@ package classes.GameData.Pregnancy.Handlers
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
 						if(pregSlot != 3) AddLogEvent(ParseText("You suddenly feel a kick to your stomach. After the surprise wears off, you realize it was your baby. As you caress your [pc.belly] you feel another kick, and you can't help but smile as you are brimming with joy and motherly affection. It's getting really close to the due date.") , "passive");
 					}, true);		
-				}else if (i == 363){
+				}else if (i == 362){
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
 						if (pregSlot == 3) AddLogEvent(ParseText("Your codex beeps notifiying you that Maki's pregnancy is almost due. <b>You should " + (kGAMECLASS.flags["MAKI_IN_CREW"]?"Check up on him whenever possible":"be there for him at Tavros station when it happends") + ".</b>") , "passive");
 						else AddLogEvent(ParseText("Every day it's getting harder and harder to carry the baby in your womb. Your legs hurt, you are nauseous all the time and your baby bump is getting larger every week. You should rejoice that the struggle is almost over, but you know that you'll miss the feeling of the growing infant inside your womb. Then again, once it's done you can just ride another dick, let them go deep in you, so they can fill you with their baby batter to get you pregnant again! Either way, you should be going into labor any day now.") , "passive");
@@ -76,23 +76,29 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i > 300)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
-						if(kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 25;
-						if(kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
-						if(kGAMECLASS.pc.milkRate < 25) kGAMECLASS.pc.milkRate += 5;
+						if (pregSlot != 3) {
+							kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
+							if(kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 2;
+							if(kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.02;
+							if (kGAMECLASS.pc.milkRate < 25) kGAMECLASS.pc.milkRate += 0.1;
+						}
 					}, true);
 				}
 				else if(i > 200)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1.5, true);
-						if(kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 15;
+						if (pregSlot != 3) {
+							kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
+							if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 2;
+						}
 					}, true);
 				}
 				else
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
+						if (pregSlot != 3) {
+							kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						}
 					}, true);
 				}
 				
@@ -101,7 +107,10 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function makiusTryImpregnate(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):Boolean
 		{
-			return (mother.originalRace == "venarian" || pregSlot != 3) && BasePregnancyHandler.defaultOnTryImpregnate(father, mother, pregSlot, thisPtr);
+			if (mother.originalRace == "venarian"){
+				if (kGAMECLASS.flags["MAKI_STATE"] != 1 || kGAMECLASS.flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]) return false;
+			}else if (pregSlot == 3) return false;
+			return BasePregnancyHandler.defaultOnTryImpregnate(father, mother, pregSlot, thisPtr);
 		}
 		
 		public static function makiusSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
