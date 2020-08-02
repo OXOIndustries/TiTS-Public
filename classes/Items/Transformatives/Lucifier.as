@@ -108,7 +108,7 @@ package classes.Items.Transformatives
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !InCollection(target.skinTone, demonSkinColor))
 				TFList.push(6);
 			// *Grow demon tail
-			if(!target.hasTail(GLOBAL.TYPE_DEMONIC))
+			if(!target.hasTail(GLOBAL.TYPE_DEMONIC) && !target.hasTailCock(GLOBAL.TYPE_DEMONIC))
 				TFList.push(7);
 			// *Increase libido towards 100 (+4 below 50 per dose, +2 above)
 			if(target.libido() < 100)
@@ -282,7 +282,6 @@ package classes.Items.Transformatives
 						if(target.tailGenitalColor != newTailColor) output(" and its coloration changes from [pc.tailGenitalColor] to " + newTailColor);
 						output(", giving it a very alien and demonic feel. When the change completes itself, you find that <b>you now have a demon-like cock tail!</b>");
 						
-						target.tailType = GLOBAL.TYPE_DEMONIC;
 						target.tailGenitalArg = GLOBAL.TYPE_DEMONIC;
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
