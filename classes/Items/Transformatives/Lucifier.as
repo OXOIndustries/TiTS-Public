@@ -282,6 +282,7 @@ package classes.Items.Transformatives
 						if(target.tailGenitalColor != newTailColor) output(" and its coloration changes from [pc.tailGenitalColor] to " + newTailColor);
 						output(", giving it a very alien and demonic feel. When the change completes itself, you find that <b>you now have a demon-like cock tail!</b>");
 						
+						target.tailType = GLOBAL.TYPE_DEMONIC;
 						target.tailGenitalArg = GLOBAL.TYPE_DEMONIC;
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
