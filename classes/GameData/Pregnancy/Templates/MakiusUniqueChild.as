@@ -10,6 +10,7 @@ package classes.GameData.Pregnancy.Templates
 		public function MakiusUniqueChild()
 		{
 			RaceType = GLOBAL.TYPE_VENARIAN;
+			MaturationRate = 1;
 			UniqueParent = "MAKIUS";
 			originalRace = "venarian";
 		}

@@ -169,7 +169,7 @@ package classes.GameData.Pregnancy.Handlers
 			var females:int = Math.random() * (amount - 1);
 			
 			c.NumFemale = c.NumFemale + females;
-			c.NumMale = c.NumMale + ((amount - 1) - females);
+			c.NumMale = c.NumMale + (amount - 1) - females;
 			
 			// Adopt pc's colors:
 			c.skinTone = traitChar.skinTone;

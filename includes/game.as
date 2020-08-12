@@ -3818,6 +3818,8 @@ public function variableRoomUpdateCheck():void
 	else
 	{
 		rooms["RESIDENTIAL DECK 12"].eastExit = undefined;
+		rooms["MAKIUS NURSERY HOME"].removeFlag(GLOBAL.NPC);
+		rooms["NURSERYI16"].removeFlag(GLOBAL.NPC);
 	}
 	
 	/* MHENGA */
