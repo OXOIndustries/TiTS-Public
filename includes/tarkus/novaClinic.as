@@ -4,16 +4,15 @@ public function makiusLeftClinic():Boolean {
 	return flags["MAKI_WORKS_AT_NURSERY"] || flags["MAKI_IN_CREW"] || flags["MAKI_STATE"] == 2;
 }
 
-public function enterNovaClinicFunc():void {
-	author("LukaDoc");
-	setNavDisabled(NAV_NORTH_DISABLE);
+public function enterNovaClinicFunc():Boolean {
 	clearMenu();
+	author("LukaDoc");
 	if (flags["MAKIUS_INTRO"] == undefined) MAKIUS_INTRO1();
 	else{
 		if (makiusLeftClinic()){
 			//kayl
 			showBust("RASKVEL_MALE");
-			output("The Novahome Clinic is in its usual semi-organised state of chaos. The now-acting doctor, a male raskvel named Kayl, is working busily at the front desk. Since there are no other patients standing ahead in line, you can walk right up to him and announce your presence.");
+			output("The Novahome Clinic is in its usual semi-organized state of chaos. The now-acting doctor, a male raskvel named Kayl, is working busily at the front desk. Since there are no other patients standing ahead in line, you can walk right up to him and announce your presence.");
 			output("\n\nHe gazes at you as you approach and immediately breaks into a friendly smile. \"Hey there, [pc.name]. Need treatment?\"");
 		}else{
 			// makius
@@ -25,11 +24,14 @@ public function enterNovaClinicFunc():void {
 			addButton(3, "Appearance", makiusAppearance, undefined, "Appearance", "Make an examination of your own.");
 			if (flags["MAKI_RELATIONSHIP_STATUS"]) addButton(4, "Sex", makiusClinicSex, undefined, "Sex", "Ask him if he has time for a break.");
 		}
+		
 		addButton(0, "Examine", novaClinicExamine);
 		if (pc.HP() >= pc.HPMax()) addDisabledButton(1, "Heal", "Heal", "You feel fine.");
 		else if (pc.hasStatusEffect("Bandaged")) addDisabledButton(1, "Heal", "Heal", "You should wait until your bandages need replacement.");
 		else addButton(1, "Heal", novaClinicHeal, undefined, "Heal", "Get healed by the " + (makiusLeftClinic()?"raskvel nurses.":"good doctor."));
+		addButton(11, "Leave", move, 208);
 	}
+	return true;
 }
 
 public function MAKIUS_INTRO1():void {
@@ -41,10 +43,10 @@ public function MAKIUS_INTRO1():void {
 	output("As you push your way through the door into the clinic, you take in the room before you. It is, as you might have expected, nothing particularly fancy - almost primitive. The room was clearly refabricated before being repurposed, and a trio of raskvel - two female and one male - are busying themselves around the chamber with various tasks. From their clothing, they appear to be nurses or general assistants at this clinic.")
 	output("\n\nYour thoughts are interrupted, however, as a sudden burst of sharp, stinging pain erupts across your scalp" + (pc.horns > 1 ? ", right between your [pc.horns]":"") + ". A metallic jingle somewhere near your [pc.feet] provides an obvious clue to the culprit, but you are too busy clapping a hand instinctively over the sore spot and spitting a curse at the pain to look.");
 	output("\n\nA raskvel in a lab coat immediately rushes to your side. \"Hey, " + pc.mf("Mister", "Miss") + "? Are you alright? Damn piece of crap. I should’ve had this fixed up ages ago… Sorry.\"\n\n");
-	if (pc.isNice()) output("You assure the raskvel that you're fine; your head smarts a little, but it's nothing serious.");
-	else if(pc.isMischievous()) output("You manage to grin wryly and reply that it's a good thing you have such a hard head; you don't think it's anything serious.");
-	else output("Scowling, you angrily agree that he should have fixed that before someone got hurt - he's just lucky it's nothing serious, or you'd teach him a lesson yourself.");
-	output("\"We’ll get the doctor to take a look at that for you - free of charge, naturally.\" He motions for you to follow.");
+	if (pc.isNice()) output("You assure the raskvel you're fine; your head smarts a little, but it's nothing serious");
+	else if(pc.isMischievous()) output("You manage to grin wryly and reply that it's a good thing you have such a hard head; you don't think it's anything serious");
+	else output("Scowling, you angrily agree that he should have fixed that before someone got hurt - he's just lucky it's nothing serious, or you'd teach him a lesson yourself");
+	output(", \"We’ll get the doctor to take a look at that for you - free of charge, naturally.\" He motions for you to follow.");
 	output("\n\nThe clinic is small, but it does have a few rooms for the sick and the injured. You note that only a couple of rooms seem to actually house unhealthy raskvel. \"The name’s Kayl, by the way. I’m the doctor’s apprentice.\" he introduces himself with a smile.");
 	output("\n\nIdly, you give Kayl your name in turn, still gingerly rubbing the tender spot atop your scalp.");
 	clearMenu();
@@ -53,18 +55,18 @@ public function MAKIUS_INTRO1():void {
 }
 
 public function MAKIUS_INTRO2():void {
-	move("NOVA CLINIC OFFICE");
+	moveTo("NOVA CLINIC OFFICE");
 	clearOutput();
 	showBust("MAKIUS", "RASKVEL_MALE");
 	output("At the end of the short hallway, you see a wooden board with a painted arrow and the word \"Office\" scribbled on it. The arrow points to an open door nearby where you presume the doctor practices.");
-	output("\n\nAs you approach, you can see the office can be charitably described as 'organised chaos' befitting the makeshift nature of this clinic. A large table serves as the room's centrepiece and the workplace of the occupant. It's dominated by a computer assembled secondhand from junk, with huge piles of files and data-slabs towering to both sides. Shelves crowd the room, laden with medical tools, reference texts and assorted bits and pieces, adding to the cramped, precarious feel of the chamber.");
+	output("\n\nAs you approach, you can see the office can be charitably described as 'organized chaos' befitting the makeshift nature of this clinic. A large table serves as the room's centerpiece and the workplace of the occupant. It's dominated by a computer assembled secondhand from junk, with huge piles of files and data-slabs towering to both sides. Shelves crowd the room, laden with medical tools, reference texts and assorted bits and pieces, adding to the cramped, precarious feel of the chamber.");
 	output("\n\n\"Doctor Makius, sir?\" he calls out, gingerly moving a box filled with forms out of the way.");
 	output("\n\n\"Hmm? Yes, Kayl?\" the doctor asks, his voice coming from behind his computer.");
 	output("\n\n\"This is " + pc.mf("Mister","Miss") + " Steele, [pc.he] was wounded by our improvised door-bell.\"");
 	output("\n\nYou can hear him sigh and then stand up, coming into view. Now that you take a good look at him, you can see that this doctor is no raskvel, as you might’ve expected.");
 	output("\n\nStanding around six feet tall, the doctor is closer in height to a standard human than the reptilian bunny-like aliens with which he works. Doctor Makius only resembles them in that his appearance also combines some distinct mammalian and reptilian features. His overall form is fundamentally lizard-like, with a short, conical snout and long tail. However, he is covered in fur and has a pair of pointed, dog-like ears atop his head. Grass-green eyes flicker below a forelock of navy blue hair as he studies you in return.");
 	output("\n\nAs the doctor steps around his table, your Codex chirps, signaling that it has identified the doctor’s species as a <i>Venarian</i> with the relevant entry added to your database.");
-	output("\n\nA soft cough diverts your attention back to his smiling face. \"Hello, I’m Makius. The residing doctor in this small clinic. Let me apologise for the doorbell. This is supposed to be a place of healing, not a place where you go to get injured.\" He rubs the back of his neck apologetically, then recomposes himself and extends a clawed hand towards you in a friendly gesture. \"Pleased to make your acquaintance, " + pc.mf("Mister","Miss") + " Steele.\"" + (pc.isAss() ? "Even though politeness moves you to accept his hand, you grip it as firmly as you can, replying that the circumstances could have been more pleasant on your end." : "You warmly shake his hand, telling him that it's a pleasure."));
+	output("\n\nA soft cough diverts your attention back to his smiling face. \"Hello, I’m Makius. The residing doctor in this small clinic. Let me apologize for the doorbell. This is supposed to be a place of healing, not a place where you go to get injured.\" He rubs the back of his neck apologetically, then recomposes himself and extends a clawed hand towards you in a friendly gesture. \"Pleased to make your acquaintance, " + pc.mf("Mister","Miss") + " Steele.\" " + (pc.isAss() ? "even though politeness moves you to accept his hand, you grip it as firmly as you can, replying that the circumstances could have been more pleasant on your end." : "you warmly shake his hand, telling him that it's a pleasure."));
 	output("\n\n\"Let’s step over to an empty room so I can take a look at you,\" he says with a smile, turning to look at his raskvel assistant. \"Kayl, can you finish indexing that batch of forms while I take a look at our friend?\"");
 	output("\n\n\"Right-o, doc,\" he says with a salute. Doctor Makius rolls his eyes, though the smile on his face tells you the gesture wasn’t wasted on him. \"Come on,\" he gently takes hold of your hand and leads you away.");
 	output("\n\nThe examination is swift and efficient. Doctor Makius shows excellent practice as he pokes and prods the sore spot on your head. You question the doctor if everything is alright.");
@@ -236,7 +238,8 @@ public function makiusClinicRecruit():void{
 public function novaClinicExamine():void{
 	clearOutput();
 	author("LukaDoc");
-	move("NOVA CLINIC OFFICE");
+	moveTo("NOVA CLINIC OFFICE");
+	clearMenu();
 	if (makiusLeftClinic()){
 		//kayl
 		showBust("RASKVEL_MALE");
@@ -245,7 +248,7 @@ public function novaClinicExamine():void{
 		output("\n\nHe procures a handheld scanner. It looks old, and you can see tape holding the thing together, still you say nothing.");
 		output("\n\n\"Just a moment, I need to get this thing to work.\" he says, fiddling around with the scanner.");
 		output("\n\n\"No problem.\"");
-		output("\n\nAfter a moment a few beeps and a soft light indicates the scanner has started working. Kayl runs it across your body, checking for any signs of disease and other maladies.");
+		output("\n\nAfter a moment a few beeps and a soft light indicate the scanner has started working. Kayl runs it across your body, checking for any signs of disease and other maladies.");
 	}else{
 		//makius
 		showBust(makiusBust());
@@ -440,7 +443,7 @@ public function novaclinicFinalCheck(operation:Array):void{
 			output("\n\nYou smile and thank the doctor for the good news.");
 		}
 	}
-	output("Your business done for the moment, you decide to bid the " + (makiusLeftClinic()?"raskvel":"good doctor") + " farewell and leave the clinic.");
+	output(" Your business done for the moment, you decide to bid the " + (makiusLeftClinic()?"raskvel":"good doctor") + " farewell and leave the clinic.");
 	clearMenu();
 	addButton(0, "Back", move, "NOVA CLINIC");
 }
@@ -450,7 +453,7 @@ public function novaClinicHeal(freebie:Boolean = false):void{
 	clearOutput();
 	author("LukaDoc");
 	processTime(15);
-	move("NOVA CLINIC OFFICE");
+	moveTo("NOVA CLINIC OFFICE");
 	output("You tell the doctor that you'd like to get some treatment while you're here; better to be safe than sorry, right?");
 	clearMenu();
 	if (makiusLeftClinic()){
@@ -460,9 +463,9 @@ public function novaClinicHeal(freebie:Boolean = false):void{
 	}else{
 		//makius
 		showBust(makiusBust());
-		output("\n\n\"Of course, let’s go then, \" he says, motioning for you to follow.");
+		output("\n\n\"Of course, let’s go then,” he says, motioning for you to follow.");
 	}
-	output("\n\n\"You follow the " + (makiusLeftClinic()?"raskvel":"Venarian") + " to an available room. As you might have expected, it's nothing particularly fancy, but it looks clean enough and it does have plenty of privacy. You " + (!pc.isNude()?"take off your clothes" + (pc.exhibitionism() < 50 && pc.isCrotchGarbed()?"down to your [pc.lowerUndergarment] and settle yourself":"until you're completely nude and settle your naked body"):"settle your naked body") + " upon a low-slung examining table - obviously, the bulk of the races that go through here are raskvel and gabilani - and wait for Dr. " + (makiusLeftClinic()?"Kayl":"Makius") + " to gather his instruments.");
+	output("\n\n\"You follow the " + (makiusLeftClinic()?"raskvel":"Venarian") + " to an available room. As you might have expected, it's nothing particularly fancy, but it looks clean enough and it does have plenty of privacy. You " + (!pc.isNude()?"take off your clothes" + (pc.exhibitionism() < 50 && pc.isCrotchGarbed()?" down to your [pc.lowerUndergarment] and settle yourself":"until you're completely nude and settle your naked body"):"settle your naked body") + " upon a low-slung examining table - obviously, the bulk of the races that go through here are raskvel and gabilani - and wait for Dr. " + (makiusLeftClinic()?"Kayl":"Makius") + " to gather his instruments.");
 	output("\n\nHe procures a light. It looks like it came from an old mining helmet," + (makiusLeftClinic()?" and you can see his head tilt from the weight,":"") + " still you say nothing.");
 	output("\n\n\"Just " + (makiusLeftClinic()?"a moment, while I check your body,\" he says, as he starts to examine your wounds" + (pc.isNude() || !(pc.exhibitionism() < 50 && pc.isCrotchGarbed())?", paying no attention to your naked [pc.groin]" + (pc.exhibitionism() >= 50?", despite how hard you're trying to make him look at it":""):"") +".":"be still for a moment, while I examine your wounds,\" Maki " + (pc.isNude() || !(pc.exhibitionism() < 50 && pc.isCrotchGarbed())?"stammers, trying his best to observe you, while avoiding staring at your [pc.crotch]" + (pc.exhibitionism() >= 50?", which is hard considering that you are trying to make him look at it":""):"explains as he observes your wounds") + "."));
 	if (pc.HP() > pc.HPMax() / 2){
@@ -521,7 +524,7 @@ public function novaClinicHealYes(cost:int = 0):void{
 	output("\n\nThe doctor calls one of the nurses, and not a minute later and she is already walking into the room with supplies. " + (pc.isNude() || !(pc.exhibitionism() < 50 && pc.isCrotchGarbed())?"She can't help herself from ogling your nude form.":""));
 	output("\n\n\"The nurse will take it from here,\" the " + (makiusLeftClinic()?"raskvel":"Venarian") + " says and, after giving the nurse her instructions, leaves the room.");
 	output("\n\n\"I need you to relax, while I take care of your wounds\" she says" + (pc.hasCock()?", her eyes transfixed on " + (pc.isNude() || !(pc.exhibitionism() < 50 && pc.isCrotchGarbed())?"your naked [pc.groin]":"the bulge in your [pc.lowerUndergarment]"):"") + ". She puts on disposable gloves, opens a bottle of healing paste and carefully applies it over your wounds. The paste hurts for a little bit, but then it's replaced with a soft warmth." + (pc.HP() <= pc.HPMax() / 2?" For your more serious wounds she grabs a few bandages and covers your wounds.":"") + (pc.hasCock()?" During the treatment, she is clearly biting her lips in restraint and trying her best to seem professional. At one point, however, she couldn't help herself and touches your " + (pc.isNude() || !(pc.exhibitionism() < 50 && pc.isCrotchGarbed())?"[pc.cock]":"bulge") + ", leaving her hand in place far longer than medically excusable.":""));
-	output("\n\n\"We're all done, [pc.name] " + (pc.HP() <= pc.HPMax() / 2?"Just keep the bandages on for at least a day. ":"") + "she cheerily says.");
+	output("\n\n\"We're all done, [pc.name]" + (pc.HP() <= pc.HPMax() / 2?" Just keep the bandages on for at least a day.\"":"\"") + " she cheerily says.");
 	output("\n\nAs you leave the examination room, you feel as strong as an ox and ready for some more tussling.");
 	if (pc.HP() <= pc.HPMax() / 2) pc.createStatusEffect("Bandaged", 50, 0, 0, 0, false, "Icon_Drug_Pill_Heal", "You have bandages with healing agent covering your body, slowly healing you outside of battle.", false, 1440);
 	pc.HP(pc.HPMax() / 2);
@@ -561,10 +564,11 @@ public function novaClinicHealNo():void{
 
 public function makiusClinicSex():void{
 	clearOutput();
+	
 	author("LukaDoc");
 	processTime(20);
 	showBust(makiusBust(2));
-	move("NOVA CLINIC OFFICE");
+	moveTo("NOVA CLINIC OFFICE");
 	output("You ask " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"your boyfriend":"the doctor") + " if he has time for a break.");
 	output("\n\n\"I'm actually quite busy,\" he says as he finishes off some paperwork. You lean closer and whisper exactly what you meant. Maki starts blushing immediately and visibly, his ears flatten in embarrassment, tail swishing to and fro.");
 	output("\n\n\"I-I guess I can make some time. " + (flags["PC_SEEN_BREEDER_MAKI"] == true && pc.hasCock()?"But I'll be taking suppressants. Going into heat is a huge distraction. Maybe if I was back on your ship. ":"") + "He calls for Kayl, trying his best to hide his embarrassment. \"Kayl! I need you to take over from me, while I go examine this p-patient. [pc.heShe] really needs...\"");
@@ -585,5 +589,6 @@ public function makiusClinicSex():void{
 		output("\n\nYou simply nod in reply. " + (!pc.isNude()?"Slowly you get off the bed and begin to peel off your clothes":"Being naked already, you simply climb into the bed and wait for him, letting him ogle every inch of your bare form") + ". Not wanting to be left behind, Maki begins taking off his clothes, and soon you are both naked. The Venarian tries to look away in embarrassment, but can't seem to stop himself from eyeing you with lust. You respond by striking a pose" + (pc.tone > 49?", flexing your muscles":"") + " and asking if he likes what he sees.");
 		output("\n\n\"I love what I see!\" He replies with a smile, licking his lips. \"So, what should we do?\"");
 	}
+	clearMenu();
 	makiusSexMenu();
 }

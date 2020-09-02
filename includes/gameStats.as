@@ -6514,7 +6514,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							
 							output2("\n<b>* Makius, Last seen state:</b> ");
 							if (flags["MAKI_STATE"] == 2) output2("Pregnant");
-							if (flags["MAKI_STATE"]) output2("Breeder");
+							else if (flags["MAKI_STATE"]) output2("Breeder");
 							else output2("Normal");
 						}
 						
