@@ -28,7 +28,7 @@ package classes.GameData.Pregnancy.Handlers
 			_basePregnancyChance = 0.2;
 			_canImpregnateButt = true;
 			_pregnancyQuantityMaximum = 2;
-			_definedAverageLoadSize = 400;
+			_definedAverageLoadSize = 10;
 			
 			_onTryImpregnate = makiusTryImpregnate;
 			_onSuccessfulImpregnation = makiusSuccessfulImpregnation;
@@ -38,7 +38,7 @@ package classes.GameData.Pregnancy.Handlers
 				if (i == 25){
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
 						if (pregSlot == 3){
-							if (kGAMECLASS.makius.hasStatusEffect("makiusPregnancyReveal")) AddLogEvent(ParseText("Your codex beeps, notifiying you of a new message: <b>Maki wants to tell you something important in person.</b>") , "passive");
+							if (kGAMECLASS.makius.hasStatusEffect("makiusPregnancyReveal")) AddLogEvent(ParseText("Your codex beeps, notifying you of a new message: <b>Maki wants to tell you something important in person.</b>") , "passive");
 							else AddLogEvent(ParseText("You find yourself fantasizing about Maki, picturing how big his belly will get from his pregnancy.") , "passive");
 						}
 						else AddLogEvent(ParseText("A scent that, normally, wouldn't bother you is suddenly unbearably rank. Lately your sense of smell has been getting stronger and you often wake up nauseous.") , "passive");
@@ -64,12 +64,12 @@ package classes.GameData.Pregnancy.Handlers
 					}, true);				
 				}else if (i == 350){
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						if(pregSlot != 3) AddLogEvent(ParseText("You suddenly feel a kick to your stomach. After the surprise wears off, you realize it was your baby. As you caress your [pc.belly] you feel another kick, and you can't help but smile as you are brimming with joy and motherly affection. It's getting really close to the due date.") , "passive");
+						if(pregSlot != 3) AddLogEvent(ParseText("You suddenly feel a kick to your stomach. After the surprise wears off, you realize it was your baby. As you caress your [pc.belly] you feel another kick, and you can't help but smile as you are brimming with joy and motherly affection. It's getting close to the due date.") , "passive");
 					}, true);		
 				}else if (i == 362){
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						if (pregSlot == 3) AddLogEvent(ParseText("Your codex beeps notifiying you that Maki's pregnancy is almost due. <b>You should " + (kGAMECLASS.flags["MAKI_IN_CREW"]?"Check up on him whenever possible":"be there for him at Tavros station when it happends") + ".</b>") , "passive");
-						else AddLogEvent(ParseText("Every day it's getting harder and harder to carry the baby in your womb. Your legs hurt, you are nauseous all the time and your baby bump is getting larger every week. You should rejoice that the struggle is almost over, but you know that you'll miss the feeling of the growing infant inside your womb. Then again, once it's done you can just ride another dick, let them go deep in you, so they can fill you with their baby batter to get you pregnant again! Either way, you should be going into labor any day now.") , "passive");
+						if (pregSlot == 3) AddLogEvent(ParseText("Your codex beeps notifiying you that Maki's pregnancy is almost due. <b>You should " + (kGAMECLASS.flags["MAKI_IN_CREW"]?"Check up on him whenever possible":"be there for him at Tavros station when it happens") + ".</b>") , "passive");
+						else AddLogEvent(ParseText("Every day it's getting harder and harder to carry the baby in your womb. Your legs hurt, you are nauseous all the time and your baby bump is getting larger every week. You should rejoice that the struggle is almost over, but you know that you'll miss the feeling of the growing infant inside your womb. Then again, once it's done, you can just ride another dick. Let them go deep in you, so they can fill you with their baby batter to get you pregnant again! Either way, you should be going into labor any day now.") , "passive");
 					}, true);
 				}
 				// Progressive changes with no text:

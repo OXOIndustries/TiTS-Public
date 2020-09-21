@@ -171,7 +171,7 @@ public function makiusAppearance():void{
 			break;
 		}
 	}
-	output("\n\nHe wears comfortable looking clothes: a sleeveless, unadorned black shirt and " + (makiusMasculine()?"comfortable":"loose") + ", ankle-length pants, which are held up by a belt around his waist. There is a slit cut in the back of his pants that lets his long, furry, lizard-like tail to poke through. He wears a professional-looking labcoat over the whole ensemble, though he doesn't button it up, pockets bulging with various accoutrements of his profession.");
+	output("\n\nHe wears comfortable looking clothes: a sleeveless, unadorned black shirt and " + (makiusMasculine()?"comfortable":"loose") + ", ankle-length pants, which are held up by a belt around his waist. There is a slit cut in the back of his pants that lets his long, furry, lizard-like tail poke through. He wears a professional-looking labcoat over the whole ensemble, though he doesn't button it up, pockets bulging with various accoutrements of his profession.");
 	output("\n\nHis eyes, the same green as a patch of wet grass, sparkle " + (flags["MAKI_STATE"]?"lustfully over a lewd smirk and he flicks a lock of his mane of deep navy blue hair out of one eye in a calculatedly seductive gesture":"above a friendly smile, he flicks a lock of his mane of deep navy blue hair out of one eye") + ". The fur on his face and down his front, from what you have seen, is white, but the fur on his back is a rich blue color, a slightly brighter shade than his hair. He bounces around restlessly, clawed toes clicking on the floor, and his hands are restless " + (flags["MAKI_STATE"]?"nervously wandering all over his body, stroking random patches of fur.":"playing with some small oddments he keeps pulling out of his pockets."));
 	if (!makius.analVirgin || !makius.cockVirgin){
 		output("\n\nYou know that a genital slit in his crotch can reveal his Venarian penis, very human-like in shape, but with a tip covered in nubs that hardens during orgasm. It is " + (makiusMasculine()?"nine":"seven") + " inches long and " + (makiusMasculine()?"two":"one and a half") + " inches thick, and " + (flags["MAKI_STATE"]?"he's evidently quite turned on, if the telling tenting of his pants is any indication. This close to him, you can smell his scent; a rich and heady musk that overwhelms you, making you realize that you have a sudden craving to give him a good fuck.":"is currently concealed due to his lack of arousal.") + (flags["MAKI_STATE"] == 2?" The fact that he is pregnant only enhances your lust.":""));
@@ -239,10 +239,10 @@ public function makiusEvents(atRoom:Boolean):Boolean{
 	return true;
 }
 
-public function makiusCrewMenu():void{
+public function makiusCrewMenu(noEvents:Boolean = false):void{
 	clearOutput();
 	processTime(10);
-	if(makiusEvents(true)){
+	if(noEvents || makiusEvents(true)){
 		author("LukaDoc");
 		showBust(makiusBust(1));
 		output("You ask the doctor if he wants to come to his room.\n\n");
@@ -253,7 +253,7 @@ public function makiusCrewMenu():void{
 			else output("\"You want to go to my room?\" You nod. \"Ok, sure... let's go.\" Maki gets up and starts on his way towards his quarters.");
 			output("\n\n");
 		}
-		output("The doctor's room is as you expected quite functional, with things laid out neatly to maximise space. A small personal computer sits on a sturdy table in one corner of the room, while in another he has a comfortable-looking couch. Next to it is a bookcase which holds a mixture of medical textbooks and fiction, showing that he must enjoy reading as a leisure activity. A comfortable bed, extra-soft, with a large, fluffy hug-pillow taking up most of the space. Nearby is a classy looking sound system, several years out of date, but was the top model when it was new.");
+		output("The doctor's room is as you expected quite functional, with things laid out neatly to maximize space. A small personal computer sits on a sturdy table in one corner of the room, while in another he has a comfortable-looking couch. Next to it is a bookcase which holds a mixture of medical textbooks and fiction, showing that he must enjoy reading as a leisure activity. A comfortable bed, extra-soft, with a large, fluffy hug-pillow taking up most of the space. Nearby is a classy looking sound system, several years out of date, but was the top model when it was new.");
 		output("\n\n" + (makiusHasMedlab()?"You seat yourself on Maki's bed, which is as comfortable as it looks.":"Only after seating yourself on Maki's comfortable bed does Maki notice your arrival."));
 		if (flags["MAKI_STATE"] == 2){
 			output("\n\nMaki sits beside you and wraps his arm around you, kissing you passionately on your lips. You respond, kissing your pregnant male lover with equal passion, placing your hand " + (makiusPregLevel() < 2?"on his soon to be bloated belly, filled with":"on his bloated belly, round and swollen with") + " life.");
@@ -303,7 +303,10 @@ public function makiusMenu():void{
 		addButton(10, "Evict", makiusEvict);
 	}else{
 		addButton(10, "Recruit", makiusNurseryRecruit);
-		if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"]) addButton(11, "Offer Job", makiusNurseryOfferJob, undefined, "Offer job", "Offer Makius a job at the nursery");
+		if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"]) {
+			if (!flags["BRIGET_MET"]) addDisabledButton(11, "Offer Job", "Offer him a job at the nursery", "It'd probably be a good idea to actually go speak to the person overseeing the nursery on your behalf before offering jobs to people!");
+			else if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"]) addButton(11, "Offer Job", makiusNurseryOfferJob, undefined, "Offer job", "Offer Makius a job at the nursery");
+		}
 	}
 	addButton(14, "Back", makiusLeave);
 }
@@ -323,9 +326,9 @@ public function makiusPets():void{
 		output("\n\nAs he nuzzles you, you feel something poking against you, and you can't resist teasingly asking if Maki really gets that hot and bothered over a kiss.");
 		output("\n\n\"Of course I do.\n\n");
 		if (flags["MAKI_RELATIONSHIP_STATUS"] == 1) output("Kissing is the most intimate form of contact. It's like you are sharing all your feeling with me at once. You could say it's, overwhelming... plus you are such a great kisser, so I really can't help it.\"");
-		else output("I love you very much, [pc.name]. And when we kiss I feel so close to you that I can share everything you mean to me, and in turn I can feel how much I mean to you as well. So, can you really blame me for being turned on by kissing my mate? Plus, on top of all that, you are a great kisser... so I can't help it.\"");
+		else output("I love you very much, [pc.name]. And when we kiss, I feel so close to you that I can share everything you mean to me, and in turn I can feel how much I mean to you as well. So, can you really blame me for being turned on by kissing my mate? Plus, on top of all that, you are a great kisser... so I can't help it.\"");
 		output("\n\nWords fail you, so you simply pull him close and hug him tenderly, one hand stroking the mane that runs down the back of his neck as you do so. Maki inhales deeply, taking in your scent as he enjoys the closeness you two are sharing. There is no need for words right now, so you just enjoy your time, relaxing with your Venarian lover.");
-	}else output("\n\nYou bring your other hand to scratch his belly causing his paper-thin veneer of resistance to collapse and his stifled chortles turn into bellowing laughter. He rolls around on himself until his back is on your " + (pc.isTaur()?"sheeting":"lap") + ", rubbing it all over as he tries, and fails, to control himself. As you slow down the scratchings and the chuckling stops, you see his face stamped with utter contentment, eyes closed and with tongue lolling out of open muzzle.");
+	}else output("\n\nYou bring your other hand to scratch his belly causing his paper-thin veneer of resistance to collapse and his stifled chortles turn into bellowing laughter. He rolls around on himself until his back is on your " + (pc.isTaur()?"sheeting":"lap") + ", rubbing it all over as he tries, and fails, to control himself. As you slow down the scratching and the chuckling stops, you see his face stamped with utter contentment, eyes closed and with tongue lolling out of open muzzle.");
 	output("\n\nEventually, reluctantly, you let him go and tell him it's probably time you were going. Maki whimpers in disappointment before releasing you and rolling off you.");
 	output("\n\n\"Duty calls, I guess....\"\n\nYou agree, and promise to visit again when you can.\n\n\"Well, I should probably get back to my research as well. See you later?\"\n\nYou assure him that he will, and then politely excuse yourself.");
 	clearMenu();
@@ -355,10 +358,10 @@ public function makiusDrinkMilk():void{
 		output("\n\nWell, if he insists... You give his breasts a few more squeezes, gently cupping and milking them with your hands to get him ready before settling yourself closer and leaning in with your mouth, gently closing your lips around his nipple, slowly rolling the tip of your [pc.tongue] over it. Maki hugs you close, pressing your face against his breast and coiling his tail around you, one hand stroking the back of your head.");
 		output("\n\n\"Yes, drink it all my mate. I only wish I had more to give you. Maybe when you finally knock me up?\" He chuckles to himself.");
 		output("\n\nYou grunt a muffled \"maybe\" around his tit and instead curl your arms around his waist for support, teasing and playing with the nipple in your mouth, tongue stroking it and teeth gently pressing it even as your lips suck against it. Maki groans and whimpers at your ministrations, while you're rewarded with the first drop of Venarian milk touching your tongue. There's a warm sweetness to it, maybe a hint of vanilla, but you haven't had enough yet to really say for sure. Still, it encourages you to suckle harder, bringing one hand back to cup the breast you're currently nursing from and gently massage it in order to better coax his limited milk to flow.");
-		output("\n\nThe Venarian's excitement is clear, his shaft stands erect and a bead of pre forms at its tip. However he doesn't seem concerned with that at the moment. He pulls you closer, trying to get you to further lean on his chest, pressing himself against you and caressing your body whenever he gets the opportunity to. He whimpers in delight as his milk flows through his sensitive nipple.");
+		output("\n\nThe Venarian's excitement is clear, his shaft stands erect and a bead of pre forms at its tip. However, he doesn't seem concerned with that at the moment. He pulls you closer, trying to get you to further lean on his chest, pressing himself against you and caressing your body whenever he gets the opportunity to. He whimpers in delight as his milk flows through his sensitive nipple.");
 		output("\n\n\"Drink it up, [pc.name]. It's all yours.\" He coos gently in your [pc.ear].");
 		output("\n\nAs if you need any further encouragement, you attack his breast with renewed gusto, your efforts finally coaxing a slow, steady trickle of sweet Venarian milk into your mouth, allowing you to swallow down several delicious mouthfuls of its tasty goodness. However, after no more than four swallows, it seems quite obvious that you've sucked this breast dry; while he's obviously enjoying it, you're not getting any more milk, and so you switch to his other breast. Don't want him to feel lopsided now, right?");
-		output("\n\nYou resume suckling with a vengeance, eager for more of the tasty liquid treat your alien boyfriend is holding; as aroused as he is, for you can feel his cock jabbing wetly against your belly, it doesn't take long for you to coax another three-four mouthfuls of delicious milk from him. Alas, that seems to be all of it, though you stubbornly keep nursing for another few minutes, much to Maki's evident delight. Finally, you accept that you've drained him completely and you let go, hiccuping softly as the air you accidentally swallowed unsettles your stomach.");
+		output("\n\nYou resume suckling with a vengeance, eager for more of the tasty liquid treat your alien boyfriend is holding; as aroused as he is, for you can feel his cock jabbing wetly against your belly, it doesn't take long for you to coax another three-four mouthfuls of delicious milk from him. Alas, that seems to be all of it, though you stubbornly keep nursing for another few minutes, much to Maki's evident delight. Finally, you accept that you've drained him completely and you let go, hiccupping softly as the air you accidentally swallowed unsettles your stomach.");
 		output("\n\nMaki draws you close into a nuzzle, whimpering as he rubs himself against you. \"Don't worry, my mate. Venarians are very productive, I'll have more milk for you in a little while.\" He smirks at you playfully. \"Though I would have much more if you went ahead and got me pregnant.\"");
 		output("\n\nHe's really eager for you to knock him up, isn't he, you tease him.");
 		output("\n\n\"Of course I am. I want your pups so badly...\" He whimpers. \"B-But I'll endure until you are ready.\"");
@@ -368,7 +371,7 @@ public function makiusDrinkMilk():void{
 	}else{
 		output("\n\nMilk begins to flow, slowly but freely, from his breasts at your touch, the engorged mammaries clearly having plenty of milk to spare.");
 		output("\n\nMaki moans, your touch clearly sending ripples through the Venarian's sensitive bosom. \"[pc.name], my mate. As much as I enjoy your touch, you shouldn't waste milk, you know?\" He smiles playfully at you.");
-		output("\n\nWell, if he's so eager to get started without foreplay, you settle yourself closer and lean in with your mouth, gently closing your lips around his nipple, slowly rolling the tip of your [pc.tongue] over it. Almost immediately, a spurt of warm Venarian milk hits your tongue, filling your tastebuds with its sweet, vanilla-tinged richness; a strong suckle and your mouth is filled with creamy goodness, which you swallow down without hesitation. Maki coos, wrapping his tail and arms around you in a loving hug, pressing your head close to his breast and nuzzling you affectionately as you drain his soft orb of it's bounty.");
+		output("\n\nWell, if he's so eager to get started without foreplay, you settle yourself closer and lean in with your mouth, gently closing your lips around his nipple, slowly rolling the tip of your [pc.tongue] over it. Almost immediately, a spurt of warm Venarian milk hits your tongue, filling your tastebuds with its sweet, vanilla-tinged richness; a strong suckle and your mouth is filled with creamy goodness, which you swallow down without hesitation. Maki coos, wrapping his tail and arms around you in a loving hug, pressing your head close to his breast and nuzzling you affectionately as you drain his soft orb of its bounty.");
 		output("\n\nYou moan appreciatively into his breast, gurgling the half-mouthful of milk already there, and swallow before starting to suckle in earnest. With how eager his breast seems to be to release itself, you don't need much force or action; you just lay there in Maki's arms, wrapping your own arms around his waist for support, and gently nurse from him, feeling his warmth against your [pc.skin] and listening to his heartbeat, feeling safe, secure and comfortable as you do.");
 		output("\n\nMaki is happy to nuzzle you and draw you closer to him, pressing his " + makiusBellyDescriptor() + " against you. His roaming hands caress every inch of you he can manage without disturbing your nursing in an act of pure affection.");
 		output("\n\n\"[pc.name]. I love you,\" he whispers into your [pc.ears] between his nuzzling and cooing.");
@@ -403,7 +406,7 @@ public function makiusEat():void{
 	output("\n\n\"Try out the tea.\"");
 	output("\n\nYou do as he suggests. It's slightly sweet and a bit citrusy, before you can say anything Maki explains,");
 	output("\n\n\"Herbs and dried fruit. These aren't from my home planet, but I read they are very invigorating. Plus, it's delicious.\"");
-	output("\n\nHe won't be getting any arguments from your end. The tea compliments the taste of his sandwiches nicely, helping the flavor spread along your tongue. Overall it's a simple meal, certainly nothing compared to a fancy restaurant or a properly homecooked meal. But it's tasty and healthy, according to your Venarian doctor. Plus the company is good. You find yourself stealing glances at the Venarian, while he does the same." + (flags["MAKI_STATE"] > 0?" Though you do detect a certain hunger in the way he keeps eyeing you.":""));
+	output("\n\nHe won't be getting any arguments from your end. The tea compliments the taste of his sandwiches nicely, helping the flavor spread along your tongue. Overall, it's a simple meal, certainly nothing compared to a fancy restaurant or a properly homecooked meal. But it's tasty and healthy, according to your Venarian doctor. Plus, the company is good. You find yourself stealing glances at the Venarian, while he does the same." + (flags["MAKI_STATE"] > 0?" Though you do detect a certain hunger in the way he keeps eyeing you.":""));
 	output("\n\nAll too soon you are done; you eat the last bite and take one last sip out of your tea and pat your [pc.belly].");
 	output("\n\n\"Dessert?\" You hear Maki offer.");
 	
@@ -426,7 +429,7 @@ public function makiusEatYes():void{
 	if (flags["MAKI_STATE"] > 0 && !makiusMasculine()){
 		output("Maki takes off his shirt, exposing his breasts for you. \"How about some milk?\" He asks, cupping his breast and smiling at you.");
 		output("\n\nWell, since he's offering so nicely, and you do feel a little thirsty... You close the distance between the two of you, swaying your hips from side to side in a sensual manner as you get closer, watching Maki's reaction to your flirtations.");
-		output("\n\nThe Venarian chuckles. \"Cut it out, [pc.name]. You are sexy enough for me without putting up any kind of show, now come here and help yourself. I'm need to be drained anyway, so drink to your heart's content.\" He opens his arms, inviting you into his embrace.");
+		output("\n\nThe Venarian chuckles. \"Cut it out, [pc.name]. You are sexy enough for me without putting up any kind of show, now come here and help yourself. I need to be drained anyway, so drink to your heart's content.\" He opens his arms, inviting you into his embrace.");
 		output("\n\nYou roll your eyes and then slide nimbly into his arms, placing a quick kiss on his lips before bending your head down to start playing with his nipple, teasing the pink pearl with your lips and the tip of your [pc.tongue] before opening your mouth and closing it around his nipple, feeling the first beads of milk already seeping onto your tongue. Mmm, sweet.");
 		output("\n\nMaki lets out a coo of delight, hugging you and " + (pc.hasHair()?"ruffling your hair":"rubbing your head") + " lovingly. He thrusts his chest forward, making himself more accessible to your ministrations. You suckle with languid, luxurious gulps, steadily milking him of his sweet alien milk and swallowing it down.");
 		output("\n\nTime passes blissfully by until you have " + (flags["MAKI_STATE"] == 1?"drained his breasts":"had your fill") + " and you remove your mouth from his nipple with a wet pop. Snuggling up against your fluffy boytoy, you realize that he hasn't had any dessert - or \"dessert\" - of his own, and you ask if he's on a diet.");
@@ -438,7 +441,7 @@ public function makiusEatYes():void{
 		output("\n\n\"I'll be getting my dessert soon enough.\" He smiles mischievously at you, through half-lidded eyes. Now that sounds enticing.");
 		if (pc.hasCock()){
 			output("\n\nMaki spins you around, pinning you against the chair. Slowly he kneels before you, pulling your lower [pc.lowerUndergarment] apart to reveal your [pc.cocksLight]. You watch him work eagerly, anticipation thrilling through you and stirring your [pc.cockBiggest] towards erection. All it takes is a few light caresses from the amorous Venarian before you are rock hard before him. Without missing a beat, he licks his lips and engulfs your [pc.cockNoun], licking and sucking you into his mouth as he begins bobbing his head.");
-			output("\n\nPleasure sparks and surges across your [pc.skin] as his warm, wet mouth and lashing tongue stroke and tease your shaft, tantalising you and steadily pushing you to the peaks of pleasure. You shiver and shudder in your seat as his ministrations bring you to the edge, the coiling tongue stroking all the right spots, his mouth so hot and wet across your sensitive skin...");
+			output("\n\nPleasure sparks and surges across your [pc.skin] as his warm, wet mouth and lashing tongue stroke and tease your shaft, tantalizing you and steadily pushing you to the peaks of pleasure. You shiver and shudder in your seat as his ministrations bring you to the edge, the coiling tongue stroking all the right spots, his mouth so hot and wet across your sensitive skin...");
 			output("\n\nYou barely have time to warn him as you cum into his waiting mouth. Maki not being surprised at your discharge at all, drinks all of your load, cooing in appreciation as you fill his mouth with your [pc.cumNoun]. You sigh in pleased satisfaction as you finish, slumping in your seat as the last of your [pc.cumVisc] seed flows into Maki's mouth. Maki licks his lips and cleans up your [pc.cock], before getting up with a bright smile.");
 			output("\n\n\"Thanks for the dessert, [pc.name].\"");
 			output("\n\n\"It was your pleasure\", you reply, a small chuckle escaping you at your own lame pun.");
@@ -447,7 +450,7 @@ public function makiusEatYes():void{
 			output("\n\nHow can you ever forget? You kneel before him and plant a kiss on his " + makiusBellyDescriptor() + " before standing up and, with a wave goodbye, head back to the bridge.");
 		}else{
 			output("\n\nMaki wraps your lips into a deep kiss, thrusting his tongue into your mouth to pull your own into his. He tilts his head and makes out with you hungrily. You do your best to give as good as you get, your [pc.tongue] tangling against his, grinding your body against his own, feeling his hard cock poking against you, precum starting to soak through his clothing.");
-			output("\n\nYou break the kiss to catch your breath, but are soon pulled back into a second one, just as deep as the first. You let out a muffled protest, but it's half-hearted, your arms squeezing Maki close to you, your hands running up to play with his hair at the base of his neck. Maki whimpers in delight, continuing to vigorously make out with you. After what feels like an eternity he breaks the kiss. A thin strand of saliva links your lips together before the Venarian licks it off.");
+			output("\n\nYou break the kiss to catch your breath, but are soon pulled back into a second one, just as deep as the first. You let out a muffled protest, but it's half-hearted, your arms squeezing Maki close to you, your hands running up to play with his hair at the base of his neck. Maki whimpers in delight, continuing to vigorously make out with you. After what feels like an eternity, he breaks the kiss. A thin strand of saliva links your lips together before the Venarian licks it off.");
 			output("\n\n\"Thanks for the dessert, [pc.name].\"");
 			output("\n\n\"It was my pleasure\", you reply, still snuggling against him.");
 			output("\n\nYou cuddle with him a while longer, then apologize, saying you have to leave. Maki nods and lets you up, and you wave your lover goodbye before heading back to the bridge.");
@@ -467,7 +470,7 @@ public function makiusEatYes():void{
 		output("\n\nWell... if he's good, you'll think about it, you teasingly tell him.");
 	}else if (flags["MAKI_RELATIONSHIP_STATUS"] == 2){
 		output("\n\n\"Yes, I am.\" He leaves his chair and saunters towards you, hugging you and nuzzling you affectionately.");
-		output("\n\nYou hug him back, asking him playfully if this is his idea of dessert. Instead of replying, he grins at you and wraps your lips into a deep kiss, taking advantage of your surprise to sneak his tongue into your mouth to dance with your own. You moan into his mouth and kiss him back, your own [pc.tongue] " + (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)? "easely keeping up":"doing its best keep up") + " with him, your arms wrapping around him and pulling him closer in a possessive embrace. You run your hands up into his hair, one sliding so far as to play with his ears, grinding your [pc.breasts] against his own chest.");
+		output("\n\nYou hug him back, asking him playfully if this is his idea of dessert. Instead of replying, he grins at you and wraps your lips into a deep kiss, taking advantage of your surprise to sneak his tongue into your mouth to dance with your own. You moan into his mouth and kiss him back, your own [pc.tongue] " + (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)? "easily keeping up":"doing its best to keep up") + " with him, your arms wrapping around him and pulling him closer in a possessive embrace. You run your hands up into his hair, one sliding so far as to play with his ears, grinding your [pc.breasts] against his own chest.");
 		output("\n\nMaki wraps you into a tight embrace, tail encircling you to help him come as close as possible. He continues kissing you with abandon, drinking in the pleasure of being with his mate. You share his kisses with equal passion, absently noting the pressure of his erection tenting against your belly; mischief fills you and one hand snakes away from his hair to teasingly grope his cock through his clothes.");
 		output("\n\nMaki breaks the kiss with a gasp, still holding you tightly. \"Thanks for the dessert,\" he whispers into your ear.");
 		output("\n\n\"It was your pleasure\", you reply, still holding him. You stroke his shaft twice, then wriggle away from him, explaining it's time you got back to the bridge.");
@@ -545,7 +548,7 @@ public function makiusEatSex():void{
 	}else if (flags["MAKI_STATE"] == 1){
 		output("\n\nMaki groans in relief. \"Finally! This is exactly what I was hoping you'd suggest [pc.name]. I even considered making an aphrodisiac tea for you.\"");
 		output("\n\nHe wastes no time shedding his clothes, standing before you in all his naked glory. " + (makiusMasculine()?"Cock already fully erect and ready for action":"Pert bosom already sporting erect nipples, cock fully erect and ready for action") + ". He turns around and walks towards the bed, swaying his full butt side to side as his tail accompanies the motions like a tantalizing pendulum; you can see moisture gathering on his ass crack, proof that his ass is wet and as ready as the rest of him. He sits on the bed and looks at you in anticipation. \"Dessert is served,\" he says with a seductive smile.");
-		output("\n\nYou greedily eye the treat on display for you, already feeling the arousal spiking through you. " + (!pc.isNude()?"Your [pc.gear] almost feel like they're strangling you and you hastely to cast them aside, striding":"You stride") + " to close the distance and seize your alien lover's lips with your own. Maki replies in kind, running his hands over your body in an attempt to arouse you further. You shiver in pleasure, mind already reeling with the possibilities of how you will take him...");
+		output("\n\nYou greedily eye the treat on display for you, already feeling the arousal spiking through you. " + (!pc.isNude()?"Your [pc.gear] almost feel like they're strangling you and you hastily to cast them aside, striding":"You stride") + " to close the distance and seize your alien lover's lips with your own. Maki replies in kind, running his hands over your body in an attempt to arouse you further. You shiver in pleasure, mind already reeling with the possibilities of how you will take him...");
 	}else if (flags["MAKI_RELATIONSHIP_STATUS"] == 2){
 		output("\n\nMaki smiles at your suggestion. \"If that's what my mate wants, then I'm fine with it. But I expect you to work for it. So... come and get it?\" He grins, a bit nervous despite his apparent excitement.");
 		output("\n\nYou stride confidently up to him, the predator claiming [pc.hisHer] prey, watching the hypnotic waving of his tail as it swishes above his cute butt. You squeeze his asscheeks and stroke the base of his tail, the Venarian jumping a little at that, then pull him to his feet and seize his lips with your own, striving to undress him without releasing his lips. You grind your crotch against his and feel his erect cock pressing back against you, hot and wet in anticipation, dampening his clothes with precum. Maki moans into your kiss, eagerly kissing you back as his hands roam your ");
@@ -576,7 +579,7 @@ public function makiusEatAphro(cock:int):void{
 		output("\n\nHe smiles thankfully at you. \"Thanks [pc.name].\" You pet him softly, earning a whimper of delight. You have to ask though… what was he thinking!?");
 		output("\n\nHe recoils a bit at that. \"I… uh… it's just that….\" he trails off before sighing. \"I just wanted you to see how you make me feel.\"");
 		output("\n\nYou look at him in confusion.");
-		output("\n\n\"When I'm changed, I can't help but think of you. And when I do that I get really horny, about as horny as you are now. And I feel like this all the time, except when we are breeding.\" His tail waves behind him. \"When I'm like this I get lonely and needy. And I know you can't be with me all the time, but it doesn't make this any less trying.\"");
+		output("\n\n\"When I'm changed, I can't help but think of you. And when I do that, I get really horny, about as horny as you are now. And I feel like this all the time, except when we are breeding.\" His tail waves behind him. \"When I'm like this I get lonely and needy. And I know you can't be with me all the time, but it doesn't make this any less trying.\"");
 		output("\n\nYou ponder his explanation. You suppose that you can understand how he feels about this…. \"Thanks, [pc.name].\" He brightens up.");
 		output("\n\nNow that's dealt with… the Venarian before you looks positively appetizing, with his " + (makiusMasculine()?"boyish hips and full butt begging to be groped and freed from the good doctor's pants":"curvaceous hips and full butt, the small breasts begging to be groped and freed from the good doctor's shirt") + ". His shapely tail, waving about in teasing metronome fashion. The bulge in his pants, begging for attention and the knowledge that inside his pants is a slick boy-pussy, wetting itself every time you throw the Venarian a passing gaze.");
 		output("\n\n\"Umm… [pc.name]?\"");
@@ -607,9 +610,9 @@ public function makiusComb():void{
 	output("\n\nYou'll just have to see how it happens. Now, where are his grooming things?");
 	output("\n\nHe walks towards a cabinet where he procures a brush, a comb, and some other hair care products. They seem brand new, you suspect Maki doesn't really use them. It can't be that bad right? Maybe he's just being lazy…");
 	output("\n\nHe sits on a chair nearby and takes a hold of his tail. \"Ready when you are.\"");
-	output("\n\nYou gather up the items he collected for you and approach him, already studying the dishevelled tangle of hair that sprouts from his scalp and grows down the back of his neck.");
+	output("\n\nYou gather up the items he collected for you and approach him, already studying the disheveled tangle of hair that sprouts from his scalp and grows down the back of his neck.");
 	output("\n\nYou start off by running your fingers through his mane, getting a better feel of what you are going to have to deal with. You meet little resistance, much to your surprise. A smile cracks on your face as Maki whimpers, obviously enjoying the contact.");
-	output("\n\nWithout further ado you take a comb and begin straightening out his mane. One pass, two passes, three passes and it seems to sit straight. Satisfied with your work, you move on to the treat the other side. Once again, it's not too difficult to straighten out his mane. You take a step back, smirking. The Venarian was just pulling your leg, his hair is incredibly easy to- what the?");
+	output("\n\nWithout further ado you take a comb and begin straightening out his mane. One pass, two passes, three passes and it seems to sit straight. Satisfied with your work, you move on to treat the other side. Once again, it's not too difficult to straighten out his mane. You take a step back, smirking. The Venarian was just pulling your leg, his hair is incredibly easy to- what the?");
 	output("\n\nYou look, stupefied as the side you had worked on earlier returns to the tangled mess it was before. Sighing, you take the comb in hand and begin working once more. As soon as you are done, you look over Maki's head and spot that it's his <b>other</b> side that's a mess now. You grunt in thought. Maybe there was some truth to what Maki was saying earlier…");
 	output("\n\nThe Venarian himself looks at you nervously, but it's obvious he's trying to contain his laughter. His eyes, while apologetic, do transmit a certain sense of \"I told you so\".");
 	clearMenu();
@@ -638,9 +641,9 @@ public function makiusCombEnd():void{
 	author("LukaDoc");
 	showBust(makiusBust(1));
 	output("You groan, finally ready to admit defeat. Maki was right… it's virtually <b>impossible</b> to straighten out his mane.");
-	output("\n\nHe pats your back, consoling you as well as understanding of your frustration. \"I know, [pc.name]. Trust me, I do….\" He immediately chuckles then. \"I guess it's really useless to fight nature, huh? Still you tried, thanks for that.\"");
+	output("\n\nHe pats your back, consoling you as well as understanding your frustration. \"I know, [pc.name]. Trust me, I do….\" He immediately chuckles then. \"I guess it's really useless to fight nature, huh? Still you tried, thanks for that.\"");
 	output("\n\nYou smile at him, nodding and turning to ruffle his hair.");
-	output("\n\n\"H-Hey!\" At least you don't have worry about messing his hair up anymore than it already is. \"I suppose that's a perk?\"");
+	output("\n\n\"H-Hey!\" At least you don't have to worry about messing his hair up anymore than it already is. \"I suppose that's a perk?\"");
 	output("\n\nMaki rests a hand on your head, running his fingers " + (pc.hasHair()?"through your [pc.hair]. \"Mine might be hopeless, but I'm pretty sure I could return the favor and comb yours if you want.\" You'd like that, you think.":"running his fingers over your [pc.hair]. \"Maybe I should try shaving my mane off. It looks more convenient than having to deal with this mess on a day-to-day basis.\"\n\nYou take a moment to imagine the Venarian… bald. Nope, thank you.\n\nHe laughs at your reaction. \"No dice, huh? That's fine, I was just joking anyway.\""));
 	output("\n\nYou enjoy a few more moments of peace with the Venarian, glad for the company. \"We still have some time, in case you want to do something else?\"");
 	clearMenu();
@@ -676,7 +679,7 @@ public function makiusTalk():void{
 	processTime(5);
 	author("LukaDoc");
 	showBust(makiusBust(1));
-	if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("Maki smiles at you and leads you to his couch, sitting down and patting the seat beside him. You take his offer. He smile and loops his tail around you, hugging you and nuzzling you as you two settle on the couch. \"Okay, I guess we're both comfortable now. So what do you want to talk about?\"");
+	if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("Maki smiles at you and leads you to his couch, sitting down and patting the seat beside him. You take his offer. He smiles and loops his tail around you, hugging you and nuzzling you as you two settle on the couch. \"Okay, I guess we're both comfortable now. So what do you want to talk about?\"");
 	else if (flags["MAKI_RELATIONSHIP_STATUS"] == 1) output("\"Just a chat? No problem.\" He walks towards his couch and takes a seat, patting the seat beside him. You take his offer and sit beside him. \"What would you like to talk about?\"");
 	else output("\"You just want to chat? Okay then.\" He motions towards his couch. \"Have a seat.\" You take his offer and take a seat " + (pc.isTaur()?"close to":"on") + " one end of couch. Maki takes the other end \"So what you want to talk about?\"");
 	makiusTalkMenu();
@@ -695,7 +698,7 @@ public function makiusTalkMenu(from:int = -1):void{
 		else addButton(3, "Pregnancy", makiusTPregnancy);
 	}else addDisabledButton(3, "Pregnancy", "Pregnancy", "You should learn more about Venarian biology first.");
 	if (currentLocation == "NURSERYI16") addButton(14, "Back", mainGameMenu);
-	else addButton(14, "Back", makiusMenu);
+	else addButton(14, "Back", makiusCrewMenu, true);
 }
 
 public function makiusTFamily():void{
@@ -730,8 +733,8 @@ public function makiusTFamily():void{
 		output("\n\n\"Females who change multiple times during their partner's pregnancy, or just take hormones to remain that way aren't unheard off. I suppose it makes sense, since being pregnant makes the mother-to-be horny. It's a like a hormone-induced chemical warfare, lovers can't help but change for each other.\" Maki laughs lightly.");
 		output("\n\nCurious now, you ask if it's possible for a female and a male who are coupling to change so it ends up being the female who impregnates the male. The Venarian thinks for a few moments.");
 		output("\n\n\"Well, naturally this would never happen. The hormones that trigger male and female transformation are exclusive to each gender, but with today's technology I suppose it could happen... bottle up some pheromones and release them in a small room and I'm pretty sure you'd trigger the change, though I don't know how the attraction will feel like.\" He smirks at you. \"You see when we change we also become even more attuned to our mates, we just can't stop but think about our mates all the time, and if you are in the same room.\" He whimpers at the thought. \"So... yeah... I don't know how they'd react to that.\"");
-		if (flags["MAKI_STATE"] == 1) output("\n\nHe licks his lips as he gazes into your eyes. \"So, you see? I can't stop thinking about you bending me over and filling me up with pups, it's really taking all of my self control not to pounce you" + (pc.isNude()?(pc.hasCock()?"":", even through I know you have no cock"):" and rip your lower garments off" + (pc.hasCock()?"":", even if I know there is no cock in there.")) + ".");
-		else if (flags["MAKI_STATE"] == 2) output("\n\nHe laughs a bit. \"Make no mistake though, I still think about you pretty much all the time, specially when I remember it's you who put this pup inside my belly.");
+		if (flags["MAKI_STATE"] == 1) output("\n\nHe licks his lips as he gazes into your eyes. \"So, you see? I can't stop thinking about you bending me over and filling me up with pups, it's really taking all of my self-control not to pounce you" + (pc.isNude()?(pc.hasCock()?"":", even though I know you have no cock"):" and rip your lower garments off" + (pc.hasCock()?"":", even if I know there is no cock in there.")) + ".");
+		else if (flags["MAKI_STATE"] == 2) output("\n\nHe laughs a bit. \"Make no mistake though, I still think about you pretty much all the time, especially when I remember it's you who put this pup inside my belly.");
 		else if (flags["MAKI_BREEDER_SEEN"]) output("\n\nHe looks pensive for a moment. \"You know... I wouldn't mind changing again.\" He looks at you seductively. \"In fact. How about you help me change again? Make it so I'm always ready for your cock?\" He licks his lips. You tell him you'll think about it.");
 	}else output("\n\nPresuming he was adopted, you politely avoid digging too deep and instead change the topic.");
 	output("\n\n\"Anything else you'd like to know?\" He asks with a smile.");
@@ -745,7 +748,7 @@ public function makiusTHisJob():void{
 	author("LukaDoc");
 	showBust(makiusBust(1));
 	makiusIncreaseRelation(0);
-	output("Maki scratches his chin. \"Well, being a medical officer is not easy. You need to study a lot and you can never stop studying. Plus, there's countless different species in the universe and you never know what's going to come knocking,\" he explains. \"And even if you are working on ship and only treating the crew, there's no telling what kind of injuries or illness you might catch. So being a medical officer is pretty much a lifetime commitment.\"");
+	output("Maki scratches his chin. \"Well, being a medical officer is not easy. You need to study a lot and you can never stop studying. Plus, there're countless different species in the universe and you never know what's going to come knocking,\" he explains. \"And even if you are working on a ship and only treating the crew, there's no telling what kind of injuries or illness you might catch. So being a medical officer is pretty much a lifetime commitment.\"");
 	output("\n\nYou nod in understanding, then question him on his professional formation. You know how he wound up in Last Resort, but you are curious about his time before then.");
 	output("\n\n\"I see. Well, I'd be happy to tell you.\" He smiles pleasantly. \"I decided what I wanted to do pretty early in my life. My family was very supportive, and I wanted the best. So it comes as no surprise that my only option, if I was aiming for the top, was UGCMA.\" He puffs his chest proudly.");
 	output("\n\nYou congratulate him on making it in.");
@@ -793,7 +796,7 @@ public function makiusTFeelings():void{
 		addButton(0, "Sex", makiusTFeelingsSex);
 		addButton(1, "No", makiusTFeelingsNo);
 	}else if (flags["MAKI_RELATIONSHIP_STATUS"] == 1){
-		output("\n\nMaki smiles at you. \"Ever since we... you know. I've been thinking about you alot. I'd never felt like this before, but it's a nice feeling. I guess you could say that I'm happy. I'm once again serving in a ship and I have the best captain I could have.\"");
+		output("\n\nMaki smiles at you. \"Ever since we... you know. I've been thinking about you a lot. I'd never felt like this before, but it's a nice feeling. I guess you could say that I'm happy. I'm once again serving in a ship and I have the best captain I could have.\"");
 		output("\n\nYou smile and pat his shoulder, playfully telling him he sounds like a little kid when he talks like that.");
 		output("\n\n\"Only because it's true. I'm really glad we could meet. Maybe getting stranded in Tarkus wasn't so bad after all.\"");
 		output("\n\nMaybe it wasn't, you agree.");
@@ -845,11 +848,11 @@ public function makiusTPregnancy():void{
 	showBust(makiusBust(1));
 	makiusIncreaseRelation(0);
 	if (flags["MAKI_STATE"] == 2){
-		output("\"It might a be a bit too late to talk about that now.\" He chuckles happily, patting his " + makiusBellyDescriptor() + ". \"In any case, what is it you want to talk about? Perhaps you'd like to start discussing names? Venarians just pick a name when the baby is born, but I heard other cultures like to discuss in advance.\"");
+		output("\"It might be a bit too late to talk about that now.\" He chuckles happily, patting his " + makiusBellyDescriptor() + ". \"In any case, what is it you want to talk about? Perhaps you'd like to start discussing names? Venarians just pick a name when the baby is born, but I heard other cultures like to discuss in advance.\"");
 		output("\n\nHmm... that's a possibility, but you were kind of wondering if he'd tell you just how he feels about it. You can't imagine it being easy for a man to be pregnant, after all.");
-		output("\n\n\"Ah, it's not so bad. I'll admit I never thought too much about it, but right now… I'm happy. I'm happy to be carrying a tiny spark of our own. Sure there's all kinds of new things I have to get used to, and it's not always peachy either. But I'm happy that I'm carrying our child.\" He smiles blissfully at you.");
+		output("\n\n\"Ah, it's not so bad. I'll admit I never thought too much about it, but right now… I'm happy. I'm happy to be carrying a tiny spark of our own. Sure, there's all kinds of new things I have to get used to, and it's not always peachy either. But I'm happy that I'm carrying our child.\" He smiles blissfully at you.");
 		output("\n\nSo it seems... in fact, if you're honest, you'd almost say he looks like he enjoys being pregnant, you comment, reaching out to place your hand on the ");
-		switch(makiusPregLevel()){case 3:output("flagrent"); break; case 4:output("huge"); break; default:output("subtle"); }
+		switch(makiusPregLevel()){case 3:output("flagrant"); break; case 4:output("huge"); break; default:output("subtle"); }
 		output("bump that is your unborn child in Maki's womb.");
 		output("\n\nHe places a hand over yours, letting his fingers interlace with your own. \"I do enjoy it. I mean… it's our child. How could I not enjoy it?\" He breaks into a happy grin. \"I think we'll both be wonderful parents.\"");
 		output("\n\nYou tell him that's very flattering... so, he's honestly not just comfortable with being pregnant, he's enthusiastic about the fact?");
@@ -951,7 +954,7 @@ public function makiusDrugs():void{
 			addButton(3, "BioVen", makiusDBioVen, undefined, "BioVen", "Request he changes his masculinity for you.");
 		}
 	}
-	addButton(14,"Back", makiusMenu);
+	addButton(14,"Back", makiusCrewMenu, true);
 }
 
 public function makiusDVirility():void{
@@ -962,7 +965,7 @@ public function makiusDVirility():void{
 	clearMenu();
 	if (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]){
 		if (pc.isPregnant()){
-			output("\"It's not like it matter really since you're already pregnant " + (pc.hasPregnancyOfType("MakiusPregnancy")?" with my child.":".") + (pc.vaginaTotal() > 1?(pc.isFullyWombPregnant()?" And you got all your wombs filled with " + (pc.hasPregnancyOfTypeOtherThan("MakiusPregnancy")?"babies":"puppies") + " too.":" Oh wait, you have more than one womb."):""));
+			output("\"It's not like it matters really since you're already pregnant " + (pc.hasPregnancyOfType("MakiusPregnancy")?" with my child.":".") + (pc.vaginaTotal() > 1?(pc.isFullyWombPregnant()?" And you got all your wombs filled with " + (pc.hasPregnancyOfTypeOtherThan("MakiusPregnancy")?"babies":"puppies") + " too.":" Oh wait, you have more than one womb."):""));
 			//cut this out.  put back in if pc butt preg actually leads anywhere: (pcHasAnalPreg?" Even your butt has a " + (pcHasmakiusAnalpuppy?"puppy.\"":"baby.\""):" Or are you like my kin that can carry a baby in the butt?\""));
 			output("\n\nYou tell him you want " + (pc.findEmptyPregnancySlot(1) >= 0?"to be heavy with his puppies.":"him as virile as he can be even if you can't become any more pregnant."));
 			output("\n\nHe blushes and shies away from your eyes. \"Sure, I'll stop taking the pills then.\"");
@@ -1079,7 +1082,7 @@ public function makiusDBioVen():void{
 	processTime(5);
 	author("LukaDoc");
 	clearMenu();
-	output("You look at the BioVen medicine bottle tucked away in the corner of the cabinet. The bottle is split into three, each section labelled as Natural, Feminine and Masculine. Reading the effects of these pills on the booklet you learn that this medicine is capable of manipulating Venarian biology in order to control how they look whilst in breeding heat or even in their natural state. The natural pills seems to be a <i>cure</i> for the others, resetting their effects. There's a warning in big bold letters telling of the hazards of consumption for non-Venarians.");
+	output("You look at the BioVen medicine bottle tucked away in the corner of the cabinet. The bottle is split into three, each section labelled as Natural, Feminine and Masculine. Reading the effects of these pills on the booklet you learn that this medicine is capable of manipulating Venarian biology in order to control how they look whilst in breeding heat or even in their natural state. The natural pills seem to be a <i>cure</i> for the others, resetting their effects. There's a warning in big bold letters telling of the hazards of consumption for non-Venarians.");
 	addButton(0, "Natural", makiusDBioVenNext, 0, "Natural", "Reset him back to his natural transitioning system.");
 	addButton(1, "Feminine", makiusDBioVenNext, 1, "Feminine", "Tell him to take the feminization drug.");
 	addButton(2, "Masculine", makiusDBioVenNext, 2, "Masculine", "Tell him to take the masculinization drug.");
@@ -1090,7 +1093,7 @@ public function makiusDBioVen():void{
 	}else{
 		addDisabledButton(0, "Natural", "Natural", "Reset him back to his natural transitioning system.");
 	}
-	addButton(3, "back", makiusMenu);
+	addButton(3, "Back", makiusCrewMenu, true);
 }
 
 public function makiusDBioVenNext(drugSelected:int):void{
@@ -1103,12 +1106,12 @@ public function makiusDBioVenNext(drugSelected:int):void{
 	makiusSexMenu();
 	if (drugSelected == 2){
 		output("\"Oh? So I guess you really do prefer males.\" He scritches his chin, trying his best to hide the fact that he is shying away from your gaze.");
-		output("\n\nYes you do, and you like how he normally looks. Of course you won't say no to a bigger butt." + (flags["MAKI_STATE"] == 2?" And since the drug is safe you'll take extra joy in seeing him like that while carrying your pup.":(flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]?" Seeing his belly expand with your pup will be the cherry on top.":"")));
+		output("\n\nYes you do, and you like how he normally looks. Of course you won't say no to a bigger butt." + (flags["MAKI_STATE"] == 2?" And since the drug is safe, you'll take extra joy in seeing him like that while carrying your pup.":(flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]?" Seeing his belly expand with your pup will be the cherry on top.":"")));
 	}else if (drugSelected == 1){
-		output("\"So that's how you like seeing me.\" He blushes, you can seen by his lowered ears that he seems to be a little nervous. \"Makes me wonder why you picked a guy like me instead of a proper female.\"");
-		output("\n\nSo that's what he's worried about. You boop is his nose and tell him it's because there isn't a female in this universe who looks half as cute as your little Venarian. His ears rise upwards as his blushing intensifies beneath those layers of fur.");
+		output("\"So that's how you like seeing me.\" He blushes, you can see by his lowered ears that he seems to be a little nervous. \"Makes me wonder why you picked a guy like me instead of a proper female.\"");
+		output("\n\nSo that's what he's worried about. You boop his nose and tell him it's because there isn't a female in this universe who looks half as cute as your little Venarian. His ears rise upwards as his blushing intensifies beneath those layers of fur.");
 	}else{
-		output("\"You want me to go back to normal? " + (makiusMasculine()?"I was getting used being like this all the time. But if you're sure you want me to go back to my natural self, I'll do it for you.\" He smiles at your decision.":"But I was starting to enjoy these!\" He pouts, while grabbing his breasts and showing off how jiggly they are. \"But if you're absolutely sure you want me to go back to my natural self, I'll do it for you.\" Despite what he said he seems a little saddened."));
+		output("\"You want me to go back to normal? " + (makiusMasculine()?"I was getting used to being like this all the time. But if you're sure you want me to go back to my natural self, I'll do it for you.\" He smiles at your decision.":"But I was starting to enjoy these!\" He pouts, while grabbing his breasts and showing off how jiggly they are. \"But if you're absolutely sure you want me to go back to my natural self, I'll do it for you.\" Despite what he said he seems a little saddened."));
 		output("\n\nYou nod affirmatively.");
 	}
 	output("\n\nYou fetch him a cup of water and give it to him, together with the pill. He seems to be apprehensive, as he stares at the pill for a few minutes without making any attempt at taking it. You ask him what's wrong.");
@@ -1149,7 +1152,7 @@ public function makiusBioVenResearch():void{
 	showBust(makiusBust(1));
 	clearMenu();
 	output("You read on your codex that there was a way to manipulate his Venarian biology, so you ask the doctor if this is true.");
-	output("\n\n\"It is. Honestly I never looked it up, just heard some rumours and dirty jokes. Why?\"");
+	output("\n\n\"It is. Honestly, I never looked it up, just heard some rumors and dirty jokes. Why?\"");
 	output("\n\nHe seems to be oblivious to your true intent, so you explain it to him.");
 	output("\n\n\"I… You want me to look different… I guess I could do that. Just give me a while to do my research, so I can find the best, safest medicines.\"");
 	output("\n\nYou leave him to his research.");
@@ -1166,7 +1169,7 @@ public function makiusBioVenBuy():void{
 	output("You take out your codex and search for the BioVen medicine the Venarian doctor mentioned after you asked him about manipulating his breeding heat. Advertisement claims it's one of the safest drugs of its kind for Venarians and searching through digital encyclopedias and reviewer blogs seems to confirm this. The particular variant of the product that Makius mentioned is more expensive than the rest, costing ten thousands credits for the whole bottle, but it comes with three types of drugs, masculinizing, feminizing and neutralizer and with enough doses to last a lifetime.");
 	if (pc.credits >= 10000) addButton(0, "Buy", makiusBioVenBuyYes, undefined, "Buy", "Pay ten thousand credits for the BioVen drug.");
 	else addDisabledButton(0, "Buy", "Buy", "You can't afford the drug.");
-	addButton(1, "Back", makiusCrewMenu);
+	addButton(1, "Back", makiusMenu);
 }
 
 public function makiusBioVenBuyYes():void{
@@ -1204,7 +1207,7 @@ public function makiusHeal():void{
 			pc.HP(pc.HPMax());
 			return;
 		}
-	}else if (pc.HP() < pc.HPMax() / 3)output("\n\n\"This is pretty serious! Good thing you have me as a doctor. We'll have you up and running in no time!\" He starts by cleaning your wounds, washing them with a painless, perhaps painkilling, disinfectant. Then he pulls out a few bandages with a strange blue colouring and applies them over your most grievous wounds. He finishes the treatment by applying an orange ointment over the smaller wounds.");
+	}else if (pc.HP() < pc.HPMax() / 3)output("\n\n\"This is pretty serious! Good thing you have me as a doctor. We'll have you up and running in no time!\" He starts by cleaning your wounds, washing them with a painless, perhaps painkilling, disinfectant. Then he pulls out a few bandages with a strange blue coloring and applies them over your most grievous wounds. He finishes the treatment by applying an orange ointment over the smaller wounds.");
 	else if (pc.HP() < pc.HPMax() / 3 * 2){
 		output("\n\n\"It could be worse.\"");
 		output("\n\nThat's not very comforting.");
@@ -1213,7 +1216,7 @@ public function makiusHeal():void{
 	output("\n\n\"Well, without a Medlab this is about the best I can do. Hope this is okay with you.\"");
 	output("\n\nYou tell him that he did a fine job, even though you don't really have the necessary facilities, and thank him for his help.");
 	if (flags["MAKI_RELATIONSHIP_STATUS"] == 2){
-		output("\n\n\"When you show up with these wounds I can't help but worry. I really like you and seeing you with even the tiniest cut hurts me really bad. I know that being a rusher is a dangerous job, I just didn't expect to fall for one when you invited me in. Just… please just be careful out there.\"");
+		output("\n\n\"When you show up with these wounds, I can't help but worry. I really like you and seeing you with even the tiniest cut hurts me really bad. I know that being a rusher is a dangerous job, I just didn't expect to fall for one when you invited me in. Just… please just be careful out there.\"");
 		output("\n\nYou tell him you will. He smiles, relieved with your answer.");
 	}
 	pc.HP(pc.HPMax());
@@ -1284,8 +1287,8 @@ public function makiusEvictGo():void{
 	else if (flags["MAKI_RELATIONSHIP_STATUS"]) output("You tell him this has been fun and offer him your hands for a handshake. He grabs it and you surprise him by pulling him closer into a hug. For a few minutes you both stand there appreciating each other's warm embrace, but eventually you have to part ways. He starts arranging his stuff as you leave the soon-to-be empty room.");
 	else output("You offer him your hand for a handshake. He looks at your hand and he grabs it with both hands and gives you a good hard shake. You tell him you enjoyed working with him and hope you can hire him again in the future. \"Likewise.\" He starts arranging his stuff as you leave the soon-to-be empty room.");
 	if(flags["MAKI_STATE"] == 2) resendMail("makius_nursery_abandoned_email", kGAMECLASS.GetGameTimestamp());
+	output("\n\n<b>Makius is no longer on your crew. You can find him again " + (flags["MAKI_OFFERED_JOB_AT_NURSERY"] || flags["MAKI_STATE"] == 2?"on Tavros Station" + (flags["MAKI_OFFERED_JOB_AT_NURSERY"]?"":", until his pregnancy ends, after which he will go back to his clinic on Tarkus"):"in his clinic on Tarkus") + ".</b>");
 	flags["MAKI_IN_CREW"] = false;
-	makius.masculinize();
 	addButton(0,"Continue", mainGameMenu);
 }
 
@@ -1296,13 +1299,12 @@ public function makiusEvictJob():void{
 	showBust(makiusBust(1));
 	clearMenu();
 	output("You ask him how well he works with kids.");
-	output("\n\n\"I'm great with kids! They think i'm a giant puppy and love to play with me." + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?" You should know since we have " + (flags["MAKI_BIRTHED_CHILDREN"] + flags["MAKI_SIRED_CHILDREN"] > 1?"puppies":"a puppy") + " of our own.\"":"\""));
+	output("\n\n\"I'm great with kids! They think I'm a giant puppy and love to play with me." + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?" You should know since we have " + (flags["MAKI_BIRTHED_CHILDREN"] + flags["MAKI_SIRED_CHILDREN"] > 1?"puppies":"a puppy") + " of our own.\"":"\""));
 	output("\n\nYou think rather than sending him to go back to working at a ratty frontier clinic he should come work at your nursery and " + (ChildManager.numChildren()?"take care of your" + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?", and his,":"") + " kid" + (ChildManager.numChildren() > 1?"s.":"."):"get free money, since you don't have any kids yet."));
-	output("\n\n\"That's… that's a great idea! I always wanted to put my xeno-pediatry training to good use, but never had the opportunity.\" " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"Then out of nowhere he wraps his arms around you and gives a really tight hug. \"I love you my mate.\" He squeezes you <b>hard</b>! \"LoveYou!LoveYou!LoveYou!\" It's becoming hard for you to breath. \"LoveYou... oh!\" He releases his grip on you and you feel air rushing back into your lungs. \"Sorry [pc.name] I just suddenly felt so happy. Thank you, mate! You know me so well.\"":"He spreads his arms wide open as asks, \"C-can I hug you?\" You nod, then almost immediately he wraps his arms around you, forcing you close to his furry " + (makiusMasculine()?"chest":"breasts") + " as his warmness envelops you. After one long moment he ends the hug, now shying away and with a blush clearly visible on his fur-covered cheeks.") + "\"I'll go get my stuff ready now!\" He says as you leave the soon to be empty room to get out of his way.");
+	output("\n\n\"That's… that's a great idea! I always wanted to put my xeno-pediatry training to good use, but never had the opportunity.\" " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"Then out of nowhere he wraps his arms around you and gives a really tight hug. \"I love you my mate.\" He squeezes you <b>hard</b>! \"LoveYou!LoveYou!LoveYou!\" It's becoming hard for you to breath. \"LoveYou... oh!\" He releases his grip on you and you feel air rushing back into your lungs. \"Sorry [pc.name] I just suddenly felt so happy. Thank you, mate! You know me so well.\"":"He spreads his arms wide open as asks, \"C-can I hug you?\" You nod, then almost immediately he wraps his arms around you, forcing you close to his furry " + (makiusMasculine()?"chest":"breasts") + " as his warmness envelops you. After one long moment he ends the hug, now shying away and with a blush clearly visible on his fur-covered cheeks.") + "\"I'll go get my stuff ready now!\" He says as you leave the soon to be empty room to get out of his way.\n\n<b>Makius is no longer on your crew. You can find him again on Tavros Station.</b>");
 	flags["MAKI_OFFERED_JOB_AT_NURSERY"] = true;
 	flags["MAKI_HOME_SEEN"] = false;
 	flags["MAKI_IN_CREW"] = false;
-	makius.masculinize();
 	addButton(0,"Continue", mainGameMenu);
 }
 
@@ -1315,7 +1317,7 @@ public function makiusEvictNevermind():void{
 	output("You can't do this. The sadness your puppy is trying so hard to hide melts your " + (pc.isAss()?"hardened ":"") + "heart. You sigh, and tell him you've changed your mind, he can stay on your ship.");
 	if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output("\n\nHe wraps his arms around you and hugs you tight. \"Don't scare me like that [pc.name]\"");
 	else if (flags["MAKI_RELATIONSHIP_STATUS"]) output("\n\nA stupid, giddy smile forms on his face. \"Thank you, for keeping me around, [pc.name]. I'll try to be more useful from now on.\"");
-	else output("\n\n<b>\"Yes!\"</b> he shouts and then does a happy dance. He notices you staring and his dance starts to slow down. \"Sorry… I'll try to be more useful from now on.\"");
+	else output("\n\n<b>\"Yes!\"</b> he shouts and then does a happy dance. He notices you staring, and his dance starts to slow down. \"Sorry… I'll try to be more useful from now on.\"");
 	addButton(0,"Continue", makiusLeave);
 }
 
@@ -1453,12 +1455,12 @@ public function makiusRoomEnter(fromNursery:Boolean = false):void{
 			output("\n\n\"Sure, but be careful, I haven't fully cleaned up this place yet.\"");
 			output("\n\nYou walk into his new home and quickly find out that the whole place is a mess. Most of the furniture is covered in a thick layer of dust and there's even a broken table in the corner. You head to the couch, but before you can sit down, you are stopped by the doctor.");
 			output("\n\n\"Don't sit there! It's… infested. Let's head for my bedroom instead. I've already decontaminated most of it.\"");
-			output("\n\nYou ask him why is the room in such poor state.");
+			output("\n\nYou ask him why the room in such poor state.");
 			output("\n\n\"It’s the cheapest rented apartment available, and the landlord was trying to get rid of it as soon as possible, because he had a bad time here. I think he only rented it so people could fix the place for him so he can sell it later.\"");
 			output("\n\nYou enter the bedroom and find it in a much better state than the previous room. There isn't a single speck of dust on any of the furniture or the floor, and the mattress looks new. There's also a smaller and less dangerous looking couch.");
 			output("\n\n\"Come, sit with me,\" he says while patting the covers right next to him. \"This one is definitely not infested.\"");
 			output("\n\nYou abide by his request and snuggle close to him before asking how are your favorite shark-puppies are doing, caressing his " + makiusBellyDescriptor() + " for emphasis.");
-			output("\n\n\"We're doing fine, so you don't need to worry about us. I've been mostly cleaning this place up and receiving regular check ups in the nursery while looking for a job on this station.\"");
+			output("\n\n\"We're doing fine, so you don't need to worry about us. I've been mostly cleaning this place up and receiving regular checkups in the nursery while looking for a job on this station.\"");
 			output("\n\nYou ask him if he had any luck.");
 			output("\n\n\"None so far. Looks like Tavros doesn't have a shortage of medical personnel. So, why are you visiting? Did you miss me? Is there anything you want to do?\"");
 		}
@@ -1500,7 +1502,7 @@ public function makiusNurseryRecruitPressOn():void{
 	output("\n\nMaki's pointed, dog-like ears perk up and he starts to blush. \"Jeez, " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"you really miss me that much, huh?":"Am I really the best you know?") + " Maybe... I'm not sure [pc.name], do you really need me that badly?");
 	output("\n\nYou wrap your arms around him and affirm that yes, you do need him by your side more than he can imagine.");
 	output("\n\n\"And what about the dangers to the baby?\", your lover asks, not ready to shirk his responsibilities as an expectant 'mother'.");
-	output("\n\nWith a confident smirk you tell him not to worry about it. You will be around almost constantly, and will never let anything happen to any of your loved ones. " + (silly?"Not only are you the protagonist, this is a porn game and miscarriage is one of the biggest boner killers.":""));
+	output("\n\nWith a confident smirk you tell him not to worry about it. You will be around almost constantly and will never let anything happen to any of your loved ones. " + (silly?"Not only are you the protagonist, this is a porn game and miscarriage is one of the biggest boner killers.":""));
 	output("\n\nGradually, between your confidence and his own desire to be around you, the doctor lets himself be convinced, giving you a timid nod. \"Well… I suppose I should have more faith in you, my mate.\"");
 	output("\n\nYou answer with a kiss on the cheek.");
 	output("\n\n\"I'll get my stuff ready…We'll meet back on the ship?\"");
@@ -1527,7 +1529,7 @@ public function makiusNurseryOfferJob():void{
 	showBust(makiusBust());
 	clearMenu();
 	output("You ask him if he ever had any experience working with kids.");
-	output("\n\n\"I'm great with kids! They think i'm a giant puppy and love to play with me." + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?" You should know since we have " + (flags["MAKI_BIRTHED_CHILDREN"] + flags["MAKI_SIRED_CHILDREN"] > 1?"puppies":"a puppy") + " of our own.":""));
+	output("\n\n\"I'm great with kids! They think I'm a giant puppy and love to play with me." + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?" You should know since we have " + (flags["MAKI_BIRTHED_CHILDREN"] + flags["MAKI_SIRED_CHILDREN"] > 1?"puppies":"a puppy") + " of our own.":""));
 	output("\n\nIn that case, you tell him, you think that rather than going back to that ratty frontier clinic after giving birth, he should come work at your nursery. He will get to  " + (ChildManager.numChildren()?"take care of a whole bunch of little Steeles" + (flags["MAKI_BIRTHED_CHILDREN"] || flags["MAKI_SIRED_CHILDREN"]?", including his own precious babies":"") + ".":"practically receive free money while there are no kids there."));
 	output("\n\n\"That's… that's a great idea! I always wanted to put my xeno-pediatry training to good use, but never had the opportunity.\" " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"Then out of nowhere he wraps his arms around you and gives a really tight hug. \"I love you my mate.\" He squeezes you <b>hard</b>! \"LoveYou!LoveYou!LoveYou!\" It's becoming hard for you to breath. \"LoveYou... oh!\" He releases his grip on you and you feel air rushing back into your lungs. \"Sorry [pc.name] I just suddenly felt so happy. Thank you, mate! You know me so well. ":"He spreads his arms wide open as asks, \"C-can I hug you?\" You nod, then almost immediately he wraps his arms around you, forcing you close to his furry " + (makiusMasculine()?"chest":"breasts") + " as his warmness envelops you. After one long moment he ends the hug, now shying away and with a blush clearly visible on his fur-covered cheeks. \"") + "I'll head there right away! Who knows, I may even be able to buy some furniture and fix this room soon!\" He exclaims happily as you both head to the nursery to get him a job.");
 	flags["MAKI_OFFERED_JOB_AT_NURSERY"] = true;
@@ -1543,7 +1545,7 @@ public function makiusNurseryAbandonedEmail():String{
 	msg += "\n\nI'll be staying in a rented room on the Tavros Residential Deck while I wait for the pregnancy to come to term. The address is in the attachment.";
 	msg += "\n\nPlease feel free to visit me anytime.";
 	msg += "\n\nLove,\nMakius";
-	msg += "<i>There is a file attached to this mail containing the coordinates for a room on Tavros.</i>";
+	msg += "\n\n<i>There is a file attached to this mail containing the coordinates for a room on Tavros.</i>";
 	return msg;
 }
 
@@ -1561,7 +1563,7 @@ public function makiusDate1():void{
 	output("\n\nYou give a noncommittal reply, as that's not really what you want to talk about right now. You then ask in the same manner if he's interested in finding somebody.");
 	output("\n\nMakius raises a brow at the question. \"Of course I am. I mean... I'd love to have someone to keep me company, cuddle with while sleeping. You know, the usual.\" He looks at you with a puzzled expression. \"But why are you asking? Do you know anyone that's interested in me by any chance?\" He looks at you with a hopeful expression.");
 	output("\n\nWhat if you told him that <i>you</i> were interested in him, you ask. Maki looks at you with a blank stare, trying to process what you just said. You're trying to ask him on a date, you inform him. His expression doesn't change for a few seconds, so eventually an awkward silence falls between the two of you. You allow the silence to linger for a few moments, then grab his attention back to you. When he's actually looking at you with something other than a blank expression, you ask if he's saying he's not interested then." + (pc.hasCock()?" You ask if your gender has something to do with the rejection.":""));
-	output("\n\nMaki scrambles and quickly recomposes himself. \"NO! I mean, no. I'm not rejecting you captain... its just... I....\" He trails off.");
+	output("\n\nMaki scrambles and quickly recomposes himself. \"NO! I mean, no. I'm not rejecting you captain... it's just... I....\" He trails off.");
 	output("\n\nYou explain you're not mad if he's turning you down, and in this situation, he can leave ranks out of it.");
 	output("\n\n\"I'm just... speechless. It's just that you are asking me so out of the blue, you caught me by surprise.\"");
 	output("\n\nSo he is interested, then?");
@@ -1595,7 +1597,7 @@ public function makiusDate1Start():void{
 	clearMenu();
 	showBust(makiusBust());
 	output("You decide upon a simple meal and a cup of coffee; lowkey for this first time, especially with a shy prospective partner like Maki. You get yourself properly dressed and see to cooking up what you need for the date.");
-	output("\n\nYou don't have to wait long before a beep rings from your door, signalling Maki's arrival. You open the door and gaze at the nervous looking Venarian. He is wearing the same clothes he usually does, minus the white coat. His fur looks combed and you swear you can smell a pleasant fragrance emanating from the Venarian. \"Hi, [pc.name]. Sorry... I wanted to dress up nicer, but I didn't have anything else to wear...\" He looks at the floor, ears flat on his skull.");
+	output("\n\nYou don't have to wait long before a beep rings from your door, signaling Maki's arrival. You open the door and gaze at the nervous looking Venarian. He is wearing the same clothes he usually does, minus the white coat. His fur looks combed and you swear you can smell a pleasant fragrance emanating from the Venarian. \"Hi, [pc.name]. Sorry... I wanted to dress up nicer, but I didn't have anything else to wear...\" He looks at the floor, ears flat on his skull.");
 	output("\n\nYou tell him that what he's done is fine and invite him to come in and sit down.");
 	output("\n\nAt your invitation Maki lets himself in, looking around to examine your room. His nostrils flare for a moment and it becomes obvious that he is picking up on your scent, though he doesn't actually display any reaction besides his nervousness. He takes a chair and sits down, tail waving to and fro. He looks you over.");
 	output("\n\n\"You look good right now.\" Then he quickly adds. \"I mean, you always look good, it's just that now you look... better... I'll shut up now...\" He trails off, still very nervous.");
@@ -1642,14 +1644,14 @@ public function makiusDate1DontHelp():void{
 	clearOutput();
 	clearMenu();
 	showBust(makiusBust());
-	output("Maki gets up and proceeds to undo his belt and remove his pants, lest the coffee burn him up any more.");
+	output("Maki gets up and proceeds to undo his belt and remove his pants, lest the coffee burn him up anymore.");
 	output("\n\nYou ask if he's alright.");
-	output("\n\nJust now realising he took his pants off in front of you, Maki hurries to sit down and cover his lap with the pants. \"Y-Yeah, sorry.\"");
+	output("\n\nJust now realizing he took his pants off in front of you, Maki hurries to sit down and cover his lap with the pants. \"Y-Yeah, sorry.\"");
 	makiusDate1ManeCrisis();
 }
 
 public function makiusDate1ManeCrisis():void{
-	output("\n\nYou realize that his mane looks a bit dishevelled now; the pain probably made his fur stand on end and the combing he did earlier has come undone.");
+	output("\n\nYou realize that his mane looks a bit disheveled now; the pain probably made his fur stand on end and the combing he did earlier has come undone.");
 	addButton(0, "Touch Mane", makiusDate1TouchMane);
 	addButton(1, "Compliment", makiusDate1Compliment);
 	addButton(2, "Ignore", makiusDate1Ignore);
@@ -1674,7 +1676,7 @@ public function makiusDate1Compliment():void{
 	clearMenu();
 	showBust(makiusBust());
 	output("Appreciatively, you tell Maki that he looks much better - much more natural - with his current hairdo.");
-	output("\n\nHe reaches up with his hands and feel his wild mane. \"Oh no. And I took such a long time to comb it...\"");
+	output("\n\nHe reaches up with his hands and feels his wild mane. \"Oh no. And I took such a long time to comb it...\"");
 	output("\n\nYou tell him that he doesn't need to be so formal with you - after all, you like him as he is. The Venarian is a bit embarrassed, but smiles at your compliment.");
 	flags["MAKI_RELATION"] += 3;
 	makiusDate1TalkHim()
@@ -1702,7 +1704,7 @@ public function makiusDate1TalkHim():void{
 	output("\n\n\"Sure.\" He puts his hands on the table and looks at his plate as he recalls the past. \"I guess I wanted to become a doctor because when I was very little, I fell from a branch and broke my leg.\"");
 	addButton(0, "Hold Hand", makiusDate1TouchHand);
 	addButton(1, "Talk", makiusDate1JustTalk);
-	addButton(2, "Change Subject", makiusDate1ChangeSubject);
+	addButton(2, "Other Subject", makiusDate1ChangeSubject, undefined, "Change the subject", "You don't want to talk about nasty stuff during a date.");
 }
 
 public function makiusDate1TouchHand():void{
@@ -1714,7 +1716,7 @@ public function makiusDate1TouchHand():void{
 	output("Placing your hand gently on his own, you ask him to continue the story as if you hadn't done anything. He startles at the gesture, although he doesn't recoil or pull away. Instead, he turns his hand and let his fingers trail your palm.");
 	output("\n\n\"It was really bad, so I wound up in the hospital and the doctor told me I had to operate. Back then that really scared me.\"");
 	output("\n\nYou pat his hand gently with your fingers, offering him comfort through your touch.");
-	output("\n\nMaki smiles and holds your hand, squeezing it slightly. \"They had to put my leg back in place. It hurt so much to move my leg... but the doctor was quite skilled. It stung, but not nearly as bad as a I expected. He said I was going to be fine.\" He looks at you. \"I know this sounds silly, but it was then that I decided I wanted to do the same. I wanted to make people better, help people.\"");
+	output("\n\nMaki smiles and holds your hand, squeezing it slightly. \"They had to put my leg back in place. It hurt so much to move my leg... but the doctor was quite skilled. It stung, but not nearly as bad as I expected. He said I was going to be fine.\" He looks at you. \"I know this sounds silly, but it was then that I decided I wanted to do the same. I wanted to make people better, help people.\"");
 	output("\n\nWhich makes him a very noble person, you tell him, giving his hand another squeeze and then let go.");
 	flags["MAKI_RELATION"] += 6;
 	makiusDate1Hug();
@@ -1729,7 +1731,7 @@ public function makiusDate1JustTalk():void{
 	output("Making it obvious that you're paying attention, you invite him to continue, letting his hand rest where it is.");
 	output("\n\nMaki draws his hands away and rubs his chin. \"It was really bad, so I wound up in the hospital and the doctor told me I had to operate. Back then that really scared me.\"");
 	output("\n\nYou offer him whatever words of comfort occur to you, trying to convey your sympathy. Maki smiles at you, thankful for your kind words.");
-	output("\n\n\"They had to put my leg back in place. It hurt so much to move my leg... but the doctor was quite skilled. It stung, but not nearly as bad as a I expected. He said I was going to be fine.\" He looks at you, smiling. \"I know this sounds silly, but it was then that I decided I wanted to do the same.\"");
+	output("\n\n\"They had to put my leg back in place. It hurt so much to move my leg... but the doctor was quite skilled. It stung, but not nearly as bad as I expected. He said I was going to be fine.\" He looks at you, smiling. \"I know this sounds silly, but it was then that I decided I wanted to do the same.\"");
 	flags["MAKI_RELATION"] += 3;
 	makiusDate1Hug();
 }
@@ -1760,7 +1762,7 @@ public function makiusDate1Hug():void{
 
 public function makiusDate1HugYes():void{
 	clearOutput();
-	output("Seeing the obvious desire in his eyes, you step forward and pull him into an embrace, running your hands up and down his back. Maki hugs you back, running his hands on your back as well, whimpering in enjoyment of your close contact and doing his best to rub himself against your as much as possible. You hold him close and tight, then decide it's time to let go and separate yourself from him.\n\n");
+	output("Seeing the obvious desire in his eyes, you step forward and pull him into an embrace, running your hands up and down his back. Maki hugs you back, running his hands on your back as well, whimpering in enjoyment of your close contact and doing his best to rub himself against you as much as possible. You hold him close and tight, then decide it's time to let go and separate yourself from him.\n\n");
 	flags["MAKI_RELATION"] += 6;
 	makiusDate1End();
 }
@@ -1853,7 +1855,7 @@ public function makiusToFriendKiss():void{
 	author("LukaDoc");
 	showBust(makiusBust())
 	output("Deciding not to waste breath on words, you pull the startled Venarian into a passionate kiss, wrapping your arms around his lean frame and holding him tight against you.");
-	output("\n\nMaki hugs you back, rubbing himself against you as best as his can. You feel something hard poking you as the amorous Venarian kisses you back, probing your mouth with his tongue as he relishes the taste of you.");
+	output("\n\nMaki hugs you back, rubbing himself against you as best as he can. You feel something hard poking you as the amorous Venarian kisses you back, probing your mouth with his tongue as he relishes the taste of you.");
 	output("\n\nYou hold the position until the lack of air forces you apart. Maki laughs. \"You're a great kisser.\"");
 	output("\n\nHe's not too shabby himself, you reply.");
 	output("\n\nHe looks away in embarrassment, tail waving lazily behind him, ears flat. \"I think I should probably tell you about this... but what we just did, if we were in Venar, it'd be like asking for sex.\"");
@@ -1984,7 +1986,7 @@ public function makiusDate2mates():void{
 	clearOutput();
 	author("LukaDoc");
 	showBust(makiusBust())
-	output("You consider what he just said, and decide there's only one answer. You reach across the table and pull him into a passionate kiss, devouring his lips with your own, feeling him heating up in lust at being pressed against you and taken in such a fashion.");
+	output("You consider what he just said and decide there's only one answer. You reach across the table and pull him into a passionate kiss, devouring his lips with your own, feeling him heating up in lust at being pressed against you and taken in such a fashion.");
 	output("\n\nMaki kisses you back as best as he can, and when you break the kiss, all he can do is gaze at you. He licks his lips. \"I take this means yes?\"");
 	output("\n\nFor such a smart male, you tell him, he can sure ask some stupid questions. You then kiss him again before he can say something else stupid.");
 	output("\n\nMakius gets up from his seat and lifts you from yours, kissing you as he pushes you towards his bed. Seeing no reason not to, you allow yourself to be seated down on the bed, making yourself comfortable as he hovers over you. The Venarian smiles at you, lust and love burning in his eyes. Slowly he undoes his belt and lets his pants fall to the ground, his boxers following suit. His sleeveless shirt comes off with a flourish and is easily discarded.");
@@ -2068,7 +2070,7 @@ public function makiusToBreederGiveInYes():void{
 	clearOutput();
 	author("LukaDoc");
 	showBust(makiusBust())
-	output("Seeing no point in wasting breath on words, you advance on your Maki and pull him back into your arms, crushing his lips against your own and pulling him tight against your chest. Hungrily you kiss him, and feel him start to return your ardour, before he suddenly pulls away.");
+	output("Seeing no point in wasting breath on words, you advance on your Maki and pull him back into your arms, crushing his lips against your own and pulling him tight against your chest. Hungrily you kiss him, and feel him start to return your ardor, before he suddenly pulls away.");
 	output("\n\n\"" + (!flags["MAKI_IN_CREW"] || makiusHasMedlab()?"Nnn - Not here, [pc.name]; we'll contaminate the " + (!flags["MAKI_IN_CREW"]?"infirmary":"medlab") + ". Let's get to my quarters... quickly.\" He pleads with you. Nodding dumbly, the two of you practically fall over each other leaving the medlab and heading off to his quarters":"Let's get to my bed… quickly.\""));
 	makiusSexMenu();
 }
@@ -2111,7 +2113,7 @@ public function makiusToBreederGiveInGoFemale():void{
 	author("LukaDoc");
 	showBust(makiusBust())
 	output("You tell Maki that's not necessary; you happen to like the way he looks right now. You ogle his small breasts and big hips. Yes, he's looking pretty good right now.");
-	output("\n\n\"R-Really?\" He smiles and bites his lip. \"Well... umm... you do realize that I'm going to stay like this until you actually get me pregnant right? Though I suppose that if I really need to go back to normal I could just take the suppressants, bu-\"");
+	output("\n\n\"R-Really?\" He smiles and bites his lip. \"Well... umm... you do realize that I'm going to stay like this until you actually get me pregnant right? Though I suppose that if I really need to go back to normal, I could just take the suppressants, bu-\"");
 	output("\n\nYou step forward and silence him with a kiss, hold it for several moments, and then break it before taking a step back.");
 	output("\n\nThe Venarian doctor licks his lips, stunned by your kiss. He pants, looking lustfully at you. \"Hot Venarian sex in my room?\"");
 	output("\n\nRather than waste time with words, you simply grab the closest convenient handle - hem of his pants, arm, tail, you're not sure what and, frankly, don't really care - and start dragging him in the direction of the " + (makiusHasMedlab()?"door out of the medlab and to Maki's room":"bed") + ".");
@@ -2146,7 +2148,7 @@ public function makiusToBreederGetOut():void{
 	output("Fighting to control yourself, you turn and run, leaving the surprised doctor behind you as you close the door as quickly as possible. You lean against the wall on the far side of the corridor for support, inhaling deep lungfuls of ship air to clear your head, your senses slowly losing their fuddled state and leaving you in control... if still painfully aroused. You realize your codex is chiming with a call, and you activate it, revealing Maki is the one calling you.");
 	output("\n\n\"[pc.name]? I'm so sorry! I should have said something before... sorry for springing this up on you.\"");
 	output("\n\nYou assure the Venarian that it's fine. But you still wonder what caused all of this. You voice your thoughts to the doctor.");
-	output("\n\n\"Well, Venarians have the ability to take on the role of the opposite gender. This means females can impregnate and males can become pregnant. It's triggered when we get particularly amorous with our mates and... uuh... you've been fucking me a lot, so I couldn't help it.\" He bites his lip. \"But don't worry, we have a few hormonal suppressants we can take and I should be back to normal in a few hours... maybe.\"");
+	output("\n\n\"Well, Venarians have the ability to take on the role of the opposite gender. This means females can impregnate and males can become pregnant. It's triggered when we get particularly amorous with our mates and... uuh... you've been fucking me a lot, so I couldn't help it.\" He bites his lip. \"But don't worry, we have a few hormonal suppressants we can take, and I should be back to normal in a few hours... maybe.\"");
 	addButton(0, "Stop Him", makiusToBreederGetOutStopHim);
 	addButton(1, "Let Him", makiusToBreederGetOutLetHim);
 	addButton(2, "Masc Only", makiusToBreederGetOutMascOnly, undefined, "Masculine only", "Ask him if there is any way to keep part of the transformation without the girly ones.");
@@ -2159,7 +2161,7 @@ public function makiusToBreederGetOutStopHim():void{
 	author("LukaDoc");
 	showBust(makiusBust())
 	output("You tell him not to do anything hasty.");
-	output("\n\nThere is a short pause of confusion before the Venarian speaks again, his voice full of disbelief. \"But if I don't take the suppressants I'll stay like this until you make me pregnant!\"");
+	output("\n\nThere is a short pause of confusion before the Venarian speaks again, his voice full of disbelief. \"But if I don't take the suppressants, I'll stay like this until you make me pregnant!\"");
 	output("\n\nYou smile and tell him that's not such a bad idea.");
 	output("\n\n\"Uuh... excuse me?\" Seeing Maki like that surprised you, but you can't say you don't like seeing him like that.");
 	output("\n\n\Maki ends the call and opens the door, looking at you with a baffled expression. \"So, you are not freaked out that I look like this?\"");
@@ -2215,6 +2217,7 @@ public function makiusToBreederGetOutLetHim():void{
 	showBust(makiusBust())
 	output("You tell him to do that. Seeing the Venarian so different really caught you off-guard, and you didn't like it. You say that you'll talk to him later, when he's back to his normal self.");
 	output("\n\n\"S-Sorry....\" You can hear the sadness in his voice as you hang up the call.");
+	flags["MAKI_TAKING_SUPPRESSANTS"] = true;
 	flags["MAKI_STATE"] = 0;
 	addButton(0, "Leave", makiusLeave);
 }
@@ -2275,7 +2278,7 @@ public function makiusPregnancyReaction():void{
 		output("\n\nYou decide to be quick about it, but before you can say anything else, he sniffs the air around you a few times and looks at you with surety.");
 		output("\n\n\"You're pregnant with my puppies again!\" he blurts out, equally surprised and happy. Not a moment later he hugs you close and plants an adoring kiss on your [pc.lips]. Then he parts the kiss and kneels before you, putting one of his doggy ears on your [pc.belly].");
 		output("\n\n" + (semester > 3?"\"I just felt a kick!\" he exclaims with barely contained giddiness.":(semester > 2?"\"It's not much, but I can already hear a heartbeat there,\" he says, smiling with genuine happiness.":"\"Guess it's too early to expect anything,\" he says with a bittersweet smile, trying his best to hide his disappointment.")) + " He gently rubs his head on your tummy, trying to imprint some more of his scent, before raising himself and holding your hands.");
-		output("\n\nYou comment playfully that he must be really proud of himself to be checking the fruits of his labour so intensely. He just snickers and smiles even wider, looking you straight in the eyes. \"What can I say? You just keep making happier, even when I think I'm already as happy anyone can possibly be. If you need anything, and I mean <i>anything</i>, just tell me.\"");
+		output("\n\nYou comment playfully that he must be really proud of himself to be checking the fruits of his labor so intensely. He just snickers and smiles even wider, looking you straight in the eyes. \"What can I say? You just keep making me happier, even when I think I'm already as happy as anyone can possibly be. If you need anything, and I mean <i>anything</i>, just tell me.\"");
 		output("\n\n\"Now, can I help you with something else? Or did you just come to let me check up on the fruits of our labor?\" He pats your belly lovingly.");
 	}else{
 		var multiples:Boolean = pc.totalBabiesOfType("MakiusPregnancy") > 1;
@@ -2317,18 +2320,18 @@ public function makiusPcGivesBirth(amount:int, handler:MakiusPregnancyHandler, f
 		if (InShipInterior()) output("Not a minute later he finds you on the ship and brings you over to his room. You settle on the bed as he rushes all over the room, making sure everything is ready for the birth of your bab" + (amount > 1?"ies.":"y."));
 		else output("Not ten minutes have passed before an emergency drone arrives. Makius jumps outside before it even comes to a full stop and rushes to your side. Carefully and quickly, he helps you into the vehicle. Soon enough, " + (atNursery?"you've arrived at the Nursery birthing room.":"you're back on your ship and are settled into Makius's room as he finishes preparing everything a newborn might need."));
 	}else if(atNursery){
-		output("\n\n You manage to call Bridget on your codex and inform her of your perdicament.");
+		output("\n\n You manage to call Bridget on your codex and inform her of your predicament.");
 		output("\n\nWhile keeping on the line to comfort you, she arranges a transport drone to pick you up and a room for you to stay in, while you try your best to not give birth on the spot.");
-		output("\n\nTwenty very long minutes later, you find yourself in the Nursery birthing room. Bridget finishes her preperation and ");
+		output("\n\nTwenty very long minutes later, you find yourself in the Nursery birthing room. Bridget finishes her preparation and ");
 		if (!flags["MAKI_OFFERED_JOB_AT_NURSERY"] && flags["MAKI_STATE"] != 2){
 			output("takes place " + (pc.isTaur()?"behind your hindquarters":(pc.isNaga()?"over your coils":"between your spread legs")) + ". Slowly and surely, you let your bundle of love into the world. Once your child is fully birthed and wrapped up safely in his arms, you can finally breathe easy, " + (amount > 1?" - at least for a few seconds, since there's " + (amount == 2?"one more puppy":"more puppies") + " coming out of you today. Bridget gives you more encouragement as you go through the same laborious process all over again. " + (amount > 2?" And again...":""):"relieved that the newborn is safe."));
 			output("\n\nBriget thoroughly inspects the pup" + (amount > 1?"pies":"") + "before handing you " + (amount > 1?"one of your newborns":"your newborn") + (pc.isLactating()?" that you bring to your breast to suckle on your [pc.milk].":" which you gently cradle in your arms."));
 			output("\n\n" + (amount > 1?"Bridget " + (amount > 2?"hands you another infant as she ":"") + "brings a " + (amount > 2?"third":"second") + " puppy to one of her breasts to suckle on its artificial bounty. " + (amount > 4?"The rest of the puppies are settled into a Nursery standard crib where they immediately start squirming and bumping into each other, searching for their mother's warmth. You'll need to tend to them as soon as you are done with their siblings. ":""):"") + (amount > 1?"They look":(firstFemale?"Sh":"H") + "e looks") + " exactly like " + (amount > 1?"their":(firstFemale?"her":"his")) + " father, but with [baby.hairColor] and [baby.skinFurScalesColor] patterned fuzzy fur, instead of the navy and blue Maki sports, as well as your [baby.eyeColor] eyes.");
-			output("\n\nAfter " + (amount > 4?"tending to the rest of the young and":"") + "sending the news to Maki, you hand over the pup" + (amount> 1?"s":"") + " to Bridget so you can have your well deserved rest.");
+			output("\n\nAfter " + (amount > 4?"tending to the rest of the young and":"") + "sending the news to Maki, you hand over the pup" + (amount> 1?"s":"") + " to Bridget so you can have your well-deserved rest.");
 			moveTo("SHIP INTERIOR");
 			return;
 		}else{
-			output("calls for Makius. not two minutes later Makius rushes into the room, he gives you a panicked look before taking a deep to call himself down. He quikly and methodically prepares himself, then moves over to you.");
+			output("calls for Makius. not two minutes later Makius rushes into the room, he gives you a panicked look before taking a deep breath to calm himself down. He quickly and methodically prepares himself, then moves over to you.");
 		}
 	}else{
 		output("\n\n" + (InShipInterior()?"":"You stumble back onto your ship, doing your best to keep the child" + (amount > 1?"ren":"") + " from being born before you reach safety. ") + (crew(true, true)?"After you've locked the door to make sure none of your noisy crewmates come check on you, y":"Y") + "ou quickly collapse on top of your comfy, welcoming bed and get ready to give birth");
@@ -2415,7 +2418,7 @@ public function makiusBiovenResearch():void{
 	clearOutput();
 	author("LukaDoc");
 	showBust(makiusBust())
-	output("As you enter the room, you find Makius so deeply engrossed on his codex that he doesn't notice your arrival. You lean over him to see what he's looking at. He's reading up an in-depth study on the side-effects of a transformative drug called BioVen. You can't read much before he notices you and jumps out of his chair, completely startled. He relaxes as he notice that it's you.");
+	output("As you enter the room, you find Makius so deeply engrossed in his codex that he doesn't notice your arrival. You lean over him to see what he's looking at. He's reading up an in-depth study on the side-effects of a transformative drug called BioVen. You can't read much before he notices you and jumps out of his chair, completely startled. He relaxes as he notices that it's you.");
 	output("\n\n\"Oh, hey [pc.name], didn't notice you there. I… I've been researching the transformative you wanted.\"");
 	output("\n\nYou ask him if he has found anything.");
 	output("\n\n\"Yes… Yes I have.\"");
@@ -2431,7 +2434,7 @@ public function makiusBiovenResearch():void{
 	output("\n\n\"Sorry, but I rather have the complete set. I'm putting my paw down, so it's this or nothing.\"");
 	output("\n\nYou are a little taken aback by him being so forceful on this.");
 	output("\n\n\"Besides the prospect of being stuck forever in a form I might not like, I've read the background of the company that made them, BEM incorporated, and I kinda want to support them.\"");
-	output("\n\nWhat kind of background would leave him so enamoured with a company?");
+	output("\n\nWhat kind of background would leave him so enamored with a company?");
 	output("\n\n\"Just a bittersweet love story,\" he says, seemingly eager to retell you this surprising piece of corporate lore. \"A Venarian that falls in love with a heterosexual ausar of the same sex. An old story of a romance completely set for failure, except in this case the Venarian lady was a geneticist. She invented a drug that would turn her permanently into her manly-looking breeding state.\"");
 	output("\n\nConsidering that he said it was a bittersweet love story you assume it didn't end well.");
 	output("\n\n\"The ausar she was pining after really appreciated the gesture, but just couldn't find her attractive. So they parted ways and the lovesick Venarian set up a company to help those of members of our species that got stuck in the same situation. In some cases it worked, in others it did not. Since most corps don't want to patch their mods with costly Venarian workarounds, BEM has a monopoly on Venarian and some other highly specialized racial transformatives.\" He pauses for a second to take a breath in and then asks \"So what do you say? Should I buy it or no?\"");
@@ -2481,7 +2484,7 @@ public function makiusBiovenArrival():void{
 	output("\n\nYou ask him if that package is what you think it is.");
 	output("\n\n\"Yes, it's BioVen. I was heading to my room to open it right now… Want to come?\"");
 	output("\n\nYou nod and follow him.");
-	output("\n\nSoon enough, you are both in his room and tearing into the package, revealing its contents. A tri-coloured pill bottle, large enough that it might as well contain hundreds of them, and a small booklet that is filled with detailed instructions, advertisements and a list of side-effects. You skip all of that, assuming that the Venarian doc already knows everything there is to know about the treatment, and go straight for the effects on male Venarians. The blue side of the bottle is labelled <b>\"Masculine\"</b>, and according to the booklet, it will maintain the Venarian user's masculine physique through their heat and pregnancy without negatively affecting the child or triggering lactation. The pink pills are labelled <b>\"Feminine\"</b>, and upon consumption they will change the Venarian user's natural state and have them permanently experience the hip and breast growth that is typical for the species' heat, though they won't be able to lactate unless pregnant and will suffer from some penile shrinkage. The last side is green and labelled as <b>Natural</b>, and it will remove any effects from the other pills.");
+	output("\n\nSoon enough, you are both in his room and tearing into the package, revealing its contents. A tri-colored pill bottle, large enough that it might as well contain hundreds of them, and a small booklet that is filled with detailed instructions, advertisements and a list of side-effects. You skip all of that, assuming that the Venarian doc already knows everything there is to know about the treatment and go straight for the effects on male Venarians. The blue side of the bottle is labelled <b>\"Masculine\"</b>, and according to the booklet, it will maintain the Venarian user's masculine physique through their heat and pregnancy without negatively affecting the child or triggering lactation. The pink pills are labelled <b>\"Feminine\"</b>, and upon consumption they will change the Venarian user's natural state and have them permanently experience the hip and breast growth that is typical for the species' heat, though they won't be able to lactate unless pregnant and will suffer from some penile shrinkage. The last side is green and labelled as <b>Natural</b>, and it will remove any effects from the other pills.");
 	output("\n\n\"I guess this is it. This is what you wanted, right?\" Maki muses out loud.");
 	output("\n\nHe seems nervous, so you try to get him to relax and tell him that yes, that is what you wanted and that he will look great after taking these. Despite all of that, he still seems somewhat apprehensive.");
 	output("\n\nHe hesitates for just a few moments before he takes a deep breath and asks you, \"Which one did you want me to take again?\"");
@@ -2523,7 +2526,7 @@ public function makiusSexIntro():void{
 		output("\n\n\"So, that's what you want.\" He smiles. \"That's unfair, you know I can't say no to you. And then you go ahead and get me all worked up.\"");
 		output("\n\nYou look over your lover, smiling when you see his jutting erection tenting his pants. You pull him into a hug, rubbing his mane with one hand while the other trails down to brush the base of his tail.");
 		output("\n\nMaki smiles happily as you rub him down, he responds by doing his best to rub himself against you. " + (pc.isNude()?"Then, h":"Using his advantageous position he begins working on your [pc.gear]. You help guide him through stripping yourself down until you are standing naked before him, then begin returning the favor. H") + "e just lays down and lets you peel off his clothes and toss them away. When he's completely naked, he wraps you into another hug, rubbing himself against you once more" + (makiusMasculine()?"":", his large breasts smooshed against your [pc.chest]") + " and coils his tail around " + (pc.tailCount == 0?"your waist.":"your own."));
-		output("\n\n\"Alright, that's enough foreplay I think. I want you now.\"");
+		output("\n\n\"Alright, that's enough foreplay, I think. I want you now.\"");
 		output("\n\nYou agree and start considering your options.");
 	} else {
 		output("You pull your Venarian lover into a deep kiss, holding him tightly against your body. Maki embraces you, his tail " + (pc.tailCount == 0?"circling your waist":"entwining with your own") + ". Short moments later he breaks the kiss, panting and looking at you with wanton lust.");
@@ -2614,7 +2617,7 @@ public function makiusSexMenu():void{
 	}
 	addButton(3, "Catch Anal", makiusSexCatch, -1, "Catch Anal", "Convince the doctor to fuck your ass.");
 	addButton(4, "Blow Him", makiusSexCatchOral, undefined, "Blow Him", "Get on your knees and give the Venarian a blowjob.");
-	addButton(14, "Back", makiusMenu);
+	addButton(14, "Back", makiusCrewMenu, true);
 }
 
 public function makiusSexCatch(vNum:int):void{
@@ -2824,10 +2827,10 @@ public function makiusSexPitchAnal(cock:int):void{
 	}else if(flags["MAKI_STATE"] == 2){
 		output("The Venarian smiles, pleased by your request. He takes your arm and invites you to lay down on his bed, green eyes glued to your own.");
 		output("\n\nYou see his reasoning; in his state, he can't have you on top, after all. You affectionately pat his " + makiusBellyDescriptor() + " and then seat yourself on his bed, laying back and making yourself comfortable, letting your [pc.cocks] be displayed for his perusal.");
-		output("\n\nHe " + (pc.isNaga()?"":"spreads your legs and ") + "leans in to lick at your [pc.cocks]. He doesn't delay himself and there is no hesitation in his movements, but you can't help but think he's being deliberately slow in his movements. You watch, eager to see what he has in mind. He takes your [pc.cock " + biggest + "] into his mouth, mindful of his teeth, and begin lightly sucking on your [pc.cockhead " + biggest + "]. Pleasure skitters across your nerves and you moan softly, encouraging him as your shaft grows stiffer under his ministrations.");
+		output("\n\nHe " + (pc.isNaga()?"":"spreads your legs and ") + "leans in to lick at your [pc.cocks]. He doesn't delay himself and there is no hesitation in his movements, but you can't help but think he's being deliberately slow in his movements. You watch, eager to see what he has in mind. He takes your [pc.cock " + biggest + "] into his mouth, mindful of his teeth, and begins lightly sucking on your [pc.cockhead " + biggest + "]. Pleasure skitters across your nerves and you moan softly, encouraging him as your shaft grows stiffer under his ministrations.");
 		output("\n\nIt takes only a few moments before he releases you with a pleased whimper." + (pc.cockTotal() > 1?" This one.":""));
 		if (cock != biggest){
-			output("\n\nYou can't help but pointing out that he went right for your biggest cock. He is such a butt-slutt, isn't he? Not enough he has a baby in his belly, he needs your longest, thickest, <i>meatiest</i> dick up his ass? Looks like somebody's a bit of a size-queen....");
+			output("\n\nYou can't help but pointing out that he went right for your biggest cock. He is such a butt-slut, isn't he? Not enough that he has a baby in his belly, he needs your longest, thickest, <i>meatiest</i> dick up his ass? Looks like somebody's a bit of a size-queen....");
 			output("\n\nHe laughs heartily at your teasing. \"You know I don't care much for size, [pc.name]. I'd take anything you have and be happy with it.\" He smirks mischievously. \"But since you have such a nice tool.\" He grabs your [pc.cock " + biggest + "] stroking you gently. \"Why shouldn't I pick the bigger one? Get more to play with?\"");
 			output("\n\nYou can't help but laugh at that. \"But that one is too much.\" You pull your enormous tool from his relatively tiny hands and hand him a more reasonably-sized shaft.");
 			output("\n\n\"Fair enough,\" he says sounding a bit disappointed.");
@@ -2852,7 +2855,7 @@ public function makiusSexPitchAnal(cock:int):void{
 		pc.orgasm();
 		output("\n\nAbove you, your Venarian lover has an expression of pure relief. His tongue is lolling out as he pants, ass gripping you tightly, " + (makiusMasculine()?"chest":"breasts") + " heaving with his pants. Looking down you note that his shaft is throbbing and tensing, no doubt these are the telltale signs of an ongoing orgasm. However much to your surprise, instead of the usual jet of white Venarian seed, what you see is ropes of white being shot weakly. It only goes a couple inches away before pooling on your belly. Instead of the usual outburst of seed, it simply comes out in waves, as a result the Venarian is locked into one long stretch of orgasmic high.");
 		makius.orgasm();
-		output("\n\nIt takes a lot longer than usual for him to be finished before he collapses nervelessly atop you. Somehow you manage to lessen his fall by holding onto his hands and slowly easing him in over you. Once he's in place, you gently fold your arms around him, pulling him into a loose but gentle embrace. You kiss him sweetly on the lips, and ask how they're both doing.");
+		output("\n\nIt takes a lot longer than usual for him to be finished before he collapses atop you. Somehow you manage to lessen his fall by holding onto his hands and slowly easing him in over you. Once he's in place, you gently fold your arms around him, pulling him into a loose but gentle embrace. You kiss him sweetly on the lips, and ask how they're both doing.");
 		output("\n\nHe smiles at that, kissing you back weakly. \"Tired, but happy.\"");
 		output("\n\nGood, you reply, stroking his belly with a free hand.");
 		output("\n\n\"Hey, [pc.name]?\"");
@@ -2862,10 +2865,10 @@ public function makiusSexPitchAnal(cock:int):void{
 		output("\n\n\"Thanks.\"");
 		output("\n\nHe nuzzles you affectionately, closing his eyes and nodding off for a short rest.");
 		output("\n\nYou smile and nuzzle him back; he's just too cute for his own good. After that, you settle back and close your own eyes; you could use a rest yourself... besides, a pregnant man needs his sleep.");
-		processTime(400);
+		processTime(150);
 		addButton(0, "Next", makiusLeave);
 	}else if (flags["MAKI_STATE"]){
-		output("Maki's muzzle widens in a grin, he pants happily as he throws himself down on his mattress, butt and tail high up in the air, ears flat on his skull. He spreads his buttcheeks apart and moans in wantom lust. He turns to look back at you and licks his lips. \"Don't make me wait, [pc.name].\"");
+		output("Maki's muzzle widens in a grin, he pants happily as he throws himself down on his mattress, butt and tail high up in the air, ears flat on his skull. He spreads his buttcheeks apart and moans in wanton lust. He turns to look back at you and licks his lips. \"Don't make me wait, [pc.name].\"");
 		output("\n\nYou smirk and reach down to pat his butt, squishing the plump cheeks between your fingers before moving your hand and extending your fingers to probe at his greedy asshole, sliding smoothly through the drooling orifice and into his back package, stroking and squeezing as best you can given the tightness with which he automatically grips you. Maki trembles as you insert your digit, aiding you by pulling your finger inside through his slick rosebud. His toes curl in pleasure, an obvious sign of how horny the Venarian really is.");
 		output("\n\nYou can't resist a smirk as you ask if he likes that, stretching his tightly-clenching sphincter with a second finger and adding it as you wriggle around, worming your way towards his prostate.");
 		output("\n\n\"Feels good,\" he whispers. \"But it's still not a cock! Fuck me [pc.name]!\" He begs, whimpering in frustration.");
@@ -2878,7 +2881,7 @@ public function makiusSexPitchAnal(cock:int):void{
 		output("\n\nHe makes a detour to gently lay a couple gentle suckles to " + (pc.balls > 0?"your [pc.balls]":"on the [pc.sheath" + biggest + "]") + ", then gives you one long lick, all the way up to your tip where he lingers for a moment to tease you. You shiver and smile, encouraging him as your [pc.cock " + biggest + "] starts to leak precum. He leans in and gently gives your [pc.cockhead " + biggest + "] a suckling kiss, draining a bit of pre and smacking his lips with a smile at your taste.");
 		output("\n\n\"Hmm... I love cock!\" He happily proclaims before opening his maw wide and taking in as much of your shaft as he can, sliding you into his throat effortlessly as he does so.");
 		output("\n\nYour body shudders and you have to restrain yourself to keep from thrusting into his mouth to the hilt. Maki begins bobbing, swirling his tongue around your shaft in an effort to massage and taste you. He looks up at you, eyes shining with joy.");
-		output("\n\nYou smile and stroke his ears affectionately, vocalising your pleasure at what he's doing and encouraging him to keep going. He grabs your hips, holding you in place so he can properly deepthroat you, using his own muscles to grant you in pleasure and pulling off only to catch his breath. You gasp and you grunt, feeling the warmth filling you, before you remember your plan and you stop Maki with your hands on his shoulders, pulling your cock wetly free of his mouth.");
+		output("\n\nYou smile and stroke his ears affectionately, vocalizing your pleasure at what he's doing and encouraging him to keep going. He grabs your hips, holding you in place so he can properly deepthroat you, using his own muscles to grant you in pleasure and pulling off only to catch his breath. You gasp and you grunt, feeling the warmth filling you, before you remember your plan and you stop Maki with your hands on his shoulders, pulling your cock wetly free of his mouth.");
 		output("\n\nMaki looks up at you in confusion and slight disappointment. With a smile and a shake of your head, you remind him that the two of you are after his other hole. At hearing that he grins at you, tail waving in happiness as he begins turning around. You wait for him to be in position, tail up and drooling ass winking at you enticingly, before you pounce forward; your arms circle under his belly and, with a few tugs, you roll him over, spinning him around so he is belly-up on the bed and you can pin him down like that. The Venarian looks at you in confusion, wondering what you have in mind. You bend down and authoritatively seize the Venarian's lips in a passionate kiss, sliding your [pc.hips] so as to bring your now stiff dick rubbing eagerly against his wet, aching entrance. Maki hugs you, using his legs to hang on to you as he moans into the kiss, tail encircling you lovingly as he hugs you with his whole body.");
 		output("\n\nYou fold yourself in your boytoy's full-body embrace, and, as best you can, you slide your shaft into the welcoming, eager embrace of his ass. At once the hot, tight, dripping wetness of his butt envelops your [pc.cock " + cock + "], squeezing you with a death-grip, eager to suck you down to the hilt and never let you go. You continue pushing as deeply as you can, tingles of pleasure coursing through your [pc.skinFurScales].");
 		pc.cockChange();
@@ -2888,7 +2891,7 @@ public function makiusSexPitchAnal(cock:int):void{
 		output("\n\nThe Venarian's eyes are glazed over, overwhelmed with pleasure. He breaks the kiss and whimpers softly, each time you thrust into him he whimpers in delight, mouth agape and tongue lolling out. " + (makiusMasculine()?"You take hold of his flat chest, feeling it bare of any fat and with just a little bit of muscle, letting go of one pec":"You take hold of his breasts, squeezing them, feeling their weight squish and roll around under your fingers, letting go of one breast") + " only to capture his nipple between your [pc.lips], feeling the nub rolling as you assault it with tongue and the tips of your teeth. And all the while, you continue to thrust and hump against him, his ass eager to swallow you but reluctant to let you leave, wringing your cock in its readiness to milky you dry...");
 		output("\n\n\"C-Close....\" he says airily, shuddering with the impact of your hips on his butt, legs tensing ever so slightly and cock twitching in preparation of what's to come. His ass forms a vacuum around your shaft, doubling the slippery moisture that suffuses his innards.");
 		output("\n\nFeeling your own climax so close, you grab his legs and heave them up, bending him over so you can more fully pound his ass, thrusting as hard and as fast as you can into his vacuuming innards. Oh, so close now...");
-		output("\n\nWith a gasp, Maki screams for you. \"[pc.name]! I'm cumming!!\" His shaft twitches once, twice and finally releases it's load onto the Venarian's own body. Painting his chest in his cum as he tries his best to buck against your thrusting hips despite his awkward position. His tight boypussy suckling on your [pc.cock " + cock + "] with abandon, truly milking you now. ");
+		output("\n\nWith a gasp, Maki screams for you. \"[pc.name]! I'm cumming!!\" His shaft twitches once, twice and finally releases its load onto the Venarian's own body. Painting his chest in his cum as he tries his best to buck against your thrusting hips despite his awkward position. His tight boypussy suckling on your [pc.cock " + cock + "] with abandon, truly milking you now. ");
 		makius.loadInAss(pc);
 		makius.orgasm();
 		output("\n\nYou grunt and you moan, deep and low in your throat as the pleasure spirals to overwhelming heights. A few last thrusts and you cry out as you slam yourself home, cumming into his waiting ass with all the energy you can muster. Thick ropes of [pc.cum] begin gushing from your cock into his ass, filling him with your warm fluids");
@@ -2913,7 +2916,7 @@ public function makiusSexPitchAnal(cock:int):void{
 		output("\n\nYou nod absently to that.");
 		output("\n\nHe leans in close to your ears, flickering his tongue to lick your jawline. \"I think you should know that my butt is ready for you. And so am I,\" he whispers into your [pc.ear].");
 		output("\n\nWell, if that's the case.... You shift him around again and hoist his butt up from your lap, moving it so that it's positioned right over the tip of your [pc.cockNounComplex " + cock + "] and then slowly letting him fall onto it, spearing into his depths. His warmth slowly starts surrounding you. You take your time and enjoy your lover's embrace as he slides down your [pc.cock " + cock + "], his face is contorted into the cutest expression of pleasure, and you can't resist stealing a kiss as your [pc.hips] make contact with his fuzzy butt.");
-		output("\n\nHe groans and you hold him there so he can start adjusting to you, caressing his mane and whispering little encouragements as you do so. Once you feel his rosebud starting to react to your presence, rippling around your dick as he rhythmically clenches himself, you smile at him and begin moving.");
+		output("\n\nHe groans and you hold him there so he can start adjusting to you, caressing his mane and whispering little encouragement as you do so. Once you feel his rosebud starting to react to your presence, rippling around your dick as he rhythmically clenches himself, you smile at him and begin moving.");
 		output("\n\nYou bump noses with him and throw him a tease about his eagerness.");
 		output("\n\nHe pants, cock spurting ropes of pre down his shaft. Lust and love clear in his green eyes. \"O-Of course I'm eager for you. You are my mate, I'm always holding out for you.\"");
 		output("\n\nReally? Why, you'd expect better of a doctor, you playfully cluck, letting him drop a little further. After all, he should know so that it's not good to let himself get so... pent up.... Again you let him sink down your shaft, spearing yourself into him.");
@@ -3029,7 +3032,7 @@ public function makiusSexPitchAnalVirginEnd():void{
 	clearMenu();
 	clearOutput();
 	showBust(makiusBust(2));
-	processTime(420);
+	processTime(150);
 	author("LukaDoc");
 	output("When consciousness returns, you are wrapped up in Venarian limbs. Maki holds you almost possessively. \"Hmm... [pc.name].\" He nuzzles you affectionately. You gently pat his cheek, rousing him to wakefulness. He reluctantly disentangles himself, allowing you to finally stand and stretch the kinks out of your muscles. \"I think I'm going to rest a while longer.\"");
 	output("\n\nYou tell him you understand" + (pc.isNude()?"":", then quietly gather your clothes, pull them back on") + " and head for the door.");
@@ -3045,14 +3048,14 @@ public function makiusSexPitchAnalBreeder(vars:Array):void{
 	var cock:int = vars[0];
 	var cumQ:int = vars[1];
 	author("LukaDoc");
-	output("You cry out, arching your back as the last few ropes of jism spurt from your shaft into Maki's sopping wet depths, feeling it clench around your " + (pc.hasKnot(cock)?"[pc.knot " + cock + "]":"[pc.cock " + cock + "]") + " as your body wrings itself dry. It takes all you have to keep from collapsing bonelessly atop Maki's back, and you still nearly crash as you sink back down, weakly cuddling him as you tell him that you're positive you don't have a drop left to give him, now.");
+	output("You cry out, arching your back as the last few ropes of jism spurt from your shaft into Maki's sopping wet depths, feeling it clench around your " + (pc.hasKnot(cock)?"[pc.knot " + cock + "]":"[pc.cock " + cock + "]") + " as your body wrings itself dry. It takes all you have to keep from collapsing atop Maki's back, and you still nearly crash as you sink back down, weakly cuddling him as you tell him that you're positive you don't have a drop left to give him, now.");
 	output("\n\n\"Are you sure? I'm sure I still have room for more in here.\" He pats his " + (cumQ < 100?"still flat":(cumQ < 500?"full":"bulging")) + " belly.");
-	output("\n\nYou shake your head, insisting that you have nothing left." + (cumQ > 500?" Besides, if he gets any fuller, he's not going to be able to get out of bed.\n\n\"That's not a problem. I'll just have to rely on you for food and drink. Oh, and while you are at it, if you are feeling a bit pent up we could... you know.\"":""));
+	output("\n\nYou shake your head, insisting that you have nothing left." + (cumQ > 500?" Besides, if he gets any fuller, he's not going to be able to get out of bed.\n\n\"That's not a problem. I'll just have to rely on you for food and drink. Oh, and while you are at it, if you are feeling a bit pent up, we could... you know.\"":""));
 	output("He chuckles.\n\n\He is just insatiable today, isn't he?");
 	output("\n\n\"You are just so busy sometimes. And I get so lonely. Can you blame me for wanting to make the most of our time together?\"");
 	output("\n\nWell, not really... so, is he feeling any better now? \"Happy, satisfied and full of your love.\" He pats his belly once more.");
 	output("\n\nYou nod your head and " + (pc.hasKnot(cock)?"tug your [pc.knot " + cock + "]":"pull") + " free of his now-loosened pucker, telling him that if that's the case, it's time for you to leave.");
-	output("\n\nMaki whimpers in disappoint as you pull out of his, now loose, pucker. \"It feels so empty without you.\" He pouts as he looks at you, giving you his best version of puppy eyes.");
+	output("\n\nMaki whimpers in disappointment as you pull out of his, now loose, pucker. \"It feels so empty without you.\" He pouts as he looks at you, giving you his best version of puppy eyes.");
 	output("\n\nYou remind him that as captain, you can't stay with him all day.");
 	output("\n\n\"I know that....\" He sighs and then grins at you. \"Guess I'll have to settle for this for now.\" He rolls around to look at you and pats his belly, bloated with the results of your lovemaking. \"Don't stress yourself out with your duties, and please come visit me whenever you want.\" He grins once more. \"Specially if you need to get rid of your stress.\"");
 	output("\n\nYou promise you'll remember that, even as you dress yourself and leave.");
@@ -3080,7 +3083,7 @@ public function makiusSexPitchOral():void{
 		output("\n\nYou gasp and groan; he must be starving, you manage to blurt out - he's not normally this - ooh! - this enthusiastic....");
 		output("\n\nHe looks up at you, green eyes full of mischief and lust, happy to be pleasuring you so. Intent on getting you to unload as soon as possible, he wraps his tongue around you tighter and quickens his pace.");
 		output("\n\nUnder his onslaught, it's all you can do to keep yourself from popping your load right there and then; it seems like he knows every spot to lick, kiss and suck in order to bring you maximum pleasure... oh, gods, you can't hold out against this much longer, and you dreamily admit this fact to him, in between moaning like a whore... so good; so, sooo good....");
-		output("\n\nHe smiles around your cock, determine look in his eyes. He pulls back all the way to your [pc.cockhead " + cock + "] and then push himself down, swallowing you whole and holding you within his throat. His throat muscles contract as he swallows, effectively milking you whilst his tongue and lips busy themselves with the rest.");
+		output("\n\nHe smiles around your cock, determine look in his eyes. He pulls back all the way to your [pc.cockhead " + cock + "] and then pushes himself down, swallowing you whole and holding you within his throat. His throat muscles contract as he swallows, effectively milking you whilst his tongue and lips busy themselves with the rest.");
 		output("\n\nYour resistance crumbles before the tide and you throw your head back, crying out as you climax under your pregnant boytoy's ministrations, flooding his mouth with your seed.\n\n");
 		if (pc.cumQ() < 100){
 			output("Maki swallows down your load without hesitation, suckling away with greedy eagerness until you've spent the last of your [pc.cumFlavor] load.");
@@ -3159,7 +3162,7 @@ public function makiusSexPitchOral():void{
 		output("\"Oh… I was wondering when I'd get " + (flags["MAKI_GIVEN_BLOWJOB"]?"another":"a") + " taste of you.\" He smiles ear to ear, tail wagging happily behind as he approaches you and takes your hand. \"I will gladly pleasure you with my mouth.");
 		output("\n\nYou smile back at him, squeezing his fingers gently, and allow him to lead you over to his bed, making yourself comfortable upon its edge before you " + (pc.isNaga()?"":"spread your [pc.thighs] and ") + "reveal your [pc.multiCocks] to him.");
 		if (pc.cockTotal() > 1){
-			output("\n\nMaki examines your [pc.cocks] looking each in turn. He closes his eyes and sniffs the air, allowing his not to lead him and stopping only when he feels it bop against your [pc.cock " + cock + "]. He opens his eyes with a smile and licks his lips. \"I want this one.\"");
+			output("\n\nMaki examines your [pc.cocks] looking each in turn. He closes his eyes and sniffs the air, allowing his nose to lead him and stopping only when he feels it bop against your [pc.cock " + cock + "]. He opens his eyes with a smile and licks his lips. \"I want this one.\"");
 			output("\n\nYou reach out and stroke his ears, letting him know you approve of his choice.");
 		}
 		output("\n\nHe grabs your shaft almost reverently, stroking the length of your [pc.cock " + cock + "] slowly. \"Your heart is beating fast,\" he idly comments.");
@@ -3226,7 +3229,7 @@ public function makiusSexPitchOralPregBalls(cock:int):void{
 	output("\n\n\"Oh, I'm sorry for being so greedy, my mate. I'll help you, of course.\" He licks his lips and leans in to sniff at your ball " + (pc.balls > 1?"s":"") + ". \"Musky.\" Then he takes an experimental lick. \"And tasty. Just the way I like it.\" He smiles up at you.");
 	output("\n\nYou moan as his touch enflames your sensitive skin, sparks of arousal surging through your nerves as his words stir something primal inside you. You can feel yourself starting to get hard again.");
 	output("\n\nWatching your reaction with a smile, he sets to work. He kisses, sucks and licks your ball" + (pc.balls > 1?"s":"") + ", doing a thorough job as he cleans " + (pc.balls == 1?"it":"them") + ". " + (pc.ballSize() > 10?"Despite trying, he isn't able to get " + (pc.balls == 1?"your sole gigantic ball":"even one of your gigantic balls") + " into his maw. He settles on licking, nuzzle and sniffing your [pc.sack]; doing his best to incentivize you to produce more seed.":"He rolls " + (pc.balls == 1?"it":"them") + " around with his tongue, nuzzles, sniffs and blows on them; all to incentivize you to produce more seed."));
-	output("\n\nYou gasp and moan and shudder, feeling yourself revitalised. You warn Maki to stop, else he's going to make you cum again before he gets his mouth over your cock.");
+	output("\n\nYou gasp and moan and shudder, feeling yourself revitalized. You warn Maki to stop, else he's going to make you cum again before he gets his mouth over your cock.");
 	makiusSexPitchOralPregContinue(cock);
 }
 
@@ -3253,7 +3256,7 @@ public function makiusSexPitchOralPregSpentClear():void{
 public function makiusSexPitchOralPregSpent():void{
 	clearMenu();
 	showBust(makiusBust(2));
-	processTime(200);
+	processTime(150);
 	author("LukaDoc");
 	output("You shake your head and sigh sorrowfully, explaining to Maki that he sucked you dry already feeding his cravings. You've nothing left to give him.");
 	output("\n\n\"Already? Aww….\" He pouts. He hops next to you and nuzzles you lovingly; a sign of pure affection and one you never get tired of.");
@@ -3263,21 +3266,21 @@ public function makiusSexPitchOralPregSpent():void{
 
 public function makiusSexPitchOralPregContinue(cock:int):void{
 	showBust(makiusBust(2));
-	processTime(200);
+	processTime(150);
 	author("LukaDoc");
-	output("\n\nThis time Maki decides to go slowly. First by kissing along the length of your shaft, savouring your taste and smiling to himself every time you give an involuntary throb.");
+	output("\n\nThis time Maki decides to go slowly. First by kissing along the length of your shaft, savoring your taste and smiling to himself every time you give an involuntary throb.");
 	output("\n\nYou moan softly, your sensitive flesh reacting to the touches with sparks of pleasure.");
 	output("\n\nHe lets his tongue loll out and wraps it around your shaft, licking you as he nuzzles you, not caring in the least that the traces of your recent activities cling to his face.");
 	pc.cockChange();
 	output("\n\nYou arch your back and mewl, already feeling your damaged walls of reserve starting to crumble. You voice encouragements to him, begging with him to suck you for real.");
 	output("\n\nMaki eagerly complies; he licks his way to your [pc.cockhead " + cock + "] and, after toying with it using the tip of his tongue, engulfs you in his warm maw once more.");
 	output("\n\nA wordless cry of pleasure escapes you, bliss caressing you as he takes you inside. You are buried inside his warm wetness, and you don't ever want to leave.");
-	output("\n\nHe rolls your mast inside inside, always mindful of his teeth. A whimper of delight escaping him as he enjoys the feeling of his mate's shaft deep within his mouth. His lips form a seal around you and his tongue massages you. A tickling lick here, a delightful press there and a quick flick to your glans. You feed him your pre as you inch ever closer to orgasm.");
+	output("\n\nHe rolls your mast inside, always mindful of his teeth. A whimper of delight escaping him as he enjoys the feeling of his mate's shaft deep within his mouth. His lips form a seal around you and his tongue massages you. A tickling lick here, a delightful press there and a quick flick to your glans. You feed him your pre as you inch ever closer to orgasm.");
 	output("\n\nYour skin tingles and your senses reel, pleasure overwhelming you. You barely manage to hold back long enough to gasp a warning of your impending climax to your Venarian.");
 	output("\n\nHe looks up at you, blinking to signal that he understood. Slowly he pulls away, until only your tip is inside his maw. He licks around your glans one more time and releases you, delivering a final kiss on your [pc.cockhead " + cock + "].");
 	output("\n\nThat does it; you can't hold it back anymore, and you cum right there and then, painting a sizable splash of [pc.cumColor] across his face, barely aware of the fact that he promptly opens his mouth to try and catch the rest - all that you can think of is the sweeping pleasure as you climax for the second time in so short a span.");
 	pc.orgasm();
-	output("\n\nIt's a crescendo of pleasure that flows through you like a tidal wave, your whole body shaking with the force of it. But, like all waves, it comes to an end, and in its wake it leaves you tired and drained. You heave lungfuls of air, and then look at your lover; his face is totally matted with your [pc.cumNoun], his eyes closed and his tongue playing across his lips as far as it can reach to try and sweep up any of your fluids that he can.");
+	output("\n\nIt's a crescendo of pleasure that flows through you like a tidal wave, your whole body shaking with the force of it. But, like all waves, it comes to an end, and in its wake, it leaves you tired and drained. You heave lungfuls of air, and then look at your lover; his face is totally matted with your [pc.cumNoun], his eyes closed and his tongue playing across his lips as far as it can reach to try and sweep up any of your fluids that he can.");
 	output("\n\nYou watch enraptured as he swipes what his tongue can't reach and licks it off his hands. He looks very cute when he does this.");
 	output("\n\n\"Hmm, tasty. Did you enjoy yourself, [pc.name]? My mate?\"");
 	output("\n\nYes, you did. He did an absolutely wonderful job. You're proud of him, you say, reaching out to gently ruffle his ears.");
@@ -3292,7 +3295,7 @@ public function makiusSexPitchOralBreederNo():void{
 	clearMenu();
 	clearOutput();
 	showBust(makiusBust(2));
-	processTime(400);
+	processTime(150);
 	author("LukaDoc");
 	output("He smiles at your reply. \"Ah, good. I'm sorry for getting so carried away. It's just that I think of you all the time, and my hormones are waging war inside my body. I tend to get carried away.\"");
 	output("\n\nYou assure him that it's alright, lucky him you happen to like slutty Venarians.");
@@ -3305,13 +3308,13 @@ public function makiusSexPitchOralBreederNotEnough():void{
 	clearMenu();
 	clearOutput();
 	showBust(makiusBust(2));
-	processTime(400);
+	processTime(150);
 	author("LukaDoc");
 	output("\"Oh….\" He smiles mischievously. \"So, you like when I talk dirty?\"");
 	output("\n\nYou admit that this is so.");
 	output("\n\n\"You like hearing how much you excite me?\"");
 	output("\n\nYes.");
-	output("\n\n\"That's good. Because right now all I can think is how much [pc.cum] you'll force down my throat while I nurse from your delicious, juicy [pc.cockBiggest]. I just want it so badly… if you weren't straddling me I'd have pounced you already. I'm so horny that just the scent is getting me close to the edge.\" He makes a point of inhaling deeply, whimpering as he enjoys your musk.");
+	output("\n\n\"That's good. Because right now all I can think is how much [pc.cum] you'll force down my throat while I nurse from your delicious, juicy [pc.cockBiggest]. I just want it so badly… if you weren't straddling me, I'd have pounced you already. I'm so horny that just the scent is getting me close to the edge.\" He makes a point of inhaling deeply, whimpering as he enjoys your musk.");
 	output("\n\nYour cock throbs and twitches as your excitement builds; clever boy, he knows just what " + pc.mf("daddy","mommy") + " likes to hear, doesn't he?");
 	output("\n\n\"Yes, yes I do. Feed me " + pc.mf("daddy","mommy") + ". I'm so hungry.\" He lets his tongue loll out, panting in wanton lust.");
 	output("\n\nOh, you'll feed him alright....");
@@ -3322,7 +3325,7 @@ public function makiusSexPitchOralBreederYes():void{
 	clearMenu();
 	clearOutput();
 	showBust(makiusBust(2));
-	processTime(400);
+	processTime(150);
 	author("LukaDoc");
 	//wanted the length of the penis, using a random adjective instead
 	output("\"Oh… sorry for that. I'm just so horny, and you are so attractive, and then you show me this " + pc.cockAdjectivesRedux(pc.cocks[pc.biggestCockIndex()], 1, false)[0] + ", juicy [pc.biggestCockNoun] of yours… I'll shut up now.\" His ears lay flat on his skull.");
@@ -3336,7 +3339,7 @@ public function makiusSexPitchOralBreederMerge():void{
 	output("\n\nYou slide yourself up his waist, feeling his " + (makiusMasculine()?"chest":"breasts") + " pushing against your inner [pc.thighs], and begin pushing your cock into his mouth. Maki relaxes, wary of his teeth as he guides your way inside whilst lapping at you. His mouth forming into an inviting O, sealing his lips around your shaft. You would feel envious of his enjoyment, if you weren't enjoying this just as much as he is.");
 	pc.cockChange();
 	output("\n\nSlowly you start to fuck your " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"boy":"") + "friend's face, letting your shaft slide gently in and out of his lips, feeling his tongue squeezing and caressing you. Your position is a little awkward, you can't fit yourself completely inside of him from this angle, but you resolve to try your hardest - he's certainly enjoying it, anyway, sucking away like your dick is a delicious lollipop, coaxing you to pick up the pace, steadily getting faster and faster.");
-	output("\n\nYou feel an impact against your hips and look down; Maki is tapping at you with his hands. He looks at you inquisitively. You pop your cock free so that he can speak. He smack his lips as you pull away. \"You know, if you did this from another angle, you could go deeper into my throat.\"");
+	output("\n\nYou feel an impact against your hips and look down; Maki is tapping at you with his hands. He looks at you inquisitively. You pop your cock free so that he can speak. He smacks his lips as you pull away. \"You know, if you did this from another angle, you could go deeper into my throat.\"");
 	output("\n\nThat sounds intriguing; you're willing to try if he is.");
 	output("\n\nHe smiles. \"Go ahead then, I don't mind it. I want to be able to take all of you.\"");
 	output("\n\nYou slide off of him, moving yourself around so that you are coming down at him from above, rather than up from below. As he lays back, his head leaning up towards the head of the bed and his mouth open, you straddle his head and gently feed your [pc.cock] into his waiting lips, leaning over him and holding onto his " + (makiusMasculine()?"chest":"breasts") + " as support. From this angle, you can already feel better penetration. Once settled, you ask if he's alright.");
@@ -3377,12 +3380,12 @@ public function makiusSexCatchVaginal(vNum:int):void{
 	clearOutput();
 	showBust(makiusBust(2));
 	makiusSubbed(-1);
-	processTime(400);
+	processTime(150);
 	author("LukaDoc");
 	if (flags["MAKI_STATE"] == 2){
 		if(pc.isPregnant()){
 			output("\"We're both already pregnant! Is there any point in this?\" He crosses his arms in mock indignation.");
-			output("\n\nMaybe you just want your pussy pounded? Isn't there a part of him of that just just wants to have fun, despite your shared misery?");
+			output("\n\nMaybe you just want your pussy pounded? Isn't there a part of him of that just wants to have fun, despite your shared misery?");
 			output("\n\nHe scratches his chin. \"Well, I'd be lying if I said I didn't want sex with you like that… But we're both pregnant and I wanted you to be at my beck and call, not the reverse. " + (!pc.hasPregnancyOfType("MakiusPregnancy")?"With a child that isn't even mine! ":"") + " He pouts.");
 			output("\n\nYou tell him not to worry, you'll keep doting him as much as he wants, even after you both pushed these babies out.");
 			output("\n\n\"Alright then.\" He smiles, content with you answer.");
@@ -3411,7 +3414,7 @@ public function makiusSexCatchVaginal(vNum:int):void{
 	}else{
 		output("\"You wanna do that again, do you?\" He asks with a smile.");
 		output("\n\nYes, you do. After all, practice makes perfect, you tease him." + (pc.hasPregnancyOfType("MakiusPregnancy")?" Not that he needs any, if your pregnant belly is any indication.":""));
-		output("\n\nHe smiles a bashfully. \"Um, thank you.\"");
+		output("\n\nHe smiles bashfully, \"Um, thank you.\"");
 	}
 	output("\n\nYou walk towards the bed, swaying your [pc.hips] in a seductive wiggle as you do, before laying down" + (pc.hasBalls()?", spreading your [pc.thighs] and lifting your [pc.balls]":" and spread your [pc.thighs]") + " to reveal your feminine treasure. You trace your labia with your fingers, asking if Maki likes what he sees, smiling seductively at him as you do.");
 	output("\n\nMaki crawls onto the bed over you, looking adoringly at you as he moves his hand to caress your cheek. A small droplet of the Venarian's pre falls onto your crotch, a signal of just how aroused he really is.");
@@ -3430,7 +3433,7 @@ public function makiusSexCatchVaginal(vNum:int):void{
 		makius.cockChange();
 		pc.cuntChange(vNum, makius.cockVolume(0));
 		output("\n\nYou moan in pain-tinged pleasure as his shaft pierces your love-canal, so unused to anything like this experience, forcing you wider than your fingers have ever done. You can feel the rupturing of your virginity, and your once-untouched cunt instinctively clamps down on his cock at the stimulation. You cannot repress a hiss of pain at the breaching.");
-		output("\n\nMaki looks at you, worry clear in his eyes. Shivering, you hold until you adjust, then nod to him, signalling that you're ready to proceed. Nodding he continues to feed you inch upon inch; until your hips connect with a shuddering moan from your Venarian partner. You moan along with him, the experience so new to you it's almost indescribable... other than that you feel good....");
+		output("\n\nMaki looks at you, worry clear in his eyes. Shivering, you hold until you adjust, then nod to him, signaling that you're ready to proceed. Nodding he continues to feed you inch upon inch; until your hips connect with a shuddering moan from your Venarian partner. You moan along with him, the experience so new to you it's almost indescribable... other than that you feel good....");
 	}else{
 		output("\n\nYou moan appreciatively as his shaft spreads you wider, the Venarian sliding deeper and deeper inside of you until he has reached his hilt, something that makes him shudder and moan even before your cunt clamps down on him.");
 		makius.cockChange();
@@ -3447,7 +3450,7 @@ public function makiusSexCatchVaginal(vNum:int):void{
 	output("\n\nHe stops playing with your nipples for a second. \"Sorry!\" He drives right back to his appointed tasks, licking and suckling on one of your [pc.nipples] while one of his hands plays with the other; he hunches slightly, using his tail for support as he finally begins going faster, setting at a steady pace. He whimpers every time your hips collide with a satisfying slap.");
 	output("\n\nYou grunt and scrape your hands down his back, slapping at his ass. Now this is more like it, you absently comment, even as you start to buck back for real against his thrusts. Harder, you tell him, do it faster! You're not made of crystal, after all, you won't break if he really puts himself into it.");
 	output("\n\nMaki redoubles his effort, his thrusts rocking you with each slap. He moans your name, now constantly whimpering in delight. Erratic thrusts sometimes brushing against your most sensitive spots. For a moment you have a distinct feeling that he's getting bigger, Maki must not have long to go.");
-	output("\n\nA knowing smile crosses your lips as you squeeze his ass in your hands, pussy doing it's best to milk his shaft as your fingers creep towards his pucker, teasingly caressing the base of his tail with one hand and brushing his rosebud with the fingers of the other. You notice Maki's eyes dart backwards as he feels your hand on his ass; the moment he looks back at you in confusion you smile and set about guiding him with your hand, controlling his pace as you work yourself towards the inevitable climax.");
+	output("\n\nA knowing smile crosses your lips as you squeeze his ass in your hands, pussy doing its best to milk his shaft as your fingers creep towards his pucker, teasingly caressing the base of his tail with one hand and brushing his rosebud with the fingers of the other. You notice Maki's eyes dart backwards as he feels your hand on his ass; the moment he looks back at you in confusion you smile and set about guiding him with your hand, controlling his pace as you work yourself towards the inevitable climax.");
 	output("\n\nWhimpers and moans of delight escape your Venarian lover, he stops playing with your nipples; instead all he does is thrust at your pace, focusing on the sensations of your milking pussy.");
 	output("\n\nFinally, feeling your own climax imminent, you give Maki one last command: \"Cum for me,\" you whisper, pulling him roughly against yourself so that his next thrust goes as deeply into you as possible and pushing a finger into his sensitive" + (flags["MAKI_STATE"] > 0?", drooling":"") + " asshole for emphasis.");
 	output("\n\nHe gasps, arching his back as he lets out a deep throated moan of pleasure. Hips grinding against you into a needy rut, his hands camp down on your [pc.hips] as he pulls you in an attempt to dig ever deeper. You feel his shaft throb, nubby glans seemingly vibrating as they harden and expand his tip. His cumvein, now held open, releases its copious content. A flood of Venarian spunk floods your passage, digging its way into your deepest recesses as Maki instinctively tries his best to fertilize his mate.");
@@ -3474,7 +3477,7 @@ public function makiusSexCatchAnal():void{
 		output("\n\nMaki eyes you lustfully, smiling. \"If you really want me like that, I guess I can oblige.\" He swallows, still a bit nervous. \"Sorry for being nervous. It's just that… you excite me.\" He takes another glance at you, averting his eyes and biting his lower lip. \"A lot.\"");
 		output("\n\nYou kind of got the impression, you reply, eyes giving a meaningful look at his dripping cock.");
 	}else{
-		output("\"Personally I'd rather be on the receiving end. " + (flags["MAKI_STATE"] == 2?"Even if you did finally put a baby Venarian inside me, I still crave you, y'know?\"":"Make a few Venarian babies….\" He closes his eyes, thinking with a smile. \"Yes that would be great.\""));
+		output("\"Personally I'd rather be on the receiving end. " + (flags["MAKI_STATE"] == 2?"Even if you did finally put a baby Venarian inside me, I still crave you, y'know?\"":"Make a few Venarian babies….\" He closes his eyes, thinking with a smile. \"Yes, that would be great.\""));
 		output("\n\nMaki eyes you lustfully, smiling. \"If you really want me like that, I guess I can oblige.\" He chuckles. \"Sorry for being selfish, I guess you crave me in other ways too. And I can't deny my mate, can I?\" His tail waves happily behind; silly grin plastered on his face.");
 		output("\n\nNo, he certainly can't... that's just one of the things that you love about him.");
 	}
@@ -3495,9 +3498,9 @@ public function makiusSexCatchAnal():void{
 	output("\n\nIf he hears you, he doesn't bother to reply. He gives you a moment to adjust before retracting and pushing himself back in with a wet squelch. His pre-leaking cock fills your ass, painting its way in and out. You groan and hiss, pleasure ringing its way through your body, squeezing your ass as best you can to try and grasp his cock and hold it inside you, but he's just too slick, just too slippery to trap. His pacing speeds up, building towards a crescendo. Wet slaps echo from your joint hips with every thrust by the lust addled doctor. His hands hug you tightly from behind, as if afraid that you will evaporate if he ever let you go. You give yourself to his embrace, eager for it, surprised and delighted at just how much he's gotten into this.");
 	output("\n\nHe groans, becoming more and more rough on his treatment. You thrust your hips back eagerly, matching each thrust with your own, the rhythmic slap of flesh on flesh filling the room.");
 	output("\n\n\"[pc.name]....\" he whispers. \"Oh, [pc.name].\" His " + (makiusMasculine()?"boyish":"curvy") + " hips double in rhythm. \"[pc.name]! I'm OOOooooh!\" He never gets to finish his sentence, burying himself as far into you as he can manage.");
-	output("\n\nYou cry out with equal lust, feeling the heat washing through you as his cockhead hardens, expanding his urethra and he paints your insides with jet after eager jet of Venarian seed. Oh, it's feels so good in your belly - you want it all, every last drop! Your [pc.asshole] ripples and squeezes as you try to milk him, greedily seeking to drink his cock dry of jism.");
+	output("\n\nYou cry out with equal lust, feeling the heat washing through you as his cockhead hardens, expanding his urethra and he paints your insides with jet after eager jet of Venarian seed. Oh, its feels so good in your belly - you want it all, every last drop! Your [pc.asshole] ripples and squeezes as you try to milk him, greedily seeking to drink his cock dry of jism.");
 	makius.orgasm();
-	output("\n\nIt's all too much for your overstimulated brain and you cry out as you climax, whole body quaking in pleasure, " + (pc.hasCock()?"your [pc.cocks] spraying jism onto the sheeting":"") + (pc.isHerm()?" and ":"") + (pc.hasVagina()?"your [pc.cunt] spattering its juices below you":"") + ". You gasp and groan, whole body quaking until at last you give in and collapse into a heap, the breath whooshing from your lungs as your lover falls atop you in his own boneless collapse.");
+	output("\n\nIt's all too much for your overstimulated brain and you cry out as you climax, whole body quaking in pleasure, " + (pc.hasCock()?"your [pc.cocks] spraying jism onto the sheeting":"") + (pc.isHerm()?" and ":"") + (pc.hasVagina()?"your [pc.cunt] spattering its juices below you":"") + ". You gasp and groan, whole body quaking until at last you give in and collapse into a heap, the breath whooshing from your lungs as your lover falls atop you in his own collapse.");
 	pc.loadInAss(makius);
 	pc.orgasm();
 	output("\n\nMaki whimpers in delight, nuzzling and inhaling your scent, even as he withdraws from you with a squelch. Your sphincter clenches automatically, and you can't help a pang of disappointment at being emptied like this. He rolls you both on your side and spoons you affectionately, tail draping over you possessively. Contentedly you snuggle into his arms, patting his hand where it drapes across your [pc.belly].");
@@ -3512,7 +3515,7 @@ public function makiusSexCatchAnal():void{
 public function makiusSexCatchOral():void{
 	clearMenu();
 	clearOutput();
-	processTime(300);
+	processTime(150);
 	author("LukaDoc");
 	showBust(makiusBust(2));
 	output("You look over the naked form of your lover, and your eyes fall upon his shaft, poking from his groinal slit and drooling thick ropes of slimy, gooey precum. You know just what you want to do with him. Swaying your [pc.hips] in an effort to appear enticing to him, you cross the distance between the two of you and you fold your arms around him, gently capturing his lips with your own. Maki kisses you back, tentatively at first, but the kiss quickly develops into something more passionate as he embraces you and brings you closer.");
@@ -3533,7 +3536,7 @@ public function makiusSexCatchOral():void{
 	output("\n\nAll Maki manages before his tip expands at last and a flood of his slick cum spews forth into your throat is a shaky warning that quickly devolves into a moan of lust. His cum explodes inside you with such volume it feels like you are guzzling liquid down from a bottle. Greedily you drink and slurp until you feel like your belly has been filled, and then you drink some more. You intend to suck him dry of every last drop he has, no matter how much it may be. By the time that you swallow the last mouthful and he goes limp in your mouth, your belly is gurgling in protest, the skin of your midriff stretched tight as a drum over a stomach filled to its limit.");
 	pc.loadInMouth(makius);
 	makius.orgasm();
-	output("\n\nYour Venarian lover coos in delight as his stiff body finally relaxes, and he collapses nervelessly on his back. His cock slips out of your mouth with a pop, half-erect after his orgasm and quickly receding back into its protective slit. You watch as your recent treat slides its way back home, lightly stroking your grumbling stomach with your fingers. Once Maki's dick is gone, you lick at his groinal slit to dab up any lingering traces of cum before hauling yourself up onto the bed beside him. Once comfortable, you ask how he feels.");
+	output("\n\nYour Venarian lover coos in delight as his stiff body finally relaxes, and he collapses on his back. His cock slips out of your mouth with a pop, half-erect after his orgasm and quickly receding back into its protective slit. You watch as your recent treat slides its way back home, lightly stroking your grumbling stomach with your fingers. Once Maki's dick is gone, you lick at his groinal slit to dab up any lingering traces of cum before hauling yourself up onto the bed beside him. Once comfortable, you ask how he feels.");
 	output("\n\n\"[pc.name]... that was amazing,\" he slurs as he finally gets enough muscle control back to drape his tail over you. You reach out and affectionately stroke his " + makiusBellyDescriptor() + ", petting him like a sleepy dog who nevertheless just did a very clever trick. He closes his eyes and whimpers in delight; a happy, satisfied smile plastered on his face.");
 	output("\n\nIt doesn't take long for his breathing to even out and slow down; heavy breathing signaling that the Venarian is fast asleep. You smile and plant a gentle kiss on his mouth, before sliding quietly off the bed and leaving him to get some rest. You must have really worn him out….");
 	addButton(0, "Next", makiusLeave);
@@ -3599,7 +3602,7 @@ public function makiusSexForceChange(cock:int):void{
 	output("\n\nYou smile back at his approval and reinsert your hard [pc.cock " + cock + "] back into his still loose ass, enjoying the familiar heat and tightness of the Venarian's butt.");
 	makiusToBreeder(false);
 	output("\n\nYou fuck him over and over, driven by your desire and lust. Eventually losing the count of how many times you fill his ass with your [pc.cum]. The more you fuck him the more eager he is " + (cumQ > 500?", even as his belly begins distending from your repeated loads":"") + ". Every time you fill him up with a new batch you can feel his ass growing. Becoming a bit rounder and fuller, it's not long before it grows into a soft, yet firm, cushion that you are only too happy to thrust against." + (makiusMasculine()?"":" When his breasts begin growing, you smile and eagerly pinch his erect nipples.\n\n\"Ow!\" He moans in pleasured pain. Under your ministrations and tenders caresses you feel his chest grow. From a flat chest, into a small A-cup and finally into a perky B-cup. You can't resist giving his nubs a small bite as he hugs you tightly."));
-	output("\n\nYou dump one last load onto the willing Venarian, straining as you lean over his back. Hips flush with his cushiony butt. Maki groans, cumming onto the bedsheets below. The two of you collapse nervelessly. The Venarian smooshed between your weight and his " + (cumQ > 500?"bloated ":"") + "belly groans in delight. You enjoy the afterglow, even as you feel your seed " + (pc.hasKnot(cock)?"sloshing around your [pc.cock " + cock + "], all of it still inside his ass thanks to your knot. Despite that, you can feel his own natural moisture leaking out, while":"slowly seep around your [pc.cock " + cock + "], still deeply embedded into his ass. His own natural moisture leaking with your cum as") + " his ass continues to suck you inside, milking you for all you're worth.");
+	output("\n\nYou dump one last load onto the willing Venarian, straining as you lean over his back. Hips flush with his cushiony butt. Maki groans, cumming onto the bedsheets below. The two of you collapse nerveless. The Venarian smooshed between your weight and his " + (cumQ > 500?"bloated ":"") + "belly groans in delight. You enjoy the afterglow, even as you feel your seed " + (pc.hasKnot(cock)?"sloshing around your [pc.cock " + cock + "], all of it still inside his ass thanks to your knot. Despite that, you can feel his own natural moisture leaking out, while":"slowly seep around your [pc.cock " + cock + "], still deeply embedded into his ass. His own natural moisture leaking with your cum as") + " his ass continues to suck you inside, milking you for all you're worth.");
 	makius.orgasm();
 	pc.orgasm();
 	output("\n\nYou decide that now is the time to pull out and, as lubed as he is, " + (pc.hasKnot(cock)?"it's still hard to tug your [pc.knot " + cock + "] out, mostly because of":"you don't find it that hard, despite") + " his boypussy's insistent efforts at keeping you there. You back away slightly so you can observe your lover's altered form; tongue lolling out, a blissful expression on his lips, resting atop a " + (cumQ > 500?"pregnant-looking belly that reminds you of what nature will compel the alien to do once his hormones sink in":"flat belly") + ", Maki's tail waves lazily above his full, lusciously gropable butt, his asshole still open in the distinctive shape of your [pc.cock " + cock + "], even as it slowly leaks moisture and jism with each idle flutter, as if still trying to grip a phantasmal member.");
@@ -3642,7 +3645,7 @@ public function makiusSexLustyFuck(args:Array):void{
 	makius.loadInAss(pc);
 	output("\n\nYou stroke your Maki's ears and pet his head gently, tenderly caressing him, even as you heave breath back into your lungs. Once you regain yourself, you comment that he didn't cum yet.");
 	output("\n\n\"That's alright, [pc.name]. I'm fine. I already got what I wanted.\" He grins");
-	output("\n\nOh no, you're not letting him get out of this without coming as well... In fact, you add, realising that your own cock is still buried in his ass and you still feel more than frisky enough to keep going, you're not going to give him the choice. Before Maki can think to reply, you surge up from your prone position, rolling him over so that you are pinning him down. He squawks, but you cut him off with a kiss, hips already starting to piston back and forth as you " + (pc.hasKnot(args[0])?"pull your knot out and ":"") + "resume fucking him, trying to kiss him in time with each plunge into his ass, releasing his lips as you slide back out.");
+	output("\n\nOh no, you're not letting him get out of this without coming as well... In fact, you add, realizing that your own cock is still buried in his ass and you still feel more than frisky enough to keep going, you're not going to give him the choice. Before Maki can think to reply, you surge up from your prone position, rolling him over so that you are pinning him down. He squawks, but you cut him off with a kiss, hips already starting to piston back and forth as you " + (pc.hasKnot(args[0])?"pull your knot out and ":"") + "resume fucking him, trying to kiss him in time with each plunge into his ass, releasing his lips as you slide back out.");
 	output("\n\nHe has nobody to blame for this but himself, you tease him as you begin to pick up the pace. Why, it's his pheromones that are keeping you so stiff and so horny - so that means it's his responsibility to keep helping you until you both get off.");
 	output("\n\nHe tries to chuckle in-between his little moans of pleasure. \"I… ah… understand.\" He hugs you tightly with both his legs and his tail, arms wrapping around your neck in a light hug. \"R-Ravage me to your heart's content then.\"");
 	output("\n\nWell, if that's what he wants, you whisper into his ear, and continue to thrust in and out. No need for roughness or fancy play here, just a constant pounding, steady and tender, sliding your shaft in and out of his silken passage, feeling it squeeze and caress you with each plunge inside of himself. Maki looks lost in bliss, his shaft swinging about wildly as your thrusts rock his body, you realize he will need a bit more work before he cums. You plunge yourself deeper and deeper inside of him, seeing just how far into him you can reach, even as one hand grabs his dick and starts to stroke it furiously, your fingers gliding freely over the slick, slimy organ. From the ferocity of your thrusts you begin to bend him over, aiming his dick squarely at his face.");
@@ -3718,11 +3721,11 @@ public function makiusShowerSexTease():void{
 	output("\n\n\"I-I'm not a dog!\" he protests in mock anger. All it takes is a stroke of his soft ears to silence him. Laughing, you bop him on the nose with a soapy finger, leaving a bit of white foam on his nose. He quickly shakes it off and you go back to your task.");
 	if (!flags["MAKI_STATE"]){
 		output("\n\nFinally, you make your way to his butt. Toned, but not overly muscled that you wouldn't find purchase if you gave it a quick squeeze, which you do. That earns you a gasp, though Maki himself seems to be enjoying your appreciation of his hind end.");
-		output("\n\nYou stroke the base of his tail, wondering if it'll stop waving about and coiling around you so you can wash its length, well… you can always come back to this later. So you decide to focus on his butt, ensuring not only that its clean, but that it's well groped too.");
+		output("\n\nYou stroke the base of his tail, wondering if it'll stop waving about and coiling around you so you can wash its length, well… you can always come back to this later. So you decide to focus on his butt, ensuring not only that it's clean, but that it's well groped too.");
 		output("\n\nHis expression is priceless, a happy smile with his tongue lolling out. Especially when you tease his tight little pucker. It's fun to hear him gasp whenever you threaten to press a finger inside, though he doesn't thrust back against your finger you know that he greatly enjoys being toyed with there.");
 	}else{
 		output("\n\nFinally you make your way to his butt. Pillowy and plush, its flesh yields to your groping hands like a cushion. You caress and squeeze the cheeks well as you clean them, earning yourself a wide array of moans and whimpers as the Venarian enjoys the attention on his back end. Supporting himself on the shower's wall, he thrusts his butt out for you to get easier access to it. You respond with a slap, which sends the two orbs jiggling and earns you a moan.");
-		output("\n\nWashing his tail while he's like this is useless; even if you could get him to release you, you doubt it would sit still long enough for you to properly wash it. So for the moment you settle for teasing along it's base, which earns you a few appreciative bucks from the excited doctor.");
+		output("\n\nWashing his tail while he's like this is useless; even if you could get him to release you, you doubt it would sit still long enough for you to properly wash it. So for the moment you settle for teasing along its base, which earns you a few appreciative bucks from the excited doctor.");
 		output("\n\nHe looks to be completely immersed in bliss, not even caring that he's wearing such a silly expression. His mouth is ajar, with the tongue lolling out carelessly; he's leaning so far against the shower wall that he might as well as start licking it anytime. You chuckle at his reaction, he <b>really</b> likes having his butt toyed with, huh?");
 		output("\n\n\"O-Only if it's you,\" he manages to say between gasps and moans of enjoyment.");
 		output("\n\nThat so? In this case you'll endeavor to toy much more with it! You slap him again, making him jump slightly.");
@@ -3818,7 +3821,7 @@ public function makiusShowerSexGetOralCock():void{
 	if (pc.hasCuntTail()){
 		output("\n\nSeeing his cock pulsing awakes a hunger in your [pc.tail], one that you feel no willingness to ignore. Down it coils, its ever-thirsty orifice opening to swallow his dripping Venarian dick, causing you to moan as you feel it stretching around his shaft and drinking in his precum.");
 		output("\n\nMaki nearly chokes on you, surprised by the feeling of being engulfed by your warm [pc.tailCunt]. His hand squeezes your hip and he begins instinctively thrusting himself into your cocksleeve. His thrusts are awkward at first, but when his other hand re-sets itself upon your hips, he settles on a more steady pace.");
-		output("\n\nYou moan appreciatively, your tailcunt clenching down on him as he thrusts, hungry for his seed" + (pc.hasCuntSnake()?" to fertilise its eggs":"") + ", but you shake your head and give his head a push into your crotch, verbally reminding him that your cock still wants his mouth's attention.");
+		output("\n\nYou moan appreciatively, your tailcunt clenching down on him as he thrusts, hungry for his seed" + (pc.hasCuntSnake()?" to fertilize its eggs":"") + ", but you shake your head and give his head a push into your crotch, verbally reminding him that your cock still wants his mouth's attention.");
 		output("\n\nHe jumps a little, ashamed to have forgotten about your shaft for a moment. He eagerly returns to his task, sucking and slurping like his life depended on it.");
 		output("\n\nThe twin stimulants are too much for you; flinging your head back in an ecstatic cry, your tailcunt clenches down on him with all its might, a tightness seizing you in the depths of your belly as your cock explodes into your " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"boy":"") + "friend's mouth, intent on filling him with the liquid expression of your satisfaction as pleasure consumes the entirety of your being.");
 		output("\n\nWith one last shudder of pleasure, he all but screams, muffled by your [pc.cockBiggest], as he achieves his own climax. His muscles lock in place, tongue barely capable of guiding your " + (cumQ > 100?(cumQ < 500?"huge ":(pc.cumQ() < 5000?"prodigious ":"gargantuan ")):"") + "load down his throat and into his hungry belly. His nubby tip hardens, opening up his urethra for the onslaught of Venarian seed seeking to inseminate your [pc.tailCunt].");
@@ -3857,7 +3860,7 @@ public function makiusShowerSexGetOralCock():void{
 		output("\n\nWith a mischievous smirk, and feeling your own pleasure mounting, you start picking up the pace further, using your hands to guide him into sating your own member; you're determined that you won't be the last to cum.");
 		output("\n\nYour Venarian lover follows your lead with eagerness, redoubling his efforts at draining you for your [pc.cum].");
 		output("\n\nYou gasp and grunt, moaning in your pleasure like a " + pc.mf("man", "woman") + " in delirium, the pleasure mounting inside you like an unstoppable wave. As you writhe in the throes of pleasure, your tail vibrates madly milking Maki's cock for all it's worth.");
-		output("\n\nYou feel him gasp around your cock, followed by a needy moan as warm wetness sprays around your [pc.tail]. Maki's body locks up, and he's unable to do anything but thrust lightly and suck you; his tongue tongue wraps you in a vice-like grip, milking your shaft as it snakes around your [pc.cockBiggest].");
+		output("\n\nYou feel him gasp around your cock, followed by a needy moan as warm wetness sprays around your [pc.tail]. Maki's body locks up, and he's unable to do anything but thrust lightly and suck you; his tongue wraps you in a vice-like grip, milking your shaft as it snakes around your [pc.cockBiggest].");
 		makius.orgasm();
 		output("\n\nIt's too much for you and, with an ecstatic cry, your resolve breaks and climax sweeps through you, a surge of [pc.cumNoun] flooding from your member into the Venarian's hungry mouth.");
 		pc.orgasm();
@@ -3889,7 +3892,7 @@ public function makiusShowerSexGetOralCock():void{
 		output("\n\nYou smile and leave him to his self-amusements; you have other matters to concentrate on. You roll your hands through his hair, working the shampoo into a froth, and guiding his head back and forth along your shaft, occasionally thrusting your hips back and forth for good measure.");
 		output("\n\nHe moans with barely contained excitement, both at giving you head as well as the results of his own ministrations on " + (flags["MAKI_STATE"] == 1?"his wet ass. He plugs his boypussy with a finger, thrusting it in and out a couple times, then adds another digit, repeating the process. You watch with amusement as he plays with his stretchy hole, spreading it open with both fingers before adding a third. Another moan vibrates along your [pc.cockBiggest] as he begins truly fingering himself. Venarian dick throbbing, despite its abandonment.":"his wet cock. Using his index and thumb he plays with his nubby crown, teasing his cumslit in the process and drawing bead upon bead of his bountiful pre. Next he grips and begins stroking, from tip to base. He moans, muffled by your [pc.cockBiggest], and blows you in tandem with his masturbation. Every few pumps he stops to tease his slit, right where it meets his cock, poking the sensitive flesh with a pair of digits."));
 		output("\n\nYou moan in chorus with him, savoring the feel of his tongue and lips around your flesh, so hot and wet, the perverse sight of Maki pleasuring himself further goading you along. You move his head to ensure he licks and suckles you where and when you want it, humping his mouth in your eagerness. You pat his head softly, warning him that if he continues like that you're going to pop anytime.");
-		output("\n\nWhether he hears you or not you don't know, but you do notice his tail waving a bit faster. Maki's rhythm though doesn't change, he continues stroking your [pc.cockBiggest] with his tongue, sucking you in the same pace he's masturbating himself, it's not until later that you notice he seems to be smiling around your cock. Before you can react though, he pulls back and shoves himself, as far as he can, onto your dick. " + (pc.biggestCockLength() < 12?"Despite not being able to deepthroat you initially, he twists his head a bit to the side and you feel yourself sliding deep into his throat. ":"") + "Straining to hold his breath, he delivers a kiss right on your " + (pc.hasSheath(pc.biggestCockIndex())?"[pc.sheathBiggest].":"crotch."));
+		output("\n\nWhether he hears you or not you don't know, but you do notice his tail waving a bit faster. Maki's rhythm though doesn't change, he continues stroking your [pc.cockBiggest] with his tongue, sucking you in at the same pace he's masturbating himself, it's not until later that you notice he seems to be smiling around your cock. Before you can react though, he pulls back and shoves himself, as far as he can, onto your dick. " + (pc.biggestCockLength() < 12?"Despite not being able to deepthroat you initially, he twists his head a bit to the side and you feel yourself sliding deep into his throat. ":"") + "Straining to hold his breath, he delivers a kiss right on your " + (pc.hasSheath(pc.biggestCockIndex())?"[pc.sheathBiggest].":"crotch."));
 		output("\n\nThat little lewd touch is the last straw, you can feel your self-control slipping. You thrust into his mouth with all your might, babbling about what an excellent cock-sleeve his throat is and how delicious he feels wrapped around your dick like this. Oh, too much... gonna... gonna...!");
 		output("\n\nThe world shrinks to just you and Maki as your will breaks and climax sweeps through you like a tidal wave, a storm of pleasure cascading across your [pc.skin] and making every inch of you tingle with pleasure.");
 		output("\n\nYou cry out, trying to put into words the pleasure you are feeling, and empty yourself into your " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"boy":"") + "friend's mouth. It's not until you start to come down from your orgasmic high that you realize you'd been holding Maki tightly, by the ears no less, completely flush to your crotch. You release him and immediately he pulls away, gasping for air as he falls on his " + (flags["MAKI_STATE"]?"cushiony ":"") + "butt.");
@@ -3936,7 +3939,7 @@ public function makiusShowerSexGetOralPussy():void{
 	if (pc.hasCuntTail()){
 		output("\n\nSeeing his cock pulsing awakes a hunger in your [pc.tailCunt], one that you feel no willingness to ignore. Down it coils, its ever-thirsty orifice opening to swallow his dripping Venarian dick, causing you to moan as you feel it stretching around his shaft and drinking in his precum.");
 		output("\n\nMaki nearly chokes on you, surprised by the feeling of being engulfed by your warm [pc.tailCunt]. His hand squeezes your hip and he begins instinctively thrusting himself into your cocksleeve. His thrusts are awkward at first, but when his other hand resets itself upon your hips, he begins a more steady pace.");
-		output("\n\nYou moan appreciatively, your tailcunt clenching down on him as he thrusts" + (pc.hasCuntSnake()?", hungry for his seed to fertilise its eggs":"") + ", but you shake your head and give his head a push into your crotch, verbally reminding him that your cunt still wants his mouth's attention.");
+		output("\n\nYou moan appreciatively, your tailcunt clenching down on him as he thrusts" + (pc.hasCuntSnake()?", hungry for his seed to fertilize its eggs":"") + ", but you shake your head and give his head a push into your crotch, verbally reminding him that your cunt still wants his mouth's attention.");
 		output("\n\nHe jumps a little, ashamed to have forgotten about your pussy for a moment. He eagerly returns to his task, kissing and slurping like his life depended on it. He thrusts his tongue inside your [pc.pussy " + vag + "], keeping pace with his thrusting hips.");
 		output("\n\nThe twin stimulants are too much for you; flinging your head back in an ecstatic cry, your tailcunt clenches down on him with all its might, a tightness seizing you in the depths of your belly as your pussy explodes all over your " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"boy":"") + "friend's face, covering him with the liquid expression of your satisfaction as pleasure consumes the entirety of your being.");
 		pc.orgasm();
@@ -3958,7 +3961,7 @@ public function makiusShowerSexGetOralPussy():void{
 		output("\n\nWith a mischievous smirk, and feeling your own pleasure mounting, you start picking up the pace further, using your hands to guide him into sating your own needs; you're determined that you won't be the last to cum.");
 		output("\n\nYour Venarian lover follows your lead with eagerness, redoubling his efforts and eagerly drinking all of your juices.");
 		output("\n\nYou gasp and grunt, moaning in your pleasure like a " + pc.mf("man", "woman") + " in delirium, the pleasure mounting inside you like an unstoppable wave. As you writhe in the throes of pleasure, your tail vibrates madly, milking Maki's cock for all it's worth.");
-		output("\n\nYou feel him gasp into your pussy, followed by a needy moan as warm wetness sprays around your [pc.tail]. Maki's body locks up, and he's unable to do anything but thrust lightly and moan; his tongue tongue thrashes inside you, stroking your walls and brushing against your g-spot with each whiplash.");
+		output("\n\nYou feel him gasp into your pussy, followed by a needy moan as warm wetness sprays around your [pc.tail]. Maki's body locks up, and he's unable to do anything but thrust lightly and moan; his tongue thrashes inside you, stroking your walls and brushing against your g-spot with each whiplash.");
 		makius.orgasm();
 		output("\n\nIt's too much for you and, with an ecstatic cry, your resolve breaks and climax sweeps through you; a surge of [pc.girlCumNoun] flooding into the Venarian's hungry mouth.");
 		pc.orgasm();
@@ -4006,7 +4009,7 @@ public function makiusShowerSexGetOralPussy():void{
 		output("\n\nPerhaps... but, nothing says you can't have a little more fun while you wash up, right...?");
 	}else{
 		output("\n\nYou smile and leave him to his self-amusement; you have other matters to concentrate on. You roll your hands through his hair, working the shampoo into a froth, and guiding his head up, down and around your muff, occasionally holding his head and bucking against him for good measure.");
-		output("\n\nHe moans with barely contained excitement, both at giving you cunnilinguis as well as the results of his own ministrations on " + (flags["MAKI_STATE"] == 1?"his wet ass. He plugs his boipussy with a finger, thrusting it in and out a couple times, then adds another digit, repeating the process. You watch with amusement as he plays with his stretchy hole, spreading it open with both fingers before adding a third. Another moan vibrates along your [pc.vagina " + vag + "] as he begins truly fingering himself. Venarian dick throbbing, despite its abandonment.":"his wet cock. Using his index and thumb he plays with his nubby crown, teasing his cumslit in the process and drawing bead upon bead of his bountiful pre. Next he grips and begins stroking, from tip to base. He moans, muffled by your [pc.vagina " + vag + "], and licks you in tandem with his masturbation. Every few pumps he stops to tease his slit, right where it meets his cock, poking the sensitive flesh with a pair of digits."));
+		output("\n\nHe moans with barely contained excitement, both at giving you cunnilingus as well as the results of his own ministrations on " + (flags["MAKI_STATE"] == 1?"his wet ass. He plugs his boypussy with a finger, thrusting it in and out a couple times, then adds another digit, repeating the process. You watch with amusement as he plays with his stretchy hole, spreading it open with both fingers before adding a third. Another moan vibrates along your [pc.vagina " + vag + "] as he begins truly fingering himself. Venarian dick throbbing, despite its abandonment.":"his wet cock. Using his index and thumb he plays with his nubby crown, teasing his cumslit in the process and drawing bead upon bead of his bountiful pre. Next he grips and begins stroking, from tip to base. He moans, muffled by your [pc.vagina " + vag + "], and licks you in tandem with his masturbation. Every few pumps he stops to tease his slit, right where it meets his cock, poking the sensitive flesh with a pair of digits."));
 		output("\n\nYou moan in chorus with him, savoring the feel of his tongue penetrating you, so hot and wet, the perverse sight of his pleasuring himself further goading you along. You move his head to ensure he licks and slurps you where and when you want it, humping his mouth in your eagerness. You pat his head softly, warning him that if he continues like that you're going to cum anytime.");
 		output("\n\nWhether he hears you or not you don't know, but you do notice his tail waving a bit faster. Maki's rhythm though doesn't change, he continues stroking wet walls with his tongue, tongue-fucking you in the same pace he's masturbating himself; it's not until later that you notice he seems to be smiling. Before you can react though, he pulls back and shoves his tongue, as far as he can, inside you. Straining to hold his breath, his mouth forms a tight seal around your nethers.");
 		output("\n\nThat little lewd touch is the last straw, you can feel your self-control slipping. You buck against him, babbling about what an excellent little pet he is, licking and cleaning you so thoroughly. Oh, too much... gonna... gonna...!");
@@ -4053,17 +4056,17 @@ public function makiusShowerSexStrokeHim():void{
 	output("\n\nOnce he's calmed down enough, you move your hand back to his penis. All it takes is one squeeze and it's back to its previous rock-hard state. No holding back this time. You present your other hand to Maki, your first two fingers extended and pressing themselves gently against his mouth, inviting him to resume his former treatment on these new digits.");
 	output("\n\nHe eagerly accepts the offering, licking and sucking on them, lathering them as his tongue curls and dances around your digits.");
 	output("\n\nYou watch your " + (flags["MAKI_RELATIONSHIP_STATUS"] == 2?"boy":"") + "friend eagerly as he ministers to your offered digits, occasionally twisting or turning your fingers to let him touch a side of them that you feel is getting neglected. To encourage him, your free hand caresses his shaft in turn, moving faster when you want him to go faster, slowing down when you want him to lap slower, circling the tip of his glans with the tips of your fingers to really coax him onwards.");
-	output("\n\nFinally, you deem your fingers sufficiently lubed and you wetly pop them free of his lips, a particularly careful caress ensuring his moans are of pleasure more than disappointment. As your hand continues to play with his cock, the now-lubed fingers creep towards his tailhole, worming through the canyon of his " + (flags["MAKI_STATE"] >= 1?"plush":"firm") + " ass-cheeks and then pushing inside of him.");
+	output("\n\nFinally, you deem your fingers sufficiently lubed and you wetly pop them free of his lips, a particularly careful caress ensure his moans are of pleasure more than disappointment. As your hand continues to play with his cock, the now-lubed fingers creep towards his tailhole, worming through the canyon of his " + (flags["MAKI_STATE"] >= 1?"plush":"firm") + " ass-cheeks and then pushing inside of him.");
 	output("\n\nMaki gasps and moans. " + (flags["MAKI_STATE"] >= 1?"Ah! Yes! My butt, yes!":"Oh! [pc.name]!") + " He bucks at the sudden intrusion, tongue lolling out and panting out of sheer excitement. His hands close into tight fists, his toes curl and he arches his back.");
 	output("\n\nSmiling to yourself at how easily your lover is reduced to putty in your hands, you alternate between stroking his shaft and ploughing for his prostate, ensuring he is hit with a constant barrage of pleasures. Maki shudders and whimpers, alternatively grinding his ass back against your probing fingers and rutting forward into your encircling palm, something that makes you speed up the pace of your actions. You draw him closer so that he is supporting himself upon you, nuzzling him affectionately even as your hands busily play with him, seeing just how far you can push him before he cums.");
 	output("\n\nYour fingering, your stroking and the loving nuzzle proves to be too much for the poor Venarian. With a cry of pleasure his shaft throbs, nubs hardening on his tip, preparing his glans for the tsunami that's about to be unleashed. With a devilish grin, you plug his cumvein shut with a finger. If he wants to cum, he's going to have to give you a little something in return. After all… you've been so focused on him, you didn't really get much out of it.");
 	output("\n\n\"W-What!?\" he asks in desperation.");
 	output("\n\nHmm… how about a kiss?");
-	output("\n\nThe Venarian scrambles to get into a position where he can kiss you, and kiss you he does. He wastes no time in shoving his tongue into your mouth. You suck on his tongue, releasing his shaft and giving it a firm tug.");
+	output("\n\nThe Venarian scrambles to get into a position where he can kiss you and kiss you he does. He wastes no time in shoving his tongue into your mouth. You suck on his tongue, releasing his shaft and giving it a firm tug.");
 	output("\n\nHis seed bursts forth, even before he lavishly moans into your kiss. Arcing ropes of white fly through the air, mingling with the water of the shower before landing back on his body. Using your fingers, still deeply embedded into his behind, you stroke his prostate. This earns you another moan and even more seed. You hug Maki, his shuddering soon becomes thrashing, as the last few ropes of cum spew forth.");
 	makius.orgasm();
 	output("\n\nAfter what seems like an eternity, he stops. You break the kiss to catch your breath. His tongue slips from your mouth, limp. You chuckle, seems like you worked him a bit too hard, maybe. His shaft begins receding back into its hiding place and you remove your fingers from his " + (flags["MAKI_STATE"]?"wet ":"") + "ass, moving it to join your other arm in hugging him. He pants, eyes closed, ears flat. His tail, normally as energetic as its amorous, lays unmoving " + (pc.isNaga()?"along your coils.":"between your legs."));
-	output("\n\nLeaning Maki against you for support, your hand starts to climb up his body. " + (flags["MAKI_STATE"] == 2?"Your hand rubs itself in gentle circles over the swollen bulge in which your pup is growing, marvelling in the miraculous life that you helped engender, before your hands climb higher.":"You stroke his flat belly, smearing his spent seed across it, even as the water of the shower washes it off. You tease his bellybutton with a finger before moving up towards his chest."));
+	output("\n\nLeaning Maki against you for support, your hand starts to climb up his body. " + (flags["MAKI_STATE"] == 2?"Your hand rubs itself in gentle circles over the swollen bulge in which your pup is growing, marveling in the miraculous life that you helped engender, before your hands climb higher.":"You stroke his flat belly, smearing his spent seed across it, even as the water of the shower washes it off. You tease his bellybutton with a finger before moving up towards his chest."));
 	if (makiusMasculine()){
 		output("\n\nYou rub Maki's flat chest, drawing teasing circles around his nipples, you press each of them in turn, smearing his little nubs with the seed still clinging to his body.");
 	}else{

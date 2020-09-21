@@ -16,8 +16,8 @@
 			this.originalRace = "venarian";
 			this.capitalA = "";
 			this.impregnationType = "MakiusPregnancy";
-			this.cumMultiplierRaw = 400;
-			this.fertilityRaw = 0.2;
+			this.cumMultiplierRaw = 10;
+			this.fertilityRaw = 0.3;
 			
 			//Penis
 			this.cocks = new Array();

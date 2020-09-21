@@ -343,7 +343,7 @@ public function novaClinicParasite(operation:Array):void{
 			if (makiusLeftClinic()){
 				//kayl
 				showBust("RASKVEL_MALE");
-				output("\n\n\"Oh, those are <b>mimbranes</b> aren't they? We can remove them if you want, For free, even.\" he says.");
+				output("\n\n\"Oh, those are <b>mimbranes</b> aren't they? We can remove them if you want, for free, even.\" he says.");
 			}else{
 				//makius
 				showBust(makiusBust());
