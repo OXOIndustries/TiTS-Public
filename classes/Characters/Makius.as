@@ -16,8 +16,9 @@
 			this.originalRace = "venarian";
 			this.capitalA = "";
 			this.impregnationType = "MakiusPregnancy";
-			this.cumMultiplierRaw = 10;
-			this.fertilityRaw = 0.3;
+			this.cumMultiplierRaw = 30;
+			this.ballEfficiency = 7;
+			this.fertilityRaw = 0.1;
 			
 			//Penis
 			this.cocks = new Array();

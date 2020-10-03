@@ -41,7 +41,6 @@ import classes.Util.RandomInCollection;
  * MAKI_TAKING_BIOVEN: 1 = feminine, 2 = masculine, 0 or false = natural
  * MAKI_TAKING_SUPPRESSANTS: true keeps the breeder away
  * MAKI_TAKING_MALE_CONTRACEPTIVES: true is no virtile seed
- * MAKI_VIRILITY_BOOST: last time maki had a virilityboost
  * MAKI_TAKING_FEMALE_CONTRACEPTIVES: true is no anal babies
  */
 
@@ -936,7 +935,7 @@ public function makiusDrugs():void{
 	showBust(makiusBust(1));
 	output("You approach Maki's personal medicine cabinet and survey the selection of drugs he has.");
 	clearMenu();
-	output("\n\n<b>Virility: </b>" + (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]?"Sterile":(!flags["MAKI_VIRILITY_BOOST"] || GetGameTimestamp() > flags["MAKI_VIRILITY_BOOST"] + 1440?"Virile":"Boosted Virility")) + ".");
+	output("\n\n<b>Virility: </b>" + (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]?"Sterile":(makius.cumQualityMod == 3?"Boosted Virility":"Virile")) + ".");
 	addButton(0, "Virility", makiusDVirility, undefined, "Virility Pills", (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]?"Let him know you are ready for his baby.":"Let him know you are not ready for his baby."));
 	if(flags["MAKI_BREEDER_SEEN"]){
 		output("\n<b>Fertility: </b>" + (flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]?"Sterile":"Fertile") + ".");
@@ -979,16 +978,15 @@ public function makiusDVirility():void{
 			output("\n\nHe blushes. \"Sure, then I'll go off the pills so I can try to put a puppy in you.\"");
 		}
 		flags["MAKI_TAKING_MALE_CONTRACEPTIVES"] = false;
-		if (!makius.cockVirgin){
-			if (!flags["MAKI_VIRILITY_BOOST"] || GetGameTimestamp() > flags["MAKI_VIRILITY_BOOST"] + 1440) addButton(1, "Boost", makiusBoostVirility, undefined, "Boost virility", "You are determined to have his child! Demand he takes anything to boost his sperm production.");
-			else addDisabledButton(1, "Boost", "Boost virility", "Maki is still on virility boosters");
-		}else addDisabledButton(1, "Boost", "Boost virility", "You need to have had vaginal sex with him to ask him to take virility boosters");
+		if (!makius.cockVirgin) addButton(1, "Boost", makiusBoostVirility, undefined, "Boost virility", "You are determined to have his child! Demand he takes anything to boost his sperm production.");
+		else addDisabledButton(1, "Boost", "Boost virility", "You need to have had vaginal sex with him to ask him to take virility boosters");
 		addButton(0 ,"Continue", makiusMenu);
 	}else{
 		output("\"I guess it's a pretty big responsibility to have " + (flags["MAKI_SIRED_CHILDREN"] > 0?"more babies":"a baby") + " in you. Even if you have your own nursery to take care of that business.\"");
 		output("\n\nYou thank him for understanding.");
 		output("\n\n\"Sure, no problem, I'll start taking the pills then.\"");
 		flags["MAKI_TAKING_MALE_CONTRACEPTIVES"] = true;
+		makius.cumQualityMod = 0;
 		makiusMenu();
 	}
 }
@@ -999,8 +997,7 @@ public function makiusBoostVirility():void{
 	author("LukaDoc");
 	showBust(makiusBust(1));
 	clearMenu();
-	flags["MAKI_VIRILITY_BOOST"] = GetGameTimestamp();
-	makius.cumQualityRaw = 4;
+	makius.cumQualityMod = 3;
 	output("As you finish making your request his ears lower and his tail slides between his legs.");
 	output("\n\n\"You want me to take v-virility boosts.\" As he looks away from you, while laughing nervously, trying his best to hide his embarrassment. \"Jeez, y-you must be craving my puppies really bad.\"");
 	output("\n\nYou grab the bottle of pills and nod, quickly closing the space between you. You kiss him to try and get him to relax and it doesn't take him long for him to start kissing back. You part the kiss and show him the pill you're going to make him take. His open maw is ready to welcome the virility boost, so you plop it down on his tongue and see it slide down into his throat, before he swallows it. You let your fingers slide down across his chest and into his pants, feeling the nubby tip already poking out from his slit. It rapidly fills in your hand, throbbing harder and hotter than ever before. " + (flags["MAKI_STATE"] > 0?" Your other hand slides between his oversized buttocks, his smile turning into a sloppy grin. \"Can we do it in my butt?\"":"Your Venarian boytoy is clearly embarrassed, but manages to ask, \"Can we do it right now?\""));
@@ -2626,13 +2623,7 @@ public function makiusSexCatch(vNum:int):void{
 	showBust(makiusBust(2));
 	processTime(30);
 	author("LukaDoc");
-	makiusSubbed( -1);
-	
-	// reset virility when boost is over
-	if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() > flags["MAKI_VIRILITY_BOOST"] + 1440){
-		flags["MAKI_VIRILITY_BOOST"] = undefined;
-		makius.cumQualityRaw = 1;
-	}
+	makiusSubbed(-1);
 	
 	if (makius.cockVirgin){
 		if (!makius.analVirgin){
@@ -3653,8 +3644,8 @@ public function makiusSexLustyFuck(args:Array):void{
 	makius.orgasm();
 	output("\n\nThroughout all this, you never stop your fucking, driving him on as he tries to hold back and think about how to escape his predicament. You never relent though, and with " + (pc.hasKnot(args[0])?"one last knotting":"another forceful") + " thrust he opens his mouth in a moan of pure pleasure. His pent-up seed forces it's way past his cumvein and out into the air, landing on his open mouth.");
 	output("\n\nArousal spikes inside of you at the perverse sight, watching with pleasure as your lover slurps and snaps, gulping down his own spunk as it sprays into his mouth. It pushes you over the edge again, mingling with the cruder delights of feeling his hot flesh wrapped around your own, and you cum into him again, feeling the thick [pc.cumNoun] gushing inside of him, painting his interior [pc.cumColor]. You gasp and shudder as you spend yourself inside of him, and then, at last, you slip down into his arms, sleepily embracing him as the afterglow's warmth washes over you.");
-	pc.orgasm();
 	makius.loadInAss(pc);
+	pc.orgasm();
 	output("\n\nYou look at Maki; despite him being able to drink a good amount of his seed, some of it still missed his mouth and is now matting his face. You chuckle at the sight.");
 	output("\n\nHe wipes a strand off his muzzle and brings it to his mouth, licking his finger clean. \"That was mean of you, [pc.name].\"");
 	output("\n\nOh, as if he didn't love it, you laugh, tapping him playfully on the nose with one finger. By the way, he missed a spot, you tell him. You lean in and lick a particularly thick strand of his seed from his lips, savoring the taste of him as you do so.");
@@ -3672,11 +3663,16 @@ public function makiusSexLustyFuck(args:Array):void{
 	output("\n\nHe teases you by licking around your glans and pressing his tongue against your urethra. You shudder and moan, feeling the ticklish sensation of his flesh on yours, slathering your cock in his saliva and leaving you hard and horny, aching for his perverse kisses. Your dick starts to leak [pc.cumNoun] in response to his licks, and you're sure that with only a little more effort, he could coax a third climax from you. He begins bobbing his head, slowly at first, but quickly increasing in tempo. You mewl in delight and thrust your [pc.hips], voicing your encouragement to coax him ever onwards in his actions.");
 	output("\n\nOnce he reaches a rather fast rhythm, he sucks you in all the way to the back of his throat, and with a little wiggling he manages to welcome you even deeper into its recesses. You moan as you feel yourself wrapped so deliciously tight, the warm wetness of his mouth an incredible salve on your flesh, pleasure sparking along your nerves, blazing into your brain... He holds you there, swallowing and licking around your shaft, it's slick and warm, and it holds your [pc.cock " + args[0] + "] so deliciously tight that you don't think you have much longer. A couple extra swallows is all that you can take as you finally spew your third load down his throat. You thrust your shaft as deeply into his mouth as you can, feeling yourself emptying into his belly.");
 	output("\n\nYou cry at him to take it all, to drink every drop that you have to offer him, your nerves afire and your brain melting into a puddle of pure pleasure as you unleash your third cascade of jism into his waiting throat, a final gush of [pc.cumNoun] erupting from within you and spearing it's way straight through his throat, settling in his belly. When you are finally done, you feel Maki quickly pulling away. He gasps for breath. You let out a huge moaning sigh and slump down on your back, fully spent for the moment.");
+	makius.loadInAss(pc);
 	pc.orgasm();
 	output("\n\nYou ask Maki if he's alright.");
 	output("\n\nHe coughs a couple times. \"Yeah, I'm fine.\" Then he grins. \"But you know I can never have enough of you.\" He nuzzles into your limping [pc.cock " + args[0] + "], inhaling your musk deeply.");
 	output("\n\nHe really is quite incorrigible, you tell him, even as you stroke him affectionately on the head. Maki looks up at you and jumps at you, hugging you tightly as he nuzzles you affectionately. Well… if he really can't get enough of you; then you suppose you could give him more. You nuzzle him back, even as you begin grinding against him. It takes a bit of work, but your dick slowly starts getting hard once more….");
 	output("\n\n<b>Later…</b>");
+	makius.loadInAss(pc);
+	pc.orgasm();
+	makius.loadInAss(pc);
+	pc.orgasm();
 	output("\n\nYou stretch, or at least attempt to. Maki is still fast asleep and you seem to have finally managed to stoke the flames of your lust. Carefully you disentangle yourself from him and hop out of the bed. Finally… you stretch yourself until you hear your joints pop. As much as you'd like to keep the sleeping Venarian company, you have other things that require your attention." + (pc.isNude()?"":" So you fish up your [pc.gear] and don them once more.") + " You start on your way out of the doctor's room, but before you leave, you decide to walk back and give him a little kiss on cheek. His lips curl into a smile and you bid his sleeping form farewell.");
 	addButton(0, "Next", makiusLeave);
 }

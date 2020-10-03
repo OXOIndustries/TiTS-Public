@@ -25,10 +25,10 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			_handlesType = "MakiusPregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 365); //one year
-			_basePregnancyChance = 0.2;
+			_basePregnancyChance = .1;
 			_canImpregnateButt = true;
 			_pregnancyQuantityMaximum = 2;
-			_definedAverageLoadSize = 10;
+			_definedAverageLoadSize = 30;
 			
 			_onTryImpregnate = makiusTryImpregnate;
 			_onSuccessfulImpregnation = makiusSuccessfulImpregnation;
@@ -109,7 +109,7 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			if (mother.originalRace == "venarian"){
 				if (kGAMECLASS.flags["MAKI_STATE"] != 1 || kGAMECLASS.flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]) return false;
-			}else if (pregSlot == 3) return false;
+			}else if (pregSlot == 3 || kGAMECLASS.flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]) return false;
 			return BasePregnancyHandler.defaultOnTryImpregnate(father, mother, pregSlot, thisPtr);
 		}
 		
