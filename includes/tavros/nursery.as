@@ -52,6 +52,7 @@ public function numNurseryStaff():int
 	if (yammiAtNursery()) numStaff++;
 	if (reahaAtNursery()) numStaff++;
 	if (zilCallgirlAtNursery()) numStaff++;
+	if (makiusAtNursery()) numStaff++;
 	return numStaff;
 }
 
@@ -641,7 +642,7 @@ public function nurseryKidsDormsFunc():Boolean
 	button = nurseryKidsDormsButtonAdjustment(nurseryLaquineOptions(button));
 	button = nurseryKidsDormsButtonAdjustment(mirrinKidsOptions(button));
 	button = nurseryKidsDormsButtonAdjustment(stormguardKidsOptions(button));
-
+	button = nurseryKidsDormsButtonAdjustment(makiusKidsNursery(button));
 	return false;
 }
 public function nurseryKidsDormsButtonAdjustment(button:Number):Number

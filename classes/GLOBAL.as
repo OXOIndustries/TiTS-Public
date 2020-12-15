@@ -256,6 +256,7 @@
 		public static const TYPE_DZAAN:int									= 90;
 		public static const TYPE_ZAIKA:int 									= 91;
 		public static const TYPE_CUNDARIAN:int 								= 92;
+		public static const TYPE_VENARIAN:int								= 93;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -351,6 +352,7 @@
 			"Dzaan",
 			"Zaika",
 			"Cundarian",
+			"Venarian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

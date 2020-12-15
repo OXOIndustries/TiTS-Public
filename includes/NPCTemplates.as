@@ -202,6 +202,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "SYNPHIA", Synphia);
 	prepChar(justUpdate, "FOCALOR", Focalor);
 	prepChar(justUpdate, "OLYMPIA", Olympia);
+	prepChar(justUpdate, "MAKIUS", Makius);
 	
 	prepShip(justUpdate, "SHIP", Casstech);
 	

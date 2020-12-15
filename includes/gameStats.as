@@ -6467,6 +6467,70 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Makius
+			if (flags["MAKIUS_INTRO"] != undefined)
+			{
+				output2("\n<b><u>Nova Clinic:</u></b> ");
+				output2("\n<b>* Head of clinic: ");
+				if (makiusLeftClinic()){
+					output2("Makius's apprentice Kayl");
+					output2("\n<b>* Makius:</b> ");
+					if (makiusIsCrew()) output2("Crew member");
+					else if (flags["MAKI_WORKS_AT_NURSERY"]) output2("Works at your nursery");
+					else output2("Pregnancy leave");
+				}else{
+					output2("Makius");
+				}
+				
+				if (makiusRecruited())
+				{
+					if (flags["MAKI_RELATION"] && flags["MAKI_RELATIONSHIP_STATUS"] != 2){
+						output2("\n<b>* Makius, Affection:</b> ");
+						if (flags["MAKI_DATE"] == 3) output2("You should take Maki up on his date");
+						else if (flags["MAKI_DATE"] == 4) output2("You told Maki you don't want anything serious");
+						else if (flags["MAKI_RELATION"] == 50 && !flags["MAKI_DATE"]) output2("You should ask Maki on a date");
+						else if (flags["MAKI_RELATION"] == 100) output2("Maki wants to ask you on a date");
+						else output2(flags["MAKI_RELATION"]);
+					}
+					output2("\n<b>* Makius, Relationship status:</b> ");
+					if (flags["MAKI_RELATIONSHIP_STATUS"] == 2) output2("You're his mate");
+					else if (flags["MAKI_RELATIONSHIP_STATUS"]) output2("Friends with benefits");
+					else output2("Acquaintance");
+					
+					if (flags["MAKI_RELATIONSHIP_STATUS"])
+					{
+						output2("\n<b>* Makius, Virility:</b> ");
+						if (flags["MAKI_TAKING_MALE_CONTRACEPTIVES"]) output2("On Contraceptives");
+						else if (flags["MAKI_VIRILITY_BOOST"] && GetGameTimestamp() < flags["MAKI_VIRILITY_BOOST"] + 1440) output2("Boosted");
+						else output2("Virile");
+						if (flags["MAKI_BREEDER_SEEN"])
+						{
+							output2("\n<b>* Makius, Fertility:</b> ");
+							if(!flags["MAKI_IN_CREW"] || flags["MAKI_TAKING_SUPPRESSANTS"]) output2("On breeder supressants");
+							else if(flags["MAKI_TAKING_FEMALE_CONTRACEPTIVES"]) output2("On Contraceptives");
+							else if(flags["MAKI_STATE"] == 2) output2("Pregnant!");
+							else if(flags["MAKI_STATE"]) output2("Fertile");
+							else output2("Not in breeder form");
+							
+							output2("\n<b>* Makius, Last seen state:</b> ");
+							if (flags["MAKI_STATE"] == 2) output2("Pregnant");
+							else if (flags["MAKI_STATE"]) output2("Breeder");
+							else output2("Normal");
+						}
+						
+						if (flags["MAKI_BIOVEN_QUEST"] == 4)
+						{
+							output2("\n<b>* Makius, Gender drug:</b> ");
+							if (flags["MAKI_TAKING_BIOVEN"] == 2) output2("Masculine");
+							else if (flags["MAKI_TAKING_BIOVEN"]) output2("Feminine");
+							else output2("Natural");
+						}
+						if (flags["MAKI_SIRED_CHILDREN"]) output2("\n<b>* Makius, Pups sired by him:</b> " + flags["MAKI_SIRED_CHILDREN"]);
+						if (flags["MAKI_BIRTHED_CHILDREN"]) output2("\n<b>* Makius, Pups birthed by him:</b> " + flags["MAKI_BIRTHED_CHILDREN"]);
+					}
+				}
+				variousCount++;
+			}
 			// Bimbotorium
 			if(flags["MET_DR_BADGER"] != undefined)
 			{
@@ -9940,4 +10004,4 @@ public function listCharPerks(charName:String = ""):String
 
 	return txt;
 }
-
+

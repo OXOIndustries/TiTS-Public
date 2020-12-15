@@ -56,6 +56,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulkrimi", vulkrimiCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulpatra", vulpatraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Xhelarfog", xhelarfogCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Venarians", venariansCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
@@ -1781,6 +1782,49 @@ public function xhelarfogCodexEntry():void
 	outputCodex("\n\nThanks to the high availability of metal, and frequent electrical storms, they had grasped the concept of electricity at a stage in their scientific development that was far earlier than the average. This is often seen as a saving grace for the species, as once word of the unusual civilization got out, they were swarmed by anthropologists - preventing mining companies from being able to take advantage of the time before the natives were declared legally sapient.");
 	outputCodex("\n\nSince then, the Xhelarfog have formed a fledgling full-planet government (under supervision of the UGC), and have integrated well into galactic society, thanks in part to an arrangement signed between themselves and the Steele Tech company - allowing them mining access in return for high level technical education. The deal is reported to have been agreed on incredibly quickly - no doubt thanks to Victor Steele personally overseeing it after existing escapades with the Xhelarfog, having been one of the original Rushers to discover the planet.");
 	CodexManager.viewedEntry("Xhelarfog");
+}
+
+public function venariansCodexEntry():void
+{
+	clearOutputCodex();
+	flags["PC_LEARNED_ABOUT_Venarian_BIOLOGY"] = true;
+	showBust("MAKIUS");
+	outputCodex(header("Venarians"));
+	outputCodex("<b>Name:</b> Venarian (Singular) and Venarians (Plural)");
+	outputCodex("\n<b>Sexes:</b> Male and female, but both sexes can enter a hermaphroditic state.");
+	outputCodex("\n<b>Height:</b> Males range from 5\' 7\"(170 cm) to 6\' 3\" (190 cm), while females range from 5\' 3\"(160 cm) to 5\' 9\" (175 cm).");
+	outputCodex("\n<b>Weight:</b> 50-80 Kg or 110-176 Lb");
+	outputCodex("\n<b>Hair:</b> Mane-like hair that for most naturally grows from the top of forehead and continues on down the neck all the way to the shoulders.");
+	outputCodex("\n<b>Eyes:</b> Two eyes, their shape and placement similar to most known humanoids.");
+	outputCodex("\n<b>Ears:</b> Short, triangular ears.");
+	outputCodex("\n<b>Tail:</b> Elongated and thin, like a lizard's, and is functionally prehensile.");
+	outputCodex("\n<b>Tongue:</b> Long tongues, capable of sticking up to 5 inches from their mouths and as agile as a limb.");
+	outputCodex("\n<b>Homeworld:</b> Venar");
+	outputCodex("\n<b>Lifespan:</b> 90 to 100 years.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Features"));
+	outputCodex("The general body structure of a Venarian is fundamentally human-like, with a lean, sinuous build. Their head possesses a curious mixture of features encountered in Terran canids and sharks: a short, conical muzzle, teeth designed for an omnivorous lifestyle and a pair of triangular, typically perky ears atop their skull. They have two arms, two legs, a head and a tail, all visually distinct and recognizable as such. Their entire body is covered in naturally short fur, with the exception of the long mane that grows on their head.");
+	outputCodex("\n\nThe arms and hands are, for the most part, human-like, with the exception of short talons in place of nails in addition to the pad-like swells of flesh on their palms and undersides of their fingers. Venarians' legs are structured in a way typical for most bipedal humanoids, though quite long and slender in proportion to their body. They stand on their toes and the balls of their feet, adopting a digitigrade stance, with four digits on each foot that end in short, round talons. Venarians have furry, prehensile tails, with a bigger base that tapers at the tip.");
+	outputCodex("\n\nMales possess a genital slit that contains internal balls and a retractable penis; this penis is similar to that of a human male, but the head is covered in small, nub-like growths. Females possess a vagina, much like a human’s. Both genders are also known to produce far more sexual fluids than the galactic average.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("General demeanor"));
+	outputCodex("Venarians are closely linked to their empathic instincts, making them very social and able to easily relate to others. They are affectionate and fiercely loyal to their families and loved ones; once mated, a Venarian is extremely reluctant to leave their mates’ side. The species is very sexually open-minded, even though they will remain monogamous after choosing a life partner. While some Venarians exhibit preference for one gender or another, most consider themselves bisexual.");
+	outputCodex("\n\nDue to the extreme conditions of their homeworld, scarce resources, dangerous parasites and predatory fauna have caused Venarians to evolve several traits ensuring their status as the dominant species of their native planet. One of these is an ability to adapt their sexes, guaranteeing successful reproduction regardless of the sexes being paired, a trait found in no other species on the planet. Another characteristic is bodies that are extremely resistant to bacteria, far more than the galactic average, as well as saliva that can act as a very powerful disinfectant. As a result, it's not uncommon to see a Venarian licking their wounds even if other means of disinfecting are readily available.");
+	outputCodex("\n\nThis habit is a common source of misconception, and there are those who would label Venarians as dumb savages. They could not be more wrong, as the average Venarian is as smart and cultured as the average U. G. C. citizen. It is a known fact that some Venarians gladly take advantage of those preconceptions in various ways, ranging from friendly pranks to criminal schemes.");
+	outputCodex("\n\nWhile Venarians are no strangers to more conventional forms of greetings, in private they display a peculiar preference for intimate physical contact. The most significant way in which a Venarian can display their affection for their romantic partner is by rubbing their bodies against their loved ones, each of them imprinting their scent on the other, a clear display that both belong to one another. Kissing is considered a lewd act, capable of easily igniting the flames of their lust. It is not necessarily done only between mates, but most Venarians will display a certain reluctance to kiss casual sexual partners.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Environs"));
+	outputCodex("Venar is a planet governed by a great desert and dotted with pockets of lush, verdant forests - the so called Pocket Oases. After their uplifting, the main trade of the planet became tourism, where visitors get to enjoy their time in the apparently primitive resorts of the planet. Most of the surface lacks any signs of technology, save for a few installations.");
+	outputCodex("\n\nVenar's settlements are built predominantly underground, to shelter them from the extreme temperatures of the surface as well as preserve what little nature there is in the Pocket Oases. These cities are where the bulk of the populace actually reside; the only people who live above ground are the ones connected to the tourist trade, be it as resort staff or those who have the unenviable job of living traditionalist lifestyles in the reconstructed \"historical\" villages.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("During their evolution the Venarians obtained the unique ability to assume the role of the opposite sex during breeding. This means that males can become pregnant like a female and females may impregnate like a male. This change is triggered by the desire to reproduce and hormones released into the Venarian's body as a result of same-sex physical intercourse. The most prevalent theory traces this phenomenon back to the drastic global climatic shifts that had made Venar into the mostly desert-like world it is today.");
+	outputCodex("\n\nAs one of the consequences of this development, Venarians completely lack the genes for hermaphroditism. As males and females are both reproductive hermaphrodites, their chromosomal patterns do not support sexual hermaphroditism. Because of this unique arrangement most Venarians have troubles with transformatives and only a select few products have nanomachines programmed to deal with the intricacies of their biology.");
+	outputCodex("\n\nWhen a Venarian experiences a 'gender shift', the precise effects depend on the native sex of the Venarian. Male Venarians experience a significant increase in size of their hips and butts, aimed to ease the potential birthing, and noticeable breast growth as their mammary glands become active and the wombs inside their anus start producing female gametes. Their anuses develop a natural slickness due to the production of lubricating chemicals as internal tracts leading to the uterine opening, effectively allowing them to function as vaginas. Furthermore, male Venarians in this state also begin to emit pheromones that entice phallus-equipped partners to penetrate them. Female Venarians, by comparison, have their hips and breasts decrease in size as their clitoris extends and transforms into a fully functional phallus that can channel semen from their newly-formed internal testes.");
+	outputCodex("\n\nWhilst modern medical science has developed reliable methods by which a gender shift can be averted, reverted, or even manipulated, once a Venarian fully enters the gender shifted state, they will remain that way until they have reproduced. Female Venarians will only change back when they detect the telltale signs of a successful impregnation, while males will not change back until they have been impregnated, given birth and weaned their offspring. The pregnancies that involve at least one gender-shifted parent tend to be single child ones, due to the low virility of the shifted females and the small size of the shifted males’ wombs.");
+	outputCodex("\n\nDue to hormonal changes, the shift cannot naturally occur for female Venarians that are pregnant, since their bodies will usually repurpose themselves in order to fully support the fetus. The same is not true for males, as the hormones required for proper childcare are the same ones that trigger the shift in the first place.");
+	outputCodex("\n\nWhen engaging in interspecies reproduction, Venarian genes are extremely dominant, ensuring any children are almost always Venarian, though it's common for children to display the hair, fur and eye color phenotype of their non-Venarian parent.");
+	CodexManager.viewedEntry("Venarians");
 }
 
 

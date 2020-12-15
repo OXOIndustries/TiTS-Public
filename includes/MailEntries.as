@@ -247,6 +247,8 @@ public function configureMails():void
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("riya_party_invite", riyaXmasPartyInviteText, "Christmas Party Invitation", "Commander Lorna Grence", "Lorna_Grence@UGC.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("emrby_xxxmas_invite", embryXmasInvite, "Come Visit!", embryName, "SpacePrincess@bibliotech.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("makius_nursery_missed_child", makiusBirthMessage, "Our Baby", "Makius", "Makima_venMD@cmail.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("makius_nursery_abandoned_email", makiusNurseryAbandonedEmail, "Rented Room", "Makius", "Makima_venMD@cmail.com", quickPCTo, quickPCToAddress);
 	
 	//extrameet 	
 	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
