@@ -345,7 +345,7 @@ public function liammeExhibitionism():void
 	//[Next] //Should take the PC out of his menus, adds lust and exhib.
 	IncrementFlag("LIAMME_EXHIB");
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.exhibitionism(2);
 	applyLiamDisable();
 	clearMenu();
@@ -990,7 +990,7 @@ public function blowLiammeInNewPanties():void
 	processTime(15);
 	pc.loadInMouth(chars["SYRI"]);
 	flags["LIAMME_ALISS_PROC"] = undefined;
-	pc.lust(20);
+	pc.changeLust(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1013,7 +1013,7 @@ public function tellLiammeHeLooksGr8():void
 	output("\n\nGrinning at the sight, you tell the femboy you hope you’ll seem him later too, and go to make your way out of the stall, the sound of his vigorous masturbation all too audible as you walk away.");
 	processTime(6);
 	flags["LIAMME_ALISS_PROC"] = undefined;
-	pc.lust(6);
+	pc.changeLust(6);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

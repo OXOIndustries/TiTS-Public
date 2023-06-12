@@ -47,6 +47,7 @@
 		public var shieldDefense:Number;
 		public var shields:Number;
 		public var sexiness:Number;
+		public var resolve:Number;
 		public var critBonus:Number;
 		public var evasion:Number;
 		public var fortification:Number;
@@ -106,6 +107,7 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+			this.resolve = 0;
 			
 			// We don't really need to keep two sets of properties around for additional resists/damage on items -- just repurpose the same thing!
 			resistances = new TypeCollection();
@@ -187,13 +189,14 @@
 			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("fortification", 	"Bonus HP", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("resolve",			"Resolve",			this, oldItem));
 			if(this.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT) && (this.type == GLOBAL.GADGET || this.type == GLOBAL.RANGED_WEAPON)) 
 				compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Energy Use", 	this, oldItem,false,true));
 			else
 				compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("shields", 		"Shield Points", 			this, oldItem));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
 			var damageString:String = damageDiff(this, oldItem,short);

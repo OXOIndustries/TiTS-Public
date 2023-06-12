@@ -1957,11 +1957,10 @@ public function pcVictoryVsNymFoeMenu():void
 	clearMenu();
 	
 	//[Fuck] [Suck Out] [Harvest] [Leave]
-	
-	if(pc.lust() >= 33 && pc.hasGenitals()) {
+	if(!pc.hasGenitals()) addDisabledButton(0,"Fuck","Fuck","You need genitalia to do this.");
+	else if(pc.lust() >= 33) {
 		if(flags["NYM-FOE_DISASSEMBLED"] != undefined) addDisabledButton(0,"Fuck","Fuck","You can’t sex the nurse when she’s a pile of parts.");
-		else if(pc.hasGenitals()) addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
-		else addDisabledButton(0,"Fuck","Fuck","You need genitalia to do this.");
+		else addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
 	}
 	else addDisabledButton(0,"Fuck","Fuck","You’re not up for sex right now.");
 	

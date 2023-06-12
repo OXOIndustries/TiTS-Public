@@ -931,7 +931,7 @@ public function approachServantSera(introText:Boolean = false):void
 				output("\n\nHearing your pussy cat growl like this is giving you a sincere desire to fuck her silly. In a big pile of credits, possibly.");
 				
 				// + Lust
-				pc.lust(50);
+				pc.changeLust(50);
 				pc.removeStatusEffect("Sera Debt Repaid");
 			}
 			// [Sera] 7 days after you funded her
@@ -1159,7 +1159,7 @@ public function seraBitchTrainingTease():void
 			output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out.");
 		}
 		
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	// 0-40
 	else if(obedience <= 40)
@@ -1187,7 +1187,7 @@ public function seraBitchTrainingTease():void
 			output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out.");
 		}
 		
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	// 41-80
 	else
@@ -1211,7 +1211,7 @@ public function seraBitchTrainingTease():void
 		output(". You know now exactly how to touch her, what parts of her soaked folds to touch to excite and engorge her, make her nerve clusters bloom and blood vessels reach needily to the surface of her skin. You tighten your grip on her breast, rubbing her erect nipple between your fingers as you inundate a similar stubborn nub in her pussy with attention, stroking and circling her clit insistently. It’s difficult to tell how much she’s exaggerating her moans and gasps, but they are full-blooded and there’s nothing artificial about the way she’s pumping her thighs into your hand. The spaded tip of the tail trapped against your side touches your ear, and you suddenly feel light-headed.");
 		output("\n\n<i>“Go on,”</i> says a teasing voice. <i>“Do it.”</i>");
 		
-		pc.lust(35);
+		pc.changeLust(35);
 	}
 	
 	processTime(6);
@@ -1425,7 +1425,7 @@ public function seraBitchTrainingTeaseRelease():void
 		}
 	}
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	IncrementFlag("SERA_BITCHENING_TEASE");
 	IncrementFlag("SERA_BITCHENING_TEASE_RELEASE");
@@ -1508,7 +1508,7 @@ public function seraBitchTrainingTeaseDeny():void
 		}
 	}
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	processTime(2);
 	IncrementFlag("SERA_BITCHENING_TEASE");
@@ -1652,7 +1652,7 @@ public function seraBitchTrainingFemTease():void
 		output("\n\nSera tries to say something else, but it’s lost in a breathless grunt as you knead her full, straining erection with everything you’ve got, whipping your tight grip up and down it, circling first one erect nipple then the other as you do. It’s easy enough to turn such a highly sexed creature on but you pay careful attention to her, trying to note what movement of your hands particularly makes her tighten her muscles, arch her back, tail flick spasmodically, gasp with involuntary pleasure.");
 		output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out at last.");
 		
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	// 0-40
 	else if(obedience <= 40)
@@ -1665,7 +1665,7 @@ public function seraBitchTrainingFemTease():void
 		output("\n\nFinally you are fingering and pumping her wickedly enough for her breath to be whistling through her teeth and flexing her thighs, cock dark and arching urgently in the shifting, softening, tightening swivel of your hand.");
 		output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out.");
 		
-		pc.lust(15);
+		pc.changeLust(15);
 	}
 	// 41-80
 	else
@@ -1680,7 +1680,7 @@ public function seraBitchTrainingFemTease():void
 		output("\n\nIn the heat of the moment it’s too pleasurable to climb down and force her to stop - you continue to jerk her whilst she spears her thick, ropy tail into your increasingly wet sex, sensation shivering into your core. You grit your teeth and try and keep focused, tightening your grip on her heaving breast, rubbing her erect nipple between your fingers as you rub her engorged frenulum closely. It’s difficult to tell how much she’s exaggerating her moans and gasps, but there’s nothing artificial about the way she’s pumping her thighs into your hand, translating that into writhing her tail into you. She gazes over her shoulder, yellow eyes slit, and caresses your g-spot. You suddenly feel very light-headed.");
 		output("\n\n<i>“Go on,”</i> says a teasing voice. <i>“Do it.”</i>");
 		
-		pc.lust(35);
+		pc.changeLust(35);
 	}
 	
 	processTime(6);
@@ -1847,7 +1847,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		}
 	}
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	IncrementFlag("SERA_BITCHENING_TEASE");
 	IncrementFlag("SERA_BITCHENING_TEASE_RELEASE");
@@ -1918,7 +1918,7 @@ public function seraBitchTrainingTeaseFemDeny():void
 		}
 	}
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	
 	processTime(2);
 	IncrementFlag("SERA_BITCHENING_TEASE");
@@ -2113,7 +2113,7 @@ public function seraBitchTrainingRide():void
 		output("\n\n<i>“Don’t...”</i> she growls, and then closes her eyes and grits her teeth again as you begin to ride her afresh, working her cock ruthlessly deep within you.");
 		
 		processTime(10);
-		pc.lust(30);
+		pc.changeLust(30);
 		
 		// [pb]
 		addButton(0, "Next", seraBitchTrainingRidePtII, vIdx);
@@ -2662,7 +2662,7 @@ public function seraBitchTrainingPunishSpank(fromMenu:Boolean = false):void
 	}
 	
 	processTime(21);
-	pc.lust(15);
+	pc.changeLust(15);
 	chars["SERA"].lust(5);
 	chars["SERA"].removeStatusEffect("Sera Masturbated");
 	IncrementFlag("SERA_BITCHENING_PUNISH_SPANK");
@@ -3037,7 +3037,7 @@ public function seranigansEvent(sEvent:String = "none"):void
 			
 			// +1 Hour, set lust to 0
 			processTime(55 + rand(11));
-			pc.lust(0, true);
+			pc.changeLust(0, true);
 			pc.createStatusEffect("Seranigans", 1, 0, 0, 0, true, "", "", false);
 			
 			// Next [Sera]
@@ -3947,7 +3947,7 @@ public function seraBitcheningSexTeaseM():void
 	
 	processTime(5 + rand(2));
 	
-	pc.lust(35);
+	pc.changeLust(35);
 	
 	// [Deny] [Release]
 	clearMenu();
@@ -4040,7 +4040,7 @@ public function seraBitcheningSexTeaseF():void
 	
 	processTime(5 + rand(2));
 	
-	pc.lust(35);
+	pc.changeLust(35);
 	
 	// [Deny] [Release]
 	clearMenu();
@@ -4173,7 +4173,7 @@ public function seraBitcheningPunishSpank():void
 	
 	processTime(21);
 	
-	pc.lust(35);
+	pc.changeLust(35);
 	chars["SERA"].lust(35);
 	
 	IncrementFlag("SERA_BITCHENING_PUNISH_SPANK");

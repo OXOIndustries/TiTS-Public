@@ -504,7 +504,7 @@ public function rideChrissy():void
 	
 	IncrementFlag("CHRISSY_RIDDEN");
 	
-	pc.lust(30);
+	pc.changeLust(30);
 	if(vagIdx >= 0) pc.loadInCunt(ppChrissy, vagIdx);
 	else pc.loadInAss(ppChrissy);
 	

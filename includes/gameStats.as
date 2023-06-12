@@ -683,6 +683,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
 						case "SiegwulfeEggnancy": output2(" [wulfe.name], Eggs"); break;
 						case "IlariaPregnancy": output2(" Ilaria"); break;
+						case "StormguardPregnancy": output2(" " + (flags["MET_GEL_ZON"] != undefined ? "Gel Zon":"Stormguard Lancer") + ", Egg"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1228,6 +1229,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cunt Snake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
 				if(StatTracking.getStat("pregnancy/frostwyrm eggs laid") > 0)
 					output2("\n<b>* Births, [frostwyrm.name]’s Eggs:</b> " + StatTracking.getStat("pregnancy/frostwyrm eggs laid"));
+				if(StatTracking.getStat("pregnancy/gel zon births") > 0)
+					output2("\n<b>* Births, Gel Zon’s Children:</b> " + StatTracking.getStat("pregnancy/gel zon births"));
 				if(StatTracking.getStat("pregnancy/ilaria births") > 0)
 					output2("\n<b>* Births, Ilaria Children:</b> " + StatTracking.getStat("pregnancy/ilaria births"));
 				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
@@ -4248,6 +4251,30 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + (flags["KIONA_MET"] == undefined ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved Her");
 				}
 				else output2("<i>Talk to Ula!</i>");
+				sideCount++;
+			}
+			//deepsea biomedical facility
+			if(flags["UVETO_DEEPSEALAB_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Steele Biomedical Deepsea Research Facility</u></b>");
+				output2("\n<b>* Status:</b> ");
+				if(flags["UVETO_DEEPSEALAB_QUEST"] == 0) output2("Read warning sign");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 1) output2("Got permission from Dr Lessau");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 2) output2("Entered Facility");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 3) output2("Cleared Facility");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 4) output2("Cleared Facility, Returned to surface, Waiting for reward");
+				else if(flags["UVETO_DEEPSEALAB_QUEST"] == 5) output2("Complete");
+				sideCount++;
+			}
+			//Frostwyrm TF quest
+			if(flags["LESSAU_FROSTWYRM_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Frostwyrm Sample Gathering</u></b>");
+				output2("\n<b>* Status:</b> ");
+				if(flags["LESSAU_FROSTWYRM_QUEST"] == 0) output2("Received Blood Extractor from Dr Lessau");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 1) output2("Gathered blood sample");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 2) output2("Gave blood sample to Dr Lessau, Waiting for results");
+				else if(flags["LESSAU_FROSTWYRM_QUEST"] == 3) output2("Complete");
 				sideCount++;
 			}
 		}
@@ -8437,6 +8464,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
 					var lancerSexed:int = (flags["SEXED_SG_MALE"] == undefined ? 0 : flags["SEXED_SG_MALE"]);
 					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
+					if(flags["SG_CON_WINS"] > 1) output2("\n<b>* " + lancerName + ", Times You Consecutively Won:</b> " + flags["SG_CON_WINS"]);
 					if(flags["STORMGUARD_HONOR"] != undefined)
 					{
 						output2("\n<b>* " + lancerName + ", Respect Level:</b> " + flags["STORMGUARD_HONOR"]);
@@ -9912,3 +9940,4 @@ public function listCharPerks(charName:String = ""):String
 
 	return txt;
 }
+

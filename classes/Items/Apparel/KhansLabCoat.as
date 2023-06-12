@@ -36,11 +36,11 @@ package classes.Items.Apparel
 			
 			this.basePrice = 21000;
 			this.attack = 0;
-			this.defense = 2;
+			this.defense = 1;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 3;
+			this.evasion = 5;
 			this.fortification = 0;
 			
 			resistances.corrosive.resistanceValue = 20;

@@ -661,7 +661,7 @@ public function majaSexyTimes():void
 		if(!korgiTranslate()) output("[pc.name] smells so good. Can we have matings?");
 		else output("Oh gods you smell <i>good</i>. I can’t stop thinking about... mating, breeding, fucking!");
 		output("”</i> she whines, her turgid dick throbbing harder with each word. <b>Breeding sounds like a really good idea</b>");
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	else 
 	{
@@ -681,7 +681,7 @@ public function majaSexyTimes():void
 		output("\n\n<i>“What did you have in mind?”</i>");
 	}
 	processTime(2);
-	pc.lust(5);
+	pc.changeLust(5);
 	majaSexMenu();
 }
 
@@ -1336,7 +1336,7 @@ public function majaHandjobAndRide(x:int):void
 	output("\n\nIt takes a minute for Maja to finally calm down, and the storefront is a mess. She’ll have to clean it up. But it’s gonna have to wait: she’s still erect.");
 	output("\n\nAnd you’re hornier than ever.");
 	processTime(30);
-	pc.lust(150);
+	pc.changeLust(150);
 	clearMenu();
 	addButton(0,"Next",majaLovemaking2,x);
 }

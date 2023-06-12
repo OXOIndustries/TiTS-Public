@@ -174,7 +174,7 @@ package classes.Items.Transformatives
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(pc.vaginalPuffiness(i, true) < 3 || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
+					if(pc.vaginalPuffiness(i, true) < 2 || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
 				}
 			}
 			/*
@@ -390,7 +390,7 @@ package classes.Items.Transformatives
 				choices = [];
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(pc.vaginalPuffiness(i, true) < 3 || pc.vaginas[i].bonusCapacity < 800)
+					if(pc.vaginalPuffiness(i, true) < 2 || pc.vaginas[i].bonusCapacity < 800)
 					{
 						choices.push(i);
 					}

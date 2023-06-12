@@ -321,8 +321,12 @@ public function vahnSellsShips(back:Boolean = false):void
 		{
 			output("You ask Vahn if he can sell you a whole new ship.");
 
-			output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i> He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird in storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
-			output("\n\nYou nod along. Of course Dad wouldn’t want you selling such a sentimental piece.");
+			output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i>");
+			if(shits["SHIP"] is Casstech) 
+			{
+				output(" He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird in storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
+				output("\n\nYou nod along. Of course Dad wouldn’t want you selling such a sentimental piece.");
+			}
 			output("\n\nVahn taps a few buttons, and your Codex springs to life, displaying a catalog of local spacecraft. <i>“Take your pick.”</i>");
 		}
 		else
@@ -1410,7 +1414,7 @@ public function giveVahnAHandy():void
 	processTime(10+rand(10));
 	flags["SEXED_VAHN"] = 1;
 	flags["HANDIED_VAHN"] = 1;
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

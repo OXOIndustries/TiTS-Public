@@ -1379,7 +1379,7 @@ public function favoriteDrugMitzi():void
 	if(pc.isBimbo() || pc.isBro()) output("Fuuuuck, that’s hot as hell. You know you should feel a little bad for her, but there’s something to be said for a girl who can milk herself into sub-sapiance.");
 	else output("You aren’t sure whether to be horrified or aroused by such a story.");
 	output(" Still, your curiosity has been piqued. <i>“What about Soak?”</i>");
-	output("\n\nMitzi’s eyes light up. <i>“Mitzi loooves Soak.”</i> She pats her crotch. <i>“So Soak is sorta like Throbb for girls. So instead of getting big, dumb boners, we get super wet and fertile. And when you first take it, your pussy feel really, really weird. Everything gets all puffy and swollen and almost rubbery looking, especially once the drooling starts. You’ll feel it happening, and you just can’t help but get wet enough to ride a tribe of raskvel. Oh! And the drool comes out of your mouth too. Mitzi doesn’t know why, but once you dose a little Soak, juices come out of everywhere!”</i>");
+	output("\n\nMitzi’s eyes light up. <i>“Mitzi loooves Soak.”</i> She pats her crotch. <i>“So Soak is sorta like Throbb for girls. So instead of getting big, dumb boners, we get super wet and fertile. And when you first take it, your pussy feels really, really weird. Everything gets all puffy and swollen and almost rubbery looking, especially once the drooling starts. You’ll feel it happening, and you just can’t help but get wet enough to ride a tribe of raskvel. Oh! And the drool comes out of your mouth too. Mitzi doesn’t know why, but once you dose a little Soak, juices come out of everywhere!”</i>");
 	output("\n\nThat sounds sort of uncomfortable.");
 	output("\n\n<i>“Mmmm, it would be,”</i> Mitzi replies, <i>“But you get so sensitive all over that it hurts </i>not<i> to be wet, and it feels so good when something slides against you. Even better when you have some cum to mix in.”</i> She makes a trilling sound of delight in the back of her throat. <i>“Anyway, you sort of get fasci-fascin...obsessed, spreading it around, like your brain can’t handle what’s going on. Instead of panicking or whatever, it just sort of... soaks in it. Lets your pussy do the thinking, so you can slip, and slide, and smear cock-juice onto your face for hours and hours.”</i>");
 	output("\n\nA dreamy sigh escapes the goblin’s lips. <i>“Mitzi will show [pc.Master] if he can get her some. She should’ve taken Yarlowe’s with the other stuff.”</i>");
@@ -3850,10 +3850,10 @@ public function mitziVDayFun():void
 	clearOutput();
 	showMitziVD();
 	author("Fenoxo");
-	output("Mitzi appears from behind a bulkhead with the sort of silent swiftness that you would expect from a non-corporeal life form or highly trained stealth operative. Her pigtails bob wildly, wrapped in an array of pink ribbons - to say nothing of the form-fitting, heart-themed dress she’s purloined a trashy slutwear shop. In her hands is a marvel of modern toymaking technology: a BERF bow, complete with an oversized pink dart inexpertly shaved down into the shape of a phallus.");
+	output("Mitzi appears from behind a bulkhead with the sort of silent swiftness that you would expect from a non-corporeal life form or highly trained stealth operative. Her pigtails bob wildly, wrapped in an array of pink ribbons - to say nothing of the form-fitting, heart-themed dress she’s purloined from a trashy slutwear shop. In her hands is a marvel of modern toymaking technology: a BERF bow, complete with an oversized pink dart inexpertly shaved down into the shape of a phallus.");
 	output("\n\n<i>“Surprise! Mitzi’s gonna like, spread the love! Just like that cutie Cupid guy!”</i>");
 	output("\n\nWhen the tarted-up goblin draws the string back, the white foam wings she’s wearing wobble distractingly, throwing her aim off to the side and giving you a moment to take a closer look before she can correct.");
-	output("\n\nThe dart she’s aiming at you isn’t just carved to look like it’s a dick - it’s hollowed out such the urethral gap is slotted with a loaded medipin, filled with who knows what kind of outlandish drug. Fortunately for you, Mitzi’s not exactly a crack shot. You can easily ruin whatever Valentine’s day fun she has planned by stepping aside, assuming you don’t want to roll the dice on her party drugs.");
+	output("\n\nThe dart she’s aiming at you isn’t just carved to look like it’s a dick - it’s hollowed out such that urethral gap is slotted with a loaded medipin, filled with who knows what kind of outlandish drug. Fortunately for you, Mitzi’s not exactly a crack shot. You can easily ruin whatever Valentine’s day fun she has planned by stepping aside, assuming you don’t want to roll the dice on her party drugs.");
 	processTime(3);
 	flags["MITZI_VDAY_LAST_YEAR_ENCOUNTERED"] = getRealtimeYear();
 	clearMenu();
@@ -3907,9 +3907,10 @@ public function takeTheHitMitzi():void
 	output(" That surprise fades when you look back at Mitzi - adorable little Mitzi, smiling impishly, and realize that she’s just as horny as you. Her clothes are long gone. Her tits are as creamy and pillowy as ever, the nipples jutting out at you as if to say, <i>“This is what makes me horny. This [pc.guyGirl] over here,”</i> and you appreciate that about them.");
 	output("\n\nThe bite-sized strumpet titters while you stare at her tits, wiggling back and forth to lend them a pleasing sort of sway. <i>“So like, don’t worry about it, [pc.Master]! It’s just a drug that makes it really easy to feel love, and share love, and cum super easy. So you can just like, look at Mitzi’s titties if that’s what you want to do.”</i> She bites her lip and arches her back to better present them. <i>“It’s super dooper cute when you do!”</i>");
 	output("\n\n<i>“Uh-huh.”</i> You suppose there’s nothing bad about feeling a bit more love, especially while you’ve got a naked gabilani contorting in front of you, swaying a pair of heavenly breasts back and forth entirely for your amusement. Her nipples, slightly crinkled from arousal, shine like two beacons, presented exclusively for your eyes to follow. You wrinkle your brow with the effort of drudging up another concern. It’s quite difficult when you’ve got the galaxy’s sexiest goblin prancing around in front of you, doing everything she can to treat you to a sexy evening. <i>“Gotta be a downside...”</i>");
-	output("\n\nLifting your hand, the pleased greenskin places atop one of her mounds, stunning you with the warmth and supple softness of it. You marvel at how your fingers sink in, at the faint thrumming of her heartbeat through a pair of tits big enough to smother a pornstar to death in. Of course, Mitzi isn’t bothered by your touch at all. She holds you by the wrist and leads you toward the bedroom, the spaded tip of her tail tickling your chin while she talks. <i>“Umm, it lasts a long time or something? And something about taint too. Mitzi remembers that, but she played with her taint when she took it, and like, nothing happened!”</i>");
+	output("\n\nLifting your hand, the pleased greenskin places it atop one of her mounds, stunning you with the warmth and supple softness of it. You marvel at how your fingers sink in, at the faint thrumming of her heartbeat through a pair of tits big enough to smother a pornstar to death in. Of course, Mitzi isn’t bothered by your touch at all. She holds you by the wrist and leads you toward the bedroom, the spaded tip of her tail tickling your chin while she talks. <i>“Umm, it lasts a long time or something? And something about taint too. Mitzi remembers that, but she played with her taint when she took it, and like, nothing happened!”</i>");
 	processTime(30);
 	pc.changeLust(50);
+	pc.taint(3);
 	clearMenu();
 	addButton(0,"Next",mitziVDayFun2);
 }
@@ -3919,7 +3920,7 @@ public function mitziVDayFun2():void
 	clearOutput();
 	showMitziVD();
 	author("Fenoxo");
-	output("You tumble into the bed with Mitzi in your arms. You can deal with the side effects later. If “Cupid’s Kiss” has some sort of nefarious come-down, there’s nothing you can do about it now. You might as well keep playing with the goblin-girl’s luscious tits, stroking and petting her. She’s just so void-damned <b>soft</b>. Mitzi was made to be held, and touch, and... well, fucked. She’s never presented herself as anything else. The squishy little goblin may utterly sex-addicted in all the best and worst ways, but she’s always been honest about.");
+	output("You tumble into the bed with Mitzi in your arms. You can deal with the side effects later. If “Cupid’s Kiss” has some sort of nefarious come-down, there’s nothing you can do about it now. You might as well keep playing with the goblin-girl’s luscious tits, stroking and petting her. She’s just so void-damned <b>soft</b>. Mitzi was made to be held, and touch, and... well, fucked. She’s never presented herself as anything else. The squishy little goblin may utterly sex-addicted in all the best and worst ways, but she’s always been honest about it.");
 	output("\n\nIn a way, you admire that about her.");
 	output("\n\n<i>“What’s [pc.Master] thinking?”</i> Mitzi moans, leaning up to kiss your chin. Her hand slides across your [pc.belly] toward your crotch without quite touching down, fluttering and caressing your inner thighs until you feel ");
 	if(pc.hasCock()) output("harder than a capital ship’s armor plating");
@@ -3952,6 +3953,7 @@ public function mitziVDayFun2():void
 	output("\n\nMitzi squeaks and shivers, eyes rolling halfway back.");
 	output("\n\nYou know exactly how she feels.");
 	processTime(35);
+	pc.taint(2);
 	pc.orgasm();
 	pc.changeLust(25);
 	clearMenu();
@@ -3979,6 +3981,7 @@ public function mitziVDayFun4():void
 	processTime(45);
 	if(!pc.hasStatusEffect("Cupid’s Kiss")) pc.createStatusEffect("Cupid’s Kiss",1,0,0,0,false,"Icon_DrugVial","You’re feeling more affectionate that you otherwise would, no doubt the result of Mitzi’s drug.\n\nTake +30% more tease damage.\n+200% XP\n+300% rare drop chance.",false,0,0xB793C4);
 	pc.setStatusMinutes("Cupid’s Kiss",60*24*31);
+	pc.taint(1);
 	IncrementFlag("MITZI_VDAYS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

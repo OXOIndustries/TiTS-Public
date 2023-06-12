@@ -917,7 +917,7 @@ public function coronaFlamerSitsOnYourFace():void
 	IncrementFlag("FIREPUP_SEXED");
 	IncrementFlag("FIREPUP_SEXED_BEGGED");
 	IncrementFlag("FIREPUP_RIMMED");
-	pc.lust(15+pc.libido()/4);
+	pc.changeLust(15+pc.libido()/4);
 
 	coronaFlamerLossEnd();
 }

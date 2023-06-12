@@ -1731,7 +1731,7 @@ public function milkturbation():void
 			output(" to stop the inevitable splatters from soaking your lower body as you express the stuff with machine-like efficiency, flooding the area with more [pc.milk] than an organic has any business creating. There’s so much that you can’t help but stifle a smile; there isn’t a cow-girl or alien in the galaxy that could keep up with you.");
 			if(pc.biggestTitSize() >= 5)
 			{
-				output(" Lifting one weighty teat to your lips, you coat your chin and mouth immediately, getting a nice full draught of [pc.milkFlavor] to sample for your troubles.");
+				output(" Lifting one weighty teat to your lips, you coat your chin and mouth immediately, getting a nice full draught of [pc.milkFlavor] flavor to sample for your troubles.");
 				pc.milkInMouth(pc);
 			}
 		}

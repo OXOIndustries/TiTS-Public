@@ -1284,9 +1284,10 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 			output("\n\n");
 			
 			processTime(35);
-			pc.lust(5);
-			if(pc.exhibitionism() >= 33) pc.lust(5);
-			if(pc.exhibitionism() >= 66) pc.lust(5);
+			var lustChange:Number = 5;
+			if(pc.exhibitionism() >= 33) lustChange += 5;
+			if(pc.exhibitionism() >= 66) lustChange += 5;
+			pc.changeLust(lustChange);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXhibitionBlowjob, [2, vagIndex]);
 			return;
@@ -1335,9 +1336,10 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 			
 			processTime(15);
 			pc.orgasm();
-			pc.lust(15);
-			if(pc.exhibitionism() >= 33) pc.lust(15);
-			if(pc.exhibitionism() >= 66) pc.lust(15);
+			var changeL:Number = 15;
+			if(pc.exhibitionism() >= 33) changeL += 15;
+			if(pc.exhibitionism() >= 66) changeL += 15;
+			pc.changeLust(changeL);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXhibitionBlowjob, [3, vagIndex]);
 			return;
@@ -1401,9 +1403,10 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 			output("\n\nWhen she pulls her prodigious bulbous head out almost to your teeth, keeping it there and demanding you polish it, you do so, roiling your tongue across her cum-slit and the light, slightly giving flesh around it, the taste of her pre inundating your taste buds; when she says that you aren’t vocalizing your enjoyment enough, you ramp up the wet sounds you are already making, your muffled groaning around her cock fueled by the vibrations juddering through your core. It’s around then that the first customer comes in...");
 			
 			processTime(25 + rand(11));
-			pc.lust(15);
-			if(pc.exhibitionism() >= 33) pc.lust(15);
-			if(pc.exhibitionism() >= 66) pc.lust(15);
+			var changeL2:Number = 15;
+			if(pc.exhibitionism() >= 33) changeL2 += 15;
+			if(pc.exhibitionism() >= 66) changeL2 += 15;
+			pc.changeLust(changeL2);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXhibitionBlowjob, [2, vagIndex]);
 			return;
@@ -1527,9 +1530,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			output("\n\n<i>“Ooh,”</i> sighs Jardi, blinking a couple of times. Her pupils dilate and she smiles at you amorously. You do the same back, practically giggling together at how wonderful everything is.");
 			
 			processTime(25);
-			pc.lust(15);
-			if(pc.hasCock()) pc.lust(15);
-			if(pc.hasVagina()) pc.lust(15);
+			var changeL3:Number = 15;
+			if(pc.hasCock()) changeL3 += 15;
+			if(pc.hasVagina()) changeL3 += 15;
+			pc.changeLust(changeL3);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXJardiThreesome, "hookah");
 			return;
@@ -1579,9 +1583,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			}
 			
 			processTime(10);
-			pc.lust(5);
-			if(pc.hasCock()) pc.lust(5);
-			if(pc.hasVagina()) pc.lust(5);
+			var lustC:Number = 5;
+			if(pc.hasCock()) lustC += 5;
+			if(pc.hasVagina()) lustC += 5;
+			pc.changeLust(lustC);
 			
 			// [Balls] [Pussy] [Ass]
 			clearMenu();
@@ -1756,9 +1761,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 				output(" to Jardi’s teasing touch.");
 			}
 			processTime(25 + rand(11));
-			pc.lust(15);
-			if(pc.hasCock()) pc.lust(15);
-			if(pc.hasVagina()) pc.lust(15);
+			var lustC2:Number = 15;
+			if(pc.hasCock()) lustC2 += 15;
+			if(pc.hasVagina()) lustC2 += 15;
+			pc.changeLust(lustC2);
 			clearMenu();
 			addButton(0, "Next", seraSexXXXJardiThreesome, "hookah");
 			return;
@@ -1781,10 +1787,10 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			else output(" Her teeth gleam as she flares her hips to dip into Jardi’s seeping vagina, displaying her rear to you - her bloated balls, wet pussy, and large, round ass. <i>“Since you did such a good job of warming this slut up for the good, hard fucking I’m gonna give her...I will leave it up to you how you use your mouth to please me as I do.”</i>");
 			
 			processTime(10);
-			pc.lust(5);
-			if(pc.hasCock()) pc.lust(5);
-			if(pc.hasVagina()) pc.lust(5);
-			
+			var lustC3:Number = 5;
+			if(pc.hasCock()) lustC3 += 5;
+			if(pc.hasVagina()) lustC3 += 5;
+			pc.changeLust(lustC3);
 			// [Balls] [Pussy] [Ass]
 			clearMenu();
 			addButton(0, "Balls", seraSexXXXJardiThreesome, "balls");
@@ -1975,7 +1981,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 				output("”</i> She sidles in closer, holding the back of the chair to lead her moist pussy up your chin, immersing your lower lip with the texture of it. <i>“So even when I’m riding you you’re learning how to take it, nice and hard.”</i> She raises herself up the dildo slowly, sliding it over her visibly bulging clit, sighing as it bends into her wetness before enveloping it with a harsh gasp, sitting down on your face hard.");
 				
 				processTime(35);
-				pc.lust(10);
+				pc.changeLust(10);
 				clearMenu();
 				addButton(0, "Next", seraSexXXXGetRidden, [2, vagIndex, cockIndex]);
 				return;
@@ -2043,7 +2049,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 				output("”</i> She sidles in closer, holding the back of the chair to lead her moist pussy up your chin, immersing your lower lip in the texture of it. You can smell and taste her piquant excitement as she exults in your helpless, bound form. <i>“So even when I’m riding you you’re learning how to take it, deep and hard.”</i> She raises herself up the dildo slowly, sliding it over her visibly bulging clit, sighing as it bends into her wetness before enveloping it with a harsh gasp, sitting down on your face hard.");
 				
 				processTime(25 + rand(11));
-				pc.lust(10);
+				pc.changeLust(10);
 				clearMenu();
 				addButton(0, "Next", seraSexXXXGetRidden, [2, vagIndex, cockIndex]);
 				return;
@@ -2123,7 +2129,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 	}
 	pc.loadInMouth(chars["SERA"]);
 	pc.girlCumInMouth(chars["SERA"]);
-	pc.lust(20);
+	pc.changeLust(20);
 	sera.orgasm();
 	IncrementFlag("SERA_FACE_RIDE_TRAINING");
 	clearMenu();
@@ -2200,7 +2206,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		}
 		
 		processTime(15);
-		pc.lust(15);
+		pc.changeLust(15);
 		clearMenu();
 		addButton(0, "Next", seraSexXXXTitfuckLuckyDip, ["second", vagIndex, cockIndex]);
 		return;
@@ -2524,7 +2530,7 @@ public function seraGiftCollar(page:int = 0):void
 			output("\n\n<i>“Very nice,”</i> she hisses, molten eyes gazing down, one set of cerulean claws stroking a breast, the other grazing the length of her thick cock. Her tail-spade slithers down and touches you in the pit of your throat, leading slowly up to your chin before withdrawing, leaving a faint trace of cock-musk behind. <i>“It’s a picture that’s missing something, though. Go ahead and open your prezzie.”</i> The pulpy spade slaps your hand when you reach for the box. <i>“You should know better than that by now, slut,”</i> admonishes Mistress in a sharper voice.");
 			
 			processTime(5);
-			pc.lust(5);
+			pc.changeLust(5);
 			
 			addButton(0, "Next", seraGiftCollar, 1);
 			break;
@@ -2541,7 +2547,7 @@ public function seraGiftCollar(page:int = 0):void
 			output("\n\n<i>“Yeeeess,”</i> she purrs, gazing down at you kneeling in front of her proudly, taut leash in one hand, her hardening cock in the other. <i>“That’s it, right there. Picture complete.”</i> She licks her lips, enjoying the sight of you for a couple moments more, before giving the leash a sharp yank, forcing you forward with a gasp. She opens her hips a bit; the moist, musky tip of her penis, real one this time, touches your lips. <i>“Now. Now you start thanking me.”</i>");
 			
 			processTime(7);
-			pc.lust(10);
+			pc.changeLust(10);
 			
 			addButton(0, "Next", seraGiftCollar, 2);
 			break;
@@ -2584,7 +2590,7 @@ public function seraGiftCollar(page:int = 0):void
 			pc.createKeyItem("Sera’s Collar", 0, 0, 0, 0);
 			toggleCollar("Sera’s");
 			
-			pc.lust(25);
+			pc.changeLust(25);
 			pc.loadInMouth(chars["SERA"]);
 			
 			currentLocation = "9018";
@@ -2878,7 +2884,7 @@ public function seraTongueFuckBonus():Boolean
 	output("\n\n<i>“‘S why I’m interested in long tongues,”</i> she growls. <i>“For me, anyway. " + (InCollection(select, [1, 2, 3, 4]) ? "Yours is for other purposes." : "On you it’d be for other purposes.") + " Sub, dom... a tonsil toucher is something to have. I wanna have a selection of gene mods that produce ‘em in my shop.”</i>");
 	
 	processTime(4);
-	pc.lust(20);
+	pc.changeLust(20);
 	
 	clearMenu();
 	addButton(0, "Next", seraTongueFuck, [select, hasCock]);
@@ -2935,7 +2941,7 @@ public function seraTongueFuck(arg:Array):void
 		output(".");
 	}
 	
-	pc.lust(100);
+	pc.changeLust(100);
 	
 	output("\n\nYou are helpless to do anything but hold the curve of her back and take it, trying to do your best to relax and not gag to the singular sensation of her wet, eel-like appendage filling your mouth and throat, pulse thudding in your ears as the moments drag by, and then cumming like a caught fish yourself, seizing up and spurting");
 	if(hasCock) output(" [pc.cum]");
@@ -3077,11 +3083,11 @@ public function seraMilkings(arg:Array):void
 			if(pc.hasErectNipples()) output(" protrude like cherries");
 			else output(" plush, leaking fluid like " + (!pc.hasCuntNipples() ? "aroused pussies" : "the aroused pussies they are"));
 			output(". She flicks at one tender nub, making you gasp. <i>“Go stand over there, and grip the bar.”</i>");
+			pc.changeLust(25);
 			output("\n\n");
 			
 			processTime(4);
 			// ++Lust
-			pc.lust(25);
 			milkQ = pc.milkQ();
 			if(pc.hasVagina())
 			{
@@ -3161,12 +3167,12 @@ public function seraMilkings(arg:Array):void
 				output("\n\nBigger than your average dick, intense as ever as she slots more and more hot, unyielding cock-flesh into you, but fuck so good, so good when your chest is being stimulated like this. Saliva clogging your ball, you butt your [pc.ass] back into her, eager for her to go at you hard, one request she will always happily comply with. You huff and moan with pleasure, melting as her curvy thighs slap into you, a foot of purple slut-pleaser thrust energetically past your entrance repeatedly, your arousal ratcheting upwards.");
 				if(pc.isPregnant() && pc.bellyRating() >= 10) output("\n\n<i>“Fucking... pregnant puss...”</i> she groans, transported as [pc.femcum] drools down her ardent shaft and balls, her hands spreading over your [pc.belly] as she rocks against you. <i>“So wet... so deep... gotta... give my baby momma what [pc.heShe] needs...”</i>");
 			}
+			pc.changeLust(35);
 			output("\n\n");
 			
 			processTime(9);
 			
 			// ++Lust
-			pc.lust(35);
 			
 			addButton(0, "Next", seraMilkings, [2, milkQ, vIdx]);
 			break;
@@ -3391,11 +3397,11 @@ public function seraPunishingFix(arg:Array):void
 			output("\n\nShe snaps her claws as she turns and sways towards the back of her store, tail swishing along behind her.");
 			output("\n\n<i>“Come.”</i>");
 			output("\n\nAwkwardly, flexing futilely against your cuffs, you clamber to your [pc.feet] and follow, that familiar sensation of dread and fluttery excitement blooming in your gut.");
-			output("\n\n");
 			
 			processTime(4);
 			// +Lust
-			pc.lust(12);
+			pc.changeLust(12);
+			output("\n\n");
 			
 			addButton(0, "Next", seraPunishingFix, ["dungeon", cIdx, vIdx]);
 			break;
@@ -3426,11 +3432,11 @@ public function seraPunishingFix(arg:Array):void
 			output("\n\nYou try and remain calm as she fixes another long, straight metal bar to the back of your head, padded so that it won’t discomfit you, and clips it to the chain of your cuffs and to the carpet with hard light fixtures. You find, once she rises away again, that the bar both supports your head, and prevents you from changing position as you are, knelt naked and chained to the floor.");
 			output("\n\nSera turns her attention back to her helpless kaithrit slave, sticking her tongue out thoughtfully as if she were an artist considering her canvas.");
 			output("\n\n<i>“You’re my chair. Tiring work, torture. And there’s nothing like getting your pussy eaten as you do it.”</i>");
-			output("\n\n");
 			
 			processTime(5);
 			// +Lust
-			pc.lust(15);
+			pc.changeLust(15);
+			output("\n\n");
 			
 			addButton(0, "Next", seraPunishingFix, ["bound", cIdx, vIdx]);
 			break;
@@ -3451,11 +3457,11 @@ public function seraPunishingFix(arg:Array):void
 			output("\n\nSera returns to the transfixed cat boy with a vengeance, sliding a piece of ice over the welts on his back whilst pincering one of his small, pink nipples with her claws, assaulting his senses with a vivid mixture of sensations. She laughs with genuine delight as he grunts and wordlessly yowls for mercy through his gag, and returns to your sex-glazed face eagerly.");
 			output("\n\n<i>“Yeah,”</i> she snarls, riding your [pc.tongue] with fervent jerks of her thick thighs, butt slapping against your forehead now, reptilian eyes fixed upon the marked, panting kaithrit. <i>“Polish that cunt, slave! Oh yeah! I fucking deserve this!”</i>");
 			output("\n\nGetting your face ridden like a dildo in this awkward, fixed position is tough, but you do your best for your mistress, smitten with her drooling pussy, lapping at its inhumanly spry innards. You are rewarded with a spurt of femcum over your [pc.lips] and chin, Sera crowing with glee as she reaches an orgasm made spectacular by the tableau of sadism she’s created for herself.");
-			output("\n\n");
 			
 			processTime(11);
 			// ++Lust
-			pc.lust(32);
+			pc.changeLust(32);
+			output("\n\n");
 			
 			addButton(0, "Next", seraPunishingFix, ["fix", cIdx, vIdx]);
 			break;
@@ -3572,13 +3578,13 @@ public function seraPunishingFix(arg:Array):void
 			output("\n\nYou try and remain calm as red silk drifts over your eyes, swaddling you in darkness as Sera tightens the blindfold behind your head. A claw gently traces your [pc.lips], waiting for you to open them of your own volition so that she can slip a smooth, rubber ball between your teeth, holding your mouth open, and then strapping that securely to your head as well. Your breath huffs from your nose. Blinded and bound, your other senses feel augmented - which is, of course, the point. You can’t help but shiver as that same claw slowly traces the line of your back, a grazing point scraping from your shoulder blades all the way down to the crack of your [pc.ass] that you can’t cringe away from. The [pc.skinFurScales] of your back has never felt so exposed. So <i>deliciously</i> exposed.");
 			output("\n\n<i>“Mmm. I knew I could rely upon your sweet nature, [pc.name],”</i> Sera purrs. Spots of burning, liquid pain erupt on your shoulders, and you can’t help but ball your fists and cry out through the ball gag. Void... you sound so helpless. <i>“And now I get a whole new body to play with! New sights, new sounds!”</i> She drools another little streamer of hot wax onto your other shoulder, whilst the other is still slowly coursing and hardening down your back. <i>“I love my pets so much. They make me so goddamn horny. Fix! Kneel there. You’re on cocksucking duty. Got that?”</i>");
 			output("\n\n<i>“Y... yes, Mistress.”</i>");
-			output("\n\n");
 			
 			processTime(6);
 			// -1 Hard
 			pc.addNice(1);
 			// +Lust
-			pc.lust(8);
+			pc.changeLust(8);
+			output("\n\n");
 			
 			addButton(0, "Next", seraPunishingFix, ["yes next", cIdx, vIdx]);
 			break;

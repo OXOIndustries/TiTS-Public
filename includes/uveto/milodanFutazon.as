@@ -140,6 +140,8 @@ public function milodanFutazonWin():void
 }
 public function leaveMiloFutaAfterWin():void
 {
+	clearOutput();
+	showMilodanFutazon();
 	output("You leave the Milodan Amazon behind you and continue on your way.\n\n");
 	CombatManager.genericVictory();
 }
@@ -403,7 +405,7 @@ public function winAgainstMilodanFutazonEatHerPussy():void
 	else output("<i>“Oh my, you seem quite irritated. Perhaps you’re dehydrated. Maybe you should take a drink?”</i>");
 	output("\n\n She shakes her ass again, making sure that her pussy is well presented.");
 	output("\n\nYou just shake your head and go in for it. This time you steady her and go in carefully. To her word, she doesn’t resist this time, allowing you to get face-to-fuckhole with her soaking wet kitty pussy. The cloud of pheromones is thick enough that it feels like it’s leaving a layer on your face. You extend your tongue out and can already taste her juices in the air almost as thick as if they were the real thing. It’s a good appetizer for the main course, and you impatiently dive in within seconds.");
-	output("\n\nIt’s a salty, incredibly musky taste that almost reminds you of a well-marinated steak. It also feels <i>good</i> on your tongue! You’re not exactly sure how to describe it, but it’s like the nerves on your tongue suddenly became as sensitive as " + (pc.hasCock()) ? "your [pc.cocks]":"a cock" + ". Small waves of pleasure surge out from your oral organ, sending shivers down your spine for each lap of juice you take.");
+	output("\n\nIt’s a salty, incredibly musky taste that almost reminds you of a well-marinated steak. It also feels <i>good</i> on your tongue! You’re not exactly sure how to describe it, but it’s like the nerves on your tongue suddenly became as sensitive as " + (pc.hasCock() ? "your [pc.cocks]":"a cock") + ". Small waves of pleasure surge out from your oral organ, sending shivers down your spine for each lap of juice you take.");
 	output("\n\nYou realize that despite the massive amount of juice you’ve been lapping up, you haven’t even fully pierced her outer lips! You dive in, rupturing the veil of her womanhood and fully penetrating her with your [pc.tongue]. The ensuing flood triggered by your true entrance leaves your face splattered with fragrant, translucent juices. Despite the quantity, you press on, your tongue practically swimming up-stream as you continue your journey into the wet pussy’s wet pussy.");
 	output("\n\nShe groans out above you as her muscles start working over your tongue even harder. It’s nice to know your efforts are being appreciated, even if your main focus isn’t <i>her</i> pleasure. She rubs back into you, letting your tongue dig in even further. ");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("As if you needed any help delving your tongue into her depths. It coils out of your mouth like rope and explores every last inch of her flooding hole. <i>“What an i-interesting tongue you have, outsider! I do e-enjoy the more... exotic aspects of your people!”</i>");
@@ -421,7 +423,7 @@ public function winAgainstMilodanFutazonEatHerPussy():void
 		else if (pc.cockTotal() == 2) output("both of your members and jerking them off in unison.");
 		else output("two of your members and vigorously jerking them off while your other cock" + (pc.cockTotal() > 3 ? " flops":"s flops") + " around uselessly.");
 	}
-	else if (pc.hasVagina()) output("\n\n:You reach down and cram as many fingers into your [pc.pussy] as will fit.");
+	else if (pc.hasVagina()) output("\n\nYou reach down and cram as many fingers into your [pc.pussy] as will fit.");
 	output(" You moan loudly into her muff as you work yourself over as hard as you’re working her.");
 	output("\n\nYour moans reverberate up her body and draw out her own. She bellows like a wild beast as her pussy squeezes harder and harder around your [pc.tongue]. It grows so tight that you almost can’t move your tongue while her juices continue to wash out in consistent streams. It almost feels like you’re drowning at this point. Your mouth is flooded with so much musky pussy juice that you barely have time to breathe, and your whole front is so soaked that you might as well be underwater!");
 	output("\n\nDespite all of that, your tongue is still working overtime to lap up as much of her girlcum as possible. Every muscle in your mouth is burning, yet you can’t even bring yourself to slow down! Your body is addicted to her, and you don’t think you’re going to get out of this until... you don’t even know! Will you need to make her cum? If so, how many times? Maybe you’ll just be trapped eating out milodan pussy for the rest of your life! What will it take to break this spell?!");
@@ -465,14 +467,14 @@ public function winAgainstMilodanFutazonEatHerPussy():void
 	}
 	else if (pc.hasVagina())
 	{
-		output(" Shocks fire through your [pc.pussy] as it flies into orgasm. [pc.girlCum] ");
+		output(" Shocks fire through your [pc.pussy] as it flies into orgasm. [pc.GirlCum] ");
 		if (pc.wettestVaginalWetness() <= 2) output("drools");
 		else if (pc.wettestVaginalWetness() <= 3) output("splashes");
 		else output("sprays")
 		output(" onto the ground below you, as if it were attempting to compete with the milodan’s own output.");
 	}
 
-	output("\n\nYou continue eating her own even as your orgasm drags on. The siren call of pussy is just too tempting to resist! The soaking milodan moans like a whore as you relentlessly eat her out. Her honeypot erupts like a volcano, splattering your face, her ass, and making a deep puddle underneath her. When she cums again you find yourself reeling back as arcs of pussy juice start arcing several feet in the air.");
+	output("\n\nYou continue eating her out even as your orgasm drags on. The siren call of pussy is just too tempting to resist! The soaking milodan moans like a whore as you relentlessly eat her out. Her honeypot erupts like a volcano, splattering your face, her ass, and making a deep puddle underneath her. When she cums again you find yourself reeling back as arcs of pussy juice start arcing several feet in the air.");
 	output("\n\nThe pressure doesn’t stop you though, and you dive back in for another helping, continuing to masturbate mere seconds after your first orgasm ends.");
 	output("\n\n");
 	pc.applyPussyDrenched();
@@ -545,8 +547,8 @@ public function winAgainstMilodanFutazonSuckHerOff():void
 	output("\n\nYou continue stuffing her meat as far as you can take it. Her ever-thickening pre greases up your mouth and throat, spreading all the way down to your stomach. Somehow her cock and cum have gotten even hotter. Her over-sized bitch-breaker feels like a slick, molten, hot-iron rod sliding down your throat. All the while her pheromones still manage to leak through your mouth and hammer at your brain.");
 	output("\n\nLust rockets to your crotch, causing ");
 	if (pc.isHerm()) output("blood to rocket to your already hard [pc.cocks] and	soaking [pc.pussy], pushing your dual sexes to their absolute, swollen limit.");
-	else if (pc.hasCock()) output("\n\nblood to rocket to your [pc.cocks], pushing your already rock-hard dick to new heights of erectness.");
-	else if (pc.hasVagina()) output("\n\nyour [pc.pussy] to swell up and moisten even further than it already was in anticipation.");
+	else if (pc.hasCock()) output("blood to rocket to your [pc.cocks], pushing your already rock-hard dick to new heights of erectness.");
+	else if (pc.hasVagina()) output("your [pc.pussy] to swell up and moisten even further than it already was in anticipation.");
 	output(" Your hands immediately dart down and you start to pleasure yourself to the rhythm of your oral attention.");
 	output("\n\nThe sabertooth herm cries out in feral lust as you continue to service her. She puts her huge, clawed hands on your head again. This time she doesn’t even try to push you, settling on simply guiding you while using your head to steady herself. You can tell she’s close just from the tone of her moans and the swelling of her cock in your mouth. You press on, determined to get her, and yourself, off. One of your hands diverts to fondling the milodan’s hefty sack, coaxing her closer to climax.");
 	output("\n\nThick pre starts overflowing out of your mouth as your capacity to swallow is over-saturated by her output. Her hips twitch and thrust uncontrollably as she crests the edge. You could try and stop her, but at this point you doubt her movements from her are driven by anything but pure instinct.");
@@ -565,7 +567,7 @@ public function winAgainstMilodanFutazonSuckHerOff():void
 	if (pc.hasCock()) output("[pc.cocks]");
 	if (pc.isHerm()) output(" and ");
 	if (pc.hasVagina()) output("[pc.pussy]");
-	output("\n\n making an absolute mess of yourself while she continues to strain out her orgasm. When it’s all over, you’re both short of breath and very satisfied. The sated amazon settles into her afterglow as her muscles go slack and her dick finally comes down.");
+	output(" making an absolute mess of yourself while she continues to strain out her orgasm. When it’s all over, you’re both short of breath and very satisfied. The sated amazon settles into her afterglow as her muscles go slack and her dick finally comes down.");
 	output("\n\n<i>“I underestimated you, outsider. That mouth of yours puts many of your outsider friend’s holes to shame! Certainly, none of the communal sluts could stand a chance. If you were taken back to the village, you’d most certainly be ‘occupied’ non-stop!”</i>");
 	if (pc.isBimbo() || pc.isCumSlut())output("\n\nYou start to drool at the idea of having cocks in your mouth twenty-four-seven, but you shake your head and realize you have a job to do first. You can suck all the dick you want when you’re rich!");
 	else output("\n\nYour breath catches as you imagine the idea of being forced to suck cock day in and out. You’d best try and avoid being put into that position.");
@@ -602,11 +604,11 @@ public function winAgainstMilodanFutazonHyperSuckHer():void
 	output("\n\nShe seems lost in her lust until she looks down and sees you looking back at her. At the realization that you can see her breaking down, the prideful pussy pulls herself back together the best she can and manages to look at least coherent. <i>“Y-you won’t break me!”</i>");
 	output("\n\nWe’ll see about that.");
 	output("\n\nYou push back down, taking her down even further than the first go in about a second. The composure she managed to claw back completely disintegrates as she yells out in pleasure. What feels like a bucket-sized gout of pre fires down your throat. You can tell you’re getting to her just from the consistency. Previously, it slid down your throat so cleanly that you didn’t even notice it, but now it sticks to the edges and goes down almost like molasses.");
-	output("\n\nThe lusty sabertooth grabs you by the back of the head and squeezes down softly, but doesn’t push you. <i>“Fuck yes! This is the best hole I’ve ever fucked, outsider! What gods do you have that would bless you with such a throat? I may have to convert...”</i> She’s given up on seeming in any way rationional and starts howling like a wild beast as you plunge more of her member into your exotic throat.");
+	output("\n\nThe lusty sabertooth grabs you by the back of the head and squeezes down softly, but doesn’t push you. <i>“Fuck yes! This is the best hole I’ve ever fucked, outsider! What gods do you have that would bless you with such a throat? I may have to convert...”</i> She’s given up on seeming in any way rational and starts howling like a wild beast as you plunge more of her member into your exotic throat.");
 	output("\n\nDrool runs out the side of her maw while her balls throb so heavily that it’s audible. What feels like gallons of thick, sabercat pre-seed dumps down your gullet, coating the sides so deeply that you wonder if you’ll ever be able to wash it all out. You’re not doing much better yourself. Your throat is so sensitive that it feels just as good as if you ");
 	if (pc.hasVagina()) output("were getting fucked in your [pc.pussy]");
 	else output("had a pussy in your mouth");
-	output(". Your [pc.crotch] feels so over-stuffed with blood and lust, so much so that you feel like you’re going to pop at any moment!");
+	output(". Your impassioned groin feels so over-stuffed with blood and lust, so much so that you feel like you’re going to pop at any moment!");
 	output("\n\nBy the time you pull up for air again you’ve made it about two feet down. You slide it all out with ease, so much ease that you rush it out and over-stimulate yourself and her. You and the lusty, hyper-endowed milodan moan out in unison as her cock pops out of your mouth. It paints you in thick, off-white pre until your face is completely basted in it.");
 	output("\n\nShe’s trying her hardest to hold herself back from orgasm, but you can clearly tell it’s not working. Her balls are throbbing and swelling so hard that it almost looks like they’re alive, and her dick is rising up higher and growing larger by the second. You can see the strain on her face as she grits her teeth and struggles not to cum, then the irritation and relief when she fails and the dam bursts.");
 	output("\n\nCum flies out in gallon bursts, splattering off you until you both look like a pair of ghosts. Large puddles of seed collect every which way for several feet around you. <i>“T-this won’t stop me! That throat of yours could keep me going all day. I won’t rest until I’ve fucked it raw!”</i>");
@@ -640,10 +642,10 @@ public function winAgainstMilodanFutazonHyperSuckHer():void
 	output("\n\nThe statuesque milodan groans in sublime pleasure as you work your ass off to blow her. She’s still pumping out pre. In fact, she’s probably making more of the stuff since her orgasm. Speaking of which, even through your own orgasmic haze you can tell that she’s about to blow again. Instead of holding off or being worried after seeing how much she can put out, you barrel forward full steam ahead, determined to get her off as hard as possible!");
 	output("\n\nYour pace becomes feverish as you give the lounging milodan the throat-job of a lifetime. She can’t do anything at this point except just sit back and take it. <i>“T-that’s it. Just s-s-suck mommy’s cock with that beautiful fucking throat of yours!”</i> Her balls bloat visibly in anticipation of her imminent orgasm. Your gut already feels bloated with the amount of pre, especially now that she’s driving into pre-orgasmic overdrive.");
 	output("\n\nThe only warning you get for her orgasm is her slowly raising her head and purring. Her almost serene reaction is a stark contrast to her actual orgasm. Cum fires into your belly like a water cannon. It’s actually strong enough to push you off a few inches. It doesn’t let up, if anything it actually gets more intense as she goes on. It seems like your oral attention combined with the increased sensitivity from her first orgasm have combined to throw her into a ball-draining frenzy with seemingly no end in sight!");
-	output("\n\nYou hold on as best as you can, but the pressure inevitably becomes too much for you to bare. You’re blasted off her fire hydrant of a cock, throwing you onto your back as a biblical flood hoses out of the hyper-sized sabercat’s cumslit. Everything within about twenty feet in front of her become absolutely soaked in white, including you. Comforter-thick blankets of cream layer on top of the old in an almost endless pile. It feels like you’re being submerged in a small river of the stuff. You manage to scramble out of the way before you drown, settling off to the side so you can watch her ride out the rest.");
+	output("\n\nYou hold on as best as you can, but the pressure inevitably becomes too much for you to bear. You’re blasted off her fire hydrant of a cock, throwing you onto your back as a biblical flood hoses out of the hyper-sized sabercat’s cumslit. Everything within about twenty feet in front of her becomes absolutely soaked in white, including you. Comforter-thick blankets of cream layer on top of the old in an almost endless pile. It feels like you’re being submerged in a small river of the stuff. You manage to scramble out of the way before you drown, settling off to the side so you can watch her ride out the rest.");
 	output("\n\nIt’s a sight to behold. It’s like watching the world’s lewdest fountain overflowing. For her part, the muscular cum-pump is taking it rather well. At least, that’s what you think before you realize that she’s already passed out.");
 	output("\n\nYou sit for a while, waiting out her orgasm while you drain out your throat a bit. By the time it’s over, and she’s fallen backwards into the musky pool, it reaches almost up to her ears. The smell is so overwhelming that you’re sure to catch whiffs of it for miles. Spent, filthy, and not wanting to meet whatever’s going to be attracted to this stuff, you decide to get a move on.");
-	output("\n\nStars, you need a shower!");
+	output("\n\nStars, you need a shower!\n\n");
 	processTime(75);
 	pc.loadInMouth(enemy);
 	pc.applyCumSoaked();
@@ -661,8 +663,8 @@ public function winAgainstMilodanFutazonGetFucked(hole:int):void
 
 	if (enemy is MilodanFutazon)
 	{
-		output("You strut up to the kneeling sabertooth. She stares up at you confidently until you grab her cock as hard as you can and lean into her. You get face-to-face with her, staring her down as you confidently declare, <i>“mine!”</i>");
-		output("\n\n<i>She smiles at you and seems to relax. “Sounds good to me. You’d better hope you’re as strong in bed as you are in battle, because we’ll be fighting just as hard!”</i>");
+		output("You strut up to the kneeling sabertooth. She stares up at you confidently until you grab her cock as hard as you can and lean into her. You get face-to-face with her, staring her down as you confidently declare, <i>“Mine!”</i>");
+		output("\n\nShe smiles at you and seems to relax. <i>“Sounds good to me. You’d better hope you’re as strong in bed as you are in battle, because we’ll be fighting just as hard!”</i>");
 		output("\n\nOh, you’ll be fighting her for this. And if she thinks she’ll be able to do much fighting back she has another thing coming!");
 	}
 	else
@@ -678,7 +680,7 @@ public function winAgainstMilodanFutazonGetFucked(hole:int):void
 	output("\n\nYou hammer her down with just your mouth, weakening her for what’s to come. While she might be getting softened, her cock is only getting harder. ");
 	if (enemy is MilodanFutazon) output("It feels like an iron bar in your hand, so hard and slick that it’s actually hard to hold on to. It’s also throbbing like crazy and spurting out all over your hand and itself.");
 	else output("It feels like a molten iron bar between your ass cheeks. It geysers like a volcano, soaking itself and you in thick layers of pre.");
-	output("\n\nYou pull away from her, leaving the huge pussy-cat gasping for air. You turn around" + (!pc.isNude() ? "strip down,":"") + " and wiggle your [pc.ass] for her, telling her that it’s time to put up!");
+	output("\n\nYou pull away from her, leaving the huge pussy-cat gasping for air. You turn around" + (!pc.isNude() ? ", strip down,":"") + " and wiggle your [pc.ass] for her, telling her that it’s time to put up!");
 	clearMenu();
 	if (enemy is MilodanFutazon) addButton(0, "Next", winAndGetFuckedByBaseFutazon, vIdx);
 	else addButton(0, "Next", winandGetFuckedByBruiser, vIdx);
@@ -746,7 +748,7 @@ public function winAndGetFuckedByBaseFutazon(vIdx:int):void
 	if (pc.hasCock()) output("Your unfortunate [pc.cocks] " + (pc.hasCocks() ? "are":"is") + " trapped in the middle of your two thrusting bodies. It’s equal parts pleasurable and painful, like a rough handjob from an abrasive partner. ");
 	output("\n\nYour lips part with hers, and she lets out a few tired gasps, showing her own exhaustion. <i>“Your energy is... impressive, but I-I will still come out on top!”</i>");
 	output("\n\nYou’ll see about that.");
-	output("\n\nHer copious pre has been leaking out of her at a steady pace up until now, and you’re finally starting to feel the weight of it. Your [pc.belly] is filled with what feels like a few quarts of the stuff, and you can see it starting to swell up a bit. The mounting milodan starts to struggle; the immense confidence she had	before has faded almost entirely. Instead there’s a look of exhausted determination as she focuses on you.");
+	output("\n\nHer copious pre has been leaking out of her at a steady pace up until now, and you’re finally starting to feel the weight of it. Your [pc.belly] is filled with what feels like a few quarts of the stuff, and you can see it starting to swell up a bit. The mounting milodan starts to struggle; the immense confidence she had before has faded almost entirely. Instead there’s a look of exhausted determination as she focuses on you.");
 	output("\n\nYou smile and laugh a bit, giving her a taste of her own medicine. She doesn’t like that, but she can’t give you any more than she’s already giving, so all she does is scowl at you and continue thrusting. You can feel her swelling inside your [pc.vagOrAss " + vIdx + "], readying up to unload. You also feel on the verge of orgasm but you hold off as best as you can, not wanting to be the first one to give in. You buck back at her, trying to make the oversized amazon blow her top before you do.");
 	output("\n\nHer pace definitely becomes more erratic, even if it doesn’t slow down at all. The need and strain is evident on her face; her eyes are still locked on you, but they’re hazy and unfocused, almost like she’s looking through you. Her tongue lolls out, drooling warm saliva onto your face. You’re probably not doing much better but without a mirror you can’t exactly verify that.");
 	output("\n\nJust when the pressure of holding back gets to be too much, you hear the beastial milodan yell out in pleasure. She bottoms out and holds there, letting you feel just how swollen she’s getting. Her face twists and contorts as you feel the first blasts of seed in your [pc.vagOrAss " + vIdx + "]. On that cue, you cum along with her, squeezing down on her throbbing pole while it fills you to the brim. Just as you’re about to yell out, the orgasming milodan locks lips with you again, moaning into your mouth while you return the favor.");
@@ -773,6 +775,10 @@ public function milodanFutazonLose():void
 	else if (enemy is MilodanFutazon) haveNormalMilodanFutazonBreakYourJaw();
 	//Bruiser
 	else worshipThatBigMilodanFutazonBruiserCock();
+}
+public function noHP():void
+{
+	pc.HP(-100000);
 }
 //Getting Rutted
 //Prioritizes vaginas unless the PC is pregnant.
@@ -804,7 +810,7 @@ public function getRuttedRealGoodByAMilodanFutazonCuzYouLost():void
 		output("\n\nYou try and stuggle but find that your body refuses to listen.");
 		output("\n\n<i>“It’s too bad the chieftain forbids personal harems or I’d take you myself. I’d just be lugging you back just to hand over to that greedy...”</i> Her calm demeanor fades as she gets visibly angry at the thought. <i>“Enough talk! Come here, slut!”</i>");
 	}
-	if (pc.hasVagina())
+	if (pc.hasVagina() && vIdx >= 0)
 	{
 		output("\n\nYou moan out when she suddenly shoves two of her big, meaty fingers in your [pc.vagina " + vIdx + "]. You’re already soaked just from her holding you, so she slides in easily.");
 		//Pregnant with Milodan
@@ -891,11 +897,11 @@ public function haveNormalMilodanFutazonBreakYourJaw():void
 	//Lust
 	else output("Your heart beats so hard that you can feel it in your ears. A heavy flush falls over your body as your legs give out and you completely submit to the amazoness" + (!pc.isNude() ? ", willingly tossing your [pc.gear] to the ground, leaving yourself bare before her" : "") + ".");
 	//Merge
-	output("\n\nYour eyes close shut in pain when you hit the ground. In that time, the milodan manages to move quick enough that when you open up your eyes, you’re greeted by the sight of her looming over you, gargantuan balls swinging right above your face. <i>“Time to put that mouth of yours to work, space bitch!”</i> She squats down until her sack is barely an inch from your face. <i>“Get me warmed up nice and good here. Defiant ones like you need <b>long. hard</b> lessons in obedience!”</i>");
+	output("\n\nYour eyes close shut in pain when you hit the ground. In that time, the milodan manages to move quick enough that when you open up your eyes, you’re greeted by the sight of her looming over you, gargantuan balls swinging right above your face. <i>“Time to put that mouth of yours to work, space bitch!”</i> She squats down until her sack is barely an inch from your face. <i>“Get me warmed up nice and good here. Defiant ones like you need <b>long, hard</b> lessons in obedience!”</i>");
 	if (pc.isBimbo()) output("\n\nThe thick smell of her musky sack travels into your [pc.nose] and beelines straight for your brain. Higher functions shut down immediately as you feel your true calling approaching. Your baser instincts come out in full swing as one, familiar, overriding thought enters your mind: time to suck some cock!");
 	else output("\n\nYou try your hardest to keep your composure, but the potent smell of her sack is impossible to ignore. It’s an almost complete assault on your senses, so thick that it saturates your taste buds. The muscles in your mouth start moving on their own, opening up your jaw and starting to extend your [pc.tongue] without you even having a say in the matter. It’s a scary situation, but you realize that the punishment for going against her now is most likely way worse than what she’s already planning, so the best option may still be to go along with it.");
 	output("\n\nYou lap at the thick, leathery skin of her testes, " + (pc.isBimbo() ? "savoring":"whinging at") + " the dense, masculine taste. Your tongue feels almost magnetized to the surface of her sack, rolling out of your mouth in order to engulf more and more of her ballskin.");
-	if (pc.hasLongTongue()) output("The sheer amount of tongue that swirls around her balls surprises her. In no time even her substantial size is nearly fully covered by your oral organ. <i>“You offworlder’s have such interesting traits! I’d keep you as my personal ball polisher if the chief didn’t forbid us from personal harems.”</i>");
+	if (pc.hasLongTongue()) output(" The sheer amount of tongue that swirls around her balls surprises her. In no time even her substantial size is nearly fully covered by your oral organ. <i>“You offworlders have such interesting traits! I’d keep you as my personal ball polisher if the chief didn’t forbid us from personal harems.”</i>");
 	output("\n\nThe taste over-saturates your taste buds, and the intense heat coming off of her sperm factories makes it hard to tell where your tongue ends and her orbs begin. All the while her throbbing bitch breaker obscures the periphery of your vision. It throbs and aches with every slight movement of your tongue on her sack, pouring out thick wads of pre that splatter down audibly so close to your head that errant drops create a coating on your [pc.hair] and forehead.");
 	output("\n\n<i>“Mhmmp! You’re a natural at this. Shouldn’t let treatment like this go to waste.”</i> Her strong hands wrap around her member and start to stroke it, drawing out a husky moan from the milodan brute. <i>“I’m going to let you take me all the way with this. Don’t worry, one orgasm is just a warm-up for me! You’re still gonna get the full face-fucking treatment, especially with a tongue like that.”</i>");
 	output("\n\nShe squats down even further, draping her huge, throbbing balls over your mouth and nose. ");
@@ -1000,7 +1006,7 @@ public function lostToMilodanFutazonAndGotFuckedBad():void
 	output("You wake up sometime later, beaten, sore, and covered in cum. Your codex is still blaring about elevated levels of Taint coming from the semen. ");
 	if (pc.taint >= pc.taintMax) output("Good thing your body can’t possibly absorb more of the stuff.");
 	else output("As if that wasn’t the last thing you needed right now.");
-	output("No way for you to clean it off here. You’re going to need to shower as soon as possible, but that’s something to worry about later.");
+	output("\n\nNo way for you to clean it off here. You’re going to need to shower as soon as possible, but that’s something to worry about later.");
 	output("\n\nTime to get moving.\n\n");
 	processTime(70);
 	CombatManager.genericLoss();

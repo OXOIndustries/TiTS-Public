@@ -150,11 +150,11 @@ package classes.Engine.Combat
 					}
 				}
 			}
-			//Cool accessory procs!
+			/*Cool accessory procs - also a version of this in calculate damage, justincase.
 			if(target.accessory is SalamanderDefenseSystem || target.accessory is BimboleumDefenseSystem)
 			{
 				if(!target.hasStatusEffect("Def Proc")) target.createStatusEffect("Def Proc",1,0,0,0,true,"","",true,0);
-			}
+			}*/
 		}
 		//Set up a shield proc!
 		var chargedShieldMeleeCounter:Boolean = false;

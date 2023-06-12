@@ -35,11 +35,12 @@ package classes.Items.Armor
 			attack = 0;
 			defense = 0;
 			shields = 20;
-			sexiness = 6;
+			sexiness = 5;
 			critBonus = 0;
-			evasion = 8;
+			evasion = 10;
 			fortification = 0;
 			
+			resistances.tease.resistanceValue = 10.0;
 			// Note: The Premium White Armstrong Suit is meant to be a teasing item but as the genitals are exposed the character should still be flagged for being naked if possible. If not the description/tooltip can be modified upon request.
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_SWIMWEAR);

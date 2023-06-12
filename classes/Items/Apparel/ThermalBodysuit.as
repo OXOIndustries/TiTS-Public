@@ -37,9 +37,10 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 3;
+			this.sexiness = 4;
+			this.resolve = 1;
 			this.critBonus = 0;
-			this.evasion = 3;
+			this.evasion = 7;
 			this.fortification = 0;
 			resistances.freezing.resistanceValue = 20.0;
 			resistances.burning.resistanceValue = 20.0;

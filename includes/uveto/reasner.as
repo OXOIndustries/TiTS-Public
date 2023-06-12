@@ -579,7 +579,7 @@ public function missReasnerRest2():void
 	IncrementFlag("BEA_RESTS");
 	// +4 hour / - all lust / + all energy / - 2 Libido (FEN NOTE: NOOOOOPE)
 	processTime(60*4+rand(20));
-	pc.lust(-150);
+	pc.changeLust(-150);
 	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -720,7 +720,7 @@ public function makeLoveToBeatrice():void
 		output("\n\nNow, what do you want to do with her?");
 		flags["BEA_RELATIONSHIP"] = 2;
 		processTime(12);
-		pc.lust(40);
+		pc.changeLust(40);
 	}		
 	//repeat:
 	//lust needs to be >50
@@ -745,7 +745,7 @@ public function makeLoveToBeatrice():void
 		output("\n\nIt seems that despite her regal appearance, her maternal demeanor or even the fact that she’s married, deep down " + flags["BEA_TITLE"] + " is still a woman filled with desire.");
 		output("\n\nNow, what do you want to do with her?");
 		processTime(6);
-		pc.lust(40);
+		pc.changeLust(40);
 	}
 	clearMenu();
 	//[Cowgirl] [Suckle] [Reach-Around] [Nevermind]
@@ -978,7 +978,7 @@ public function suckleBeatriceTitttttaaaaaays():void
 	output("\n\nYou nod, but even though you’ve finished, you ask if you could just stay like this for a while longer. Her smile is the only answer you need.");
 	processTime(30);
 	pc.milkInMouth(bea);
-	pc.lust(4);
+	pc.changeLust(4);
 	IncrementFlag("BEA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1190,13 +1190,13 @@ public function kissForARewardBeatrice():void
 	{
 		output("\n\nYour breath catches when what you thought would remain a simple peck suddenly turns into a passionate open mouthed kiss, keenly aware that her ministrations have caught the attention of others in the tavern.");
 		output("\n\nThe tip of her tongue probingly traces the outline of your [pc.lips]. When you don’t object, she slides the wet muscle deep inside your mouth, tasting you and swirling it around your [pc.tongue]. She sucks your bottom lip into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting you two.");
-		pc.lust(50);
+		pc.changeLust(50);
 	}
 	//BEA_RELATIONSHIP=1:
 	else
 	{
 		output("\n\nYou know this is what you asked for, but didn’t think she’d actually do it. Your heart palpitates; feeling her pouty, full lips against yours really hammers in the fact that you’re kissing someone’s wife.");
-		pc.lust(25);
+		pc.changeLust(25);
 	}
 	output("\n\n<i>“Did you enjoy that, sweetie?”</i>");
 	output("\n\nThe kui-tan officer looks stunned.");
@@ -1239,7 +1239,7 @@ public function getDatMilfsPANTIESYOOOO():void
 	output("\n\n<b>You’ve acquired Beatrice’s panties!</b>");
 	pc.createKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.");
 	// + 20 lust
-	pc.lust(20);
+	pc.changeLust(20);
 
 	beatriceLeaves2();
 }
@@ -1277,7 +1277,7 @@ public function beatriceNoReward():void
 	output("\n\nWithout warning, she leans in and pulls you toward her for a deep, maternal hug which sends a warm, comforting feeling up your spine. She holds the hug for a good few seconds before letting go.");
 	output("\n\nThe kui-tan officer gives a light smile of approval.");
 	
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	beatriceLeaves2();
 }

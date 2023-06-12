@@ -39,18 +39,18 @@
 			//Information
 			this.basePrice = 41000;
 			this.attack = 0;
-			this.defense = 2;
+			this.defense = 3;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 14;
-			this.critBonus = 0;
+			this.sexiness = 5;
+			this.critBonus = 4;
 			this.evasion = 18;
 			this.fortification = 0;
 			
 			resistances.tease.resistanceValue = -10.0;
-			resistances.electric.resistanceValue = 15.0;
-			resistances.burning.resistanceValue = 5.0;
-			
+			resistances.electric.resistanceValue = 35.0;
+			resistances.burning.resistanceValue = 15.0;
+
 			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
 			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
 			

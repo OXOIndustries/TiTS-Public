@@ -1617,7 +1617,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 	}
 	
 	if (flags["ZIL_CALLGIRL_SEXED"] == undefined) flags["ZIL_CALLGIRL_SEXED"] = 0;
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	zilCallgirlSexMenu();
 	return;
@@ -2073,7 +2073,7 @@ public function zilCallGirlFuckHer(inAppt:Boolean = false):void
 	else output("waspy alien");
 	output(" moans and squirms under you, her muscles clenching hard around your [pc.cock] as you thrust and suck, trapping her in constant waves of pleasure that leave her screaming. Her vaginal muscles relax their deathgrip on your [pc.cock], letting you start to move a little faster. You take the opportunity with gusto, rearing back and hammering home, starting to pound the ");
 	if (CodexManager.entryViewed("Zil")) output("zil-");
-	else output(" call ");
+	else output("call ");
 	output("girl’s hole until the cramped quarters echo with the sounds for flesh smacking wetly against flesh, mixing with her moans to form a resounding symphony of pleasure.");
 	output("\n\nEvery sense you have is assailed with the wonders of your lover’s body: the feeling of her breasts and pussy underneath you, the taste of her honey on your [pc.tongue], the sounds of her shrieks and your feral grunts, the sight of her throwing her head back holding you close, the smells of sex and her sweet honey-laden orgasm as ceaseless as your pounding pushing her to the very edge. Her climax brings out your own as her body goes wild, flooding your mouth with unbidden gouts of honey and clenching hard around your cock, trapping you");
 	if (pc.balls > 0) output(" balls");
@@ -2174,7 +2174,7 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 	output("\n\nYou sigh and pull yourself off of her, letting the excess honey dribble down your chin as you lean back, as full as you can stand to be of her sweet, sweet nectar. The waspy " + (isMommy ? "mother" : "whore") + " smiles, eyes drooping heavily as her body continues to quake and quiver from the orgasm. <i>“My, you... you have a talented mouth,”</i> she murmurs, tracing her finger through some of the spilled honey surrounding her and bringing it to her mouth. She cleans the golden digit with relish, sucking up every drop with seductive moans.");
 	output("\n\nSatisfied with your sweet meal, you roll off the bed and start to collect your gear. By the time you have, the well-sucked call girl’s cleaned up most of her mess, scooping the spilled honey into some bottles from her nightstand. Something tells you this happens to her pretty regularly.");
 	
-	pc.lust(25);
+	pc.changeLust(25);
 	// +25 Energy
 	pc.energy(25);
 	zilCallGirlSexed(true);

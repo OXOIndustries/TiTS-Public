@@ -24,6 +24,8 @@ public function flyToDhaalypoo():void
 		//repeat landing
 		output("The ever-expanding planetary landing site is still growing, plumes of industrial smoke swirling around the vibrant neon of the nearby Gyre. Garish colors punch through the perpetual dusk to advertise a dizzying multitude of commercial ventures. A shuttle zips up to your ship, ready to whisk you into the city proper. Good thing, too. You’re happy to spend as little time as possible in the noxious open ground. The Paragon transport quickly pops the hatch, allowing you to climb in and ride down to the Gyre where it’s... well, a little less polluted anyway.");
 		processTime(10);
+		//In case already done it :3
+		CodexManager.unlockEntry("Zaika");
 		IncrementFlag("DHAAL_LANDINGS");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -51,6 +53,9 @@ public function firstTimeOnDhaal():void
 	output("You cycle through the airlock and are immediately assaulted by the reek of industrial smog. it’s far worse than any of the mining or refinery worlds you’ve visited with your father; Steele Tech at the very least tries to keep the atmosphere from burning eyes and noses just stepping onto the tarmac. Seems there’s been no such consideration here. You hail one of the transport shuttles as quick as you can, hoping to spend as little time here in the open as you can.");
 	output("\n\nA mere moment after you start flagging, a gunmetal grey hovercraft zips over to you and pops its hatch, allowing you to climb into a bus-like back crammed with fellow Rushers. The woman in the driver’s seat, though, is of a race you’ve never seen before: she’s humanoid, a bit over five feet tall and slender, with dusk-hued purple skin and almond-shaped blue eyes. A messy mane of silver hair falls around her shoulders, breached on either side by a pair of elfin ears. Indeed, you’d easily mistake her for some kind of fantasy-game elf if it wasn’t for the long, serpentine tail running out of a hole in the back of her cargo shorts and flicking around on the floor. The tip’s covered in some kind of thick sock, shielding it from view, but it seems much more bulbous than the rest of the appendage.");
 	output("\n\n<i>“First time, huh?”</i> the woman quips, throwing an arm over the back of her seat. <i>“In that case, welcome to sunny, scenic Dhaal! I’m a zaika, and we’re the dominant species. Nearly as advanced as any of you alien types, don’t doubt it for a second. Be happy that Paragon Inc. has your best interest at heart; a lot of my sisters down at street level aren’t as happy as we are that there’s a whole galaxy coming down on our little slice of Dhaal all of a sudden.”</i>");
+	output("\n\nYour Codex quite unhelpfully chirps, <i>“Zaika detected! This friendly species is on track for rapid integration into the United Galactic Confederacy, though 4,388 different travel advisories have been issued advising lactating species to explore elsewhere.”</i>");
+	CodexManager.unlockEntry("Zaika");
+
 	output("\n\nThat’s... encouraging. By now the other passengers - a motley mix of rugged Rushers from several species - are grumbling about the delay, so your native driver motions for you to sit and strap it. You barely have the time to comply before the shuttle shudders underfoot and starts careening through the air towards the sprawl of the city. Whatever that “Gyre” place is, it seems you’re enroute now!");
 	processTime(5);
 	clearMenu();
@@ -387,7 +392,8 @@ public function fullServiceCapsuleHotel3():void
 	pc.changeLust(10);
 	clearMenu();
 	//[Tail Milking] [Tail Fuck]
-	addButton(0,"Tail Milking",penisRouter,[tailMilkingWithMyssah,500,false,0],"Tail Milking","Myssah’s going to wrap your cock inside her tail-pussy and milk you all night long...");
+	if(pc.hasCock()) addButton(0,"Tail Milking",penisRouter,[tailMilkingWithMyssah,500,false,0],"Tail Milking","Myssah’s going to wrap your cock inside her tail-pussy and milk you all night long...");
+	else addDisabledButton(0,"Tail Milking","Tail Milking","You need a penis for this.");
 	addButton(1,"Tail Fuck",vaginaRouter,[tailFuckWithMyssah,500,1,0,true],"Tail Fuck","Myssah’s going to bury her thick tail-tip inside you all night long...");
 }
 

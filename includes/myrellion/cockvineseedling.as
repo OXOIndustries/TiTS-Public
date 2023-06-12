@@ -261,7 +261,7 @@ public function cockvineSeedlingJoin(sCockType:int = 0):void
 	output("\n\nYou let it swing back, enjoying the pliable swing of it as it settles back over your [pc.butt]. It’s undoubtedly a part of you now, although... as you head back to the main path your blood quickens, little whispers and twinges of desire teasing at your subconscious, green shoots worming their way through the red of your desire; quiet, insistent impulses urging you to roam far and wide, plunging your new cock into as many wet holes as you possibly can. A small part of you wonders with unease how easy this thing will be to really control.");
 
 	pc.libidoRaw += 5;
-	pc.lust(5);
+	pc.changeLust(5);
 
 	//+5 Libido
 	clearMenu();

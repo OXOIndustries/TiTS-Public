@@ -310,7 +310,7 @@ public function fuckUpWithMaikeAnGetForceyed():void
 		output("\n\n<i>“Up!”</i>");
 		output("\n\nAt that command, the whip cracks against your [pc.thigh]. Fuck, she doesn’t let up!");
 		processTime(20);
-		pc.lust(20);
+		pc.changeLust(20);
 		pc.girlCumInMouth(maike);
 	}
 	//pcHasCock, scene priority:
@@ -353,7 +353,7 @@ public function fuckUpWithMaikeAnGetForceyed():void
 		output("\n\n<i>“Three. Fucking. Days worth. Tiffy will be so jealous when I tell him just how <b>fat</b> and useless you became. Now, to seal the deal.”</i>");
 		output("\n\nHuhhh...??");
 		processTime(20);
-		pc.lust(20);
+		pc.changeLust(20);
 		pc.loadInAss(maike);
 	}
 	//pcNeuter:
@@ -756,7 +756,7 @@ public function spankDatMaike():void
 	output("\n\nHey, if she can handle a hordes worth of slaves day in and day out, she can handle herself.");
 	processTime(30);
 	pc.addHard(2);
-	pc.lust(30);
+	pc.changeLust(30);
 	output("\n\n");
 	clearMenu();
 	addButton(0,"Next",maikeNextThing);
@@ -804,11 +804,11 @@ public function tailFeedMaike():void
 	output("\n\nThe slaver can only whine as her still-hanging tongue is pulled out of your tail-slit and pushed into the mixed-fluid cum puddle. Still in lick mode, she just keeps at it! Hungry lapping intersperses with her murmuring approval and you can only chuckle at how much she’s into eating her own defiled cum.");
 	output("\n\nBreathless and satisfied, you finally let go of her horns. A sense of mild accomplishment colors your mood: beating down a big bad Overseer and forcing her to eat her own cum out of your tail-pussy... in a way, it was meant to be.");
 	output("\n\nYou dust yourself down and tenderly push yourself off of the slaver’s spread out body. She says nothing as you do, still lost to her newfound need for her own cum. Your tail is satisfied having retained some of her sweet-smelling seed, that’s what matters here. She can handle herself, right? Or at least once she gets over her new obsession.");
+	pc.changeLust(100);
 	output("\n\n");
 	pc.addHard(1);
 	processTime(20);
 	feedCuntSnake(enemy);
-	pc.lust(100);
 	clearMenu();
 	addButton(0,"Next",maikeNextThing);
 }

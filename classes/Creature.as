@@ -234,7 +234,7 @@
 			}
 		}
 
-		private var _libidoRaw: Number = 3;
+		private var _libidoRaw: Number = 5;
 		public function get libidoRaw():Number
 		{
 			return _libidoRaw;
@@ -5198,9 +5198,34 @@
 		public function maxOutLust(): void {
 			lustRaw = lustMax();
 		}
+		public function teaseSkill():int
+		{
+			var teaseSkill:Number = libido();
+			if(hasPerk("Ice Cold")) teaseSkill = (100-libido());
+
+			//Prorate for level, because sucking ass at this blows.
+			//Fen note: Nahhh, leave as is.
+			//teaseSkill = (teaseSkill / (level * 5)) * 100;
+
+			//Cap Dat Shiiiiit
+			if(teaseSkill > 100) teaseSkill = 100;
+			else teaseSkill = Math.round(teaseSkill);
+
+
+			return teaseSkill;
+		}
+		public function teaseResistSkill():int
+		{
+			return (willpower());
+		}
 		public function lustDef():Number
 		{
-			return Math.ceil(level/1.5 + willpower()/4);
+			return Math.ceil(level/1.5 + willpower()/4 + resolve());
+		}
+		public function resolve():Number
+		{
+			var res:Number = 0;
+			return armor.resolve + lowerUndergarment.resolve + upperUndergarment.resolve;
 		}
 		public function lustQ():Number
 		{
@@ -5210,13 +5235,36 @@
 		{
 			//Cap healing display for actual accuracy?
 			if(arg > 0 && (arg + lust() > lustMax())) arg = Math.ceil(lustMax()-lust());
-			if(outputText)
+			if(outputText && arg != 0)
 			{
 				var healTxt:String = " (<b>";
 				healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(arg) + "</span></b>)";
 				kGAMECLASS.output(healTxt);
 			}
 			this.lust(arg);
+		}
+		public function changeLustTo(arg:Number = 0, outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			if(arg > lustMax()) arg = lustMax();
+			if(arg < lustMin()) arg = lustMin();
+			if(outputText)
+			{
+				//Track what lust was
+				var oldLust:Number = lust();
+				//Set new lust
+				lust(arg,true);
+				//Figure out the difference
+				oldLust = lust() - oldLust;
+				//Display it :3
+				if(oldLust != 0)
+				{
+					var healTxt:String = " (<b>";
+					healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(oldLust) + "</span></b>)";
+					kGAMECLASS.output(healTxt);
+				}
+			}
+			else lust(arg,true);
 		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
@@ -5462,7 +5510,7 @@
 				}
 			}
 
-			var bonus:Number = 0;
+			var bonus:Number = resolve();
 			if(accessory is BeatricesScarf) bonus += 3;
 			if(accessory is GooCore && isGoo()) bonus += 20;
 			bonus += statusEffectv4("Cum High");
@@ -5513,7 +5561,7 @@
 				}
 			}
 			
-			var currLib:int = libidoMod + libidoRaw;
+			var currLib:int = libidoMod + libidoRaw + sexiness();
 			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
 			if (accessory is Allure) currLib += 20;
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
@@ -5699,7 +5747,7 @@
 			return amount;
 		}
 		public function willpowerMax(raw:Boolean = false): Number {
-			var bonuses:int = 0;
+			var bonuses:int = resolve()/2;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			if(hasStatusEffect("Xanose")) bonuses += 5;
 			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
@@ -5711,7 +5759,7 @@
 			else return ((level * 5) + bonuses);
 		}
 		public function libidoMax(raw:Boolean = false): Number {
-			var bonuses:int = 0;
+			var bonuses:int = sexiness()/2;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Barcoded")) bonuses += 10;
 			bonuses += perkv3("Slut Stamp");
@@ -6046,13 +6094,20 @@
 			temp += rangedWeapon.defense;
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
 			if (hasStatusEffect("Harden")) temp += 1;
-			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
+			//Gain defense for evasion, cap at level * 2.
+			if (hasPerk("Lucky Breaks"))
+			{
+				var evas:Number = evasion();
+				if(evas / 3 > level * 2) temp += level*2;
+				else temp += Math.round(evas/3);
+			}
 			if (hasStatusEffect("Crystal Coated")) temp += 4;
 			if (hasStatusEffect("Burning")) 
 			{
 				temp -= 5;
 				if(temp < 0) temp = 0;
 			}
+			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			//Sundered - -50% armor!
 			if (hasStatusEffect("Sundered")) 
 			{
@@ -6126,10 +6181,11 @@
 				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo())
 				{
 					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
-					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					//FEN NOTE: NOPE! It's now 3 points to each.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += 3;
 					else { /* Nada! */ }
 				}
-				else temp += Math.round(bimboIntelligence() * 0.1);
+				else temp += 5;
 			}
 			/*Sweaty penalties!
 			Instead of being hard-coded extra checks, this is being worked into the sexual preferences system.
@@ -6143,6 +6199,7 @@
 			if (hasPerk("Innocent Allure")) temp += perkv1("Innocent Allure");
 			if (hasPerk("True Doll")) temp += perkv2("True Doll");
 			if (hasStatusEffect("Mare Musk")) temp += 2;
+			temp += statusEffectv1("Iyla’s Milk");
 			//You cannot handle the Mango!
 			temp += statusEffectv1("The Mango");
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
@@ -6157,7 +6214,15 @@
 		}
 		public function outfitSexiness(): Number
 		{
-			return (itemSexiness(armor) + itemSexiness(upperUndergarment) + itemSexiness(lowerUndergarment));
+			var sexi:Number = 0;
+			if(armor is EmptySlot) sexi += 5;
+			else sexi += itemSexiness(armor);
+			if(lowerUndergarment is EmptySlot) sexi += 3;
+			else sexi += itemSexiness(lowerUndergarment);
+			if(upperUndergarment is EmptySlot) sexi += 3;
+			else sexi += itemSexiness(upperUndergarment);
+
+			return (sexi);
 		}
 		public function itemSexiness(item:*): Number
 		{
@@ -6222,10 +6287,11 @@
 				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo())
 				{
 					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
-					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					if (kGAMECLASS.siegwulfeIsDom()) temp += 3;
 					else { /* Nada! */ }
 				}
-				else temp += Math.round(bimboIntelligence() * 0.1);
+				//Bimbowulf gives more sexy.
+				else temp += 2;
 			}
 			if (hasPerk("Agility")) {
 				if (temp < 0 || (temp * 0.5) < 10) temp += 10;
@@ -8286,7 +8352,10 @@
 						case GLOBAL.TYPE_FROSTWYRM:
 						case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "draconic", "dragon-like", "reptilian"]; break;
 						case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "dragon-like", "dragon-like"]; break;
-						case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; break;
+						case GLOBAL.TYPE_LIZAN:
+							if(legCount < 6) adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; 
+							else adjectives = ["leithan", "leithan", "reptile-like", "reptilian"];
+							break;
 						case GLOBAL.TYPE_DEMONIC: adjectives = ["demonic", "demon-like", "demon-like"]; break;
 						case GLOBAL.TYPE_SUCCUBUS: adjectives = ["sensual", "alluring", "seductive", "sexy"]; break;
 						case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
@@ -8378,7 +8447,10 @@
 					case GLOBAL.TYPE_FROSTWYRM:
 					case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "clawed", "reptilian"]; break;
 					case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "clawed"]; break;
-					case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "clawed", "reptilian"]; break;
+					case GLOBAL.TYPE_LIZAN: 
+						if(legCount < 6) adjectives = ["lizan", "clawed", "reptilian"];
+						else adjectives = ["leithan", "clawed", "reptilian"];
+						break;
 					case GLOBAL.TYPE_DEMONIC: adjectives = ["corrupted-looking", "demonic", "clawed"]; break;
 					case GLOBAL.TYPE_SUCCUBUS: adjectives = ["spike-supported", "sexy"]; break;
 					case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
@@ -8858,6 +8930,23 @@
 						case "Toxic Trickery":
 							physiqueMod += 4;
 							aimMod += 4;
+							break;
+						case "Injected":
+							if (statusEffects[x].value3 == 0) {
+								physiqueMod += 5;
+								reflexesMod += 5;
+							}
+							else if (statusEffects[x].value3 == 1) {
+								intelligenceMod += 5;
+								willpowerMod += 5;
+							}
+							break;
+						case "Coolant Soaked":
+							reflexesMod += 10;
+							break;
+						case "Density Shift":
+							reflexesMod += 10;
+							aimMod += 10;
 							break;
 					}
 					//trace("Removed: " + statusEffects[x].storageName + " at position " + x + ".");
@@ -9699,6 +9788,10 @@
 				if (cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) return true;
 			}
 			return false;
+		}
+		public function hasKnots():Boolean
+		{
+			return (totalKnots() > 1);
 		}
 		public function totalKnots():Number
 		{
@@ -14429,7 +14522,8 @@
 			}
 			//capacity adjectives
 			if (forceAdjectives || (adjectives && rand(3) == 0)) {
-				if(desc != "") desc += ", ";
+				//No comma for the range where no text is displayed~!
+				if(desc != "" && !(ballFullness > 10 && ballFullness < 80)) desc += ", ";
 				if (ballFullness <= 10) desc += RandomInCollection(["recently emptied","well-drained","nearly empty"]);
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
 				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
@@ -22537,7 +22631,7 @@
 					// we can treat chained mul/divs as adds/subs to the same factor, thus
 					// add up all the shit then operate once.
 					
-					var reducer:int = 0.25;
+					var reducer:int = 0.0;
 					
 					if (hasPerk("Ice Cold")) reducer -= 0.25;
 					if (hasPerk("Extra Ardor")) reducer += 0.25;
@@ -22667,6 +22761,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					//+20 libidoMod
+					case "Iyla’s Milk":
+						if(requiresRemoval)
+						{
+							this.libidoMod -= 20;
+						}
+						break;
 					//+5 willpower, +15 libido
 					case "Xanose":
 						if(requiresRemoval)

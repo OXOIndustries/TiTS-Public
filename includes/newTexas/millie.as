@@ -233,7 +233,7 @@ public function getMilkedWithMillie():void
 	else output(", lactating");
 	output(" curve. Her nipples have grown even more prominent, if such a thing is even possible. They look hard enough to cut two holes in the top of her too-tight overalls. She licks her lips, offering, <i>“Did you want to use the machines or would you rather I take care of you the old fashioned way? I’m feeling a little thirsty...”</i>");
 	processTime(15);
-	pc.lust(15);
+	pc.changeLust(15);
 	clearMenu();
 	addButton(0,"Milkers",useTheMilkersMillie);
 	addButton(1,"Feed Her",milliePersonallyDrainsYerTiTS,undefined,"Feed Her","Let Millie suck out all the pressure.");
@@ -293,7 +293,7 @@ public function useTheMilkersMillie():void
 		output("\n\nYou nod, trying to come up with a good response while your attention is so focused on the wonderful tingles running through your tight nipples. Millie eliminates the need for a response by flicking the switch to the milkers.");
 	}
 	//Merge NEXT BUTTON!
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",millieMilkersPartDues);
@@ -572,7 +572,7 @@ public function fuckMillie():void
 	else output("uses a foot to kick your [pc.lowerGarments] aside");
 	output(", then flicks the volume control on her tablet, filling the stall with harsh-sounding tunes. <i>“Yeah, you look like you need a good... thorough... milking.”</i> Her gray-blue eyes twinkle while her hand wraps you in a firm grip. <i>“This needs a more personal touch, don’t you agree?”</i>");
 
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(5);
 	//Give choice until yeah is taken.
 	if(flags["FUCKED_MILLIE"] == undefined)
@@ -859,7 +859,7 @@ public function treatmentTryouts():void
 	output("\n\nThe horned attendant stops rubbing the damp, cherry-scented patch between her thighs. You love that smell.");
 	output("\n\n<i>“Of course we do. Here, just relax and enjoy your milking.”</i> She presses a switch, turning the pumps on for their active milking cycle. <i>“Feel free to moo if the desire takes you.”</i>");
 	pc.createStatusEffect("Temporary Treatment");
-	pc.lust(35);
+	pc.changeLust(35);
 	processTime(5);
 	clearMenu();
 	flags["TRIED_TREATMENT_LIGHT"] = 1;
@@ -1130,7 +1130,7 @@ public function soloMilkingUpgrade():void
 	}
 	
 	//[Next]
-	pc.lust(5);
+	pc.changeLust(5);
 	
 	processTime(10);
 	

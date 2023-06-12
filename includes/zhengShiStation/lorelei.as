@@ -446,7 +446,7 @@ public function loreleiTriesOutHerLatestAcquisition():void
 	output("\n\nYou blink – and she’s gone, just like that. You glance around the room, in both directions, looking where she could have gone, but there’s no trace of her. How...?");
 	output("\n\nYou run your fingers along your neck, against her collar, the only tangible thing remaining in the room to prove she existed at all. The Recreational Deck, she said? You’ll have to keep that in mind... and, hopefully, she’ll find you and not expect you to find her.");
 
-	pc.lust(pc.lustMax());
+	pc.changeLust(pc.lustMax());
 	pc.createKeyItem("[lorelei.name]'s Collar");
 	toggleCollar("[lorelei.name]'s");
 
@@ -1155,7 +1155,6 @@ public function loreleiEngagesInADifferentTypeOfIllicitAct():void
 	loreleiHeader(true);
 	processTime(3+rand(3));
 	// increase Lust by 50
-	pc.lust(40+pc.libido()/5);
 	
 	output("You give her large bed a sideways glance, and ask Lorelei if she’s interested in continuing this conversation on something softer than a pair of hard stools.");
 	output("\n\nShe smiles, that coy, devious, knowing smile, and takes another drink of her wine. She turns her head sideways, her visible eye staying focused on you.");
@@ -1191,6 +1190,7 @@ public function loreleiEngagesInADifferentTypeOfIllicitAct():void
 	output("\n\n<i>“How would you have " + (isLoreleisBitch() ? "me" : "us") + ", darling?”</i> she asks, handing you the reins.");
 	output("\n\nThere are so many options available to you....");
 
+	pc.changeLust(40+pc.libido()/5);
 	loreleiSexMenu(true);
 }
 
@@ -1378,7 +1378,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 
 	// end scene (scene: Vanilla); return to the Sex Select menu. Set the PC’s Lust to 30
 	pc.orgasm();
-	pc.lust(30+pc.libido()/20);
+	pc.changeLust(30+pc.libido()/20);
 	IncrementFlag("LORELEI_SEXED");
 	IncrementFlag("LORELEI_SEX_COUNTER");
 
@@ -1391,8 +1391,6 @@ public function loreleiShouldntTalkWithHerMouthFull(genIdx:int, vag:Boolean):voi
 	clearMenu();
 	clearOutput();
 	loreleiHeader(true);
-	processTime(15+rand(11));
-	pc.lust(20);
 
 	if (isLoreleisBitch())
 	{
@@ -1496,9 +1494,11 @@ public function loreleiShouldntTalkWithHerMouthFull(genIdx:int, vag:Boolean):voi
 	output("\n\nLorelei beckons her finger towards you. <i>“" + (isLoreleisBitch() ? "It is your turn to satisfy your mistress" : "Be a good lover, [pc.name]") + ",”</i> she says.");
 	output("\n\nWell, you certainly wouldn’t want Lorelei to think her lessons have gone to waste....");
  
+	processTime(15+rand(11));
+	pc.lust(20);
 	// end scene (scene: Don’t Talk With Your Mouth Full); return to the Sex Select menu. Set the PC’s Lust to 30
 	pc.orgasm();
-	pc.lust(30+pc.libido()/20);
+	pc.lust(50+pc.libido()/20);
 	IncrementFlag("LORELEI_SEXED");
 	IncrementFlag("LORELEI_SEX_COUNTER");
 	if (!vag && cumQ >= (pc.cLength(genIdx) < 15 ? 6000 : 3000)) pc.applyCumSoaked();
@@ -1511,9 +1511,7 @@ public function loreleiShowsYouHerMostPreciousTreasureBox():void
 	clearMenu();
 	clearOutput();
 	loreleiHeader(true);
-	processTime(2);
-	pc.lust(20);
-
+	
 	output("Seeing Lorelei sitting there, on the edge of the bed, her legs spread and waiting for your word – her flawless, dusky complexion; the way her snowy-white hair swishes over her one eye; that confident, alluring, ‘come hither’ look of hers – it inspires something within you. You’re not certain where it comes from, but something about it says that what you want to suggest to her is <i>right.</i>");
 	output("\n\nYou take your place between her spread knees, " + (pc.hasKnees() ? "kneeling yourself" : "crouching down") + " between them and looking up her flat belly and generous bust, into her one brown eye. You allow your hands to explore her silky-smooth legs; she lifts her left, stretching it straight, allowing you to touch everything on it, as high as her thigh, just beneath the swell of her ass, down to her ankle.");
 
@@ -1529,7 +1527,8 @@ public function loreleiShowsYouHerMostPreciousTreasureBox():void
 		output("\n\nShe smiles at the suggestion and leans back, giving you more casual access to her body. Her stretched leg does not move, but her other lifts and curls around your body, the sole of her foot rubbing delicately against your back. <i>“You certainly know what to say to a woman, [pc.name],”</i> she says, leaning onto both her elbows. <i>“And I’m certainly not about to tell you that you may not. You have my permission to explore my body as you like.”</i>");
 		output("\n\nWith her permission, you feel along her stretched leg once again, this time with both hands, alternating from her ankle to her upper thigh, gracing your fingers along the inside of leg and feeling the heat of her sex against your knuckle. You have time, but there’s no time like the present to get started.");
 	}
-
+	processTime(2);
+	pc.changeLust(20);
 	addButton(0, "Next", loreleisGreatestTreasureRevealed, false);
 }
 
@@ -1538,9 +1537,6 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	clearMenu();
 	clearOutput();
 	loreleiHeader(!apologizing);
-	processTime(20+rand(16));
-	// Increase PC’s Lust by 30
-	pc.lust(25+pc.libido()/10);
 
 	output("You start at her ankle, giving it a kiss; a lingering one, your [pc.lipsChaste] smoothly gliding over her waxed leg. You part from her skin only enough to shift your body a quarter-inch and kiss again. Boldly, you snake your [pc.tongue] out, only slightly, and press its tip against her skin.");
 	output("\n\nShe doesn’t seem to mind your forwardness, and says nothing. Every few kisses, and every few inches, she moans, only slightly, knowing that you’re listening and rewarding you for a good job by letting you know that you’re pleasuring her.");
@@ -1626,6 +1622,9 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 		// if Lorelei is naked, return to the Sex Select menu;
 		loreleiSexMenu();
 	}
+	processTime(20+rand(16));
+	// Increase PC’s Lust by 30
+	pc.changeLust(25+pc.libido()/10);
 	// end scene (scene: Worship); 
 }
 
@@ -2036,7 +2035,7 @@ public function loreleisFutaSexFinallyBegins():void
 	if (pc.hasVagina()) output("My cum is sterile, so we don’t have to worry about anybody knocking anybody up. This time.”</i> Her cock lurches on its own at the implication. <i>“");
 	output("How would you " + (isLoreleisBitch() ? "please" : "have") + " me?”</i>");
 
-	pc.lust(40+pc.libido()/10);
+	pc.changeLust(40+pc.libido()/10);
 
 	if (lorelei.cLength() > 24 && flags["USED_SNAKEBYTE"] == undefined) addDisabledButton(0, "Worship", "Worship", "Lorelei is <i>way</i> too huge for you to properly go down on. <b>Perhaps if there were a way to adjust your mouth to take larger insertions...</b>");
 	else addButton(0, "Worship", loreleiAreYouSureArtTastesLikeCum, undefined, "Worship", (lorelei.cLength() < 24 ? "Lorelei has a dick that needs some serious attention. You’re no stranger to pleasing her – show her how much you appreciate her changes." : "Finally, a <b>real</b> cock to truly test your erogenous throat! You can’t <i>wait</i> to feel this thing in your mouth!"));

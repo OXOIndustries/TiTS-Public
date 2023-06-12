@@ -465,7 +465,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 		{
 			baseDamage *= 0.5;
 		}
-		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES))
+		else if (InCollection(tPC.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_SCALES) && tPC.race() != "frostwyrm")
 		{
 			baseDamage *= 1.25;
 		}
@@ -903,7 +903,7 @@ public function tankKannonBiopic():void
 	output("\n\nThe announcer’s voice returns, boasting, <i>“We’ve recovered the original upload of Tank’s infamous first outing. Stay tuned for its first holo-broadcast airing, and please remember that Erotic History is intended for viewers above the age of consent!”</i>");
 	//[Next]
 	processTime(8);
-	pc.lust(10);
+	pc.changeLust(10);
 	clearMenu();
 	addButton(0,"Watch",watchTankBlowFirstPornLoad);
 	addButton(14,"Back",mainGameMenu);
@@ -937,7 +937,7 @@ public function watchTankBlowFirstPornLoad():void
 	output("\n\nGrunting fitfully, he thrusts one last time, shooting a rope of nut-butter thick enough to impregnate a small colony worth of ausar into his lover’s new lake of a bathroom and sags, panting.");
 	output("\n\n<i>“Mmmm,”</i> you hear him and his cohort groan at the same time, just before the feed cuts.");
 	processTime(18);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Next",watchTankBlowFirstLoadEpilogue);
 }
@@ -1010,7 +1010,7 @@ public function uvetoIrson2():void
 	output("\n\nThe camera drone buzzes around, sweeping from one side of the vigorous gang-bang to the other. Several bare furry asses are pounding away at Steph, making her ample curves jiggle obscenely. She moans and gasps, bucking against the many bodies writhing overtop her. Her tail, at least, seems quite happy with its predicament, thrusting deep into the unlucky dog-boy’s ass to the same rhythm that he’s pounding his knot over and over into Steph’s pussy with. He can’t find purchase in her gaping, sodden fuck-hole - even a turgid canid bitch-breaker can’t plug her plump gray pussy.");
 	output("\n\nYou’re treated to long, lusty minutes of furry bodies humping away at the show’s host, fucking her into the dusty snow. Eventually, Steph stops struggling and starts moaning lustily, gripping at the fluffy bodies on top of her and slurping her way up and down the shaft in her mouth. Her hips wiggle and thrust back against the dick trying and failing to knot her, right up until the poor pup grunts and shudders, and the camera drone dutifully zooms in to watch a waterfall of creamy white spurt out around his knot. Steph gasps and giggles, reaching down to pet the korgonne between his low-tucked ears... until she gets distracted by a sudden eruption of puppy-cream between her soles, and then another into the pillowy depths of her cleavage. A little geyser of milk squirts out of her silvered nipples as the two top-mounted korgonne work themselves over the edge, leaving Steph an insensate, moaning mess. She’s not far behind them now!");
 	processTime(8);
-	pc.lust(33);
+	pc.changeLust(33);
 	clearMenu();
 	addButton(0,"Next",uvetoIrson3);
 }
@@ -1071,7 +1071,7 @@ public function uvetoIrson3():void
 	
 	watchStephEpisodeBroadcast("STEPH_DARGONED");
 	
-	pc.lust(10);
+	pc.changeLust(10);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1588,7 +1588,7 @@ public function encounterSavicite(choice:String = "encounter"):void
 		output(". Your Codex beeps a confirmation of what you already knew: this is savicite, a psionically-active local mineral, valuable as a fuel source. Could be worth something back at Irestead...");
 		
 		processTime(1);
-		pc.lust(5);
+		pc.changeLust(5);
 		
 		clearMenu();
 		addButton(0, "Take It", encounterSavicite, "take it");

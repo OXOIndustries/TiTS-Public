@@ -1608,7 +1608,7 @@ public function paigeAtHomeYoga():void
 		//if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}
 		if(flags["PAIGES_WINES"] != undefined && flags["PAIGE_YOGA"] == undefined || (flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] < 4)) output(" <i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
 		//if {the PC hasn’t unlocked Hard Mode}
-		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
+		else if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
 		else output(" <i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
 		//[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=]
 		// play the usual difficulty modes and Difficulty Select 2 endings
@@ -1621,9 +1621,10 @@ public function paigeAtHomeYoga():void
 		if(hours >= 0 && hours < 9) output(", even at this unruly hour");
 		output("!”</i>");
 		output("\n\nThe main room to her unit, besides the couch, the recliner, and the coffee table, is mostly bare. On top of it is one single, massive yoga mat that, until you met her, Paige used by herself. <i>“Strip out of your gear,”</i> she says, and you do.");
-		output("\n\n[if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}<i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
+		//if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}
+		if(flags["PAIGES_WINES"] != undefined && flags["PAIGE_YOGA"] == undefined || (flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] < 4)) output("\n\n<i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
 		//if {the PC hasn’t unlocked Hard Mode}
-		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output("\n\n<i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
+		else if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output("\n\n<i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
 		else output("\n\n<i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
 	}
 	processTime(5);

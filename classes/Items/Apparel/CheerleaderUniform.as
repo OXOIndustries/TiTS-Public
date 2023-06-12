@@ -34,12 +34,12 @@ package classes.Items.Apparel
 			this.attackVerb = "";
 			
 			this.basePrice = 440;
-			this.attack = 0;
+			this.attack = 4;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.sexiness = 5;
-			this.critBonus = 0;
-			this.evasion = 4;
+			this.critBonus = 3;
+			this.evasion = 6;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

@@ -1334,7 +1334,7 @@ public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 	output("\n\nYou smile and snuggle up, feeling like you’ve earned yourself a post-coitus cuddle as Syri’s load gurgles in your gut.");
 	chars["SYRI"].orgasm();
 	pc.loadInMouth(chars["SYRI"]);
-	pc.lust(33);
+	pc.changeLust(33);
 	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	if (postScene == null) addButton(0, "Next", syriSexOutro);
@@ -1533,7 +1533,7 @@ public function syriShowerAdventures():void
 	output(" before the first shot of her salty alabaster hits the back of your throat. Syri moans all the louder when her climax begins, holding you on her spasming cock as she empties her bountiful load down your gullet. Her flared hips buck forward against your mouth, turning your blowjob into a right face-fucking. You take it all happily, listening to your wolfy-mistress’ pleasured tones, accepting her cum until its salty flavour overwhelms the earthy, full taste of her ausar cock.");
 	output("\n\nAs your lover finishes riding out her orgasm, you swallow down the rest of her seed, the sound of Syri’s labored breathing fading into the pitter-patter of water onto the shower floor. You pull yourself off her knotty cock and smile up at the wolf-girl. She looks back down at you, returning your grin, though sometimes her face is blocked by her heaving bosom. She reaches down and cups your cheek, wiping away some of her excess cum with a fuzzy thumb, hot water caressing your face. You quickly return your [pc.tongue] to Syri’s doggy-cock, licking up the few drops of cum that haven’t been washed away by your shower’s flow. <i>“Thanks for that, [pc.name],”</i> the she-wolf sighs, <i>“your mouth is </i>magic<i>.”</i>");
 	processTime(34);
-	pc.lust(10);
+	pc.changeLust(10);
 	pc.loadInMouth(chars["SYRI"]);
 	clearMenu();
 	addButton(0,"Next",syriShowerAdventures2);
@@ -1656,7 +1656,7 @@ public function rideSyriInYerCoochYaWinner():void
  	output("to trace between your pussy lips.");
 
  	processTime(4);
- 	pc.lust(20);
+ 	pc.changeLust(20);
 
 	//Variation 1A: repeating if Syri_WinBet_Vag = True
 	if(flags["SYRI_WINBET_VAG"] != undefined)
@@ -2126,7 +2126,7 @@ public function gettingSyrisPanties():void
 	if(pc.hasCock()) output(" Why don’t you take your present out, and let’s have some real fun. Something tells me you’ve got a nice, thick load ready to go after all this. Or maybe you’d just like to suck my cock clean, huh? Either way’s fine with me....");
 	else output(" Maybe just leave it in there, help me get hard again... and let me fuck you silly?”</i>");
 	processTime(18);
-	pc.lust(33+rand(20));
+	pc.changeLust(33+rand(20));
 	clearMenu();
 	//Get Fucked
 	addButton(0,"Get Fucked",getFuckedBySyri,undefined,"Get Fucked","Leave those anal beads in and help Syri man up and fuck you!");
@@ -2271,7 +2271,7 @@ public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET():vo
 	if(pc.isAss()) output(" She’s coming with you, whether she and her knotty dick like it or not.");
 	output(" <i>“Hey, easy, [pc.name],”</i> the temptress protests, <i>“I was gonna go with you anyway.”</i> No time for small talk; you walk as fast as you can out the bar with Syri in tow.");
 	processTime(10);
-	pc.lust(100);
+	pc.changeLust(100);
 	clearMenu();
 	addButton(0,"Next",syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET2);
 }
@@ -2390,7 +2390,7 @@ public function morningInteractionsWithSyriKissHer():void
 	output("\n\n<i>“Hey, I’m-”</i> she starts, only to be cut off as you lean in, cupping one of the ausar’s cheeks and locking lips with her. Her tail shoots out behind her like an arrow before starting to wag, beating rapidly against the barstool. She sighs lightly and plants a hand on your hip, returning the gesture once her momentary surprise washes past her.");
 	output("\n\n<i>“I’m into that,”</i> Syri chuckles once you break the kiss. Her hand wanders down your leg, brushing across your crotch. <i>“Especially if it’s just the beginning.”</i>");
 	processTime(2);
-	pc.lust(2);
+	pc.changeLust(2);
 	while(pc.lust() < 33)
 	{
 		pc.lust(1);
@@ -2419,7 +2419,7 @@ public function syriHugStuff():void
 		output("\n\n<i>“Admit it,”</i> you laugh, eying her crotch. <i>“You love it.”</i>");
 		output("\n\nSyri stiffens - in posture and in her pants - and grumbles something under her breath that sounds an awful lot like <i>“You know me too damn well.”</i>");
 		processTime(1);
-		pc.lust(4);
+		pc.changeLust(4);
 	}
 	clearMenu();
 	syriMorningMenu();
@@ -2490,8 +2490,10 @@ public function loseToSyriPetPlayeeeee():void
 	output(". Sometimes she makes you do tricks, so you roll over and sit, other times she makes you speak, so you arf and bark; you’re completely at her whim. Your time on the streets is brought to an end when Syri brings you back around to the customs office again.");
 
 	processTime(80);
-	if(pc.exhibitionism() >= 33) pc.lust(5);
-	if(pc.exhibitionism() >= 66) pc.lust(10);
+	var lustC:Number = 0;
+	if(pc.exhibitionism() >= 33) lustC += 5;
+	if(pc.exhibitionism() >= 66) lustC += 10;
+	if(lustC > 0) pc.changeLust(lustC);
 	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",syriPetPlayPCLostPart2);
@@ -2608,7 +2610,7 @@ public function barStrippySyriDooda():void
 	output("\n\nShe’s looking at you expectantly, though there’s still a bit disdain in her gaze; now all you have to do is decide what to do with the puppy.");
 
 	processTime(25);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[PitchAnal] Show the puppy what happens when you lose a bet. //Requires cock that fits.
 	//[CatchAnal] Take your victory prize in the form of Syri’s knotty cock.
 	//[Cuddle] Show your puppy some love.
@@ -2649,7 +2651,7 @@ public function walkieMcWalkerson():void
 	output("\n\nShe’s looking at you expectantly, though there’s still a bit disdain in her gaze; now all you have to do is decide what to do with the puppy.");
 
 	processTime(25);
-	pc.lust(10);
+	pc.changeLust(10);
 	//[PitchAnal] Show the puppy what happens when you lose a bet. //Requires cock that fits.
 	//[CatchAnal] Take your victory prize in the form of Syri’s knotty cock.
 	//[Cuddle] Show your puppy some love.
@@ -2964,7 +2966,7 @@ public function syriJackVid():void
 	output("\n\nWith that done, you click your way off the video, and get ready to blow off some steam... maybe you could go visit Syri.");
 	
 	processTime(10 + rand(3));
-	pc.lust(60);
+	pc.changeLust(60);
 	
 	addButton(0, "Next", smutFapMenu, true);
 }

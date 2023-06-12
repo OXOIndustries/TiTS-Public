@@ -12,7 +12,7 @@ import classes.GameData.CombatManager;
 
 //Female zil Encounter
 public function femzilEncounter(forceFriendly:Boolean = false):void {
-	pc.lust(4);
+	
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
 	CodexManager.unlockEntry("Zil");
@@ -31,6 +31,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		output("\n\n<i>“Come on, stranger, help yourself! Or.. maybe you’d like a taste of my home-made honey?”</i> she asks, pushing aside the chitin plate on her chest to reveal a full, pert breast; at the slightest squeeze, a thick dollop of an amber liquid drips from her nipple, sticking to her fingers.");
 		output("\n\n<i>“Any way you want it, stranger, that’s the way you need it! Just show me what you’ve got!”</i>");
 		output("\n\nBefore you can think, though, a strong, sweet smell wafts past you, nearly overwhelming your senses... damn, she smells <b>good</b>. It takes all your force of will to resist diving into her arms, and even then, your body urges you to take her up on the offer. What do you do?");
+		pc.changeLust(4);
 		clearMenu();
 		//[Fight her]
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
@@ -44,6 +45,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
 		author("Savin");
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. You search around for the source of the scent, and your nose quickly leads you to a familiar zil girl reclining on a log, legs spread wide to let loose the potent pheromones. She jumps up as you approach, but relaxes as she recognizes you. <i>“Hey there, stranger. Back for a taste of my honey?”</i>");
+		pc.changeLust(4);
 		//[Fight her]
 		//[Leave]
 		//[Get Honey]
@@ -62,6 +64,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] != undefined){
 		author("Savin");
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. You search around for the source of the scent, and your nose quickly leads you to a familiar zil girl reclining on a log, legs spread wide to let loose the potent pheromones. She jumps up as you approach, grabbing one of the darts from her belt to defend herself. <i>“H-hey there, stranger, no need to get violent. Just back off, okay?”</i>");
+		pc.changeLust(4);
 		clearMenu();
 		//[Fight her]
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
@@ -73,6 +76,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		author("Zeikfried");
 		output("\n\nAs you wander the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. Your eyes and nose lead you to a familiar feminine form reclining on a log, legs spread wide to let loose the potent scent. The girl looks up as you approach with a knowing smile. <i>“Hello, lover. I’m in the mood for some excitement, and you’re right on time.”</i> She does not look like she will take no for an answer.");
 		output("\n\nHer pussy fairly glistens, lending truth to her words. The atmosphere thickens with pheromones and tension as she stares you down, tracing the outline of her vulva. You feel a strong compulsion to agree to whatever she wants.");
+		pc.changeLust(4);
 		clearMenu();
 		//[Fight Her]
 		addButton(0,"Fight Her",fightHostileZil);
@@ -172,7 +176,6 @@ public function leaveHostileZil():void {
 	}
 	//fail - lust < 100 after lust penalty, start fight with penalty
 	else {
-		pc.lust(10);
 		if(pc.lust() < 99.5) {
 			showName("FIGHT:\nFEMALE ZIL");
 			output("Glancing back, you catch sight of something leaving the woman’s hand, but can’t move your body fast enough to avoid whatever it is. With a ‘thwip’, a dart pokes through ");
@@ -181,6 +184,7 @@ public function leaveHostileZil():void {
 			output(", and your muscles loosen while your groin heats up with increased blood flow. Head suddenly swimming, you can only marshal your thoughts as the zil walks closer, grinning smugly. As she reaches over to caress your body, your body finally responds and you slap her hand away.");
 			
 			output("\n\nHumming in irritation, she takes a step back as you ready your " + pc.meleeWeapon.longName + ".");
+			pc.changeLust(10);
 			clearMenu();
 			configFemZilFight();
 			addButton(0,"Next",CombatManager.beginCombat);
@@ -208,6 +212,7 @@ public function leaveHostileZil():void {
 				else output("the ground");
 			}
 			output(", and you can’t do anything but stare at the slowly approaching wasp woman, imagining what perverted things she’ll do to you. As she reaches out and caresses your face, your mouth opens but makes no sound. She hums pleasantly, knowing she’ll get what she’s after.");
+			pc.changeLust(10);
 			clearMenu();
 			configFemZilFight();
 			addButton(0,"Next",CombatManager.beginCombat);
@@ -491,7 +496,6 @@ public function lickABitchCleanYouBitch():void {
 	author("Savin");
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
-	pc.lust(20);
 	output("With the zil’s toes so close, you can fully smell the potent aroma of sex spread across her black chitin, and the irresistible lure of her desire wafting from her honeypot as she fingers herself, letting her pheromones waft down to you. Beset by a mire of scents, your spent prick twitches back to life, but the zil pointedly draws back your attention to her black, shimmering digits. Her big toe flicks across your lips, leaving the dual tastes of her sweet honey and your own creamy seed; your tongue reacts to the taste, darting out the lap across her smooth, hard skin, tasting deeply of yourself mixed into the coating of her own juices you spread before.");
 	output("\n\nThe chitiny beauty breathes a gasp of pleasure as your lips suckle her toe, tongue bathing it, washing it clean of cum and honey until it shines. You look up at the zil girl, searching in her midnight-black eyes, watching the rise and fall of her bare bosom, her even, excited breath as you lick her clean, swallowing every");
 	if(InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_NYREA_GIRLCUM, GLOBAL.FLUID_TYPE_GABILANI_CUM])) output(" sweet-salty");
@@ -508,6 +512,7 @@ public function lickABitchCleanYouBitch():void {
 	output("\n\nSpurred on by a resurgence of lust, you dive into her with abandon. Your tongue searches into her quivering depths, thrusting in between desperately contracting walls that milk and squeeze your muscle like a cock, trying to draw out a load of spunk to fertilize the eggs deep inside her. Instead, your tongue probes her again and again, lapping up the sweet juices that wash down in waves toward your waiting mouth, eagerly lubricating your oral invasion as the zil’s breath becomes ever more ragged. Slowly, you start to catch up to her, reveling in her tender attentions on your cock as she jerks you off, wringing your wang until a new stream of pre stains your clothes. Your breath catches as her thumb circles your cum slit, pressing down hard until you roll your head back and groan, able to feel the thick wad of pre bubbling up as she caps your shaft.");
 	output("\n\n<i>“It’s my turn to cum,”</i> the zil laughs, mashing her muff back into your face, taking your nose halfway into herself before you can right yourself and set to work, furiously licking along her gash before your cock threatens to boil over into her waiting hand. Your work pays off in spades, as soon her dark slit is squeezing hard on your writhing [pc.tongue], dousing it in orgasmic honey as she digs her fingers into you, humping your face with wild, desperate need as her voice echoes to the heavens. She grinds hard on you, taking your tongue deep into her love canal as she cums, riding you even as her musky honey squirts powerfully onto your already doused face, drenching you in the wasp girl’s potent aroma.");
 	output("\n\nWith a final ecstatic squeal and a last gush of honey onto your face, the zil girl rolls off you, panting heavily as her entire body trembles with release. Wiping the fem cum from your cheeks, you take your first deep breath of fresh air in a good long while. Before you can even think of leaving, though, the waspy beauty gets your attention with a come-hither coo and a pair of wide-spread legs. <i>“What do you say, stranger? You wouldn’t leave a girl when she’s all hot and ready to go again, would you?”</i> Damn, she’s fast... and smells so good....");
+	pc.changeLust(20);
 	processTime(25+rand(5));
 	pc.girlCumInMouth(chars["ZILFEMALE"]);
 	clearMenu();
@@ -1303,7 +1308,7 @@ public function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
 	//zeikfried’d
 	author("Zeikfried");
 	//get 100 lust
-	pc.lust(100);
+	pc.changeLust(100);
 	//maybe become evil
 	pc.personality++;
 	if(pc.personality <= 33) pc.personality++;
@@ -1670,7 +1675,7 @@ public function fZilPregEncounter():void
 	}
 	
 	processTime(5);
-	if(!pc.hasAirtightSuit()) pc.lust(15);
+	if(!pc.hasAirtightSuit()) pc.changeLust(15);
 	
 	addButton(0, "Yes", fZilInvestigate, undefined, "", "");
 	addButton(1, "No", fZilIgnore, undefined, "", "");
@@ -1726,7 +1731,7 @@ public function fZilInvestigate():void
 		fZilPregMenu();
 	}
 	
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(15+rand(10));
 }
 
@@ -1758,7 +1763,7 @@ public function fZilHappy():void
 	output("\n\nYou set your hands on the zil’s shoulders and push her away, but only enough to let you take in the entirety of her pregnant form. What do you want to do to her?");
 	
 	pc.addNice(3);
-	pc.lust(20);
+	pc.changeLust(20);
 	processTime(5);
 	
 	fZilPregMenu();
@@ -1824,7 +1829,7 @@ public function fZilPregAppearance():void
 	output("\n\nThe zil tilts her head in confusion at your perceived inaction, then notices how intently you’re checking her out. She smiles and cocks her hips seductively, playfully running her hands along her body like some kind of pregnant alien pin-up model. You have to admit, it’s pretty hot.");
 	output("\n\nThe zil smiles. <i>“So, did you have anything else in mind?”</i>");
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(3);
 	
 	fZilPregMenu();
@@ -1887,7 +1892,7 @@ public function fZilPregTalkScent():void
 	output("\n\n<i>“To be perfectly honest,”</i> she adds, <i>“I am affected by your scent as well, though yours is not nearly as strong as the pheromones of a pure-blooded zil. Still, I know you are my mate from scent alone, and it is...”</i> She pauses and shuts her eyes for a moment, her antennae twitching. <i>“Arousing, to say the least.”</i> The zil slides her hands along her hips, eyeing you seductively. <i>“Perhaps we could explore these sensations together, hmm?”</i>");
 	output("\n\nYou grin. That doesn’t sound like a bad idea.");
 	
-	pc.lust(15);
+	pc.changeLust(15);
 	processTime(7+rand(5));
 	
 	fZilPregTalkMenu();

@@ -34,10 +34,11 @@ package classes.Items.Armor
 			basePrice = 3500;
 			attack = 0;
 			defense = 2;
-			shields = 4;
-			sexiness = 5;
+			shields = 15;
+			sexiness = 4;
+			this.resolve = 1;
 			critBonus = 0;
-			evasion = 0;
+			evasion = 4;
 			fortification = 0;
 			
 			resistances.burning.resistanceValue = 10.0;

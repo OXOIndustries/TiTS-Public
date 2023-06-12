@@ -455,7 +455,7 @@ public function defeatFeruze():void
 	//menu here
 	output("\n\n");
 	clearMenu();
-	pc.lust(10);
+	pc.changeLust(10);
 	if(pc.lust() < 33)
 	{
 		addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You aren’t aroused enough for this.");	

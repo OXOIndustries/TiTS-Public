@@ -126,7 +126,7 @@ public function cherryTapHallBonerBonus():Boolean
 		output(" Casting about for the source of this sudden, uncontrollable lust, you spy a battery of hefty, LED-lit machines that vibrate with a low, steady thump that seems to shake the air inside your lungs.");
 		output("\n\nNone of the other figures filtering through the corridor seem alarmed by the machines, so you move to investigate just what’s going on for yourself. The dark, textured cylinders look " + (pc.isBimbo() ? "like person-sized, fuzzy dildos":"almost like omni-directional subwoofers") + ". A small pink-on-black placard mounted above them reads: <i>“Aural Stimulation Speakers provided compliments of the Cyber Punks.”</i>");
 		output("\n\nThe mystery of your vibration-fed libido may have temporarily distracted you, but once you have a moment to survey the whole room, the purpose of the arousal engines becomes clear. The left wall of the hall is laden with a host of hardlight partitions, dividing the long chamber into a series of shallow compartments. The primary occupants of these stalls are humanoid figures mounted halfway through the wall by cushioned ovals. Some have their lower halves hanging out, bare legs fidgeting in place. Others have been bound the opposite way, their upper halves exposed and defenseless. There seems to be a few who are almost entirely hidden from view, folded in half so that only their ass and abdomen jut out like a pair of ripe hemispheres. Strapped in and utterly at the mercy of whomever might pay them a visit, you’d expect these victims to be struggling for their freedom, but their languid, writhing movements and heated, whimpering moans suggest otherwise.");
-		pc.lust(75);
+		pc.changeLust(75);
 		clearMenu();
 		addButton(0,"Next",meetCherriesPart2);
 		return true;
@@ -137,7 +137,7 @@ public function cherryTapHallBonerBonus():Boolean
 		if(pc.hasStatusEffect("Cherry_In_Room")) output("(<b>Debug text:</b> Ordinarily, Molli would be running the store while Cherry is in her room... but Molli isn’t done yet. So enjoy Cherry!)\n\n");
 		output("The cloying scent of Cherry’s bio-chemical perfume wafts around you as the throbbing, subliminal vibrations of the Cyber Punks’ lust generators fill you once more. Your libido kicks into overdrive just by walking the length of the Tap-Hall. The wall of public use sluts is as popular as ever, but there are still plenty of unoccupied stalls.");
 		//is lust is not at least 30, set lust to 30
-		pc.lust(75);
+		pc.changeLust(75);
 		clearMenu();
 		addButton(0,"Wall Sluts",pickWallSlut,undefined,"Wall Sluts","Take a gander at the wares on display.");
 		return false;
@@ -679,8 +679,8 @@ public function moreDragonfucks(x:int):void
 	pc.createStatusEffect("BlackDragDisable");
 	pc.setStatusMinutes("BlackDragDisable",90);
 	pc.orgasm();
-	while(pc.lust() < 33) { pc.lust(2); }
-	pc.energy(-5);
+	if(pc.lust() < 33) pc.changeLustTo(33);
+	pc.changeEnergy(-5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -758,7 +758,7 @@ public function raskvelCuntFun(x:int):void
 	pc.setStatusMinutes("RaskvelDisable",90);
 	processTime(25);
 	pc.orgasm();
-	while(pc.lust() < 33) { pc.lust(2); }
+	if(pc.lust() < 33) pc.changeLustTo(33);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -847,8 +847,8 @@ public function goblinAnalStuff(x:int):void
 	else output("nearly cum-filled compartment is any indication, the two of you were at it for quite a while. The narrow space on the other side of the translucent display wall looks very nearly like an aquarium, filled as it is with your slimy spunk. The peaks of her tips and her raised, restrained legs poke up through the [pc.cumColor] lake like verdant islands, while a pair of emerald lips just barely reach the surface. The fluid level does seem to be dropping slightly, bit by bit, from some too-narrow drain. Well, until then, at least you’ve given her a nice, warm bath.");
 	output("\n\nYou pull yourself free of her still-clenching ass with some effort. Like pulling out a plug, the gooey excess of your bliss comes drooling from her freshly gaped booty. The well-used girl oozes like an over-filled condom and you give her a pat of appreciation on her jiggling, sweat-slick ass cheeks. Though a bit fatigued, your libido hasn’t appreciably diminished after your carnal spree. You don’t know if it’s the subliminal machines, the possibly pheromone-laced cherry perfume, or some other mechanism to keep the Tap-Hall’s clients at peak arousal, but you’re actually beginning to feel warm again.");
 	pc.orgasm();
-	while(pc.lust() < 33) { pc.lust(2); }
-	pc.energy(-5);
+	if(pc.lust() < 33) pc.changeLustTo(33);
+	pc.changeEnergy(-5);
 	processTime(10 + rand(10));
 	IncrementFlag("THICK_GAB_USED");
 	pc.createStatusEffect("ThiccGobDisable");
@@ -929,7 +929,7 @@ public function fuckThatExtendedUrtaReference(x:int):void
 	output("\n\nAt the same time, Tura’s balls twitch powerfully, yanking themselves out of your palm as they draw closer to her crotch. There’s a gurgling, pumping sound from somewhere deep within her sexually taxed body, then her ring-restrained cock flares powerfully, only to be choked off by a sudden squeeze from its binding. The trembling equine cock strains futilely while a holographic display fizzes into existence above it, reading, <i>“Climax Detected. Allow? Y/N.”</i>");
 	output("\n\nYou shudder, trying to adjust to the squeezing tightness and divert enough blood to your brain to make a decision at the same time. Do you let fox-slut cum?");
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	clearMenu();
 	addButton(0,"Y",yesLetUrtaCum,x);
 	addButton(1,"N",noCummiesForUrta,x);
@@ -1192,7 +1192,7 @@ public function demureTaurAss(x:int):void
 		output("\n\nMore used to your penetration, the leithan nevertheless reacts with knee-shaking delight at your first inch. The dark orbs between her thighs droop slightly, weighed down by the gravity of her carnal needs. A pale white cock slides out of the thick folds of her sheath, its mass ballooning with lust-glutted thickness. Her white-gold pre bubbles at the plump, flat peak of equine endowment, drooling desire onto the floor in splattering dollops.");
 	}
 	processTime(15);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",demTaurButt2,x);
 }
@@ -1428,7 +1428,7 @@ public function goToCherrysQuartersForBanging():void
 	showCherry();
 	author("Adjatha");
 	output("<i>“That’s what I like to hear. Sex drive to power a starship on this one,”</i> she muses, licking her lips and leading you off to her quarters.");
-	pc.lust(5);
+	pc.changeLust(5);
 	//go to Cherry’s Quarters menu
 	processTime(1);
 	clearMenu();
@@ -1455,7 +1455,7 @@ public function smallBubbleGiftForCherry():void
 	output("\n\nShe raises the shot-sized spunk bead to her polished lips and gives it a moist kiss. <i>“Mmmmm. I’ll have to save this for when you use the Wall next. Get a taste of what you’re pumping into the sluts.”</i> She affixes the bubble to her belt and leans forward to plant a second kiss on your cheek.");
 	output("\n\nShe certainly seemed to appreciate the gift, though you suspect a single load is more a snack than a true meal to the ruby rahn.");
 	processTime(5);
-	pc.lust(2);
+	pc.changeLust(2);
 	giveCherryABubble(0);
 	clearMenu();
 	addButton(0,"Next",cumBubblesOptionsForCherry);
@@ -1482,7 +1482,7 @@ public function mediumBubbleGiftForCherry():void
 	output("\n\nCherry flashes you a pleased smile and turns her attention fully to the sizeable sphere in her hand. Her tongue, long and sinuous, slips past her lips and winds toward the fruit of your loins like a snake stalking its prey. The winding, half-foot organ drips with scarlet saliva as it wraps around the circumference of your gift, greedily squeezing the supple bulb with her oral lasso.");
 	output("\n\n<i>“Das ‘ood ‘um,”</i> she remarks, lowering her hand and entrusting the full weight of your latex-sealed climax to her slender coil. Though her head bobs slightly, she remarkably manages to support the bubble with her drool-slick tongue alone. A few of the unoccupied patrons give a smattering of applause at the trick, but if Cherry notices it, she doesn’t react. All of her attention is centered wholly on the flavor-filled balloon inches from her lips.");
 	processTime(5);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Next",mediumBubbleGiftForCherry2);
 }
@@ -1525,14 +1525,14 @@ public function mediumBubbleGiftForCherry2():void
 	{
 		output("\n\n<i>“You know, I think I could really go for a bigger meal,”</i> she pants, her face flushed. <i>“You got a little time?”</i>");
 		processTime(4);
-		pc.lust(5);
+		pc.changeLust(5);
 		clearMenu();
 		addButton(0,"Not Now",mediumBubHerPlaceNotNow);
 		addButton(1,"Her Place",mediumBubHerPlace);
 		return;
 	}
 	processTime(4);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",cumBubblesOptionsForCherry);
 }
@@ -1567,7 +1567,7 @@ public function mediumBubHerPlace():void
 		output("\n\n<i>“I’ll Cherry Bomb them!”</i> she confirms with a gooey, dripping salute.");
 		output("\n\nWith that, Cherry turns to a hefty steel door marking her quarters, Her high-heeled cybernetic legs arch each step to send jiggles through her polished, bubble butt. The long, swaying ponytail behind her curls with a motion for you to follow and that’s just what you do.");
 		processTime(5);
-		pc.lust(3);
+		pc.changeLust(3);
 	}
 	//repeat
 	else
@@ -1608,7 +1608,7 @@ public function largeBubbleGiftForCherry():void
 		output("\n\n<i>“Never one to disappoint huh? Given this kind of output, I can’t imagine why you don’t have a little pet rahn of your own,”</i> she purs as she takes the wobbling bowling ball of spunk from you. <i>“So, my place or yours?”</i> she asks as she turn to her quarters for a suitably messy festivities.");
 	}
 	processTime(5);
-	pc.lust(2);
+	pc.changeLust(2);
 	giveCherryABubble(2);
 	clearMenu();
 	addButton(0,"Not Now",largeBubHerPlaceNotNow);
@@ -1665,7 +1665,7 @@ public function largeBubHerPlace():void
 	}
 	//go to Cherry’s Quarter’s
 	processTime(2);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	addButton(0,"Next",goToCherrysQuarters);
 }
@@ -1695,7 +1695,7 @@ public function hugeBubbleGiftForCherry():void
 		output("\n\n<i>“I’ll Cherry Bomb them!”</i> she confirms with a gooey, dripping salute.");
 		output("\n\nWith that, she practically hauls you off to her quarters, her stomping setting an urgent pace for everyone in the Tap-Hall to hear. <i>“Oooh, somebody’s in trouble,”</i> one of the pirates laughs as you pass by. Cherry’s ponytail instinctively whips around and slaps him upside the head, dropping the man in a paralyzed heap. She doesn’t seem to notice.");
 		processTime(5);
-		pc.lust(4);
+		pc.changeLust(4);
 		clearMenu();
 		addButton(0,"Next",firstTimeHugeBubCherrysPlace);
 	}
@@ -1705,7 +1705,7 @@ public function hugeBubbleGiftForCherry():void
 		output("The red rahn claps her hands over her mouth as you present her with another magnum-sized, cum-bloated condom nearly as big as her entire gel body. She blushes and her eyes flit between you and the steel door at the end of the Tap-Hall leading to her private quarters. She swallows hard and then immediately gives in.");
 		output("\n\nChucking a Cherry Bomb to the goo girl janitor in case she needs to knock out any troublemakers, the zel’rahn hurries your latest gift off to her quarters for some vigorous appreciation. You could join her, if you wanted to.");
 		processTime(2);
-		pc.lust(3);
+		pc.changeLust(3);
 		clearMenu();
 		addButton(0,"Not Now",hugeBubHerPlaceNotNow);
 		addButton(1,"Her Place",hugeBubHerPlace);
@@ -1781,7 +1781,7 @@ public function bubbledBitchesNeedBoounced():void
 	output("\n\n<i>“You know, if you keep this up, I’m going to end up forgetting how to make my toxin,”</i> she whispers, accusingly. You offer an innocent shrug.");
 	//go to Cherry’s Quarters.
 	processTime(4);
-	pc.lust(4);
+	pc.changeLust(4);
 	clearMenu();
 	addButton(0,"Next",goToCherrysQuarters);
 }
@@ -2188,7 +2188,7 @@ public function wallSlutsNoisyRodentsEarFuckingFillWalnut(kok:int=0):void
 	if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
 	processTime(3);
 	pc.orgasm();
-	while(pc.lust() < 33) { pc.lust(2); }
+	if(pc.lust() < 33) pc.changeLustTo(33);
 	clearMenu();
 	addButton(0,"Next",wallSlutsNoisyRodentsEarFuckingFinish);
 }
@@ -2224,7 +2224,7 @@ public function wallSlutsNoisyRodentsEarFuckingFillChestnut(kok:int=0):void
 	if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
 	processTime(3);
 	pc.orgasm();
-	while(pc.lust() < 33) { pc.lust(2); }
+	if(pc.lust() < 33) pc.changeLustTo(33);
 	clearMenu();
 	addButton(0,"Next",wallSlutsNoisyRodentsEarFuckingFinish);
 }
@@ -2277,7 +2277,7 @@ public function wallSlutsNoisyRodentsEarFuckingFillBoth(kok:int=0):void
 	if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
 	processTime(3);
 	pc.orgasm();
-	while(pc.lust() < 33) { pc.lust(2); }
+	if(pc.lust() < 33) pc.changeLustTo(33);
 	clearMenu();
 	addButton(0,"Next",wallSlutsNoisyRodentsEarFuckingFinish);
 }
@@ -2576,7 +2576,7 @@ public function wallSlutsNoisyRodentsVIPServiceSex2(kok:int=0):void
 		}
 		else if (sel [rn] == 2) 
 		{
-			output("\n\nChestnut isn’t about to let Walnut have it all. That’s why she’s down in front and savouring the raw, primal taste of your [knotOrSheath " + kok + "]");
+			output("\n\nChestnut isn’t about to let Walnut have it all. That’s why she’s down in front and savouring the raw, primal taste of your [pc.knotOrSheath " + kok + "]");
 			if (pc.hasKnot(kok) && pc.hasSheath(kok)) output(", thick, pierced tongue drooling over the tumescent growth of your cunt - plugger and sliding over the slaver - glazed folds of your sheath");
 			else if (pc.hasKnot(kok)) output(" studded serpent of a tongue teasing, enticing, and inflaming your bulbous cunt - plug into fighting Walnut’s brain for space");
 			else if (pc.hasSheath(kok)) output(" lengthy, jeweled tongue smearing spit and lust into your musky sheathfolds, infringing on nerve-dense areas never meant to be explored");
@@ -2750,7 +2750,7 @@ public function williamsRatBoiComm():void
 	output("\n\nInspecting the rodent proper, you combine the digital photo of a boy with slender shoulders and the real view of a considerable ass. His flared hips are wider than those found on approximately-aged girls, and his fur is clean... actually, it’s quite fragrant. If he’s not here by his own will, then his owner obviously cares about his well-being. Between his round, femmy mounds is a dark winking ring, unplumped, but blushing a pinkish hue that sparkles under the mood lighting. Below his rump is a foreskinned cock seven inches long and a squishy pair of tightly-packed black-furred balls brimming with an unspent load. It’s by now you notice how cleverly he’s positioned, bound waist deep in servitude with his feet a few centimeters from touching the ground.");
 	output("\n\nThere’s no plug or any means of prevention found on him, indicating that his hole is open for business. His cock, too, should you like. " + (pc.hasKeyItem("Puss Pass") ? "With your Puss Pass in arm’s reach, you could have this cutie to yourself any time.":"His price is found on his photo. For 1500 credits, this shy rat will be yours for the next orgasm."));
 	processTime(6);
-	pc.lust(3);
+	pc.changeLust(3);
 	clearMenu();
 	if(pc.hasKeyItem("Puss Pass"))
 	{
@@ -2829,7 +2829,7 @@ public function pitchAnalToRatboi(x:int):void
 	output(", sliding through it, all while you notice yourself whispering sweet affections to a pair of ears unable to hear them.");
 	if(x >= 0) pc.cockChange();
 	processTime(12);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",willsRatBoiGetsADickyNumbahTwo,x);
 }
@@ -3012,7 +3012,7 @@ public function cockMilkDatWilliamsRatBoooooooi():void
 		output("\n\nBundling his weighty nuts is a simple matter - why else would you have so long a tongue? The ribbon of mawflesh winds around his gorged and overheated stash, lovingly licking at all its places without the need for hands and fingers. Stroking and clenching and wrapping, you shamelessly juggle his shuddering package, framing your [pc.face] in sloshing plumpness until you lack any dignity.");
 	}
 	processTime(25);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	addButton(0,"Next",suckWillsMauseBoi2);
 }
@@ -3052,7 +3052,7 @@ public function suckWillsMauseBoi2():void
 		ratButt.createPerk("Fixed CumQ",3000);
 		pc.loadInMouth(ratButt);
 		pc.loadInMouth(ratButt);
-		pc.lust(5);
+		pc.changeLust(5);
 	}
 	// pc Bimbo, Cum Addict, and-or SnakeByte
 	else
@@ -3065,7 +3065,7 @@ public function suckWillsMauseBoi2():void
 		else if(pc.lipRating() < 6) output("\n\nHis penis experiences the almost virginal joy of putting a pair of time-tested fuck-pillows to the test. Red-hot girth massages your sex-tasters on the inward and outward strokes, each one softer and more exciting than the last!");
 		else output("\n\nYour [pc.lipColor] fuck-cushions are tailor-made DSLs, the most perfect expression of a [pc.manWoman]’s desire to suck dick and make it as pleasurable as possible. His pole is expertly polished between your plush pillows, hugging as tight and as gloriously as a tight, wet cunt.");
 		output(" To your unfiltered joy, you stop having to guide him. On a deep, instinctual level he realizes that he’s accomplishing his most basic function as a man: fucking a warm hole.");
-		output("\n\nNow he’s jouncing around, wiggling his hips as his maker intended. He’s thrusting forward and awkwardly receding. He’s burrowed too deeply into his hole to do more than withdraw a single inch each time. That’s fine. He belongs fucking you. He <i>deserves</i> to know what a train throat-slut feels like. He deserves to pump [pc.himHer] full of cum. He deserves to have someone so pliant to his whims that all [pc.heShe] can do is groan in sensory overload.");
+		output("\n\nNow he’s jouncing around, wiggling his hips as his maker intended. He’s thrusting forward and awkwardly receding. He’s burrowed too deeply into his hole to do more than withdraw a single inch each time. That’s fine. He belongs fucking you. He <i>deserves</i> to know what a trained throat-slut feels like. He deserves to pump [pc.himHer] full of cum. He deserves to have someone so pliant to his whims that all [pc.heShe] can do is groan in sensory overload.");
 		output("\n\nBalls clap to your shuddering chin: the sublime ecstasy of oral submission. Rich, throbbing cock, cumming on loop, flattens your tongue beneath its titanium girth. An unwitting incubus slides into all those syrupy spots. You take him to the root. You feel his every desire, feed off it. It’s all sooooo <b>smoooooth!</b> His prick, his crotch, his abdomen! You’re swaddled in it all, having your maw stimulated in ways that bring pleasure to the rest of your body. ");
 		if(pc.isBimbo()) output("It feels great to be fucked, to be <i>useful</i> to someone! You’re so near yourself, right there with him! So near to an empathic orgasm that good girls like you deserve!");
 		else if(pc.isDependant(Creature.DEPENDANT_CUM)) output("He’ll unload soon, dump all his creamy sperm into your gut, give you that hit you so desperately need. You would stay under here forever if you could. Hell, if you could own him, you’d buy his contract and make him your personal meal-boy!");
@@ -3080,10 +3080,10 @@ public function suckWillsMauseBoi2():void
 		if(pc.hasGenitals())
 		{
 			output("\n\nIt’s there. In your groin, you can feel it. Time’s lost all meaning here, but the pulse of musky cock between your cheeks and in your cum-stained belly-hole reminds you of one simple truth: you’re going to cum. You can’t see out into the Tap-Hall right now, but you’re going to cum. None of the ne’er-do-wells here could miss the ");
-			if(!pc.isCrotchExposed() && pc.hasCock()) output("untended bulge " + (pc.legCount > 1 ? "between your spread legs":"at the front of your crotch") + ", inflating, shrinking, inflating, fighting for air");
+			if(!pc.isCrotchExposed() && pc.hasCock()) output("untended bulge " + (pc.legCount > 1 ? "between your spread legs":"at the front of your crotch") + ", inflating, shrinking, inflating, fighting for air.");
 			//notExposed,Pussy:
-			else if(!pc.isCrotchExposed() && pc.hasVagina()) output("the massive, dark splotch between your quivering thighs. All this moaning and sliding has made you into a wet, sodden slut");
-			else if(pc.hasCock()) output("[pc.cocks] jutting upwards at your crotch, spurting [pc.cumColor] seed into the air with every boi-to-[pc.face] impact" + (pc.hasVagina() ? ", or the [pc.pussiesLight] below, oozing a puddle of slave’s submission":""));
+			else if(!pc.isCrotchExposed() && pc.hasVagina()) output("the massive, dark splotch between your quivering thighs. All this moaning and sliding has made you into a wet, sodden slut.");
+			else if(pc.hasCock()) output("[pc.cocks] jutting upwards at your crotch, spurting [pc.cumColor] seed into the air with every boi-to-[pc.face] impact" + (pc.hasVagina() ? ", or the [pc.pussiesLight] below, oozing a puddle of slave’s submission":"") + ".");
 			else if(pc.hasVagina()) output("parted lips of your [pc.pussies], winking with [pc.girlCumNoun]-scented arousal. Globules of juice spill from your [pc.vaginaColor], wanton hole" + (pc.hasVaginas() ? "s":"") + ". [pc.GirlCumFlavor] beads of [pc.girlCumVisc] anticipation roll down your [pc.skinFurScalesNoun] and collect on the floor.");
 		}
 		// pc Neuter

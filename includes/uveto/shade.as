@@ -808,7 +808,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\n<i>“Now,”</i> she purrs, grinding her hips in your hands, <i>“let’s get you nice and warmed up...”</i>");
 			
 			processTime(5);
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			flags["SHADE_ON_UVETO"] = 3;
 			
@@ -1066,7 +1066,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\n<i>“Just like old times,”</i> she purrs, pinching a nipple. <i>“Let’s burn out those memories, huh?”</i>");
 			
 			processTime(5);
-			pc.lust(15);
+			pc.changeLust(15);
 			
 			flags["SHADE_ON_UVETO"] = 3;
 			flags["SHADE_IS_YER_SIS"] = 2; // 2 for incest sister

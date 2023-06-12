@@ -40,7 +40,7 @@
 			this.meleeWeapon.attackNoun = "blade";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.armor new GenericCatsuit();
+			this.armor = new GenericCatsuit();
 			
 			this.rangedWeapon = new FlareGun();
 			rangedWeapon.baseDamage.kinetic.damageValue = 12;

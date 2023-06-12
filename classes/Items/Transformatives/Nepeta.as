@@ -126,7 +126,11 @@ package classes.Items.Transformatives
 			
 			for (var bi:int = 0; bi < target.breastRows.length; bi++)
 			{
-				if (target.breastRows[bi].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL && target.nippleTypeUnlocked(bi, GLOBAL.NIPPLE_TYPE_NORMAL)) tfs.push(nipTF);
+				if (target.breastRows[bi].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL && target.nippleTypeUnlocked(bi, GLOBAL.NIPPLE_TYPE_NORMAL)) 
+				{
+					//Dont stack the TF multiple times.
+					if(tfs.indexOf(nipTF) == -1) tfs.push(nipTF);
+				}
 			}
 			
 			if (target.hasCock() && !target.hasVagina())

@@ -746,7 +746,7 @@ public function lundSexStarter():void
 		
 		processTime(5);
 	}
-	pc.lust(4);
+	pc.changeLust(4);
 	lundSexMenu();
 }
 
@@ -789,13 +789,14 @@ public function lundDoggyStyle():void
 		else output("You’re not in charge. I know you prefer it this way. A man tells you where to go, what to do, how wide to spread your [pc.thighs], and when to swallow.");
 		output("”</i>");
 		output("\n\n<i>“I- Uuuhh,”</i> you mutter, losing yourself in his words. Gosh, he always knows just what to say to you...");
+		processTime(2);
 		//Next button -> goes to Bimbo Sex.
 		clearMenu();
 		addButton(0,"Next",bimboLundSex,x);
 		return;
 	}
 	//If you’ve selected [Submit], you get a different scene the next time you pick Doggystyle:
-	else if(flags["LUND_MADE_U_SUBMIT"] != undefined && flags["LUND_BROKEN"] == undefined)
+	else if(flags["LUND_MADE_U_SUBMIT"] != undefined && flags["LUND_BROKEN"] == undefined && flags["LUND_BREEDCAVE_DISABLE"] == undefined)
 	{
 		//Just use a generic room with no exits :3
 		currentLocation = "MYRNAS CAVE";
@@ -962,7 +963,19 @@ public function lundDoggyStyle():void
 		output(". Lund has you dominated in both mind and body, and everyone in the room knows it, especially you. You can’t help but moan when he spanks you across your [pc.ass] and steps away, looking back at him with unsuppressed lust.");
 
 		output("\n\nYou can’t help but laugh breathlessly when he raises his arm and receives a cheer from the other korgonnes in the room. The foreign alien, conquered! Fuck it, you’ll be his sexy trophy if he wants. He’s more than earned it with his stellar sexual performance and besides, you like him. You realize he’s turned back to face you, and you flash him a beautiful smile before sinking to your knees in front of him and dedicatedly sucking his bulging dick.");
-		
+		processTime(60);
+		for(var ii:int = 0; ii < 8; ii++) { pc.orgasm(); }
+		pc.applyCumSoaked();
+		if(pc.hasVagina())
+		{
+			pc.loadInCunt(lundipoo,rand(pc.totalVaginas()));
+			pc.loadInCunt(lundipoo,rand(pc.totalVaginas()));
+		}
+		else
+		{
+			pc.loadInAss(lundipoo);
+			pc.loadInAss(lundipoo);
+		}
 		clearMenu();
 		addButton(0,"Next",lundDoggyStyleSubmitEnd);
 	}
@@ -1130,6 +1143,7 @@ public function lundDoggyStyle():void
 			
 			output("\n\nYou give Lund a kiss on the snout before you leave, setting his tail wagging as he sits on the bed and watches you go.");
 		}
+		processTime(40);
 		pc.orgasm();
 		pc.orgasm();
 		if(x >= 0)
@@ -1147,7 +1161,6 @@ public function lundDoggyStyle():void
 		addButton(0,"Leave",leaveLundSex);
 		addButton(1,"Again",moreLundSex,x);
 	}
-	processTime(40);
 }
 
 public function lundDoggyStyleSubmitEnd():void
@@ -1171,7 +1184,11 @@ public function lundDoggyStyleSubmitEnd():void
 		pc.breastRows[0].piercing.onEquip(pc);
 		flags["LUND_PIERCED"] = 1;
 	}
-	else output("Besides, looking down at yourself right now");
+	else 
+	{
+		output("Besides, looking down at yourself right now");
+		flags["LUND_BREEDCAVE_DISABLE"] = 1;
+	}
 	output(", you personally think it’s really hot to be marked so visibly.");
 	output("\n\nBy the time the two of you leave, you’re fucked out for the day. Well, you might have one or two sessions with Lund left in you, but you’re okay for now. You give both him and his balls a warm kiss before you leave, heading back to the Hold proper. You’ll have to do this again sometime soon!");
 	processTime(128);
@@ -1435,7 +1452,8 @@ public function evenEvenEvenMoreLundSex(x:int):void
 	pc.applyCumSoaked();
 
 	//set flag for having submitted
-	flags["LUND_MADE_U_SUBMIT"] = 1;
+	if(flags["LUND_MADE_U_SUBMIT"] == undefined) flags["LUND_MADE_U_SUBMIT"] = 1;
+	if(flags["LUND_BREEDCAVE_DISABLE"] != undefined) flags["LUND_BREEDCAVE_DISABLE"] = undefined;
 	clearMenu();
 	addButton(0,"Next",leaveLundsHouse);
 }
@@ -2254,7 +2272,7 @@ public function repeatLundCookies():void
 		output("\n\nYou <i>do</i> happen to have more....");
 
 		processTime(20);
-		pc.lust(10);
+		pc.changeLust(10);
 		pc.loadInMouth(lundCumPlaceholder());
 		//[=Again=][=Enough=]
 		// give the PC the Orally-Filled status
@@ -2622,7 +2640,7 @@ public function lundBadEndFinale():void
 	output("\n\nYour rub your hand gently over his balls as they clench and lurch, followed by several thick, juicy gouts of his cum flooding into you. You swallow his every load eagerly, your mind wandering to the more nostalgic times you had taken him into your mouth like this. You hear the telltale sound of teeth against crumbly flour again, and his body reacts once more.");
 	output("\n\nIn the ten years it’s been since you gave yourself to your master; you never did find the limit to his stamina.");
 	pc.libido(200);
-	pc.lust(200);
+	pc.changeLust(200);
 	pc.willpower(-100);
 	pc.intelligence(-20);
 	//output("\n\n<b>GAME OVER</b>");
@@ -2653,7 +2671,7 @@ public function enoughBeforeLundBadEnds():void
 	output("\n\nYou’ll make up your mind when you leave....");
 
 	processTime(10);
-	pc.lust(50);
+	pc.changeLust(50);
 	pc.energy(-100);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

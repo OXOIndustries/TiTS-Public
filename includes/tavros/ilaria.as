@@ -451,7 +451,7 @@ public function sexWithIlaria():void
 	IncrementFlag("FUCKED_ILARIA");
 
 	processTime(5);
-	pc.lust(25);
+	pc.changeLust(25);
 	clearMenu();
 	//[Munch Pussy] [Pound Her]
 	//Munch Pussy
@@ -510,7 +510,7 @@ public function ilariaCumSlurp():void
 	output("\n\n<i>“Whoops! Sorry sugar. I guess I’ve always got a little left in the tank! Lemme get that for ya,”</i> she says, bending down to lick it off your cheek. <i>“Thanks for the suckjob, babe. I’ll meet you back outside after I get cleaned up!”</i>");
 	IncrementFlag("ILARIA_CUMSUCKED_URETHRAL");
 	processTime(20);
-	pc.lust(10);
+	pc.changeLust(10);
 	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 15000);
 	pc.loadInMouth(chars["ILARIA"]);
 	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
@@ -540,7 +540,7 @@ public function munchIlariasPussy():void
 	{
 		output("\n\nMmm, speaking of her being a big, virile stud... she’s got more than enough in that damn milker already. It would be easy to give that throbbing red rocket a yank out of the milker, and into your needy pussy...");
 		processTime(12);
-		pc.lust(25);
+		pc.changeLust(25);
 		//[Get Creampie] [Oral Finish]
 		clearMenu();
 		//[Get Creampie]
@@ -611,7 +611,7 @@ public function oralFinishTheBunBunBun():void
 	output("\n\nYou grin and turn off the vibes and milker, letting the machines slowly wind down their assault on Ilaria’s senses. When they’re finished, she moans and shudders, trying and failing to untangle herself from the milker’s stirrups. <i>“Stars above, that never gets old!”</i> she murmurs, finally propping herself up on her elbows. <i>“That’s enough cream for... oh, the rest of the shift, if none of my regulars come through. Better find some more ‘nuki cream for a quick refill...”</i>");
 	output("\n\nThe bunny giggles and detaches herself from the machine with a loud <i>POP</i> that leaves her shivering, knees buckling. <i>“Oof. You, uh, you go on out, babe. I’ve gotta... catch my breath.”</i>");
 	processTime(5);
-	pc.lust(5);
+	pc.changeLust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

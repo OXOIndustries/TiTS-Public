@@ -747,7 +747,7 @@ public function seraSexMenu(display:Boolean = false):void
 			else output(" other asscheek");
 			output(". <i>“You know the drill, if you want something, you need to beg for it...”</i>");
 			
-			pc.lust(5);
+			pc.changeLust(5);
 		}
 		// Default
 		else
@@ -1357,7 +1357,7 @@ public function seraCockvineScene():void
 	output("\n\n<i>“Aww yeah, that’s it,”</i> gloats Sera, reaching down to jerk her own twelve-inch dick furiously a few inches away from your nose, utterly drunk on her own dominance. <i>“Hurts so good, doesn’t it? Fuck, I wish I could paint that expression on you 24/7.”</i> Her pussy ripples around you, femcum dripping down your unbelievably pent-up tentacle cock, and your own cry combines with Sera’s squawk of joy. She rides the bulging, tender flesh inside her with violent pushes of her hips, hand thwipping down her erect cock with savage flicks of the wrist. <i>“Hold onto it for just a little longer, slut...”</i> she groans. <i>“Just a little more...”</i>");
 
 	// ++ Lust
-	pc.lust(100);
+	pc.changeLust(100);
 	processTime(10);
 	IncrementFlag("SERA_TAILED");
 	

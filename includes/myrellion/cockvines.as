@@ -196,7 +196,7 @@ public function adultCockvineGrenadesInEnclosedSpaces(damageValue:TypeCollection
 			output(" Dazed, you cannot help but take a big gulp of the gas now billowing thickly through the cramped, slithery pit.");
 			var damage:TypeCollection = damageValue.makeCopy();
 			damage.applyResistances(pc.getLustResistances());
-			pc.lust(damage.getTotal());
+			pc.changeLust(damage.getTotal());
 		}
 		else
 		{

@@ -23,6 +23,7 @@ package classes.GameData
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_MHENGA] = "RACE: MHEN’GA";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_TARKUS] = "RACE: TARKUS";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_MYRELLION] = "RACE: MYRELLION";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_DHAAL] = "RACE: DHAAL";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_UVETO] = "RACE: UVETO";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_XAMDAM] = "RACE: XAMDAM";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ORGANIZATION] = "ORGANIZATIONS";
@@ -39,6 +40,7 @@ package classes.GameData
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_MHENGA]		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_TARKUS]		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_MYRELLION]	= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_DHAAL]		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_UVETO] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_XAMDAM]		= new Object();
 
@@ -62,17 +64,18 @@ package classes.GameData
 		public static const CODEX_TYPE_RACE:int 		= 2;
 		public static const CODEX_TYPE_RACE_MHENGA:int 	= 3;
 		public static const CODEX_TYPE_RACE_MYRELLION:int = 4;
-		public static const CODEX_TYPE_ROBOT:int 		= 5;
-		public static const CODEX_TYPE_RACE_TARKUS:int 	= 6;
-		public static const CODEX_TYPE_RACE_UVETO:int	= 7;
-		public static const CODEX_TYPE_RACE_XAMDAM:int 	= 8;
-		
-		public static const CODEX_TYPE_ORGANIZATION:int	= 9;
-		public static const CODEX_TYPE_EVENT:int 		= 10;
-		public static const CODEX_TYPE_LOCATION:int 	= 11;
-		public static const CODEX_TYPE_ITEM:int 		= 12;
-		public static const CODEX_TYPE_MEDICAL:int 		= 13;
-		public static const CODEX_TYPE_STORY:int 		= 14;
+		public static const CODEX_TYPE_RACE_DHAAL:int 	= 5;
+		public static const CODEX_TYPE_ROBOT:int 		= 6;
+		public static const CODEX_TYPE_RACE_TARKUS:int 	= 7;
+		public static const CODEX_TYPE_RACE_UVETO:int	= 8;
+		public static const CODEX_TYPE_RACE_XAMDAM:int 	= 9;
+
+		public static const CODEX_TYPE_ORGANIZATION:int	= 10;
+		public static const CODEX_TYPE_EVENT:int 		= 11;
+		public static const CODEX_TYPE_LOCATION:int 	= 12;
+		public static const CODEX_TYPE_ITEM:int 		= 13;
+		public static const CODEX_TYPE_MEDICAL:int 		= 14;
+		public static const CODEX_TYPE_STORY:int 		= 15;
 		
 		
 		

@@ -26,13 +26,13 @@
 			TooltipManager.addTooltip(shortName, tooltip);
 			
 			basePrice = 11000;
-			attack = 1;
+			attack = 6;
 			defense = 4;
 			shieldDefense = 0;
 			shields = 0;
-			sexiness = 8;
+			sexiness = 5;
 			critBonus = 0;
-			evasion = 3;
+			evasion = 9;
 			fortification = 0;
 			
 			itemFlags = [];

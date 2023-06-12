@@ -63,7 +63,7 @@
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.armor new GenericCatsuit();
+			this.armor = new GenericCatsuit();
 			
 			this.shield = new ReaperArmamentsMarkIIShield();
 			
