@@ -76,7 +76,7 @@ public function shukuchiTavrosChase():void
 	output("Eanie meanie, oh fuck this. You speed off to the best of your ability, [pc.legs] working at full sprinters pelt after the hood who assaulted the fox!");
 	output("\n\nHe goes for the direction of the deck elevator, expertly weaving his way through a crowd of unsuspecting station-dwellers. You keep up but you’re still far from apprehending him!");
 	output("\n\nAs you both dart around and race each other down, leaving a trail of disgruntled sex workers and patrons in your wake, you spot him hitting the much more crowded shopping district. Sheer Beauty comes into view just as a long, bustling crowd of similarly dressed, suited humans walk past it towards you.");
-	output("\n\nThe hooded culprit slows his speed but quickly adjusts his footing, sidestepping into the incoming group in a seamless fashion. Almost instantly, you lose clear sight of him aside fromthe bobbing black top of his hood.");
+	output("\n\nThe hooded culprit slows his speed but quickly adjusts his footing, sidestepping into the incoming group in a seamless fashion. Almost instantly, you lose clear sight of him aside from the bobbing black top of his hood.");
 	output("\n\nYou’re forced to take the other aisle, the rest of the shopping district forming a colorful obstruction for your speedy chase.");
 	if(pc.tallness <= 84) output("\n\nYou have to squint and hop around just to keep track of that bob but you’re still able to follow it.");
 	else output("\n\nIt’s no effort to follow the erratically moving bob from above, although there’s still a crowd of bodies stopping you from a speedy advance.");
@@ -87,7 +87,7 @@ public function shukuchiTavrosChase():void
 	output("\n\nYou see the hood raise his fist in the air, something small and blue peeking out between the clenched fingers: a grenade?!");
 	output("\n\nWith a quick series of motions, the hood chucks his payload right before the officers, leapfrogs one of the confused lawbringers and springboards off of another!");
 	output("\n\nYou’ve only a second of taking in the acrobatic display before having to cover your face with your arms!");
-	output("\n\n<i><b>PREEEEeeeeeeeeeeeee!</b></i>\nInstead of the bone breaking, horrific explosion you were expecting, a punctuating wail and impossibly bright light makes its way into your peripheral vision! You can’t help but grunt and grityour teeth, still staggering forward in the direction you think you were moving in.");
+	output("\n\n<i><b>PREEEEeeeeeeeeeeeee!</b></i>\nInstead of the bone breaking, horrific explosion you were expecting, a punctuating wail and impossibly bright light makes its way into your peripheral vision! You can’t help but grunt and grit your teeth, still staggering forward in the direction you think you were moving in.");
 	output("\n\nThe screams and shouts from around you seem to blur into nothingness and the only focus is the masked culprit. With some hefty blinks and a wall to lean on, you catch a blurry glimpse of that hood and mask looking back at you for a few solid seconds. It’s almost as if he’s taunting you from afar...");
 	output("\n\nDetermined not to let this criminal go, you give chase once again with a renewed surge of energy!");
 	

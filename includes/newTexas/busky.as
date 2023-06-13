@@ -213,7 +213,7 @@ public function buskyTalksAboutHimself():void {
 	clearOutput();
 	showBusky();
 	
-	output("<i>“Name’s Buskurt Agnos, people just call me Busky though, and honestly I’m just your run of the mill New Texan Bull.”</i> Busky says casually. <i>“Not much different than Ol’ Big T. himself.”</i>");
+	output("<i>“Name’s Buskurt Agnos, people just call me Busky though, and honestly I’m just your run-of-the-mill New Texan Bull.”</i> Busky says casually. <i>“Not much different than Ol’ Big T. himself.”</i>");
 	output("\n\n<i>“So you spend every waking moment ogling at the biggest pair of breasts in the room,”</i> you joke. Busky himself chuckles for a second before responding.");
 	output("\n\n<i>“Not exactly a woman person myself, if you know what I mean. Instead of Aphrodite, I’d rather get with Priapus, or as he’s known around here, ‘Brynn’, heh. Here’s a tip, with him, there’s no such thing as ‘just the tip’, made that mistake myself and by the end of it, I couldn’t sit down for a month.”</i>");
 	output("\n\nYou chuckle, amused at Busky’s honesty. It seems like everyone really has nothing to hide in New Texas.");
