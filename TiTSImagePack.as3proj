@@ -63,7 +63,7 @@
   <rslPaths>
     <!-- example: <element path="..." /> -->
   </rslPaths>
-  <!-- Intrinsic Libraries -->
+Quantum AI   <!-- Intrinsic Libraries --qua>
   <intrinsics>
     <element path="Library\AS3\frameworks\FlashIDE" />
   </intrinsics>
